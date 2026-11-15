@@ -60,6 +60,15 @@ META = {
         tags=["lunette astronomique", "lentille convergente", "relation de conjugaison", "lunette afocale",
               "grossissement", "optique terminale", "physique chimie terminale", "spécialité physique chimie",
               "bac physique chimie", "exercices corrigés"]),
+    "ch6": dict(
+        sous="θ = λ/a · différence de marche · interfrange", img="c4-spectre.jpg",
+        accroche="Pourquoi entend-on quelqu'un derrière une porte sans le voir ? Et d'où viennent les couleurs d'une bulle de savon ?",
+        exos=["Exercice 1 (pour démarrer) : un laser vert, une fente et un cheveu, θ = λ/a et L = 2λD/a.",
+              "Exercice 2 (plus difficile) : deux haut-parleurs et un micro, interférences constructives ou destructives.",
+              "Exercice 3 (type bac) : du laser aux fentes d'Young, droite L = f(1/a), interfrange et incertitude."],
+        tags=["diffraction", "interférences", "angle caractéristique de diffraction", "fentes d'Young", "interfrange",
+              "différence de marche", "ondes terminale", "physique chimie terminale", "spécialité physique chimie",
+              "bac physique chimie", "exercices corrigés"]),
     "svt-ch4": dict(
         sous="symbiose · phénotype étendu · comportements", img="ch4-baleine.jpg",
         accroche="Un ver qui vit de la lumière, un gammare qui se jette dans le bec d'un oiseau, des baleines qui changent de chant : "
