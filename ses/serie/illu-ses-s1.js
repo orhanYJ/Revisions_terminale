@@ -13,7 +13,7 @@
   function toupie(y) {
     if (y < 0.06) return 0.05;
     if (y < 0.42) return 0.05 + 0.95 * Math.sin((y - 0.06) / 0.36 * Math.PI / 2);
-    return 0.02 + 0.98 * Math.pow(1 - (y - 0.42) / 0.58, 1.15);
+    return 0.02 + 0.98 * Math.pow(Math.max(0, 1 - (y - 0.42) / 0.58), 1.15);
   }
 
   window.SERIE_ILLU.toupie = function (s, v) {
