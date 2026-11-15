@@ -101,6 +101,16 @@ META = {
         tags=["HGGSP", "HGGSP terminale", "spécialité HGGSP", "bac HGGSP", "nouveaux espaces de conquête", "océan et espace",
               "Montego Bay", "ZEE", "haute mer", "traité de l'espace 1967", "dernières frontières", "New Space",
               "syndrome de Kessler", "orbites", "mer de Chine méridionale", "dissertation HGGSP", "étude critique"]),
+    "maths-ch2": dict(
+        sous="convergence · gendarmes · suites géométriques", img="m2-nuage.jpg", gros="Les suites",
+        accroche="Achille ne rattrape jamais la tortue ? Zénon avait tort, et les limites de suites expliquent pourquoi. "
+                 "Converger, diverger, encadrer : tout pour le bac.",
+        pill2="+ 2 exercices corrigés", exos_txt="deux exercices corrigés pas à pas : cinq limites à calculer, puis une suite homographique type bac",
+        exos=["Exercice 1 (pour démarrer) : cinq limites de suites à calculer.",
+              "Exercice 2 (type bac) : la suite u(n+1) = (2u(n) + 3)/(u(n) + 4), suite auxiliaire géométrique et seuil en Python."],
+        tags=["limites de suites", "suites numériques", "convergence", "suite divergente", "théorème des gendarmes",
+              "suite géométrique", "suite monotone", "suite majorée", "suite récurrente", "algorithme de seuil",
+              "paradoxe de Zénon", "maths terminale", "spécialité maths", "bac maths", "exercices corrigés"]),
     "maths-ch3": dict(
         sous="asymptotes · formes indéterminées · croissances comparées", img="m3-courbe.jpg", gros="Les limites",
         accroche="Qui gagne la course vers l'infini, e^x ou x^10 ? Limites, asymptotes, formes indéterminées : "
