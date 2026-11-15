@@ -143,6 +143,22 @@ META = {
         tags=["HGGSP", "HGGSP terminale", "spécialité HGGSP", "bac HGGSP", "Station spatiale internationale", "ISS",
               "Artemis", "Montego Bay", "ZEE", "mer de Chine méridionale", "grands fonds", "AIFM", "haute mer",
               "traité BBNJ", "coopération internationale", "dissertation HGGSP", "Grand oral"]),
+    "ses-e2": dict(
+        titre_yt="Commerce international et chaînes de valeur · Cours complet + sujets corrigés | SES Terminale",
+        sous="Ricardo · HOS · compétitivité · protectionnisme", img="e2-elephant.jpg", gros="Le commerce",
+        accroche="Un iPhone est-il vraiment « made in China » ? Pourquoi les pays échangent, qui y gagne, qui y perd, "
+                 "et faut-il se protéger ?",
+        pill2="+ 5 sujets corrigés",
+        exos_txt="cinq sujets corrigés pas à pas : un calcul d'avantages comparatifs, les trois parties de l'épreuve composée et une dissertation",
+        exos=["Savoir-faire : calculer des avantages comparatifs (l'exemple de Ricardo) — exercice du site.",
+              "Partie 1 : « Présentez deux effets du commerce international sur les inégalités. »",
+              "Partie 2 : la chaîne de valeur de l'iPhone, données Xing et Detert (2010) — exercice du site.",
+              "Partie 3 : « Montrez que la productivité des firmes sous-tend la compétitivité d'un pays, c'est-à-dire son aptitude à exporter. »",
+              "Dissertation : « Le protectionnisme peut-il être une réponse efficace aux effets du commerce international ? »"],
+        tags=["commerce international", "SES terminale", "spécialité SES", "bac SES", "avantage comparatif", "Ricardo",
+              "dotations factorielles", "HOS", "commerce intra-branche", "compétitivité prix", "compétitivité hors prix",
+              "chaîne de valeur", "firmes multinationales", "courbe de l'éléphant", "protectionnisme", "libre-échange",
+              "épreuve composée", "dissertation SES"]),
     "ses-e3": dict(
         titre_yt="Comment lutter contre le chômage ? · Cours complet + sujets corrigés | SES Terminale",
         sous="BIT · structurel · conjoncturel · politiques de l'emploi", img="e3-chomage.jpg", gros="Le chômage",
