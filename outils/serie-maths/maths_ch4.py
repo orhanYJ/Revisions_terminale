@@ -30,7 +30,7 @@ for _n in ("deux", "trois", "quatre", "cinq", "six", "douze", "quinze", "seize")
     for _l in ("x", "u", "a", "n", "f", "m"):
         PRONONCIATION[_n + " " + _l] = _n + " fois " + _l
 PRONONCIATION.update({"§n": "N", "§k": "K", "§f": "F", "§x": "X", "§b": "B", "§v": "V", "§m": "M", "§q": "Q",
-                      "§g": "G", "§h": "H", "§y": "Y"})
+                      "§g": "G", "§h": "H", "§y": "Y", "§c": "C", "§e": "E"})
 for _tok in ("un", "une", "huit", "onze", "a", "u", "N", "F", "X", "M", "R", "A", "U", "L", "H", "Y"):
     PRONONCIATION["plus " + _tok] = "plusse " + _tok
     PRONONCIATION["moins " + _tok] = "moin " + _tok
@@ -94,7 +94,7 @@ SCENES = [
     ], vis={
         "q1": dict(type="formule", titre="Une équation", x=230, y=200, w=820, lignes=[
             dict(f="$x^3+x-1=0$", cadre=True, taille=64),
-            dict(f="aucune formule ne donne la solution", txt=True)]),
+            dict(f="aucune formule du lycée ne donne la solution", txt=True)]),
         "g0": dict(type="graphe", titre="La courbe de $x\\mapsto x^3+x-1$", x=250, y=96, w=780, h=590,
                    ax=dict(x=[-0.4, 1.4], y=[-1.6, 2.0], gx=[0.5, 1], gy=[-1, 1], lx="$x$", ly="$y$"),
                    el=[dict(type="point", x=0, y=-1, c="ca", lbl="$-1<0$", lp=[0.3, -1.05]),
@@ -137,9 +137,9 @@ SCENES = [
         "{-exc1}{exc2}Et un quatrième, plus costaud : k de x égale exponentielle de deux fois x, fois x moins un, le tout au cube. "
         "{exc2.1}Quelle est la dernière opération ? Un produit. On commence donc par la formule du produit : u prime v, plus u v prime.",
         "{exc2.2}La dérivée de exponentielle de deux fois x, c'est deux fois exponentielle de deux fois x. "
-        "{exc2.3}La dérivée de x moins un au cube, c'est trois fois x moins un au carré : la dérivée de x moins un vaut un.",
+        "{exc2.3}La dérivée de x moins un au cube, c'est trois fois, x moins un au carré : la dérivée de x moins un vaut un.",
         "{exc2.4}On assemble. {exc2.5}Et on factorise par exponentielle de deux fois x, et par x moins un au carré. "
-        "Dans la parenthèse, il reste deux fois x moins un, plus trois : deux fois x plus un.",
+        "Dans la parenthèse, il reste deux fois, x moins un, plus trois : deux fois x plus un.",
         "{exc2.6}Résultat : exponentielle de deux fois x, fois x moins un au carré, fois deux fois x plus un. "
         "Une forme factorisée, prête pour une étude de signe.",
         "{-exc2}{meth}D'où la méthode, en une question. {meth.1}Avant de dériver, demande-toi : quelle est la dernière opération ? "
@@ -167,7 +167,7 @@ SCENES = [
             dict(f="$\\left(u^n\\right)'=nu'u^{n-1}$", m="$n\\geq1$", taille=44),
             dict(f="$\\left(\\sqrt u\\right)'=\\dfrac{u'}{2\\sqrt u}$", m="$u>0$", taille=44),
             dict(f="$\\left(\\dfrac1u\\right)'=-\\dfrac{u'}{u^2}$", m="$u\\neq0$", taille=44)]),
-        "exc1": dict(type="formule", copie=True, titre="Trois calculs", x=110, y=92, w=1060, lignes=[
+        "exc1": dict(type="formule", copie=True, titre="Trois premiers calculs", x=110, y=92, w=1060, lignes=[
             dict(f="$f(x)=(3x+1)^5$ : $u(x)=3x+1$, $u'(x)=3$", taille=32),
             dict(f="$f'(x)=5\\times3\\times(3x+1)^4=15(3x+1)^4$", ind=True, hl=True, taille=32),
             dict(f="$g(x)=\\sqrt{x^2+1}$ : $u'(x)=2x$", taille=32),
@@ -249,7 +249,7 @@ SCENES = [
         "{-tg2}{refs}Les fonctions de référence, à connaître. {refs.1}x au carré et l'exponentielle sont convexes sur R : "
         "leur dérivée seconde vaut deux, et exponentielle de x. Toutes deux positives.",
         "{refs.2}La racine carrée est concave sur zéro, plus l'infini : sa dérivée seconde est négative.",
-        "{refs.3}Et x au cube change de camp : concave sur moins l'infini, zéro, puis convexe sur zéro, plus l'infini. On y revient tout de suite.",
+        "{refs.3}Et x au cube change de camp : concave sur moins l'infini, zéro, puis convexe sur zéro, plus l'infini. On en reparle tout de suite.",
         "{-refs}{g_em}Un piège classique : ne confonds pas convexe et croissante. {g_em.1}Voici exponentielle de moins x. "
         "Elle descend : elle est décroissante. {g_em.2}Mais elle tourne vers le haut : elle est convexe. "
         "Sa dérivée seconde, c'est exponentielle de moins x, toujours positive.",
@@ -313,7 +313,7 @@ SCENES = [
         "{tg3.inf}Au point de bascule, l'origine, la tangente est l'axe des abscisses. Et la courbe la traverse !",
         "Ce point a un nom : un {!point d'inflexion}point d'inflexion. C'est un point où la courbe traverse sa tangente.",
         "{-tg3}{def_i}Et avec f seconde, c'est un point où f seconde s'annule {def_i.1}en changeant de signe. "
-        "Pour x au cube, f seconde vaut six fois x : négative avant zéro, positive après. Il y a bien inflexion à l'origine.",
+        "Pour x au cube, f seconde vaut six fois x : négative avant zéro, positive après. L'origine est bien un point d'inflexion.",
         "{-def_i}{g_x4}Mais attention au piège. {g_x4.1}Prends x puissance quatre. "
         "Sa dérivée seconde vaut douze fois x au carré. Elle s'annule en zéro.",
         "{g_x4.2}Point d'inflexion ? Non ! Douze fois x au carré est positif des deux côtés. Elle s'annule, mais ne change pas de signe. "
@@ -362,13 +362,13 @@ SCENES = [
          beats=[
         "{tag_bo}{dem}Place à la démonstration exigible du chapitre. Si f seconde est positive, la courbe est au-dessus de ses tangentes.",
         "{dem.1}Soit f deux fois dérivable sur I, avec f seconde positive, et soit un réel a de I. "
-        "La tangente au point d'abscisse a a pour équation : y égale f prime de a, fois x moins a, plus f de a.",
+        "La tangente au point d'abscisse a a pour équation : y égale f prime de a, fois, x moins a ; plus f de a.",
         "{dem.2}L'idée : on étudie l'écart entre la courbe et la tangente. On pose g de x égale f de x, moins l'expression de la tangente.",
         "{dem.3}On dérive : f de a et f prime de a sont des constantes. Il reste g prime de x égale f prime de x, moins f prime de a.",
-        "{dem.4}Or f seconde est positive, donc f prime est croissante. Si x est plus petit que a, f prime de x est plus petit que f prime de a : "
+        "{dem.4}Or f seconde est positive, donc f prime est croissante. Si x est plus petit que a, f prime de x est inférieur ou égal à f prime de a : "
         "g prime est négative. {dem.5}Si x est plus grand que a, g prime est positive.",
         "{dem.6}Donc g décroît, puis croît : elle a un minimum au point a. Et ce minimum vaut g de a : f de a, moins f de a. Zéro.",
-        "{dem.7}Conclusion : g est positive partout. La courbe est au-dessus de la tangente en a. Et ceci, pour chaque point a de I.",
+        "{dem.7}Conclusion : g est positive partout. La courbe est au-dessus de la tangente au point d'abscisse a. Et ceci, pour chaque point a de I.",
         "Retiens surtout la structure : étudier la différence, la dériver, trouver son minimum. Elle sert pour toutes les inégalités.",
         "{-dem}{-tag_bo}{g_exp}Et justement, la convexité donne des inégalités presque gratuitement. {g_exp.1}L'exponentielle est convexe. "
         "{g_exp.2}Sa tangente au point d'abscisse zéro a pour équation y égale x plus un : exponentielle de zéro vaut un, et la pente aussi.",
@@ -376,12 +376,12 @@ SCENES = [
         "Une inégalité célèbre, à connaître.",
         "{-g_exp}{g_rac}Même idée avec la racine carrée, qui est concave. {g_rac.1}Elle est sous sa tangente au point d'abscisse un, "
         "{g_rac.2}d'équation y égale un demi x, plus un demi.",
-        "{g_rac.3}Donc racine de x est inférieure ou égale à x plus un, sur deux, pour tout x positif. "
+        "{g_rac.3}Donc racine de x est inférieure ou égale à x plus un, sur deux, pour tout réel x positif. "
         "Égalité pour x égale un. {g_rac.4}Et pour x égale neuf : racine de neuf vaut trois, et neuf plus un sur deux vaut cinq. Trois est bien plus petit que cinq.",
         "{-g_rac}{meth_in}La méthode, quand on te demande de démontrer qu'une fonction est au-dessus d'une autre. "
         "{meth_in.1}Si l'autre est une tangente : par convexité. {meth_in.2}Sinon, on étudie la différence, "
         "on cherche son minimum avec la dérivée, et on montre qu'il est positif.",
-        "{-meth_in}{euler}Un joli usage de exponentielle de x, supérieur ou égal à x plus un. Prends x égale un sur n, pour un entier n non nul. "
+        "{-meth_in}{euler}Un joli usage de exponentielle de x, supérieur ou égal à x plus un. Prends x égale un sur n, pour un entier naturel n non nul. "
         "{euler.1}On obtient : un plus un sur n, inférieur ou égal à exponentielle de un sur n.",
         "{euler.2}Les deux membres sont positifs, et la fonction puissance n est croissante sur les positifs. On élève à la puissance n. "
         "{euler.3}Un plus un sur n, puissance n, est inférieur ou égal à exponentielle de un, ce fameux nombre e, environ deux virgule sept un huit.",
@@ -404,7 +404,7 @@ SCENES = [
         "g_rac": dict(type="graphe", titre="$\\sqrt x\\leq\\dfrac{x+1}2$", x=250, y=110, w=780, h=560,
                       ax=dict(x=[0, 9.8], y=[0, 5.6], gx=[1, 3, 5, 7, 9], gy=[1, 2, 3, 4, 5], lx="$x$", ly="$y$"),
                       el=[dict(type="courbe", pts=RAC, c="iv", ep=3.4, dur=1.8),
-                          dict(type="droite", pts=[[0, 0.5], [9.8, 5.15]], c="sa", ep=3, lbl="$y=\\frac12x+\\frac12$", lp=[4.1, 3.9]),
+                          dict(type="droite", pts=[[0, 0.5], [9.8, 5.4]], c="sa", ep=3, lbl="$y=\\frac12x+\\frac12$", lp=[4.1, 3.9]),
                           dict(type="point", x=1, y=1, c="te", lbl="égalité en $1$", lp=[2.2, 0.7]),
                           dict(type="points", pts=[[9, 3], [9, 5]], c="ca", lbl="$3\\leq5$", lp=[8.0, 4.0])]),
         "meth_in": dict(type="liste", titre="Démontrer $f(x)\\geq g(x)$", items=[
@@ -432,7 +432,7 @@ SCENES = [
         "{-prop}{thm_d}Un lien important avec la dérivation. {thm_d.1}Toute fonction dérivable sur un intervalle est continue sur cet intervalle.",
         "{thm_d.2}Mais la réciproque est fausse. {-thm_d}{g_abs}Le contre-exemple : la valeur absolue de x. {g_abs.1}{g_abs.2}Sa courbe est un V. "
         "Elle est continue en zéro, on la trace sans lever le crayon.",
-        "{g_abs.3}Mais en zéro, il y a un coin. À gauche, la pente vaut moins un ; à droite, un. Deux demi-tangentes différentes : "
+        "{g_abs.3}Mais en zéro, la courbe fait un coin. À gauche, la pente vaut moins un ; à droite, un. Deux demi-tangentes différentes : "
         "la valeur absolue n'est pas dérivable en zéro.",
         "{-g_abs}{suite}Dernier résultat, qui fait le lien avec les suites. {suite.1}Si u indice n converge vers L, "
         "et si f est continue au point L, alors f de u indice n converge vers f de L.",
@@ -491,10 +491,10 @@ SCENES = [
         "Sans continuité, le théorème ne marche plus.",
         "{-g_saut}{g_trois}Et attention : « au moins une », ce n'est pas « une seule ». {g_trois.1}Voici x au cube, moins trois fois x, plus un, "
         "entre moins deux et deux. {g_trois.2}Elle vaut moins un en moins deux, et trois en deux. Zéro est entre les deux.",
-        "{g_trois.3}Le théorème garantit une solution de f de x égale zéro. Et il y en a trois ! "
+        "{g_trois.3}Le théorème garantit une solution de f de x égale zéro. Et on en trouve trois ! "
         "La courbe monte, redescend, puis remonte. Elle coupe l'axe trois fois.",
         "{-g_trois}{coro}Pour avoir une seule solution, il faut une hypothèse de plus. C'est le corollaire. "
-        "{coro.1}Si f est continue, {coro.2}et strictement monotone sur a, b, {coro.3}alors, pour tout k compris entre f de a et f de b, "
+        "{coro.1}Si f est continue, {coro.2}et strictement monotone sur a, b, {coro.3}alors, pour tout réel k compris entre f de a et f de b, "
         "l'équation f de x égale k admet une unique solution.",
         "{coro.4}Logique : une fonction strictement croissante ne repasse jamais par la même valeur. "
         "{coro.5}Et ça marche aussi sur un intervalle ouvert, ou infini, en remplaçant f de a et f de b par les limites aux bornes.",
@@ -564,8 +564,8 @@ SCENES = [
         "c'est la façon de dire « signes contraires ». {py_d.s}Le résultat : alpha est entre zéro virgule six huit un, et zéro virgule six huit trois. "
         "Il a fallu dix étapes.",
         "{-py_d}{g_nw}Il existe une méthode bien plus rapide, citée aussi par le programme : la méthode de {!Newton}Newton. "
-        "{g_nw.1}L'idée : remplacer la courbe par sa tangente. {g_nw.2}On part de x égale un. On trace la tangente, "
-        "{g_nw.3}et on regarde où elle coupe l'axe des abscisses : en zéro virgule sept cinq.",
+        "{g_nw.1}L'idée : remplacer la courbe par sa tangente. {g_nw.2}On part de x égale un. {g_nw.3}On trace la tangente, "
+        "et on regarde où elle coupe l'axe des abscisses : en zéro virgule sept cinq.",
         "{g_nw.4}On recommence depuis zéro virgule sept cinq. {g_nw.5}La nouvelle tangente coupe l'axe en zéro virgule six huit six. "
         "Déjà tout près d'alpha.",
         "{-g_nw}{py_n}{py_n.l3}La formule : x indice n plus un égale x indice n, moins f de x indice n, sur f prime de x indice n. "
@@ -640,7 +640,7 @@ SCENES = [
         "{s11.2}On factorise : trois, fois x moins un, fois x plus un.",
         "{s11.3}Sur moins un, un, x moins un est négatif et x plus un positif : f prime est négative, et ne s'annule qu'aux bornes. "
         "{s11.4}f est strictement décroissante sur moins un, un.",
-        "{-s11}{ex1c.q2}{s12}{s12.1}Question deux. f est continue sur zéro, un, comme polynôme. {s12.2}Elle y est strictement décroissante. "
+        "{-s11}{ex1c.q2}{s12}{s12.1}Question deux. f est continue sur zéro, un, comme polynôme. {s12.2}Elle est strictement décroissante sur cet intervalle. "
         "{s12.3}f de zéro vaut un, positif. f de un vaut un moins trois plus un : moins un, négatif. Zéro est entre les deux.",
         "{s12.4}D'après le corollaire du théorème des valeurs intermédiaires, l'équation f de x égale zéro a une unique solution alpha dans zéro, un.",
         "{-s12}{ex1c.q3}{s13}{s13.1}Question trois. À la calculatrice, avec un tableau de valeurs de pas un centième. "
@@ -681,8 +681,8 @@ SCENES = [
         "Quatre questions. Un : les variations de f, et sa limite en plus l'infini. "
         "Deux : montrer que f de x égale zéro a une unique solution alpha, et qu'alpha est entre un et deux. "
         "Trois : compléter un programme Python de dichotomie, et donner un encadrement d'alpha de largeur un centième. "
-        "Quatre : montrer que f est convexe, puis que f de x est supérieur ou égal à, exponentielle de un moins un, fois x, moins deux.",
-        "{-ex2}{pa2}C'est un vrai sujet de bac. Prends le temps : mets sur pause, et rédige tout.",
+        "Quatre : montrer que f est convexe, puis que f de x est supérieur ou égal à : exponentielle de un, moins un, le tout fois x, moins deux.",
+        "{-ex2}{pa2}C'est un exercice au format du bac. Prends le temps : mets sur pause, et rédige tout.",
         "{pa2.stop}{-pa2}{ex2c}{ex2c.q1}Correction. {s21}{s21.1}Question un. f prime de x vaut exponentielle de x, moins un. "
         "{s21.2}Sur zéro, plus l'infini, exponentielle de x est supérieure ou égale à un : f prime est positive, et ne s'annule qu'en zéro. "
         "f est strictement croissante, et f de zéro vaut un moins zéro moins deux : moins un.",
@@ -702,9 +702,9 @@ SCENES = [
         "{-py3}{ex2c.q4}{s24}{s24.1}Question quatre. f seconde de x vaut exponentielle de x, strictement positive : f est convexe. "
         "{s24.2}Donc sa courbe est au-dessus de ses tangentes. Cherchons la tangente au point d'abscisse un.",
         "{s24.3}f prime de un vaut exponentielle de un, moins un. f de un vaut exponentielle de un, moins trois. "
-        "{s24.4}La tangente : y égale exponentielle de un moins un, fois x moins un, plus exponentielle de un moins trois.",
+        "{s24.4}La tangente : y égale : exponentielle de un, moins un, le tout fois, x moins un ; plus exponentielle de un, moins trois.",
         "{s24.5}On développe. Le terme constant vaut : moins exponentielle de un, plus un, plus exponentielle de un, moins trois. Il reste moins deux. "
-        "{s24.6}La tangente a donc pour équation y égale exponentielle de un moins un, fois x, moins deux. "
+        "{s24.6}La tangente a donc pour équation y égale : exponentielle de un, moins un, le tout fois x ; moins deux. "
         "La courbe est au-dessus : c'est l'inégalité demandée.",
         "{-s24}{g_bac}{g_bac.1}Voici la courbe, {g_bac.2}sa tangente au point d'abscisse un, toujours en dessous, "
         "{g_bac.3}et alpha, là où la courbe coupe l'axe.",
@@ -763,7 +763,7 @@ SCENES = [
         "{bac.3}Lire la convexité sur un graphique de f, de f prime ou de f seconde. "
         "{bac.4}Démontrer une inégalité par convexité, et refaire la démonstration exigible. "
         "{bac.5}Rédiger le corollaire du théorème des valeurs intermédiaires. {bac.6}Et encadrer une solution, par dichotomie ou à la calculatrice.",
-        "Si tu sais faire ces six choses, ce chapitre est à toi. Les fiches, les QCM et les animations du chapitre t'attendent sur le site : "
+        "Si tu sais faire ces six choses, ce chapitre est à toi. Les fiches, les QCM et les animations du chapitre sont sur le site : "
         "le lien est dans la description. Et pour vérifier tout de suite, un quiz sur cette vidéo t'y attend aussi.",
         "{-bac}",
     ], vis={
