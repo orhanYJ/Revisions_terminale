@@ -185,7 +185,7 @@ SCENES = [
         "fr_pcs": dict(type="frise", de=1950, a=2025, items=[
             dict(d=1954, nom="CSP", q="la naissance"), dict(d=1982, nom="PCS", q="la refonte"),
             dict(d=2003, nom="Rénovation", q=""), dict(d=2020, nom="PCS 2020", q="et la PCS Ménage")]),
-        "gr_grp": dict(type="donnees", g=G_GROUPES, kicker="Les six groupes", x=60, y=90, w=1160, h=560, lab=420, signe=False),
+        "gr_grp": dict(type="donnees", g=G_GROUPES, kicker="Les six groupes", x=60, y=90, w=1160, h=560, lab=620, signe=False),
         "note_men": dict(type="note", titre="La PCS Ménage (2020)", cles=["ménages", "couple"],
                          t="Elle classe les ménages d'après la profession de leurs membres : la position sociale se joue souvent au niveau du couple.",
                          x=170, y=200, w=940),
@@ -319,7 +319,7 @@ SCENES = [
         "{an_mw.2}Le prolétaire vend sa force de travail. Le bourgeois s'approprie la {!plus-value}plus-value : la valeur créée par le travail, au-delà du salaire versé. "
         "C'est l'exploitation.",
         "{an_mw.3}Et quand les ouvriers prennent conscience de leurs intérêts communs, ils se mobilisent : c'est la lutte des classes.",
-        "{-an_mw}{cols_soi}Ce passage est essentiel chez Marx. {cols_soi.g}Une classe en soi, c'est une position objective commune. "
+        "{an_mw.4}{an_mw.5}{-an_mw}{cols_soi}Ce passage est essentiel chez Marx. {cols_soi.g}Une classe en soi, c'est une position objective commune. "
         "Des gens qui occupent la même place dans la production… qu'ils le sachent ou non.",
         "{cols_soi.d}Une classe pour soi, c'est une classe qui a pris conscience de ses intérêts, et qui se mobilise collectivement. "
         "Pour Marx, une classe n'existe pleinement que si elle est les deux à la fois.",
@@ -414,7 +414,7 @@ SCENES = [
         "pour penser le croisement des rapports de classe, de genre et de race.",
         "{-def_inter}{q_cm}Et quatrième terrain : les identifications subjectives. Pose-toi la question : qui, autour de toi, se dit « ouvrier », ou « bourgeois » ?",
         "{-q_cm}{cf_syn}Peu de monde. Beaucoup se rangent dans une vaste « classe moyenne ». Et les organisations qui portaient la conscience de classe ont reculé. "
-        "{cf_syn.1}Environ un salarié sur dix est syndiqué en France.",
+        "{cf_syn.1}Environ un salarié sur dix est syndiqué en France. Un sur dix, seulement.",
         "{-cf_syn}{ch_ind}{ch_ind.1}Pourquoi ? Parce que les facteurs d'individualisation se multiplient. La hausse du niveau de vie, de l'éducation, la protection sociale. "
         "{ch_ind.2}Donc les individus dépendent moins de leur groupe d'origine.",
         "{ch_ind.3}Donc les trajectoires se diversifient : les mobilités, les études, les familles recomposées, les consommations, les loisirs. "
@@ -446,7 +446,7 @@ SCENES = [
                         t="Depuis les années 1980, la réduction des inégalités s'est arrêtée : des « classes sans conscience ».",
                         x=170, y=210, w=940),
         "cols_intra": dict(type="cols", g="Des classes hétérogènes", gq="Ouvriers de la logistique, employés qualifiés ou non, cadres du public ou du privé.",
-                           d="Des classes populaires", dq="Ouvriers et employés : 42,8 % des personnes en emploi (2024), des conditions de vie proches.", vs="mais"),
+                           d="Des classes populaires", dq="Ouvriers et employés : 42,8 % des personnes en emploi (2024), des conditions de vie proches.", vs="↔"),
         "note_gen": dict(type="note", titre="Classe et genre", cles=["salaire", "domination"],
                          t="Dans une même classe, femmes et hommes n'ont pas la même position : salaire, temps partiel, tâches domestiques, plafond de verre. "
                            "Une ouvrière cumule deux formes de domination.", x=170, y=190, w=940),

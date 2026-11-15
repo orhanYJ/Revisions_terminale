@@ -11,23 +11,23 @@
   // demi-largeur (0 à 1) de la silhouette à la hauteur relative y (0 = haut, 1 = bas)
   function pyramide(y) { return 0.06 + 0.94 * y; }
   function toupie(y) {
-    if (y < 0.12) return 0.06 + 0.5 * (y / 0.12);
-    if (y < 0.55) return 0.56 + 0.44 * Math.sin((y - 0.12) / 0.43 * Math.PI / 2);
-    return 1 - 0.95 * Math.pow((y - 0.55) / 0.45, 1.25);
+    if (y < 0.06) return 0.05;
+    if (y < 0.42) return 0.05 + 0.95 * Math.sin((y - 0.06) / 0.36 * Math.PI / 2);
+    return 0.02 + 0.98 * Math.pow(1 - (y - 0.42) / 0.58, 1.15);
   }
 
   window.SERIE_ILLU.toupie = function (s, v) {
-    var W = v.w, H = v.h, g = sv("g", {}, s), cx = W * 0.36, top = 70, bas = H - 40, L = 270;
+    var W = v.w, H = v.h, g = sv("g", {}, s), cx = W * 0.30, top = 70, bas = H - 40, L = 220;
     var forme = sv("path", { fill: C.canard, opacity: 0.88, stroke: C.iv, "stroke-width": 2.5 }, g);
     var bande = sv("rect", { x: cx - L - 20, width: 2 * L + 40, rx: 8, fill: "rgba(240,190,79,.30)" }, g);
     g.insertBefore(bande, forme);
-    var haut = et_(g, W * 0.70, top + 30, "en haut : peu nombreux", { ancre: "start", fs: 26, c: C.iv2, fw: 600 });
-    var basT = et_(g, W * 0.70, bas - 10, "en bas : de moins en moins nombreux", { ancre: "start", fs: 26, c: C.iv2, fw: 600 });
+    var haut = et_(g, W * 0.58, top + 30, "en haut : peu nombreux", { ancre: "start", fs: 26, c: C.iv2, fw: 600 });
+    var basT = et_(g, W * 0.58, bas - 10, "en bas : moins nombreux", { ancre: "start", fs: 26, c: C.iv2, fw: 600 });
     var avant = et_(g, cx, 34, "Une pyramide…", { fs: 34, c: C.iv, fw: 700 });
     var apres = et_(g, cx, 34, "… devenue une toupie", { fs: 34, c: C.sa2, fw: 700 });
-    var centre = et_(g, W * 0.70, top + (bas - top) * 0.42, "la constellation centrale", { ancre: "start", fs: 32, c: C.mo, fw: 700 });
-    var centre2 = et_(g, W * 0.70, top + (bas - top) * 0.42 + 38, "professions intermédiaires, employés…", { ancre: "start", fs: 24, c: C.iv2, fw: 500 });
-    var trait = sv("path", { d: "M" + (cx + L + 30) + " " + (top + (bas - top) * 0.40) + " H" + (W * 0.70 - 14), stroke: C.mo, "stroke-width": 3, fill: "none" }, g);
+    var centre = et_(g, W * 0.58, top + (bas - top) * 0.42, "la constellation centrale", { ancre: "start", fs: 32, c: C.mo, fw: 700 });
+    var centre2 = et_(g, W * 0.58, top + (bas - top) * 0.42 + 38, "professions intermédiaires, employés…", { ancre: "start", fs: 24, c: C.iv2, fw: 500 });
+    var trait = sv("path", { d: "M" + (cx + L + 30) + " " + (top + (bas - top) * 0.40) + " H" + (W * 0.58 - 14), stroke: C.mo, "stroke-width": 3, fill: "none" }, g);
     var lg = et_(g, W - 10, H - 6, "Schéma de principe (sans données)", { ancre: "end", fs: 20, c: C.iv2, fw: 500 });
     return function (t, st) {
       var tl = st.tl, k1 = et(v, "1", 3), k2 = et(v, "2", 6), q = EIO(P(t, k1, 2.2));
