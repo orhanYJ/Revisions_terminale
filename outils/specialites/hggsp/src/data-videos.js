@@ -5,5 +5,6 @@
 var VIDEOS = {
   "t1-intro": { code: "hggsp-t1-intro", min: 21, dispo: true },
   "t1-a1": { code: "hggsp-t1-a1", min: 24, dispo: true },
-  "t1-a2": { code: "hggsp-t1-a2", min: 24, dispo: true }
+  "t1-a2": { code: "hggsp-t1-a2", min: 24, dispo: true },
+  "t1-otc": { code: "hggsp-t1-otc", min: 21, dispo: true }
 };
