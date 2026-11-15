@@ -3,14 +3,11 @@
    traités en classe, un exposé d'environ 5 minutes par question et par notion (ORAL : plan, texte à dire, questions du jury).
    L'oral se passe en anglais ; le bouton de langue du site affiche la traduction française. */
 const oralTheme = code => ORAL_SYLLABUS.find(t => t.chap.indexOf(code) >= 0);
-/* les questions et notions du chapitre, telles que la feuille les range (champs keyIssues / keyTerms du chapitre) */
+/* l'onglet Oral porte tout le thème : toutes ses key issues et tous ses key terms, dans chaque chapitre du thème */
 const oralChap = code => {
-  const th = oralTheme(code), ch = CHAPTERS[code], d = th && ORAL[th.id];
-  if (!d || !ch) return null;
-  const miens = (ch.keyIssues || []).concat(ch.keyTerms || []);
-  const f = l => l.filter(it => miens.indexOf(it.q) >= 0);
-  const r = { th, issues: f(d.issues), terms: f(d.terms) };
-  return r.issues.length + r.terms.length ? r : null;
+  const th = oralTheme(code), d = th && ORAL[th.id];
+  if (!d || !(d.issues.length + d.terms.length)) return null;
+  return { th, issues: d.issues, terms: d.terms };
 };
 const oralMots = it => (it.en.blocs || []).reduce((n, b) => n + (b.p || "").split(/\s+/).filter(Boolean).length, 0);
 const OralChrono = ({ FR }) => {
@@ -31,7 +28,8 @@ const OralItem = ({ it, FR, ouvert, basculer }) => {
       React.createElement("span", { className: "or-kind " + it.kind }, it.kind === "issue" ? "Key Issue" : "Key Term"),
       React.createElement("span", { className: "or-q" }, FR ? it.q_fr : it.q),
       FR && React.createElement("span", { className: "or-qen" }, it.q),
-      React.createElement("span", { className: "or-meta" }, "≈ " + String(min).replace(".", FR ? "," : ".") + " min · " + mots + (FR ? " mots (anglais)" : " words")),
+      React.createElement("span", { className: "or-meta" }, "≈ " + String(min).replace(".", FR ? "," : ".") + " min · " + mots + (FR ? " mots (anglais)" : " words"),
+        (it.chapitres || []).slice().sort().map(c => React.createElement("i", { key: c, className: "or-ch" }, c))),
       React.createElement("span", { className: "or-chev", "aria-hidden": true }, ouvert ? "▲" : "▼")),
     ouvert && React.createElement("div", { className: "or-body" },
       React.createElement("div", { className: "or-plan" },
@@ -65,11 +63,11 @@ function OralTab({ code, lang }) {
     React.createElement("div", { className: "or-intro" },
       React.createElement("div", { className: "or-kicker" }, FR ? "L'oral de DNL" : "The DNL oral"),
       React.createElement("h2", null, FR ? th.theme[1] : th.theme[0]),
-      React.createElement("p", { className: "or-chap" }, FR ? "Dans cet onglet : les key issues et key terms que la feuille du professeur range sous ce chapitre. Les autres questions du thème sont dans l'onglet Oral des autres chapitres." : "In this tab: the key issues and key terms that the teacher's sheet lists under this chapter. The theme's other questions are in the Oral tab of the other chapters."),
+      React.createElement("p", { className: "or-chap" }, FR ? "Toutes les key issues et tous les key terms du thème, tels que la feuille du professeur les donne. C'est le même onglet dans chaque chapitre du thème ; les pastilles indiquent les chapitres à mobiliser." : "All the key issues and key terms of the theme, as the teacher's sheet gives them. It is the same tab in every chapter of the theme; the badges show which chapters to draw on."),
       React.createElement("p", null, FR
         ? "À l'oral (coefficient 10) : 20 minutes de préparation, puis 5 minutes d'exposé sur une key issue tirée au sort, 5 minutes de questions, et 5 minutes sur un key term — le tirage croise l'histoire et la géographie. Chaque réponse ci-dessous est calibrée pour environ 5 minutes en anglais (650 à 750 mots, environ 140 mots par minute)."
         : "At the oral (coefficient 10): 20 minutes of preparation, then a 5-minute presentation on a key issue drawn at random, 5 minutes of questions, and 5 minutes on a key term — the draw crosses history and geography. Each answer below is designed for about 5 minutes in English (650 to 750 words, about 140 words a minute)."),
-      React.createElement("button", { className: "or-tirer", onClick: tirer }, FR ? "🎲 Tirer un sujet au sort (histoire + géographie)" : "🎲 Draw a topic at random (history + geography)"),
+      React.createElement("button", { className: "or-tirer", onClick: tirer }, FR ? "🎲 Tirer un sujet au sort" : "🎲 Draw a topic at random"),
       tirage && React.createElement("div", { className: "or-tirage" },
         tirage.map((it, i) => React.createElement("div", { key: i },
           React.createElement("span", { className: "or-kind " + it.kind }, it.kind === "issue" ? "Key Issue" : "Key Term"),
