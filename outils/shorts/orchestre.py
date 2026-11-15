@@ -371,8 +371,139 @@ def terre(mesures):
     return P
 
 
+
+# ---------------------------------------------------------------- funk brésilien agressif (100 % synthèse)
+def cloche808(f, d=.28, sat=2.5):
+    """Cloche de phonk : deux carrés au rapport 1,48 (comme la TR-808), filtrés, saturés."""
+    k = int(d * SR); t = np.arange(k) / SR
+    x = np.sign(np.sin(2 * np.pi * f * t)) + np.sign(np.sin(2 * np.pi * f * 1.48 * t))
+    x = bp(x, f * .9, min(f * 6, 9000)) * (np.exp(-t / .045) * .7 + np.exp(-t / (d * .6)) * .3)
+    return np.tanh(x * sat) * .5
+
+
+def b808(f, d, glisse=0.0, sat=4.0):
+    """808 saturée, avec glissé de hauteur facultatif (en demi-tons vers la fin)."""
+    k = int(d * SR); t = np.arange(k) / SR
+    fr = f * 2 ** (glisse * np.clip((t - d * .5) / (d * .5), 0, 1) / 12) * (1 + 1.5 * np.exp(-t * 40))
+    x = np.sin(2 * np.pi * np.cumsum(fr) / SR) * np.exp(-t / max(d * .8, .1))
+    return np.tanh(x * sat) * .8 * np.minimum(1, (k - np.arange(k)) / (.01 * SR))
+
+
+def kick_funk(d=.25):
+    k = int(d * SR); t = np.arange(k) / SR
+    fr = 55 + 150 * np.exp(-t * 45)
+    x = np.sin(2 * np.pi * np.cumsum(fr) / SR) * np.exp(-t / .12)
+    return np.tanh(x * 5) * .9 + bp(_R.standard_normal(k), 1500, 6000) * np.exp(-t / .003) * .6
+
+
+def caisse_funk(d=.22):
+    k = int(d * SR); t = np.arange(k) / SR
+    x = bp(_R.standard_normal(k), 900, 7000) * np.exp(-t / .07) + np.sin(2 * np.pi * 190 * t) * np.exp(-t / .04) * .6
+    return np.tanh(x * 3) * .7
+
+
+def tom_funk(f=140, d=.2):
+    k = int(d * SR); t = np.arange(k) / SR
+    return np.tanh(np.sin(2 * np.pi * np.cumsum(f * (1 + .6 * np.exp(-t * 30))) / SR) * np.exp(-t / .09) * 3) * .6
+
+
+def cri(f=260, d=.18, voyelle="a"):
+    """Petit « hey / ah » de synthèse (scie filtrée par deux formants), pour les coupes vocales."""
+    k = int(d * SR); t = np.arange(k) / SR
+    fo = {"a": (800, 1250), "o": (500, 900), "e": (450, 1900)}[voyelle]
+    ph = np.cumsum(f * (1 + .06 * np.exp(-t * 20))) / SR
+    src = sum(np.sin(2 * np.pi * h * ph) / h for h in range(1, 17))
+    x = bp(src, fo[0] * .8, fo[0] * 1.2) + .7 * bp(src, fo[1] * .85, fo[1] * 1.15)
+    return np.tanh(x * 4) * np.exp(-t / (d * .5)) * np.minimum(1, t / .004) * .5
+
+
+def _pompe(P, couche, debut, d, g):
+    """Pas de compression dans FluidSynth : rien. (Le pompage est fait au mélange.)"""
+    return None
+
+
+def funk_agressif(mesures):
+    """Funk brésilien agressif (« tamborzão » + phonk) : cloche de phonk en riff, 808 saturées qui glissent,
+    kicks et claps saturés, petits cris. Fa mineur, 130 bpm."""
+    P = Partition(130)
+    seize = .25
+    riff = [  # riff de cloche, 16 doubles croches par mesure (demi-tons au-dessus de fa 4, None = silence)
+        [0, None, 0, 3, None, 0, 7, None, 0, None, 0, 3, None, 5, 3, None],
+        [0, None, 0, 3, None, 0, 10, None, 8, None, 7, 5, None, 3, 2, None],
+    ]
+    basses = [0, 0, -4, -2]  # fa, fa, ré bémol, mi bémol
+    f0 = n("F2")
+    for m in range(mesures):
+        t = m * 4; b0 = f0 + basses[m % 4]
+        for k, x in enumerate(riff[m % 2]):
+            if x is not None: P.son(1, t + k * seize, cloche808(fq(n("F4") + x)), .55)
+        P.son(1, t, b808(fq(b0), 1.8, -2 if m % 4 == 3 else 0), .35)
+        # tamborzão : kick 0, 3, 6, 10 ; caisse 4, 12 ; tom en contretemps
+        for k in (0, 3, 6, 10): P.son(2, t + k * seize, kick_funk(), .85)
+        for k in (4, 12): P.son(2, t + k * seize, caisse_funk(), .7)
+        for k in (7, 9, 14): P.son(2, t + k * seize, tom_funk(160 if k < 14 else 120), .5)
+        P.son(2, t, b808(fq(b0), 1.8, -2 if m % 4 == 3 else 0), .55)
+        P.son(2, t + 2.5, b808(fq(b0 + 3), .5), .45)
+        for k, x in enumerate(riff[m % 2]):
+            if x is not None and k % 2 == 0: P.son(3, t + k * seize, cloche808(fq(n("F5") + x), .2, 4), .35)
+        for k in range(16): P.son(3, t + k * seize, charley(.04, k % 4 == 2), .2 if k % 2 else .3)
+        P.son(3, t + 2 * seize, cri(300, .16, "e"), .6); P.son(3, t + 11 * seize, cri(220, .2, "a"), .6)
+        if m % 2 == 1:
+            for k in range(4): P.son(3, t + (12 + k) * seize, caisse_funk(.1), .5)
+    return P
+
+
+def montagem(mesures):
+    """Montagem sombre (phonk brésilien) : nappe inquiétante, cloche en mélodie mineure lente, 808 qui glissent,
+    kick lourd sur les temps, cris étouffés. Do dièse mineur, 125 bpm."""
+    P = Partition(125)
+    mel = [0, None, None, 7, None, None, 8, None, 7, None, 3, None, 5, None, 3, 2]
+    basses = [0, 0, -3, -5]
+    f0 = n("C#2")
+    for m in range(mesures):
+        t = m * 4; b0 = f0 + basses[m % 4]
+        for k, x in enumerate(mel):
+            if x is not None: P.son(1, t + k * .25, cloche808(fq(n("C#5") + x), .35, 3), .5)
+        for x in (0, 3, 7): P.son(1, t, supersaw(fq(n("C#3") + basses[m % 4] + x), 4 * 60 / 125, 900, .3, .3), .12)
+        for b in range(4): P.son(2, t + b, kick_funk(.3), .9)
+        P.son(2, t, b808(fq(b0), 1.9, -3), .6); P.son(2, t + 2, b808(fq(b0), 1.9, 2 if m % 2 else -5), .6)
+        P.son(2, t + 1, caisse_funk(), .6); P.son(2, t + 3, caisse_funk(), .6)
+        for k, x in enumerate(mel):
+            if x is not None: P.son(3, t + k * .25, cloche808(fq(n("C#6") + x), .2, 5), .3)
+        for k in range(8): P.son(3, t + k * .5 + .25, charley(.05, True), .25)
+        P.son(3, t + .75, cri(180, .25, "o"), .55); P.son(3, t + 2.75, cri(200, .25, "o"), .5)
+        for k in (13, 14, 15): P.son(3, t + k * .25, tom_funk(110 + 15 * (k - 13)), .55)
+    return P
+
+
+def automotivo(mesures):
+    """Funk automotivo : 135 bpm, kick distordu à contretemps, lead carré qui siffle en riff aigu, 808 enchaînées,
+    claps doublés. Sol mineur."""
+    P = Partition(135)
+    riff = [7, None, 7, 10, None, 7, 5, None, 3, None, 3, 5, None, 3, 2, None]
+    f0 = n("G2")
+    for m in range(mesures):
+        t = m * 4
+        for k, x in enumerate(riff):
+            if x is not None:
+                f = fq(n("G5") + x + (12 if m % 4 == 3 and k > 8 else 0))
+                kk = int(.12 * SR); tt = np.arange(kk) / SR
+                sif = np.sign(np.sin(2 * np.pi * f * tt * (1 + .015 * np.sin(2 * np.pi * 7 * tt)))) * np.exp(-tt / .08)
+                P.son(1, t + k * .25, lp(sif, 6000) * .5, .45)
+        P.son(1, t, b808(fq(f0), .9), .3)
+        for k in (0, 3, 6, 8, 11, 14): P.son(2, t + k * .25, kick_funk(.22), .9)
+        for k in (0, 3, 6, 8, 11, 14): P.son(2, t + k * .25, b808(fq(f0 + (0 if k < 8 else -2)), .3, 0, 6), .5)
+        for k in (4, 12): P.son(2, t + k * .25, caisse_funk(), .7); P.son(2, t + k * .25 + .02, clap(), .4)
+        for k in range(16): P.son(3, t + k * .25, charley(.03), .25)
+        for k, x in enumerate(riff):
+            if x is not None: P.son(3, t + k * .25, cloche808(fq(n("G4") + x), .2, 4), .35)
+        P.son(3, t + 1.75, cri(320, .14, "e"), .6); P.son(3, t + 3.5, cri(250, .14, "a"), .55)
+    return P
+
+
 MORCEAUX = {"epopee": epopee, "heritage": heritage, "boss": boss, "bande_annonce": bande_annonce,
-            "hardtekk": hardtekk, "finale": finale, "terre": terre}
+            "hardtekk": hardtekk, "finale": finale, "terre": terre,
+            "funk_agressif": funk_agressif, "montagem": montagem, "automotivo": automotivo}
 NIVEAU_COUCHES = {1: (1,), 2: (1, 2), 3: (1, 2, 3)}
 GAINS = {1: 1.0, 2: .9, 3: .85}
 
