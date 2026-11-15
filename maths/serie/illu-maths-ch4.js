@@ -89,7 +89,7 @@
     // tangente mobile
     var tg = sv("path", { d: "", stroke: C.sa, "stroke-width": 3.6, fill: "none", "stroke-linecap": "round", "clip-path": Rp.clip, opacity: 0 }, s);
     var pt = sv("circle", { r: 8, fill: C.sa, opacity: 0 }, s);
-    var lP = v.pente !== false && v.tan != null ? num(s.parentNode, 60, 0, C.te, 34) : null;
+    var lP = v.pente !== false && v.de != null ? num(s.parentNode, 70, 0, C.te, 34) : null;
     // inflexion
     var gi = sv("g", { opacity: 0 }, s), lI = null;
     if (v.inf) {
@@ -143,7 +143,7 @@
     var vv = { x: [-0.08, 1.12], y: [-1.15, 1.25] };
     var Rp = repere(s, vv, R);
     var cb = courbe(s, F, vv, Rp, 160, C.iv, 4, Rp.clip);
-    var l0 = lbl(s, Rp.X(1.0) - 30, Rp.Y(F(1.0)) - 70, "$y=x^3+x-1$", "pc");
+    var l0 = lbl(s, Rp.X(0.3), Rp.Y(1.0), "$y=x^3+x-1$", "pc");
     var steps = [[0, 1]], mids = [];
     for (var k = 1; k < n; k++) {
       var a = steps[k - 1][0], b = steps[k - 1][1], m = (a + b) / 2;

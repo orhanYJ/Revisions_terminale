@@ -111,7 +111,7 @@ SCENES = [
 
     # ================================================================ I. dérivée d'une composée
     dict(id="composee", chap="Dérivée d'une fonction composée", fond="ardoise", humeur="lumiere",
-         retenir="$(v\\circ u)'=(v'\\circ u)\\times u'$ : on dérive l'extérieur en gardant l'intérieur, puis on multiplie par la dérivée de l'intérieur. $(\\e^u)'=u'\\e^u$.",
+         retenir="$(v\\circ u)'=(v'\\circ u)\\times u'$ : on dérive l'extérieur en gardant l'intérieur, puis on multiplie par la dérivée de l'intérieur. $(\\e^u)'=u'\\,\\e^u$.",
          beats=[
         "{q_comp}Commençons par une fonction qui revient sans cesse au bac : exponentielle de, moins x au carré. "
         "Comment la dériver ? Ce n'est pas une somme, ni un produit, ni un quotient.",
@@ -154,7 +154,7 @@ SCENES = [
         "{pq.4}D'où u prime, fois exponentielle de u. La formule générale, elle, est admise.",
         "{-pq}",
     ], vis={
-        "q_comp": dict(type="question", t="Comment dériver $x\\mapsto\\e^{-x^2}$ ?"),
+        "q_comp": dict(type="question", t="Comment dériver $x\\mapsto\\,\\e^{-x^2}$ ?"),
         "def_c": dict(type="def", terme="Fonction composée", cles=["composée"],
                       t="La composée de $u$ suivie de $v$ est la fonction $v\\circ u:x\\mapsto v\\big(u(x)\\big)$ : on applique $u$, puis $v$.",
                       etape="$\\e^{-x^2}=v\\big(u(x)\\big)$ avec $u(x)=-x^2$ et $v=\\exp$.", x=150, y=170, w=980),
@@ -163,7 +163,7 @@ SCENES = [
             dict(f="$(v\\circ u)'=(v'\\circ u)\\times u'$", cadre=True, taille=50),
             dict(f="$\\big(v(u(x))\\big)'=v'\\big(u(x)\\big)\\times u'(x)$", n="on dérive l'extérieur, puis on multiplie par $u'$", taille=38)]),
         "tab_c": dict(type="formule", titre="Les quatre formules", x=200, y=120, w=880, lignes=[
-            dict(f="$\\left(\\e^{u}\\right)'=u'\\e^{u}$", taille=44),
+            dict(f="$\\left(\\e^{u}\\right)'=u'\\,\\e^{u}$", taille=44),
             dict(f="$\\left(u^n\\right)'=nu'u^{n-1}$", m="$n\\geq1$", taille=44),
             dict(f="$\\left(\\sqrt u\\right)'=\\dfrac{u'}{2\\sqrt u}$", m="$u>0$", taille=44),
             dict(f="$\\left(\\dfrac1u\\right)'=-\\dfrac{u'}{u^2}$", m="$u\\neq0$", taille=44)]),
@@ -176,23 +176,23 @@ SCENES = [
             dict(f="$h'(x)=-2x\\,\\e^{-x^2}$", ind=True, hl=True, taille=32)]),
         "exc2": dict(type="formule", copie=True, titre="$k(x)=\\e^{2x}(x-1)^3$", x=110, y=96, w=1060, lignes=[
             dict(f="un produit : $(uv)'=u'v+uv'$", txt=True),
-            dict(f="$\\left(\\e^{2x}\\right)'=2\\e^{2x}$", ind=True, taille=34),
+            dict(f="$\\left(\\e^{2x}\\right)'=2\\,\\e^{2x}$", ind=True, taille=34),
             dict(f="$\\left((x-1)^3\\right)'=3(x-1)^2$", ind=True, taille=34),
-            dict(f="$k'(x)=2\\e^{2x}(x-1)^3+\\e^{2x}\\times3(x-1)^2$", taille=34),
+            dict(f="$k'(x)=2\\,\\e^{2x}(x-1)^3+\\e^{2x}\\times3(x-1)^2$", taille=34),
             dict(f="$k'(x)=\\e^{2x}(x-1)^2\\big(2(x-1)+3\\big)$", ind=True, taille=34),
             dict(f="$k'(x)=\\e^{2x}(x-1)^2(2x+1)$", ind=True, cadre=True, taille=34)]),
         "meth": dict(type="liste", titre="Dériver une fonction compliquée", items=[
-            "Repérer la **dernière opération** : somme, produit, quotient ou composée",
+            "Repérer la dernière opération : somme, produit, quotient ou composée",
             "Dériver de l'extérieur vers l'intérieur",
             "Factoriser (souvent par l'exponentielle) pour le signe"], x=150, y=170, w=980),
         "piege_u": dict(type="formule", titre="Le piège : oublier $u'$", x=170, y=190, w=940, lignes=[
             dict(f="$\\left(\\e^{3x^2}\\right)'=\\e^{3x^2}$", ko=True, taille=44),
             dict(f="$\\left(\\e^{3x^2}\\right)'=6x\\,\\e^{3x^2}$", ok=True, cadre=True, taille=44)]),
-        "pq": dict(type="formule", plus=True, titre="Pour comprendre : $(\\e^u)'=u'\\e^u$", x=90, y=150, w=1100, lignes=[
+        "pq": dict(type="formule", plus=True, titre="Pour comprendre : $(\\e^u)'=u'\\,\\e^u$", x=90, y=150, w=1100, lignes=[
             dict(f="$\\dfrac{\\e^{u(x+h)}-\\e^{u(x)}}{h}=\\dfrac{\\e^{u(x+h)}-\\e^{u(x)}}{u(x+h)-u(x)}\\times\\dfrac{u(x+h)-u(x)}{h}$", taille=30),
             dict(f="$\\dfrac{u(x+h)-u(x)}{h}\\to u'(x)$", ind=True, taille=30),
-            dict(f="le premier facteur $\\to\\e^{u(x)}$ (taux de $\\exp$ en $u(x)$)", ind=True, taille=30),
-            dict(f="d'où $(\\e^u)'=u'\\e^u$ ; la formule générale est admise", cadre=True, taille=30)]),
+            dict(f="le premier facteur $\\to\\,\\e^{u(x)}$ (taux de $\\exp$ en $u(x)$)", ind=True, taille=30),
+            dict(f="d'où $(\\e^u)'=u'\\,\\e^u$ ; la formule générale est admise", cadre=True, taille=30)]),
     }),
 
     # ================================================================ II. dérivée seconde
@@ -216,11 +216,11 @@ SCENES = [
         "def_s": dict(type="def", terme="Dérivée seconde", cles=["seconde"],
                       t="Si $f'$ est elle-même dérivable, sa dérivée est la dérivée seconde de $f$, notée $f''$.",
                       etape="$f''=(f')'$", x=150, y=200, w=980),
-        "ex_s": dict(type="formule", copie=True, titre="$f(x)=x\\e^x$", x=150, y=140, w=980, lignes=[
-            dict(f="$f'(x)=1\\times\\e^x+x\\e^x$", taille=38),
-            dict(f="$f'(x)=(x+1)\\e^x$", ind=True, taille=38),
-            dict(f="$f''(x)=1\\times\\e^x+(x+1)\\e^x$", taille=38),
-            dict(f="$f''(x)=(x+2)\\e^x$", ind=True, cadre=True, taille=38)]),
+        "ex_s": dict(type="formule", copie=True, titre="$f(x)=x\\,\\e^x$", x=150, y=140, w=980, lignes=[
+            dict(f="$f'(x)=1\\times\\,\\e^x+x\\,\\e^x$", taille=38),
+            dict(f="$f'(x)=(x+1)\\,\\e^x$", ind=True, taille=38),
+            dict(f="$f''(x)=1\\times\\,\\e^x+(x+1)\\,\\e^x$", taille=38),
+            dict(f="$f''(x)=(x+2)\\,\\e^x$", ind=True, cadre=True, taille=38)]),
         "sens": dict(type="formule", titre="Ce que mesure $f''$", x=150, y=170, w=980, lignes=[
             dict(f="position $x(t)$, vitesse $x'(t)$, accélération $x''(t)$", taille=36),
             dict(f="$f'$ : la pente ; $f''$ : comment la pente varie", taille=36),
@@ -268,9 +268,9 @@ SCENES = [
         "{-bac_p}",
     ], vis={
         "tg1": dict(type="illu", nom="tangentes", f="exp", x=150, y=90, w=980, h=600, **{
-            "rx": [-2.6, 2.3], "ry": [-0.8, 8.2], "corde": [-1.6, 1.8], "lcorde": [700, 300],
+            "rx": [-2.6, 2.3], "ry": [-0.8, 8.2], "corde": [-1.6, 1.8], "lcorde": [330, 70],
             "tcorde": "entre $A$ et $B$ : la courbe sous la corde", "de": -2.2, "a": 1.95, "dur": 7,
-            "fixes": [-1.5, -0.5, 0.5, 1.4], "lfixes": [640, 470], "tfixes": "toujours au-dessus des tangentes"}),
+            "fixes": [-1.5, -0.5, 0.5, 1.4], "lfixes": [330, 70], "tfixes": "toujours au-dessus des tangentes"}),
         "carac": dict(type="liste", titre="$f$ deux fois dérivable sur $I$ : équivalences", items=[
             "Les quatre affirmations suivantes sont équivalentes (admis) :",
             "$f$ est **convexe** sur $I$",
@@ -283,7 +283,7 @@ SCENES = [
             "zones": [[690, 360, "concave : la courbe **sous** ses tangentes", "gr"]]}),
         "refs": dict(type="formule", titre="Les fonctions de référence", x=150, y=150, w=980, lignes=[
             dict(f="$x^2$ et $\\e^x$ : convexes sur $\\R$", n="$f''(x)=2$ et $f''(x)=\\e^x$, positives", taille=38),
-            dict(f="$\\sqrt x$ : concave sur $[0;+\\infty[$", n="$f''(x)=-\\dfrac1{4x\\sqrt x}<0$", taille=38),
+            dict(f="$\\sqrt{x}$ : concave sur $[0;+\\infty[$", n="$f''(x)=-\\dfrac1{4x\\sqrt x}<0$", taille=38),
             dict(f="$x^3$ : concave sur $]-\\infty;0]$, convexe sur $[0;+\\infty[$", taille=38)]),
         "g_em": dict(type="graphe", titre="$\\e^{-x}$ : décroissante **et** convexe", x=250, y=110, w=780, h=560,
                      ax=dict(x=[-1.5, 4.2], y=[0, 4.6], gx=[-1, 1, 2, 3, 4], gy=[1, 2, 3, 4], lx="$x$", ly="$y$"),
@@ -296,20 +296,20 @@ SCENES = [
         "meth_cv": dict(type="liste", titre="Étudier la convexité", items=[
             "Calculer $f''$ et la factoriser",
             "Signe de $f''$ : $f''\\geq0$ convexe, $f''\\leq0$ concave",
-            "Inflexion : $f''$ s'annule **en changeant de signe**"], x=150, y=170, w=980),
+            "Inflexion : $f''$ s'annule **en** **changeant** **de** **signe**"], x=150, y=170, w=980),
         "bac_p": dict(type="formule", titre="Vrai ou faux ? (bac, Polynésie, juin 2026)", x=130, y=150, w=1020, lignes=[
-            dict(f="« $g(x)=x\\e^x$ est convexe sur $[-2;+\\infty[$ »", taille=38),
-            dict(f="$g''(x)=(x+2)\\e^x$", taille=38),
+            dict(f="« $g(x)=x\\,\\e^x$ est convexe sur $[-2;+\\infty[$ »", taille=38),
+            dict(f="$g''(x)=(x+2)\\,\\e^x$", taille=38),
             dict(f="$\\e^x>0$ : signe de $x+2$, positif sur $[-2;+\\infty[$", taille=34),
             dict(f="Vrai (et $g$ est concave sur $]-\\infty;-2]$)", ok=True, cadre=True, taille=36)]),
     }),
 
     # ================================================================ IV. point d'inflexion
     dict(id="inflexion", chap="Les points d'inflexion", fond="carnet", humeur="mystere",
-         retenir="Point d'inflexion : la courbe traverse sa tangente ; $f''$ s'annule **en changeant de signe**. $f''(a)=0$ seul ne suffit pas (contre-exemple : $x^4$ en $0$).",
+         retenir="Point d'inflexion : la courbe traverse sa tangente ; $f''$ s'annule **en** **changeant** **de** **signe**. $f''(a)=0$ seul ne suffit pas (contre-exemple : $x^4$ en $0$).",
          beats=[
         "{tg3}Regarde maintenant x au cube. {tg3.tan}On fait glisser la tangente, {tg3.go}depuis la gauche.",
-        "Au début, la courbe est sous ses tangentes : concave. Puis, d'un coup, elle passe au-dessus : convexe. "
+        "{tg3.z1}Au début, la courbe est sous ses tangentes : concave. {tg3.z2}Puis, d'un coup, elle passe au-dessus : convexe. "
         "{tg3.inf}Au point de bascule, l'origine, la tangente est l'axe des abscisses. Et la courbe la traverse !",
         "Ce point a un nom : un {!point d'inflexion}point d'inflexion. C'est un point où la courbe traverse sa tangente.",
         "{-tg3}{def_i}Et avec f seconde, c'est un point où f seconde s'annule {def_i.1}en changeant de signe. "
@@ -341,7 +341,7 @@ SCENES = [
         "g_x4": dict(type="graphe", titre="$x^4$ : $f''(0)=0$ mais pas d'inflexion", x=250, y=110, w=780, h=560,
                      ax=dict(x=[-1.5, 1.5], y=[-0.3, 3.8], gx=[-1, 1], gy=[1, 2, 3], lx="$x$", ly="$y$"),
                      el=[dict(type="courbe", pts=X4, c="iv", ep=3.4, dur=2),
-                         dict(type="texte", x=0, y=3.35, t="$f''(x)=12x^2\\geq0$", c="sa"),
+                         dict(type="texte", x=0.62, y=1.25, t="$f''(x)=12x^2\\geq0$", c="sa"),
                          dict(type="droite", pts=[[-1.5, 0], [1.5, 0]], c="te", ep=3.2, lbl="tangente en $0$", lp=[1.0, 0.45])]),
         "ex_i": dict(type="formule", copie=True, titre="$g(x)=x^3-3x^2+2$", x=130, y=110, w=1020, lignes=[
             dict(f="$g'(x)=3x^2-6x$", taille=36),
@@ -410,10 +410,10 @@ SCENES = [
         "meth_in": dict(type="liste", titre="Démontrer $f(x)\\geq g(x)$", items=[
             "Si $g$ est une tangente de $f$ : par convexité",
             "Sinon : étudier $h=f-g$, son minimum avec $h'$, montrer qu'il est positif"], x=150, y=200, w=980),
-        "euler": dict(type="formule", titre="$\\left(1+\\frac1n\\right)^n\\leq\\e$", x=150, y=170, w=980, lignes=[
-            dict(f="$x=\\frac1n$ : $1+\\frac1n\\leq\\e^{\\frac1n}$", taille=40),
+        "euler": dict(type="formule", titre="$\\left(1+\\dfrac1n\\right)^n\\leq\\,\\e$", x=150, y=170, w=980, lignes=[
+            dict(f="$x=\\dfrac1n$ : $1+\\dfrac1n\\leq\\,\\e^{\\dfrac1n}$", taille=40),
             dict(f="deux membres positifs, $t\\mapsto t^n$ croissante sur $[0;+\\infty[$", txt=True),
-            dict(f="$\\left(1+\\frac1n\\right)^n\\leq\\left(\\e^{\\frac1n}\\right)^n=\\e\\approx2{,}718$", cadre=True, taille=40)]),
+            dict(f="$\\left(1+\\dfrac1n\\right)^n\\leq\\left(\\e^{\\dfrac1n}\\right)^n=\\e\\approx2{,}718$", cadre=True, taille=40)]),
     }),
 
     # ================================================================ VI. continuité
@@ -422,7 +422,7 @@ SCENES = [
          beats=[
         "{def_ct}Changeons de sujet. Une fonction est {!continue}continue au point a si la limite de f de x, quand x tend vers a, vaut f de a. "
         "{def_ct.1}Graphiquement : la courbe se trace sans lever le crayon.",
-        "{-def_ct}{g_E}À quoi ressemble une fonction qui n'est pas continue ? {g_E.1}Voici la partie entière : "
+        "{-def_ct}{g_E}À quoi ressemble une fonction qui n'est pas continue ? {g_E.1}{g_E.4}{g_E.5}{g_E.6}{g_E.7}Voici la partie entière : "
         "E de x, c'est le plus grand entier inférieur ou égal à x. {g_E.2}Pour x entre zéro et un, exclu, elle vaut zéro. "
         "Et en un, elle vaut un. {g_E.3}La courbe saute, en chaque entier. La partie entière n'est pas continue au point un.",
         "{-g_E}{prop}Bonne nouvelle : presque toutes les fonctions que tu rencontres sont continues. {prop.1}Les polynômes, la racine, "
@@ -450,10 +450,14 @@ SCENES = [
         "g_E": dict(type="graphe", titre="La partie entière $E$ : elle saute", x=250, y=110, w=780, h=560,
                     ax=dict(x=[-2.3, 3.3], y=[-2.6, 3.2], gx=[-2, -1, 1, 2, 3], gy=[-2, -1, 1, 2], lx="$x$", ly="$y$"),
                     el=[dict(type="points", pts=[[-2, -2], [-1, -1], [0, 0], [1, 1], [2, 2]], c="sa", pas=.12),
-                        dict(type="droite", pts=[[0, 0], [0.97, 0]], c="iv", ep=3.6, lbl="$E(x)=0$ sur $[0;1[$", lp=[0.4, -0.65]),
-                        dict(type="texte", x=1.75, y=2.4, t="en $1$ : saut, pas continue", c="ca")]),
+                        dict(type="droite", pts=[[0, 0], [0.97, 0]], c="sa", ep=4, lbl="$E(x)=0$ sur $[0;1[$", lp=[0.95, -0.7]),
+                        dict(type="texte", x=1.6, y=2.75, t="en $1$ : un saut", c="ca"),
+                        dict(type="droite", pts=[[-2, -2], [-1.03, -2]], c="iv", ep=3.6),
+                        dict(type="droite", pts=[[-1, -1], [-0.03, -1]], c="iv", ep=3.6),
+                        dict(type="droite", pts=[[1, 1], [1.97, 1]], c="iv", ep=3.6),
+                        dict(type="droite", pts=[[2, 2], [2.97, 2]], c="iv", ep=3.6)]),
         "prop": dict(type="formule", titre="Les fonctions continues", x=150, y=170, w=980, lignes=[
-            dict(f="polynômes, $\\sqrt{\\ }$, $\\exp$, $\\cos$, $\\sin$, quotients (là où ils sont définis)", taille=34),
+            dict(f="polynômes, racine carrée, $\\exp$, $\\cos$, $\\sin$, quotients (là où ils sont définis)", taille=34),
             dict(f="leurs sommes, produits, composées", taille=34),
             dict(f="justifier la continuité : une phrase suffit", txt=True)]),
         "thm_d": dict(type="formule", titre="Dérivable et continue", x=170, y=200, w=940, lignes=[
@@ -475,7 +479,7 @@ SCENES = [
 
     # ================================================================ VII. théorème des valeurs intermédiaires
     dict(id="tvi", chap="Le théorème des valeurs intermédiaires", fond="ardoise", humeur="tension",
-         retenir="TVI : $f$ continue sur $[a;b]$, $k$ entre $f(a)$ et $f(b)$ ⇒ $f(x)=k$ a **au moins une** solution. Si de plus $f$ est strictement monotone : solution **unique**.",
+         retenir="TVI : $f$ continue sur $[a;b]$, $k$ entre $f(a)$ et $f(b)$ ⇒ $f(x)=k$ a **au** **moins** **une** solution. Si de plus $f$ est strictement monotone : solution **unique**.",
          beats=[
         "{thm_tvi}Nous voilà prêts pour le théorème phare du chapitre : le {!théorème des valeurs intermédiaires}théorème des valeurs intermédiaires. "
         "On l'abrège souvent T V I.",
@@ -508,7 +512,7 @@ SCENES = [
         "thm_tvi": dict(type="formule", titre="Théorème des valeurs intermédiaires (TVI)", x=130, y=150, w=1020, lignes=[
             dict(f="Si $f$ est **continue** sur $[a;b]$,", taille=38),
             dict(f="pour tout réel $k$ compris entre $f(a)$ et $f(b)$,", taille=38),
-            dict(f="l'équation $f(x)=k$ admet **au moins une** solution dans $[a;b]$.", cadre=True, taille=36)]),
+            dict(f="l'équation $f(x)=k$ admet **au** **moins** **une** solution dans $[a;b]$.", cadre=True, taille=36)]),
         "g_saut": dict(type="graphe", titre="Sans continuité, $k=1{,}2$ n'est pas atteint", x=250, y=110, w=780, h=560,
                        ax=dict(x=[0, 2.2], y=[0, 2.8], gx=[0.5, 1, 1.5, 2], gy=[1, 1.2, 2, 2.5], lx="$x$", ly="$y$"),
                        el=[dict(type="courbe", pts=SAUT_G, c="iv", ep=3.6),
@@ -518,11 +522,11 @@ SCENES = [
         "g_trois": dict(type="graphe", titre="$x^3-3x+1$ : trois solutions de $f(x)=0$", x=250, y=110, w=780, h=560,
                         ax=dict(x=[-2.1, 2.1], y=[-1.3, 3.3], gx=[-2, -1, 1, 2], gy=[-1, 1, 2, 3], lx="$x$", ly="$y$"),
                         el=[dict(type="courbe", pts=TVI3, c="iv", ep=3.4, dur=2.2),
-                            dict(type="points", pts=[[-2, -1], [2, 3]], c="sa", lbl="$f(-2)=-1$, $f(2)=3$", lp=[-0.9, 2.75]),
+                            dict(type="points", pts=[[-2, -1], [2, 3]], c="sa", lbl="$f(-2)=-1$, $f(2)=3$", lp=[0.7, 2.85]),
                             dict(type="points", pts=[[-1.8794, 0], [0.3473, 0], [1.5321, 0]], c="ca", pas=.35)]),
         "coro": dict(type="formule", titre="Corollaire : le cas strictement monotone", x=110, y=110, w=1060, lignes=[
             dict(f="Si $f$ est **continue**", taille=36),
-            dict(f="et **strictement monotone** sur $[a;b]$,", taille=36),
+            dict(f="et **strictement** **monotone** sur $[a;b]$,", taille=36),
             dict(f="pour tout $k$ entre $f(a)$ et $f(b)$, $f(x)=k$ a une **unique** solution.", cadre=True, taille=34),
             dict(f="strictement croissante : jamais deux fois la même valeur", txt=True),
             dict(f="intervalle ouvert ou infini : on utilise les limites aux bornes", txt=True)]),
@@ -591,7 +595,7 @@ SCENES = [
                      ax=dict(x=[0.4, 1.12], y=[-0.6, 1.5], gx=[0.5, 0.75, 1], gy=[-0.5, 0.5, 1], lx="$x$", ly="$y$"),
                      el=[dict(type="courbe", pts=NEWT, c="iv", ep=3.4),
                          dict(type="point", x=1, y=1, c="sa", lbl="$x_0=1$", lp=[1.0, 1.32]),
-                         dict(type="droite", pts=[[0.6, -0.6], [1.1, 1.4]], c="sa", ep=2.8, lbl="$x_1=0{,}75$", lp=[0.72, -0.25]),
+                         dict(type="droite", pts=[[0.6, -0.6], [1.1, 1.4]], c="sa", ep=2.8, lbl="$x_1=0{,}75$", lp=[0.9, -0.3]),
                          dict(type="point", x=0.75, y=0.1719, c="te", proj=True),
                          dict(type="droite", pts=[[0.64, -0.1237], [0.85, 0.4407]], c="te", ep=2.8, lbl="$x_2\\approx0{,}686$", lp=[0.6, 0.25])]),
         "py_n": dict(type="code", titre="Python · la méthode de Newton", x=190, y=110, w=900, taille=27, lignes=[
@@ -690,10 +694,10 @@ SCENES = [
         "Par le corollaire du théorème des valeurs intermédiaires, f de x égale zéro a une unique solution alpha.",
         "{s22.3}De plus, f de un vaut exponentielle de un, moins trois : environ moins zéro virgule deux huit, négatif. "
         "{s22.4}Et f de deux vaut exponentielle de deux, moins quatre : environ trois virgule trois neuf, positif. Donc alpha est entre un et deux.",
-        "{-s22}{ex2c.q3}{py3}{py3.l5}Question trois. La condition à compléter teste si f de a et f de m sont de signes contraires. "
+        "{-s22}{ex2c.q3}{py3}{py3.l7}Question trois. La condition à compléter teste si f de a et f de m sont de signes contraires. "
         "{py3.r1}On écrit le produit des deux, inférieur ou égal à zéro.",
         "{py3.s}On appelle encadre de un, deux. Après sept étapes, on obtient un virgule un quatre zéro six deux cinq, et un virgule un quatre huit quatre trois sept cinq. "
-        "{py3.l12}Pour donner deux décimales, on affine à la calculatrice. f de un virgule un quatre est négatif, f de un virgule un cinq positif. "
+        "{py3.l14}Pour donner deux décimales, on affine à la calculatrice. f de un virgule un quatre est négatif, f de un virgule un cinq positif. "
         "Donc alpha est entre un virgule un quatre, et un virgule un cinq.",
         "{-py3}{ex2c.q4}{s24}{s24.1}Question quatre. f seconde de x vaut exponentielle de x, strictement positive : f est convexe. "
         "{s24.2}Donc sa courbe est au-dessus de ses tangentes. Cherchons la tangente au point d'abscisse un.",
@@ -727,10 +731,11 @@ SCENES = [
             dict(f="$f(1)=\\e-3\\approx-0{,}28<0$", taille=31),
             dict(f="$f(2)=\\e^2-4\\approx3{,}39>0$ : $1<\\alpha<2$", taille=31)]),
         "py3": dict(type="code", titre="Python · encadrer $\\alpha$", x=530, y=86, w=720, taille=23, lignes=[
-            "from math import exp", "def encadre(a, b):", "    while b - a > 0.01:", "        m = (a + b) / 2",
+            "from math import exp", "def f(x):", "    return exp(x) - x - 2", "def encadre(a, b):",
+            "    while b - a > 0.01:", "        m = (a + b) / 2",
             "        if @1:", "            b = m", "        else:", "            a = m", "    return a, b", "",
             "print(encadre(1, 2))", "# 1,14 < alpha < 1,15"],
-            rep=["(exp(a) - a - 2) * (exp(m) - m - 2) <= 0"], sortie="(1.140625, 1.1484375)"),
+            rep=["f(a) * f(m) <= 0"], sortie="(1.140625, 1.1484375)"),
         "s24": dict(type="formule", copie=True, titre="4 · Convexité et inégalité", x=530, y=80, w=720, lignes=[
             dict(f="$f''(x)=\\e^x>0$ : $f$ convexe", taille=28),
             dict(f="courbe au-dessus de ses tangentes ; tangente en $1$ :", txt=True),
@@ -763,10 +768,10 @@ SCENES = [
         "{-bac}",
     ], vis={
         "carte": dict(type="carte", centre="DÉRIVATION · CONVEXITÉ · CONTINUITÉ", branches=[
-            dict(t="Composées", items=["$(v\\circ u)'=(v'\\circ u)\\times u'$", "$(\\e^u)'=u'\\e^u$", "$(u^n)'=nu'u^{n-1}$"]),
-            dict(t="Convexité", items=["$f''\\geq0$ ⇔ $f'$ croissante", "au-dessus des tangentes", "inflexion : $f''$ change de signe"]),
+            dict(t="Composées", items=["$(v\\circ u)'=(v'\\circ u)\\times u'$", "$(\\e^u)'=u'\\,\\e^u$", "$(u^n)'=nu'u^{n-1}$"]),
+            dict(t="Convexité", items=["$f''\\geq0$ ⇔ $f'$ croissante", "au-dessus des tangentes", "inflexion : signe de $f''$"]),
             dict(t="Continuité", items=["dérivable ⇒ continue", "$|x|$ : continue, pas dérivable", "$f(u_n)\\to f(\\ell)$"]),
-            dict(t="TVI", items=["continue : au moins une solution", "strictement monotone : unique", "dichotomie : $\\frac{b-a}{2^n}$"])]),
+            dict(t="TVI", items=["continue : existence", "monotone : unicité", "dichotomie : $\\frac{b-a}{2^n}$"])]),
         "bac": dict(type="liste", titre="Pour le bac · à cocher", items=[
             "Dériver une composée, factoriser", "Convexité par le signe de $f''$, inflexion",
             "Lire la convexité sur $f$, $f'$ ou $f''$", "Inégalité par convexité, la démonstration",
