@@ -5553,10 +5553,10 @@ function Chapter({
   const hasVocab = data.vocab && data.vocab.some(g => g.items && g.items.length);
   const hasExam = data.exam && data.exam.length;
   const TABS = [["course", FR ? "Cours" : "Course", "📖"]]
+    .concat(oralChap(data.code) ? [["oral", "Oral", "🎤"]] : [])
     .concat(serieDispo(data.code) ? [["video", FR ? "Vidéo" : "Video", "▶"]] : [])
     .concat(CARTES_ANIM.indexOf(data.code) >= 0 ? [["carte", FR ? "Carte animée" : "Animated map", "🗺️"]] : [])
     .concat(quizSec ? [["quiz", FR ? "Quiz" : "Quiz", "✅"]] : [])
-    .concat(oralChap(data.code) ? [["oral", "Oral", "🎤"]] : [])
     .concat([["overview", FR ? "L'essentiel" : "Overview", "🧭"]])
     .concat(hasVocab ? [["vocab", FR ? "Vocabulaire" : "Vocabulary", "🔤"]] : [])
     .concat(hasExam ? [["exam", FR ? "Sujets" : "Essays", "✍️"]] : [])
@@ -5650,6 +5650,7 @@ function Chapter({
         React.createElement("span", { className: "hero-theme" }, pick("theme", data.theme)),
         setFiche && React.createElement("button", { className: "fiche-toggle" + (fiche ? " on" : ""), onClick: () => setFiche(f => !f), title: FR ? "Basculer en fiche condensée" : "Toggle condensed revision card" },
           fiche ? (FR ? "◨ Vue complète" : "◨ Full view") : (FR ? "▤ Fiche condensée" : "▤ Condensed card")),
+        oralChap(data.code) && React.createElement("button", { className: "pdf-btn", onClick: () => go("oral"), title: FR ? "Préparer l'oral : key issues et key terms du thème" : "Prepare the oral: the theme's key issues and key terms" }, "🎤 Oral"),
         serieDispo(data.code) && React.createElement("button", { className: "pdf-btn", onClick: () => go("video"), title: FR ? "Le chapitre en vidéo" : "The chapter in video" }, FR ? "▶ Vidéo" : "▶ Video"),
         CARTES_ANIM.indexOf(data.code) >= 0 && React.createElement("button", { className: "pdf-btn", onClick: () => go("carte"), title: FR ? "Carte animée du chapitre" : "Animated map of the chapter" }, FR ? "🗺️ Carte animée" : "🗺️ Animated map"),
         FICHES_PDF.indexOf(data.code) >= 0 && React.createElement("a", { className: "pdf-btn", href: "fiches/" + data.code + "-" + lang + ".pdf", target: "_blank", rel: "noopener", title: FR ? "Fiche imprimable du chapitre (PDF)" : "Printable sheet for this chapter (PDF)" }, FR ? "⎙ Fiche PDF" : "⎙ PDF sheet")),
