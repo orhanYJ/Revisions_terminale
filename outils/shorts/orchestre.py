@@ -43,7 +43,7 @@ def accord(nom, octave=3):
 class Partition:
     """Notes rangées par couche : couche -> instrument -> [(début en temps, durée en temps, note, vélocité)]."""
     def __init__(self, bpm):
-        self.bpm, self.couches = bpm, {}
+        self.bpm, self.couches, self.synth = bpm, {}, []
 
     def note(self, couche, instr, debut, duree, note, vel=90):
         self.couches.setdefault(couche, {}).setdefault(instr, []).append((debut, duree, note, vel))
@@ -55,6 +55,10 @@ class Partition:
             if x is not None: self.note(couche, instr, t, d * .98, n(x) if isinstance(x, str) else x, vel)
             t += d
         return t
+
+    def son(self, couche, debut, x, g=1.0):
+        """Son synthétisé (signal mono numpy) posé au temps `debut` (en temps) dans la couche."""
+        self.synth.append((couche, debut, x * g))
 
     def frappe(self, couche, son, debut, vel=100):
         self.note(couche, BATTERIE, debut, .25, son, vel)
@@ -92,6 +96,12 @@ class Partition:
                 if x.ndim == 1: x = np.stack([x, x], 1)
                 m = int(dur * SR); x = x[:m] if len(x) >= m else np.pad(x, ((0, m - len(x)), (0, 0)))
                 sortie[c] = x
+        m = int(dur * SR)
+        for c, debut, x in self.synth:
+            if c not in sortie: sortie[c] = np.zeros((m, 2), np.float32)
+            i = int(debut * 60 / self.bpm * SR)
+            if i >= m: continue
+            k = min(len(x), m - i); sortie[c][i:i + k] += x[:k, None] if x.ndim == 1 else x[:k]
         return sortie
 
 
@@ -212,7 +222,157 @@ def bande_annonce(mesures):
     return P
 
 
-MORCEAUX = {"epopee": epopee, "heritage": heritage, "boss": boss, "bande_annonce": bande_annonce}
+
+# ---------------------------------------------------------------- sons synthétisés (numpy)
+from musique_short import scie, lp, hp, bp, clap, charley, R as _R
+
+
+def fq(note):
+    return 440 * 2 ** ((note - 69) / 12)
+
+
+def kick_dur(d=.34):
+    """Kick saturé de hardtekk : attaque sèche, chute de hauteur, queue grave distordue."""
+    k = int(d * SR); t = np.arange(k) / SR
+    fr = 46 + 190 * np.exp(-t * 28)
+    corps = np.sin(2 * np.pi * np.cumsum(fr) / SR) * np.exp(-t / .2)
+    x = np.tanh(corps * 6) * .8 + bp(_R.standard_normal(k), 2000, 8000) * np.exp(-t / .004) * .5
+    return lp(x, 7000) * np.minimum(1, (d - t) / .01)
+
+
+def supersaw(f, d, coupure=6000, att=.005, rel=.08):
+    """Sept scies désaccordées (lead de hardtekk / trance), enveloppe courte."""
+    k = int(d * SR)
+    x = sum(scie(f * 2 ** (dc / 1200), k) for dc in (-24, -14, -6, 0, 6, 14, 24)) / 7
+    e = np.minimum(1, np.arange(k) / (att * SR + 1)) * np.minimum(1, (k - np.arange(k)) / (rel * SR + 1))
+    return lp(x, coupure) * e
+
+
+def basse_roulante(f, d):
+    k = int(d * SR); t = np.arange(k) / SR
+    return np.tanh(lp(scie(f, k), 900) * 2.5) * np.exp(-t / (d * .7)) * .6
+
+
+def pulsation(f, d, coupure=2500):
+    """Note de synthé courte et filtrée (arpège pulsé façon bande originale électro-orchestrale)."""
+    k = int(d * SR); t = np.arange(k) / SR
+    return lp(scie(f, k) + .5 * scie(f * 2.003, k), coupure) * np.exp(-t / (d * .45)) * np.minimum(1, t / .002)
+
+
+def riser(d):
+    k = int(d * SR); r = np.linspace(0, 1, k) ** 2.5
+    return hp(_R.standard_normal(k), 1500) * r * .4
+
+
+# ---------------------------------------------------------------- morceaux inspirés des références de Cengiz
+# (énergie, tempo, construction ; mélodies et harmonies originales)
+
+def hardtekk(mesures):
+    """Hardtekk épique, 160 bpm, sol dièse mineur : kick saturé sur chaque temps, basse roulante, lead supersaw,
+    chœur et cordes. Couche 1 : thème au piano et nappe ; 2 : kick, basse, accords ; 3 : lead, clap, charleys."""
+    P = Partition(160)
+    grille = ["G#m", "E", "B", "F#"]
+    melo = [
+        [("D#5", 1), ("G#5", 1), ("F#5", .5), ("D#5", .5), ("B4", 1)],
+        [("E5", 1.5), ("D#5", .5), ("B4", 1), ("G#4", 1)],
+        [("F#5", 1), ("D#5", .5), ("F#5", .5), ("B5", 1), ("A#5", 1)],
+        [("A#5", 2), ("G#5", 1), ("F#5", 1)],
+    ]
+    for m in range(mesures):
+        a = grille[m % 4]; r, ti, q = accord(a, 3); t = m * 4
+        P.notes(1, PIANO, t, melo[m % 4], 85)
+        for x in (r, ti, q): P.note(1, CORDES_LENTES, t, 4, x + 12, 60)
+        for x in (r, ti, q): P.son(1, t, supersaw(fq(x + 12), 4 * 60 / 160, 1400, .25, .2), .16)
+        tt = t
+        for x, d in melo[m % 4]:  # le thème, filtré, comme sous l'eau avant le drop
+            if x: P.son(1, tt, supersaw(fq(n(x)), d * 60 / 160 * .9, 1800), .22)
+            tt += d
+        for b in range(4):
+            P.son(2, t + b, kick_dur(), .9)
+            for k in (1, 2, 3): P.son(2, t + b + k * .25, basse_roulante(fq(r - 12), .09), .7)
+        for b in (0, 1.5, 3):  # accords supersaw syncopés
+            for x in (r, ti, q): P.son(2, t + b, supersaw(fq(x + 12), .3, 4000), .12)
+        for x in (r, q): P.note(2, CHOEUR, t, 4, x + 12, 85)
+        tt = t
+        for x, d in melo[m % 4]:
+            if x: P.son(3, tt, supersaw(fq(n(x)), d * 60 / 160 * .95, 7000), .35); P.son(3, tt, supersaw(fq(n(x) - 12), d * 60 / 160 * .95, 5000), .2)
+            tt += d
+        for b in (1, 3): P.son(3, t + b, clap(), .5)
+        for k in range(8): P.son(3, t + k * .5 + .5 * (k % 1), charley(.05, k % 2 == 1), .18)
+        P.notes(3, CORDES, t, [(None if x is None else n(x) + 12, d) for x, d in melo[m % 4]], 90)
+        if m % 4 == 0: P.frappe(3, CRASH, t, 120); P.frappe(2, CRASH, t, 90)
+        if m % 4 == 3: P.son(2, t, riser(4 * 60 / 160), 1)
+    return P
+
+
+def finale(mesures):
+    """Final lumineux qui grandit (esprit « final de jeu vidéo ») : le même thème joué d'abord seul par la boîte
+    à musique, puis par les cordes et le chœur, puis par tout l'orchestre avec batterie. La bémol majeur, 100 bpm."""
+    P = Partition(100)
+    grille = ["Ab", "Fm", "Db", "Eb", "Ab", "Fm", "Db", "Eb"]
+    theme = [
+        [("C5", 1), ("Eb5", 1), ("Ab5", 1.5), ("G5", .5)],
+        [("F5", 1), ("Eb5", 1), ("C5", 2)],
+        [("Db5", 1), ("F5", 1), ("Bb5", 1.5), ("Ab5", .5)],
+        [("G5", 2), ("Bb5", 1), ("Eb5", 1)],
+        [("C6", 1.5), ("Bb5", .5), ("Ab5", 1), ("Eb5", 1)],
+        [("F5", 1), ("Ab5", 1), ("C6", 2)],
+        [("Db6", 1.5), ("C6", .5), ("Bb5", 1), ("Ab5", 1)],
+        [("Bb5", 3), ("Eb5", 1)],
+    ]
+    for m in range(mesures):
+        a = grille[m % 8]; r, ti, q = accord(a, 3); t = m * 4; th = theme[m % 8]
+        P.notes(1, CELESTA, t, th, 95)
+        for k in range(4): P.note(1, PIANO, t + k, .9, [r, q, r + 12, ti + 12][k], 55)
+        P.notes(2, CORDES, t, th, 88)
+        for x in (r, ti, q): P.note(2, CORDES_LENTES, t, 4, x, 65)
+        P.note(2, VIOLONCELLE, t, 4, r - 12, 85)
+        for x in (r + 12, q + 12): P.note(2, CHOEUR, t, 4, x, 72)
+        for k in range(8): P.note(2, PIANO, t + k * .5, .45, [r, q, r + 12, q, ti + 12, q, r + 12, q][k], 70)
+        P.notes(3, CUIVRES, t, th, 110)
+        P.notes(3, CARRE, t, [(n(x) + 12, d) for x, d in th], 60)
+        P.note(3, CONTREBASSE, t, 4, r - 24, 105)
+        P.note(3, TIMBALES, t, 1, r - 12, 115); P.note(3, TIMBALES, t + 2, 1, q - 24, 100)
+        for b in range(4):
+            P.frappe(3, GC, t + b, 115 if b % 2 == 0 else 95)
+            if b % 2: P.frappe(3, CAISSE, t + b, 112)
+            P.frappe(3, RIDE, t + b + .5, 70)
+        if m % 4 == 0: P.frappe(3, CRASH, t, 120); P.note(3, HIT, t, 1, r + 12, 110)
+    return P
+
+
+def terre(mesures):
+    """Électro-orchestral d'aventure (esprit bande originale d'Assassin's Creed) : arpège de synthé pulsé en
+    doubles croches, guitare en ostinato, voix lointaine, cordes graves, tambours qui montent. Ré mineur, 112 bpm."""
+    P = Partition(112)
+    grille = ["Dm", "Dm", "Bb", "C", "Dm", "Dm", "Gm", "A"]
+    voix = [
+        [("A4", 3), ("G4", .5), ("F4", .5)], [("E4", 2), ("D4", 2)],
+        [("F4", 2), ("Bb4", 2)], [("A4", 2), ("G4", 2)],
+        [("A4", 2), ("D5", 1), ("C5", 1)], [("A4", 4)],
+        [("Bb4", 2), ("A4", 1), ("G4", 1)], [("A4", 2), ("C#5", 2)],
+    ]
+    for m in range(mesures):
+        a = grille[m % 8]; r, ti, q = accord(a, 3); t = m * 4
+        arp = [r, q, r + 12, q, ti + 12, q, r + 12, q + 12]
+        for k in range(16): P.son(1, t + k * .25, pulsation(fq(arp[k % 8]), .2, 1800 + 300 * (k % 4 == 0)), .14)
+        P.note(1, VIOLONCELLE, t, 4, r - 12, 80)
+        for k in range(8): P.note(2, GUITARE, t + k * .5, .45, [r, ti, q, r + 12][k % 4], 85)
+        P.notes(2, VOIX_OOH, t, voix[m % 8], 90)
+        for x in (r, ti, q): P.note(2, CORDES_LENTES, t, 4, x + 12, 62)
+        for b in (0, 1.5, 2.5): P.note(2, TIMBALES, t + b, .5, r - 12, 95)
+        P.notes(3, CORDES, t, [(n(x) + 12, d) for x, d in voix[m % 8]], 95)
+        P.note(3, CHOEUR, t, 4, r + 12, 85); P.note(3, CHOEUR, t, 4, q + 12, 85)
+        P.note(3, CONTREBASSE, t, 4, r - 24, 100)
+        for b in range(4): P.frappe(3, TOM_G, t + b, 115); P.frappe(3, GC, t + b, 95 if b % 2 else 112)
+        for k in range(4): P.frappe(3, TOM_M, t + 3 + k * .25, 80 + 10 * k)
+        for k in range(16): P.son(3, t + k * .25, pulsation(fq(arp[k % 8] + 24), .12, 4000), .07)
+        if m % 4 == 0: P.frappe(3, CRASH, t, 115)
+    return P
+
+
+MORCEAUX = {"epopee": epopee, "heritage": heritage, "boss": boss, "bande_annonce": bande_annonce,
+            "hardtekk": hardtekk, "finale": finale, "terre": terre}
 NIVEAU_COUCHES = {1: (1,), 2: (1, 2), 3: (1, 2, 3)}
 GAINS = {1: 1.0, 2: .9, 3: .85}
 
@@ -234,7 +394,14 @@ def essai(style, dur=20.0):
         a, b = int(bornes[niv - 1] * SR), int(bornes[niv] * SR)
         for k in NIVEAU_COUCHES[niv]: y[a:b] += c[k][a:b] * GAINS[k]
     f = int(.02 * SR); y[-f:] *= np.linspace(1, 0, f)[:, None]
-    return y / (np.abs(y).max() + 1e-9) * .89
+    return densifier(y)
+
+
+def densifier(y, cible=-13.0):
+    """Mur de son : niveau RMS visé (dBFS) puis saturation douce qui écrase les crêtes, comme les références."""
+    rms = np.sqrt((y ** 2).mean()) + 1e-9
+    y = y * 10 ** (cible / 20) / rms
+    return (np.tanh(y * 1.3) / np.tanh(1.3) * .95).astype(np.float32)
 
 
 if __name__ == "__main__":
