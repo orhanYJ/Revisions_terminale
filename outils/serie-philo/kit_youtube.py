@@ -101,6 +101,16 @@ META = {
         tags=["HGGSP", "HGGSP terminale", "spécialité HGGSP", "bac HGGSP", "nouveaux espaces de conquête", "océan et espace",
               "Montego Bay", "ZEE", "haute mer", "traité de l'espace 1967", "dernières frontières", "New Space",
               "syndrome de Kessler", "orbites", "mer de Chine méridionale", "dissertation HGGSP", "étude critique"]),
+    "maths-ch2": dict(
+        sous="convergence · gendarmes · suites géométriques", img="m2-nuage.jpg", gros="Les suites",
+        accroche="Achille ne rattrape jamais la tortue ? Zénon avait tort, et les limites de suites expliquent pourquoi. "
+                 "Converger, diverger, encadrer : tout pour le bac.",
+        pill2="+ 2 exercices corrigés", exos_txt="deux exercices corrigés pas à pas : cinq limites à calculer, puis une suite homographique type bac",
+        exos=["Exercice 1 (pour démarrer) : cinq limites de suites à calculer.",
+              "Exercice 2 (type bac) : la suite u(n+1) = (2u(n) + 3)/(u(n) + 4), suite auxiliaire géométrique et seuil en Python."],
+        tags=["limites de suites", "suites numériques", "convergence", "suite divergente", "théorème des gendarmes",
+              "suite géométrique", "suite monotone", "suite majorée", "suite récurrente", "algorithme de seuil",
+              "paradoxe de Zénon", "maths terminale", "spécialité maths", "bac maths", "exercices corrigés"]),
     "maths-ch3": dict(
         sous="asymptotes · formes indéterminées · croissances comparées", img="m3-courbe.jpg", gros="Les limites",
         accroche="Qui gagne la course vers l'infini, e^x ou x^10 ? Limites, asymptotes, formes indéterminées : "
@@ -133,6 +143,21 @@ META = {
         tags=["HGGSP", "HGGSP terminale", "spécialité HGGSP", "bac HGGSP", "Station spatiale internationale", "ISS",
               "Artemis", "Montego Bay", "ZEE", "mer de Chine méridionale", "grands fonds", "AIFM", "haute mer",
               "traité BBNJ", "coopération internationale", "dissertation HGGSP", "Grand oral"]),
+    "ses-e3": dict(
+        titre_yt="Comment lutter contre le chômage ? · Cours complet + sujets corrigés | SES Terminale",
+        sous="BIT · structurel · conjoncturel · politiques de l'emploi", img="e3-chomage.jpg", gros="Le chômage",
+        accroche="Près de 2,5 millions de chômeurs en France en 2025. Pourquoi une partie du chômage résiste même quand l'économie va bien, "
+                 "et quelles politiques marchent contre lui ?",
+        pill2="+ 5 sujets corrigés",
+        exos_txt="cinq sujets corrigés pas à pas : un calcul de taux de chômage, les trois parties de l'épreuve composée et une dissertation",
+        exos=["Savoir-faire : calculer un taux de chômage (France, 2025, données Insee) — exercice du site.",
+              "Partie 1 : « Montrez que les problèmes d'appariement peuvent être à l'origine d'un chômage structurel. »",
+              "Partie 2 : le chômage selon le diplôme, document Insee (enquête Emploi 2025) — exercice du site.",
+              "Partie 3 : « Montrez que le chômage peut avoir des causes conjoncturelles. »",
+              "Dissertation : « Les politiques de l'offre sont-elles suffisantes pour lutter contre le chômage ? »"],
+        tags=["chômage", "SES terminale", "spécialité SES", "bac SES", "taux de chômage", "BIT", "chômage structurel",
+              "chômage conjoncturel", "appariement", "salaire d'efficience", "SMIC", "Keynes", "hystérèse",
+              "politiques de l'emploi", "flexicurité", "épreuve composée", "dissertation SES"]),
     "ses-e1": dict(
         titre_yt="La croissance économique : sources et défis · Cours complet + sujets corrigés | SES Terminale",
         sous="PGF · progrès endogène · destruction créatrice · soutenabilité", img="e1-pib.jpg", gros="La croissance",
