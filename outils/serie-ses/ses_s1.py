@@ -21,7 +21,7 @@ RYTHME = "vivant"
 PRONONCIATION = {"Weber": "Vébère", "Max": "Maxe", "Karl": "Karle", "Engels": "Enguèlse", "Mendras": "Maindrasse",
                  "Chauvel": "Chovèl", "Ulrich": "Oulrik", "Beck": "Bèk", "Kimberlé": "Kimbèrlé", "Crenshaw": "Krènchô",
                  "Pinçon-Charlot": "Pinçon-Charlo", "Insee": "Inssé", "Dares": "Darèsse", "PCS": "pé-cé-èss",
-                 "CSP": "cé-èss-pé", "CDI": "cé-dé-i", "VTC": "vé-té-cé", "Gini": "Djini", "SES": "èss-eu-èss",
+                 "CSP": "cé-èss-pé", "CDI": "cé-dé-i", "VTC": "vé-té-cé", "Gini": "Djini", "Sauvy": "Sovi", "SES": "èss-eu-èss",
                  "AEI": "a-eu-i"}
 
 D = site_ses.donnees()
@@ -104,7 +104,7 @@ SCENES = [
         "C'est son plus haut niveau depuis mille neuf cent quatre-vingt-seize. {cf_niv.3}Et l'indice de Gini, zéro virgule trois cent deux, "
         "est au plus haut depuis le début de la série. Et le patrimoine ? Il est encore plus inégalement réparti que le revenu.",
         "{-cf_niv}{cols_dm}Troisième et quatrième facteurs. {cols_dm.g}Le diplôme conditionne l'accès aux emplois qualifiés, le salaire, le risque de chômage. "
-        "Et même les pratiques culturelles, ou le vote. Or il dépend lui-même de l'origine sociale.",
+        "Et même les pratiques culturelles, et la participation politique. Or il dépend lui-même de l'origine sociale.",
         "{cols_dm.d}La composition du ménage, maintenant. Vivre seul, en couple, avec ou sans enfants : ça change le niveau de vie. "
         "Les familles monoparentales, le plus souvent une mère avec ses enfants, sont, avec les chômeurs, les plus touchées par la pauvreté.",
         "{-cols_dm}{cols_as}{cols_as.g}Cinquième facteur : l'âge, la position dans le cycle de vie. À diplôme égal, on gagne plus en milieu de carrière qu'au début. "
@@ -146,7 +146,7 @@ SCENES = [
             "Un diplôme élevé → un emploi de cadre", "→ un revenu élevé", "→ un quartier favorisé",
             "→ des établissements réputés pour les enfants"], marques=["1", "2", "3", "4"]),
         "note_b26": dict(type="note", titre="Déjà tombé au bac", cles=["revenu", "diplôme"],
-                         t="Bac 2026, jour 2, partie 3 : « Montrez que le revenu et le diplôme ne sont pas les seuls facteurs qui structurent et hiérarchisent l'espace social. »",
+                         t="Bac 2026, jour 2, partie 3 : « Vous montrerez que le revenu et le diplôme ne sont pas les seuls facteurs qui structurent et hiérarchisent l'espace social. »",
                          x=170, y=200, w=940),
     }),
 
@@ -156,7 +156,7 @@ SCENES = [
                  "Six groupes en emploi. Les PCS ne sont pas des classes sociales.",
          beats=[
         "{def_pcs}Pour décrire cet espace, l'Insee a un outil : les {!PCS}PCS, les professions et catégories socioprofessionnelles. "
-        "C'est une nomenclature : elle classe la population selon sa profession actuelle, ou l'ancienne pour les retraités.",
+        "C'est une nomenclature : elle classe la population selon sa profession actuelle, ou l'ancienne.",
         "{def_pcs.1}Mais pas seulement le métier. Elle tient compte du statut, salarié ou non. De la qualification. "
         "De la taille de l'entreprise pour les indépendants. Et, pour les salariés, de l'employeur : public ou privé.",
         "{-def_pcs}{fr_pcs}Un peu d'histoire. {fr_pcs.1}Elle naît en mille neuf cent cinquante-quatre, sous le nom de CSP. "
@@ -169,8 +169,7 @@ SCENES = [
         "{gr_grp.5}Les employés : vingt-quatre virgule huit. {gr_grp.6}Et les ouvriers : dix-huit pour cent.",
         "Le reste, zéro virgule neuf pour cent, n'est pas renseigné.",
         "{-gr_grp}{note_men}Une nouveauté de deux mille vingt : la PCS Ménage. Elle classe les ménages d'après la profession de leurs membres. "
-        "Pourquoi ? Parce que la position sociale se joue souvent au niveau du couple. Une infirmière mariée à un cadre, et une infirmière mariée à un ouvrier, "
-        "n'ont pas tout à fait le même niveau de vie.",
+        "Pourquoi ? Parce que la position sociale se joue souvent au niveau du couple.",
         "{-note_men}{cols_pc}Et maintenant, une distinction qui tombe souvent. {cols_pc.g}Les PCS sont un outil statistique. "
         "Elles sont construites sans aucune hypothèse sur la conscience ou les conflits des groupes. "
         "{cols_pc.d}Une classe sociale, c'est un concept sociologique, qui suppose des écarts durables. Et chez Marx, une conscience et une lutte.",
@@ -235,7 +234,7 @@ SCENES = [
         "{ch_qua.2}Donc plus de diplômés arrivent sur le marché du travail. {ch_qua.3}Et en même temps, le progrès technique et la tertiarisation "
         "demandent davantage de qualifications.",
         "{ch_qua.4}Donc les emplois de cadres et de professions intermédiaires se multiplient, et les emplois peu qualifiés reculent.",
-        "Cadres et professions intermédiaires, ensemble, c'est quarante-huit virgule un pour cent des personnes en emploi en deux mille vingt-quatre. "
+        "Cadres et professions intermédiaires, ensemble, c'est un peu plus de quarante-huit pour cent des personnes en emploi en deux mille vingt-quatre. "
         "Près de la moitié. Et les ouvriers non qualifiés reculent, avec l'automatisation et les délocalisations.",
         "{-ch_qua}",
     ], vis={
@@ -328,7 +327,7 @@ SCENES = [
         "{ch_marx.4}Donc des intérêts opposés : la classe en soi existe objectivement. {ch_marx.5}Et si elle prend conscience, elle devient classe pour soi : la lutte des classes.",
         "{-ch_marx}{note_real}C'est une approche {!réaliste}réaliste : les classes existent réellement, et elles sont en conflit. "
         "Pour Marx, la lutte des classes est même le moteur de l'histoire. C'est la thèse du Manifeste du parti communiste, écrit avec Engels en mille huit cent quarante-huit.",
-        "{-note_real}{au_web}Max Weber, maintenant, un demi-siècle plus tard. Pour lui, la hiérarchie sociale n'a pas une dimension, mais {!trois}trois, indépendantes.",
+        "{-note_real}{au_web}Max Weber, maintenant, plus d'un demi-siècle plus tard. Pour lui, la hiérarchie sociale n'a pas une dimension, mais {!trois}trois, indépendantes.",
         "{-au_web}{an_mw2}{an_mw2.1}{an_mw2.2}{an_mw2.3}{an_mw2.4}Trois échelles. L'ordre économique, d'abord : les classes, définies par les chances d'accès aux biens et aux revenus sur le marché. "
         "L'ordre social : les groupes de statut, définis par le prestige, l'honneur social, qui se traduisent par des styles de vie. "
         "Et l'ordre politique : les partis, qui visent le pouvoir.",
@@ -638,8 +637,8 @@ SCENES = [
 
     # ================================================================ XII. partie 3 (sujet officiel 2026)
     dict(id="partie3", chap="Partie 3 · le sujet de 2026", fond="moutarde", humeur="tension", beats=[
-        "{ex_p3}Partie trois : le raisonnement sur un dossier documentaire, neuf points. Et cette fois, un vrai sujet : celui du bac deux mille vingt-six, jour deux. "
-        "« Montrez que le revenu et le diplôme ne sont pas les seuls facteurs qui structurent et hiérarchisent l'espace social. »",
+        "{ex_p3}Partie trois : le raisonnement sur un dossier documentaire. Et cette fois, un vrai sujet : celui du bac deux mille vingt-six, jour deux, "
+        "où cette partie valait dix points. Elle en vaudra neuf à partir de deux mille vingt-sept. Le sujet : « Vous montrerez que le revenu et le diplôme ne sont pas les seuls facteurs qui structurent et hiérarchisent l'espace social. »",
         "Les documents du sujet officiel ne sont pas reproduits ici. On s'appuie sur les données de ce chapitre : les catégories selon le sexe, le niveau de vie, "
         "la pauvreté des familles monoparentales.",
         "{-ex_p3}{note_pg}Mais d'abord, le piège du sujet. Il est énorme. {note_pg.1}Ne fais pas une partie sur le revenu et le diplôme ! "
@@ -658,7 +657,7 @@ SCENES = [
         "{-li_p3}",
     ], vis={
         "ex_p3": dict(type="exo", niveau="p3", titre="Montrez que le revenu et le diplôme ne sont pas les seuls facteurs qui structurent et hiérarchisent l'espace social.",
-                      src="Sujet officiel : bac 2026, jour 2 (France), partie 3 · 9 points", y=90,
+                      src="Sujet officiel : bac 2026, jour 2 (France), partie 3 · 10 points en 2026, 9 points à partir de 2027", y=90,
                       enonce=["Les documents du sujet officiel ne sont pas reproduits : appuie-toi sur les données du chapitre "
                               "(catégories selon le sexe, niveau de vie, pauvreté des familles monoparentales)."]),
         "note_pg": dict(type="def", terme="Le piège du sujet", cles=["autres"],
