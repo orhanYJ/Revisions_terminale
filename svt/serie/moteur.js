@@ -1159,6 +1159,11 @@
         var x = j ? 600 + alea(i + 11) * 460 : 60 + alea(i + 5) * 380, y = j ? 300 + alea(i + 13) * 250 : 30 + alea(i + 17) * 170;
         d.style.left = (x - w / 2) + "px"; d.style.top = (y - hh / 2) + "px"; d.style.width = w + "px"; d.style.height = hh + "px";
         var a = j ? .12 : .24;
+        c = c.split(",").map(function (v, k) { return Math.round(v * [242, 234, 214][k] / 255); }).join(",");
+        // forme d'aquarelle fixe (redessiner le contour à chaque image faisait clignoter l'image sur certains téléphones)
+        var q0 = i * 1.7 + j;
+        d.style.borderRadius = (46 + 9 * Math.sin(q0)).toFixed(1) + "% " + (54 + 8 * Math.cos(q0 * 1.3)).toFixed(1) + "% " + (48 + 9 * Math.sin(q0 * .8 + 1)).toFixed(1) + "% " + (52 + 7 * Math.cos(q0 * 1.1 + 2)).toFixed(1) + "% / " +
+          (50 + 8 * Math.cos(q0 * .9)).toFixed(1) + "% " + (46 + 9 * Math.sin(q0 * 1.2 + 1)).toFixed(1) + "% " + (54 + 7 * Math.cos(q0 + 2)).toFixed(1) + "% " + (48 + 8 * Math.sin(q0 * .7)).toFixed(1) + "%";
         d.style.background = "radial-gradient(closest-side,rgba(" + c + "," + a + ") 0%,rgba(" + c + "," + a + ") 68%,rgba(" + c + "," + (a * 1.7).toFixed(2) + ") 86%,rgba(" + c + ",0) 100%)";
         d.style.display = "none";
         return d;
@@ -1202,10 +1207,9 @@
         if (!f.on) { f.lv.forEach(function (d) { d.style.display = "block"; }); f.on = true; }
         f.lv.forEach(function (d, j) {
           var q = t * (.23 + j * .07) + i * 1.7 + j;
-          d.style.opacity = w;
-          d.style.borderRadius = (46 + 9 * Math.sin(q)).toFixed(1) + "% " + (54 + 8 * Math.cos(q * 1.3)).toFixed(1) + "% " + (48 + 9 * Math.sin(q * .8 + 1)).toFixed(1) + "% " + (52 + 7 * Math.cos(q * 1.1 + 2)).toFixed(1) + "% / " +
-            (50 + 8 * Math.cos(q * .9)).toFixed(1) + "% " + (46 + 9 * Math.sin(q * 1.2 + 1)).toFixed(1) + "% " + (54 + 7 * Math.cos(q + 2)).toFixed(1) + "% " + (48 + 8 * Math.sin(q * .7)).toFixed(1) + "%";
-          d.style.transform = "translate(" + (Math.sin(q * .6) * 18).toFixed(1) + "px," + (Math.cos(q * .5) * 12).toFixed(1) + "px) scale(" + (1 + .05 * Math.sin(q * 1.1)).toFixed(3) + ")";
+          d.style.opacity = w.toFixed(3);
+          // le lavis respire par la seule transformation (déplacement, échelle, légère rotation) : aucune image à repeindre
+          d.style.transform = "translate(" + (Math.sin(q * .6) * 18).toFixed(1) + "px," + (Math.cos(q * .5) * 12).toFixed(1) + "px) rotate(" + (Math.sin(q * .4) * 4).toFixed(2) + "deg) scale(" + (1 + .05 * Math.sin(q * 1.1)).toFixed(3) + "," + (1 + .05 * Math.cos(q * .9)).toFixed(3) + ")";
         });
         f.g.setAttribute("opacity", (w * .9).toFixed(3));
         var t0 = s.t0 + .4;

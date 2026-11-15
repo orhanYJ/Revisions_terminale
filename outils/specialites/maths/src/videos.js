@@ -2,5 +2,6 @@
    Une entrée par chapitre. L'onglet « ▶ Vidéo » et le bandeau du cours n'apparaissent que si dispo est vrai :
    passer dispo à true (et donner min, la durée en minutes) une fois la vidéo publiée, puis relancer build.py. */
 var VIDEOS = {
-  ch1: { code: "maths-ch1", dispo: true, min: 29 }
+  ch1: { code: "maths-ch1", dispo: true, min: 29 },
+  ch3: { code: "maths-ch3", dispo: true, min: 30 }
 };

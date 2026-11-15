@@ -182,6 +182,12 @@ const SOURCES = {
 const VIDEOS = {
   "hggsp-t1-intro": { site: ["t1alt", "mer", "scs"], video: ["frontieres", "arctique"] }
 };
+/* cartes propres à d'autres vidéos : chaque fichier cartes-<code>.js du dossier exporte une fonction (outils) qui renvoie
+   { cartes: { nom(D, d3, FEAT) }, videos: { code: { site, video } }, sources: { nom: texte } } */
+for (const f of fs.readdirSync(__dirname).filter(f => /^cartes-.+\.js$/.test(f)).sort()) {
+  const m = require(path.join(__dirname, f))({ cadre, simplifier, esc });
+  Object.assign(CARTES_VIDEO, m.cartes || {}); Object.assign(VIDEOS, m.videos || {}); Object.assign(SOURCES, m.sources || {});
+}
 
 (async function () {
   const code = process.argv[2];
