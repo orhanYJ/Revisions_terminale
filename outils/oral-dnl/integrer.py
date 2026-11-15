@@ -13,7 +13,7 @@ s = open(P, encoding="utf-8").read()
 
 mots = lambda it: sum(len(b["p"].split()) for b in it["en"]["blocs"])
 ORAL = {}
-CHAPS = sys.argv[1:] or ["H3"]          # chapitres publiés (validation itérative : H3, puis H2, puis H1)
+CHAPS = sys.argv[1:] or ["H1", "H2", "H3"]   # tout le thème : l'onglet Oral porte le thème entier
 PAR_CHAP = {"H1": {"h-t1-ki-1", "h-t1-ki-2", "h-t1-kt-1", "h-t1-kt-2"}, "H2": {"h-t1-ki-3", "h-t1-kt-2", "h-t1-kt-3"}, "H3": {"h-t1-ki-4", "h-t1-kt-4", "h-t1-kt-5"}}
 GARDER = set().union(*[PAR_CHAP[c] for c in CHAPS])
 for tid, fi, ft in [("h-t1", "h_t1_issues.json", "h_t1_terms.json")]:
