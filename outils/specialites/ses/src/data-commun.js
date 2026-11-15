@@ -3,7 +3,8 @@ var CH = {}, CHAINES = {}, GRAPHES = {}, ANIMS = {};
 /* Vidéos des chapitres (ses/serie/<code>.html, faites par outils/serie-philo/generer.py depuis outils/serie-ses/) :
    l'onglet « ▶ Vidéo » et le bandeau du cours n'apparaissent que si dispo vaut true (vidéo publiée, voix enregistrée). */
 var VIDEOS = {
-  e1: { code: "ses-e1", dispo: true, min: 37 }
+  e1: { code: "ses-e1", dispo: true, min: 37 },
+  e3: { code: "ses-e3", dispo: true, min: 34 }
 };
 
 var PROG = [

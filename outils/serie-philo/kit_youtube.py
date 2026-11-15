@@ -101,6 +101,38 @@ META = {
         tags=["HGGSP", "HGGSP terminale", "spécialité HGGSP", "bac HGGSP", "nouveaux espaces de conquête", "océan et espace",
               "Montego Bay", "ZEE", "haute mer", "traité de l'espace 1967", "dernières frontières", "New Space",
               "syndrome de Kessler", "orbites", "mer de Chine méridionale", "dissertation HGGSP", "étude critique"]),
+    "maths-ch3": dict(
+        sous="asymptotes · formes indéterminées · croissances comparées", img="m3-courbe.jpg", gros="Les limites",
+        accroche="Qui gagne la course vers l'infini, e^x ou x^10 ? Limites, asymptotes, formes indéterminées : "
+                 "tout ce qu'il faut pour étudier une fonction au bac.",
+        pill2="+ 2 exercices corrigés", exos_txt="deux exercices corrigés pas à pas : des limites et asymptotes, puis une étude complète type bac",
+        exos=["Exercice 1 (pour démarrer) : limites et asymptotes de (4x − 3)/(2x + 1), x³ − 5x² + 1 et 3 − e^(−x).",
+              "Exercice 2 (type bac) : étude complète de f(x) = (2x − 1)e^x : limites, dérivée, variations, signe."],
+        tags=["limites de fonctions", "limite", "asymptote", "asymptote verticale", "asymptote horizontale",
+              "formes indéterminées", "terme prépondérant", "composition de limites", "théorème des gendarmes",
+              "croissances comparées", "exponentielle", "maths terminale", "spécialité maths", "bac maths", "exercices corrigés"]),
+    "hggsp-t1-a1": dict(
+        sous="espace · mer · puissances rivales", img="t1-spoutnik.jpg", gros="La conquête",
+        accroche="4 octobre 1957 : une boule de 83 kg fait « bip » au-dessus de l'Amérique. De Spoutnik aux porte-avions, "
+                 "comment l'espace et la mer sont devenus des terrains de puissance.",
+        pill2="+ dissertation corrigée",
+        exos_txt="une dissertation corrigée pas à pas (« La conquête spatiale, une affaire d'États ? »)",
+        exos=["Dissertation : « La conquête spatiale, une affaire d'États ? » (analyse du sujet, problématique, plan détaillé)."],
+        tags=["HGGSP", "HGGSP terminale", "spécialité HGGSP", "bac HGGSP", "conquête spatiale", "Spoutnik", "Apollo 11",
+              "guerre froide", "Ariane", "New Space", "SpaceX", "armes antisatellites", "puissance maritime", "Mahan",
+              "porte-avions", "SNLE", "mer Rouge", "dissertation HGGSP", "Grand oral"]),
+    "hggsp-t1-a2": dict(
+        sous="ISS · Montego Bay · haute mer", img="t1a2-iss.jpg", gros="Coopérer",
+        accroche="Russes et Américains vivent ensemble dans l'ISS depuis plus de vingt ans. Comment des rivaux "
+                 "coopèrent-ils dans l'espace et en mer, et jusqu'où ?",
+        pill2="+ dissertation corrigée",
+        exos_txt="une dissertation corrigée pas à pas (« Coopérer dans les océans et dans l'espace : un idéal impossible ? ») "
+                 "et une préparation au Grand oral",
+        exos=["Dissertation : « Coopérer dans les océans et dans l'espace : un idéal impossible ? » (problématique et plan détaillé).",
+              "Grand oral : argumenter sur la gouvernance des océans."],
+        tags=["HGGSP", "HGGSP terminale", "spécialité HGGSP", "bac HGGSP", "Station spatiale internationale", "ISS",
+              "Artemis", "Montego Bay", "ZEE", "mer de Chine méridionale", "grands fonds", "AIFM", "haute mer",
+              "traité BBNJ", "coopération internationale", "dissertation HGGSP", "Grand oral"]),
     "ses-e1": dict(
         titre_yt="La croissance économique : sources et défis · Cours complet + sujets corrigés | SES Terminale",
         sous="PGF · progrès endogène · destruction créatrice · soutenabilité", img="e1-pib.jpg", gros="La croissance",

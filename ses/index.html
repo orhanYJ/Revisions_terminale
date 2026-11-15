@@ -778,7 +778,8 @@ var CH = {}, CHAINES = {}, GRAPHES = {}, ANIMS = {};
 /* Vidéos des chapitres (ses/serie/<code>.html, faites par outils/serie-philo/generer.py depuis outils/serie-ses/) :
    l'onglet « ▶ Vidéo » et le bandeau du cours n'apparaissent que si dispo vaut true (vidéo publiée, voix enregistrée). */
 var VIDEOS = {
-  e1: { code: "ses-e1", dispo: true, min: 37 }
+  e1: { code: "ses-e1", dispo: true, min: 37 },
+  e3: { code: "ses-e3", dispo: true, min: 34 }
 };
 
 var PROG = [
@@ -2813,7 +2814,7 @@ ANIMS["e3-appariement"] = {
     { l: "Une partie se rencontre vite : ces postes sont pourvus.", d: 3 },
     { l: "Frictions : d’autres mettent du temps à se trouver (recherche, candidatures, entretiens). C’est le chômage frictionnel.", d: 3.5 },
     { l: "Inadéquation de qualification : un poste de technicien informatique ne convient pas à un ancien ouvrier du textile sans formation.", d: 3.5 },
-    { l: "Inadéquation spatiale : l’emploi est à Lyon, le chômeur à 400 km et ne peut pas déménager facilement (logement, conjoint).", d: 3.5 },
+    { l: "Inadéquation spatiale : l’emploi est à Lyon, le chômeur à plusieurs centaines de kilomètres et ne peut pas déménager facilement (logement, conjoint).", d: 3.5 },
     { l: "Résultat : chômeurs et emplois vacants coexistent durablement. C’est du chômage structurel ; la formation et la mobilité peuvent le réduire.", d: 3.5 }
   ],
   rendu: function (A, i, p) {

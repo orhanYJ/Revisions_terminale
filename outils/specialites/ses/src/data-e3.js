@@ -112,7 +112,7 @@ ANIMS["e3-appariement"] = {
     { l: "Une partie se rencontre vite : ces postes sont pourvus.", d: 3 },
     { l: "Frictions : d’autres mettent du temps à se trouver (recherche, candidatures, entretiens). C’est le chômage frictionnel.", d: 3.5 },
     { l: "Inadéquation de qualification : un poste de technicien informatique ne convient pas à un ancien ouvrier du textile sans formation.", d: 3.5 },
-    { l: "Inadéquation spatiale : l’emploi est à Lyon, le chômeur à 400 km et ne peut pas déménager facilement (logement, conjoint).", d: 3.5 },
+    { l: "Inadéquation spatiale : l’emploi est à Lyon, le chômeur à plusieurs centaines de kilomètres et ne peut pas déménager facilement (logement, conjoint).", d: 3.5 },
     { l: "Résultat : chômeurs et emplois vacants coexistent durablement. C’est du chômage structurel ; la formation et la mobilité peuvent le réduire.", d: 3.5 }
   ],
   rendu: function (A, i, p) {
