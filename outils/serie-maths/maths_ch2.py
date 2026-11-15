@@ -20,7 +20,10 @@ TITRE = "Limites de suites"
 SUIVANT = "Chapitre 3 · Limites de fonctions"
 RYTHME = "vivant"
 # bloc repris du pilote maths_ch1.py (lettres des formules en majuscules : la voix les dit comme des lettres, sans liaison)
-PRONONCIATION = {"Bernoulli": "Bernouli", "Zénon": "Zénon", "Héron": "Héron",
+# produits (2n, 2x, 3n, 2uₙ) : « fois » dit, jamais de liaison entre un nombre et une lettre (clés avant les §)
+PRONONCIATION = {"deux n": "deux fois n", "deux x": "deux fois x", "trois n": "trois fois n",
+                 "deux u indice": "deux fois u indice", "trois u indice": "trois fois u indice",
+                 "Bernoulli": "Bernouli", "Zénon": "Zénon", "Héron": "Héron",
                  "§n": "N", "§k": "K", "§f": "F", "§x": "X", "§b": "B", "§v": "V", "§m": "M", "§q": "Q",
                  # lettres propres au chapitre : ℓ (dite « l »), w, p, c, d, e (suites de l'exercice 1)
                  "§l": "L", "§w": "W", "§p": "P", "§c": "C", "§d": "D", "§e": "E"}
