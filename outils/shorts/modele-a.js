@@ -318,7 +318,7 @@
     } else if (TH.deco === 'code') {  // colonnes de caractères + lignes de balayage
       g.font = '600 30px monospace';
       for (let c = 0; c < 27; c++) { const v = .4 + rnd(c * 7.1) * .9, y0 = ((t * v * 300 + rnd(c) * H) % (H + 600)) - 600;
-        for (let k = 0; k < 14; k++) { g.fillStyle = al(OR, .03 + .1 * (k / 14)); g.fillText('01░▒ABΣ∆'[Math.floor(rnd(c * 31 + k + Math.floor(t * 8)) * 9)], c * 40 + 8, y0 + k * 42); } }
+        for (let k = 0; k < 14; k++) { g.fillStyle = al(OR, .03 + .1 * (k / 14)); g.fillText('01░▒ABΣ∆'[Math.floor(rnd(c * 31 + k + Math.floor(t * 8)) * 8)], c * 40 + 8, y0 + k * 42); } }
       g.fillStyle = 'rgba(0,0,0,.18)'; for (let y = 0; y < H; y += 6) g.fillRect(0, y, W, 2);
     }
     g.restore();
