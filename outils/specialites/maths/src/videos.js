@@ -4,5 +4,6 @@
 var VIDEOS = {
   ch1: { code: "maths-ch1", dispo: true, min: 29 },
   ch2: { code: "maths-ch2", dispo: true, min: 33 },
-  ch3: { code: "maths-ch3", dispo: true, min: 30 }
+  ch3: { code: "maths-ch3", dispo: true, min: 30 },
+  ch4: { code: "maths-ch4", dispo: true, min: 31 }
 };
