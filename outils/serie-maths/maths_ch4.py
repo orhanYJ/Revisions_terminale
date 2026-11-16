@@ -618,7 +618,7 @@ SCENES = [
         "{pieges.3}Trois : lire la convexité sur le mauvais graphique. Sur la courbe de f prime, on regarde si elle croît. "
         "Sur la courbe de f seconde, on regarde son signe.",
         "{pieges.4}Quatre : le théorème sans ses hypothèses. Continue, strictement monotone, k entre les images. Chaque mot compte.",
-        "{pieges.5}Et cinq : l'encadrement mal donné. Une valeur approchée à dix puissance moins deux près, c'est un encadrement de largeur un centième, "
+        "{pieges.5}Et cinq : l'encadrement mal donné. Une valeur approchée au centième près, soit dix puissance moins deux, c'est un encadrement de largeur un centième, "
         "par exemple entre zéro virgule trois quatre et zéro virgule trois cinq. Et on vérifie les signes aux deux bornes.",
         "{-pieges}",
     ], vis={
