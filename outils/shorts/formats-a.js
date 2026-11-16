@@ -230,7 +230,7 @@ window.FORMATS_A = O => {
       if (bloc > 1) {
         if (!pix) pix = document.createElement('canvas');
         pix.width = Math.ceil(w / bloc); pix.height = Math.ceil(h / bloc); const px = pix.getContext('2d');
-        const sc = Math.max(pix.width / im.width, pix.height / im.height) * 1.05; px.filter = 'contrast(1.1)';
+        const sc = Math.max(pix.width / im.width, pix.height / im.height) * 1.05; px.filter = 'contrast(1.1) brightness(1.35)';
         px.drawImage(im, (pix.width - im.width * sc) / 2, (pix.height - im.height * sc) * .35, im.width * sc, im.height * sc);
         g.imageSmoothingEnabled = false; g.drawImage(pix, x, y, w, h); g.imageSmoothingEnabled = true;
       } else { const kr = eo(pr(t, tr, .4)); g.filter = `contrast(1.05) saturate(1.1) brightness(${lerp(2.2, 1, kr)})`; S.cover(im, x, y, w, h, 1.05, .5, .35); g.filter = 'none'; }
@@ -304,7 +304,7 @@ window.FORMATS_A = O => {
     });
     g.restore();
     if (avant) chrono(t, tc, tr, W / 2, 1520, 85);
-    else O.tampon('ERREUR', 830, 400, pr(t, tr + .2, .3), .12, 70, ROUGE);
+    else O.tampon('ERREUR TROUVÉE', W / 2, 1560, pr(t, tr + .2, .3), -.06, 80, ROUGE);
   }
 
   return { copie, fiche, vraifaux, quiz3, niveau, ordre, intrus, devine, plusmoins, erreur };

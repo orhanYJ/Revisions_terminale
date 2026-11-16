@@ -5,7 +5,7 @@
 window.PLAN = S => S.plans([
   // o1 « De la crise de 1929 à la guerre : remets 12 événements dans l'ordre. »
   { a: ['o1', 0], av: .2, type: 'photo', img: 'lange', nb: true, t: 'DE LA CRISE|DE 1929…', de: [1.05, .5, .3], vers: [1.2, .5, .25], ch: 0 },
-  { a: ['o1', 'guerre'], av: .3, type: 'date', t: '1939', de: 1929, sous: '… À LA GUERRE' },
+  { a: ['o1', 'à'], av: .1, type: 'date', t: '1939', de: 1929, sous: '… À LA GUERRE' },
   { a: ['o1', 'remets'], type: 'melange', t: 'REMETS DANS|L’ORDRE', choc: true },
   // o2 « 3 manches, 4 événements chacune. Compte tes points. »
   { a: ['o2', 0], type: 'score', t: 'COMPTE|TES POINTS' },
