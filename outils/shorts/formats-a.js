@@ -186,7 +186,8 @@ window.FORMATS_A = O => {
       carteTexte(c.t, W / 2 + 40, y, 820, h, { taille: 56, bord: !avant ? VERT : null, ep: 6 });
       const lbl = avant ? 'ABCDEF'[i] : String(rang[i] + 1);
       g.fillStyle = avant ? OR : VERT; g.beginPath(); g.arc(110, y, 54, 0, 7); g.fill(); S.texte(lbl, 110, y + 4, { taille: 64, coul: NOIR });
-      if (!avant && c.d) { const kd = eo(pr(t, tr + .6 + rang[i] * .12, .3)); g.globalAlpha = kd; S.texte(c.d, W - 100, y - h / 2 - 22, { taille: 40, coul: OR, align: 'right', poids: 700, contour: NOIR, contourL: 6 }); }
+      if (!avant && c.d) { const kd = eo(pr(t, tr + .6 + rang[i] * .12, .3)); g.globalAlpha = kd; const lw = S.largeur(c.d, { taille: 38 }) + 36; g.fillStyle = NOIR; g.beginPath(); g.roundRect(985 - lw, y - 30, lw, 60, 30); g.fill();
+        g.strokeStyle = OR; g.lineWidth = 3; g.stroke(); S.texte(c.d, 985 - lw / 2, y + 2, { taille: 38, coul: OR, poids: 700 }); }
       g.restore();
     });
     if (avant) chrono(t, tc, tr, W / 2, 1520, 90);
