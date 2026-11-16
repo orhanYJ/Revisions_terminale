@@ -1,3 +1,5 @@
+> **16/11/2026 : le site ne publie plus le discours rédigé mais des notes à puces** (4 min 30, 5 min au maximum) : voir `CAHIER_PUCES.md`. Ce cahier sert à l'étape intermédiaire (discours rédigé, faits vérifiés), conservée dans `<thème>_issues_redige.json` / `<thème>_terms_redige.json`. Dans les notes publiées, aucune mention du cours, du professeur ni de la feuille.
+
 # Cahier des charges — onglet « Oral » du site DNL (histoire-géographie en anglais, Terminale BFI)
 
 ## L'épreuve

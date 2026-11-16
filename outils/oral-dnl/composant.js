@@ -1,6 +1,7 @@
-/* ==== ORAL — onglet « Oral » de chaque chapitre (15/11/2026) ====
-   Liste officielle des Key Issues et Key Terms par thème (ORAL_SYLLABUS, feuille du professeur) et, pour les thèmes
-   traités en classe, un exposé d'environ 5 minutes par question et par notion (ORAL : plan, texte à dire, questions du jury).
+/* ==== ORAL — onglet « Oral » des chapitres (15/11/2026 ; notes à puces depuis le 16/11/2026) ====
+   Liste officielle des Key Issues et Key Terms par thème (ORAL_SYLLABUS) et, pour les thèmes traités, des notes à puces
+   par question et par notion (ORAL : sections {t, d, pts} — d = durée conseillée en secondes, total 270 = 4 min 30 —,
+   questions du jury). On parle à partir des notes, on ne récite pas : 4 min 30 visées, 5 min au maximum.
    L'oral se passe en anglais ; le bouton de langue du site affiche la traduction française. */
 const oralTheme = code => ORAL_SYLLABUS.find(t => t.chap.indexOf(code) >= 0);
 /* l'onglet Oral porte tout le thème : toutes ses key issues et tous ses key terms, dans chaque chapitre du thème */
@@ -9,38 +10,55 @@ const oralChap = code => {
   if (!d || !(d.issues.length + d.terms.length)) return null;
   return { th, issues: d.issues, terms: d.terms };
 };
-const oralMots = it => (it.en.blocs || []).reduce((n, b) => n + (b.p || "").split(/\s+/).filter(Boolean).length, 0);
-const OralChrono = ({ FR }) => {
-  const [t, setT] = React.useState(300), [on, setOn] = React.useState(false);
-  React.useEffect(() => { if (!on) return; const h = setInterval(() => setT(v => { if (v <= 1) { setOn(false); return 0; } return v - 1; }), 1000); return () => clearInterval(h); }, [on]);
-  const mm = Math.floor(t / 60), ss = String(t % 60).padStart(2, "0");
-  return React.createElement("div", { className: "or-chrono" + (t === 0 ? " fini" : "") },
-    React.createElement("div", { className: "or-chr-bar" }, React.createElement("i", { style: { width: (100 - t / 3) + "%" } })),
-    React.createElement("span", { className: "or-chr-t" }, t === 0 ? (FR ? "Temps écoulé" : "Time's up") : mm + ":" + ss),
-    React.createElement("button", { onClick: () => { if (t === 0) setT(300); setOn(o => !o); } }, on ? (FR ? "⏸ Pause" : "⏸ Pause") : (t === 300 ? (FR ? "▶ S'entraîner 5 min" : "▶ Practise 5 min") : (FR ? "▶ Reprendre" : "▶ Resume"))),
-    t !== 300 && React.createElement("button", { className: "ghost", onClick: () => { setOn(false); setT(300); } }, FR ? "↺" : "↺"));
+const ORAL_CIBLE = 270, ORAL_MAX = 300;
+const oralDuree = L => (L.sections || []).reduce((n, s) => n + (s.d || 0), 0);
+const oralPuces = L => (L.sections || []).reduce((n, s) => n + s.pts.length, 0);
+const oralMmss = t => Math.floor(t / 60) + ":" + String(t % 60).padStart(2, "0");
+const oralMin = d => d < 60 ? d + " s" : Math.floor(d / 60) + " min" + (d % 60 ? " " + String(d % 60).padStart(2, "0") : "");
+const OralChrono = ({ FR, t, on, basculer, remettre }) => {
+  const fini = t >= ORAL_MAX;
+  return React.createElement("div", { className: "or-chrono" + (t > ORAL_CIBLE ? " depasse" : "") + (fini ? " fini" : "") },
+    React.createElement("div", { className: "or-chr-bar" },
+      React.createElement("i", { style: { width: (t / ORAL_MAX * 100) + "%" } }),
+      React.createElement("b", { className: "or-chr-cible", title: "4:30" })),
+    React.createElement("span", { className: "or-chr-t" }, fini ? (FR ? "5:00 — temps écoulé" : "5:00 — time's up") : oralMmss(t) + " / 4:30"),
+    React.createElement("button", { onClick: basculer }, on ? "⏸ Pause" : fini ? (FR ? "↺ Recommencer" : "↺ Start again") : t === 0 ? (FR ? "▶ S'entraîner (4 min 30)" : "▶ Practise (4 min 30)") : (FR ? "▶ Reprendre" : "▶ Resume")),
+    t > 0 && !fini && React.createElement("button", { className: "ghost", onClick: remettre, "aria-label": FR ? "Remettre à zéro" : "Reset" }, "↺"));
 };
 const OralItem = ({ it, FR, ouvert, basculer }) => {
-  const L = FR ? it.fr : it.en, mots = oralMots(it), min = Math.max(1, Math.round(mots / 140 * 2) / 2);
-  const [jury, setJury] = React.useState(false);
+  const L = FR ? it.fr : it.en, total = oralDuree(L);
+  const [jury, setJury] = React.useState(false), [t, setT] = React.useState(0), [on, setOn] = React.useState(false);
+  React.useEffect(() => {
+    if (!on) return;
+    const h = setInterval(() => setT(v => Math.min(ORAL_MAX, v + 1)), 1000);
+    return () => clearInterval(h);
+  }, [on]);
+  React.useEffect(() => { if (t >= ORAL_MAX) setOn(false); }, [t]);
+  React.useEffect(() => { if (!ouvert) setOn(false); }, [ouvert]);
+  let cum = 0;
+  const bornes = L.sections.map(s => { const d0 = cum; cum += s.d; return [d0, cum]; });
+  const cour = (on || t > 0) ? Math.max(0, bornes.findIndex(b => t < b[1])) : -1;
+  const actif = cour < 0 ? -1 : (t >= cum ? L.sections.length - 1 : cour);
   return React.createElement("div", { className: "or-item" + (ouvert ? " open" : ""), id: "oral-" + it.id },
     React.createElement("button", { className: "or-head", onClick: basculer, "aria-expanded": ouvert },
       React.createElement("span", { className: "or-kind " + it.kind }, it.kind === "issue" ? "Key Issue" : "Key Term"),
       React.createElement("span", { className: "or-q" }, FR ? it.q_fr : it.q),
       FR && React.createElement("span", { className: "or-qen" }, it.q),
-      React.createElement("span", { className: "or-meta" }, "≈ " + String(min).replace(".", FR ? "," : ".") + " min · " + mots + (FR ? " mots (anglais)" : " words"),
+      React.createElement("span", { className: "or-meta" }, "≈ " + oralMin(total) + " · " + oralPuces(L) + (FR ? " puces" : " bullet points"),
         (it.chapitres || []).slice().sort().map(c => React.createElement("i", { key: c, className: "or-ch" }, c))),
       React.createElement("span", { className: "or-chev", "aria-hidden": true }, ouvert ? "▲" : "▼")),
     ouvert && React.createElement("div", { className: "or-body" },
-      React.createElement("div", { className: "or-plan" },
-        React.createElement("div", { className: "or-lab" }, FR ? "Le plan à retenir (préparation)" : "The outline to remember (preparation)"),
-        React.createElement("ol", null, L.plan.map((p, i) => React.createElement("li", { key: i }, p)))),
-      React.createElement(OralChrono, { FR }),
-      React.createElement("div", { className: "or-lab" }, FR ? (it.kind === "issue" ? "L'exposé, prêt à dire" : "La présentation, prête à dire") : (it.kind === "issue" ? "The presentation, ready to say" : "The presentation, ready to say")),
-      L.blocs.map((b, i) => React.createElement("div", { key: i, className: "or-bloc " + b.k },
-        (b.t || b.k === "intro" || b.k === "conclusion" || b.k === "definition") && React.createElement("div", { className: "or-bt" },
-          b.t || ({ intro: FR ? "Introduction" : "Introduction", conclusion: FR ? "Conclusion" : "Conclusion", definition: FR ? "Définition" : "Definition" })[b.k]),
-        React.createElement("p", null, glT(b.p)))),
+      React.createElement(OralChrono, { FR, t, on,
+        basculer: () => { if (t >= ORAL_MAX) { setT(0); setOn(true); } else setOn(o => !o); },
+        remettre: () => { setOn(false); setT(0); } }),
+      React.createElement("p", { className: "or-conseil" }, FR
+        ? "Ne lis pas : développe chaque puce avec tes mots, en 10 à 20 secondes. Le temps conseillé est donné pour chaque partie ; pendant l'entraînement, la partie où tu devrais en être s'allume."
+        : "Don't read: develop each bullet point in your own words, in 10 to 20 seconds. A suggested time is given for each part; while you practise, the part you should be on lights up."),
+      React.createElement("div", { className: "or-secs" }, L.sections.map((s, k) => React.createElement("div", { key: k, className: "or-sec" + (k === actif ? " on" : "") + (k === 0 && it.kind === "term" ? " definition" : "") },
+        React.createElement("div", { className: "or-sec-h" },
+          React.createElement("span", { className: "or-sec-t" }, s.t),
+          React.createElement("span", { className: "or-sec-d" }, "≈ " + oralMin(s.d), React.createElement("small", null, oralMmss(bornes[k][0]) + " → " + oralMmss(bornes[k][1])))),
+        React.createElement("ul", null, s.pts.map((p, i) => React.createElement("li", { key: i, className: /^(Judgement|Jugement)\s*:/.test(p) ? "jug" : null }, glT(p))))))),
       React.createElement("button", { className: "or-jury-btn", onClick: () => setJury(j => !j) }, (jury ? "▲ " : "▼ ") + (FR ? "Questions possibles du jury" : "Possible questions from the jury")),
       jury && React.createElement("div", { className: "or-jury" }, L.jury.map((j, i) => React.createElement("div", { key: i, className: "or-jq" },
         React.createElement("b", null, j[0]), React.createElement("p", null, j[1]))))));
@@ -63,10 +81,10 @@ function OralTab({ code, lang }) {
     React.createElement("div", { className: "or-intro" },
       React.createElement("div", { className: "or-kicker" }, FR ? "L'oral de DNL" : "The DNL oral"),
       React.createElement("h2", null, FR ? th.theme[1] : th.theme[0]),
-      React.createElement("p", { className: "or-chap" }, FR ? "Toutes les key issues et tous les key terms du thème, tels que la feuille du professeur les donne. C'est le même onglet dans chaque chapitre du thème ; les pastilles indiquent les chapitres à mobiliser." : "All the key issues and key terms of the theme, as the teacher's sheet gives them. It is the same tab in every chapter of the theme; the badges show which chapters to draw on."),
+      React.createElement("p", { className: "or-chap" }, FR ? "Toutes les key issues et tous les key terms du thème, d'après la liste officielle. C'est le même onglet dans chaque chapitre du thème ; les pastilles indiquent les chapitres à mobiliser." : "All the key issues and key terms of the theme, from the official list. It is the same tab in every chapter of the theme; the badges show which chapters to draw on."),
       React.createElement("p", null, FR
-        ? "À l'oral (coefficient 10) : 20 minutes de préparation, puis 5 minutes d'exposé sur une key issue tirée au sort, 5 minutes de questions, et 5 minutes sur un key term — le tirage croise l'histoire et la géographie. Chaque réponse ci-dessous est calibrée pour environ 5 minutes en anglais (650 à 750 mots, environ 140 mots par minute)."
-        : "At the oral (coefficient 10): 20 minutes of preparation, then a 5-minute presentation on a key issue drawn at random, 5 minutes of questions, and 5 minutes on a key term — the draw crosses history and geography. Each answer below is designed for about 5 minutes in English (650 to 750 words, about 140 words a minute)."),
+        ? "À l'oral (coefficient 10) : 20 minutes de préparation, puis 5 minutes d'exposé sur une key issue tirée au sort, 5 minutes de questions, et 5 minutes sur un key term — le tirage croise l'histoire et la géographie. Chaque réponse ci-dessous est un jeu de notes à puces, à développer en anglais en 4 min 30 (5 minutes au maximum), avec un temps conseillé par partie."
+        : "At the oral (coefficient 10): 20 minutes of preparation, then a 5-minute presentation on a key issue drawn at random, 5 minutes of questions, and 5 minutes on a key term — the draw crosses history and geography. Each answer below is a set of bullet-point notes, to develop in English in 4 min 30 (5 minutes at most), with a suggested time for each part."),
       React.createElement("button", { className: "or-tirer", onClick: tirer }, FR ? "🎲 Tirer un sujet au sort" : "🎲 Draw a topic at random"),
       tirage && React.createElement("div", { className: "or-tirage" },
         tirage.map((it, i) => React.createElement("div", { key: i },
@@ -81,6 +99,6 @@ function OralTab({ code, lang }) {
         React.createElement("h4", null, sub === "hist" ? (FR ? "Histoire" : "History") : (FR ? "Géographie" : "Geography")),
         ORAL_SYLLABUS.filter(t => t.subject === sub).map(t => React.createElement("div", { key: t.id, className: "or-syll-th" + (t.fait ? " fait" : "") },
           React.createElement("div", { className: "or-syll-t" }, FR ? t.theme[1] : t.theme[0], React.createElement("span", null, t.fait ? (FR ? "traité" : "taught") : (FR ? "à venir" : "to come"))),
-          t.issues.length ? React.createElement("ul", null, t.issues.map((q, i) => React.createElement("li", { key: i }, q))) : React.createElement("p", { className: "or-none" }, FR ? "Pas de key issue sur la feuille." : "No key issue on the sheet."),
-          React.createElement("p", { className: "or-terms" }, React.createElement("b", null, FR ? "Key Terms : " : "Key Terms: "), t.terms.length ? t.terms.join(" · ") : (FR ? "aucun sur la feuille" : "none on the sheet"))))))));
+          t.issues.length ? React.createElement("ul", null, t.issues.map((q, i) => React.createElement("li", { key: i }, q))) : React.createElement("p", { className: "or-none" }, FR ? "Pas de key issue dans la liste." : "No key issue in the list."),
+          React.createElement("p", { className: "or-terms" }, React.createElement("b", null, FR ? "Key Terms : " : "Key Terms: "), t.terms.length ? t.terms.join(" · ") : (FR ? "aucun dans la liste" : "none in the list"))))))));
 }
