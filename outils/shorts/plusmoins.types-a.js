@@ -2,7 +2,7 @@
 // barreRouge, petitTitre, fondImg, photo, al, C = couleurs de l'habillage). Couleurs : O.C et O.al seulement.
 // Convention : OR = PLUS (▲), ROUGE = MOINS (▼).
 window.SANS_ST_A = ['titre', 'score', 'duel'];
-window.PROPRES_A = ['titre', 'score', 'duel', 'fecondation', 'chute', 'angle', 'volcan', 'detroits', 'podium', 'commentaire'];
+window.PROPRES_A = ['titre', 'score', 'duel', 'fecondation', 'chute', 'angle', 'volcan', 'detroits', 'podium', 'commentaire', 'gametes'];
 window.TYPES_A = O => {
   const { g, W, H, cl, lerp, pr, eo, back, rnd } = S;
   const { NOIR, CREME, OR, ROUGE, GRIS } = O.C;
@@ -89,6 +89,20 @@ window.TYPES_A = O => {
     const km = back(pr(lt, .3, .3)); g.save(); g.translate(W / 2, 1360); g.scale(km, km);
     g.fillStyle = ROUGE; g.beginPath(); g.roundRect(-330, -80, 660, 160, 80); g.fill();
     S.texte(p.matiere, 0, 6, { taille: 96, coul: CREME, max: 600 }); g.restore();
+  }
+
+  // ---------- gametes : 3 paires de chromosomes → 2 × 2 × 2 = 8 gamètes différents (un chromosome de chaque paire)
+  function gametes(p, t) {
+    const lt = t - p.a;
+    S.texte('3 PAIRES', W / 2, 400, { taille: 60, coul: CREME, esp: 6 });
+    for (let i = 0; i < 3; i++) pop(pr(lt, i * .12, .3), 300 + i * 240, 560, () => { chromoX(-35, 0, 150, OR); chromoX(35, 0, 150, ROUGE); });
+    for (let j = 0; j < 8; j++) {
+      const x = 180 + (j % 4) * 240, y = 900 + Math.floor(j / 4) * 260, k = pr(lt, .6 + j * .12, .3);
+      pop(k, x, y, () => { rond(0, 0, 100, al(CREME, .1), CREME, 6);
+        for (let i = 0; i < 3; i++) chromoX(-50 + i * 50, 0, 80, (j >> i) & 1 ? ROUGE : OR); });
+    }
+    const kf = back(pr(lt, 1.7, .3)); g.save(); g.translate(W / 2, 1420); g.scale(kf, kf);
+    S.texte('2 × 2 × 2 = 8 GAMÈTES', 0, 0, { taille: 90, coul: OR, contour: NOIR, contourL: 10, max: 960 }); g.restore();
   }
 
   // ---------- fecondation : deux gamètes tirés au hasard se rencontrent
@@ -189,12 +203,13 @@ window.TYPES_A = O => {
     deux('DIS-LE EN|COMMENTAIRE', 1300, 110, ROUGE);
   }
 
-  return { titre, score, duel, fecondation, chute, angle, volcan, detroits, podium, commentaire };
+  return { titre, score, duel, gametes, fecondation, chute, angle, volcan, detroits, podium, commentaire };
 };
 window.SONS_A = (p, L) => {
   if (p.type === 'titre') L.push([p.a, 'montee', .5], [p.a + .4, 'pop', .5]);
   if (p.type === 'score') for (let i = 0; i < 4; i++) L.push([p.a + .1 + i * (p.etape ? .2 : .12), 'pop', .4]);
   if (p.type === 'duel') L.push([p.a, 'gong', .6], [p.a + .3, 'pop', .5]);
+  if (p.type === 'gametes') for (let j = 0; j < 8; j++) L.push([p.a + .6 + j * .12, 'pop', .3]);
   if (p.type === 'fecondation') L.push([p.a + 1.2, 'pop', .6]);
   if (p.type === 'chute') L.push([p.a, 'souffle', .6], [p.a + 1, 'tampon', .8]);
   if (p.type === 'angle') L.push([p.a + .8, 'montee', .5]);

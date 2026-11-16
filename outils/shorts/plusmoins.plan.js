@@ -10,7 +10,8 @@ window.PLAN = S => S.plans([
   // d1a « Duel 1 : la SVT. »
   { a: ['d1a', 0], type: 'duel', n: 1, matiere: 'SVT', icone: 'chromo', ch: 1 },
   // d1b « Avec 3 paires de chromosomes, la méiose donne 8 gamètes différents. Avec tes 23 paires : plus ou moins ? » — r1 « Beaucoup plus »
-  { a: ['d1b', 0], type: 'plusmoins', q: 'GAMÈTES DIFFÉRENTS POSSIBLES',
+  { a: ['d1b', 0], type: 'gametes' },
+  { a: ['d1b', 'tes'], type: 'plusmoins', q: 'GAMÈTES DIFFÉRENTS POSSIBLES',
     A: { t: '3 paires de chromosomes', v: 8, u: 'gamètes' }, B: { t: 'Tes 23 paires', v: 8388608, u: 'gamètes' },
     chrono: ['d1b', 'plus'], rep: ['r1', 0] },
   // e1 « Et la fécondation en réunit 2 au hasard. »
@@ -18,7 +19,8 @@ window.PLAN = S => S.plans([
   // d2a « Duel 2 : l'histoire. »
   { a: ['d2a', 0], type: 'duel', n: 2, matiere: 'HISTOIRE', img: 'wallstreet', ch: 2 },
   // d2b « Septembre 1929 : l'indice Dow Jones vaut 381 points. Juillet 1932 : plus ou moins ? » — r2 « Moins : 41 points ! »
-  { a: ['d2b', 0], type: 'plusmoins', q: 'L’INDICE DOW JONES',
+  { a: ['d2b', 0], type: 'date', t: '1929', de: 1900, sous: 'DOW JONES · 381 POINTS' },
+  { a: ['d2b', 'juillet'], type: 'plusmoins', q: 'L’INDICE DOW JONES',
     A: { t: 'Septembre 1929', img: 'wallstreet', v: 381, u: 'points' }, B: { t: 'Juillet 1932', img: 'hooverville', v: 41, u: 'points' },
     chrono: ['d2b', 'plus'], rep: ['r2', 0] },
   // r2 « … Une chute de 89 pour cent. »
