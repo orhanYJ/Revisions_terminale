@@ -7,7 +7,7 @@
   const THEMES = {
     archives: { fond: '#0d0b09', creme: '#efe6d2', or: '#d9b45a', rouge: '#c8372d', gris: '#8d8371', deco: 'carte', grain: 22,
       filtre: c => `grayscale(1) contrast(${c}) brightness(.9) sepia(.25)`, trans: ['zoom', 'zoom', 'glisse', 'tourne'] },
-    neon: { fond: '#07061a', creme: '#f1efff', or: '#2de2ff', rouge: '#ff2e88', gris: '#7c76b0', deco: 'grille', grain: 10, teinte: '#7b3cff',
+    neon: { fond: '#07061a', creme: '#f1efff', or: '#2de2ff', rouge: '#ff2e88', gris: '#7c76b0', deco: 'grille', grain: 10,
       filtre: c => `grayscale(1) contrast(${c * 1.1}) brightness(1)`, trans: ['glitch', 'zoom', 'glisse', 'iris', 'glitch'] },
     jeu: { fond: '#16093d', creme: '#ffffff', or: '#ffd23f', rouge: '#ff3d5a', gris: '#a39ad8', deco: 'rayons', grain: 0,
       filtre: c => `contrast(1.1) saturate(1.25)`, trans: ['chute', 'tourne', 'zoom', 'iris'] },
