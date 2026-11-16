@@ -27,7 +27,8 @@ for th in SYLLABUS:
             assert sum(x["d"] for x in secs) == 270, (it["id"], L, "durées ≠ 270 s")
             assert all(x["t"].strip() and x["pts"] for x in secs) and len(it[L]["jury"]) >= 3, (it["id"], L)
         assert [len(x["pts"]) for x in it["en"]["sections"]] == [len(x["pts"]) for x in it["fr"]["sections"]], it["id"]
-        assert re.search(INTERDIT, json.dumps(it, ensure_ascii=False)) is None, (it["id"], re.search(INTERDIT, json.dumps(it, ensure_ascii=False)))
+        notes = json.dumps([it["en"], it["fr"]], ensure_ascii=False)   # pas q : la question officielle peut contenir « slide »
+        assert re.search(INTERDIT, notes) is None, (it["id"], re.search(INTERDIT, notes))
         n = sum(len(x["pts"]) for x in it["en"]["sections"])
         mots = sum(len(p.split()) for x in it["en"]["sections"] for p in x["pts"])
         print(it["id"], n, "puces,", mots, "mots")
