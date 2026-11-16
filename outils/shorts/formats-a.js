@@ -161,7 +161,7 @@ window.FORMATS_A = O => {
       g.save(); g.translate(x, 500); g.scale(ki, ki); g.fillStyle = on ? c : al(CREME, .12); g.beginPath(); g.roundRect(-34, -14, 68, 28, 10); g.fill(); g.restore();
     }
     let yq = 760;
-    if (p.img) { carte(p.img, W / 2, 790, 520, 360, -.02, 1.05, .5, .4); yq = 1110; }
+    if (p.img) { O.carte(p.img, W / 2, 790, 520, 360, -.02, 1.05, .5, .4); yq = 1110; }
     const kq = eo(pr(t, p.a + .15, .3)); g.save(); g.globalAlpha = kq; carteTexte(p.q, W / 2, yq, 960, p.img ? 230 : 320, { taille: p.img ? 56 : 66 }); g.restore();
     if (avant) chrono(t, tc, tr, W / 2, p.img ? 1400 : 1180, 100);
     else {
@@ -186,7 +186,7 @@ window.FORMATS_A = O => {
       carteTexte(c.t, W / 2 + 40, y, 820, h, { taille: 56, bord: !avant ? VERT : null, ep: 6 });
       const lbl = avant ? 'ABCDEF'[i] : String(rang[i] + 1);
       g.fillStyle = avant ? OR : VERT; g.beginPath(); g.arc(110, y, 54, 0, 7); g.fill(); S.texte(lbl, 110, y + 4, { taille: 64, coul: NOIR });
-      if (!avant && c.d) { const kd = eo(pr(t, tr + .6 + rang[i] * .12, .3)); g.globalAlpha = kd; S.texte(c.d, W - 70, y - h / 2 + 12, { taille: 40, coul: OR, align: 'right', poids: 700 }); }
+      if (!avant && c.d) { const kd = eo(pr(t, tr + .6 + rang[i] * .12, .3)); g.globalAlpha = kd; S.texte(c.d, W - 100, y - h / 2 - 22, { taille: 40, coul: OR, align: 'right', poids: 700, contour: NOIR, contourL: 6 }); }
       g.restore();
     });
     if (avant) chrono(t, tc, tr, W / 2, 1520, 90);
