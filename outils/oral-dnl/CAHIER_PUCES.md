@@ -29,6 +29,7 @@ que l'on développe à l'oral en **4 min 30** (5 min au maximum).
 - **Key term** : Definition (une phrase à savoir par cœur, gardée entière), Origins / context, Examples, Debates and limits, Links.
 
 ## Les puces
+- **Plus d'idées, moins d'exemples** (Cengiz, 16/11/2026) : une puce énonce une idée (argument, cause, mécanisme, conséquence, nuance, jugement), suivie au plus d'un exemple court après un tiret (« — e.g. Rhineland, 7 March 1936 »). Pas de listes de dates ni de chiffres. 16 à 20 puces, dont au moins 12 idées. Key term : la section de 90 s s'appelle « Key features » / « Caractéristiques » (les traits de la notion, un exemple chacun).
 - **14 à 20 puces par item**, 6 à 18 mots chacune ; **220 à 320 mots anglais en tout** (puces seulement) : développées à l'oral,
   elles tiennent 4 min 30.
 - Des **notes**, pas des phrases rédigées : mots clés, dates, chiffres, noms, exemples précis, liens logiques
