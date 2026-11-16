@@ -2,7 +2,7 @@
 // O = outils du modèle (carte, multi, tampon, barreRouge, petitTitre, fondImg, al, C = couleurs).
 // Couleurs : uniquement O.C (NOIR, CREME, OR, ROUGE, GRIS) et O.al, pour que l'habillage s'applique.
 // Le plan ordre est commun (formats-a.js).
-window.SANS_ST_A = ['melange', 'score', 'manche', 'pioche', 'commentaire', 'collage'];
+window.SANS_ST_A = ['melange', 'score', 'manche', 'pioche', 'commentaire', 'collage', 'photo'];
 window.PROPRES_A = ['melange', 'score', 'manche', 'pioche', 'commentaire'];
 window.TYPES_A = O => {
   const { g, W, H, cl, lerp, pr, eo, eio, back, rnd } = S;

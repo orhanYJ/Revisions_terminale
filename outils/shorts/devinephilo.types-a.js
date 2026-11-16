@@ -74,7 +74,7 @@ window.TYPES_A = O => {
     S.texte('DOSSIER ' + p.n + ' / 3', W / 2, yf - 160, { taille: 64, coul: NOIR, police: MONO, poids: 500 });
     for (let i = 0; i < 5; i++) { const kb = eo(pr(t, p.a + .3 + i * .08, .25)); g.fillStyle = NOIR; g.fillRect(W / 2 - 280, yf - 80 + i * 52, (i % 2 ? 420 : 560) * kb, 26); }
     g.restore();
-    O.tampon('CONFIDENTIEL', W / 2 + 120, 640, pr(t, p.a + .25, .3), .12, 64, ROUGE);
+    O.tampon('CONFIDENTIEL', W / 2 + 130, 1050, pr(t, p.a + .25, .3), -.12, 64, ROUGE);
     tape('> ACCÈS AUTORISÉ', 250, 1340, p.a + .45, t, { taille: 60, curseur: true });
     for (let i = 0; i < 3; i++) { g.fillStyle = i < p.n ? OR : al(CREME, .2); g.beginPath(); g.arc(W / 2 - 100 + i * 100, 1480, 20, 0, 7); g.fill(); }
   }

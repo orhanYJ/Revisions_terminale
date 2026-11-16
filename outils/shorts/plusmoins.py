@@ -6,7 +6,8 @@ Faits :
    possibles 2, 4, 8, 16 ») : avec n paires, 2^n gamètes équiprobables ; 3 paires → 8 ; chez l'humain, 23 paires
    → 2^23 = 8 388 608, « environ 8 millions » ; « la fécondation en combine deux au hasard ».
 2. Histoire (dnl/index.html, chapitre H1, chiffres clés) : « De son sommet de 381 en septembre 1929, le Dow Jones tombe à
-   41 en juillet 1932 — une perte de 89 % » ; le krach ouvre la Grande Dépression (titre et partie I du chapitre).
+   41 en juillet 1932 — une perte de 89 % » ; le krach ouvre la Grande Dépression, qui frappe le monde entier (parties I.1 à I.3 : « La Dépression frappe l'Europe
+   par effet domino, et la périphérie du monde par la chute des prix »).
 3. Physique (pc/index.html, chapitre 5 « La lunette astronomique », exercice 27 « Observation d'Olympus Mons ») : pour voir
    Mars avec la même taille apparente que la Lune à l'œil nu, G ≈ 105 ; pour Olympus Mons, « 650 km au lieu de
    6 800 km, c'est un objet dix fois plus petit, donc un grossissement dix fois plus grand, environ 1 100 » (le site
