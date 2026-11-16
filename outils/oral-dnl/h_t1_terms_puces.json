@@ -1,0 +1,731 @@
+[
+ {
+  "id": "h-t1-kt-1",
+  "kind": "term",
+  "q": "World-wide Economic Depression (1930s)",
+  "q_fr": "La dépression économique mondiale (années 1930)",
+  "chapitres": [
+   "H1",
+   "H2"
+  ],
+  "en": {
+   "sections": [
+    {
+     "t": "Definition",
+     "d": 30,
+     "pts": [
+      "The World-wide Economic Depression of the 1930s was a prolonged, global fall in output, with mass unemployment and severe deflation.",
+      "Starts with the Great Crash, Oct. 1929 → spreads through loans, trade and currencies"
+     ]
+    },
+    {
+     "t": "Origins / context",
+     "d": 50,
+     "pts": [
+      "Speculation: stock market ×3 in five years (1924–29); ~10% of households own shares, bought on margin",
+      "Real economy already slowing: farming, coal, textiles; overproduction, demand too weak",
+      "Black Thursday, 24 Oct. 1929 → collapse 28–29 Oct.; crash = days, depression = years",
+      "Banks carry it: ~5,000 US failures by 1932, no deposit insurance before 1933",
+      "To Europe: Dawes Plan loans (1924) recalled; Gold Standard → higher interest rates"
+     ]
+    },
+    {
+     "t": "Examples",
+     "d": 90,
+     "pts": [
+      "USA: production −40%, wage bill −60%, 14 million unemployed = 25% of workers",
+      "Dow Jones −89%: 381 (Sept. 1929) → 41 (July 1932); no safety net",
+      "European dominoes: Creditanstalt fails May 1931 → German banks July → Britain off gold Sept.",
+      "Germany: 43.8% of insured workers jobless (1932); Nazi vote 2.6% (1928) → 37.3% (July 1932)",
+      "Periphery: Brazil burns ~78 million bags of coffee; Chile’s nitrate earnings −80% (1929–32)",
+      "Trade war: Smoot–Hawley (June 1930), 20,000+ goods → retaliation, empires; world trade −⅔ by 1934"
+     ]
+    },
+    {
+     "t": "Debates and limits",
+     "d": 60,
+     "pts": [
+      "Not uniform: USSR barely touched (first Five-Year Plan) → Western visitors impressed by planning",
+      "Recovery = choices: earlier off gold, earlier recovery; France last out (1936), last to recover",
+      "Politics not automatic: New Deal (Relief, Recovery, Reform) vs German autarky and rearmament",
+      "Nazis never a majority: crisis gave the audience, conservatives opened the door, Jan. 1933",
+      "Really ended by rearmament: Germany first, then USA, ‘Arsenal of Democracy’ after 1939"
+     ]
+    },
+    {
+     "t": "Links",
+     "d": 40,
+     "pts": [
+      "Explains rise of Nazism; Japan’s autarky → Manchuria 1931; exhausted democracies → appeasement",
+      "Key issue economics vs ideology: Hehn’s ‘economic war’ → Depression = opportunity, ideology = will"
+     ]
+    }
+   ],
+   "jury": [
+    [
+     "What is the difference between the Great Crash and the Depression?",
+     "The Crash is the collapse of share prices in late October 1929, a financial event that lasted a few days. The Depression began when banks failed, about 5,000 by 1932, and carried the crisis into production, wages and jobs, for the whole decade and across most of the world."
+    ],
+    [
+     "Why did the Gold Standard spread the crisis?",
+     "Most currencies were fixed to gold. When the Federal Reserve raised its rates to defend the dollar, gold flowed to America and other countries had to raise their own rates, cutting investment and spending. Leaving gold was the exit: Britain in 1931, the United States in 1933, France only in 1936, which is why France recovered last."
+    ],
+    [
+     "Did the Depression cause the Second World War?",
+     "Not on its own. It gave the Nazis a mass audience, pushed Germany and Japan towards autarky and conquest, and weakened the democracies. But ideology supplied the will to expand, so it was a necessary condition rather than the single cause."
+    ]
+   ]
+  },
+  "fr": {
+   "sections": [
+    {
+     "t": "Définition",
+     "d": 30,
+     "pts": [
+      "La dépression économique mondiale des années 1930 est une chute durable et mondiale de la production, accompagnée d’un chômage de masse et d’une forte déflation.",
+      "Part du grand krach d’oct. 1929 → gagne le monde par les prêts, le commerce et les monnaies"
+     ]
+    },
+    {
+     "t": "Origines / contexte",
+     "d": 50,
+     "pts": [
+      "Spéculation : bourse × 3 en cinq ans (1924-1929) ; ~10 % des ménages ont des actions, achetées à crédit",
+      "Économie réelle déjà au ralenti : agriculture, charbon, textile ; surproduction, demande trop faible",
+      "Jeudi noir, 24 oct. 1929 → effondrement les 28-29 oct. ; krach = quelques jours, dépression = des années",
+      "Les banques la propagent : ~5 000 faillites aux États-Unis en 1932, pas d’assurance des dépôts avant 1933",
+      "Vers l’Europe : prêts du plan Dawes (1924) rappelés ; étalon-or → hausse des taux d’intérêt"
+     ]
+    },
+    {
+     "t": "Exemples",
+     "d": 90,
+     "pts": [
+      "États-Unis : production −40 %, masse salariale −60 %, 14 millions de chômeurs = 25 % des travailleurs",
+      "Dow Jones −89 % : 381 (sept. 1929) → 41 (juillet 1932) ; aucun filet de sécurité",
+      "Dominos européens : faillite de la Creditanstalt mai 1931 → banques allemandes juillet → Grande-Bretagne hors de l’or sept.",
+      "Allemagne : 43,8 % des travailleurs assurés au chômage (1932) ; vote nazi 2,6 % (1928) → 37,3 % (juillet 1932)",
+      "Périphérie : le Brésil brûle ~78 millions de sacs de café ; recettes du nitrate chilien −80 % (1929-1932)",
+      "Guerre commerciale : Smoot-Hawley (juin 1930), plus de 20 000 produits → ripostes, empires ; commerce mondial −⅔ en 1934"
+     ]
+    },
+    {
+     "t": "Débats et limites",
+     "d": 60,
+     "pts": [
+      "Crise inégale : URSS à peine touchée (premier plan quinquennal) → visiteurs occidentaux impressionnés par la planification",
+      "La reprise dépend de choix : quitter l’or tôt = reprise tôt ; France dernière à sortir (1936), dernière à se redresser",
+      "La politique n’est pas automatique : New Deal (Relief, Recovery, Reform) contre autarcie et réarmement allemands",
+      "Jamais de majorité nazie : la crise donne le public, les conservateurs ouvrent la porte, janv. 1933",
+      "Vraie fin par le réarmement : Allemagne d’abord, puis États-Unis, « arsenal de la démocratie » après 1939"
+     ]
+    },
+    {
+     "t": "Liens",
+     "d": 40,
+     "pts": [
+      "Explique la montée du nazisme ; autarcie japonaise → Mandchourie 1931 ; démocraties épuisées → appeasement",
+      "Key issue économie contre idéologie : la « guerre économique » de Hehn → Dépression = occasion, idéologie = volonté"
+     ]
+    }
+   ],
+   "jury": [
+    [
+     "Quelle est la différence entre le grand krach et la Dépression ?",
+     "Le krach est l’effondrement du cours des actions à la fin d’octobre 1929, un événement financier de quelques jours. La Dépression commence quand les banques font faillite, environ 5 000 en 1932, et transmettent la crise à la production, aux salaires et à l’emploi, pour toute la décennie et dans la plus grande partie du monde."
+    ],
+    [
+     "Pourquoi l’étalon-or a-t-il propagé la crise ?",
+     "La plupart des monnaies étaient fixées par rapport à l’or. Quand la Réserve fédérale a relevé ses taux pour défendre le dollar, l’or a été attiré vers l’Amérique et les autres pays ont dû relever les leurs, ce qui a réduit l’investissement et la dépense. Quitter l’or était la porte de sortie : la Grande-Bretagne en 1931, les États-Unis en 1933, la France seulement en 1936, d’où sa reprise tardive."
+    ],
+    [
+     "La Dépression a-t-elle causé la Seconde Guerre mondiale ?",
+     "Pas à elle seule. Elle a donné aux nazis un public de masse, poussé l’Allemagne et le Japon vers l’autarcie et la conquête, et affaibli les démocraties. Mais c’est l’idéologie qui a fourni la volonté d’expansion : une condition nécessaire plutôt que la cause unique."
+    ]
+   ]
+  }
+ },
+ {
+  "id": "h-t1-kt-2",
+  "kind": "term",
+  "q": "Appeasement",
+  "q_fr": "L'appeasement (la politique d'apaisement)",
+  "chapitres": [
+   "H1",
+   "H2",
+   "H3"
+  ],
+  "en": {
+   "sections": [
+    {
+     "t": "Definition",
+     "d": 30,
+     "pts": [
+      "Appeasement means conceding to an aggressor’s demands in the hope of avoiding war.",
+      "Above all Chamberlain (PM from 1937) and Daladier, accepting Axis demands, late 1930s"
+     ]
+    },
+    {
+     "t": "Origins / context",
+     "d": 50,
+     "pts": [
+      "Memory of 1914–1918 → pacifism: Oxford Union, Feb. 1933, ‘in no circumstances fight for its King and Country’",
+      "Britain: an empire to police, major rearmament unaffordable, dominions like Canada may not follow",
+      "Versailles (1919) seen as unfair to Germany; after the Depression, economy first",
+      "US isolationism → no protection; communism feared more than fascism",
+      "Stresa, April 1935: keep Mussolini against Hitler → reluctance to punish him"
+     ]
+    },
+    {
+     "t": "Examples",
+     "d": 90,
+     "pts": [
+      "Anglo-German Naval Agreement, June 1935: Kriegsmarine at 35% of Royal Navy → Britain legalises a breach",
+      "Ethiopia, Oct. 1935: limited League sanctions, no oil embargo; debated until May 1936",
+      "Rhineland, 7 March 1936: troops ordered to withdraw if France resists → no resistance",
+      "Spain, 1936: Front populaire chooses non-intervention = appeasement from the left",
+      "Anschluss, 12 March 1938: controlled plebiscite, 99% ‘yes’ → Britain and France do nothing",
+      "Munich, 29–30 Sept. 1938: Sudetenland (~3 million German speakers) given away, Czechs not invited"
+     ]
+    },
+    {
+     "t": "Debates and limits",
+     "d": 60,
+     "pts": [
+      "Popular and pragmatic at the time; ‘weakness’ is a later judgement",
+      "A. J. P. Taylor: war blamed on democracies’ failure to stop Hitler → very controversial",
+      "Each concession → next step: Low’s ‘Stepping Stones to Glory’, July 1936",
+      "Prague, 15 March 1939: Munich bought nothing → Poland guaranteed, 31 March 1939",
+      "But ideology gave the will, appeasement only the opportunity; US Neutrality Acts 1935–37 too"
+     ]
+    },
+    {
+     "t": "Links",
+     "d": 40,
+     "pts": [
+      "Grows from the Depression; explains totalitarian successes abroad; failure → Churchill PM, 10 May 1940",
+      "Key issue on totalitarianism and peace; weak League = Low’s three monkeys, 1935"
+     ]
+    }
+   ],
+   "jury": [
+    [
+     "Was appeasement simply cowardice?",
+     "No. It rested on rational reasons: the memory of 1914–1918, an empire to police, economic problems, the feeling that Versailles had been unfair and the fear of communism. It was also popular at the time. The problem is that Hitler read every concession as weakness."
+    ],
+    [
+     "When and why did appeasement end?",
+     "It ended in March 1939, when Germany occupied Prague on the 15th. Hitler was now occupying a foreign people and had broken his Munich promise. Britain and France guaranteed Poland on 31 March 1939."
+    ],
+    [
+     "Was the Front populaire also guilty of appeasement?",
+     "In a way, yes. Léon Blum's government chose non-intervention in the Spanish Civil War while Germany and Italy supported Franco: an appeasement from the left. But it also launched a rearmament plan of 14 billion francs over four years in September 1936."
+    ]
+   ]
+  },
+  "fr": {
+   "sections": [
+    {
+     "t": "Définition",
+     "d": 30,
+     "pts": [
+      "L’appeasement consiste à céder aux exigences d’un agresseur dans l’espoir d’éviter la guerre.",
+      "Avant tout Chamberlain (Premier ministre dès 1937) et Daladier, qui acceptent les exigences de l’Axe, fin des années 1930"
+     ]
+    },
+    {
+     "t": "Origines / contexte",
+     "d": 50,
+     "pts": [
+      "Souvenir de 1914-1918 → pacifisme : Oxford Union, févr. 1933, « en aucun cas pour son roi et sa patrie »",
+      "Grande-Bretagne : un empire à tenir, grand réarmement trop coûteux, dominions comme le Canada peut-être pas derrière elle",
+      "Versailles (1919) jugé injuste envers l’Allemagne ; après la Dépression, l’économie d’abord",
+      "Isolationnisme américain → aucune protection ; communisme plus craint que le fascisme",
+      "Stresa, avril 1935 : garder Mussolini contre Hitler → hésitation à le punir"
+     ]
+    },
+    {
+     "t": "Exemples",
+     "d": 90,
+     "pts": [
+      "Accord naval germano-britannique, juin 1935 : Kriegsmarine à 35 % de la Royal Navy → Londres légalise une violation",
+      "Éthiopie, oct. 1935 : sanctions limitées de la SDN, pas d’embargo pétrolier ; débat jusqu’en mai 1936",
+      "Rhénanie, 7 mars 1936 : ordre de repli en cas de résistance française → aucune résistance",
+      "Espagne, 1936 : le Front populaire choisit la non-intervention = appeasement venu de la gauche",
+      "Anschluss, 12 mars 1938 : plébiscite contrôlé, 99 % de oui → Londres et Paris ne font rien",
+      "Munich, 29-30 sept. 1938 : Sudètes (~3 millions de germanophones) cédées, Tchèques pas invités"
+     ]
+    },
+    {
+     "t": "Débats et limites",
+     "d": 60,
+     "pts": [
+      "Populaire et jugé pragmatique à l’époque ; la « faiblesse » est un jugement postérieur",
+      "A. J. P. Taylor : guerre imputée à l’échec des démocraties face à Hitler → thèse très controversée",
+      "Chaque concession → l’étape suivante : « Stepping Stones to Glory » de Low, juillet 1936",
+      "Prague, 15 mars 1939 : Munich n’a rien acheté → garantie à la Pologne, 31 mars 1939",
+      "Mais l’idéologie fournit la volonté, l’appeasement seulement l’occasion ; Neutrality Acts américains 1935-1937 aussi"
+     ]
+    },
+    {
+     "t": "Liens",
+     "d": 40,
+     "pts": [
+      "Naît de la Dépression ; explique les succès extérieurs totalitaires ; son échec → Churchill Premier ministre, 10 mai 1940",
+      "Key issue sur le totalitarisme et la paix ; SDN impuissante = les trois singes de Low, 1935"
+     ]
+    }
+   ],
+   "jury": [
+    [
+     "L’appeasement n’était-il que de la lâcheté ?",
+     "Non. Il reposait sur des raisons rationnelles : le souvenir de 1914-1918, un empire à tenir, des problèmes économiques, le sentiment que Versailles avait été injuste et la peur du communisme. Il était aussi populaire à l’époque. Le problème, c’est qu’Hitler voyait dans chaque concession un signe de faiblesse."
+    ],
+    [
+     "Quand et pourquoi l’appeasement a-t-il pris fin ?",
+     "Il a pris fin en mars 1939, quand l’Allemagne a occupé Prague, le 15. Hitler occupait désormais un peuple étranger et trahissait la promesse de Munich. La Grande-Bretagne et la France ont garanti la Pologne le 31 mars 1939."
+    ],
+    [
+     "Le Front populaire a-t-il lui aussi pratiqué l’appeasement ?",
+     "D’une certaine manière, oui. Le gouvernement de Léon Blum a choisi la non-intervention dans la guerre d’Espagne alors que l’Allemagne et l’Italie soutenaient Franco : un appeasement venu de la gauche. Mais il a aussi lancé en septembre 1936 un plan de réarmement de 14 milliards de francs sur quatre ans."
+    ]
+   ]
+  }
+ },
+ {
+  "id": "h-t1-kt-3",
+  "kind": "term",
+  "q": "Totalitarianism",
+  "q_fr": "Le totalitarisme",
+  "chapitres": [
+   "H2",
+   "H1",
+   "H3"
+  ],
+  "en": {
+   "sections": [
+    {
+     "t": "Definition",
+     "d": 30,
+     "pts": [
+      "Totalitarianism is a regime that seeks total control of society, through coercion, in order to transform man according to an ideology.",
+      "≠ ordinary dictatorship, content with silence: the goal is a ‘New Man’"
+     ]
+    },
+    {
+     "t": "Origins / context",
+     "d": 50,
+     "pts": [
+      "Word first claimed with pride: Doctrine of Fascism, 1932 (Mussolini, Gentile), ‘everything is in the State’",
+      "Accusing sense after Arendt, The Origins of Totalitarianism (1951): Nazism and Stalinism",
+      "Mosse: WWI = ‘matrix of totalitarianism’ → brutalisation; uniforms, parades, contempt for life",
+      "Born from overthrown democracy: Fascist Italy 1922, Stalin’s USSR 1924, Nazi Germany 1933"
+     ]
+    },
+    {
+     "t": "Examples",
+     "d": 90,
+     "pts": [
+      "Same methods, three supreme goals: class (USSR), nation (Italy), race (Germany)",
+      "Leader cult: il Duce, der Führer; a city renamed Stalingrad in 1925",
+      "Propaganda: Riefenstahl films the Nuremberg rally, 1934; Hitler Youth compulsory 1936, ~8 million by 1939",
+      "Soviet New Man: the miner Stakhanov turned into a model, 1935",
+      "Terror: Dachau 1933; Gulag; Great Purge 1937–38 = 680,000 executions; Yezhov shot 1940, erased",
+      "Ideology → law → death: Nuremberg laws, Sept. 1935; T4 kills ~70,000 disabled Germans (1939–41)",
+      "Forced collectivisation → Holodomor, 1932–33: ~4 million dead in Ukraine"
+     ]
+    },
+    {
+     "t": "Debates and limits",
+     "d": 60,
+     "pts": [
+      "Consent (Arendt): mass confidence, not terror alone; Hitler appointed legally, 30 Jan. 1933",
+      "Italy incomplete: Lateran Accords 1929, king still head of State, opponents exiled to islands",
+      "‘Less oppressive terror?’; Italian Fascism officially racist only in 1938",
+      "Opposite ideologies, nations vs classes → a method of power, not a common doctrine"
+     ]
+    },
+    {
+     "t": "Links",
+     "d": 40,
+     "pts": [
+      "Depression → Nazi mass audience; same ideology → war of annihilation, 6 million Jews murdered",
+      "Key issue on collapse of peace: war = core value, not accident; same methods, three goals"
+     ]
+    }
+   ],
+   "jury": [
+    [
+     "What is the difference between a totalitarian regime and a dictatorship?",
+     "A dictatorship demands that you keep quiet; a totalitarian regime demands that you change. Because it wants a New Man, it reaches school, leisure, work, the family and even thought, as the Hitler Youth or the Soviet hero Stakhanov show."
+    ],
+    [
+     "Can Fascist Italy really be called totalitarian?",
+     "It was the first regime to claim the word, in the Doctrine of Fascism of 1932, and the fascistissime laws of 1925–26 created a totalitarian State. But the Church and the king remained counter-powers, and its terror was on a much smaller scale. It was totalitarian in ambition more than in results."
+    ],
+    [
+     "Why did these regimes lead to war?",
+     "Because war was part of their ideology. Fascism glorified war and used the Roman Empire to justify the conquest of Ethiopia in 1935, and Nazism made Lebensraum a condition of the race's survival. The reluctance of the democracies then gave them the opportunity."
+    ]
+   ]
+  },
+  "fr": {
+   "sections": [
+    {
+     "t": "Définition",
+     "d": 30,
+     "pts": [
+      "Le totalitarisme est un régime qui cherche à contrôler totalement la société, par la coercition, afin de transformer l’homme selon une idéologie.",
+      "≠ dictature ordinaire, qui se contente du silence : le but est un « Homme nouveau »"
+     ]
+    },
+    {
+     "t": "Origines / contexte",
+     "d": 50,
+     "pts": [
+      "Mot d’abord revendiqué avec fierté : Doctrine du fascisme, 1932 (Mussolini, Gentile), « tout est dans l’État »",
+      "Sens accusateur après Arendt, Les Origines du totalitarisme (1951) : nazisme et stalinisme",
+      "Mosse : la Grande Guerre = « matrice du totalitarisme » → brutalisation ; uniformes, défilés, mépris de la vie",
+      "Nés du renversement de la démocratie : Italie fasciste 1922, URSS de Staline 1924, Allemagne nazie 1933"
+     ]
+    },
+    {
+     "t": "Exemples",
+     "d": 90,
+     "pts": [
+      "Mêmes méthodes, trois buts suprêmes : la classe (URSS), la nation (Italie), la race (Allemagne)",
+      "Culte du chef : il Duce, der Führer ; une ville rebaptisée Stalingrad en 1925",
+      "Propagande : Riefenstahl filme le congrès de Nuremberg, 1934 ; Jeunesses hitlériennes obligatoires en 1936, ~8 millions en 1939",
+      "Homme nouveau soviétique : le mineur Stakhanov érigé en modèle, 1935",
+      "Terreur : Dachau 1933 ; Goulag ; Grande Purge 1937-1938 = 680 000 exécutions ; Iejov exécuté en 1940, effacé",
+      "Idéologie → loi → mort : lois de Nuremberg, sept. 1935 ; T4 tue ~70 000 Allemands handicapés (1939-1941)",
+      "Collectivisation forcée → Holodomor, 1932-1933 : ~4 millions de morts en Ukraine"
+     ]
+    },
+    {
+     "t": "Débats et limites",
+     "d": 60,
+     "pts": [
+      "Consentement (Arendt) : confiance des masses, pas seulement la terreur ; Hitler nommé légalement, 30 janv. 1933",
+      "Italie incomplète : accords du Latran 1929, le roi reste chef de l’État, opposants relégués sur des îles",
+      "« Une terreur moins oppressive ? » ; fascisme italien officiellement raciste seulement en 1938",
+      "Idéologies opposées, nations contre classes → une méthode de pouvoir, pas une doctrine commune"
+     ]
+    },
+    {
+     "t": "Liens",
+     "d": 40,
+     "pts": [
+      "Dépression → public de masse des nazis ; même idéologie → guerre d’anéantissement, 6 millions de Juifs assassinés",
+      "Key issue sur l’effondrement de la paix : la guerre = valeur centrale, pas un accident ; mêmes méthodes, trois buts"
+     ]
+    }
+   ],
+   "jury": [
+    [
+     "Quelle différence y a-t-il entre un régime totalitaire et une dictature ?",
+     "Une dictature exige qu’on se taise ; un régime totalitaire exige qu’on change. Parce qu’il veut un Homme nouveau, il s’étend à l’école, aux loisirs, au travail, à la famille et même à la pensée, comme le montrent les Jeunesses hitlériennes ou le héros soviétique Stakhanov."
+    ],
+    [
+     "Peut-on vraiment dire que l’Italie fasciste était totalitaire ?",
+     "C’est le premier régime à revendiquer le mot, dans la Doctrine du fascisme de 1932, et les lois « fascistissimes » de 1925-1926 créent un État totalitaire. Mais l’Église et le roi restent des contre-pouvoirs, et sa terreur est d’une ampleur bien moindre. Il est totalitaire dans son ambition plus que dans ses résultats."
+    ],
+    [
+     "Pourquoi ces régimes ont-ils conduit à la guerre ?",
+     "Parce que la guerre faisait partie de leur idéologie. Le fascisme glorifiait la guerre et se servait de l’Empire romain pour justifier la conquête de l’Éthiopie en 1935, et le nazisme faisait du Lebensraum une condition de la survie de la race. La réticence des démocraties leur a ensuite fourni l’occasion."
+    ]
+   ]
+  }
+ },
+ {
+  "id": "h-t1-kt-4",
+  "kind": "term",
+  "q": "New European Order",
+  "q_fr": "L'Ordre nouveau européen (New European Order)",
+  "chapitres": [
+   "H3",
+   "H2",
+   "H1"
+  ],
+  "en": {
+   "sections": [
+    {
+     "t": "Definition",
+     "d": 30,
+     "pts": [
+      "The New European Order is the Nazi rule over the continent, built through war and conquest, which its supporters presented as saving European civilisation from collapse.",
+      "In reality: Europe organised by race and for the benefit of Germany"
+     ]
+    },
+    {
+     "t": "Origins / context",
+     "d": 50,
+     "pts": [
+      "Outcome of Nazi ideology: race struggle, ‘Jewish Bolshevism’, Lebensraum in the East (Mein Kampf)",
+      "Nazi aims: eliminate the Jews, German supremacy, a ‘community of nations’ under German leadership",
+      "Five driving forces: Europe as a ‘racial entity’ purified by genocide; Lebensraum; anti-communist crusade",
+      "… plus Grossraum, one economic unit serving Germany; people, materials, money for total war"
+     ]
+    },
+    {
+     "t": "Examples",
+     "d": 90,
+     "pts": [
+      "France: armistice 22 June 1940 → three-fifths occupied, richest areas and coasts; Alsace-Moselle annexed",
+      "20 million Reichsmarks a day; STO from 1942; ~80,000 Jews deported, ~3% survived",
+      "Barbarossa, 22 June 1941: crusade + resource war → 5 million dead in 200 days",
+      "~3.3 of 5.7 million Soviet POWs died; Slavs to be enslaved or driven out for settlers",
+      "Genocide: Warsaw ghetto, 440,000 in 4 km²; Einsatzgruppen shoot over a million Soviet Jews",
+      "Six killing centres from Dec. 1941; Treblinka 876,000; 6 million Jews murdered = two thirds"
+     ]
+    },
+    {
+     "t": "Debates and limits",
+     "d": 60,
+     "pts": [
+      "‘Order’, ‘saving civilisation’ = propaganda; Paris: ‘by flattery instead of by repression’ (The Observer, Sept. 1941)",
+      "Not one system: seduction in the West, annihilation in the East",
+      "Not Germans alone: Vichy decree defining Jews, Oct. 1940 = French initiative; Romania, Hungary, Finland",
+      "Resistance: Britain holds out, 1940; Warsaw ghetto uprising, 19 April–16 May 1943",
+      "No real ‘community’, only plunder → collapse after Stalingrad, Paulus surrenders 31 Jan. 1943"
+     ]
+    },
+    {
+     "t": "Links",
+     "d": 40,
+     "pts": [
+      "Applies Nazi ideology; continues the search for autarky born of the Depression",
+      "Key issues on the nature of the war: ideological war, destroying a civilisation → genocide"
+     ]
+    }
+   ],
+   "jury": [
+    [
+     "What are the five driving forces of the New European Order?",
+     "Europe as a racial entity, purified by genocide; the quest for Lebensraum in the East; the crusade against communism; the Grossraum, a single economic unit serving Germany; and the need to supply Germany with the people, materials and money required for total war."
+    ],
+    [
+     "Why is France a special case?",
+     "Because decision-making was not unified: a German Military Command ruled the occupied zone, while Vichy governed the free zone until November 1942. Vichy often went further than asked, with its decree of October 1940, its Office for Jewish Affairs of March 1941, and the French police carrying out the great Paris round-up of July 1942. France also shows the economic side of the order: money, goods and workers."
+    ],
+    [
+     "Why did the Nazis present it as saving Europe?",
+     "To win collaboration and justify their domination. The crusade against communism could rally conservatives across Europe, and propaganda flattered French culture and business. Behind the words, Europe was organised for German supremacy, plundered and purified by murder."
+    ]
+   ]
+  },
+  "fr": {
+   "sections": [
+    {
+     "t": "Définition",
+     "d": 30,
+     "pts": [
+      "Le New European Order, l’Ordre nouveau européen, est la domination nazie sur le continent, bâtie par la guerre et la conquête, que ses partisans présentaient comme le sauvetage de la civilisation européenne face à l’effondrement.",
+      "En réalité : l’Europe organisée selon la race et au profit de l’Allemagne"
+     ]
+    },
+    {
+     "t": "Origines / contexte",
+     "d": 50,
+     "pts": [
+      "Aboutissement de l’idéologie nazie : lutte des races, « judéo-bolchevisme », Lebensraum à l’Est (Mein Kampf)",
+      "Buts nazis : éliminer les Juifs, suprématie allemande, une « communauté des nations » sous direction allemande",
+      "Cinq moteurs : l’Europe comme « entité raciale » purifiée par le génocide ; Lebensraum ; croisade anticommuniste",
+      "… plus le Grossraum, unité économique au service de l’Allemagne ; hommes, matières, argent pour la guerre totale"
+     ]
+    },
+    {
+     "t": "Exemples",
+     "d": 90,
+     "pts": [
+      "France : armistice du 22 juin 1940 → trois cinquièmes occupés, régions riches et côtes ; Alsace-Moselle annexée",
+      "20 millions de Reichsmarks par jour ; STO à partir de 1942 ; ~80 000 Juifs déportés, ~3 % de survivants",
+      "Barbarossa, 22 juin 1941 : croisade + guerre des ressources → 5 millions de morts en 200 jours",
+      "~3,3 des 5,7 millions de prisonniers soviétiques morts ; Slaves à asservir ou chasser pour des colons",
+      "Génocide : ghetto de Varsovie, 440 000 personnes sur 4 km² ; Einsatzgruppen fusillent plus d’un million de Juifs soviétiques",
+      "Six centres de mise à mort dès déc. 1941 ; Treblinka 876 000 ; 6 millions de Juifs assassinés = deux tiers"
+     ]
+    },
+    {
+     "t": "Débats et limites",
+     "d": 60,
+     "pts": [
+      "« Ordre », « sauver la civilisation » = propagande ; Paris : « par la flatterie plutôt que par la répression » (The Observer, sept. 1941)",
+      "Pas un système unique : séduction à l’Ouest, anéantissement à l’Est",
+      "Pas les seuls Allemands : décret de Vichy définissant les Juifs, oct. 1940 = initiative française ; Roumanie, Hongrie, Finlande",
+      "Résistances : la Grande-Bretagne tient, 1940 ; soulèvement du ghetto de Varsovie, 19 avril-16 mai 1943",
+      "Pas de vraie « communauté », seulement le pillage → effondrement après Stalingrad, Paulus capitule le 31 janv. 1943"
+     ]
+    },
+    {
+     "t": "Liens",
+     "d": 40,
+     "pts": [
+      "Applique l’idéologie nazie ; prolonge la recherche de l’autarcie née de la Dépression",
+      "Key issues sur la nature de la guerre : guerre idéologique, détruire une civilisation → génocide"
+     ]
+    }
+   ],
+   "jury": [
+    [
+     "Quels sont les cinq moteurs de l’Ordre nouveau européen ?",
+     "L’Europe comme entité raciale, purifiée par le génocide ; la quête du Lebensraum à l’Est ; la croisade contre le communisme ; le Grossraum, une unité économique unique au service de l’Allemagne ; et la nécessité de fournir à l’Allemagne les hommes, les matières et l’argent qu’exige la guerre totale."
+    ],
+    [
+     "Pourquoi la France est-elle un cas particulier ?",
+     "Parce que la décision n’y était pas unifiée : un commandement militaire allemand dirigeait la zone occupée, tandis que Vichy gouvernait la zone libre jusqu’en novembre 1942. Vichy est souvent allé plus loin que demandé, avec son décret d’octobre 1940, son Commissariat aux questions juives de mars 1941 et la grande rafle de juillet 1942 à Paris, menée par la police française. La France montre aussi le côté économique de l’ordre : l’argent, les biens et les travailleurs."
+    ],
+    [
+     "Pourquoi les nazis le présentaient-ils comme le sauvetage de l’Europe ?",
+     "Pour obtenir la collaboration et justifier leur domination. La croisade contre le communisme pouvait rallier les conservateurs dans toute l’Europe, et la propagande flattait la culture et les milieux d’affaires français. Derrière les mots, l’Europe était organisée pour la suprématie allemande, pillée et purifiée par le meurtre."
+    ]
+   ]
+  }
+ },
+ {
+  "id": "h-t1-kt-5",
+  "kind": "term",
+  "q": "Lebensraum",
+  "q_fr": "Le Lebensraum (l'« espace vital »)",
+  "chapitres": [
+   "H2",
+   "H3"
+  ],
+  "en": {
+   "sections": [
+    {
+     "t": "Definition",
+     "d": 30,
+     "pts": [
+      "Lebensraum, ‘living space’, is the theory that a nation needs its own territory and resources to survive.",
+      "Ratzel, German geographer, 1901 → Hitler’s goal: conquer the East; backbone of the Nazi worldview"
+     ]
+    },
+    {
+     "t": "Origins / context",
+     "d": 50,
+     "pts": [
+      "Ratzel: autarky in resources and territory = protection from external threats",
+      "Echoes the 19th-century nationalist motto Drang nach Osten, the ‘drive to the East’",
+      "After 1918 and the Versailles ‘Diktat’, eastern territories lost → the dream gains a new edge",
+      "Himmler’s diary, 1919: he would some day ‘live my life in the east’",
+      "Mein Kampf, ‘Eastern Policy’, vol. 2 (1926): soil for Germans; Russians to Siberia, slave labour"
+     ]
+    },
+    {
+     "t": "Examples",
+     "d": 90,
+     "pts": [
+      "Rearmament: Wehrmacht created 1935, open breach of Versailles, preparing the conquest",
+      "Nazi-Soviet pact, 23 Aug. 1939: no two-front war → Poland invaded 1 and 17 Sept., partitioned",
+      "Barbarossa, 22 June 1941: Grossraum; farmland, minerals, oil; ‘Germanisation’ through settlements",
+      "Stalingrad mattered: it guarded Soviet access to Caucasus oil",
+      "Racial project: Aryan ‘Übermensch’ vs Slavic ‘Untermensch’; Reichenau’s Severity Order, 10 Oct. 1941",
+      "Cost: 5 million dead in 200 days; USSR loses 27–28 million, one in seven"
+     ]
+    },
+    {
+     "t": "Debates and limits",
+     "d": 60,
+     "pts": [
+      "Economic or racial goal? Hehn: an economic war; but race survival = seizing land",
+      "Not only German: Japan in Manchuria from 1931 (grain, minerals); Mussolini’s Rome → Ethiopia",
+      "Nazi specificity = emptying the land; 6.76 million Jews in the East c. 1933; Shoah by bullets",
+      "Why appeasement failed: Prague, March 1939 → Hitler wanted space, not only Germans",
+      "Failure: stopped before Moscow, Dec. 1941; defeated at Stalingrad, 1943"
+     ]
+    },
+    {
+     "t": "Links",
+     "d": 40,
+     "pts": [
+      "Nazi foreign policy; one of the five driving forces of the New European Order",
+      "Compare Japanese and Italian imperialisms; causes of the war: war = necessity, not risk"
+     ]
+    }
+   ],
+   "jury": [
+    [
+     "Where does the idea of Lebensraum come from?",
+     "From the German geographer Friedrich Ratzel, in 1901: a nation must be self-sufficient in territory and resources to protect itself. It also revived the old nationalist motto Drang nach Osten, and Hitler made it a programme of conquest in Mein Kampf."
+    ],
+    [
+     "Why did Hitler sign a pact with Stalin if his goal was to conquer the East?",
+     "Because it was a deal of pure interest. On 23 August 1939 the pact removed the threat of a war on two fronts and planned the division of Poland, invaded on 1 September. Hitler then broke it on 22 June 1941 with Operation Barbarossa."
+    ],
+    [
+     "Was Lebensraum only an economic project?",
+     "No. Farmland, minerals and Caucasus oil were vital for autarky and a long war, but the project was also racial: the Slavs were Untermenschen to be enslaved or expelled, and the Jews were to be eliminated. That is why the war in the East became a war of annihilation."
+    ]
+   ]
+  },
+  "fr": {
+   "sections": [
+    {
+     "t": "Définition",
+     "d": 30,
+     "pts": [
+      "Le Lebensraum, l’« espace vital », est la théorie selon laquelle une nation a besoin de son propre territoire et de ses propres ressources pour survivre.",
+      "Ratzel, géographe allemand, 1901 → but de Hitler : conquérir l’Est ; colonne vertébrale de la vision du monde nazie"
+     ]
+    },
+    {
+     "t": "Origines / contexte",
+     "d": 50,
+     "pts": [
+      "Ratzel : autarcie en ressources et en territoire = protection contre les menaces extérieures",
+      "Écho de la devise nationaliste du XIXe siècle, le Drang nach Osten, la « poussée vers l’Est »",
+      "Après 1918 et le « Diktat » de Versailles, territoires de l’Est perdus → le rêve prend une vigueur nouvelle",
+      "Journal de Himmler, 1919 : il vivra un jour « [sa] vie à l’Est »",
+      "Mein Kampf, « La politique de l’Est », t. 2 (1926) : du sol pour les Allemands ; Russes en Sibérie, main-d’œuvre servile"
+     ]
+    },
+    {
+     "t": "Exemples",
+     "d": 90,
+     "pts": [
+      "Réarmement : Wehrmacht créée en 1935, violation ouverte de Versailles, préparation de la conquête",
+      "Pacte germano-soviétique, 23 août 1939 : pas de guerre sur deux fronts → Pologne envahie les 1er et 17 sept., partagée",
+      "Barbarossa, 22 juin 1941 : Grossraum ; terres agricoles, minerais, pétrole ; « germanisation » par des colonies",
+      "Stalingrad compte : la ville garde l’accès soviétique au pétrole du Caucase",
+      "Projet racial : « Übermensch » aryen contre « Untermensch » slave ; ordre de sévérité de Reichenau, 10 oct. 1941",
+      "Bilan : 5 millions de morts en 200 jours ; l’URSS perd 27 à 28 millions de personnes, un habitant sur sept"
+     ]
+    },
+    {
+     "t": "Débats et limites",
+     "d": 60,
+     "pts": [
+      "But économique ou racial ? Hehn : une guerre économique ; mais survie de la race = conquête du sol",
+      "Pas seulement allemand : le Japon en Mandchourie dès 1931 (grain, minerais) ; la Rome de Mussolini → Éthiopie",
+      "Spécificité nazie = vider la terre ; 6,76 millions de Juifs à l’Est vers 1933 ; Shoah par balles",
+      "Échec de l’appeasement expliqué : Prague, mars 1939 → Hitler voulait de l’espace, pas seulement des Allemands",
+      "Échec : arrêt devant Moscou, déc. 1941 ; défaite à Stalingrad, 1943"
+     ]
+    },
+    {
+     "t": "Liens",
+     "d": 40,
+     "pts": [
+      "Politique extérieure nazie ; l’un des cinq moteurs de l’Ordre nouveau européen",
+      "Comparer aux impérialismes japonais et italien ; causes de la guerre : la guerre = nécessité, pas risque"
+     ]
+    }
+   ],
+   "jury": [
+    [
+     "D’où vient l’idée de Lebensraum ?",
+     "Du géographe allemand Friedrich Ratzel, en 1901 : une nation doit se suffire à elle-même en territoire et en ressources pour se protéger. Elle reprend aussi la vieille devise nationaliste du Drang nach Osten, et Hitler en fait un programme de conquête dans Mein Kampf."
+    ],
+    [
+     "Pourquoi Hitler a-t-il signé un pacte avec Staline si son but était de conquérir l’Est ?",
+     "Parce que c’était un accord de pur intérêt. Le 23 août 1939, le pacte écarte la menace d’une guerre sur deux fronts et prévoit le partage de la Pologne, envahie le 1er septembre. Hitler le rompt ensuite le 22 juin 1941 avec l’opération Barbarossa."
+    ],
+    [
+     "Le Lebensraum n’était-il qu’un projet économique ?",
+     "Non. Les terres agricoles, les minerais et le pétrole du Caucase étaient vitaux pour l’autarcie et une longue guerre, mais le projet était aussi racial : les Slaves étaient des Untermenschen à asservir ou à expulser, et les Juifs devaient être éliminés. C’est pourquoi la guerre à l’Est est devenue une guerre d’anéantissement."
+    ]
+   ]
+  }
+ }
+]
