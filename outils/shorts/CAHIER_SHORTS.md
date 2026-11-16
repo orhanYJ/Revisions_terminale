@@ -10,6 +10,24 @@ Vidéos verticales 1080 × 1920, **en français**, pour attirer des élèves de 
 
 5. **Qui a dit ça ? / quiz à trois choix** (ajouté le 13/11/2026) : 4 questions (souvent une citation à attribuer, ou une question de cours), plan `quiz3` (`formats-a.js` : `sur`, `n`, `q`, `options` = 3 réponses avec `img` facultatif, `bonne`, `chrono` = repère de « A, B ou C ? », `rep` = repère du verdict, `expl`) ; accroche « 4 citations. Combien tu en reconnais ? » ; fin : score en commentaire, puis la chaîne.
 
+## Nouveautés du 15/11/2026 (demande de Cengiz : plus de formats où le spectateur joue, plus d'images, plus de variété, musiques funk agressives)
+Les formats qui marchent sont ceux qui **impliquent le spectateur** (« combien tu en as justes ? »). Six nouveaux plans dans `formats-a.js` (champs documentés en tête de chaque fonction), essai complet dans `essai2.plan.js` :
+- `niveau` : échelle de difficulté « Niveau 1 → 10, à quel niveau tu t'arrêtes ? » (n, total, q, r, expl, chrono, rep, img facultatif) ;
+- `ordre` : « Remets dans l'ordre » (cartes = [{t, d}] montrées mélangées, ordre = indices dans le bon ordre, chrono, rep, expl) ;
+- `intrus` : « Trouve l'intrus » (options = 4 × {t, img, sous, nb}, intrus, chrono, rep, expl) ;
+- `devine` : « Devine qui c'est » (img pixellisée qui se précise à chaque indice, indices = [[repère, texte]], rep, nom, sous) ;
+- `plusmoins` : « Plus ou moins ? » (q, A = {t, img, v, u}, B = {t, img, v, u}, chrono, rep ; la valeur de B défile) ;
+- `erreur` : « Trouve l'erreur » dans une copie (matiere, sujet, lignes, faute, correction, chrono, rep).
+Plans de `modele-a.js` pour les images : `photo` (photo **en couleur** plein écran avec travelling, champs img, t, sous, de, vers, nb, legende) et `collage` (imgs = 3 ou 4 images qui tombent, t, couleur).
+
+**Habillage** : `window.THEME = '<nom>'` dans le `.plan.js` : `archives` (noir, crème, or, rouge), `neon` (violet nuit, cyan, rose, grille rétro), `jeu` (plateau de jeu télé, violet, jaune, rayons), `alerte` (flash info, rouge, jaune, bandeau défilant), `terminal` (dossier secret, vert sur noir, code qui tombe). Chaque short a un habillage précisé par ta mission. **Couleurs : uniquement O.C (NOIR, CREME, OR, ROUGE, GRIS) et O.al(couleur, opacité)** dans les plans propres, jamais de code couleur en dur (sinon l'habillage ne s'applique pas). Les transitions varient seules selon l'habillage (zoom, glisse, tourne, chute, glitch, iris) ; `trans: '<type>'` sur un plan l'impose.
+
+**Variété obligatoire** : jamais deux plans de suite du même type ; au moins 6 plans avec image (photo, collage, carte, portrait, intrus, devine…) ; des plans propres variés (pas seulement des mots).
+
+**Musique** : funk brésilien agressif par défaut (choix de Cengiz) : `funk_agressif`, `funk_agressif2`, `funk_agressif3`, `montagem`, `montagem2`, `montagem3`, `automotivo`, `automotivo2` ; parfois `hardtekk`, `hardtekk2`, `terre`, `terre2` (`orchestre.py`). La caméra pulse sur le temps de la musique.
+
+**Images** : celles du dépôt (`philo/serie/img/`, `dnl/serie/img/`, `svt/serie/img/`, `pc/serie/img/`, `acl-*/serie/img/`), licence retrouvée dans les `legende=` / `CREDITS` des scripts `outils/serie-*/*.py`. Une image nouvelle n'est permise que du domaine public ou sous CC BY / CC BY-SA, depuis Wikimedia Commons (vignette `upload.wikimedia.org/…/thumb/…/1280px-…`), enregistrée dans `outils/shorts/img/`, avec auteur et licence en commentaire dans `window.IMAGES` et dans la description.
+
 ## Règles communes
 - **Faits** : uniquement ce que contient le cours de la chaîne (site et scripts des vidéos indiqués dans ta mission) ; tout fait pris ailleurs est vérifié sur une source sérieuse (WebSearch / WebFetch) et la source va en tête du script. Aucun fait inventé, aucune lacune comblée ; un point incertain est écarté.
 - **Aucune information personnelle** : aucun nom de professeur, d'élève, d'établissement, de ville.
