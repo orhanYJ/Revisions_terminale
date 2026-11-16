@@ -597,7 +597,8 @@ SCENES = [
     # ================================================================ XI. partie 2
     # 38,8 / 11,6 = 3,345 (≈ 3,3) ; 38,8 − 11,6 = 27,2 points (exercice du site)
     dict(id="partie2", chap="Partie 2 · étudier un document", fond="nuit", humeur="tension", beats=[
-        "{ex_p2}Partie deux : l'étude d'un document. Cinq virgule cinq points. Le document, tu le connais : femmes et hommes en emploi selon la catégorie socioprofessionnelle, "
+        "{ex_p2}Place à la partie deux, l'étude d'un document, notée sur cinq points et demi.",
+        "Le document, tu le connais : femmes et hommes en emploi selon la catégorie socioprofessionnelle, "
         "en deux mille vingt-quatre, d'après l'Insee. Deux questions.",
         "{ex_p2.1}Un : compare la part des employés parmi les femmes et parmi les hommes en emploi. "
         "{ex_p2.2}Deux : à l'aide du document et de tes connaissances, montre que le sexe est un facteur de structuration de l'espace social.",
