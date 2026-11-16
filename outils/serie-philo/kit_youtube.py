@@ -201,6 +201,24 @@ META = {
         tags=["chômage", "SES terminale", "spécialité SES", "bac SES", "taux de chômage", "BIT", "chômage structurel",
               "chômage conjoncturel", "appariement", "salaire d'efficience", "SMIC", "Keynes", "hystérèse",
               "politiques de l'emploi", "flexicurité", "épreuve composée", "dissertation SES"]),
+    "ses-s1": dict(
+        titre_yt="Comment est structurée la société française ? · Cours complet + sujets corrigés | SES Terminale",
+        chap="S1", sous="PCS · Marx et Weber · classes sociales", img="s1-pcs.jpg", gros="La société",
+        accroche="23 % de cadres en 2024, presque trois fois plus qu'en 1982. La société française est-elle encore "
+                 "une société de classes ? PCS, transformations de l'emploi, Marx, Weber et le débat actuel.",
+        pill2="+ 5 sujets corrigés",
+        exos_txt="cinq sujets corrigés pas à pas : un calcul sur l'évolution des PCS, les trois parties de l'épreuve composée "
+                 "(dont le sujet officiel du bac 2026) et une dissertation",
+        exos=["Savoir-faire : lire l'évolution des PCS (écarts en points, coefficient multiplicateur, données Insee) — exercice du site.",
+              "Partie 1 : « Distinguez l'analyse des classes sociales de Marx et celle de Weber. » (sujet inventé pour le site)",
+              "Partie 2 : femmes, hommes et catégories socioprofessionnelles, document Insee (enquête Emploi 2024) — exercice du site.",
+              "Partie 3 : « Montrez que le revenu et le diplôme ne sont pas les seuls facteurs qui structurent et hiérarchisent "
+              "l'espace social. » (sujet officiel, bac 2026)",
+              "Dissertation : « Les classes sociales permettent-elles encore de rendre compte de la société française actuelle ? » "
+              "(sujet inventé pour le site)"],
+        tags=["structure sociale", "SES terminale", "spécialité SES", "bac SES", "espace social", "PCS",
+              "catégories socioprofessionnelles", "tertiarisation", "salarisation", "féminisation des emplois",
+              "classes sociales", "Marx", "Weber", "Bourdieu", "moyennisation", "épreuve composée", "dissertation SES"]),
     "ses-e1": dict(
         titre_yt="La croissance économique : sources et défis · Cours complet + sujets corrigés | SES Terminale",
         sous="PGF · progrès endogène · destruction créatrice · soutenabilité", img="e1-pib.jpg", gros="La croissance",
@@ -340,9 +358,9 @@ def kit(code, dossier):
     desc = [
         m["accroche"],
         "",
-        "Chapitre %d de %s de Terminale (spécialité) : « %s ». Tout le cours, en partant de zéro, "
+        "Chapitre %s de %s de Terminale (spécialité) : « %s ». Tout le cours, en partant de zéro, "
         "avec les exemples, les méthodes et les pièges, puis %s. Environ %d minutes." % (
-            ep["num"], mt["desc"], ep["titre"], m.get("exos_txt", "trois exercices corrigés pas à pas : un simple, "
+            m.get("chap", ep["num"]), mt["desc"], ep["titre"], m.get("exos_txt", "trois exercices corrigés pas à pas : un simple, "
                                                        "un plus difficile, un type bac"), duree),
         "",
         "Avant chaque correction, l'écran « À toi » t'invite à mettre la vidéo en pause et à chercher seul.",
@@ -412,14 +430,14 @@ html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:%(fond)s
 </style></head><body>
 <div class="img"></div>
 <div class="txt">
-  <div class="sur">Terminale · %(mat)s · Ch. %(num)d</div>
+  <div class="sur">Terminale · %(mat)s · Ch. %(num)s</div>
   <div class="gros">%(gros)s</div>
 %(trait_div)s  <div class="sous">%(sous)s</div>
   <div class="bas"><span class="pill">Cours complet</span><span class="pill c">%(pill2)s</span></div>
 </div>
 <div class="num">%(min)d min</div>
 <script>/* titre trop large ou trop haut : on réduit la taille */var g=document.querySelector(".gros"),t=document.querySelector(".txt"),f=120;g.style.fontSize=f+"px";function trop(){var a=t.firstElementChild.getBoundingClientRect(),b=t.lastElementChild.getBoundingClientRect();return g.scrollWidth>g.clientWidth||a.top<40||b.bottom>650}while(trop()&&f>48){f-=4;g.style.fontSize=f+"px"}</script>
-</body></html>""" % dict(base=base, img=m["img"], num=ep["num"], gros=e(m.get("gros", ep["titre"])).replace("-", "\u2011"), sous=e(m["sous"]),
+</body></html>""" % dict(base=base, img=m["img"], num=m.get("chap", ep["num"]), gros=e(m.get("gros", ep["titre"])).replace("-", "\u2011"), sous=e(m["sous"]),
                          min=round(ep["dur"] / 60), fond=mt["fond"], rgb=mt["fond_rgb"], txt=mt["txt"], txt2=mt["txt2"],
                          acc=mt["acc"], pill=mt["pill"], pillc=mt["pill_c"], mat=mt["nom"], pill2=e(m.get("pill2", "+ 3 exercices corrigés")),
                          police=mt.get("police", "Archivo,sans-serif"), spol=mt.get("sous_police", "Spectral,serif"), sstyle=mt.get("sous_style", "italic"),
