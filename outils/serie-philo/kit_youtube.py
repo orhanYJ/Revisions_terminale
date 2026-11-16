@@ -143,6 +143,21 @@ META = {
         tags=["HGGSP", "HGGSP terminale", "spécialité HGGSP", "bac HGGSP", "Station spatiale internationale", "ISS",
               "Artemis", "Montego Bay", "ZEE", "mer de Chine méridionale", "grands fonds", "AIFM", "haute mer",
               "traité BBNJ", "coopération internationale", "dissertation HGGSP", "Grand oral"]),
+    "hggsp-t1-otc": dict(
+        titre_yt="La Chine à la conquête des mers et de l'espace · Cours complet + dissertation | HGGSP Terminale",
+        sous="Mers · espace · Lune · mer de Chine", img="t1otc-fujian.jpg", gros="La Chine",
+        accroche="Porte-avions, station spatiale, face cachée de la Lune, îles artificielles : comment la Chine "
+                 "s'affirme-t-elle sur les mers et dans l'espace, et que change-t-elle pour le reste du monde ?",
+        pill2="+ dissertation corrigée",
+        exos_txt="une dissertation corrigée (« La Chine, une puissance qui s'affirme dans les espaces maritimes et "
+                 "extra-atmosphériques », sujet inventé pour l'entraînement) et une question de Grand oral",
+        exos=["Dissertation : « La Chine, une puissance qui s'affirme dans les espaces maritimes et extra-atmosphériques » "
+              "(sujet inventé pour l'entraînement : problématique et plan détaillé).",
+              "Grand oral : « La Chine veut-elle réécrire les règles de la mer et de l'espace ? »"],
+        tags=["HGGSP", "HGGSP terminale", "spécialité HGGSP", "bac HGGSP", "objet de travail conclusif", "Chine",
+              "puissance chinoise", "marine chinoise", "Fujian", "Tiangong", "Chang'e", "Beidou",
+              "mer de Chine méridionale", "routes de la soie", "collier de perles", "Malacca", "AUKUS", "Quad",
+              "dissertation HGGSP", "Grand oral"]),
     "ses-e2": dict(
         titre_yt="Commerce international et chaînes de valeur · Cours complet + sujets corrigés | SES Terminale",
         sous="Ricardo · HOS · compétitivité · protectionnisme", img="e2-elephant.jpg", gros="Le commerce",
