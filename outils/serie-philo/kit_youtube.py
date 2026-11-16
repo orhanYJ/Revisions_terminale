@@ -121,6 +121,18 @@ META = {
         tags=["limites de fonctions", "limite", "asymptote", "asymptote verticale", "asymptote horizontale",
               "formes indéterminées", "terme prépondérant", "composition de limites", "théorème des gendarmes",
               "croissances comparées", "exponentielle", "maths terminale", "spécialité maths", "bac maths", "exercices corrigés"]),
+    "maths-ch4": dict(
+        sous="composée · convexité · inflexion · TVI", img="m4-tangentes.jpg", gros="Convexité",
+        accroche="x³ + x − 1 = 0 a une solution, mais laquelle ? Dérivée d'une composée, convexité, points d'inflexion, "
+                 "théorème des valeurs intermédiaires et dichotomie : tout le chapitre pour le bac.",
+        pill2="+ 2 exercices corrigés",
+        exos_txt="deux exercices corrigés pas à pas : une équation x³ − 3x + 1 = 0 à résoudre par le théorème des valeurs intermédiaires, "
+                 "puis un exercice au format du bac sur e^x − x − 2 avec un programme de dichotomie en Python",
+        exos=["Exercice 1 (pour démarrer) : f(x) = x³ − 3x + 1 : variations sur [−1 ; 1], unique solution de f(x) = 0 dans [0 ; 1], encadrement à 10⁻² près.",
+              "Exercice 2 (format bac) : f(x) = e^x − x − 2 sur [0 ; +∞[ : variations et limite, unique solution entre 1 et 2, programme de dichotomie à compléter, convexité et minoration par une droite."],
+        tags=["dérivation", "dérivée d'une composée", "dérivée seconde", "convexité", "fonction convexe", "fonction concave",
+              "point d'inflexion", "continuité", "théorème des valeurs intermédiaires", "TVI", "dichotomie",
+              "méthode de Newton", "maths terminale", "spécialité maths", "bac maths", "exercices corrigés"]),
     "hggsp-t1-a1": dict(
         sous="espace · mer · puissances rivales", img="t1-spoutnik.jpg", gros="La conquête",
         accroche="4 octobre 1957 : une boule de 83 kg fait « bip » au-dessus de l'Amérique. De Spoutnik aux porte-avions, "
