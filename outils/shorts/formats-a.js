@@ -142,7 +142,7 @@ window.FORMATS_A = O => {
     g.save(); g.translate(x, y); g.fillStyle = o.fond || '#f3ecdc'; g.shadowColor = 'rgba(0,0,0,.55)'; g.shadowBlur = 30;
     g.beginPath(); g.roundRect(-w / 2, -h / 2, w, h, 22); g.fill(); g.shadowColor = 'transparent';
     if (o.bord) { g.strokeStyle = o.bord; g.lineWidth = o.ep || 8; g.stroke(); }
-    const L = String(txt).split('|'); L.forEach((s, i) => S.texte(s, 0, (i - (L.length - 1) / 2) * (o.taille || 60) * 1.2, { taille: o.taille || 60, police: o.police || 'Spectral', poids: 600, coul: o.coul || '#16120d', max: w - 60 }));
+    const L = String(txt).split('|'); L.forEach((s, i) => S.texte(s, 0, (o.dy || 0) + (i - (L.length - 1) / 2) * (o.taille || 60) * 1.2, { taille: o.taille || 60, police: o.police || 'Spectral', poids: 600, coul: o.coul || '#16120d', max: w - 60 }));
     g.restore();
   }
 
@@ -183,11 +183,11 @@ window.FORMATS_A = O => {
       const ki = back(pr(t, p.a + .15 + i * .12, .3)); if (ki <= 0) return;
       const yA = y0 + i * (h + 30), yB = y0 + rang[i] * (h + 30), y = lerp(yA, yB, km) + (avant ? Math.sin(t * 6 + i) * 4 : 0);
       g.save(); g.translate(lerp(i % 2 ? 700 : -700, 0, ki), 0);
-      carteTexte(c.t, W / 2 + 40, y, 820, h, { taille: 56, bord: !avant ? VERT : null, ep: 6 });
+      const kd = !avant && c.d ? eo(pr(t, tr + .6 + rang[i] * .12, .3)) : 0;
+      carteTexte(c.t, W / 2 + 40, y, 820, h, { taille: 56, bord: !avant ? VERT : null, ep: 6, dy: -24 * kd });
       const lbl = avant ? 'ABCDEF'[i] : String(rang[i] + 1);
       g.fillStyle = avant ? OR : VERT; g.beginPath(); g.arc(110, y, 54, 0, 7); g.fill(); S.texte(lbl, 110, y + 4, { taille: 64, coul: NOIR });
-      if (!avant && c.d) { const kd = eo(pr(t, tr + .6 + rang[i] * .12, .3)); g.globalAlpha = kd; const lw = S.largeur(c.d, { taille: 38 }) + 36; g.fillStyle = NOIR; g.beginPath(); g.roundRect(985 - lw, y - 30, lw, 60, 30); g.fill();
-        g.strokeStyle = OR; g.lineWidth = 3; g.stroke(); S.texte(c.d, 985 - lw / 2, y + 2, { taille: 38, coul: OR, poids: 700 }); }
+      if (kd > 0) { g.globalAlpha = kd; S.texte(c.d, W / 2 + 40, y + 46, { taille: 40, coul: '#9a2b20', poids: 700, max: 760 }); }
       g.restore();
     });
     if (avant) chrono(t, tc, tr, W / 2, 1520, 90);
