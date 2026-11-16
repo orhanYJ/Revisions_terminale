@@ -599,7 +599,10 @@ def composer(style, dur, sections, chocs, relache=None, silences=None):
         return nv
 
     pas = int(dur / s16) + 1
-    if style in VARIANTES:
+    import orchestre
+    if orchestre.connu(style):
+        y = orchestre.composer_o(style, dur, niveau, relache); pas = 0
+    elif style in VARIANTES:
         y = VARIANTES[style](dur, niveau, relache) if style == 'phonk_tension' else VARIANTES[style](dur, niveau)
         pas = 0
     for i in range(pas):

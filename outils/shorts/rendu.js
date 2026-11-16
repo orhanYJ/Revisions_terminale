@@ -12,7 +12,8 @@ const [code, m] = process.argv.slice(2);
 const muet = process.argv.includes('--muet'), planche = process.argv.includes('--planche');
 const FPS = 30, W = 1080, H = 1920, PARTS = 3;
 const ICI = __dirname, SORTIE = path.join(ICI, 'sortie');
-const URL = `http://localhost:8765/outils/shorts/short.html?c=${code}&m=${m}&export=1${muet ? '&muet=1' : ''}`;
+const theme = (process.argv.find(x => x.startsWith('--theme=')) || '').slice(8);  // essai d'un habillage : --theme=neon
+const URL = `http://localhost:8765/outils/shorts/short.html?c=${code}&m=${m}&export=1${muet ? '&muet=1' : ''}${theme ? '&theme=' + theme : ''}`;
 
 async function page(b) {
   const p = await b.newPage({ viewport: { width: W, height: H } });
@@ -32,7 +33,7 @@ const image = async (p, t) => { await p.evaluate(t => window.RENDU(t), t); retur
     const dur = await p.evaluate(() => window.DUR), n = Math.ceil(dur);
     for (let k = 0; k < n; k++) fs.writeFileSync(path.join(tmp, `i${String(k).padStart(3, '0')}.jpg`), await image(p, k + .5));
     await b.close();
-    const out = path.join(SORTIE, `${code}-${m}-planche.jpg`);
+    const out = path.join(SORTIE, `${code}-${m}${theme ? '-' + theme : ''}-planche.jpg`);
     execFileSync('ffmpeg', ['-v', 'error', '-y', '-pattern_type', 'glob', '-i', path.join(tmp, 'i*.jpg'), '-vf', 'scale=270:480,tile=10x' + Math.ceil(n / 10), '-frames:v', '1', out]);
     console.log('planche :', out);
     return;

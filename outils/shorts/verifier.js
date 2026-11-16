@@ -25,7 +25,7 @@ const S = { T, plans: l => (PLANS = l) };
 ctx.S = S;
 lire(`${code}.plan.js`);
 ctx.window.PLAN(S);
-const typesA = ['mot', 'cerveau', 'tampon', 'date', 'perso', 'poignet', 'horloge', 'eeg', 'frise', 'portrait', 'pierre', 'causes', 'stop', 'bac', 'chaine'];
+const typesA = ['photo', 'collage', 'mot', 'cerveau', 'tampon', 'date', 'perso', 'poignet', 'horloge', 'eeg', 'frise', 'portrait', 'pierre', 'causes', 'stop', 'bac', 'chaine'];
 let typesShort = [];
 if (fs.existsSync(path.join(ICI, `${code}.types-a.js`))) {
   ctx.S = Object.assign({}, S, { g: {}, W: 1080, H: 1920, cl: x => x, lerp: x => x, pr: x => x, eo: x => x, back: x => x, rnd: x => x });
@@ -41,6 +41,7 @@ const res = PLANS.map((p, i) => {
   try { a = Array.isArray(p.a) ? T(...p.a) - (p.av ?? .06) : p.a; } catch (e) { console.log(`plan ${i} (${p.type}) : ${e.message}`); erreurs++; return null; }
   for (const k of ['a2', 'cercle', 'rouges', 'pct', 'tampon', 'zero', 'rep', 'chrono']) if (Array.isArray(p[k])) { try { tps(p[k]); } catch (e) { console.log(`plan ${i} champ ${k} : ${e.message}`); erreurs++; } }
   [...(p.lignes || []), ...(p.items || []), ...(p.souligne ? [p.souligne] : [])].forEach(([x]) => { if (Array.isArray(x)) try { tps(x); } catch (e) { console.log(`plan ${i} ligne : ${e.message}`); erreurs++; } });
+  (p.indices || []).forEach(([x]) => { if (Array.isArray(x)) try { tps(x); } catch (e) { console.log(`plan ${i} indice : ${e.message}`); erreurs++; } });
   (p.etapes || []).forEach(([x]) => { if (Array.isArray(x)) try { tps(x); } catch (e) { console.log(`plan ${i} étape : ${e.message}`); erreurs++; } });
   if (!typesA.includes(p.type) && !typesShort.includes(p.type)) { console.log(`plan ${i} : type inconnu « ${p.type} »`); erreurs++; }
   return { i, a, type: p.type };

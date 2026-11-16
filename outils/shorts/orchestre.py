@@ -40,12 +40,17 @@ def accord(nom, octave=3):
     return [r, r + (3 if mineur else 4), r + 7]
 
 
+# options de la variante en cours (transposition en demi-tons, tempo imposé, numéro de riff)
+OPT = {"ton": 0, "bpm": None, "var": 0}
+
+
 class Partition:
     """Notes rangées par couche : couche -> instrument -> [(début en temps, durée en temps, note, vélocité)]."""
     def __init__(self, bpm):
-        self.bpm, self.couches, self.synth = bpm, {}, []
+        self.bpm, self.couches, self.synth = OPT.get("bpm") or bpm, {}, []
 
     def note(self, couche, instr, debut, duree, note, vel=90):
+        if instr != BATTERIE: note = note + OPT.get("ton", 0)
         self.couches.setdefault(couche, {}).setdefault(instr, []).append((debut, duree, note, vel))
 
     def notes(self, couche, instr, debut, suite, vel=90):
@@ -228,7 +233,7 @@ from musique_short import scie, lp, hp, bp, clap, charley, R as _R
 
 
 def fq(note):
-    return 440 * 2 ** ((note - 69) / 12)
+    return 440 * 2 ** ((note + OPT.get("ton", 0) - 69) / 12)
 
 
 def kick_dur(d=.34):
@@ -431,6 +436,11 @@ def funk_agressif(mesures):
         [0, None, 0, 3, None, 0, 7, None, 0, None, 0, 3, None, 5, 3, None],
         [0, None, 0, 3, None, 0, 10, None, 8, None, 7, 5, None, 3, 2, None],
     ]
+    riff = [riff,
+            [[0, None, 3, None, 0, 5, None, 3, 0, None, 7, None, 5, 3, None, 0],
+             [0, None, 3, None, 0, 5, None, 8, 7, None, 5, None, 3, 2, None, 0]],
+            [[7, None, 7, 5, None, 3, 0, None, 0, 3, None, 0, 5, None, 3, None],
+             [7, None, 7, 8, None, 7, 5, None, 3, None, 5, 7, None, 10, None, 7]]][OPT.get("var", 0) % 3]
     basses = [0, 0, -4, -2]  # fa, fa, ré bémol, mi bémol
     f0 = n("F2")
     for m in range(mesures):
@@ -457,7 +467,9 @@ def montagem(mesures):
     """Montagem sombre (phonk brésilien) : nappe inquiétante, cloche en mélodie mineure lente, 808 qui glissent,
     kick lourd sur les temps, cris étouffés. Do dièse mineur, 125 bpm."""
     P = Partition(125)
-    mel = [0, None, None, 7, None, None, 8, None, 7, None, 3, None, 5, None, 3, 2]
+    mel = [[0, None, None, 7, None, None, 8, None, 7, None, 3, None, 5, None, 3, 2],
+           [0, None, 3, None, 7, None, None, 8, 7, None, None, 3, None, 2, 0, None],
+           [12, None, None, 10, None, None, 8, None, 7, None, 8, None, 7, None, 3, None]][OPT.get("var", 0) % 3]
     basses = [0, 0, -3, -5]
     f0 = n("C#2")
     for m in range(mesures):
@@ -508,9 +520,27 @@ NIVEAU_COUCHES = {1: (1,), 2: (1, 2), 3: (1, 2, 3)}
 GAINS = {1: 1.0, 2: .9, 3: .85}
 
 
+# variantes : même style, autre tonalité, autre tempo, autre riff (une musique différente par short)
+VARIANTES_O = {
+    "funk_agressif2": dict(base="funk_agressif", ton=3, bpm=134, var=1),
+    "funk_agressif3": dict(base="funk_agressif", ton=-2, bpm=127, var=2),
+    "montagem2": dict(base="montagem", ton=2, bpm=128, var=1),
+    "montagem3": dict(base="montagem", ton=-1, bpm=121, var=2),
+    "automotivo2": dict(base="automotivo", ton=4, bpm=138),
+    "hardtekk2": dict(base="hardtekk", ton=-2, bpm=165),
+    "terre2": dict(base="terre", ton=3, bpm=118),
+}
+
+
+def connu(style):
+    return style in MORCEAUX or style in VARIANTES_O
+
+
 def stems(style, dur):
     """-> (couches rendues {1, 2, 3: (n, 2)}, durée d'une mesure en s)."""
-    f = MORCEAUX[style]
+    v = VARIANTES_O.get(style, {})
+    OPT.clear(); OPT.update(ton=v.get("ton", 0), bpm=v.get("bpm"), var=v.get("var", 0))
+    f = MORCEAUX[v.get("base", style)]
     bpm = f(1).bpm; mesure = 4 * 60 / bpm
     P = f(int(dur / mesure) + 2)
     return P.rendre(dur), mesure
@@ -526,6 +556,22 @@ def essai(style, dur=20.0):
         for k in NIVEAU_COUCHES[niv]: y[a:b] += c[k][a:b] * GAINS[k]
     f = int(.02 * SR); y[-f:] *= np.linspace(1, 0, f)[:, None]
     return densifier(y)
+
+
+def composer_o(style, dur, niveau, relache=None):
+    """Musique d'un short : couches mélangées selon le niveau de tension (1, 2, 3) à chaque instant ;
+    après `relache` (plan de la chaîne), retour à la seule couche 1. Signal mono."""
+    c, mesure = stems(style, dur)
+    m = int(dur * SR); pas = int(.01 * SR); nb = m // pas + 1
+    nv = np.array([1 if relache is not None and i * .01 >= relache else niveau(i * .01) for i in range(nb)])
+    y = np.zeros((m, 2), np.float32)
+    for k in (1, 2, 3):
+        if k not in c: continue
+        g = np.array([1.0 if k in NIVEAU_COUCHES[min(3, max(1, x))] else 0.0 for x in nv])
+        g = np.convolve(g, np.ones(4) / 4, mode="same")  # fondu de 40 ms
+        gs = np.repeat(g, pas)[:m]
+        y += c[k] * (gs * GAINS[k])[:, None]
+    return densifier(y).mean(1)
 
 
 def densifier(y, cible=-13.0):

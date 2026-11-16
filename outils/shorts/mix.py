@@ -228,7 +228,9 @@ def main(code, m):
     # niveau : la musique à SHORT_MUSIQUE dB sous la voix pendant la parole (−9 par défaut), plus forte dans les silences
     parle = lp(np.abs(v0), 5, 1) > .02
     rv, rm = np.sqrt(np.mean(v0[parle] ** 2)), np.sqrt(np.mean(mus[parle] ** 2)) + 1e-9
-    mus = mus * rv / rm * 10 ** (float(os.environ.get("SHORT_MUSIQUE", "-9")) / 20)
+    import orchestre
+    defaut = "-6" if orchestre.connu(os.environ.get("SHORT_STYLE") or info["musique"]) else "-9"
+    mus = mus * rv / rm * 10 ** (float(os.environ.get("SHORT_MUSIQUE", defaut)) / 20)
     fx = np.zeros(n); cache = {}
     for t, nom, gain in info["sons"]:
         if nom not in cache:
