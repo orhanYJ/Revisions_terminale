@@ -184,10 +184,11 @@ window.FORMATS_A = O => {
       const yA = y0 + i * (h + 30), yB = y0 + rang[i] * (h + 30), y = lerp(yA, yB, km) + (avant ? Math.sin(t * 6 + i) * 4 : 0);
       g.save(); g.translate(lerp(i % 2 ? 700 : -700, 0, ki), 0);
       const kd = !avant && c.d ? eo(pr(t, tr + .6 + rang[i] * .12, .3)) : 0;
-      carteTexte(c.t, W / 2 + 40, y, 820, h, { taille: 56, bord: !avant ? VERT : null, ep: 6, dy: -24 * kd });
+      const nl = String(c.t).split('|').length, bloc = (nl - 1) * 67 + 56;
+      carteTexte(c.t, W / 2 + 40, y, 820, h, { taille: 56, bord: !avant ? VERT : null, ep: 6, dy: -(nl > 1 ? 26 : 22) * kd });
       const lbl = avant ? 'ABCDEF'[i] : String(rang[i] + 1);
       g.fillStyle = avant ? OR : VERT; g.beginPath(); g.arc(110, y, 54, 0, 7); g.fill(); S.texte(lbl, 110, y + 4, { taille: 64, coul: NOIR });
-      if (kd > 0) { g.globalAlpha = kd; S.texte(c.d, W / 2 + 40, y + 46, { taille: 40, coul: '#9a2b20', poids: 700, max: 760 }); }
+      if (kd > 0) { g.globalAlpha = kd; S.texte(c.d, W / 2 + 40, y - 22 + bloc / 2 + 28, { taille: 38, coul: '#9a2b20', poids: 700, max: 760 }); }
       g.restore();
     });
     if (avant) chrono(t, tc, tr, W / 2, 1520, 90);
