@@ -23,19 +23,19 @@ que l'on développe à l'oral en **4 min 30** (5 min au maximum).
 }
 ```
 - `d` = durée conseillée de la section en secondes ; **la somme fait 270** (4 min 30). Exemples : key issue 40 + 70 + 70 + 60 + 30 ;
-  key term : « Definition » 30, « Origins » 50, « Examples » 90, « Debates and limits » 60, « Links » 40.
+  key term : « Definition » 30, « Origins / context » 50, « Key features » 90, « Debates and limits » 60, « Links » 40.
 - **Key issue** : Introduction (accroche datée, termes définis, **jugement annoncé**, plan) ; 2 ou 3 parties titrées (I., II., III.) dont
   une qui nuance (« However … ») ; Conclusion (réponse nette, preuves les plus fortes, ouverture).
-- **Key term** : Definition (une phrase à savoir par cœur, gardée entière), Origins / context, Examples, Debates and limits, Links.
+- **Key term** : Definition (une phrase à savoir par cœur, gardée entière), Origins / context, Key features, Debates and limits, Links.
 
 ## Les puces
-- **14 à 20 puces par item**, 6 à 18 mots chacune ; **220 à 320 mots anglais en tout** (puces seulement) : développées à l'oral,
+- **Plus d'idées, moins d'exemples** (Cengiz, 16/11/2026) : une puce énonce une idée (argument, cause, mécanisme, conséquence, nuance, jugement), suivie au plus d'un exemple court après un tiret (« — e.g. Rhineland, 7 March 1936 »). Pas de listes de dates ni de chiffres. 16 à 20 puces, dont au moins 12 idées. Key term : la section de 90 s s'appelle « Key features » / « Caractéristiques » (les traits de la notion, un exemple chacun).
+- 6 à 20 mots par puce ; **220 à 320 mots anglais en tout** (puces seulement) : développées à l'oral,
   elles tiennent 4 min 30.
-- Des **notes**, pas des phrases rédigées : mots clés, dates, chiffres, noms, exemples précis, liens logiques
-  (« → », « but », « so », « = »). Une puce = une idée ou un exemple que l'on développe en 10 à 20 secondes.
-  Exemple : « Munich, 29–30 Sept. 1938: Sudetenland given away → Prague, 15 March 1939 ».
+- Des **notes**, pas des phrases rédigées : l'idée en quelques mots, liens logiques (« → », « but », « so », « = »).
+  Une puce se développe en 10 à 20 secondes. Exemple : « Each unpunished step encouraged the next — e.g. Rhineland, 7 March 1936 ».
 - La puce du jugement commence par « Judgement: » (« Jugement : » en français).
-- Chaque idée porte un exemple précis (date, chiffre, nom, lieu).
+- L'exemple, quand il y en a un, est précis (date, nom, lieu) et unique.
 
 ## Règles de contenu
 - Les faits viennent de la version rédigée déjà vérifiée (`h_t1_issues.json`, `h_t1_terms.json`, champ `blocs`) et du cours du site ;
