@@ -203,7 +203,7 @@ SCENES = [
         "Les cadres ne sont que huit pour cent. Et les agriculteurs encore sept virgule cinq.",
         "{an_pcs.2}Les années quatre-vingt-dix : les employés grimpent, près de trente pour cent de l'emploi. Les ouvriers et les agriculteurs reculent.",
         "{an_pcs.3}Les années deux mille : la montée des qualifications s'accélère. Les cadres passent de quatorze virgule sept à dix-huit virgule trois pour cent, "
-        "de deux mille deux à deux mille douze.",
+        "entre deux mille deux et deux mille douze.",
         "{an_pcs.4}Et en deux mille vingt-quatre : vingt-trois pour cent de cadres, dix-huit pour cent d'ouvriers. Les agriculteurs, un virgule trois pour cent. "
         "Et pour la première fois depuis mille neuf cent quatre-vingt-deux, les professions intermédiaires dépassent les employés.",
         ("P", 0.8),
@@ -321,7 +321,7 @@ SCENES = [
         "{an_mw.4}{an_mw.5}{-an_mw}{cols_soi}Ce passage est essentiel chez Marx. {cols_soi.g}Une classe en soi, c'est une position objective commune. "
         "Des gens qui occupent la même place dans la production… qu'ils le sachent ou non.",
         "{cols_soi.d}Une classe pour soi, c'est une classe qui a pris conscience de ses intérêts, et qui se mobilise collectivement. "
-        "Pour Marx, une classe n'existe pleinement que si elle est les deux à la fois.",
+        "Pour Marx, une classe n'existe pleinement que si elle est à la fois en soi et pour soi.",
         "{-cols_soi}{ch_marx}{ch_marx.1}En chaîne causale. La propriété, ou non, des moyens de production. "
         "{ch_marx.2}Donc le prolétariat doit vendre sa force de travail à la bourgeoisie. {ch_marx.3}Donc la bourgeoisie s'approprie la plus-value : l'exploitation.",
         "{ch_marx.4}Donc des intérêts opposés : la classe en soi existe objectivement. {ch_marx.5}Et si elle prend conscience, elle devient classe pour soi : la lutte des classes.",
@@ -413,7 +413,7 @@ SCENES = [
         "pour penser le croisement des rapports de classe, de genre et de race.",
         "{-def_inter}{q_cm}Et quatrième terrain : les identifications subjectives. Pose-toi la question : qui, autour de toi, se dit « ouvrier », ou « bourgeois » ?",
         "{-q_cm}{cf_syn}Peu de monde. Beaucoup se rangent dans une vaste « classe moyenne ». Et les organisations qui portaient la conscience de classe ont reculé. "
-        "{cf_syn.1}Environ un salarié sur dix est syndiqué en France. Un sur dix, seulement.",
+        "{cf_syn.1}En France, environ dix pour cent des salariés sont syndiqués. Un sur dix, seulement.",
         "{-cf_syn}{ch_ind}{ch_ind.1}Pourquoi ? Parce que les facteurs d'individualisation se multiplient. La hausse du niveau de vie, de l'éducation, la protection sociale. "
         "{ch_ind.2}Donc les individus dépendent moins de leur groupe d'origine.",
         "{ch_ind.3}Donc les trajectoires se diversifient : les mobilités, les études, les familles recomposées, les consommations, les loisirs. "
