@@ -85,7 +85,7 @@ SCENES = [
         "durk": dict(type="portrait", annee=1858, img="durkheim", nom="Émile Durkheim", dates="1858 – 1917",
                      legende="Les Règles de la méthode sociologique (1895)", x=110, y=120, w=330, h=420),
         "tab_eco": dict(type="tableau", img="dv2-ecole", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .55, .45],
-                        legende="Albert Bettannier, La Tache noire, 1887 (musée d'Orsay)"),
+                        legende="Albert Bettannier, La Tache noire, 1887 (Deutsches Historisches Museum, Berlin)"),
         "c_dur": dict(type="cit", a="Durkheim", o="Les Règles de la méthode sociologique, chap. I (1895)", x=640, y=130, w=570),
         "fait": dict(type="liste", titre="Le devoir, un fait social", items=[
             "Extérieur : je le trouve tout fait en naissant", "Contraignant : la société sanctionne qui le transgresse",

@@ -74,7 +74,7 @@
   };
 
   /* maîtres : les trois maîtres de l'Émile (livre I). {id.1} {id.2} {id.3} la nature, les hommes, les choses ;
-     {id.4} l'élève au croisement ; {id.5} l'accord des trois ; {id.6} seule l'éducation des hommes dépend de nous. */
+     {id.4} l'élève au croisement ; {id.5} l'accord des trois ; {id.6} seule l'éducation des hommes dépend de nous, mais on règle les deux autres sur la nature. */
   SERIE_ILLU.maitres = function (s, v) {
     prep();
     var g = sv("g", {}, s), X = [130, 470, 810], noms = ["La nature", "Les hommes", "Les choses"],
@@ -91,7 +91,7 @@
     var fl = encre(g, "M" + (cxe + 56) + " " + cy + " H640");
     var pt = encre(g, "M626 " + (cy - 10) + " L642 " + cy + " L626 " + (cy + 10));
     var ac = lbl(s, 660, cy - 44, "l'accord des trois :", "lg it"), ac2 = lbl(s, 660, cy - 4, "un homme « bien élevé »", "lg it r");
-    var nb = bloc(s, 100, 400, 740, "Seule l'éducation des hommes dépend vraiment de nous : c'est elle qu'il faut régler sur les deux autres.", "it");
+    var nb = bloc(s, 100, 400, 740, "Seule l'éducation des hommes dépend vraiment de nous ; mais c'est sur celle de la nature qu'il faut régler les deux autres.", "it");
     nb.style.textAlign = "center"; nb.style.fontSize = "30px";
     return function (t, st) {
       montre(ti, t, v.t0 + .2);

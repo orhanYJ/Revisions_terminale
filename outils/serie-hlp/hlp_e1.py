@@ -15,6 +15,8 @@ Usage : PYTHONPATH=outils/serie-hlp python3 outils/serie-philo/verifier.py hlp_e
         python3 outils/serie-philo/chevauchements.py hlp-e1 ; python3 outils/serie-philo/fermer.py hlp_e1
 
 POINTS À FAIRE VÉRIFIER PAR LE CONTRÔLEUR (repris du site, non revérifiés à la source dans cette session) :
+[Contrôle indépendant du 17/11/2026 : tous revérifiés (Wikisource, BO spécial n° 4 du 17/09/2026) ; corrigés : les trois
+ maîtres (régler les deux autres sur la nature), lieu de La Tache noire (Berlin), date de l'essai d'Arendt (1958).]
 - Montaigne : chapitre I, 26 publié en 1580 (texte cité d'après l'édition de 1595, orthographe modernisée) ; « étamine »
   du jugement (formule du site, paraphrase de Montaigne : la vidéo ne la présente pas comme une citation exacte).
 - Rabelais, Gargantua daté 1534 (le site dit 1534 ; certaines éditions disent 1534 ou 1535).
@@ -50,7 +52,7 @@ RYTHME = "vivant"
 PRONONCIATION = {"Montaigne": "Montègne", "Rabelais": "Rablè", "Gargantua": "Gargantua", "Ponocrates": "Ponocratèsse",
                  "Kant": "Kante", "Sapere": "Sapéré", "aude": "aoudé", "Condorcet": "Condorssè", "Guizot": "Guizo",
                  "Durkheim": "Durkème", "Passeron": "Passeron", "Bourdieu": "Bourdieu", "Dewey": "Diouï", "Freinet": "Frénè",
-                 "Montmorency": "Monmorancy", "Robinson Crusoé": "Robinson Cruzoé", "Vallès": "Valèsse", "Vingtras": "Vintrass",
+                 "Montmorency": "Monmorancy", "Demeny": "Deumeuni", "Robinson Crusoé": "Robinson Cruzoé", "Vallès": "Valèsse", "Vingtras": "Vintrass",
                  "Chateaubriand": "Chatobrian", "Combourg": "Combour", "Renan": "Renan", "Ernaux": "Erno", "Goethe": "Gueute",
                  "Wilhelm Meister": "Vilhèlm Maïsteur", "Bildungsroman": "Bildoungsroman", "Stendhal": "Stindal",
                  "Julien Sorel": "Julien Sorèl", "Flaubert": "Flobère", "Deslauriers": "Délorié", "Arnoux": "Arnou",
@@ -75,7 +77,7 @@ SCENES = [
         "{plan.3}Ensuite, l'école devient une affaire politique : Condorcet, puis les lois Ferry. "
         "{plan.4}Kant, et la sortie de la minorité. "
         "{plan.5}Les écrivains qui racontent leur éducation, de Vallès à Flaubert. "
-        "{plan.6}Les débats du vingtième siècle. "
+        "{plan.6}Puis les débats, de Nietzsche à Arendt. "
         "{plan.7}Et pour finir, le bac : la méthode, un sujet corrigé, et les pièges.",
         "{-plan}{titre}",
         ("P", 3.4),
@@ -87,7 +89,7 @@ SCENES = [
         "plan": dict(type="liste", titre="Le chemin", items=[
             "Montaigne : une tête bien faite", "Rousseau : l'enfance, et le paradoxe de l'éducation",
             "Condorcet, puis l'école de la République", "Kant : sortir de la minorité",
-            "Raconter son éducation : Vallès, Flaubert", "Transmettre ou rompre ? Le XX^{e} siècle",
+            "Raconter son éducation : Vallès, Flaubert", "Transmettre ou rompre ? De Nietzsche à Arendt",
             "Le bac : méthode, sujet corrigé, pièges"], x=190, y=96, w=900),
         "titre": dict(type="titre", sur="HLP · Semestre 1 · Entrée I", t="Éducation, transmission et émancipation",
                       sous="Le cours complet, de Montaigne au bac"),
@@ -135,7 +137,7 @@ SCENES = [
     dict(id="rousseau", chap="Rousseau : l'enfant n'est pas un adulte en petit", fond="livre", humeur="lumiere",
          retenir="*Émile* (1762) : l'enfance a sa propre logique. Éducation négative (protéger du vice et de l'erreur) ; les choses avant les mots ; « Vivre est le métier que je lui veux apprendre ».",
          beats=[
-        "{rou}Deux siècles plus tard, en mille sept cent soixante-deux, Jean-Jacques Rousseau publie Émile, ou De l'éducation. "
+        "{rou}Près de deux siècles après Montaigne, en mille sept cent soixante-deux, Jean-Jacques Rousseau publie Émile, ou De l'éducation. "
         "Un livre étrange : Rousseau y imagine l'éducation d'un enfant fictif, Émile, confié à un gouverneur, de sa naissance à son mariage.",
         "Sa grande idée tient en une phrase.",
         ("C", "La nature veut que les enfants soient enfants avant que d'être hommes.", "c_nat"),
@@ -159,7 +161,7 @@ SCENES = [
         "{-post}{tm}Rousseau a même une image pour résumer tout ça. Trois maîtres nous éduquent. {tm.1}La nature, qui développe nos organes. "
         "{tm.2}Les hommes, qui nous apprennent à nous en servir. {tm.3}Et les choses, par l'expérience. "
         "{tm.4}L'élève est au croisement. {tm.5}S'ils s'accordent, il est bien élevé. "
-        "{tm.6}Or un seul de ces maîtres dépend vraiment de nous : les hommes. C'est leur éducation qu'il faut régler sur les deux autres.",
+        "{tm.6}Or l'éducation de la nature ne dépend pas de nous ; celle des choses, seulement en partie ; seule celle des hommes dépend vraiment de nous. Alors, c'est sur la nature qu'il faut régler les deux autres.",
         "{-tm}",
     ], vis={
         "rou": dict(type="portrait", annee=1712, img="rousseau", nom="Jean-Jacques Rousseau", dates="1712 – 1778",
@@ -288,7 +290,7 @@ SCENES = [
         "{jal.4}En mille huit cent quatre-vingt-deux, l'instruction devient obligatoire, de six à treize ans, et l'enseignement public devient laïque.",
         "{-jal}{piege_rev}Retiens bien ce piège : l'école gratuite, obligatoire et laïque ne date pas de la Révolution. "
         "Le plan de Condorcet n'a pas été appliqué. Ce sont les lois Ferry, en mille huit cent quatre-vingt-un et quatre-vingt-deux.",
-        "{-piege_rev}{fer}Un an plus tard, le dix-sept novembre mille huit cent quatre-vingt-trois, Jules Ferry écrit aux instituteurs. "
+        "{-piege_rev}{fer}L'année suivante, le dix-sept novembre mille huit cent quatre-vingt-trois, Jules Ferry écrit aux instituteurs. "
         "Il leur confie l'enseignement moral. Et il leur donne une règle de prudence.",
         ("C", "Demandez-vous si un père de famille, je dis un seul, présent à votre classe et vous écoutant, pourrait de bonne foi refuser son assentiment à ce qu'il vous entendrait dire.", "c_fer"),
         "{-c_fer}{-fer}{reg}Observe l'incise : {reg.1}« je dis un seul ». Il suffit d'un seul désaccord sincère pour se taire. "
@@ -302,7 +304,7 @@ SCENES = [
         "{-tens}",
     ], vis={
         "tab_tache": dict(type="tableau", img="e1-tache", de=[1.0, .5, .5], a=[1.2, .45, .5],
-                          legende="Albert Bettannier, *La Tache noire*, 1887 (musée d'Orsay, domaine public)"),
+                          legende="Albert Bettannier, *La Tache noire*, 1887 (Deutsches Historisches Museum, Berlin)"),
         "jal": dict(type="illu", nom="jalons", x=150, y=130, w=980, h=440, de=1825, a=1890, items=[
             [1833, "Loi Guizot", "écoles primaires de garçons"], [1880, "Loi Camille Sée", "le secondaire des jeunes filles"],
             [1881, "Ferry : gratuité", "école primaire publique"], [1882, "Obligation, laïcité", "de 6 à 13 ans · 28 mars"]],
@@ -326,7 +328,7 @@ SCENES = [
     dict(id="kant", chap="Kant : sortir de la minorité", fond="livre", humeur="tension",
          retenir="Kant (1784) : les Lumières font sortir l'homme de la minorité, l'incapacité de se servir de son intelligence sans être dirigé. Cause : paresse et lâcheté. Devise : *Sapere aude*.",
          beats=[
-        "{kant2}Retour en mille sept cent quatre-vingt-quatre. Une revue berlinoise pose une question : qu'est-ce que les Lumières ? "
+        "{kant2}Retour en mille sept cent quatre-vingt-quatre. Une revue berlinoise a posé une question : qu'est-ce que les Lumières ? "
         "En décembre, Kant répond. Et sa réponse définit l'émancipation.",
         ("C", "Les lumières sont ce qui fait sortir l'homme de la minorité qu'il doit s'imputer à lui-même.", "c_lum"),
         "{-kant2}{-c_lum}{d_min}Qu'est-ce que la minorité ? C'est l'incapacité de se servir de son intelligence sans être dirigé par autrui. "
@@ -448,7 +450,7 @@ SCENES = [
         "{-bea}",
         ("C", "On ne naît pas femme : on le devient.", "c_bea"),
         "S'émanciper suppose donc de prendre conscience de ce qu'on a reçu comme une évidence.",
-        "{-c_bea}{m61}Et à l'inverse, Hannah Arendt. Dans « La crise de l'éducation », en mille neuf cent soixante et un, elle soutient que l'école doit rester conservatrice. "
+        "{-c_bea}{m61}Et à l'inverse, Hannah Arendt. Dans « La crise de l'éducation », un essai de mille neuf cent cinquante-huit, elle soutient que l'école doit rester conservatrice. "
         "{-m61}{are}{are.g}Non pas pour empêcher le changement. Mais parce qu'elle transmet un monde ancien, {are.d}pour protéger ce que chaque enfant apporte de nouveau.",
         "{are.1}On ne peut renouveler que ce qu'on a reçu. Une éducation qui préparerait directement les enfants à changer le monde, selon les projets des adultes, leur volerait leur propre nouveauté.",
         "{-are}{dep}Et voilà la clé pour ta copie. {dep.1}L'opposition transmettre ou émanciper peut être dépassée. "
@@ -461,9 +463,9 @@ SCENES = [
         "c_nie": dict(type="cit", a="Nietzsche", o="Le Gai Savoir", ref="§ 270, trad. H. Albert", x=620, y=220, w=540),
         "bea": dict(type="mot", t="1949", g="Simone de Beauvoir, *Le Deuxième Sexe*", taille=130, y=220),
         "c_bea": dict(type="cit", a="Simone de Beauvoir", o="Le Deuxième Sexe", ref="t. II", x=230, y=230, w=820),
-        "m61": dict(type="mot", t="Conservatrice ?", g="Hannah Arendt, « La crise de l'éducation » (1961)", taille=110, y=220),
+        "m61": dict(type="mot", t="Conservatrice ?", g="Hannah Arendt, « La crise de l'éducation » (1958)", taille=110, y=220),
         "are": dict(type="cols", g="Transmettre l'ancien", gq="un monde déjà là", d="Protéger le nouveau",
-                    dq="ce que chaque enfant apporte", vs="pour", repere="Arendt, « La crise de l'éducation » (1961) : thèse résumée"),
+                    dq="ce que chaque enfant apporte", vs="pour", repere="Arendt, « La crise de l'éducation » (1958) : thèse résumée"),
         "dep": dict(type="liste", titre="Pour la copie : dépasser l'opposition", items=[
             "Transmettre *ou* émanciper ?", "La transmission est la condition de l'émancipation",
             "À condition de donner les moyens de juger ce qu'on reçoit (Condorcet)"], marques=["?", "I", "II"], x=170, y=170, w=960),
@@ -727,7 +729,7 @@ QUIZ = [
     dict(q="L'instruction primaire devient obligatoire (de 6 à 13 ans) et l'enseignement public laïque…", r=["en 1791", "en 1833", "en 1882"],
          ok=2, ex="Loi du 28 mars 1882 ; la gratuité date de 1881 (lois Ferry).", voir="jal"),
     dict(q="Pour Kant, la « minorité » vient surtout…", r=["du jeune âge", "de la paresse et de la lâcheté", "d'un manque d'intelligence"],
-         ok=1, ex="Ce n'est ni une question d'âge ni d'intelligence, mais de courage.", voir="d_min"),
+         ok=1, ex="Ce n'est ni une question d'âge ni d'intelligence, mais de courage.", voir="minr"),
     dict(q="L'officier qui, comme savant, critique par écrit l'organisation de l'armée fait…", r=["un usage privé de la raison", "un usage public de la raison", "une faute"],
          ok=1, ex="Dans son service, il obéit (usage privé) ; comme savant, il publie (usage public).", voir="us"),
     dict(q="Pourquoi L'Éducation sentimentale renverse-t-elle le roman d'apprentissage ?", r=["Le héros ne devient rien", "Le roman se passe dans une école", "Le héros est un enfant"],
@@ -738,9 +740,9 @@ CREDITS = [
     "Textes cités d'après les éditions du domaine public (Wikisource), orthographe modernisée quand elle est ancienne ; "
     "Kant dans la traduction de Jules Barni, Nietzsche dans celle d'Henri Albert. Beauvoir : citation courte ; Arendt : thèse résumée.",
     "Portraits : Montaigne (portrait anonyme, musée Condé) ; Rousseau (Maurice Quentin de La Tour, 1753) ; Kant (portrait anonyme, XVIIIᵉ s.) ; "
-    "Condorcet (peintre non identifié, autrefois attribué à Greuze) ; Jules Ferry (Léon Bonnat, 1888) ; Jules Vallès (Gustave Courbet) ; "
+    "Condorcet (peintre non identifié, autrefois attribué à Greuze, château de Versailles) ; Jules Ferry (Léon Bonnat, 1888) ; Jules Vallès (Gustave Courbet) ; "
     "Gustave Flaubert (photographie de Nadar) ; Durkheim (photographie anonyme) ; Nietzsche (Gustav Schultze, 1882) : domaine public, Wikimedia Commons.",
-    "Planches : Rousseau, Émile ou De l'éducation, page de titre (1762) ; Albert Bettannier, La Tache noire (1887, musée d'Orsay) ; "
+    "Planches : Rousseau, Émile ou De l'éducation, page de titre (1762) ; Albert Bettannier, La Tache noire (1887, Deutsches Historisches Museum, Berlin) ; "
     "Jan Steen, L'École de village (vers 1665, National Gallery of Ireland) : domaine public.",
     "Illustrations, schémas et sujet corrigé : faits pour le site. Polices : EB Garamond et Exlibris Titrage (d'après IM FELL), sous licence SIL OFL.",
 ]
