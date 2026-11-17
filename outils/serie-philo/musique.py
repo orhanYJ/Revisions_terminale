@@ -2446,3 +2446,1310 @@ def lofi(theme, mesures=32):
 def theme_lofi(k, humeur=None):
     """Thème de la k-ième partie de la vidéo : les cinq thèmes tournent, jamais deux fois de suite le même."""
     return ORDRE_LOFI[k % len(ORDRE_LOFI)]
+
+
+# =====================================================================================================================
+# HLP et NSI : quatre propositions de musique par matière (17/11/2026), au choix du pilote. Elles s'ajoutent à STYLES
+# (hlp1-4, nsi1-4) sans toucher aux styles existants ni à STYLE : piste(…, style="hlp2") les fait entendre.
+#   hlp1 « Baroque »          : clavecin en figures brisées, basse continue (clavecin et violoncelle), deux violons en
+#                               tierces ou en canon, altos tenus ; 70-84 ; ionien, éolien (dominante majeure)
+#   hlp2 « Piano romantique » : piano seul, arpèges de nocturne (triolets) à la main gauche, chant rare dans l'aigu,
+#                               pédale, rubato léger (élans et ritenuto de fin de phrase) ; 60-72 ; ionien, éolien
+#   hlp3 « Quatuor à cordes » : choral à quatre voix menées au plus court, violoncelle qui chante dans le haut de sa
+#                               tessiture ou premier violon, pulsation d'alto, pizzicati ; 56-68 ; très doux
+#   hlp4 « Luth et flûte »    : luth en arpèges de 6/8, flûte à bec en sicilienne avec petits ornements, bourdon,
+#                               tambourin ; dorien, mixolydien, phrygien ; pastoral
+#   nsi1 « Synthwave »        : arpèges de synthé (carré, scie ou FM) en doubles croches, basse en octaves, nappe de
+#                               scies désaccordées, caisse claire à réverbération coupée (« gated ») ; 96-110 ; éolien
+#   nsi2 « Chiptune doux »    : ondes carrées (50 et 25 %), triangle à 16 paliers, bruit échantillonné, écho ;
+#                               mélodie pentatonique ; filtrée, sans agressivité ; 96-120 ; ionien, lydien, dorien
+#   nsi3 « Ambient tech »     : nappes qui respirent, bleeps en écho, petits glitchs granulaires, pouls cardiaque et
+#                               tic d'horloge ; 76-92 ; lydien, dorien
+#   nsi4 « Électro minimale » : grosse caisse sur chaque temps, charleston à contretemps, rim, shaker, accords « dub »
+#                               dont le filtre s'ouvre au fil de la phrase, basse à contretemps ; 112-122 ; dorien
+# Contraintes communes : mélodies au-dessus de 390 Hz (la voix parle entre 100 et 300 Hz), rien de strident (tout ce
+# qui est aigu est filtré sous 8 kHz), niveau ramené par piste comme pour les autres styles.
+# =====================================================================================================================
+def _pcs(acc):
+    return {(acc["r"] + iv) % 12 for iv in acc["iv"]}
+
+
+def _gamme_acc(mode, centre, acc, bas, haut):
+    """Gamme du mode corrigée par l'accord : une note de l'accord étrangère au mode (la sensible d'une dominante majeure
+    en mineur) remplace ses voisines à un demi-ton, pour que la mélodie reste consonante."""
+    rel = {(p - centre) % 12 for p in _pcs(acc)}
+    pcs = set(MODES[mode])
+    for a in rel - pcs:
+        pcs -= {v for v in ((a - 1) % 12, (a + 1) % 12) if v not in rel}
+        pcs.add(a)
+    return [p for p in range(bas, haut + 1) if (p - centre) % 12 in pcs]
+
+
+def _etage(acc, bas, haut):
+    """Notes de l'accord entre bas et haut, dans l'ordre."""
+    pcs = _pcs(acc)
+    return [p for p in range(bas, haut + 1) if p % 12 in pcs]
+
+
+def _degres(acc):
+    """Basse de l'accord (entre 36 et 50) et les notes de l'accord au-dessus d'elle : R, 3, 5, 8."""
+    r = acc["basse"] + (12 if acc["basse"] < 36 else 0)
+    r -= 12 if r > 50 else 0
+    dessus = sorted({r + (pc - r) % 12 for pc in _pcs(acc)} - {r})
+    dessus = (dessus + [d + 12 for d in dessus])[:2]
+    return {"R": r, "3": dessus[0], "5": dessus[1], "8": r + 12}
+
+
+def _approche(cible, mode, centre, rng):
+    """Note de passage diatonique qui mène à la basse de l'accord suivant (par en dessous, parfois par au-dessus)."""
+    pcs = MODES[mode]
+    bas = [cible + d for d in (-1, -2) if (cible + d - centre) % 12 in pcs]
+    haut = [cible + d for d in (1, 2) if (cible + d - centre) % 12 in pcs]
+    if bas and (rng.random() < 0.65 or not haut):
+        return bas[0]
+    return haut[0] if haut else cible - 1
+
+
+def _proche(p, ga):
+    return min(range(len(ga)), key=lambda i: abs(ga[i] - p))
+
+
+def _ligne(cx, acc, ga, rythme, rng, cle="mel", appuis=(0, 2)):
+    """Ligne mélodique sur un rythme [(début, durée)] (en temps) : note de l'accord sur les appuis et les notes
+    longues, degrés conjoints ailleurs, contour ramené vers le milieu de la tessiture. Renvoie [(début, durée, note)]."""
+    pc = _pcs(acc)
+    milieu = ga[len(ga) // 2]
+    p = cx.get(cle, milieu)
+    out = []
+    for deb, d in rythme:
+        if deb in appuis or d >= 2:
+            cands = [q for q in ga if q % 12 in pc] or ga
+            p = min(cands, key=lambda q: abs(q - p) + 0.25 * abs(q - milieu) + rng.uniform(0, 2.5))
+        else:
+            s = int(rng.choice([-2, -1, -1, 1, 1, 2]))
+            if abs(p - milieu) > 6:
+                s = -abs(s) if p > milieu else abs(s)
+            p = ga[int(np.clip(_proche(p, ga) + s, 0, len(ga) - 1))]
+        out.append((deb, d, p))
+    cx[cle] = p
+    return out
+
+
+def _blep(ph, dt):
+    y = np.zeros_like(ph)
+    m = ph < dt
+    x = ph[m] / dt[m]
+    y[m] = x + x - x * x - 1
+    m = ph > 1 - dt
+    x = (ph[m] - 1) / dt[m]
+    y[m] = x * x + x + x + 1
+    return y
+
+
+def _osc(forme, f, n, rng, duty=0.5, cents=0.0, vib=0.0, vib_f=5.5, retard=0.2):
+    """Oscillateur à bande limitée (PolyBLEP) : « scie », « carre » (rapport cyclique duty), « tri », « tri4 » (triangle
+    à 16 paliers des consoles 8 bits) ; vibrato qui s'installe après `retard`."""
+    t = np.arange(n) / SR
+    fr = np.full(n, f * 2 ** (cents / 1200))
+    if vib:
+        fr = fr * (1 + vib * np.sin(2 * np.pi * vib_f * t + rng.uniform(0, 6.28)) * np.clip((t - retard) / 0.3, 0, 1))
+    dt = fr / SR
+    ph = (rng.uniform() + np.cumsum(dt)) % 1.0
+    if forme == "scie":
+        return 2 * ph - 1 - _blep(ph, dt)
+    if forme == "carre":
+        ph2 = (ph - duty) % 1.0
+        return (2 * ph - 1 - _blep(ph, dt)) - (2 * ph2 - 1 - _blep(ph2, dt))
+    tri = 1 - 4 * np.abs(ph - 0.5)
+    return np.round(tri * 7.5) / 7.5 if forme == "tri4" else tri
+
+
+# ----------------------------------------------------------------------------------------------- instruments HLP
+def _clavecin(f, dur, amp, clair=1.0):
+    """Clavecin : corde pincée par un plectre (spectre riche qui s'éteint vite dans l'aigu), deux jeux de 8 pieds un peu
+    désaccordés, petit choc du sautereau, étouffoir au relâchement."""
+    tenue = min(dur, 2.4)
+    n = int((tenue + 0.25) * SR)
+    t = np.arange(n) / SR
+    s = np.zeros(n)
+    lim = 6000 * clair
+    for poids, cents in ((1.0, -1.2), (0.65, 1.6)):
+        fj = f * 2 ** (cents / 1200)
+        for k in range(1, 24):
+            fk = k * fj
+            if fk > lim:
+                break
+            a = abs(np.sin(k * np.pi * 0.12)) / k ** 0.8
+            dk = 0.8 + 0.28 * k * (f / 262) ** 0.5
+            s += poids * a * np.exp(-t * dk) * np.sin(2 * np.pi * fk * t + 1.7 * k)
+    clic = np.exp(-t * 900) * np.sin(2 * np.pi * min(3 * f, 2400) * t)
+    s = (s + 0.25 * clic) * (1 - np.exp(-t / 0.0008)) * np.where(t < tenue, 1.0, np.exp(-(t - tenue) / 0.045))
+    return _bords(amp * s / 1.65)
+
+
+def _archet_id(f, dur, amp, rng, coupure=2200, attaque=0.25, relache=0.35, vib=0.0045, vib_f=5.3, voix=1):
+    """Instrument à archet soliste (ou petit pupitre si voix > 1) : scie à bande limitée, vibrato qui s'installe,
+    résonances de caisse (bosses vers 330 Hz et 1 kHz) ; attaque et relâchement réglables (détaché baroque, legato)."""
+    n = int((dur + 3 * relache) * SR)
+    t = np.arange(n) / SR
+    retard = min(0.35, 0.4 * dur)
+    s = sum(_scie(f, n, c, rng, vib=vib, vib_f=vib_f + 0.25 * i, retard=retard)
+            for i, c in enumerate((0, 6, -5)[:voix])) / voix
+    y = (_filtre_id(s, "lowpass", coupure) + 0.35 * _filtre_id(s, "bandpass", [250, 430])
+         + 0.18 * _filtre_id(s, "bandpass", [850, 1250]))
+    y *= (1 - np.exp(-t / max(0.004, attaque / 3))) * np.where(t < dur, 1.0, np.exp(-(t - dur) / relache))
+    return _bords(amp * y)
+
+
+def _piano_concert(f, dur, amp, vel=0.6):
+    """Piano de concert : partiels légèrement inharmoniques, deux cordes qui battent doucement, double décroissance,
+    brillance qui suit la vélocité, petit bruit de marteau ; la pédale tient la note jusqu'à `dur`."""
+    tenue = min(dur, 4.2)
+    n = int((tenue + 1.0) * SR)
+    t = np.arange(n) / SR
+    s = np.zeros(n)
+    clair = 0.42 + 0.3 * vel
+    cordes = (-0.8, 0.8) if f > 120 else (0.0,)
+    for k in range(1, 13):
+        fk = k * f * np.sqrt(1 + 0.0004 * k * k)
+        if fk > 6000:
+            break
+        dk = (0.42 + 0.75 * (k - 1)) * (f / 262) ** 0.4
+        env = 0.6 * np.exp(-t * dk * 2.6) + 0.4 * np.exp(-t * dk * 0.45)
+        a = clair ** (k - 1) / k ** 0.6
+        for c in cordes:
+            s += a * env * np.sin(2 * np.pi * fk * 2 ** (c / 1200) * t + 0.4 * k) / len(cordes)
+    s *= (1 - np.exp(-t / 0.003)) * np.where(t < tenue, 1.0, np.exp(-(t - tenue) / 0.28))
+    s[:int(0.03 * SR)] += 0.05 * vel * np.sin(2 * np.pi * 95 * t[:int(0.03 * SR)]) * np.exp(-t[:int(0.03 * SR)] * 140)
+    return _bords(amp * s)
+
+
+def _luth(f, amp, clair=0.55, tenue=1.8):
+    """Luth (ou guitare à cordes de boyau) : corde pincée près du chevalet, chœur de deux cordes à l'unisson,
+    résonance de caisse grave, extinction assez rapide."""
+    n = int((tenue + 0.1) * SR)
+    t = np.arange(n) / SR
+    s = np.zeros(n)
+    for poids, cents in ((1.0, 0.0), (0.7, 3.5)):
+        for k in range(1, 16):
+            fk = k * f * 2 ** (cents / 1200)
+            if fk > 5500:
+                break
+            a = abs(np.sin(k * np.pi * 0.17)) / k * clair ** (0.5 * (k - 1))
+            dk = (1.4 + 0.9 * k) * (f / 220) ** 0.3
+            s += poids * a * np.exp(-t * dk) * np.sin(2 * np.pi * fk * t + 0.9 * k)
+    s += 0.3 * _filtre_id(s, "bandpass", [170, 330])
+    s *= (1 - np.exp(-t / 0.0015)) * np.clip((tenue + 0.1 - t) / 0.1, 0, 1)
+    return _bords(amp * s / 1.6)
+
+
+def _flute(f, dur, amp, rng, souffle=0.05):
+    """Flûte à bec en bois : son presque pur (octave et douzième discrètes), « chiff » d'attaque, souffle continu,
+    vibrato tardif et léger."""
+    n = int((dur + 0.25) * SR)
+    t = np.arange(n) / SR
+    v = 1 + 0.0045 * np.sin(2 * np.pi * 5.0 * t + rng.uniform(0, 6.28)) * np.clip((t - 0.25) / 0.4, 0, 1)
+    ph = 2 * np.pi * f * np.cumsum(v) / SR
+    s = np.sin(ph) + 0.22 * np.sin(2 * ph + 0.5) + (0.07 * np.sin(3 * ph + 1.0) if 3 * f < 7000 else 0)
+    bruit = rng.standard_normal(n)
+    s += 0.25 * _filtre_id(bruit, "bandpass", [1200, 4000]) * np.exp(-t * 40)
+    s += souffle * 6 * _filtre_id(bruit, "bandpass", [max(300.0, 0.8 * f), min(2.5 * f, 5000.0)])
+    s *= (1 - np.exp(-t / 0.025)) * np.where(t < dur, 1.0, np.exp(-(t - dur) / 0.08))
+    return _bords(amp * s)
+
+
+# ------------------------------------------------------------------------------------------- hlp1 : Baroque
+BANQUES["hlp1"] = {
+    "lumiere": dict(bpm=80, tons=[
+        ("ionien", 43, [["0:M", "7:M/11", "9:m", "4:m/7"], ["5:M", "0:M/4", "2:m7", "7:7"],
+                        ["0:M", "5:M", "11:m7b5", "4:m"], ["9:m", "2:m7", "7:7", "0:M"]]),
+        ("ionien", 38, [["0:M", "5:M/9", "7:7", "0:M"], ["9:m", "4:m", "5:M", "7:7"], ["0:M", "9:m", "2:m7", "7:7"]])]),
+    "mystere": dict(bpm=72, tons=[
+        ("eolien", 38, [["0:m", "7:M/11", "0:m", "5:m/8"], ["0:m", "10:M", "3:M", "8:M"], ["2:m7b5", "7:7", "0:m", "0:m"],
+                        ["0:m", "5:m", "7:7", "0:m"]]),
+        ("eolien", 45, [["0:m", "7:m/10", "5:m/8", "7:7"], ["0:m", "3:M", "10:M", "7:7"]])]),
+    "tension": dict(bpm=84, tons=[
+        ("eolien", 40, [["0:m", "7:m/10", "5:m/8", "7:7"], ["0:m", "5:m", "10:M", "3:M"], ["8:M", "2:m7b5", "7:7", "0:m"]]),
+        ("eolien", 45, [["0:m", "3:M", "8:M", "7:7"], ["5:m", "10:M", "3:M", "7:7"]])]),
+    "calme": dict(bpm=70, tons=[
+        ("ionien", 41, [["0:M", "5:M/9", "7:7/11", "0:M"], ["0:M", "9:m", "5:M", "7:sus4"], ["2:m7", "7:7", "0:M", "5:M"]]),
+        ("ionien", 36, [["0:M", "4:m", "5:M", "7:7"], ["9:m", "5:M", "7:7", "0:M"]])]),
+}
+FIG_CLAVECIN = [(2, [0, 2, 1, 2, 0, 2, 1, 2]), (2, [0, 1, 2, 3, 2, 1, 2, 1]), (2, [0, 2, 3, 2, 1, 2, 3, 2]),
+                (4, [0, 1, 2, 3, 4, 2, 3, 4] * 2), (4, [0, 2, 1, 3, 2, 4, 3, 2, 0, 2, 1, 3, 2, 4, 3, 2])]
+BASSE_CONTINUO = [[(0, "R", 1), (1, "5", 1), (2, "8", 1), (3, "a", 1)],
+                  [(0, "R", .5), (.5, "8", .5), (1, "R", .5), (1.5, "8", .5), (2, "R", .5), (2.5, "8", .5), (3, "5", .5), (3.5, "a", .5)],
+                  [(0, "R", 2), (2, "5", 1), (3, "a", 1)],
+                  [(0, "R", 1.5), (1.5, "3", .5), (2, "5", 1), (3, "8", 1)],
+                  [(0, "R", 1), (1, "3", 1), (2, "5", 1), (3, "a", 1)]]
+RYTHME_BAROQUE = [[(0, 1), (1, .5), (1.5, .5), (2, 1), (3, 1)], [(0, 2), (2, 1), (3, 1)], [(0, 1.5), (1.5, .5), (2, 2)],
+                  [(0, .5), (.5, .5), (1, .5), (1.5, .5), (2, 2)], [(0, 3), (3, 1)], [(0, 1), (1, 1), (2, .5), (2.5, .5), (3, 1)]]
+
+
+def _couches_hlp1(typ, rng, hu):
+    if typ == "intro":
+        return [{"continuo", "clavecin"}, {"clavecin", "tenues"}][rng.integers(2)]
+    if typ == "respiration":
+        return [{"clavecin"}, {"continuo", "tenues"}, {"violons", "continuo"}][rng.integers(3)]
+    if typ == "pont":
+        return [{"continuo", "violons"}, {"clavecin", "tenues", "continuo"}][rng.integers(2)]
+    c = {"continuo", "clavecin"}
+    if rng.random() < (0.85 if typ == "B" else 0.45):
+        c.add("violons")
+    if rng.random() < 0.3:
+        c.add("tenues")
+    return c
+
+
+def _phrase_hlp1(cx, typ, rng):
+    cx["hr"] = 1 if rng.random() < 0.55 else 2
+    cx["fig"] = _pat(cx, "v_fig", FIG_CLAVECIN, rng)
+    if typ == "respiration" or cx["hu"] == "calme" and rng.random() < 0.5:
+        cx["fig"] = FIG_CLAVECIN[int(rng.integers(3))]      # croches seulement dans les passages calmes
+    cx["bc"] = _pat(cx, "v_bc", BASSE_CONTINUO, rng)
+    cx["reg"] = 62 + int(rng.integers(0, 4))
+
+
+def _mesure_hlp1(bus, cx, t, j, L, typ, acc, couches, rng):
+    beat = cx["beat"]
+    mes = 4 * beat
+    fin = j == L - 1
+    fin_acc = j % cx["hr"] == cx["hr"] - 1
+    jeu = lambda: rng.normal(0, 0.004)                  # noqa: E731
+    lead = cx["lead"]
+    if "continuo" in couches:
+        dg = _degres(acc)
+        pat = [(0, "R", 2), (2, "R", 2)] if fin else cx["bc"]
+        for deb, deg, d in pat:
+            if deg == "a":
+                p = _approche(_degres(cx["suivant"])["R"], cx["mode"], cx["centre"], rng) if fin_acc else dg["5"]
+            else:
+                p = dg[deg]
+            _place(bus["sec"], _clavecin(hz(p), d * beat * 0.9, 0.05 * _vel(rng, 0.05), 0.8), t + deb * beat + jeu())
+            _place(bus["sec"], _archet_id(hz(p), d * beat * 0.85, 0.040 * _vel(rng, 0.05), rng, coupure=1300,
+                                          attaque=0.05, relache=0.1, vib=0.002), t + deb * beat + jeu())
+    if "clavecin" in couches:
+        sub, fig = cx["fig"]
+        tons = [p for p in _etage(acc, 60, 84) if p >= cx["reg"]][:5]
+        sec = lead == "clavecin" and "violons" in couches
+        for c, i in enumerate(fig):
+            a = (0.030 if c % sub == 0 else 0.022) * (0.8 if sub == 4 else 1) * (0.6 if sec else 1) * _vel(rng, 0.06)
+            _place(bus["sec"], _clavecin(hz(tons[i % len(tons)]), beat / sub * 1.5, a), t + c * beat / sub + jeu())
+    if "violons" in couches:
+        ry = [(0, 2), (2, 2)] if fin else _pat(cx, "v_ry", RYTHME_BAROQUE, rng)
+        ga = _gamme_acc(cx["mode"], cx["centre"], acc, 72, 86)
+        ligne = _ligne(cx, acc, ga, ry, rng)
+        if lead == "clavecin":
+            for deb, d, p in ligne:
+                _place(bus["sec"], _clavecin(hz(p), d * beat, 0.042 * _vel(rng, 0.05), 0.9), t + deb * beat + jeu())
+        else:
+            gb = _gamme_acc(cx["mode"], cx["centre"], acc, 64, 86)
+            if lead == "canon" and cx.get("prec_ligne"):
+                second = []
+                for deb, d, p in cx["prec_ligne"]:   # le second violon reprend la mesure précédente, une tierce plus bas
+                    q = gb[max(0, _proche(p, gb) - 2)]
+                    if deb in (0, 2):
+                        q = min((x for x in gb if x % 12 in _pcs(acc)), key=lambda x: abs(x - q))
+                    second.append((deb, d, q))
+            else:
+                second = [(deb, d, gb[max(0, _proche(p, gb) - 2)]) for deb, d, p in ligne]
+            for (deb, d, p), amp in [(x, 0.030) for x in ligne] + [(x, 0.022) for x in second]:
+                _place(bus["sec"], _archet_id(hz(p), d * beat * 0.92, amp * _vel(rng, 0.05), rng, coupure=2600,
+                                              attaque=0.05, relache=0.15, vib=0.004, vib_f=5.6), t + deb * beat + jeu())
+        cx["prec_ligne"] = ligne
+    if "tenues" in couches and j % cx["hr"] == 0:
+        for p in _voix(acc, 62)[:3]:
+            _place(bus["sec"], _archet_id(hz(p), cx["hr"] * mes, 0.010 * _vel(rng), rng, coupure=1400, attaque=0.5,
+                                          relache=0.5, vib=0.003, voix=2), t)
+
+
+def _mix_hlp1(bus, hu, graine):
+    return _filtre_id(_salle(bus["sec"], 1.7, 0.26, 4200, graine), "lowpass", 6500)
+
+
+def _transition_hlp1(sorte, cx, rng, delai):
+    """Cadence de clavecin : trille sur la sus-tonique (roulement) ou arpège qui monte (montée), puis accord de tonique
+    arpégé et basse de violoncelle à l'entrée de la nouvelle partie."""
+    s = _sig_transition(delai)
+    c, beat = cx["centre"], cx["beat"]
+    ton = [p for p in range(c + 24, c + 50) if (p - c) % 12 in MODES[cx["mode"]]]
+    if sorte == "roulement":
+        nb = int(delai / 0.075)
+        for k in range(nb):
+            _place(s, _clavecin(hz(ton[8] if k % 2 else ton[7]), 0.1, 0.018 + 0.01 * k / max(1, nb)), delai - (nb - k) * 0.075)
+    elif sorte == "montee":
+        arp = [p for p in ton if (p - c) % 12 in (0, MODES[cx["mode"]][2], 7)][:7]
+        for k, p in enumerate(arp):
+            _place(s, _clavecin(hz(p), 0.3, 0.022), delai - (len(arp) - k) * min(0.11, delai / len(arp)))
+    accord = [c + 24, c + 24 + MODES[cx["mode"]][2], c + 31, c + 36]
+    for k, p in enumerate(accord):
+        _place(s, _clavecin(hz(p), 1.6, 0.03), delai + 0.035 * k)
+    b = c + (12 if c < 36 else 0)
+    _place(s, _archet_id(hz(b), 2 * beat, 0.04, rng, coupure=1300, attaque=0.06, relache=0.3), delai)
+    return _filtre_id(_salle(s, 1.7, 0.26, 4200, 5), "lowpass", 6500)
+
+
+# ----------------------------------------------------------------------------------- hlp2 : piano romantique
+BANQUES["hlp2"] = {
+    "lumiere": dict(bpm=68, tons=[
+        ("ionien", 41, [["0:add9", "7:M/11", "9:m7", "5:maj7"], ["5:maj9", "4:m7", "2:m9", "7:7sus4"],
+                        ["0:maj7", "5:m/0", "0:add9", "7:sus4"], ["9:m7", "5:maj7", "2:m7", "7:7"]]),
+        ("ionien", 44, [["0:maj7", "2:m7", "4:m7", "5:maj9"], ["9:m9", "5:maj7", "7:sus4", "7:7"]])]),
+    "mystere": dict(bpm=62, tons=[
+        ("eolien", 40, [["0:madd9", "8:maj7", "5:m7", "7:7"], ["0:m", "3:M/7", "8:maj7", "7:7sus4"],
+                        ["8:maj7", "10:sus4", "0:m9", "0:m9"]]),
+        ("dorien", 38, [["0:m9", "5:add9", "0:m9", "10:maj7"], ["3:maj7", "10:add9", "5:sus2", "0:m9"]])]),
+    "tension": dict(bpm=72, tons=[
+        ("eolien", 43, [["0:m", "8:M", "5:m7", "7:7"], ["0:m9", "3:maj7", "8:maj7", "7:7sus4"], ["5:m", "0:m/7", "2:m7b5", "7:7"]]),
+        ("eolien", 38, [["0:m", "10:M", "8:maj7", "7:7"], ["5:m7", "8:maj7", "2:m7b5", "7:7"]])]),
+    "calme": dict(bpm=60, tons=[
+        ("ionien", 36, [["0:maj9", "9:m9", "5:maj7", "7:sus2"], ["5:maj7", "0:add9/4", "2:m7", "7:7sus4"]]),
+        ("lydien", 41, [["0:maj7", "2:add9/0", "0:maj9", "7:sus2"], ["9:m7", "4:m7", "2:add9", "0:maj7"]])]),
+}
+ARP_NOCTURNE = [(12, [0, 2, 3, 4, 3, 2, 0, 2, 3, 4, 3, 2]), (12, [0, 2, 4, 5, 4, 2, 1, 3, 4, 5, 4, 3]),
+                (12, [0, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1]), (8, [0, 2, 3, 4, 5, 4, 3, 2]), (8, [0, 3, 2, 4, 1, 3, 2, 4]),
+                (6, [0, 2, 4, 5, 4, 2])]
+RYTHME_CHANT = [[(0, 2), (2, 1.5), (3.5, .5)], [(0, 3), (3, 1)], [(0, 1), (1, 1), (2, 2)], [(1, 1), (2, 2)], [(0, 4)],
+                [(0, 1.5), (1.5, .5), (2, 2)], [(0, 1), (1, .5), (1.5, .5), (2, 1), (3, 1)]]
+
+
+def _couches_hlp2(typ, rng, hu):
+    if typ == "intro":
+        return [{"arpeges"}, {"arpeges", "basse"}][rng.integers(2)]
+    if typ == "respiration":
+        return [{"arpeges"}, {"accords"}, {"accords", "basse"}][rng.integers(3)]
+    if typ == "pont":
+        return [{"arpeges", "chant"}, {"accords", "chant", "basse"}][rng.integers(2)]
+    c = {"arpeges", "basse"}
+    if rng.random() < (0.85 if typ == "B" else 0.5):
+        c.add("chant")
+    elif rng.random() < 0.3:
+        c.add("accords")
+    return c
+
+
+def _phrase_hlp2(cx, typ, rng):
+    cx["hr"] = 2 if cx["hu"] in ("mystere", "calme") or rng.random() < 0.5 else 1
+    cx["arp"] = _pat(cx, "v_arp", ARP_NOCTURNE, rng)
+    if typ == "respiration" or cx["hu"] == "calme" and rng.random() < 0.4:
+        cx["arp"] = ARP_NOCTURNE[5]
+
+
+def _rubato(cx, x, fin):
+    """Décalage (s) d'une note placée à la fraction x de la mesure : élan ou retenue au milieu, ritenuto en fin de phrase."""
+    mes = 4 * cx["beat"]
+    return cx["rub"] * 0.045 * mes * np.sin(np.pi * x) + (0.09 * mes * x * x if fin else 0.0)
+
+
+def _mesure_hlp2(bus, cx, t, j, L, typ, acc, couches, rng):
+    beat = cx["beat"]
+    mes = 4 * beat
+    fin = j == L - 1
+    cx["rub"] = float(np.clip(rng.normal(0, 0.7), -1, 1))
+    reste = (cx["hr"] - j % cx["hr"]) * mes              # la pédale tient jusqu'au changement d'accord
+    dg = _degres(acc)
+    if "basse" in couches and j % cx["hr"] == 0:
+        b = dg["R"]
+        _place(bus["sec"], _piano_concert(hz(b), reste, 0.050 * _vel(rng, 0.05), 0.5), t)
+        if b - 12 >= 33:
+            _place(bus["sec"], _piano_concert(hz(b - 12), reste, 0.030, 0.4), t + 0.004)
+    if "arpeges" in couches:
+        nb, pat = cx["arp"]
+        etage = [dg["R"]] + [p for p in _etage(acc, dg["R"] + 5, 72)][:6]
+        while len(etage) < 7:
+            etage.append(etage[len(etage) - 4] + 12)
+        for c, i in enumerate(pat):
+            pos = c * 4 / nb
+            if c == 0 and "basse" in couches and j % cx["hr"] == 0:
+                continue
+            a = (0.034 if i == 0 else 0.026 - 0.002 * min(i, 5)) * _vel(rng, 0.07)
+            _place(bus["sec"], _piano_concert(hz(etage[i]), max(0.6, reste - pos * beat), a, 0.45),
+                   t + pos * beat + _rubato(cx, pos / 4, fin))
+    if "accords" in couches and j % cx["hr"] == 0:
+        for k, p in enumerate(_voix(acc, 65)[:4]):
+            _place(bus["sec"], _piano_concert(hz(p), reste, 0.020 * _vel(rng), 0.4), t + 0.03 * k)
+    if "chant" in couches:
+        ry = [(0, 4)] if fin else _pat(cx, "v_chant", RYTHME_CHANT, rng)
+        ga = _gamme_acc(cx["mode"], cx["centre"], acc, 67, 86)
+        lead = cx["lead"]
+        for deb, d, p in _ligne(cx, acc, ga, ry, rng):
+            dt = t + deb * beat + _rubato(cx, deb / 4, fin) + 0.022
+            _place(bus["sec"], _piano_concert(hz(p), d * beat + 0.15, 0.058 * _vel(rng, 0.06), 0.75), dt)
+            if lead == "tierces":
+                q = ga[max(0, _proche(p, ga) - 2)]
+                _place(bus["sec"], _piano_concert(hz(q), d * beat + 0.15, 0.030, 0.6), dt + 0.006)
+            elif lead == "accords" and d >= 1:
+                for k, q in enumerate([x for x in _etage(acc, max(62, p - 9), p - 1)][-2:]):
+                    _place(bus["sec"], _piano_concert(hz(q), d * beat + 0.1, 0.022, 0.5), dt + 0.008 * (k + 1))
+
+
+def _mix_hlp2(bus, hu, graine):
+    return _salle(bus["sec"], 2.6, 0.30, 5000, graine)
+
+
+def _transition_hlp2(sorte, cx, rng, delai):
+    """Grand arpège qui monte vers la nouvelle tonalité (montée) ou simple octave grave tenue (coupure)."""
+    s = _sig_transition(delai, 3.5)
+    c = cx["centre"] + (12 if cx["centre"] < 36 else 0)
+    tierce = MODES[cx["mode"]][2]
+    if sorte == "montee":
+        arp = [c + o + i for o in (0, 12, 24, 36) for i in (0, 7, 12 + tierce - 12) if c + o + i <= c + 40]
+        arp = sorted(set(arp))[:9]
+        pas = min(0.14, delai / len(arp))
+        for k, p in enumerate(arp):
+            _place(s, _piano_concert(hz(p), 3.0, 0.03, 0.5), delai - (len(arp) - k) * pas)
+    _place(s, _piano_concert(hz(c), 3.0, 0.05, 0.5), delai)
+    _place(s, _piano_concert(hz(c + 12), 3.0, 0.03, 0.5), delai + 0.005)
+    return _salle(s, 2.6, 0.30, 5000, 5)
+
+
+# ----------------------------------------------------------------------------------- hlp3 : quatuor à cordes
+BANQUES["hlp3"] = {
+    "lumiere": dict(bpm=64, tons=[
+        ("ionien", 43, [["0:M", "7:M/11", "9:m", "5:M"], ["5:M", "0:M/4", "2:m7", "7:7"], ["0:M", "9:m7", "2:m7", "7:sus4"]]),
+        ("ionien", 38, [["0:M", "4:m/7", "5:M", "7:7"], ["9:m", "5:maj7", "7:sus4", "0:M"]])]),
+    "mystere": dict(bpm=58, tons=[
+        ("eolien", 45, [["0:m", "8:M", "5:m/8", "7:7"], ["0:m", "3:M", "10:M", "0:m"], ["5:m7", "10:7", "3:maj7", "7:7"]]),
+        ("dorien", 40, [["0:m", "5:M/0", "0:m", "10:M"], ["3:maj7", "5:M", "0:m7", "0:m"]])]),
+    "tension": dict(bpm=68, tons=[
+        ("eolien", 40, [["0:m", "7:m/10", "5:m/8", "7:7"], ["0:m", "5:m", "2:m7b5", "7:7"], ["8:M", "3:M", "7:7", "0:m"]]),
+        ("eolien", 43, [["0:m", "8:M", "10:M", "7:7"], ["5:m", "0:m/7", "2:m7b5", "7:7"]])]),
+    "calme": dict(bpm=56, tons=[
+        ("ionien", 41, [["0:M", "5:M/9", "0:M", "7:sus4"], ["9:m", "5:M", "0:M/4", "7:7"]]),
+        ("lydien", 36, [["0:M", "2:M/0", "0:maj7", "7:sus2"], ["9:m7", "2:M", "4:m", "0:M"]])]),
+}
+RYTHME_CORDES = [[(0, 4)], [(0, 2), (2, 2)], [(0, 3), (3, 1)], [(0, 2), (2, 1), (3, 1)], [(0, 1.5), (1.5, .5), (2, 2)]]
+
+
+def _conduite(prec, acc, bornes):
+    """Voix menées au plus court : chaque voix va vers la note de l'accord la plus proche dans sa tessiture,
+    en complétant l'accord avant de doubler une note."""
+    pcs = _pcs(acc)
+    out = []
+    for k, (bas, haut) in enumerate(bornes):
+        cands = [q for q in range(bas, haut + 1) if q % 12 in pcs]
+        p0 = prec[k] if prec and k < len(prec) else (bas + haut) // 2
+        libres = [q for q in cands if q % 12 not in {o % 12 for o in out}] or cands
+        out.append(min(libres, key=lambda q: abs(q - p0)))
+    return out
+
+
+def _couches_hlp3(typ, rng, hu):
+    if typ == "intro":
+        return [{"choral"}, {"choral", "pizz"}][rng.integers(2)]
+    if typ == "respiration":
+        return [{"choral"}, {"choral", "pizz"}, {"chant", "choral"}][rng.integers(3)]
+    if typ == "pont":
+        return [{"pulsation", "chant", "choral"}, {"choral", "pizz", "chant"}][rng.integers(2)]
+    c = {"choral"}
+    if rng.random() < (0.9 if typ == "B" else 0.6):
+        c.add("chant")
+    if rng.random() < (0.5 if typ == "B" else 0.25):
+        c.add("pulsation")
+    if rng.random() < 0.2:
+        c.add("pizz")
+    return c
+
+
+def _phrase_hlp3(cx, typ, rng):
+    cx["hr"] = 2 if rng.random() < 0.7 else 1
+    cx["ry"] = _pat(cx, "v_ry", RYTHME_CORDES, rng)
+
+
+def _chanteur(cx, j):
+    lead = cx["lead"]
+    return lead if lead != "duo" else ("violon" if (j // 4) % 2 == 0 else "violoncelle")
+
+
+def _mesure_hlp3(bus, cx, t, j, L, typ, acc, couches, rng):
+    beat = cx["beat"]
+    mes = 4 * beat
+    fin = j == L - 1
+    chante = "chant" in couches
+    qui = _chanteur(cx, j)
+    hu = cx["hu"]
+    coupure = {"lumiere": 1900, "mystere": 1400, "tension": 1700, "calme": 1500}[hu]
+    if "choral" in couches and j % cx["hr"] == 0:
+        bornes = [(55, 66), (60, 72), (65, 77)]          # alto, second violon, premier violon
+        if chante and qui == "violon":
+            bornes = bornes[:2]
+        voix = _conduite(cx.get("ch"), acc, bornes)
+        cx["ch"] = voix
+        d = cx["hr"] * mes + 0.15
+        for p in voix:
+            _place(bus["sec"], _archet_id(hz(p), d, 0.017 * _vel(rng, 0.05), rng, coupure=coupure, attaque=0.7,
+                                          relache=0.6, vib=0.0035, vib_f=5.0), t)
+        if not (chante and qui == "violoncelle") and "pizz" not in couches:
+            b = _degres(acc)["R"]
+            _place(bus["sec"], _archet_id(hz(b), d, 0.032 * _vel(rng, 0.05), rng, coupure=1200, attaque=0.6,
+                                          relache=0.6, vib=0.003, vib_f=4.8), t)
+    if "pizz" in couches:
+        dg = _degres(acc)
+        for b, deg in ((0, "R"), (2, "5" if j % 2 else "8")):
+            _place(bus["sec"], _pizz_id(hz(dg[deg] if deg != "8" else dg["R"]), 0.085 * _vel(rng)), t + b * beat)
+    if "pulsation" in couches:
+        tons = _etage(acc, 60, 70)[:2] or _etage(acc, 55, 72)[:2]
+        for c in range(8):
+            p = tons[c % len(tons)]
+            _place(bus["sec"], _archet_id(hz(p), beat / 2 * 0.75, (0.010 if c % 2 == 0 else 0.007) * _vel(rng), rng,
+                                          coupure=1500, attaque=0.04, relache=0.08, vib=0.0), t + c * beat / 2)
+    if chante:
+        ry = [(0, 4)] if fin else cx["ry"]
+        if qui == "violoncelle":
+            ga, amp, cp, vf = _gamme_acc(cx["mode"], cx["centre"], acc, 62, 74), 0.040, 1800, 5.0
+        else:
+            ga, amp, cp, vf = _gamme_acc(cx["mode"], cx["centre"], acc, 70, 84), 0.028, 2500, 5.6
+        for deb, d, p in _ligne(cx, acc, ga, ry, rng, cle="mel_" + qui):
+            _place(bus["sec"], _archet_id(hz(p), d * beat * 0.98, amp * _vel(rng, 0.05), rng, coupure=cp, attaque=0.3,
+                                          relache=0.35, vib=0.006, vib_f=vf), t + deb * beat)
+
+
+def _mix_hlp3(bus, hu, graine):
+    return _filtre_id(_salle(bus["sec"], 2.4, 0.32, 3800, graine), "lowpass", 5000)
+
+
+def _transition_hlp3(sorte, cx, rng, delai):
+    """Accord pizzicato des quatre instruments (coupure) ou violoncelle qui enfle sur la dominante (montée)."""
+    s = _sig_transition(delai, 3.0)
+    c = cx["centre"] + (12 if cx["centre"] < 36 else 0)
+    if sorte == "montee":
+        _place(s, _archet_id(hz(c + 7), delai, 0.04, rng, coupure=1500, attaque=delai * 0.9, relache=0.25, vib=0.005), 0)
+    tierce = MODES[cx["mode"]][2]
+    for k, p in enumerate((c, c + 12 + 7, c + 24 + tierce, c + 31)):
+        _place(s, _pizz_id(hz(p), 0.07 if k == 0 else 0.045), delai + 0.02 * k)
+    return _filtre_id(_salle(s, 2.4, 0.32, 3800, 5), "lowpass", 5000)
+
+
+# ------------------------------------------------------------------------------- hlp4 : luth et flûte (6/8)
+BANQUES["hlp4"] = {   # tempo en croches (6/8 : deux temps pointés par mesure)
+    "lumiere": dict(bpm=180, tons=[
+        ("mixolydien", 43, [["0:M", "10:M", "0:M", "5:M/0"], ["0:M", "7:m", "10:M", "0:M"], ["5:M", "10:M", "0:sus4", "0:M"]]),
+        ("dorien", 38, [["0:m", "5:M", "0:m", "10:M"], ["0:m", "3:M", "5:M", "0:m"], ["10:M", "5:M", "0:sus2", "0:m"]])]),
+    "mystere": dict(bpm=162, tons=[
+        ("dorien", 40, [["0:m", "5:M/0", "0:m", "10:M"], ["0:m7", "3:M", "10:M", "0:m"]]),
+        ("eolien", 45, [["0:m", "10:M", "8:M", "10:M"], ["0:m", "5:m", "3:M", "10:M"]])]),
+    "tension": dict(bpm=198, tons=[
+        ("phrygien", 40, [["0:m", "1:M", "0:m", "10:m"], ["0:m", "3:M", "1:M", "0:m"]]),
+        ("eolien", 38, [["0:m", "10:M", "8:M", "7:m"], ["0:m", "5:m", "10:M", "0:m"]])]),
+    "calme": dict(bpm=156, tons=[
+        ("ionien", 41, [["0:M", "5:M", "0:M", "7:M"], ["9:m", "5:M", "7:sus4", "0:M"]]),
+        ("lydien", 36, [["0:M", "2:M", "0:M", "7:m"], ["0:sus2", "2:M", "0:M", "0:M"]])]),
+}
+LUTH_PATS = [[0, 2, 3, 1, 3, 2], [0, 1, 2, 3, 2, 1], [0, 3, 2, 3, 1, 3], [0, 2, 1, 3, 2, 1], [0, None, 2, 0, 3, None]]
+RYTHME_FLUTE = [[(0, 3), (3, 1.5), (4.5, .5), (5, 1)], [(0, 2), (2, 1), (3, 3)], [(0, 1), (1, 1), (2, 1), (3, 3)],
+                [(0, 6)], [(0, 1.5), (1.5, .5), (2, 1), (3, 2), (5, 1)], [(3, 3)]]
+
+
+def _couches_hlp4(typ, rng, hu):
+    if typ == "intro":
+        return [{"luth"}, {"luth", "bourdon"}][rng.integers(2)]
+    if typ == "respiration":
+        return [{"luth"}, {"flute", "bourdon"}, {"luth", "bourdon"}][rng.integers(3)]
+    if typ == "pont":
+        return [{"luth", "tambourin"}, {"flute", "luth"}][rng.integers(2)]
+    c = {"luth"}
+    if rng.random() < (0.85 if typ == "B" else 0.5):
+        c.add("flute")
+    if rng.random() < 0.3:
+        c.add("bourdon")
+    if rng.random() < ({"tension": 0.7, "lumiere": 0.4}.get(hu, 0.15) if typ == "B" else 0.15):
+        c.add("tambourin")
+    return c
+
+
+def _phrase_hlp4(cx, typ, rng):
+    cx["hr"] = 1 if rng.random() < 0.6 else 2
+    cx["luth"] = _pat(cx, "v_luth", LUTH_PATS, rng)
+
+
+def _mesure_hlp4(bus, cx, t, j, L, typ, acc, couches, rng):
+    beat = cx["beat"]              # une croche
+    fin = j == L - 1
+    jeu = lambda: rng.normal(0, 0.006)                  # noqa: E731
+    lead = cx["lead"]
+    melo = "flute" in couches
+    dg = _degres(acc)
+    if "luth" in couches:
+        tons = [dg["R"]] + _etage(acc, max(59, dg["R"] + 7), 74)[:3]
+        pat = cx["luth"]
+        if melo and lead == "luth":
+            pat = [0, None, 2, 0, 3, None]
+        for c, i in enumerate(pat):
+            if i is None:
+                continue
+            p = tons[min(i, len(tons) - 1)]
+            if i == 0 and c == 3:
+                p = dg["5"]
+            a = (0.060 if i == 0 else 0.034) * _vel(rng, 0.08)
+            _place(bus["sec"], _luth(hz(p), a, 0.55, 1.8 if i == 0 else 1.2), t + c * beat + jeu())
+    if melo:
+        ry = [(0, 6)] if fin else _pat(cx, "v_flute", RYTHME_FLUTE, rng)
+        if lead == "luth":
+            ga, inst = _gamme_acc(cx["mode"], cx["centre"], acc, 69, 81), "luth"
+        elif lead == "flute_douce":
+            ga, inst = _gamme_acc(cx["mode"], cx["centre"], acc, 67, 79), "douce"
+        else:
+            ga, inst = _gamme_acc(cx["mode"], cx["centre"], acc, 72, 86), "flute"
+        for deb, d, p in _ligne(cx, acc, ga, ry, rng, appuis=(0, 3)):
+            t0 = t + deb * beat
+            if inst == "luth":
+                _place(bus["sec"], _luth(hz(p), 0.050 * _vel(rng, 0.05), 0.7, 1.4), t0 + jeu())
+                continue
+            a, souffle = (0.030, 0.05) if inst == "flute" else (0.034, 0.08)
+            if d >= 2 and rng.random() < 0.3:          # petit ornement : appoggiature brève par la note du dessus
+                q = ga[min(len(ga) - 1, _proche(p, ga) + 1)]
+                _place(bus["sec"], _flute(hz(q), 0.07, a * 0.8, rng, souffle), t0)
+                t0 += 0.07
+            _place(bus["sec"], _flute(hz(p), d * beat * 0.95, a * _vel(rng, 0.05), rng, souffle), t0)
+    if "bourdon" in couches and j % 2 == 0:
+        c0 = cx["centre"] + (12 if cx["centre"] < 40 else 0)
+        for p, a in ((c0, 0.014), (c0 + 7, 0.010)):
+            _place(bus["sec"], _archet_id(hz(p), 12 * beat, a, rng, coupure=800, attaque=1.0, relache=0.8, vib=0.0, voix=2), t)
+    if "tambourin" in couches:
+        for c, a in ((0, 0.09), (3, 0.06), (5, 0.03 if rng.random() < 0.6 else 0.0)):
+            if a:
+                _place(bus["sec"], _tom(hz(cx["centre"] + (12 if cx["centre"] < 41 else 0)), a * _vel(rng)), t + c * beat)
+        n = int(0.06 * SR)
+        tape = _filtre_id(rng.standard_normal(n), "bandpass", [700, 2400]) * np.exp(-np.arange(n) / SR * 70)
+        _place(bus["sec"], _bords(0.012 * tape), t + 4 * beat)
+
+
+def _mix_hlp4(bus, hu, graine):
+    return _filtre_id(_salle(bus["sec"], 1.8, 0.26, 4800, graine), "lowpass", 6500)
+
+
+def _transition_hlp4(sorte, cx, rng, delai):
+    """Roulement de tambourin (roulement) ou accord de luth égrené vers le haut (montée), puis basse et quinte."""
+    s = _sig_transition(delai)
+    c = cx["centre"] + (12 if cx["centre"] < 40 else 0)
+    if sorte == "roulement":
+        nb = int(delai / 0.09)
+        for k in range(nb):
+            _place(s, _tom(hz(c), 0.015 + 0.04 * k / max(1, nb)), delai - (nb - k) * 0.09)
+    elif sorte == "montee":
+        tierce = MODES[cx["mode"]][2]
+        for k, p in enumerate((c, c + 7, c + 12, c + 12 + tierce, c + 19, c + 24)):
+            _place(s, _luth(hz(p), 0.04, 0.6, 1.6), delai - 0.4 + 0.06 * k)
+    _place(s, _luth(hz(c), 0.06, 0.55, 1.8), delai)
+    _place(s, _luth(hz(c + 19), 0.03, 0.55, 1.4), delai + 0.02)
+    return _filtre_id(_salle(s, 1.8, 0.26, 4800, 5), "lowpass", 6500)
+
+
+# ----------------------------------------------------------------------------------------------- instruments NSI
+def _note_synth(forme, f, dur, amp, rng, clair=2000, duty=0.5, decl=3.0, relache=0.06, fond=380):
+    """Note de synthé soustractif : oscillateur filtré dont la brillance retombe (enveloppe de filtre)."""
+    n = int((dur + 4 * relache + 0.05) * SR)
+    t = np.arange(n) / SR
+    s = _osc(forme, f, n, rng, duty=duty)
+    a, b = _filtre_id(s, "lowpass", fond), _filtre_id(s, "lowpass", clair)
+    y = a + (b - a) * np.exp(-t * 12)
+    y *= (1 - np.exp(-t / 0.002)) * np.exp(-t * decl) * np.where(t < dur, 1.0, np.exp(-(t - dur) / relache))
+    return _bords(amp * y)
+
+
+def _nappe_scies(freqs, dur, amp, rng, coupure=1400, attaque=0.5):
+    """Nappe des années 80 : trois scies désaccordées par note (dérive lente), filtrées, attaque et chute douces."""
+    n = int((dur + 1.0) * SR)
+    t = np.arange(n) / SR
+    s = np.zeros(n)
+    for f in freqs:
+        for c in (-11, 0, 9):
+            s += _scie(f, n, c, rng, vib=0.0012, vib_f=0.35 + 0.1 * rng.random(), retard=0.0)
+    s = _filtre_id(s / (3 * len(freqs)), "lowpass", coupure)
+    s *= (1 - np.exp(-t / (attaque / 3))) * np.where(t < dur, 1.0, np.exp(-(t - dur) / 0.4))
+    return _bords(amp * s)
+
+
+def _caisse_douce(amp, rng):
+    n = int(0.25 * SR)
+    t = np.arange(n) / SR
+    s = _filtre_id(rng.standard_normal(n), "bandpass", [300, 4500]) * np.exp(-t * 22)
+    s += 0.7 * np.sin(2 * np.pi * 185 * t) * np.exp(-t * 28)
+    return _bords(amp * s * (1 - np.exp(-t / 0.001)))
+
+
+def _charley_doux(amp, rng, decl=60, bande=(5000, 8200)):
+    """Charleston sans brillance excessive : bruit limité à 8 kHz."""
+    n = int(min(0.3, 6.0 / decl) * SR)
+    t = np.arange(n) / SR
+    return _bords(amp * _filtre_id(rng.standard_normal(n), "bandpass", list(bande)) * np.exp(-t * decl) * (1 - np.exp(-t / 0.0008)))
+
+
+def _porte(x, graine, duree=0.2):
+    """Réverbération coupée net (« gated reverb ») des caisses claires des années 80."""
+    from scipy import signal
+    rng = np.random.default_rng(graine)
+    n = int(duree * SR)
+    t = np.arange(n) / SR
+    ir = _filtre_id(rng.standard_normal(n), "lowpass", 4500) * np.clip((duree - t) / 0.03, 0, 1)
+    ir /= np.sqrt((ir ** 2).sum())
+    return x + 0.9 * signal.oaconvolve(x, ir)[:len(x)]
+
+
+def _bip(f, amp, forme="sinus", dur=0.12):
+    """Petit bip électronique : sinus pur, cloche FM brève, ou goutte (hauteur qui monte d'une tierce)."""
+    n = int((dur + 0.15) * SR)
+    t = np.arange(n) / SR
+    if forme == "goutte":
+        ph = 2 * np.pi * np.cumsum(f * (1 + 0.22 * (1 - np.exp(-t / 0.03)))) / SR
+        s = np.sin(ph) * np.exp(-t * 28)
+    elif forme == "fm":
+        s = np.sin(2 * np.pi * f * t + 1.2 * np.exp(-t * 30) * np.sin(2 * np.pi * 2 * f * t)) * np.exp(-t * 18)
+    else:
+        s = np.sin(2 * np.pi * f * t) * np.exp(-t * 22)
+    return _bords(amp * s * (1 - np.exp(-t / 0.002)))
+
+
+def _nappe_air(freqs, dur, amp, rng):
+    """Nappe d'ambient : sinus légèrement désaccordés, souffle filtré autour de chaque note, respiration lente."""
+    n = int((dur + 2.0) * SR)
+    t = np.arange(n) / SR
+    s = np.zeros(n)
+    for f in freqs:
+        lfo = 1 + 0.28 * np.sin(2 * np.pi * rng.uniform(0.06, 0.18) * t + rng.uniform(0, 6.28))
+        x = sum(np.sin(2 * np.pi * f * 2 ** (c / 1200) * t + rng.uniform(0, 6.28)) for c in (-4, 4))
+        x += 0.25 * np.sin(4 * np.pi * f * t)
+        x += 1.5 * _filtre_id(rng.standard_normal(n), "bandpass", [1.4 * f, min(3.2 * f, 6000.0)])
+        s += lfo * x
+    s *= np.clip(t / 1.6, 0, 1) ** 2 * np.where(t < dur, 1.0, np.exp(-(t - dur) / 0.7))
+    return _bords(amp * s / (2.5 * len(freqs)))
+
+
+def _glitch(f, amp, rng):
+    """Glitch léger : un grain de 25 ms répété 3 à 7 fois en s'éteignant, quantifié (bitcrush), filtré."""
+    g = int(0.025 * SR)
+    tg = np.arange(g) / SR
+    grain = (np.sin(2 * np.pi * f * tg) + 0.4 * rng.standard_normal(g)) * np.sin(np.pi * tg / tg[-1]) ** 2
+    pas = int(rng.choice([0.031, 0.042, 0.062]) * SR)
+    nb = int(rng.integers(3, 8))
+    s = np.zeros(pas * nb + g)
+    for k in range(nb):
+        s[k * pas:k * pas + g] += grain * 0.75 ** k
+    s = np.round(s * 6) / 6
+    return _bords(amp * _filtre_id(s, "lowpass", 4500))
+
+
+def _coeur(amp, rng):
+    """Pouls feutré : deux coups sourds (« lub-dub »)."""
+    n = int(0.75 * SR)
+    t = np.arange(n) / SR
+    s = np.zeros(n)
+    for d, a in ((0.0, 1.0), (0.24, 0.6)):
+        tt = np.clip(t - d, 0, None)
+        ph = 2 * np.pi * np.cumsum(48 + 25 * np.exp(-tt / 0.03)) / SR
+        s += (t >= d) * a * np.sin(ph) * np.exp(-tt * 14) * (1 - np.exp(-tt / 0.003))
+    return _bords(amp * s)
+
+
+def _tic(amp):
+    n = int(0.02 * SR)
+    t = np.arange(n) / SR
+    return _bords(amp * np.sin(2 * np.pi * 1900 * t) * np.exp(-t * 500))
+
+
+def _rim(amp):
+    n = int(0.08 * SR)
+    t = np.arange(n) / SR
+    s = 0.8 * np.sin(2 * np.pi * 1650 * t) * np.exp(-t * 90) + np.sin(2 * np.pi * 470 * t) * np.exp(-t * 60)
+    return _bords(amp * s * (1 - np.exp(-t / 0.0006)))
+
+
+# ---------------------------------------------------------------------------------------- nsi1 : synthwave
+BANQUES["nsi1"] = {
+    "lumiere": dict(bpm=104, tons=[
+        ("eolien", 45, [["0:m", "8:M", "3:M", "10:M"], ["0:m9", "5:m7", "8:maj7", "10:sus2"], ["8:maj7", "10:M", "0:m", "0:m"]]),
+        ("ionien", 41, [["0:add9", "9:m7", "5:maj7", "7:sus4"], ["5:maj7", "7:M", "4:m7", "9:m"]])]),
+    "mystere": dict(bpm=98, tons=[
+        ("eolien", 40, [["0:m", "0:m", "8:maj7", "8:maj7"], ["0:m9", "10:sus2", "8:maj7", "7:m7"]]),
+        ("dorien", 38, [["0:m9", "5:add9", "0:m9", "10:maj7"], ["3:maj7", "5:M", "0:m7", "0:m7"]])]),
+    "tension": dict(bpm=110, tons=[
+        ("eolien", 40, [["0:m", "10:M", "8:M", "10:M"], ["0:m", "3:M", "10:M", "7:m"]]),
+        ("phrygien", 45, [["0:m", "1:M", "0:m", "10:m"], ["0:m", "8:M", "1:maj7", "0:m"]])]),
+    "calme": dict(bpm=96, tons=[
+        ("ionien", 43, [["0:maj9", "9:m9", "5:maj7", "7:sus2"], ["5:maj9", "4:m7", "2:m7", "7:sus4"]]),
+        ("dorien", 45, [["0:m9", "5:add9", "3:maj7", "10:add9"]])]),
+}
+ARP_SW = [[0, 1, 2, 3, 2, 1, 2, 3, 0, 1, 2, 3, 4, 3, 2, 1], [0, 2, 1, 3] * 4, [0, 1, 2, 4] * 4, [4, 3, 2, 1, 3, 2, 1, 0] * 2,
+          [0, 2, 4, 5, 4, 2, 1, 3] * 2]
+BASSE_SW = [[(c, "R" if c % 2 == 0 else "8") for c in range(8)], [(c, "R") for c in range(8)],
+            [(0, "R"), (1, "R"), (2, "8"), (3, "R"), (4, "R"), (5, "8"), (6, "5"), (7, "8")],
+            [(0, "R"), (2, "R"), (3, "8"), (4, "R"), (6, "R"), (7, "5")]]
+
+
+def _couches_nsi1(typ, rng, hu):
+    if typ == "intro":
+        return [{"nappe", "arp"}, {"nappe", "basse"}][rng.integers(2)]
+    if typ == "respiration":
+        return [{"nappe"}, {"arp", "nappe"}, {"basse", "arp"}][rng.integers(3)]
+    if typ == "pont":
+        return [{"nappe", "basse", "charley"}, {"arp", "lead", "nappe"}][rng.integers(2)]
+    c = {"arp", "basse", "nappe", "batterie", "charley"}
+    if rng.random() < (0.6 if typ == "B" else 0.2):
+        c.add("lead")
+    if hu == "calme" and rng.random() < 0.5:
+        c.discard("batterie")
+    return c
+
+
+def _phrase_nsi1(cx, typ, rng):
+    cx["hr"] = 2 if rng.random() < 0.6 else 1
+    cx["arp"] = _pat(cx, "v_arp", ARP_SW, rng)
+    cx["basse"] = _pat(cx, "v_basse", BASSE_SW, rng)
+    cx["ouvre"] = rng.random() < 0.65
+
+
+def _mesure_nsi1(bus, cx, t, j, L, typ, acc, couches, rng):
+    beat = cx["beat"]
+    mes = 4 * beat
+    fin = j == L - 1
+    x = j / max(1, L - 1)
+    clair = 900 + 1700 * (x if cx["ouvre"] else 1 - x)
+    if "arp" in couches:
+        tons = _etage(acc, 64, 81)
+        lead = cx["lead"]
+        for c in range(16):
+            p = tons[cx["arp"][c] % len(tons)]
+            a = 0.022 * (1.2 if c % 4 == 0 else 1) * _vel(rng, 0.05)
+            if lead == "fm":
+                n = _rhodes_id(hz(p), beat / 4 * 0.8, a * 1.1, 0.8)
+            else:
+                n = _note_synth("carre" if lead == "carre" else "scie", hz(p), beat / 4 * 0.75, a, rng, clair=clair,
+                                duty=0.5, decl=4.0)
+            _place(bus["echo"], n, t + c * beat / 4)
+    if "basse" in couches:
+        dg = _degres(acc)
+        for c, deg in cx["basse"]:
+            p = dg[deg] if dg[deg] <= 55 else dg[deg] - 12
+            p = p if p >= 33 else p + 12
+            _place(bus["sec"], _note_synth("scie", hz(p), beat / 2 * 0.8, 0.075 * _vel(rng, 0.05), rng, clair=700,
+                                           decl=2.0, fond=220), t + c * beat / 2)
+    if "nappe" in couches and j % cx["hr"] == 0:
+        _place(bus["pad"], _nappe_scies([hz(p) for p in _voix(acc, 62)[:4]], cx["hr"] * mes + 0.2, 0.05 * _vel(rng),
+                                        rng, coupure=1300 if cx["hu"] in ("mystere", "calme") else 1700), t)
+    if "batterie" in couches:
+        for b in ((0, 2) if not fin else (0, 2, 2.5)):
+            _place(bus["sec"], _grosse_caisse_id(0.10 * _vel(rng, 0.04)), t + b * beat)
+        for b in (1, 3):
+            _place(bus["loin"], _caisse_douce(0.05 * _vel(rng, 0.05), rng), t + b * beat)
+    if "charley" in couches:
+        for c in range(8):
+            _place(bus["sec"], _charley_doux((0.012 if c % 2 else 0.008) * _vel(rng), rng), t + c * beat / 2)
+    if "lead" in couches and j % 2 == 0:
+        ga = _gamme_acc(cx["mode"], cx["centre"], acc, 72, 84)
+        ry = _pat(cx, "v_lead", [[(0, 3), (3, 1), (4, 4)], [(0, 2), (2, 2), (4, 3), (7, 1)], [(0, 6), (6, 2)]], rng)
+        for deb, d, p in _ligne(cx, acc, ga, ry, rng, appuis=(0, 4)):
+            n = int((d * beat + 0.5) * SR)
+            s = (_osc("scie", hz(p), n, rng, cents=-6, vib=0.004, vib_f=5.2, retard=0.3)
+                 + _osc("scie", hz(p), n, rng, cents=6, vib=0.004, vib_f=5.0, retard=0.3)) / 2
+            tt = np.arange(n) / SR
+            s = _filtre_id(s, "lowpass", 2000) * (1 - np.exp(-tt / 0.03)) * np.clip((n / SR - tt) / 0.3, 0, 1)
+            _place(bus["echo"], _bords(0.022 * s), t + deb * beat)
+
+
+def _mix_nsi1(bus, hu, graine):
+    caisse = _porte(bus["loin"], graine + 3)
+    x = bus["sec"] + bus["pad"] + _echo(bus["echo"], 0.75 * bus["beat"], 0.38, 0.45) + caisse
+    return _filtre_id(_salle(x, 1.6, 0.20, 5000, graine), "lowpass", 7500)
+
+
+def _transition_nsi1(sorte, cx, rng, delai):
+    """Roulement de caisse « gated » (roulement) ou souffle qui monte (montée), puis grosse caisse et basse."""
+    s = _sig_transition(delai)
+    beat, c = cx["beat"], cx["centre"]
+    if sorte == "roulement":
+        nb = int(delai / (beat / 4))
+        for k in range(nb):
+            _place(s, _caisse_douce(0.012 + 0.04 * k / max(1, nb), rng), delai - (nb - k) * beat / 4)
+        s = _porte(s, 9)
+    elif sorte == "montee":
+        _place(s, _montee(delai, 0.03, rng), 0)
+    _place(s, _grosse_caisse_id(0.11), delai)
+    b = c if c >= 36 else c + 12
+    _place(s, _note_synth("scie", hz(b), 2 * beat, 0.07, rng, clair=700, decl=1.0, fond=220), delai)
+    return _filtre_id(_salle(s, 1.6, 0.2, 5000, 5), "lowpass", 7500)
+
+
+# ------------------------------------------------------------------------------------- nsi2 : chiptune doux
+BANQUES["nsi2"] = {
+    "lumiere": dict(bpm=112, tons=[
+        ("ionien", 43, [["0:M", "9:m", "5:M", "7:M"], ["0:M", "5:M", "7:M", "0:M"], ["5:M", "7:M", "4:m", "9:m"]]),
+        ("mixolydien", 41, [["0:M", "10:M", "5:M", "0:M"], ["0:M", "7:m", "10:M", "5:M"]])]),
+    "mystere": dict(bpm=100, tons=[
+        ("dorien", 38, [["0:m", "5:M", "0:m", "10:M"], ["3:M", "10:M", "5:M", "0:m"]]),
+        ("eolien", 45, [["0:m", "8:M", "3:M", "10:M"], ["5:m", "0:m", "10:M", "10:M"]])]),
+    "tension": dict(bpm=120, tons=[
+        ("eolien", 40, [["0:m", "8:M", "10:M", "0:m"], ["0:m", "3:M", "10:M", "7:m"]]),
+        ("dorien", 45, [["0:m", "5:M", "3:M", "5:M"], ["0:m", "10:M", "5:M", "0:m"]])]),
+    "calme": dict(bpm=96, tons=[
+        ("lydien", 41, [["0:M", "2:M", "0:M", "7:m"], ["9:m", "2:M", "4:m", "0:M"]]),
+        ("ionien", 36, [["0:M", "4:m", "5:M", "7:sus4"], ["9:m", "5:M", "0:M", "7:M"]])]),
+}
+RYTHME_CHIP = [[(0, 2), (2, 1), (3, 1), (4, 3), (7, 1)], [(0, 1), (1, 1), (2, 2), (4, 2), (6, 2)], [(0, 3), (3, 1), (4, 4)],
+               [(0, 1), (1, 1), (2, 1), (3, 1), (4, 2), (6, 2)], [(0, 2), (2, 2), (4, 1), (5, 1), (6, 2)]]
+BASSE_CHIP = [[(0, "R"), (2, "8"), (3, "R"), (4, "5"), (6, "8")], [(c, "R" if c % 2 == 0 else "8") for c in range(8)],
+              [(0, "R"), (1, "R"), (3, "5"), (4, "R"), (6, "8"), (7, "5")], [(0, "R"), (3, "R"), (4, "5"), (6, "3")]]
+
+
+def _couches_nsi2(typ, rng, hu):
+    if typ == "intro":
+        return [{"arp", "basse"}, {"basse", "bruit"}][rng.integers(2)]
+    if typ == "respiration":
+        return [{"arp"}, {"melodie", "arp"}, {"basse", "bruit"}][rng.integers(3)]
+    if typ == "pont":
+        return [{"basse", "bruit", "arp"}, {"melodie", "basse"}][rng.integers(2)]
+    c = {"basse", "arp", "bruit"}
+    if rng.random() < (0.9 if typ == "B" else 0.55):
+        c.add("melodie")
+    if hu == "calme" and rng.random() < 0.5:
+        c.discard("bruit")
+    return c
+
+
+def _phrase_nsi2(cx, typ, rng):
+    cx["hr"] = 1 if rng.random() < 0.6 else 2
+    cx["basse"] = _pat(cx, "v_basse", BASSE_CHIP, rng)
+    cx["arp_ordre"] = _pat(cx, "v_arp", [[0, 1, 2, 1], [0, 1, 2, 3], [0, 2, 1, 2]], rng)
+
+
+def _chip(forme, f, dur, amp, rng, duty=0.5, coupure=3600, vib=0.0):
+    n = int((dur + 0.08) * SR)
+    t = np.arange(n) / SR
+    s = _osc(forme, f, n, rng, duty=duty, vib=vib, vib_f=6.0, retard=0.18)
+    s = _filtre_id(s, "lowpass", coupure)
+    s *= (1 - np.exp(-t / 0.004)) * (0.7 + 0.3 * np.exp(-t * 8)) * np.where(t < dur, 1.0, np.exp(-(t - dur) / 0.02))
+    return _bords(amp * s)
+
+
+def _bruit_chip(amp, rng, decl=30, dur=0.18, tenue=4):
+    """Canal de bruit : bruit échantillonné-bloqué (≈ 6 kHz), comme une console 8 bits, filtré sous 6 kHz."""
+    n = int(dur * SR)
+    t = np.arange(n) / SR
+    s = np.repeat(rng.choice([-1.0, 1.0], size=n // tenue + 1), tenue)[:n]
+    return _bords(amp * _filtre_id(s, "lowpass", 6000) * np.exp(-t * decl))
+
+
+def _kick_chip(amp):
+    n = int(0.14 * SR)
+    t = np.arange(n) / SR
+    ph = np.cumsum(55 + 140 * np.exp(-t / 0.018)) / SR % 1.0
+    return _bords(amp * (1 - 4 * np.abs(ph - 0.5)) * np.exp(-t * 18))
+
+
+def _mesure_nsi2(bus, cx, t, j, L, typ, acc, couches, rng):
+    beat = cx["beat"]
+    fin = j == L - 1
+    lead = cx["lead"]
+    if "basse" in couches:
+        dg = _degres(acc)
+        for c, deg in cx["basse"]:
+            p = dg[deg] if dg[deg] <= 57 else dg[deg] - 12
+            _place(bus["sec"], _chip("tri4", hz(p), beat / 2 * 0.85, 0.12, rng, coupure=2500), t + c * beat / 2)
+    if "arp" in couches:
+        tons = _etage(acc, 60, 76)[:4]
+        for c in range(16):
+            p = tons[cx["arp_ordre"][c % 4] % len(tons)]
+            _place(bus["sec"], _chip("carre", hz(p), beat / 4 * 0.6, 0.010 * (1.3 if c % 4 == 0 else 1), rng, duty=0.25,
+                                     coupure=3000), t + c * beat / 4)
+    if "melodie" in couches:
+        mineur = cx["mode"] in ("dorien", "eolien", "phrygien")
+        penta = [0, 3, 5, 7, 10] if mineur else [0, 2, 4, 7, 9]
+        pc = _pcs(acc)
+        ga = [p for p in range(72, 86) if (p - cx["centre"]) % 12 in penta or p % 12 in pc]
+        ry = [(0, 6), (6, 2)] if fin else _pat(cx, "v_ry", RYTHME_CHIP, rng)
+        for deb, d, p in _ligne(cx, acc, ga, [(a / 2, b / 2) for a, b in ry], rng, appuis=(0, 2)):
+            if lead == "triangle":
+                n = _chip("tri", hz(p), d * beat * 0.92, 0.060, rng, coupure=3000, vib=0.006)
+            else:
+                n = _chip("carre", hz(p), d * beat * 0.92, 0.024, rng, duty=0.5 if lead == "carre50" else 0.25,
+                          coupure=3400, vib=0.006)
+            _place(bus["echo"], n, t + deb * beat)
+    if "bruit" in couches:
+        _place(bus["sec"], _kick_chip(0.12), t)
+        if cx["hu"] in ("tension", "lumiere") or fin:
+            _place(bus["sec"], _kick_chip(0.09), t + 2.5 * beat)
+        for b in (1, 3):
+            _place(bus["sec"], _bruit_chip(0.035, rng), t + b * beat)
+        for c in range(8):
+            if c % 2:
+                _place(bus["sec"], _bruit_chip(0.012, rng, decl=110, dur=0.05, tenue=2), t + c * beat / 2)
+
+
+def _mix_nsi2(bus, hu, graine):
+    x = bus["sec"] + _echo(bus["echo"], 0.75 * bus["beat"], 0.35, 0.35, n=3)
+    return _filtre_id(_salle(x, 0.6, 0.10, 6000, graine), "lowpass", 6000)
+
+
+def _transition_nsi2(sorte, cx, rng, delai):
+    """Gamme 8 bits qui grimpe (montée) ou roulement du canal de bruit (roulement), puis basse et grosse caisse."""
+    s = _sig_transition(delai)
+    beat, c = cx["beat"], cx["centre"]
+    if sorte == "montee":
+        gam = [p for p in range(c + 24, c + 50) if (p - c) % 12 in MODES[cx["mode"]]][:12]
+        pas = min(beat / 4, delai / len(gam))
+        for k, p in enumerate(gam):
+            _place(s, _chip("carre", hz(p), pas * 0.8, 0.014 + 0.008 * k / len(gam), rng, duty=0.5, coupure=3400),
+                   delai - (len(gam) - k) * pas)
+    elif sorte == "roulement":
+        nb = int(delai / (beat / 4))
+        for k in range(nb):
+            _place(s, _bruit_chip(0.01 + 0.03 * k / max(1, nb), rng, dur=0.08), delai - (nb - k) * beat / 4)
+    _place(s, _kick_chip(0.13), delai)
+    _place(s, _chip("tri4", hz(c if c >= 40 else c + 12), beat, 0.12, rng, coupure=2500), delai)
+    return _filtre_id(_salle(s, 0.6, 0.1, 6000, 5), "lowpass", 6000)
+
+
+# ----------------------------------------------------------------------------------------- nsi3 : ambient tech
+BANQUES["nsi3"] = {
+    "lumiere": dict(bpm=86, tons=[
+        ("lydien", 41, [["0:maj9", "2:add9/0", "9:m7", "7:sus2"], ["0:maj7", "4:m7", "2:add9", "0:maj9"]]),
+        ("ionien", 43, [["0:add9", "5:maj7", "9:m7", "7:sus2"], ["5:maj9", "0:add9", "2:m7", "7:sus4"]])]),
+    "mystere": dict(bpm=80, tons=[
+        ("dorien", 38, [["0:m9", "0:m9", "10:maj7", "5:sus2"], ["0:m11", "3:maj7", "5:add9", "0:m9"]]),
+        ("eolien", 45, [["0:madd9", "8:maj7", "3:add9", "10:sus2"], ["8:maj9", "8:maj9", "0:m9", "0:m9"]])]),
+    "tension": dict(bpm=92, tons=[
+        ("eolien", 40, [["0:m9", "8:maj7", "10:sus2", "7:m7"], ["0:m7", "5:m7", "8:maj9", "10:sus4"]]),
+        ("phrygien", 40, [["0:m7", "1:maj7", "0:m7", "10:m7"], ["0:sus2", "8:maj7", "1:maj7", "0:m"]])]),
+    "calme": dict(bpm=76, tons=[
+        ("lydien", 36, [["0:maj9", "2:add9/0", "0:maj7", "7:sus2"], ["9:m7", "2:add9", "4:m7", "0:maj9"]]),
+        ("ionien", 41, [["0:maj9", "9:m9", "5:maj9", "7:sus2"]])]),
+}
+
+
+def _couches_nsi3(typ, rng, hu):
+    if typ == "intro":
+        return [{"nappe", "texture"}, {"nappe", "bleeps"}][rng.integers(2)]
+    if typ == "respiration":
+        return [{"nappe"}, {"bleeps", "nappe"}, {"nappe", "texture"}][rng.integers(3)]
+    if typ == "pont":
+        return [{"pouls", "glitch", "basse", "nappe"}, {"nappe", "bleeps", "glitch"}][rng.integers(2)]
+    c = {"nappe", "basse", "bleeps"}
+    if rng.random() < (0.8 if typ == "B" else 0.45):
+        c.add("pouls")
+    if rng.random() < 0.4:
+        c.add("glitch")
+    if rng.random() < 0.3:
+        c.add("texture")
+    return c
+
+
+def _phrase_nsi3(cx, typ, rng):
+    cx["hr"] = 2 if rng.random() < 0.75 else 1
+    cx["bips"] = _pat(cx, "v_bips", [[0, 3, 6, 11], [2, 7, 10], [0, 5, 8, 13, 14], [3, 6, 12], [0, 1, 6, 9]], rng)
+
+
+def _mesure_nsi3(bus, cx, t, j, L, typ, acc, couches, rng):
+    beat = cx["beat"]
+    mes = 4 * beat
+    if "nappe" in couches and j % cx["hr"] == 0:
+        _place(bus["pad"], _nappe_air([hz(p) for p in _voix(acc, 64)[:4]], cx["hr"] * mes + 0.5, 0.05 * _vel(rng), rng), t)
+    if "basse" in couches and j % cx["hr"] == 0:
+        b = _degres(acc)["R"]
+        _place(bus["sec"], _sub(hz(b), cx["hr"] * mes * 0.95, 0.05 * _vel(rng)), t)
+    if "bleeps" in couches:
+        mineur = cx["mode"] in ("dorien", "eolien", "phrygien")
+        penta = [0, 3, 5, 7, 10] if mineur else [0, 2, 4, 7, 9]
+        ga = [p for p in range(76, 89) if (p - cx["centre"]) % 12 in penta]
+        pcs = _pcs(acc)
+        for c in cx["bips"]:
+            if rng.random() < 0.25:
+                continue
+            p = int(rng.choice(ga))
+            if c in (0, 8):
+                p = min((q for q in ga if q % 12 in pcs), key=lambda q: abs(q - p), default=p)
+            _place(bus["echo"], _bip(hz(p), 0.020 * _vel(rng), cx["lead"]), t + c * beat / 4)
+            if rng.random() < 0.2:                       # double bip
+                _place(bus["echo"], _bip(hz(p), 0.012, cx["lead"]), t + c * beat / 4 + beat / 8)
+    if "glitch" in couches and (j % 2 == 1 or rng.random() < 0.3):
+        p = int(rng.choice(_etage(acc, 72, 84)))
+        _place(bus["sec"], _glitch(hz(p), 0.020, rng), t + int(rng.integers(4, 16)) * beat / 4)
+    if "pouls" in couches:
+        _place(bus["sec"], _coeur(0.10 * _vel(rng, 0.04), rng), t)
+        if cx["hu"] == "tension":
+            _place(bus["sec"], _coeur(0.07, rng), t + 2 * beat)
+        for c in range(1, 16, 2):
+            if rng.random() < 0.7:
+                _place(bus["sec"], _tic(0.006 * (1.3 if c % 4 == 3 else 1)), t + c * beat / 4)
+    if "texture" in couches and j % 2 == 0:
+        n = int(2 * mes * SR)
+        tt = np.arange(n) / n
+        bruit = rng.standard_normal(n)
+        s = sum(_filtre_id(bruit, "bandpass", list(b)) * np.clip(1 - np.abs(2 * tt - i), 0, 1)
+                for i, b in enumerate(((400, 900), (900, 1800), (1800, 3200))))
+        _place(bus["pad"], _bords(0.010 * s * np.sin(np.pi * tt) ** 2), t)
+
+
+def _mix_nsi3(bus, hu, graine):
+    pad = _salle(bus["pad"], 3.5, 0.5, 3500, graine)
+    bips = _salle(_echo(bus["echo"], 0.75 * bus["beat"], 0.45, 0.5, n=5), 2.5, 0.35, 4000, graine + 1)
+    return _filtre_id(pad + bips + _salle(bus["sec"], 1.2, 0.15, 4500, graine + 2), "lowpass", 7000)
+
+
+def _transition_nsi3(sorte, cx, rng, delai):
+    """Souffle inversé qui enfle (montée) ou bégaiement de glitch (coupure), puis pouls et bip à l'entrée."""
+    s = _sig_transition(delai, 3.0)
+    c = cx["centre"]
+    if sorte == "montee":
+        n = int(delai * SR)
+        tt = np.arange(n) / max(1, n)
+        _place(s, _bords(0.04 * _filtre_id(rng.standard_normal(n), "bandpass", [500, 3000]) * tt ** 3), 0)
+    else:
+        _place(s, _glitch(hz(c + 36), 0.03, rng), max(0.0, delai - 0.35))
+    _place(s, _coeur(0.10, rng), delai)
+    _place(s, _bip(hz(c + 48 if c + 48 <= 88 else c + 36), 0.025), delai)
+    return _filtre_id(_salle(s, 2.5, 0.35, 4000, 5), "lowpass", 7000)
+
+
+# ------------------------------------------------------------------------------------ nsi4 : électro minimale
+BANQUES["nsi4"] = {
+    "lumiere": dict(bpm=118, tons=[
+        ("dorien", 38, [["0:m9", "0:m9", "10:maj7", "5:9"], ["0:m11", "3:maj7", "0:m11", "5:9"]]),
+        ("eolien", 45, [["0:m9", "0:m9", "8:maj7", "10:sus2"], ["0:m7", "3:maj7", "8:maj7", "0:m7"]])]),
+    "mystere": dict(bpm=114, tons=[
+        ("phrygien", 40, [["0:m7", "0:m7", "1:maj7", "0:m7"], ["0:m9", "10:m7", "1:maj7", "0:m7"]]),
+        ("dorien", 45, [["0:m9", "0:m9", "0:m9", "5:9"], ["0:m11", "10:maj7", "0:m11", "3:maj7"]])]),
+    "tension": dict(bpm=122, tons=[
+        ("eolien", 40, [["0:m7", "0:m7", "8:maj7", "10:sus2"], ["0:m9", "5:m7", "0:m9", "7:m7"]]),
+        ("dorien", 43, [["0:m7", "5:9", "0:m7", "5:9"], ["0:m11", "3:maj7", "10:add9", "5:9"]])]),
+    "calme": dict(bpm=112, tons=[
+        ("dorien", 41, [["0:m9", "5:add9", "0:m9", "10:maj7"], ["3:maj7", "10:add9", "0:m9", "0:m9"]]),
+        ("mixolydien", 43, [["0:add9", "10:add9", "0:add9", "5:maj7"]])]),
+}
+STAB16 = [[2, 6, 10, 14], [3, 10], [0, 6, 12], [3, 6, 11, 14], [2, 10], [6, 14]]
+BASSE_MIN = [[2, 6, 10, 14], [2, 3, 6, 10, 11, 14], [0, 3, 6, 10, 14], [2, 6, 7, 10, 14, 15]]
+
+
+def _couches_nsi4(typ, rng, hu):
+    if typ == "intro":
+        return [{"kick", "hats", "accords"}, {"accords", "shaker"}][rng.integers(2)]
+    if typ == "respiration":
+        return [{"accords", "nappe"}, {"accords"}, {"basse", "shaker", "accords"}][rng.integers(3)]
+    if typ == "pont":
+        return [{"kick", "basse", "shaker", "accords"}, {"accords", "rim", "hats", "nappe"}][rng.integers(2)]
+    c = {"kick", "hats", "basse", "accords"}
+    if rng.random() < (0.8 if typ == "B" else 0.35):
+        c.add("rim")
+    if rng.random() < 0.5:
+        c.add("shaker")
+    if rng.random() < 0.25:
+        c.add("nappe")
+    if hu == "calme" and rng.random() < 0.4:
+        c.discard("kick")
+    return c
+
+
+def _phrase_nsi4(cx, typ, rng):
+    cx["hr"] = 2 if rng.random() < 0.6 else 1
+    cx["stab"] = _pat(cx, "v_stab", STAB16, rng)
+    cx["basse"] = _pat(cx, "v_basse", BASSE_MIN, rng)
+    cx["ouvre"] = rng.random() < 0.7               # le filtre des accords s'ouvre au fil de la phrase (sinon se referme)
+    cx["rim"] = [4, 12] if rng.random() < 0.6 else [7, 15]
+
+
+def _accord_dub(freqs, dur, amp, fc, rng, timbre="scie"):
+    """Accord bref filtré, à la manière de la techno « dub » : scies (ou orgue, ou carré) passées dans un passe-bas."""
+    n = int((dur + 0.25) * SR)
+    t = np.arange(n) / SR
+    s = np.zeros(n)
+    for f in freqs:
+        if timbre == "orgue":
+            s += sum(a * np.sin(2 * np.pi * k * f * t) for k, a in ((1, 0.8), (2, 0.5), (3, 0.25)))
+        else:
+            for c in (-7, 7):
+                s += _osc("carre" if timbre == "carre" else "scie", f, n, rng, duty=0.35, cents=c) / 2
+    s = _filtre_id(s / len(freqs), "lowpass", float(round(fc / 50) * 50))
+    s *= (1 - np.exp(-t / 0.003)) * np.exp(-t * 5) * np.where(t < dur, 1.0, np.exp(-(t - dur) / 0.05))
+    return _bords(amp * s)
+
+
+def _mesure_nsi4(bus, cx, t, j, L, typ, acc, couches, rng):
+    beat = cx["beat"]
+    mes = 4 * beat
+    fin = j == L - 1
+    x = j / max(1, L - 1)
+    fc = 380 + 2300 * (x ** 1.5 if cx["ouvre"] else (1 - x) ** 1.5)
+    seize = lambda c: t + c * beat / 4 + (0.012 if c % 2 else 0.0)   # noqa: E731  (léger swing)
+    if "kick" in couches:
+        for b in range(4):
+            _place(bus["sec"], _grosse_caisse_id(0.10 * _vel(rng, 0.03)), t + b * beat)
+            bus["pompe"].append(t + b * beat)
+    if "hats" in couches:
+        for c in (2, 6, 10, 14):
+            _place(bus["sec"], _charley_doux(0.016 * _vel(rng), rng, decl=24, bande=(4500, 8000)), seize(c))
+    if "shaker" in couches:
+        for c in range(16):
+            _place(bus["sec"], _charley_doux((0.006 if c % 2 else 0.004) * _vel(rng, 0.15), rng, decl=70,
+                                             bande=(3500, 7500)), seize(c))
+    if "rim" in couches:
+        for c in cx["rim"] + ([13, 14] if fin else []):
+            _place(bus["sec"], _rim(0.028 * _vel(rng)), seize(c))
+    if "accords" in couches:
+        v = [hz(p) for p in _voix(acc, 62)[:4]]
+        for c in cx["stab"]:
+            _place(bus["echo"], _accord_dub(v, beat * 0.35, 0.05 * _vel(rng, 0.05), fc, rng, cx["lead"]), seize(c))
+    if "basse" in couches:
+        b = _degres(acc)["R"]
+        b = b if b <= 45 else b - 12
+        for c in cx["basse"]:
+            _place(bus["sec"], _sub(hz(b), beat * 0.32, 0.075 * _vel(rng, 0.05)), seize(c))
+    if "nappe" in couches and j % cx["hr"] == 0:
+        _place(bus["pad"], _nappe_air([hz(p) for p in _voix(acc, 67)[:3]], cx["hr"] * mes, 0.035, rng), t)
+
+
+def _mix_nsi4(bus, hu, graine):
+    dub = _echo(bus["echo"], 0.75 * bus["beat"], 0.5, 0.6, n=6)
+    pad = bus["pad"] + dub
+    if bus["pompe"]:   # les accords et la nappe respirent avec la grosse caisse
+        tt = np.arange(len(pad)) / SR
+        g = np.ones(len(pad))
+        for tk in bus["pompe"]:
+            i = int(tk * SR)
+            L = min(len(pad) - i, int(0.4 * SR))
+            if L > 0:
+                g[i:i + L] = np.minimum(g[i:i + L], 1 - 0.45 * np.exp(-tt[:L] / 0.1) * np.minimum(1, tt[:L] / 0.004 + 0.6))
+        pad = pad * g
+    x = _salle(bus["sec"] + pad, 1.2, 0.18, 5000, graine)
+    return _filtre_id(_filtre_id(x, "highpass", 40), "lowpass", 7500)
+
+
+def _transition_nsi4(sorte, cx, rng, delai):
+    """Balayage de filtre sur un souffle (montée) ou roulement de rim en doubles croches (roulement), puis grosse caisse."""
+    s = _sig_transition(delai)
+    beat, c = cx["beat"], cx["centre"]
+    if sorte == "montee":
+        _place(s, _montee(delai, 0.03, rng), 0)
+    elif sorte == "roulement":
+        nb = int(delai / (beat / 4))
+        for k in range(nb):
+            _place(s, _rim(0.008 + 0.025 * k / max(1, nb)), delai - (nb - k) * beat / 4)
+    _place(s, _grosse_caisse_id(0.11), delai)
+    _place(s, _sub(hz(c if c <= 45 else c - 12), beat, 0.07), delai)
+    return _filtre_id(_salle(s, 1.2, 0.18, 5000, 5), "lowpass", 7500)
+
+
+_TR3 = ("coupure", "roulement", "montee")
+STYLES.update({
+    "hlp1": dict(couches=_couches_hlp1, mesure=_mesure_hlp1, phrase=_phrase_hlp1, mix=_mix_hlp1,
+                 transition=_transition_hlp1, transitions=_TR3, leads=("violons", "canon", "clavecin"),
+                 transpos=(0, 2, -2, 3, -3, 5), dbpm=4, coeur=("continuo",), options=("violons", "tenues", "clavecin")),
+    "hlp2": dict(couches=_couches_hlp2, mesure=_mesure_hlp2, phrase=_phrase_hlp2, mix=_mix_hlp2,
+                 transition=_transition_hlp2, transitions=("coupure", "montee"), leads=("chant", "tierces", "accords"),
+                 transpos=(0, 2, -2, 3, -3, 5), dbpm=3, coeur=("arpeges",), options=("basse", "chant", "accords")),
+    "hlp3": dict(couches=_couches_hlp3, mesure=_mesure_hlp3, phrase=_phrase_hlp3, mix=_mix_hlp3,
+                 transition=_transition_hlp3, transitions=("coupure", "montee"), leads=("violoncelle", "violon", "duo"),
+                 transpos=(0, 2, -2, 3, -3), dbpm=3, coeur=("choral",), options=("chant", "pulsation", "pizz")),
+    "hlp4": dict(couches=_couches_hlp4, mesure=_mesure_hlp4, phrase=_phrase_hlp4, mix=_mix_hlp4, temps=6,
+                 transition=_transition_hlp4, transitions=_TR3, leads=("flute", "flute_douce", "luth"),
+                 transpos=(0, 2, -2, 3, -3, 5), dbpm=8, coeur=("luth",), options=("flute", "bourdon", "tambourin")),
+    "nsi1": dict(couches=_couches_nsi1, mesure=_mesure_nsi1, phrase=_phrase_nsi1, mix=_mix_nsi1,
+                 transition=_transition_nsi1, transitions=_TR3, leads=("carre", "scie", "fm"),
+                 transpos=(0, 2, -2, 3, -3, 5), dbpm=4, coeur=("nappe",), options=("charley", "lead", "batterie")),
+    "nsi2": dict(couches=_couches_nsi2, mesure=_mesure_nsi2, phrase=_phrase_nsi2, mix=_mix_nsi2,
+                 transition=_transition_nsi2, transitions=("roulement", "montee"), leads=("carre50", "carre25", "triangle"),
+                 transpos=(0, 2, -2, 3, -3, 5), dbpm=4, coeur=("basse",), options=("arp", "bruit", "melodie")),
+    "nsi3": dict(couches=_couches_nsi3, mesure=_mesure_nsi3, phrase=_phrase_nsi3, mix=_mix_nsi3,
+                 transition=_transition_nsi3, transitions=("coupure", "montee"), leads=("sinus", "fm", "goutte"),
+                 transpos=(0, 2, -2, 3, -3, 5), dbpm=3, coeur=("nappe",), options=("pouls", "glitch", "texture")),
+    "nsi4": dict(couches=_couches_nsi4, mesure=_mesure_nsi4, phrase=_phrase_nsi4, mix=_mix_nsi4,
+                 transition=_transition_nsi4, transitions=_TR3, leads=("scie", "orgue", "carre"),
+                 transpos=(0, 2, -2, 3, -5), dbpm=3, coeur=("accords",), options=("rim", "shaker", "nappe")),
+})
