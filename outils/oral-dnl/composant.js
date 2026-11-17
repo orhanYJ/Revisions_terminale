@@ -73,6 +73,9 @@ const OralItem = ({ it, FR, ouvert, basculer }) => {
         L.discours.map((b, k) => React.createElement("div", { key: k, className: "or-disc-b" },
           React.createElement("div", { className: "or-disc-t" }, b.t),
           b.p.split("\n\n").map((x, i) => React.createElement("p", { key: i }, glT(x)))))),
+      L.discours && React.createElement("a", { className: "or-jury-btn or-pdf", href: "fiches/oral/" + it.id + "-" + (FR ? "fr" : "en") + ".pdf", target: "_blank", rel: "noopener",
+        title: FR ? "Fiche A4 recto-verso : les notes et les réponses courtes au jury, puis le discours rédigé" : "Double-sided A4 sheet: the notes and short jury answers, then the written speech" },
+        FR ? "⎙ Fiche PDF recto-verso" : "⎙ Double-sided PDF sheet"),
       React.createElement("button", { className: "or-jury-btn", onClick: () => setJury(j => !j) }, (jury ? "▲ " : "▼ ") + (FR ? "Questions possibles du jury" : "Possible questions from the jury")),
       jury && React.createElement("div", { className: "or-jury" }, L.jury.map((j, i) => React.createElement("div", { key: i, className: "or-jq" },
         React.createElement("b", null, j[0]), React.createElement("p", null, j[1]))))));
