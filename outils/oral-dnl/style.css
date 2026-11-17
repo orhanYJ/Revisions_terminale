@@ -52,6 +52,7 @@
 .or-chrono.depasse .or-chr-bar i{background:linear-gradient(90deg,#8E6F37,#C0632F)}
 .or-chrono.depasse .or-chr-t{color:#A4552A}
 .or-disc-btn{margin-right:8px}
+.or-pdf{display:inline-block;text-decoration:none;margin-right:8px}
 .or-disc{margin-top:8px;background:#fff;border:1px solid var(--line,#CBBFA3);border-left:3px solid var(--slate,#17233F);border-radius:0 8px 8px 0;padding:10px 16px 6px}
 .or-disc-n{margin:0 0 8px;font-size:12.5px;font-style:italic;color:var(--muted,#6B6350)}
 .or-disc-b{margin-bottom:10px}
