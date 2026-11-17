@@ -1,4 +1,4 @@
-var CACHE = 'nsi-v4';
+var CACHE = 'nsi-v5';
 var ASSETS = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png', 'assistant.js?v=10'];
 
 self.addEventListener('install', function (e) {
@@ -20,19 +20,24 @@ self.addEventListener('activate', function (e) {
 self.addEventListener('fetch', function (e) {
   if (e.request.method !== 'GET') return;
   var url = new URL(e.request.url);
-  var isPage = e.request.mode === 'navigate' ||
+  /* Vidéos des chapitres (serie/) : le son est lu par plages, le service worker le laisse passer */
+  if (url.pathname.endsWith('.mp3')) return;
+  /* Une vidéo (serie/*.html, montée en iframe : c'est une navigation) se range sous sa propre adresse, jamais sous la page d'accueil */
+  var serie = url.pathname.indexOf('/serie/') >= 0 && url.pathname.endsWith('.html');
+  var isPage = serie || e.request.mode === 'navigate' ||
     url.pathname.endsWith('/') || url.pathname.endsWith('index.html');
+  var cle = serie ? url.origin + url.pathname : e.request;
 
   if (isPage) {
     /* Réseau d'abord (sans la copie de 10 min du navigateur), cache en secours (hors ligne) */
     e.respondWith(
-      fetch(e.request, { cache: 'no-cache' }).then(function (r) {
+      fetch(serie ? e.request.url : e.request, { cache: 'no-cache' }).then(function (r) {
         var copie = r.clone();
-        caches.open(CACHE).then(function (c) { c.put(e.request, copie); });
+        caches.open(CACHE).then(function (c) { c.put(cle, copie); });
         return r;
       }).catch(function () {
-        return caches.match(e.request).then(function (m) {
-          return m || caches.match('./');
+        return caches.match(cle, { ignoreSearch: serie }).then(function (m) {
+          return m || (serie ? Response.error() : caches.match('./'));
         });
       })
     );

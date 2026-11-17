@@ -250,6 +250,7 @@
     var html = "";
     var c = chap(r.page);
     page.className = "page";
+    $$("iframe[data-serie]", page).forEach(function (fr) { try { fr.contentWindow.postMessage({ type: "serie-pause" }, "*"); } catch (e) {} });
     if (c) html = pageChapitre(c, r);
     else if (r.page === "programme") html = pageProgramme(r);
     else if (r.page === "epreuve") html = pageTexte(PAGE_EPREUVE, "epreuve", "cat epreuve.md");
@@ -321,14 +322,24 @@
 
   /* ---------- chapitre ---------- */
   var SOUS = [["", "cours"], ["exos", "exercices"], ["qcm", "qcm"], ["cartes", "cartes"], ["retenir", "à retenir"]];
+  /* vidéo du chapitre (VIDEOS, src/videos.js) : onglet après le cours et bandeau en tête du cours, seulement une fois publiée */
+  function video(c) { var v = typeof VIDEOS !== "undefined" && VIDEOS[c.id]; return v && v.dispo ? v : null; }
+  function sousDe(c) { return video(c) ? [SOUS[0], ["video", "vidéo"]].concat(SOUS.slice(1)) : SOUS; }
+  function videoHTML(c) {
+    var v = video(c);
+    return '<p class="muet no-print">Tout le chapitre en vidéo' + (v.min ? " (environ " + v.min + " min)" : "") + " : le cours, les programmes exécutés pas à pas, les pièges et des exercices corrigés, avec un arrêt « À toi » avant chaque correction. Le quiz est sous la vidéo.</p>" +
+      '<div class="video-c no-print"><iframe src="serie/' + v.code + '.html?embed=1" title="Chapitre ' + c.n + " — " + esc(c.titre) + ' : le cours en vidéo" allow="fullscreen; autoplay" allowfullscreen loading="lazy" data-serie="' + v.code + '"></iframe></div>';
+  }
   function pageChapitre(c, r) {
     var sous = r.sous && !/^i\d+$/.test(r.sous) ? r.sous : "";
-    var h = invite("chapitres", (sous === "" ? "cat " : sous === "exos" ? "python3 " : sous === "qcm" ? "python3 -m qcm " : sous === "cartes" ? "python3 -m cartes " : "lpr ") + c.fichier);
+    if (sous === "video" && !video(c)) sous = "";
+    var h = invite("chapitres", (sous === "" ? "cat " : sous === "video" ? "mpv " : sous === "exos" ? "python3 " : sous === "qcm" ? "python3 -m qcm " : sous === "cartes" ? "python3 -m cartes " : "lpr ") + (sous === "video" ? c.court + ".mp4" : c.fichier));
     h += "<h1>" + c.n + ". " + esc(c.titre) + '</h1><p class="soustitre">' + esc(c.rubrique) + "</p>";
-    h += '<nav class="onglets" aria-label="Parties du chapitre">' + SOUS.map(function (s) {
-      return '<a href="#' + c.id + (s[0] ? "/" + s[0] : "") + '" class="' + (s[0] === sous ? "on" : "") + '"><span class="x">' + (s[0] === "" ? "▸" : "·") + "</span>" + s[1] + "</a>";
+    h += '<nav class="onglets" aria-label="Parties du chapitre">' + sousDe(c).map(function (s) {
+      return '<a href="#' + c.id + (s[0] ? "/" + s[0] : "") + '" class="' + (s[0] === sous ? "on" : "") + '"><span class="x">' + (s[0] === "" ? "▸" : s[0] === "video" ? "▶" : "·") + "</span>" + s[1] + "</a>";
     }).join("") + "</nav>";
-    if (sous === "exos") h += exosHTML(c);
+    if (sous === "video") h += videoHTML(c);
+    else if (sous === "exos") h += exosHTML(c);
     else if (sous === "qcm") h += qcmHTML(c.qcm, "q-" + c.id, c);
     else if (sous === "cartes") h += '<div data-fc="' + c.id + '"></div>';
     else if (sous === "retenir") h += '<div class="rangee no-print"><button class="btn prim" type="button" data-imprimer>' + ic("impr") + 'Imprimer la fiche</button></div><div class="fiche">' + fill(c.retenir) + "</div>";
@@ -338,7 +349,8 @@
     return h + pied();
   }
   function coursHTML(c) {
-    var h = '<div class="essentiel"><div class="t"># L’essentiel en 5 lignes</div><ol>' + c.essentiel.map(function (l) { return "<li><span>" + l + "</span></li>"; }).join("") + "</ol></div>";
+    var h = video(c) ? '<a class="bandeau-video no-print" href="#' + c.id + '/video"><span class="bv-ic" aria-hidden="true">▶</span><span><b>Le chapitre ' + c.n + " en vidéo</b>" + (video(c).min ? " · " + video(c).min + " min" : "") + "</span></a>" : "";
+    h += '<div class="essentiel"><div class="t"># L’essentiel en 5 lignes</div><ol>' + c.essentiel.map(function (l) { return "<li><span>" + l + "</span></li>"; }).join("") + "</ol></div>";
     h += '<h2>Ce que le programme attend</h2><ul class="attendus">' + c.attendus.map(function (l) { return "<li><span>" + l + "</span></li>"; }).join("") + "</ul>";
     if (c.intro) h += fill(c.intro);
     h += "<h2>Le cours</h2>";
@@ -659,6 +671,12 @@
       if (navApres) { var h = navApres; navApres = null; if (location.hash === h) render(); else location.hash = h; }
     });
     window.addEventListener("hashchange", render);
+    /* lecteur vidéo (serie/*.html) : il donne sa hauteur (lecteur + quiz) */
+    window.addEventListener("message", function (e) {
+      var d = e.data || {};
+      if (d.type !== "serie-h" || !d.h) return;
+      $$("iframe[data-serie]").forEach(function (fr) { if (fr.contentWindow === e.source) fr.style.height = Math.ceil(d.h) + "px"; });
+    });
     var attente = false;
     window.addEventListener("scroll", function () { if (attente) return; attente = true; requestAnimationFrame(function () { attente = false; majLecture(); }); }, { passive: true });
     var nbv = $("#st-code"); if (nbv) nbv.textContent = "✔ " + Object.keys(CODE).filter(function (k) { return CODE[k].run !== false; }).length + " extraits vérifiés";

@@ -1,0 +1,8 @@
+/* Polices de la vidéo NSI (locales, licence SIL OFL 1.1, textes dans fonts/OFL-*.txt).
+   Space Grotesk : le texte. JetBrains Mono : le code, le terminal, les étiquettes d'interface.
+   Carnet Math (sous-ensemble de STIX Two Math, fonts/OFL-STIX.txt) : flèches et symboles absents des deux autres. */
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:block;src:url(fonts/space-grotesk-500.woff2) format('woff2')}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:block;src:url(fonts/space-grotesk-700.woff2) format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:block;src:url(fonts/jb-mono-400.woff2) format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:600;font-display:block;src:url(fonts/jb-mono-600.woff2) format('woff2')}
+@font-face{font-family:'Carnet Math';font-display:block;src:url(fonts/carnet-math-video.woff2) format('woff2');ascent-override:76.2%;descent-override:23.8%;line-gap-override:0%}

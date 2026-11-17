@@ -10,6 +10,7 @@ PRINCIPAUX = {"portrait", "def", "note", "cols", "cartes", "liste", "cit", "mot"
               "anim", "formule", "graphe", "exo", "pause", "globe", "mental",
               "donnees", "chaine", "chiffres", "sanim", "auteur", "compare", "plan"}      # SES
 PRINCIPAUX |= {"scene", "chrono", "document"}                               # HGGSP
+PRINCIPAUX |= {"code"}                                                     # NSI
 
 
 def donnees(code):
