@@ -3753,3 +3753,168 @@ STYLES.update({
                  transition=_transition_nsi4, transitions=_TR3, leads=("scie", "orgue", "carre"),
                  transpos=(0, 2, -2, 3, -5), dbpm=3, coeur=("accords",), options=("rim", "shaker", "nappe")),
 })
+
+
+# ------------------------------------------------------------------------- nsi5 : synthwave × électro minimale
+# Choix de Cengiz (17/11/2026) : « la 1 et la 4, un mélange ; plusieurs variantes, du plus synthé au plus électro,
+# sans trop pencher pour un des deux ». Chaque partie de la vidéo prend un dosage (« lead » du style, jamais le même
+# que la partie précédente, donc réparti à parts égales sur la vidéo) :
+#   synth     : arpèges en doubles croches, basse en octaves, nappe de scies, grosse caisse 1 et 3, caisse « gated » 2 et 4 ;
+#   equilibre : grosse caisse à chaque temps qui fait respirer l'arpège et la nappe, charleston à contretemps,
+#               caisse 2 et 4, arpège un peu retenu, accords « dub » discrets, basse en octaves plus brève ;
+#   electro   : pulsation de l'électro minimale (grosse caisse, charleston, rim, shaker), accords « dub » qui s'ouvrent,
+#               basse sub à contretemps, nappe d'air, et un arpège clairsemé qui garde le lien avec la synthwave.
+# Harmonie et tempo entre les deux (mineur éolien ou dorien, 102-114 BPM).
+BANQUES["nsi5"] = {
+    "lumiere": dict(bpm=110, tons=[
+        ("eolien", 45, [["0:m9", "8:maj7", "3:maj7", "10:sus2"], ["0:m7", "3:maj7", "8:maj7", "10:sus2"]]),
+        ("dorien", 41, [["0:m9", "5:add9", "0:m9", "10:maj7"], ["0:m11", "3:maj7", "10:add9", "5:9"]])]),
+    "mystere": dict(bpm=106, tons=[
+        ("eolien", 40, [["0:m9", "0:m9", "8:maj7", "7:m7"], ["0:m", "0:m", "8:maj7", "8:maj7"]]),
+        ("phrygien", 40, [["0:m7", "0:m7", "1:maj7", "0:m7"]])]),
+    "tension": dict(bpm=114, tons=[
+        ("eolien", 40, [["0:m7", "10:M", "8:maj7", "10:sus2"], ["0:m9", "5:m7", "0:m9", "7:m7"]])]),
+    "calme": dict(bpm=102, tons=[
+        ("dorien", 43, [["0:m9", "5:add9", "3:maj7", "10:add9"]]),
+        ("ionien", 43, [["0:maj9", "9:m9", "5:maj7", "7:sus2"]])]),
+}
+
+
+def _init_nsi5(cx, rng):
+    cx["dose"] = cx["lead"]
+    cx["t_arp"] = ("carre", "scie", "fm")[int(rng.integers(3))]
+    cx["t_acc"] = ("scie", "orgue", "carre")[int(rng.integers(3))]
+
+
+def _couches_nsi5(typ, rng, hu):
+    if typ == "intro":
+        return [{"nappe", "arp"}, {"accords", "charley", "nappe"}, {"nappe", "basse", "arp"}][rng.integers(3)]
+    if typ == "respiration":
+        return [{"nappe", "arp"}, {"accords", "nappe"}, {"basse", "arp", "charley"}][rng.integers(3)]
+    if typ == "pont":
+        return [{"nappe", "basse", "charley", "accords"}, {"arp", "lead", "nappe"}][rng.integers(2)]
+    c = {"arp", "basse", "nappe", "batterie", "charley", "accords"}
+    if rng.random() < (0.55 if typ == "B" else 0.2):
+        c.add("lead")
+    if rng.random() < 0.45:
+        c.add("shaker")
+    if hu == "calme" and rng.random() < 0.4:
+        c.discard("batterie")
+    return c
+
+
+def _phrase_nsi5(cx, typ, rng):
+    cx["hr"] = 2 if rng.random() < 0.6 else 1
+    cx["arp"] = _pat(cx, "v_arp", ARP_SW, rng)
+    cx["b_sw"] = _pat(cx, "v_bsw", BASSE_SW, rng)
+    cx["b_min"] = _pat(cx, "v_bmin", BASSE_MIN, rng)
+    cx["stab"] = _pat(cx, "v_stab", STAB16, rng)
+    cx["ouvre"] = rng.random() < 0.65
+    cx["rim"] = [4, 12] if rng.random() < 0.6 else [7, 15]
+
+
+def _mesure_nsi5(bus, cx, t, j, L, typ, acc, couches, rng):
+    beat, dose = cx["beat"], cx["dose"]
+    mes = 4 * beat
+    fin = j == L - 1
+    x = j / max(1, L - 1)
+    ouv = x if cx["ouvre"] else 1 - x
+    seize = lambda c: t + c * beat / 4 + (0.010 if c % 2 and dose != "synth" else 0.0)   # noqa: E731
+    if "batterie" in couches:
+        kicks = (0, 2) if dose == "synth" else (0, 1, 2, 3)
+        for b in kicks + ((2.5,) if fin and dose == "synth" else ()):
+            _place(bus["sec"], _grosse_caisse_id(0.10 * _vel(rng, 0.03)), t + b * beat)
+            if dose != "synth":
+                bus["pompe"].append(t + b * beat)
+        if dose == "electro":
+            for c in cx["rim"] + ([13, 14] if fin else []):
+                _place(bus["sec"], _rim(0.026 * _vel(rng)), seize(c))
+        else:
+            for b in (1, 3):
+                _place(bus["loin"], _caisse_douce((0.05 if dose == "synth" else 0.04) * _vel(rng, 0.05), rng), t + b * beat)
+    if "charley" in couches:
+        if dose == "synth":
+            for c in range(8):
+                _place(bus["sec"], _charley_doux((0.012 if c % 2 else 0.008) * _vel(rng), rng), t + c * beat / 2)
+        else:
+            for c in (2, 6, 10, 14):
+                _place(bus["sec"], _charley_doux(0.016 * _vel(rng), rng, decl=24, bande=(4500, 8000)), seize(c))
+    if "shaker" in couches and dose != "synth":
+        for c in range(16):
+            _place(bus["sec"], _charley_doux((0.006 if c % 2 else 0.004) * _vel(rng, 0.15), rng, decl=70,
+                                             bande=(3500, 7500)), seize(c))
+    if "arp" in couches:
+        tons = _etage(acc, 64, 81)
+        pas = range(16) if dose != "electro" else range(0, 16, 2)
+        niveau = {"synth": 1.0, "equilibre": 0.8, "electro": 0.6}[dose]
+        clair = 900 + 1700 * ouv
+        for c in pas:
+            p = tons[cx["arp"][c] % len(tons)]
+            a = 0.022 * niveau * (1.2 if c % 4 == 0 else 1) * _vel(rng, 0.05)
+            if cx["t_arp"] == "fm":
+                n = _rhodes_id(hz(p), beat / 4 * 0.8, a * 1.1, 0.8)
+            else:
+                n = _note_synth(cx["t_arp"], hz(p), beat / 4 * 0.75, a, rng, clair=clair, duty=0.5, decl=4.0)
+            _place(bus["echo"], n, t + c * beat / 4)
+    if "accords" in couches and dose != "synth":
+        v = [hz(p) for p in _voix(acc, 62)[:4]]
+        fc = 380 + 2300 * ouv ** 1.5
+        a = 0.05 if dose == "electro" else 0.032
+        for c in cx["stab"]:
+            _place(bus["echo"], _accord_dub(v, beat * 0.35, a * _vel(rng, 0.05), fc, rng, cx["t_acc"]), seize(c))
+    if "basse" in couches:
+        if dose == "electro":
+            b = _degres(acc)["R"]
+            b = b if b <= 45 else b - 12
+            for c in cx["b_min"]:
+                _place(bus["sec"], _sub(hz(b), beat * 0.32, 0.075 * _vel(rng, 0.05)), seize(c))
+        else:
+            dg = _degres(acc)
+            for c, deg in cx["b_sw"]:
+                p = dg[deg] if dg[deg] <= 55 else dg[deg] - 12
+                p = p if p >= 33 else p + 12
+                d = beat / 2 * (0.8 if dose == "synth" else 0.5)
+                _place(bus["sec"], _note_synth("scie", hz(p), d, 0.075 * _vel(rng, 0.05), rng, clair=700, decl=2.0, fond=220),
+                       t + c * beat / 2)
+    if "nappe" in couches and j % cx["hr"] == 0:
+        if dose == "electro":
+            _place(bus["pad"], _nappe_air([hz(p) for p in _voix(acc, 67)[:3]], cx["hr"] * mes, 0.035, rng), t)
+        else:
+            _place(bus["pad"], _nappe_scies([hz(p) for p in _voix(acc, 62)[:4]], cx["hr"] * mes + 0.2,
+                                            (0.05 if dose == "synth" else 0.042) * _vel(rng), rng,
+                                            coupure=1300 if cx["hu"] in ("mystere", "calme") else 1700), t)
+    if "lead" in couches and dose != "electro" and j % 2 == 0:
+        ga = _gamme_acc(cx["mode"], cx["centre"], acc, 72, 84)
+        ry = _pat(cx, "v_lead", [[(0, 3), (3, 1), (4, 4)], [(0, 2), (2, 2), (4, 3), (7, 1)], [(0, 6), (6, 2)]], rng)
+        for deb, d, p in _ligne(cx, acc, ga, ry, rng, appuis=(0, 4)):
+            n = int((d * beat + 0.5) * SR)
+            s = (_osc("scie", hz(p), n, rng, cents=-6, vib=0.004, vib_f=5.2, retard=0.3)
+                 + _osc("scie", hz(p), n, rng, cents=6, vib=0.004, vib_f=5.0, retard=0.3)) / 2
+            tt = np.arange(n) / SR
+            s = _filtre_id(s, "lowpass", 2000) * (1 - np.exp(-tt / 0.03)) * np.clip((n / SR - tt) / 0.3, 0, 1)
+            _place(bus["echo"], _bords((0.022 if dose == "synth" else 0.017) * s), t + deb * beat)
+
+
+def _mix_nsi5(bus, hu, graine):
+    caisse = _porte(bus["loin"], graine + 3)
+    pad = bus["pad"] + _echo(bus["echo"], 0.75 * bus["beat"], 0.44, 0.5, n=5)
+    if bus["pompe"]:   # avec la grosse caisse à chaque temps, l'arpège, les accords et la nappe respirent
+        tt = np.arange(len(pad)) / SR
+        g = np.ones(len(pad))
+        for tk in bus["pompe"]:
+            i = int(tk * SR)
+            L = min(len(pad) - i, int(0.4 * SR))
+            if L > 0:
+                g[i:i + L] = np.minimum(g[i:i + L], 1 - 0.38 * np.exp(-tt[:L] / 0.1) * np.minimum(1, tt[:L] / 0.004 + 0.6))
+        pad = pad * g
+    x = _salle(bus["sec"] + pad + caisse, 1.4, 0.19, 5000, graine)
+    return _filtre_id(_filtre_id(x, "highpass", 40), "lowpass", 7500)
+
+
+def _transition_nsi5(sorte, cx, rng, delai):
+    return (_transition_nsi1 if cx.get("dose", cx.get("lead")) == "synth" else _transition_nsi4)(sorte, cx, rng, delai)
+
+
+STYLES["nsi5"] = dict(couches=_couches_nsi5, mesure=_mesure_nsi5, phrase=_phrase_nsi5, mix=_mix_nsi5, init=_init_nsi5,
+                      transition=_transition_nsi5, transitions=_TR3, leads=("synth", "equilibre", "electro"),
+                      transpos=(0, 2, -2, 3, -3, 5), dbpm=3, coeur=("nappe", "arp"), options=("lead", "shaker", "accords"))
