@@ -1,0 +1,6 @@
+/* Polices de la vidéo HLP (locales, copies de hlp/polices/). Licence SIL OFL 1.1 :
+   EB Garamond (fonts/OFL-EBGaramond.txt) pour le texte, en romain et en italique, graisse variable ;
+   « Exlibris Titrage » (fonts/OFL-IMFell.txt), sous-ensemble renommé d'IM FELL English Roman, pour les titres. */
+@font-face{font-family:'EB Garamond';font-style:normal;font-weight:400 800;font-display:block;src:url(fonts/ebg.woff2) format('woff2')}
+@font-face{font-family:'EB Garamond';font-style:italic;font-weight:400 800;font-display:block;src:url(fonts/ebg-it.woff2) format('woff2')}
+@font-face{font-family:'Exlibris Titrage';font-style:normal;font-weight:400;font-display:block;src:url(fonts/titrage.woff2) format('woff2')}

@@ -377,6 +377,13 @@ table.t th{font-family:var(--ui);font-size:.74rem;letter-spacing:.08em;text-tran
   html.mo .note-a.neuf{animation:monte .3s ease both}
   html.mo .fc .face{transition:transform .5s cubic-bezier(.3,.7,.3,1)}
 }
+/* vidéo de l'entrée (lecteur serie/*.html en iframe, src/videos.js) : visible seulement quand la vidéo est publiée */
+.video-c{margin:12px 0 18px}
+.video-c iframe{display:block;width:100%;height:560px;border:0;border-radius:10px;background:#2a2018}
+.bandeau-video{display:flex;align-items:center;gap:12px;min-height:48px;margin:4px 0 14px;padding:10px 16px;border-radius:10px;text-decoration:none;color:var(--encre);background:var(--surface2);border:1px solid var(--filet2)}
+.bandeau-video:hover{border-color:var(--cuivre)}
+.bandeau-video .bv-ic{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--cuivre);color:#fbf8f0;font-size:14px}
+@media print{.video-c,.bandeau-video{display:none}}
 
 /* ===== Identité « Ex libris » : livre ancien, papier vergé, encre ferro-gallique, rubrication ===== */
 @font-face{font-family:"Exlibris Texte";src:url(polices/ebg.woff2) format("woff2");font-weight:400 700;font-style:normal;font-display:swap}
@@ -3360,6 +3367,13 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
 </ul><p class="petit mute">Aucune chaîne YouTube consacrée spécifiquement à l’HLP n’a pu être recommandée avec certitude : les chaînes ci-dessus couvrent la méthode et la philosophie.</p></section>
 </div>`;
 
+/* ---------- Vidéos des entrées (lecteur hlp/serie/<code>.html, généré par outils/serie-philo/generer.py) ----------
+   Une ligne par entrée. L'onglet « ▶ Vidéo » et le bandeau du cours n'apparaissent que si dispo est vrai :
+   passer dispo à true (et donner min, la durée en minutes) une fois la vidéo publiée, puis relancer build.py. */
+HLP.VIDEOS = {
+  e1: { code: "hlp-e1", dispo: false, min: 0 }
+};
+
 </script>
 <script>
 /* Animations explicatives : lecteur commun (lecture, pause, étape précédente / suivante, recommencer).
@@ -3707,12 +3721,21 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
   };
 
   var ONGLETS = [["", "Cours"], ["textes", "Textes clés"], ["sujet", "Sujet type bac"], ["qcm", "QCM"], ["cartes", "Cartes mémoire"], ["fiche", "À retenir"]];
+  /* vidéo de l'entrée (HLP.VIDEOS, src/videos.js) : onglet et bandeau, seulement une fois publiée (dispo) */
+  function video(e) { var v = D.VIDEOS && D.VIDEOS[e.id]; return v && v.dispo ? v : null; }
+  function onglets(e) { return (video(e) ? [["video", "▶ Vidéo"]] : []).concat(ONGLETS); }
+  function videoHTML(e) {
+    var v = video(e);
+    return '<div class="lecture"><p class="non-imp">Toute l’entrée en vidéo' + (v.min ? " (environ " + v.min + " min)" : "") + " : le cours, les textes, la méthode de l’épreuve et un sujet corrigé, avec un arrêt « À toi » avant chaque correction. Le quiz est sous la vidéo.</p></div>" +
+      '<div class="video-c non-imp"><iframe src="serie/' + v.code + '.html?embed=1" title="Entrée ' + e.num + " — " + esc(e.titre) + ' : le cours en vidéo" allow="fullscreen; autoplay" allowfullscreen loading="lazy" data-serie="' + v.code + '"></iframe></div>';
+  }
   function pageEntree(e, sous) {
     var h = '<header class="page-entete"><p class="surtitre">' + NOM_SEM[sem(e)] + ' · <span class="nw">Entrée ' + e.num + "</span></p><h1>" + e.titre + '</h1><p class="chapo">' + e.chapo + "</p></header>";
     h += '<nav class="onglets non-imp" aria-label="Parties de l’entrée">';
-    ONGLETS.forEach(function (o) { h += '<a href="#' + e.id + (o[0] ? "/" + o[0] : "") + '"' + (sous === o[0] ? ' class="actif" aria-current="page"' : "") + ">" + o[1] + "</a>"; });
+    onglets(e).forEach(function (o) { h += '<a href="#' + e.id + (o[0] ? "/" + o[0] : "") + '"' + (sous === o[0] ? ' class="actif" aria-current="page"' : "") + ">" + o[1] + "</a>"; });
     h += "</nav><div class='entre'>";
     if (!sous) h += coursHTML(e);
+    else if (sous === "video") h += videoHTML(e);
     else if (sous === "textes") h += textesHTML(e);
     else if (sous === "sujet") h += sujetHTML(e);
     else if (sous === "qcm") h += '<p class="lecture">' + (["zéro", "Une", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix", "Onze", "Douze", "Treize", "Quatorze", "Quinze", "Seize", "Dix-sept", "Dix-huit", "Dix-neuf", "Vingt"][e.qcm.length] || e.qcm.length) + ' questions sur les idées du cours. Chaque réponse est expliquée, avec un lien pour revoir le paragraphe.</p><div id="qcm-zone"></div>';
@@ -3722,7 +3745,8 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
     return h;
   }
   function coursHTML(e) {
-    var h = '<div class="lecture"><section class="essentiel"><h2>L’essentiel en 5 lignes</h2><ol>' + e.essentiel.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ol></section>";
+    var vi = video(e), h = vi ? '<a class="bandeau-video non-imp" href="#' + e.id + '/video"><span class="bv-ic" aria-hidden="true">▶</span><span><b>L’entrée ' + e.num + ' en vidéo</b>' + (vi.min ? " · " + vi.min + " min" : "") + "</span></a>" : "";
+    h += '<div class="lecture"><section class="essentiel"><h2>L’essentiel en 5 lignes</h2><ol>' + e.essentiel.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ol></section>";
     h += '<section class="cadre-prog"><h3>Ce que le programme attend</h3><ul class="puces">' + e.attendus.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ul></section>";
     h += "<h2>Les problématiques</h2><ul class='puces'>" + e.problematiques.map(function (l) { return "<li><i>" + l + "</i></li>"; }).join("") + "</ul>";
     /* schemaP : la même figure en portrait, montrée sur téléphone à la place de la version en largeur */
@@ -4079,7 +4103,8 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
   function router() {
     var h = (location.hash || "#accueil").slice(1), parts = h.split("/"), r = parts[0] || "accueil", sous = parts[1] || "";
     var e = entree(r), html;
-    if (e) html = pageEntree(e, ONGLETS.some(function (o) { return o[0] === sous; }) ? sous : "");
+    $$("iframe[data-serie]", main).forEach(function (fr) { try { fr.contentWindow.postMessage({ type: "serie-pause" }, "*"); } catch (x) {} });
+    if (e) html = pageEntree(e, onglets(e).some(function (o) { return o[0] === sous; }) ? sous : "");
     else if (PAGES[r]) html = PAGES[r]();
     else { r = "accueil"; html = PAGES.accueil(); }
     main.innerHTML = ty(html) + '<div aria-hidden="true">' + D.CUL + "</div>" + folio(e ? e.id : r) + '<footer class="pied">' + D.PIED + "</footer>";
@@ -4114,6 +4139,12 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
     window.scrollTo(0, 0);
   }
   window.addEventListener("hashchange", router);
+  /* lecteur vidéo (serie/*.html) : il donne sa hauteur (lecteur + quiz) */
+  window.addEventListener("message", function (ev) {
+    var d = ev.data || {};
+    if (d.type !== "serie-h" || !d.h) return;
+    $$("iframe[data-serie]", main).forEach(function (fr) { if (fr.contentWindow === ev.source) fr.style.height = Math.ceil(d.h) + "px"; });
+  });
 
   /* ---------- délégation ---------- */
   main.addEventListener("click", function (ev) {

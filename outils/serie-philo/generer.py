@@ -565,7 +565,8 @@ def generer(nom_module):
     with open(os.path.join(SORTIE, ep.CODE + ".data.js"), "w", encoding="utf-8") as f:
         f.write(js)
     v = hashlib.sha1(js.encode("utf-8")).hexdigest()[:8]
-    titre = (f"Chapitre {ep.NUM} — {ep.TITRE} · SVT Terminale" if site == "svt"
+    titre = (f"Entrée {['', 'I', 'II', 'III', 'IV', 'V', 'VI'][ep.NUM]} — {ep.TITRE} · HLP Terminale" if site == "hlp"
+             else f"Chapitre {ep.NUM} — {ep.TITRE} · SVT Terminale" if site == "svt"
              else f"Chapitre {ep.NUM} — {ep.TITRE} · " + {"maths": "Maths", "ses": "SES", "hggsp": "HGGSP", "hlp": "HLP", "nsi": "NSI"}[site] + " Terminale" if site in ("maths", "ses", "hggsp", "hlp", "nsi")
              else f"Chapitre {ep.NUM} — {ep.TITRE} · le cours en vidéo" if site == "pc"
              else f"{ep.NOTION} · Episode {ep.NUM} — {ep.TITRE}" if site == "dnl"
