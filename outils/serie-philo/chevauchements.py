@@ -10,11 +10,12 @@ PRINCIPAUX = {"portrait", "def", "note", "cols", "cartes", "liste", "cit", "mot"
               "anim", "formule", "graphe", "exo", "pause", "globe", "mental",
               "donnees", "chaine", "chiffres", "sanim", "auteur", "compare", "plan"}      # SES
 PRINCIPAUX |= {"scene", "chrono", "document"}                               # HGGSP
+PRINCIPAUX |= {"code"}                                                     # NSI
 
 
 def donnees(code):
     """Données d'un épisode philo (philo/serie) ou d'une vidéo de cours PC (pc/serie)."""
-    for site in ("philo", "pc", "acl-lughnasa", "dnl", "svt", "maths", "ses", "hggsp"):
+    for site in ("philo", "pc", "acl-lughnasa", "dnl", "svt", "maths", "ses", "hggsp", "hlp", "nsi"):
         f = os.path.join(RACINE, site, "serie", code + ".data.js")
         if os.path.exists(f):
             js = open(f, encoding="utf-8").read()

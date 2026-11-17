@@ -362,3 +362,10 @@ table.t th{font-family:var(--ui);font-size:.74rem;letter-spacing:.08em;text-tran
   html.mo .note-a.neuf{animation:monte .3s ease both}
   html.mo .fc .face{transition:transform .5s cubic-bezier(.3,.7,.3,1)}
 }
+/* vidéo de l'entrée (lecteur serie/*.html en iframe, src/videos.js) : visible seulement quand la vidéo est publiée */
+.video-c{margin:12px 0 18px}
+.video-c iframe{display:block;width:100%;height:560px;border:0;border-radius:10px;background:#2a2018}
+.bandeau-video{display:flex;align-items:center;gap:12px;min-height:48px;margin:4px 0 14px;padding:10px 16px;border-radius:10px;text-decoration:none;color:var(--encre);background:var(--surface2);border:1px solid var(--filet2)}
+.bandeau-video:hover{border-color:var(--cuivre)}
+.bandeau-video .bv-ic{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--cuivre);color:#fbf8f0;font-size:14px}
+@media print{.video-c,.bandeau-video{display:none}}

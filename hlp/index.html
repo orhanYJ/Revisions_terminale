@@ -377,6 +377,13 @@ table.t th{font-family:var(--ui);font-size:.74rem;letter-spacing:.08em;text-tran
   html.mo .note-a.neuf{animation:monte .3s ease both}
   html.mo .fc .face{transition:transform .5s cubic-bezier(.3,.7,.3,1)}
 }
+/* vidéo de l'entrée (lecteur serie/*.html en iframe, src/videos.js) : visible seulement quand la vidéo est publiée */
+.video-c{margin:12px 0 18px}
+.video-c iframe{display:block;width:100%;height:560px;border:0;border-radius:10px;background:#2a2018}
+.bandeau-video{display:flex;align-items:center;gap:12px;min-height:48px;margin:4px 0 14px;padding:10px 16px;border-radius:10px;text-decoration:none;color:var(--encre);background:var(--surface2);border:1px solid var(--filet2)}
+.bandeau-video:hover{border-color:var(--cuivre)}
+.bandeau-video .bv-ic{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--cuivre);color:#fbf8f0;font-size:14px}
+@media print{.video-c,.bandeau-video{display:none}}
 
 /* ===== Identité « Ex libris » : livre ancien, papier vergé, encre ferro-gallique, rubrication ===== */
 @font-face{font-family:"Exlibris Texte";src:url(polices/ebg.woff2) format("woff2");font-weight:400 700;font-style:normal;font-display:swap}
@@ -960,7 +967,7 @@ HLP.ENTREES.push({
 <path class="sch-trait trace" style="--d:1.5s" d="M346 214 L560 214" marker-end="url(#fl1)"/>
 <defs><marker id="fl1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--filet2)"/></marker></defs>
 <text class="sch-txt apparait" style="--d:1.9s" x="580" y="210" text-anchor="end">accord des trois</text><text class="sch-txt2 apparait" style="--d:1.9s" x="580" y="232" text-anchor="end">→ un homme « bien élevé »</text>
-<text class="sch-txt2 apparait" style="--d:2.1s" x="320" y="272" text-anchor="middle">Seule l’éducation des hommes dépend vraiment de nous : c’est elle qu’il faut régler sur les deux autres.</text>
+<text class="sch-txt2 apparait" style="--d:2.1s" x="320" y="272" text-anchor="middle">Seule l’éducation des hommes dépend de nous : c’est sur la nature qu’il faut régler les deux autres.</text>
 </svg><figcaption>D’après <i>Émile</i>, livre I : « Cette éducation nous vient de la nature, ou des hommes, ou des choses. »</figcaption>`,
   schemaP: `<svg class="sch-port" viewBox="0 0 320 352" role="img" aria-labelledby="sch1p"><title id="sch1p">Les trois maîtres selon Rousseau et le chemin vers l’autonomie</title>
 <text class="sch-tit" x="160" y="26" text-anchor="middle">Les « trois maîtres » de l’Émile</text><text class="sch-txt2" x="160" y="45" text-anchor="middle">Rousseau, livre I</text>
@@ -972,7 +979,7 @@ HLP.ENTREES.push({
 <path class="sch-trait trace" style="--d:1.5s" d="M270 176 L270 244" marker-end="url(#fl1p)"/>
 <defs><marker id="fl1p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--filet2)"/></marker></defs>
 <text class="sch-txt apparait" style="--d:1.9s" x="308" y="266" text-anchor="end">accord des trois</text><text class="sch-txt2 apparait" style="--d:1.9s" x="308" y="285" text-anchor="end">→ un homme « bien élevé »</text>
-<text class="sch-txt2 apparait" style="--d:2.1s" x="160" y="318" text-anchor="middle">Seule l’éducation des hommes dépend vraiment</text><text class="sch-txt2 apparait" style="--d:2.1s" x="160" y="335" text-anchor="middle">de nous : il faut la régler sur les deux autres.</text>
+<text class="sch-txt2 apparait" style="--d:2.1s" x="160" y="318" text-anchor="middle">Seule l’éducation des hommes dépend vraiment</text><text class="sch-txt2 apparait" style="--d:2.1s" x="160" y="335" text-anchor="middle">de nous : on règle les deux autres sur la nature.</text>
 </svg>`,
   cours: [
     { id: "e1-1", titre: "L’héritage humaniste : « une tête bien faite »", html: `
@@ -1017,7 +1024,7 @@ HLP.ENTREES.push({
 <div class="ex"><b class="l">Exemple</b>Le titre de Flaubert est ironique : l’« éducation » ne mène à aucune sagesse. Cela permet, dans une copie, de nuancer l’idée que l’expérience forme toujours.</div>` },
     { id: "e1-9", titre: "Transmettre ou rompre ? Les débats du XX<sup>e</sup> siècle", html: `
 <p>Faut-il transmettre un héritage ou laisser chacun s’inventer ? Nietzsche attaque dès 1872 l’enseignement de son temps (<i>Sur l’avenir de nos établissements d’enseignement</i>) et fait du devenir soi une tâche : « Tu dois devenir celui que tu es » (<i>Le Gai Savoir</i>, § 270, 1882, trad. H. Albert). L’éducation devient alors <b>formation de soi</b>, parfois contre les institutions.</p>
-<p>Simone de Beauvoir montre que l’éducation fabrique aussi des rôles : « On ne naît pas femme : on le devient » (<i>Le Deuxième Sexe</i>, t. II, 1949). L’émancipation suppose de prendre conscience de ce qu’on a reçu comme une évidence. À l’inverse, Hannah Arendt (« La crise de l’éducation », dans <i>La Crise de la culture</i>, 1961) soutient que l’école doit rester <b>conservatrice</b> au sens où elle transmet un monde ancien, pour protéger ce que chaque enfant apporte de nouveau : on ne peut renouveler que ce qu’on a reçu.</p>
+<p>Simone de Beauvoir montre que l’éducation fabrique aussi des rôles : « On ne naît pas femme : on le devient » (<i>Le Deuxième Sexe</i>, t. II, 1949). L’émancipation suppose de prendre conscience de ce qu’on a reçu comme une évidence. À l’inverse, Hannah Arendt (« La crise de l’éducation », 1958, repris dans <i>La Crise de la culture</i>) soutient que l’école doit rester <b>conservatrice</b> au sens où elle transmet un monde ancien, pour protéger ce que chaque enfant apporte de nouveau : on ne peut renouveler que ce qu’on a reçu.</p>
 <div class="ex"><b class="l">Exemple</b>Arendt critique l’idée d’une éducation qui préparerait directement les enfants à changer le monde selon les projets des adultes : ce serait leur voler leur propre nouveauté. (Résumé de la thèse, l’ouvrage étant protégé.)</div>
 <div class="cle"><b class="l">Pour la copie</b>Cette idée permet de dépasser l’opposition « transmettre / émanciper » : la transmission est la condition de l’émancipation, à condition de donner à l’élève les moyens de juger ce qu’il reçoit (Condorcet).</div>` }
   ],
@@ -1050,7 +1057,7 @@ HLP.ENTREES.push({
     ["1883", "Jules Ferry, <i>Lettre aux instituteurs</i> (17 novembre)."],
     ["1897", "Dewey, <i>Mon credo pédagogique</i>."],
     ["1949", "Beauvoir, <i>Le Deuxième Sexe</i>."],
-    ["1961", "Arendt, <i>La Crise de la culture</i> (« La crise de l’éducation »)."]
+    ["1958", "Arendt, « La crise de l’éducation » (repris dans <i>La Crise de la culture</i>)."]
   ],
   pieges: [
     "Confondre <b>éducation</b> et <b>instruction</b> : chez Condorcet, la distinction est le cœur du raisonnement.",
@@ -1144,7 +1151,7 @@ HLP.ENTREES.push({
   e.sujet.q2.concl = `<p>La littérature montre bien des ruptures : on ne devient pas soi-même en reproduisant docilement ce que l’on a reçu. Mais elle montre aussi que ces ruptures se font avec les armes de l’éducation, la langue, les livres, l’ambition, et qu’une révolte sans forme peut tourner à vide. Le récit d’enfance accomplit ce mouvement : il juge l’éducation reçue tout en la transformant en œuvre. On ne devient donc pas soi « contre » son éducation, mais en la reprenant pour son propre compte, ce qui rejoint le souhait de Kant : penser par soi-même, après avoir appris à penser.</p>`;
   e.retenir = `
 <section><h3>Définitions</h3><ul class="puces"><li><b>Instruction</b> : transmission de savoirs et de leurs preuves. <b>Éducation</b> : formation de la personne entière.</li><li><b>Minorité</b> (Kant) : incapacité de penser sans être dirigé, par paresse et lâcheté. <b>Émancipation</b> : sortie d’une tutelle.</li><li><b>Éducation négative</b> (Rousseau) : protéger l’enfant du vice et de l’erreur plutôt que lui enseigner la vertu.</li><li><b>Bildungsroman</b> : roman d’apprentissage (Goethe ; version ironique chez Flaubert).</li></ul></section>
-<section><h3>Thèses et auteurs</h3><ul class="puces"><li><b>Montaigne</b> (1580) : une « tête bien faite » plutôt que « bien pleine ».</li><li><b>Rousseau</b> (1762) : l’enfance a sa logique ; les choses avant les mots ; l’éducation menace et protège.</li><li><b>Kant</b> : « <i>Sapere aude</i> » (<i>Qu’est-ce que les Lumières ?</i>, 1784) ; « L’homme ne peut devenir homme que par l’éducation » (<i>Traité de pédagogie</i>, publié en 1803).</li><li><b>Condorcet</b> (1791) : l’instruction publique rend l’égalité réelle ; former des citoyens capables de corriger la loi.</li><li><b>Ferry</b> (1881-1883) : école gratuite, obligatoire, laïque ; la règle du « père de famille ».</li><li><b>Vallès</b> (1878) : l’éducation comme violence ; récit de la révolte.</li><li><b>Flaubert</b> (1869) : l’éducation qui ne forme rien.</li><li><b>Beauvoir</b> (1949) : « On ne naît pas femme : on le devient ».</li><li><b>Arendt</b> (1961) : transmettre l’ancien pour protéger le nouveau.</li></ul></section>
+<section><h3>Thèses et auteurs</h3><ul class="puces"><li><b>Montaigne</b> (1580) : une « tête bien faite » plutôt que « bien pleine ».</li><li><b>Rousseau</b> (1762) : l’enfance a sa logique ; les choses avant les mots ; l’éducation menace et protège.</li><li><b>Kant</b> : « <i>Sapere aude</i> » (<i>Qu’est-ce que les Lumières ?</i>, 1784) ; « L’homme ne peut devenir homme que par l’éducation » (<i>Traité de pédagogie</i>, publié en 1803).</li><li><b>Condorcet</b> (1791) : l’instruction publique rend l’égalité réelle ; former des citoyens capables de corriger la loi.</li><li><b>Ferry</b> (1881-1883) : école gratuite, obligatoire, laïque ; la règle du « père de famille ».</li><li><b>Vallès</b> (1878) : l’éducation comme violence ; récit de la révolte.</li><li><b>Flaubert</b> (1869) : l’éducation qui ne forme rien.</li><li><b>Beauvoir</b> (1949) : « On ne naît pas femme : on le devient ».</li><li><b>Arendt</b> (1958) : transmettre l’ancien pour protéger le nouveau.</li></ul></section>
 <section><h3>Le problème en une phrase</h3><p>L’éducation est la condition de la liberté (on ne pense pas seul sans avoir appris) et sa menace (elle peut dresser) : l’émancipation consiste à <b>reprendre pour son compte</b> ce que l’on a reçu.</p></section>
 <section><h3>Trois citations à savoir par cœur</h3><ul class="puces"><li>« Tout est bien, sortant des mains de l’Auteur des choses : tout dégénère entre les mains de l’homme. » (Rousseau)</li><li>« Aie le courage de te servir de ta propre intelligence ! » (Kant, trad. Barni)</li><li>« Le but de l’instruction n’est pas de faire admirer aux hommes une législation toute faite, mais de les rendre capables de l’apprécier et de la corriger. » (Condorcet)</li></ul></section>`;
   e.qcm = [
@@ -3360,6 +3367,13 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
 </ul><p class="petit mute">Aucune chaîne YouTube consacrée spécifiquement à l’HLP n’a pu être recommandée avec certitude : les chaînes ci-dessus couvrent la méthode et la philosophie.</p></section>
 </div>`;
 
+/* ---------- Vidéos des entrées (lecteur hlp/serie/<code>.html, généré par outils/serie-philo/generer.py) ----------
+   Une ligne par entrée. L'onglet « ▶ Vidéo » et le bandeau du cours n'apparaissent que si dispo est vrai :
+   passer dispo à true (et donner min, la durée en minutes) une fois la vidéo publiée, puis relancer build.py. */
+HLP.VIDEOS = {
+  e1: { code: "hlp-e1", dispo: false, min: 0 }
+};
+
 </script>
 <script>
 /* Animations explicatives : lecteur commun (lecture, pause, étape précédente / suivante, recommencer).
@@ -3707,12 +3721,21 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
   };
 
   var ONGLETS = [["", "Cours"], ["textes", "Textes clés"], ["sujet", "Sujet type bac"], ["qcm", "QCM"], ["cartes", "Cartes mémoire"], ["fiche", "À retenir"]];
+  /* vidéo de l'entrée (HLP.VIDEOS, src/videos.js) : onglet et bandeau, seulement une fois publiée (dispo) */
+  function video(e) { var v = D.VIDEOS && D.VIDEOS[e.id]; return v && v.dispo ? v : null; }
+  function onglets(e) { return (video(e) ? [["video", "▶ Vidéo"]] : []).concat(ONGLETS); }
+  function videoHTML(e) {
+    var v = video(e);
+    return '<div class="lecture"><p class="non-imp">Toute l’entrée en vidéo' + (v.min ? " (environ " + v.min + " min)" : "") + " : le cours, les textes, la méthode de l’épreuve et un sujet corrigé, avec un arrêt « À toi » avant chaque correction. Le quiz est sous la vidéo.</p></div>" +
+      '<div class="video-c non-imp"><iframe src="serie/' + v.code + '.html?embed=1" title="Entrée ' + e.num + " — " + esc(e.titre) + ' : le cours en vidéo" allow="fullscreen; autoplay" allowfullscreen loading="lazy" data-serie="' + v.code + '"></iframe></div>';
+  }
   function pageEntree(e, sous) {
     var h = '<header class="page-entete"><p class="surtitre">' + NOM_SEM[sem(e)] + ' · <span class="nw">Entrée ' + e.num + "</span></p><h1>" + e.titre + '</h1><p class="chapo">' + e.chapo + "</p></header>";
     h += '<nav class="onglets non-imp" aria-label="Parties de l’entrée">';
-    ONGLETS.forEach(function (o) { h += '<a href="#' + e.id + (o[0] ? "/" + o[0] : "") + '"' + (sous === o[0] ? ' class="actif" aria-current="page"' : "") + ">" + o[1] + "</a>"; });
+    onglets(e).forEach(function (o) { h += '<a href="#' + e.id + (o[0] ? "/" + o[0] : "") + '"' + (sous === o[0] ? ' class="actif" aria-current="page"' : "") + ">" + o[1] + "</a>"; });
     h += "</nav><div class='entre'>";
     if (!sous) h += coursHTML(e);
+    else if (sous === "video") h += videoHTML(e);
     else if (sous === "textes") h += textesHTML(e);
     else if (sous === "sujet") h += sujetHTML(e);
     else if (sous === "qcm") h += '<p class="lecture">' + (["zéro", "Une", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix", "Onze", "Douze", "Treize", "Quatorze", "Quinze", "Seize", "Dix-sept", "Dix-huit", "Dix-neuf", "Vingt"][e.qcm.length] || e.qcm.length) + ' questions sur les idées du cours. Chaque réponse est expliquée, avec un lien pour revoir le paragraphe.</p><div id="qcm-zone"></div>';
@@ -3722,7 +3745,8 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
     return h;
   }
   function coursHTML(e) {
-    var h = '<div class="lecture"><section class="essentiel"><h2>L’essentiel en 5 lignes</h2><ol>' + e.essentiel.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ol></section>";
+    var vi = video(e), h = vi ? '<a class="bandeau-video non-imp" href="#' + e.id + '/video"><span class="bv-ic" aria-hidden="true">▶</span><span><b>L’entrée ' + e.num + ' en vidéo</b>' + (vi.min ? " · " + vi.min + " min" : "") + "</span></a>" : "";
+    h += '<div class="lecture"><section class="essentiel"><h2>L’essentiel en 5 lignes</h2><ol>' + e.essentiel.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ol></section>";
     h += '<section class="cadre-prog"><h3>Ce que le programme attend</h3><ul class="puces">' + e.attendus.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ul></section>";
     h += "<h2>Les problématiques</h2><ul class='puces'>" + e.problematiques.map(function (l) { return "<li><i>" + l + "</i></li>"; }).join("") + "</ul>";
     /* schemaP : la même figure en portrait, montrée sur téléphone à la place de la version en largeur */
@@ -4079,7 +4103,8 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
   function router() {
     var h = (location.hash || "#accueil").slice(1), parts = h.split("/"), r = parts[0] || "accueil", sous = parts[1] || "";
     var e = entree(r), html;
-    if (e) html = pageEntree(e, ONGLETS.some(function (o) { return o[0] === sous; }) ? sous : "");
+    $$("iframe[data-serie]", main).forEach(function (fr) { try { fr.contentWindow.postMessage({ type: "serie-pause" }, "*"); } catch (x) {} });
+    if (e) html = pageEntree(e, onglets(e).some(function (o) { return o[0] === sous; }) ? sous : "");
     else if (PAGES[r]) html = PAGES[r]();
     else { r = "accueil"; html = PAGES.accueil(); }
     main.innerHTML = ty(html) + '<div aria-hidden="true">' + D.CUL + "</div>" + folio(e ? e.id : r) + '<footer class="pied">' + D.PIED + "</footer>";
@@ -4114,6 +4139,12 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
     window.scrollTo(0, 0);
   }
   window.addEventListener("hashchange", router);
+  /* lecteur vidéo (serie/*.html) : il donne sa hauteur (lecteur + quiz) */
+  window.addEventListener("message", function (ev) {
+    var d = ev.data || {};
+    if (d.type !== "serie-h" || !d.h) return;
+    $$("iframe[data-serie]", main).forEach(function (fr) { if (fr.contentWindow === ev.source) fr.style.height = Math.ceil(d.h) + "px"; });
+  });
 
   /* ---------- délégation ---------- */
   main.addEventListener("click", function (ev) {

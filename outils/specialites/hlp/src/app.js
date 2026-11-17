@@ -98,12 +98,21 @@
   };
 
   var ONGLETS = [["", "Cours"], ["textes", "Textes clés"], ["sujet", "Sujet type bac"], ["qcm", "QCM"], ["cartes", "Cartes mémoire"], ["fiche", "À retenir"]];
+  /* vidéo de l'entrée (HLP.VIDEOS, src/videos.js) : onglet et bandeau, seulement une fois publiée (dispo) */
+  function video(e) { var v = D.VIDEOS && D.VIDEOS[e.id]; return v && v.dispo ? v : null; }
+  function onglets(e) { return (video(e) ? [["video", "▶ Vidéo"]] : []).concat(ONGLETS); }
+  function videoHTML(e) {
+    var v = video(e);
+    return '<div class="lecture"><p class="non-imp">Toute l’entrée en vidéo' + (v.min ? " (environ " + v.min + " min)" : "") + " : le cours, les textes, la méthode de l’épreuve et un sujet corrigé, avec un arrêt « À toi » avant chaque correction. Le quiz est sous la vidéo.</p></div>" +
+      '<div class="video-c non-imp"><iframe src="serie/' + v.code + '.html?embed=1" title="Entrée ' + e.num + " — " + esc(e.titre) + ' : le cours en vidéo" allow="fullscreen; autoplay" allowfullscreen loading="lazy" data-serie="' + v.code + '"></iframe></div>';
+  }
   function pageEntree(e, sous) {
     var h = '<header class="page-entete"><p class="surtitre">' + NOM_SEM[sem(e)] + ' · <span class="nw">Entrée ' + e.num + "</span></p><h1>" + e.titre + '</h1><p class="chapo">' + e.chapo + "</p></header>";
     h += '<nav class="onglets non-imp" aria-label="Parties de l’entrée">';
-    ONGLETS.forEach(function (o) { h += '<a href="#' + e.id + (o[0] ? "/" + o[0] : "") + '"' + (sous === o[0] ? ' class="actif" aria-current="page"' : "") + ">" + o[1] + "</a>"; });
+    onglets(e).forEach(function (o) { h += '<a href="#' + e.id + (o[0] ? "/" + o[0] : "") + '"' + (sous === o[0] ? ' class="actif" aria-current="page"' : "") + ">" + o[1] + "</a>"; });
     h += "</nav><div class='entre'>";
     if (!sous) h += coursHTML(e);
+    else if (sous === "video") h += videoHTML(e);
     else if (sous === "textes") h += textesHTML(e);
     else if (sous === "sujet") h += sujetHTML(e);
     else if (sous === "qcm") h += '<p class="lecture">' + (["zéro", "Une", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix", "Onze", "Douze", "Treize", "Quatorze", "Quinze", "Seize", "Dix-sept", "Dix-huit", "Dix-neuf", "Vingt"][e.qcm.length] || e.qcm.length) + ' questions sur les idées du cours. Chaque réponse est expliquée, avec un lien pour revoir le paragraphe.</p><div id="qcm-zone"></div>';
@@ -113,7 +122,8 @@
     return h;
   }
   function coursHTML(e) {
-    var h = '<div class="lecture"><section class="essentiel"><h2>L’essentiel en 5 lignes</h2><ol>' + e.essentiel.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ol></section>";
+    var vi = video(e), h = vi ? '<a class="bandeau-video non-imp" href="#' + e.id + '/video"><span class="bv-ic" aria-hidden="true">▶</span><span><b>L’entrée ' + e.num + ' en vidéo</b>' + (vi.min ? " · " + vi.min + " min" : "") + "</span></a>" : "";
+    h += '<div class="lecture"><section class="essentiel"><h2>L’essentiel en 5 lignes</h2><ol>' + e.essentiel.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ol></section>";
     h += '<section class="cadre-prog"><h3>Ce que le programme attend</h3><ul class="puces">' + e.attendus.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ul></section>";
     h += "<h2>Les problématiques</h2><ul class='puces'>" + e.problematiques.map(function (l) { return "<li><i>" + l + "</i></li>"; }).join("") + "</ul>";
     /* schemaP : la même figure en portrait, montrée sur téléphone à la place de la version en largeur */
@@ -470,7 +480,8 @@
   function router() {
     var h = (location.hash || "#accueil").slice(1), parts = h.split("/"), r = parts[0] || "accueil", sous = parts[1] || "";
     var e = entree(r), html;
-    if (e) html = pageEntree(e, ONGLETS.some(function (o) { return o[0] === sous; }) ? sous : "");
+    $$("iframe[data-serie]", main).forEach(function (fr) { try { fr.contentWindow.postMessage({ type: "serie-pause" }, "*"); } catch (x) {} });
+    if (e) html = pageEntree(e, onglets(e).some(function (o) { return o[0] === sous; }) ? sous : "");
     else if (PAGES[r]) html = PAGES[r]();
     else { r = "accueil"; html = PAGES.accueil(); }
     main.innerHTML = ty(html) + '<div aria-hidden="true">' + D.CUL + "</div>" + folio(e ? e.id : r) + '<footer class="pied">' + D.PIED + "</footer>";
@@ -505,6 +516,12 @@
     window.scrollTo(0, 0);
   }
   window.addEventListener("hashchange", router);
+  /* lecteur vidéo (serie/*.html) : il donne sa hauteur (lecteur + quiz) */
+  window.addEventListener("message", function (ev) {
+    var d = ev.data || {};
+    if (d.type !== "serie-h" || !d.h) return;
+    $$("iframe[data-serie]", main).forEach(function (fr) { if (fr.contentWindow === ev.source) fr.style.height = Math.ceil(d.h) + "px"; });
+  });
 
   /* ---------- délégation ---------- */
   main.addEventListener("click", function (ev) {
