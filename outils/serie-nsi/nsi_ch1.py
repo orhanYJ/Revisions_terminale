@@ -27,6 +27,9 @@ POINTS À FAIRE VÉRIFIER (contrôle indépendant avant la voix) :
 - les messages d'erreur affichés sont ceux de Python 3.11 et suivants (UnboundLocalError en particulier) ;
 - la valeur d'une liste dans un attribut est dessinée dans la case de l'objet (simplification : en mémoire, la liste est
   elle-même un objet référencé), exercice 1.
+Contrôle indépendant du 17/11/2026 : points ci-dessus vérifiés ; pendant chaque arrêt « À toi », le programme reste affiché à
+côté de la carte (arrêt placé à la fin de la phrase, avant la fermeture) ; le programme de la question 1 du parking est
+montré avant l'arrêt ; graphies de PRONONCIATION en un seul mot (traits d'union) pour que le calage des mots reste juste.
 """
 
 SITE = "nsi"
@@ -37,19 +40,23 @@ TITRE = "Programmation orientée objet"
 SUIVANT = "Chapitre 2 · Récursivité"
 RYTHME = "vivant"
 # graphies données à la voix seulement (sous-titres et écran gardent l'orthographe normale) : mots anglais du code et
-# noms des exemples ; « c1 », « c2 »… sont dits « c un », « c deux »
+# noms des exemples ; « c1 », « c2 »… sont dits « cé-un », « cé-deux » (un seul mot pour la voix : le calage des mots reste juste)
 PRONONCIATION = {
+    # avec majuscule, une graphie un peu différente (même son) : le calage des mots retrouve ainsi le bon mot écrit
+    "Init": "Innite", "Str": "Èsse-té-erre", "Eq": "É-ku", "Add": "Ade", "Len": "Lènne", "Print": "Prinnte", "Append": "Apennde",
+    "Get": "Guètte",
     "print": "printe", "append": "appennde", "upper": "eupeur", "None": "nonne", "True": "trou", "False": "folse",
-    "getter": "guétteur", "setter": "sétteur", "get solde": "guette solde", "TypeError": "taïpe érreur",
-    "UnboundLocalError": "eunbaounde lôcal érreur", "AttributeError": "attribioute érreur", "is": "iz",
+    "getter": "guétteur", "setter": "sétteur", "get": "guette", "TypeError": "taïpe-érreur",
+    "UnboundLocalError": "eunbaounde-lôcal-érreur", "AttributeError": "attribioute-érreur", "is": "iz",
     "Alan": "Alanne", "Grace": "Gréïce", "Smalltalk": "smôltôk", "Xerox": "Zirox", "PARC": "parc",
-    "Guido van Rossum": "Guido vanne Rossoum", "Ole-Johan Dahl": "Olé Yohanne Dal", "Kristen Nygaard": "Kristène Nugor",
-    "Simula": "Simula", "UML": "U M L", "POO": "P O O", "c1": "c un", "c2": "c deux", "m1": "m un", "m2": "m deux",
-    "m3": "m trois", "b1": "b un", "b2": "b deux", "b3": "b trois", "t1": "t un", "t2": "t deux",
-    "init": "inite", "str": "esse té erre", "eq": "é cu", "add": "adde", "len": "lène", "lt": "elle té",
-    "less than": "lesse zanne",
-    "Init": "Inite", "Str": "Esse té erre", "Eq": "É cu", "Add": "Adde", "Len": "Lène", "Print": "Printe", "Append": "Appennde",
-    "Get solde": "Guette solde", "Nb créés": "Nombre créés", "nb créés": "nombre créés", "assert": "assèrte", "Pixel": "Pixèle",
+    "Guido van Rossum": "Guido vanne Rossoum", "Ole-Johan Dahl": "Oulé Yohanne Dal", "Kristen Nygaard": "Kristène Nugor",
+    "Simula": "Simula", "UML": "U-M-L", "POO": "P-O-O", "c1": "cé-un", "c2": "cé-deux", "m1": "emme-un", "m2": "emme-deux",
+    "m3": "emme-trois", "b1": "bé-un", "b2": "bé-deux", "b3": "bé-trois", "t1": "té-un", "t2": "té-deux",
+    "init": "inite", "str": "esse-té-erre", "eq": "é-cu", "add": "adde", "len": "lène", "lt": "elle-té",
+    "less than": "lesse-zanne",
+    "Nb créés": "Nombre créés", "nb créés": "nombre créés", "assert": "assèrte", "Pixel": "Pixèle",
+    "nb libres": "nombre-libres", "return": "riteurne", "and": "ènde", "else": "èlse", "not": "notte", "int": "inte",
+    "main": "méïne", "object at": "obdjèkte-atte",
 }
 LIAISONS = "maths"   # jamais de liaison devant une lettre ou un nombre (« deux‿a », « les‿objets c un »…)
 
@@ -659,7 +666,7 @@ SCENES = [
         "{tr_code.l4b}{mem3.4}Et c'est le solde d'Alan qui passe à vingt. "
         "{tr_code.l0}{mem3.5}Le même code, deux objets différents : c'est tout l'intérêt de self.",
         "{-tr_code}{-mem3}{trois}Une méthode peut faire trois choses. {trois.1}Modifier l'objet, comme déposer. "
-        "{trois.2}Renvoyer une valeur calculée à partir des attributs, comme retirer, qui renvoie un booléen. {trois.3}Ou les deux à la fois. "
+        "{trois.2}Renvoyer une valeur calculée à partir des attributs, comme retirer, qui renvoie un booléen. {trois.3}Ou les deux à la fois : d'ailleurs, quand il réussit, retirer modifie aussi le solde. "
         "{trois.4}Elle peut aussi appeler une autre méthode : du même objet, avec self point, ou d'un autre objet, reçu en paramètre.",
         "{-trois}{vir}{vir.1}Exemple : un virement d'un compte vers un autre. {vir.l5}On ajoute d'abord un attribut historique, une liste vide au départ. "
         "Un attribut peut contenir n'importe quelle valeur, même une liste. "
@@ -708,7 +715,7 @@ SCENES = [
         "{-gs}{gcode}Voici la classe réécrite. {gcode.4}{gcode.l4}L'attribut s'appelle maintenant : tiret bas solde. "
         "{gcode.6}{gcode.l6-7}Get solde est l'accesseur : il renvoie tiret bas solde. "
         "{gcode.9}{gcode.l9-11}Déposer est la seule façon prévue de modifier le solde. "
-        "{gcode.l10}Avec assert, elle vérifie d'abord que le montant est positif. Sinon, le programme s'arrête, avec une erreur.",
+        "{gcode.l10}Avec assert, elle vérifie d'abord que le montant est strictement positif. Sinon, le programme s'arrête, avec une erreur.",
         "{gcode.13}{gcode.l13-15}Enfin, une méthode spéciale : str, entourée de deux tirets bas. Elle doit renvoyer une chaîne : le texte qu'affichera print. "
         "{gcode.l0}{gu}{gu.1}On crée le compte, {gu.2}on dépose vingt, {gu.3}on lit le solde avec l'accesseur : {gu.s1}cent vingt. "
         "{gu.4}Et print de c affiche {gu.s2}la phrase renvoyée par str : Compte de Ada, cent vingt euros.",
@@ -745,7 +752,7 @@ SCENES = [
         "{-ref}{alc}{mem4}{alc.1}{mem4.1}On crée a, un compte de cent euros. {alc.2}{mem4.2}Puis on écrit : b égale a. "
         "{alc.l2}Cette ligne ne copie pas l'objet. Elle copie la référence. a et b désignent le même objet : on dit que b est un alias de a.",
         "{alc.l0}{alc.3}{mem4.3}On dépose cinquante, en passant par b. {alc.4}Et on affiche le solde de a : {alc.s1}cent cinquante ! "
-        "a a changé aussi, puisque c'est le même objet.",
+        "a, lui aussi, a changé, puisque c'est le même objet.",
         "{alc.5}{mem4.4}Maintenant, c : un autre compte, avec les mêmes valeurs. {alc.6}Et trois tests. "
         "{alc.s2}a is b : True, c'est le même objet. a is c : False, ce sont deux objets distincts. "
         "Et a, double égal, c : False aussi ! Pour une classe qui ne définit pas la méthode eq, le double égal compare les identités, exactement comme is.",
@@ -797,7 +804,7 @@ SCENES = [
         "{bq.11}{bq.l11-15}Total parcourt les comptes, et additionne leurs soldes : self point comptes, puis c point solde.",
         "{bq.l0}{bqu}{bqu.1}On crée la banque. {bqu.2}On ouvre deux comptes, {bqu.4}puis un troisième, celui de Grace, qu'on garde dans g. "
         "{bqu.5}On dépose trois cents euros sur g. {bqu.6}On affiche : {bqu.s}trois comptes, et cinq cents euros en tout : cent vingt, plus quatre-vingts, plus trois cents. "
-        "Le dépôt fait par g se retrouve dans la banque : g et la liste désignent le même objet.",
+        "Le dépôt fait par g se retrouve dans la banque : g et le dernier compte de la liste désignent le même objet.",
         "{-bq}{-bqu}{mai}{mai.1}Un attribut peut aussi contenir un autre objet, de la même classe. C'est l'idée du maillon. "
         "{mai.l1-4}La classe Maillon a deux attributs : {mai.l3}la valeur, {mai.l4}et suivant, qui désigne un autre maillon, ou None, par défaut.",
         "{mai.l0}{mai.6}On crée trois maillons, en partant de la fin : m3 contient C. {mai.7}m2 contient B, et pointe vers m3. "
@@ -829,7 +836,7 @@ SCENES = [
         "{spec}Les méthodes dont le nom est entouré de deux tirets bas sont appelées par Python dans des situations précises. "
         "{spec.1}Init, à la création. {spec.2}Str, par print. {spec.3}Eq, par le double égal. {spec.4}Add, par le signe plus. "
         "{spec.5}Len, par la fonction len. {spec.6}Et lt, pour less than, par le signe inférieur. "
-        "Ce n'est pas exigible, mais on en croise souvent dans les sujets.",
+        "À part la première, ce n'est pas exigible, mais on en croise souvent dans les sujets.",
         "{-spec}{vec}Exemple : des vecteurs. {vec.6}{vec.l6-7}Add renvoie un nouveau vecteur, somme des deux. "
         "{vec.9}{vec.l9-10}Eq compare les coordonnées. {vec.12}{vec.l12-13}Et str fabrique le texte à afficher.",
         "{vec.15}{vec.l15-17}u vaut un, deux. v vaut trois, quatre. Print de u plus v : {vec.s1}quatre, six. "
@@ -905,9 +912,10 @@ SCENES = [
     # ================================================================ X. exercice 1 : prédis la sortie
     dict(id="exo1", chap="Exercice 1 · prédis la sortie", humeur="tension", beats=[
         "{ex1}Place à l'entraînement. Premier exercice : prédis la sortie. Lis ce programme sans l'exécuter, "
-        "et écris sur une feuille ce qu'il affiche. C'est exactement ce qu'on te demande à l'écrit.",
-        "{-ex1}{pa1}À toi. Mets la vidéo sur pause, et écris la sortie.",
-        "{pa1.stop}{-pa1}{ex1c}{mem7}Correction. {ex1c.l5}{mem7.1}b1 est une boîte qui contient la liste un, deux. "
+        "et écris sur une feuille ce qu'il affiche. C'est une question classique de l'écrit.",
+        "{pa1}À toi. Mets la vidéo sur pause, prends ton temps, et écris exactement ce que le programme affiche. {pa1.stop}",
+        ("P", 1.0),
+        "{-pa1}{-ex1}{ex1c}{mem7}Correction. {ex1c.l5}{mem7.1}b1 est une boîte qui contient la liste un, deux. "
         "{ex1c.l6}{mem7.2}b2 égale b1 : un alias. Une seule boîte, deux noms.",
         "{ex1c.l7}{mem7.3}On ajoute trois à la liste, en passant par b2. C'est la liste de l'unique boîte qui grandit. "
         "{ex1c.l8}{mem7.4}b3 est une autre boîte, qui contient une autre liste : un, deux, trois.",
@@ -916,15 +924,16 @@ SCENES = [
         "{-ex1c}{-mem7}{ex1b}Une deuxième, plus rapide. {ex1b.l6-7}La méthode déplace renvoie un nouveau point. "
         "{ex1b.l9-11}On crée p, à l'origine. q égale p point déplace, de cinq. Puis on appelle p point déplace, de un, sans garder le résultat. "
         "{ex1b.l12}Que valent p point x, q point x, et p is q ?",
-        "{-ex1b}{pa1b}À toi : trois valeurs à prédire.",
-        "{pa1b.stop}{-pa1b}{ex1bc}{ex1bc.s}Zéro, cinq, False. {ex1bc.l7}Déplace ne modifie pas p : elle renvoie un nouvel objet. "
+        "{ex1b.l0}{pa1b}À toi : trois valeurs à prédire. Mets sur pause, et écris-les avant de regarder la correction. {pa1b.stop}",
+        ("P", 1.0),
+        "{-pa1b}{-ex1b}{ex1bc}{ex1bc.s}Zéro, cinq, False. {ex1bc.l7}Déplace ne modifie pas p : elle renvoie un nouvel objet. "
         "{ex1bc.l10}q est ce nouveau point, d'abscisse cinq. {ex1bc.l11}Le second appel crée un point qui est aussitôt perdu : on ne le range nulle part. "
         "{ex1bc.l12}Et p n'a pas bougé : p point x vaut toujours zéro. Deux objets distincts, donc p is q est faux.",
         "{-ex1bc}",
     ], vis={
-        "ex1": dict(type="code", titre="Exercice 1 · prédis la sortie", fichier="boite.py", instant=True, x=200, y=96, w=880, taille=26,
+        "ex1": dict(type="code", titre="Exercice 1 · prédis la sortie", fichier="boite.py", instant=True, x=30, y=96, w=700, taille=24,
                     lignes=BOITE),
-        "pa1": dict(type="pause", t="Écris ce qu'affiche la dernière ligne."),
+        "pa1": dict(type="pause", t="Écris ce qu'affiche la dernière ligne.", x=760, y=150, w=490),
         "ex1c": dict(type="code", fichier="boite.py", instant=True, x=30, y=90, w=640, taille=22, lignes=BOITE,
                      sortie="[1, 2, 3] True False"),
         "mem7": dict(type="illu", nom="memoire", x=700, y=110, w=550, h=560, vw=150, ow=330, ordre=["b1", "b2", "b3"], etats=[
@@ -934,9 +943,9 @@ SCENES = [
             dict(o=dict(o1=dict(a=[["contenu", "[1, 2, 3]"]])), note="b2.contenu.append(3)"),
             dict(v=dict(b3="o2"), o=dict(o2=dict(c="Boite", a=[["contenu", "[1, 2, 3]"]], p=[200, 290])), note="b3 : un autre objet"),
         ]),
-        "ex1b": dict(type="code", titre="Exercice 1 · deuxième programme", fichier="point.py", instant=True, x=200, y=96, w=880, taille=24,
+        "ex1b": dict(type="code", titre="Exercice 1 · deuxième programme", fichier="point.py", instant=True, x=30, y=96, w=700, taille=22,
                      lignes=POINT),
-        "pa1b": dict(type="pause", t="Que valent `p.x`, `q.x` et `p is q` ?"),
+        "pa1b": dict(type="pause", t="Que valent `p.x`, `q.x` et `p is q` ?", x=760, y=150, w=490),
         "ex1bc": dict(type="code", fichier="point.py", instant=True, x=200, y=84, w=880, taille=20, lignes=POINT, sortie="0 5 False"),
     }),
 
@@ -948,14 +957,15 @@ SCENES = [
         "Avec trois livres disponibles, elle renvoie un. Trouve l'erreur, et corrige-la. {epq.3}Trois : écrire des tests, y compris les cas limites.",
         "{-epq}{ep}Voici le programme fourni. {ep.l3}La médiathèque range ses livres dans une liste. {ep.l8-11}La méthode emprunter est à compléter : "
         "sa documentation dit ce qu'elle doit faire. {ep.l13-18}Et voici nombre disponibles, qui se trompe.",
-        "{-ep}{pa_ep}À toi. Mets sur pause, et cherche les trois questions. Si tu as un ordinateur, tape le programme et teste-le.",
-        "{pa_ep.stop}{-pa_ep}{epc}{epc.q1}{md1}Correction. Question un : emprunter. {md1.1}{md1.2}On parcourt les livres. "
+        "{ep.l0}{pa_ep}À toi. Mets sur pause, et cherche les trois questions. Si tu as un ordinateur, tape le programme et teste-le. {pa_ep.stop}",
+        ("P", 1.0),
+        "{-pa_ep}{-ep}{epc}{epc.q1}{md1}Correction. Question un : emprunter. {md1.2}On parcourt les livres. "
         "{md1.3}Dès qu'on trouve le bon titre, et que le livre est disponible, {md1.4}on le marque emprunté, {md1.5}et on renvoie True. "
         "{md1.6}{md1.l6}Si la boucle se termine sans succès, on renvoie False. Ce return est après la boucle, pas dedans.",
-        "{-md1}{epc.q2}{md2}Question deux : le bug. {md2.1}{md2.2}Dans la version fournie, le return n était indenté dans la boucle. "
+        "{-md1}{epc.q2}{md2}Question deux : le bug. {md2.2}Dans la version fournie, le return était indenté dans la boucle. "
         "La méthode s'arrêtait donc dès le premier livre, et renvoyait un. {md2.6}{md2.l6}Il suffit de désindenter le return d'un niveau : "
         "on ne renvoie le compte qu'une fois tous les livres parcourus.",
-        "{-md2}{epc.q3}{md3}Question trois : les tests. {md3.1}{md3.2}D'abord un cas limite : une médiathèque vide a zéro livre disponible. "
+        "{-md2}{epc.q3}{md3}Question trois : les tests. {md3.2}D'abord un cas limite : une médiathèque vide a zéro livre disponible. "
         "{md3.3}Puis une médiathèque de trois livres. {md3.7}Trois disponibles. {md3.8}Un premier emprunt réussit. "
         "{md3.9}Le même livre, une seconde fois : refusé, il est déjà emprunté. {md3.10}Un titre absent : refusé aussi. "
         "{md3.11}Et il reste deux livres disponibles. {md3.12}Si une assertion est fausse, le programme s'arrête avec une erreur. {md3.s}Ici, tous les tests passent.",
@@ -969,8 +979,9 @@ SCENES = [
                     questions=["Compléter la méthode `emprunter` (voir sa documentation).",
                                "`nombre_disponibles` renvoie 1 au lieu de 3 : trouver l'erreur et la corriger.",
                                "Écrire des tests, y compris les cas limites."]),
-        "ep": dict(type="code", fichier="mediatheque.py", instant=True, x=120, y=84, w=1040, taille=19, lignes=MEDIA),
-        "pa_ep": dict(type="pause", t="Compléter, corriger, tester."),
+        "ep": dict(type="code", fichier="mediatheque.py", instant=True, x=24, y=84, w=820, taille=17, lignes=MEDIA),
+        "pa_ep": dict(type="pause", t="Compléter, corriger, tester.", sous="Mets la vidéo sur pause, puis reprends pour la correction.",
+                      x=866, y=110, w=394),
         "epc": dict(type="exo", mode="coin", niveau="difficile", etiquette="Exercice 2 · épreuve pratique", titre="La médiathèque",
                     donnees=["`livres` : liste de `Livre`"], questions=["`emprunter`", "le bug", "les tests"]),
         "md1": dict(type="code", fichier="mediatheque.py", x=530, y=140, w=726, taille=19, lignes=MD_EMPR),
@@ -991,13 +1002,15 @@ SCENES = [
         "{ex2.5}Cinq : une question sur les références.",
         "{-ex2}{pk}Voici les deux classes fournies. {pk.l1-4}Un véhicule a une immatriculation, et une catégorie, voiture ou moto. "
         "{pk.l6-8}Un parking a un attribut places : une liste de None, de la taille voulue. "
-        "{pk.l10-15}Et une méthode nb libres, qui compte les places qui valent None.",
-        "{-pk}{pa2}C'est un exercice au format du bac. Prends le temps : mets sur pause, et rédige tout sur une feuille.",
-        "{pa2.stop}{-pa2}{ex2c}{ex2c.q1}{k1}Correction. Question un. {k1.1}On crée un parking de quatre places, {k1.2}un véhicule, "
+        "{pk.l10-15}Et une méthode nb libres, qui compte les places qui valent None. "
+        "{pk.l17-21}Et dessous, le programme de la question un.",
+        "{pk.l0}{pa2}C'est un exercice au format du bac. Prends le temps : mets sur pause, et rédige tout sur une feuille. {pa2.stop}",
+        ("P", 1.0),
+        "{-pa2}{-pk}{ex2c}{ex2c.q1}{k1}Correction. Question un. {k1.1}On crée un parking de quatre places, {k1.2}un véhicule, "
         "{k1.3}et on range ce véhicule à la place numéro deux. {k1.4}Que vaut l'affichage ? {k1.s}Trois places libres. "
         "La catégorie du véhicule de la place deux : voiture. Et la place zéro est libre : None.",
         "{-k1}{ex2c.q2}{k2}{k2.1}Question deux : est plein. {k2.2}Une seule ligne suffit : on renvoie self point nb libres, "
-        "double égal zéro. On réutilise la méthode existante, avec self point, comme l'énoncé le demande. "
+        "double égal zéro. On réutilise la méthode existante, avec self point. "
         "Pas besoin de if, return True, else, return False : la comparaison est déjà un booléen.",
         "{-k2}{ex2c.q3}{k3}{k3.1}Question trois : garer. {k3.2}On parcourt les places par indice, car on a besoin du numéro de la place. "
         "{k3.3}Dès qu'une place vaut None, {k3.4}on y range le véhicule, {k3.5}et on renvoie son numéro. "
@@ -1019,8 +1032,10 @@ SCENES = [
                                "Écrire `garer(self, vehicule)` : première place libre, renvoie son numéro, ou −1.",
                                "Écrire `sortir(self, immat)` : libère la place, renvoie True, ou False.",
                                "Le véhicule garé est-il modifié si l'on modifie `v` ensuite ?"]),
-        "pk": dict(type="code", fichier="parking.py", instant=True, x=140, y=84, w=1000, taille=21, lignes=PARKING),
-        "pa2": dict(type="pause", t="Les cinq questions, rédigées comme sur une copie."),
+        "pk": dict(type="code", fichier="parking.py", instant=True, x=24, y=84, w=800, taille=15,
+                   lignes=PARKING + ["", "# question 1 : qu'affiche ce programme ?"] + PK_Q1),
+        "pa2": dict(type="pause", t="Les cinq questions, rédigées comme sur une copie.",
+                    sous="Mets la vidéo sur pause, puis reprends pour la correction.", x=846, y=110, w=410),
         "ex2c": dict(type="exo", mode="coin", niveau="bac", etiquette="Exercice 3 · type bac", titre="Un parking",
                      donnees=["`places` : liste, `None` = libre"],
                      questions=["prédire l'affichage", "`est_plein`", "`garer`", "`sortir`", "références"]),
