@@ -1,4 +1,4 @@
-var CACHE = 'hlp-v6';
+var CACHE = 'hlp-v7';
 var ASSETS = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png', 'assistant.js?v=10', 'polices/ebg.woff2', 'polices/ebg-it.woff2', 'polices/titrage.woff2'];
 
 self.addEventListener('install', function (e) {

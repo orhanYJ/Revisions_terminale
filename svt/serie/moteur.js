@@ -1370,7 +1370,10 @@
     var audio = new Audio(), musique = true, src = function () { return musique ? EP.audio.mix : EP.audio.voix; };
     audio.preload = "metadata"; audio.src = src();
     // arrêts « À toi » : la vidéo s'arrête d'elle-même avant chaque correction (option, active par défaut)
-    var arrets = EP.vis.filter(function (v) { return v.type === "pause"; }).map(function (v) { return v.et && v.et.stop != null ? v.et.stop : v.t0 + 2.5; });
+    var arrets = EP.vis.filter(function (v) { return v.type === "pause"; }).map(function (v) {   // arrêt « À toi » : la carte encore affichée (elle se ferme à t1)
+      var a = v.et && v.et.stop != null ? v.et.stop : v.t0 + 2.5;
+      return v.t1 != null && a > v.t1 - 1 ? Math.max(v.t0 + 1, v.t1 - 1) : a;
+    });
     var autoPause = true, arretSur = null;
     var bandeau = h("div", "arret", cadre, '<span class="ic">' + ICO.pause + '</span><span><b>À toi.</b> La vidéo attend ta réponse : cherche, puis touche l\'image pour la solution.</span>');
     var T = 0, lecture = false, vitesse = 1, sonOK = true, dernier = 0, fini = false, enAttente = null;
