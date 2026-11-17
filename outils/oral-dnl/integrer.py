@@ -26,12 +26,16 @@ for th in SYLLABUS:
             secs = it[L]["sections"]
             assert sum(x["d"] for x in secs) == 270, (it["id"], L, "durées ≠ 270 s")
             assert all(x["t"].strip() and x["pts"] for x in secs) and len(it[L]["jury"]) >= 3, (it["id"], L)
+            if "discours" in it[L]:                      # discours rédigé dépliable (CAHIER_DISCOURS.md)
+                assert [x["t"] for x in it[L]["discours"]] == [x["t"] for x in secs], (it["id"], L, "titres du discours")
+                assert all(x["p"].strip() for x in it[L]["discours"]), (it["id"], L)
         assert [len(x["pts"]) for x in it["en"]["sections"]] == [len(x["pts"]) for x in it["fr"]["sections"]], it["id"]
         notes = json.dumps([it["en"], it["fr"]], ensure_ascii=False)   # pas q : la question officielle peut contenir « slide »
         assert re.search(INTERDIT, notes) is None, (it["id"], re.search(INTERDIT, notes))
         n = sum(len(x["pts"]) for x in it["en"]["sections"])
         mots = sum(len(p.split()) for x in it["en"]["sections"] for p in x["pts"])
-        print(it["id"], n, "puces,", mots, "mots")
+        dm = sum(len(x["p"].split()) for x in it["en"].get("discours", []))
+        print(it["id"], n, "puces,", mots, "mots", ("· discours " + str(dm) + " mots") if dm else "")
     ORAL[th["id"]] = {"issues": iss, "terms": trm}
 
 css = open(D + "style.css", encoding="utf-8").read().strip()
