@@ -1,4 +1,4 @@
-var CACHE = 'ses-v13';
+var CACHE = 'ses-v14';
 var ASSETS = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png', 'assistant.js?v=10'];
 
 self.addEventListener('install', function (e) {
