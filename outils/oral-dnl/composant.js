@@ -13,6 +13,7 @@ const oralChap = code => {
 const ORAL_CIBLE = 270, ORAL_MAX = 300;
 const oralDuree = L => (L.sections || []).reduce((n, s) => n + (s.d || 0), 0);
 const oralPuces = L => (L.sections || []).reduce((n, s) => n + s.pts.length, 0);
+const oralMots = l => l.reduce((n, b) => n + b.p.split(/\s+/).filter(Boolean).length, 0);
 const oralMmss = t => Math.floor(t / 60) + ":" + String(t % 60).padStart(2, "0");
 const oralMin = d => d < 60 ? d + " s" : Math.floor(d / 60) + " min" + (d % 60 ? " " + String(d % 60).padStart(2, "0") : "");
 const OralChrono = ({ FR, t, on, basculer, remettre }) => {
@@ -27,7 +28,7 @@ const OralChrono = ({ FR, t, on, basculer, remettre }) => {
 };
 const OralItem = ({ it, FR, ouvert, basculer }) => {
   const L = FR ? it.fr : it.en, total = oralDuree(L);
-  const [jury, setJury] = React.useState(false), [t, setT] = React.useState(0), [on, setOn] = React.useState(false);
+  const [jury, setJury] = React.useState(false), [disc, setDisc] = React.useState(false), [t, setT] = React.useState(0), [on, setOn] = React.useState(false);
   React.useEffect(() => {
     if (!on) return;
     const h = setInterval(() => setT(v => Math.min(ORAL_MAX, v + 1)), 1000);
@@ -58,7 +59,16 @@ const OralItem = ({ it, FR, ouvert, basculer }) => {
         React.createElement("div", { className: "or-sec-h" },
           React.createElement("span", { className: "or-sec-t" }, s.t),
           React.createElement("span", { className: "or-sec-d" }, "≈ " + oralMin(s.d), React.createElement("small", null, oralMmss(bornes[k][0]) + " → " + oralMmss(bornes[k][1])))),
-        React.createElement("ul", null, s.pts.map((p, i) => React.createElement("li", { key: i, className: /^(Judgement|Jugement)\s*:/.test(p) ? "jug" : null }, glT(p))))))),
+        React.createElement("ul", null, s.pts.map((p, i) => React.createElement("li", { key: i, className: /^(Judgement|Jugement|In short|En bref)\s*:/.test(p) ? "jug" : null }, glT(p))))))),
+      L.discours && React.createElement("button", { className: "or-jury-btn or-disc-btn", onClick: () => setDisc(d => !d), "aria-expanded": disc },
+        (disc ? "▲ " : "▼ ") + (FR ? "📝 Le discours rédigé (≈ " : "📝 The written speech (≈ ") + oralMin(Math.round(oralMots(it.en.discours || L.discours) / 140 * 60 / 10) * 10) + (FR ? " à voix haute)" : " out loud)")),
+      disc && L.discours && React.createElement("div", { className: "or-disc" },
+        React.createElement("p", { className: "or-disc-n" }, FR
+          ? "Un exemple de ce que donnent les notes une fois développées à voix haute. À lire pour comprendre l'enchaînement, pas à apprendre par cœur."
+          : "An example of the notes developed out loud. Read it to see how the ideas link up, not to learn it by heart."),
+        L.discours.map((b, k) => React.createElement("div", { key: k, className: "or-disc-b" },
+          React.createElement("div", { className: "or-disc-t" }, b.t),
+          b.p.split("\n\n").map((x, i) => React.createElement("p", { key: i }, glT(x)))))),
       React.createElement("button", { className: "or-jury-btn", onClick: () => setJury(j => !j) }, (jury ? "▲ " : "▼ ") + (FR ? "Questions possibles du jury" : "Possible questions from the jury")),
       jury && React.createElement("div", { className: "or-jury" }, L.jury.map((j, i) => React.createElement("div", { key: i, className: "or-jq" },
         React.createElement("b", null, j[0]), React.createElement("p", null, j[1]))))));
