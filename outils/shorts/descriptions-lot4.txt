@@ -1,0 +1,397 @@
+==================================================================
+SHORT : niveaupc
+==================================================================
+# Description TikTok / YouTube Shorts — Physique-chimie, niveau 1 à 10
+
+## Titre (YouTube Shorts)
+Physique-chimie : niveau 1 à 10, tu t'arrêtes où ? 🧪 #physique #bac
+
+## Description
+Physique-chimie, niveau 1 à 10. À quel niveau tu t'arrêtes ? 🧪⚡
+
+Niveau 1 : le jus de citron, acide ou basique ?
+Niveau 2 : un acide fort dilué 10 fois, que fait son pH ?
+Niveau 4 : concentration × 2, et l'absorbance ?
+Niveau 6 : comment trouver l'équivalence d'un titrage ?
+Niveau 8 : une lampe rouge énorme sur du zinc, des électrons sortent ?
+Niveau 10 : lunette afocale, objectif 2 dioptries, oculaire 20 : grossissement ?
+
+Les réponses sont dans la vidéo 👀
+👉 Les 5 chapitres en vidéo complète : Révisions Animées sur YouTube (lien en bio)
+
+Tu t'es arrêté à quel niveau ? Dis-le en commentaire 👇
+
+## Hashtags
+#physiquechimie #bac2027 #terminale #pH #titrage #effetphotoelectrique #lunette #quiz #revisionbac #apprendresurtiktok
+
+## Sources (pour répondre aux commentaires)
+Le cours de physique-chimie de Révisions Animées (chapitres 1 à 5) :
+- le jus de citron a un pH vers 2,5 : sous 7, une solution est acide (à 25 °C) ;
+- diluer dix fois un acide fort fait monter son pH d'exactement une unité (10⁻² mol/L : pH 2 ; dilué dix fois : pH 3) ; pour un acide faible, moins ;
+- loi de Beer-Lambert : en solution diluée, l'absorbance est proportionnelle à la concentration (A = k × c) : deux fois plus concentrée, A double ;
+- titrage suivi au pH-mètre : le volume équivalent est au milieu du saut de pH, repéré par la méthode des tangentes parallèles ;
+- effet photoélectrique : une lampe rouge, même énorme, ne fait sortir aucun électron du zinc ; chaque photon rouge a trop peu d'énergie (travail d'extraction du zinc : 4,3 eV, il faut de l'ultraviolet) ;
+- lunette afocale : vergence C = 1/f′ ; objectif de 2 dioptries → f′1 = 50 cm, oculaire de 20 dioptries → f′2 = 5 cm (lunette du TP) ; G = f′1 / f′2 = 10.
+
+## Images
+- Nébuleuse d'Orion, télescope spatial Hubble, NASA, ESA, M. Robberto (domaine public).
+- Citron entier et coupé, photo Ivar Leidus, CC BY-SA 4.0.
+- pH-mètre de laboratoire, photo OER CampLev, CC BY-SA 4.0.
+- Gamme de solutions en fioles jaugées, photo Alina Popova, CC BY 4.0.
+- Spectrophotomètre de laboratoire, photo TimVickers (domaine public).
+- Conductimètre et sa sonde, photo Nuno Nogueira, CC BY-SA 2.5.
+- Cuves de spectrophotomètre, photo Retama, CC BY-SA 4.0.
+- Titrage à la burette, gravure de l'ouvrage d'Alessandri, 1895 (domaine public).
+- Le Soleil, Solar Dynamics Observatory, NASA (domaine public).
+- Saturne vue par Cassini, 2004, NASA/JPL/Space Science Institute (domaine public).
+- La pleine Lune vue depuis l'espace, NASA (domaine public).
+- Images trouvées sur Wikimedia Commons. Échelle de pH, dilution, droite d'étalonnage, courbe de titrage, plaque de zinc et lunette : dessinées, schémas sans échelle.
+
+
+==================================================================
+SHORT : defibac
+==================================================================
+# Description TikTok / YouTube Shorts — Défi bac : 5 épreuves
+
+## Titre (YouTube Shorts)
+Défi bac : 5 épreuves, 5 matières. Es-tu prêt ? 🎯 #bac #quiz
+
+## Description
+5 épreuves. 5 matières. Es-tu prêt pour le bac ? Compte tes points 🎯
+
+1. SVT : vrai ou faux ?
+2. Histoire : remets dans l'ordre
+3. Philosophie : trouve l'intrus
+4. Géographie : plus ou moins ?
+5. Physique-chimie : niveau 10
+
+Les réponses sont dans la vidéo 👀
+👉 Toutes les matières en vidéo : Révisions Animées sur YouTube (lien en bio)
+
+Ton score sur 5 ? Dis-le en commentaire 👇 (et l'épreuve qui t'a piégé)
+
+## Hashtags
+#bac2027 #terminale #defibac #quiz #svt #histoire #philosophie #geographie #physiquechimie #revisionbac
+
+## Sources (pour répondre aux commentaires)
+Les cours de Révisions Animées :
+- SVT (la complexification des génomes) : mitochondries et chloroplastes descendent de bactéries phagocytées mais non digérées, devenues des partenaires permanents de la cellule eucaryote : l'endosymbiose ;
+- histoire : krach de Wall Street, fin octobre 1929 ; Hitler nommé chancelier le 30 janvier 1933 ; opération Barbarossa, invasion de l'URSS, le 22 juin 1941 ; Pearl Harbor, le 7 décembre 1941 ;
+- philosophie (l'État) : pour Hobbes, Locke et Rousseau, l'État naît d'un contrat ; Descartes est le philosophe du cogito, « Je pense, donc je suis » ;
+- géographie (les espaces maritimes) : part des pétroliers dans la capacité de la flotte mondiale (CNUCED) : 50 % en 1980, 28 % en 2024 ; les vracs secs passent de 27 % à 43 % ;
+- physique-chimie (la lumière, un flux de photons) : un photon de 11 eV n'est pas absorbé par un atome d'hydrogène au repos : aucun écart d'énergie ne vaut 11 eV (niveau 1 vers 2 : 10,2 eV ; vers 3 : 12,1 eV).
+
+## Images
+- Deux mitochondries, microscope électronique, Louisa Howard (domaine public).
+- Foule devant la Bourse de New York, octobre 1929 (domaine public).
+- Rodin, Le Penseur, photo Jebulon (CC0).
+- Portraits : Thomas Hobbes par John Michael Wright ; John Locke par Godfrey Kneller ; René Descartes d'après Frans Hals ; Jean-Jacques Rousseau par Maurice Quentin de La Tour (domaine public).
+- Henry Dawson, Navires sur une mer calme au crépuscule, XIXᵉ siècle (domaine public).
+- Nébuleuse d'Orion, Hubble, NASA, ESA, M. Robberto (domaine public).
+- Images trouvées sur Wikimedia Commons. Cellule, frise de 1941, contrat, graphique de la flotte et niveaux d'énergie : dessinés, schémas sans échelle.
+
+
+==================================================================
+SHORT : erreurbac
+==================================================================
+# Description TikTok / YouTube Shorts — erreurbac
+
+## Titre (YouTube Shorts)
+Trouve l'erreur dans ces 3 copies de bac 🔴 #bac #terminale
+
+## Description
+3 copies de bac. 1 erreur cachée dans chacune. Tu la trouves avant la fin du chrono ? ⏱️
+
+📝 Manche 1 · Philo : « Sommes-nous libres ? »
+📜 Manche 2 · Histoire : la crise de 1929
+🧬 Manche 3 · SVT : la méiose (la plus dure)
+
+Combien d'erreurs repérées ? 0, 1, 2 ou 3 ? Dis-le en commentaire 👇
+
+👉 Les cours complets sont sur YouTube : Révisions Animées (lien en bio)
+
+## Hashtags
+#bac2027 #terminale #philosophie #histoire #svt #meiose #crisede1929 #rousseau #trouvelerreur #revisionbac #apprendresurtiktok
+
+## Sources (pour répondre aux commentaires)
+- Philosophie (série « La liberté » de Révisions Animées) : Rousseau, Du contrat social, I, 1 (1762) : « L'homme est né libre, et partout il est dans les fers » (et non Sartre) ; Sartre, L'existentialisme est un humanisme (1946) : « L'homme est condamné à être libre » ; Descartes, Méditations, IV (volonté infinie) ; Spinoza, Éthique (l'illusion du libre arbitre) ; Kant, formule « tu dois, donc tu peux ».
+- Histoire (cours « La crise de 1929 ») : jeudi noir le 24 octobre 1929 ; Dow Jones de 381 (septembre 1929) à 41 (juillet 1932) ; environ 5 000 banques en faillite avant 1932 ; le New Deal est lancé par Franklin Roosevelt, démocrate élu en 1932, entré en fonctions le 4 mars 1933 (et non par Herbert Hoover, président pendant le krach) ; « secourir, relancer, réformer ».
+- SVT (chapitre 1, la méiose) : 4 cellules haploïdes ; crossing-over en prophase I ; les chromosomes homologues se séparent en anaphase I, les chromatides en anaphase II ; 2²³ = 8 388 608 combinaisons par le seul brassage interchromosomique.
+
+## Images
+Salle d'examen (domaine public) ; Jean-Paul Sartre en 1965 (Nationaal Archief / Anefo, CC BY-SA 3.0 NL) ; Maurice Quentin de La Tour, Jean-Jacques Rousseau (1753), domaine public ; Du contrat social, édition originale (1762), domaine public ; Hoover et Roosevelt en route vers l'investiture, 4 mars 1933 (Architect of the Capitol, domaine public) ; Franklin D. Roosevelt par Elias Goldensky (1933), domaine public ; foule devant la Bourse de New York, octobre 1929, domaine public ; chromosomes d'une cellule humaine (Josef Reischig, CC BY-SA 3.0).
+
+
+==================================================================
+SHORT : devinehistoire
+==================================================================
+# Description TikTok / YouTube Shorts — devinehistoire
+
+## Titre (YouTube Shorts)
+Devine qui c'est : 3 hommes qui ont fait le XXe siècle 🕵️ #histoire #bac
+
+## Description
+3 hommes qui ont fait le XXe siècle. 3 indices chacun, du plus dur au plus facile. La photo se précise à chaque indice… Trouve avant la fin du compte ⏱️
+
+🇺🇸 Manche 1 : la crise de 1929
+☭ Manche 2 : les totalitarismes
+🇬🇧 Manche 3 : la Seconde Guerre mondiale
+
+Combien tu en as trouvés ? Dis-le en commentaire 👇
+
+👉 Le cours complet est sur YouTube : Révisions Animées (lien en bio)
+
+## Hashtags
+#histoire #bac2027 #terminale #roosevelt #staline #churchill #newdeal #totalitarisme #secondeguerremondiale #devinequi #revisionbac #apprendresurtiktok
+
+## Sources (pour répondre aux commentaires)
+- Roosevelt (cours « La crise de 1929 ») : discours « Je hais la guerre » (1936) ; démocrate, élu en 1932 ; entré en fonctions le 4 mars 1933 ; le New Deal : secourir, relancer, réformer.
+- Staline (cours « Les régimes totalitaires ») : discours du 7 janvier 1933, le plan quinquennal présenté comme la voie vers « l'abolition des classes » ; premier plan quinquennal lancé en 1928 ; à la tête de l'URSS de 1924 à sa mort en 1953 ; la famine en Ukraine (1932-1933) et le Goulag.
+- Churchill (cours « La Seconde Guerre mondiale ») : conservateur hostile à l'apaisement ; Premier ministre le 10 mai 1940 ; aux Communes le 4 juin 1940 : « nous ne nous rendrons jamais » ; après l'armistice français du 22 juin 1940, le Royaume-Uni est seul face à l'Allemagne.
+
+## Images
+Franklin D. Roosevelt par Elias Goldensky (1933), domaine public ; Hoover et Roosevelt en route vers l'investiture, 4 mars 1933 (Architect of the Capitol, domaine public) ; Staline à la tribune, Moscou, 1937, domaine public ; Winston Churchill par Yousuf Karsh, Ottawa, décembre 1941 (Bibliothèque et Archives Canada, CC BY 2.0) ; foule devant la Bourse de New York, octobre 1929, domaine public ; congrès de Nuremberg, septembre 1936 (Bundesarchiv, Bild 183-1982-1130-502, CC BY-SA 3.0 DE) ; enfants d'un faubourg de Londres après un raid, septembre 1940 (US National Archives, domaine public) ; soupe populaire, Chicago, février 1931 (US National Archives, domaine public) ; Dorothea Lange, Migrant Mother (1936), domaine public ; tempête de poussière, Stratford (Texas), 1935 (NOAA, domaine public) ; détenus du Goulag au canal de la mer Blanche, 1932, domaine public ; accords de Munich, 29 septembre 1938 (Bundesarchiv, Bild 183-R69173, CC BY-SA 3.0 DE).
+
+
+==================================================================
+SHORT : niveauguerre
+==================================================================
+# Description TikTok / YouTube Shorts — niveauguerre
+
+## Titre (YouTube Shorts)
+Seconde Guerre mondiale : niveau 1 → 10, à quel niveau tu t'arrêtes ? 🎯 #histoire #bac
+
+## Description
+Seconde Guerre mondiale : 7 questions, du niveau 1 (facile) au niveau 10 (impossible). Réponds avant la fin du chrono ⏱️
+
+✅ Niveau 1 : le pays envahi le 1er septembre 1939
+✅ Niveau 2 : le jour de l'appel du général de Gaulle
+✅ Niveau 4 : le Premier ministre qui refuse de négocier avec Hitler
+✅ Niveau 5 : l'attaque qui fait entrer les États-Unis dans la guerre
+✅ Niveau 7 : le nom de code de l'invasion de l'URSS
+✅ Niveau 9 : le général allemand qui capitule à Stalingrad
+✅ Niveau 10 : l'année où, pour certains historiens, la guerre mondiale commence… en Asie
+
+👉 Toute la guerre est expliquée sur YouTube : Révisions Animées (lien en bio)
+
+Tu t'es arrêté à quel niveau ? Dis-le en commentaire 👇
+
+## Hashtags
+#histoire #bachistoire #bac2027 #terminale #secondeguerremondiale #quiz #revisionbac #apprendresurtiktok #histoiregeo #niveau
+
+## Sources (pour répondre aux commentaires)
+- Le chapitre « La Seconde Guerre mondiale » de Révisions Animées (cours et série vidéo) : invasion de la Pologne le 1er septembre 1939, après le pacte germano-soviétique du 23 août 1939 qui prévoit en secret le partage de la Pologne ; appel du général de Gaulle le 18 juin 1940, depuis Londres, à la radio de la BBC ; Churchill Premier ministre le 10 mai 1940, qui refuse de négocier ; Pearl Harbor le 7 décembre 1941, la guerre devient mondiale ; opération Barbarossa le 22 juin 1941, trois poussées (Leningrad, Moscou, Kiev et Rostov), une guerre d'anéantissement ; capitulation de Paulus à Stalingrad le 31 janvier 1943, le tournant de la guerre ; pour les historiens Robert Frank et Alya Aglan (*La Guerre-monde*), la guerre mondiale commence en 1937, quand le Japon attaque la Chine.
+- Les cartes du short sont des schémas, pas à l'échelle.
+
+## Images
+- Enfants d'une banlieue est de Londres, sans abri après un raid nocturne, septembre 1940, New Times Paris Bureau Collection (USIA), US National Archives 306-NT-3163V, domaine public.
+- Winston Churchill, Ottawa, décembre 1941, par Yousuf Karsh (Bibliothèque et Archives Canada, Wikimedia Commons), CC BY 2.0.
+- Hitler déclare la guerre aux États-Unis, Reichstag, 11 décembre 1941 (Wikimedia Commons), CC BY-SA 3.0.
+- Le général de Gaulle au micro de la BBC, Londres, photo Keystone, domaine public.
+- Staline et Ribbentrop après la signature du pacte germano-soviétique, Moscou, 23 août 1939, Bundesarchiv, Bild 183-H27337 / Helmut Laux, CC BY-SA 3.0 DE.
+- Staline à la tribune, Moscou, 1937, photographe inconnu, domaine public.
+
+
+==================================================================
+SHORT : ordre1929
+==================================================================
+# Description TikTok / YouTube Shorts — ordre1929
+
+## Titre (YouTube Shorts)
+Remets dans l'ordre : de la crise de 1929 à la guerre 🧩 3 manches #histoire #bac
+
+## Description
+De la crise de 1929 à la Seconde Guerre mondiale : 12 événements, 3 manches. Remets-les dans l'ordre avant la fin du chrono ⏱️
+
+1️⃣ La crise : le krach de Wall Street, le Royaume-Uni qui quitte l'étalon-or, le New Deal, le Front populaire
+2️⃣ Les totalitarismes : la marche sur Rome, le premier plan de Staline, Hitler chancelier, la Grande Purge
+3️⃣ Vers la guerre : la Rhénanie, l'Anschluss, Munich, le pacte germano-soviétique
+
+👉 Tout le cours est expliqué sur YouTube : Révisions Animées (lien en bio)
+
+Combien de manches réussies sur 3 ? Dis-le en commentaire 👇
+
+## Hashtags
+#histoire #bachistoire #bac2027 #terminale #crisede1929 #totalitarisme #entredeuxguerres #quiz #revisionbac #histoiregeo
+
+## Sources (pour répondre aux commentaires)
+- Les chapitres « La crise de 1929 » et « Les régimes totalitaires » de Révisions Animées (cours et séries vidéo).
+- Manche 1 : krach de Wall Street, 24-29 octobre 1929 ; le Royaume-Uni quitte l'étalon-or en septembre 1931 (« plus tôt sorti, plus tôt redressé ») ; Roosevelt entre en fonctions en mars 1933 et lance le New Deal ; victoire du Front populaire en 1936, Léon Blum président du Conseil ; 14 millions de chômeurs aux États-Unis (25 % des actifs), les Hoovervilles.
+- Manche 2 : marche sur Rome, octobre 1922 ; premier plan quinquennal, 1928 ; Hitler nommé chancelier le 30 janvier 1933 ; Grande Purge, 1937-1938.
+- Manche 3 : remilitarisation de la Rhénanie, 7 mars 1936 ; Anschluss, 12 mars 1938 ; accords de Munich, 29-30 septembre 1938 ; pacte germano-soviétique, 23 août 1939 ; l'Allemagne envahit la Pologne le 1er septembre 1939.
+
+## Images
+- Dorothea Lange, Migrant Mother, Nipomo, Californie, mars 1936 (Library of Congress), domaine public.
+- Foule devant la Bourse de New York, octobre 1929 (Wikimedia Commons), domaine public.
+- Tempête de poussière à l'approche de Stratford, Texas, 1935, George E. Marsh Jr. (NOAA, Wikimedia Commons), domaine public.
+- Franklin D. Roosevelt, 1933, par Elias Goldensky (Wikimedia Commons), domaine public.
+- Léon Blum à son bureau, devant un micro, 1936, Agence Meurisse, domaine public.
+- Chômeurs devant une soupe populaire, Chicago, février 1931 (US National Archives), domaine public.
+- Hooverville sur les vasières de Seattle, 7 février 1933, Seattle Municipal Archives (Wikimedia Commons), CC BY 2.0.
+- Benito Mussolini, vers 1937-1940, Keystone, domaine public.
+- Staline à la tribune, Moscou, 1937, photographe inconnu, domaine public.
+- La « cathédrale de lumière », congrès de Nuremberg, septembre 1936, Bundesarchiv, Bild 183-1982-1130-502, CC BY-SA 3.0 DE.
+- Hitler salue Hindenburg, Potsdam, 21 mars 1933, Bundesarchiv, Bild 183-S38324, CC BY-SA 3.0 DE.
+- Les accusés du deuxième procès de Moscou, janvier 1937, photographe inconnu, domaine public.
+- Mussolini et les quadrumvirs de la marche sur Rome, tableau commémoratif, photo Silvio Galimberti, CC BY-SA 4.0.
+- Affiche du plan quinquennal « 2 + 2 plus l'enthousiasme des travailleurs = 5 », 1931, Iakov Guminer, domaine public.
+- Hitler devant la foule de la Heldenplatz, Vienne, 15 mars 1938, Bundesarchiv, Bild 183-1987-0922-500, CC BY-SA 3.0 DE.
+- Staline et Ribbentrop après la signature du pacte germano-soviétique, Moscou, 23 août 1939, Bundesarchiv, Bild 183-H27337 / Helmut Laux, CC BY-SA 3.0 DE.
+- Chamberlain, Daladier, Hitler, Mussolini et Ciano avant la signature des accords de Munich, 29 septembre 1938, Bundesarchiv, Bild 183-R69173, CC BY-SA 3.0 DE.
+- Chamberlain brandit la déclaration anglo-allemande à l'aéroport de Heston, 30 septembre 1938, Imperial War Museums, D 2239, domaine public.
+
+
+==================================================================
+SHORT : intrussvt
+==================================================================
+# Description TikTok / YouTube Shorts — SVT : trouve l'intrus
+
+## Titre (YouTube Shorts)
+Trouve l'intrus : 4 manches de SVT 🧬 Combien tu en trouves ? #svt #bac
+
+## Description
+Trouve l'intrus ! 4 manches de SVT de Terminale, thème « Génétique et évolution » 🧬
+
+1️⃣ La méiose : crossing-over, mitose, fécondation, méiose… lequel ne crée aucune diversité ?
+2️⃣ Les transferts de gènes : trois sont horizontaux, un seul est vertical.
+3️⃣ Les forces évolutives : trois exemples de sélection naturelle, un seul dû au hasard.
+4️⃣ Le phénotype étendu : fourreau de phrygane, tonnelle du jardinier satiné, toile d'araignée… et un intrus.
+
+Mets pause avant chaque réponse ⏸️
+👉 Tout le cours en vidéo sur YouTube : Révisions Animées (lien en bio)
+
+Combien d'intrus tu as trouvés ? Dis-le en commentaire 👇
+
+## Hashtags
+#svt #bacsvt #bac2027 #terminale #genetique #evolution #meiose #trouvelintrus #quiz #revisionbac #apprendresurtiktok #biologie
+
+## Sources (pour répondre aux commentaires)
+- Cours de SVT de Terminale de la chaîne, thème « Génétique et évolution » : chapitre 1 (mitose et clones, Pando, crossing-over, 2^23 ≈ 8 millions de gamètes), chapitre 2 (transfert vertical / horizontal, Griffith, Agrobacterium et galle du collet, syncytine), chapitre 3 (sélection naturelle : phalène du bouleau, Culex pipiens et insecticides ; dérive génétique : drosophiles de Buri ; rappel de Première : l'antibiotique ne fait que sélectionner), chapitre 4 (phénotype étendu ; ver de Roscoff et ses micro-algues, une symbiose).
+- La courbe de dérive du short est une simulation, pas les données de Buri.
+
+## Images
+- Pando, peupliers faux-trembles, Utah, photo Mx. Granger, CC0 (Wikimedia Commons).
+- Fleur de pois, photo Dyorkey, CC BY-SA 3.0 (Wikimedia Commons).
+- Pneumocoques au microscope, Arnold Kaufman, CC0.
+- Galles du collet sur un orme, Rosser1954, CC BY-SA 4.0.
+- Placenta humain, face fœtale, Asturnut, CC BY-SA 3.0.
+- Antibiogrammes de Staphylococcus aureus, HansN., CC BY-SA 4.0.
+- Charles Darwin, photographie vers 1874, domaine public.
+- Drosophila melanogaster, photo André Karwath, CC BY-SA 2.5.
+- Phalène du bouleau, formes claire et noire, Olaf Leillinger, CC BY-SA 2.5.
+- Culex pipiens, photo gbohne, CC BY-SA 2.0.
+- iNaturalist, CC BY : vers de Roscoff (Lou Wagstaffe), larve de phrygane (Jonas V.), tonnelle du jardinier satiné (Sockrosma), épeire diadème (Ben G.).
+
+
+==================================================================
+SHORT : plusmoins
+==================================================================
+# Description TikTok / YouTube Shorts — Plus ou moins ?
+
+## Titre (YouTube Shorts)
+Plus ou moins ? 4 chiffres fous de tes cours de Terminale 📈📉 #bac #quiz
+
+## Description
+Plus ou moins ? 4 duels de chiffres tirés de tes cours de Terminale 📈📉
+
+🧬 SVT : 3 paires de chromosomes donnent 8 gamètes différents. Et tes 23 paires ?
+📉 Histoire : le Dow Jones vaut 381 points en septembre 1929. Et en juillet 1932 ?
+🔭 Physique : il faut grossir Mars 105 fois pour la voir comme la Lune. Et son volcan, Olympus Mons ?
+🛢️ Géographie : près de 24 millions de barils de pétrole par jour passent le détroit de Malacca. Et Ormuz ?
+
+Mets pause avant chaque réponse ⏸️
+👉 Tous les cours en vidéo sur YouTube : Révisions Animées (lien en bio)
+
+Combien de bonnes réponses ? Dis-le en commentaire 👇
+
+## Hashtags
+#bac #bac2027 #terminale #quiz #plusoumoins #svt #histoire #physique #geographie #revisionbac #apprendresurtiktok #culturegenerale
+
+## Sources (pour répondre aux commentaires)
+- SVT, chapitre 1 (brassage interchromosomique) : 2^n gamètes pour n paires ; 2^3 = 8 ; chez l'humain 2^23 = 8 388 608 ; la fécondation en réunit deux au hasard.
+- Histoire, chapitre « The Wall Street Crash and its Impact » : Dow Jones de 381 (septembre 1929) à 41 (juillet 1932), soit −89 %. La courbe du short est un schéma : seuls les deux points extrêmes sont des données.
+- Physique, chapitre « La lunette astronomique », exercice d'Olympus Mons : grossissement ≈ 105 pour Mars, ≈ 1 100 pour Olympus Mons (650 km contre 6 800 km : dix fois plus petit). Le corrigé du manuel donne 110 par erreur.
+- Géographie, thème « Espaces maritimes » : 23,7 millions de barils par jour par Malacca et 20,9 par Ormuz (2023).
+
+## Images
+- Tubes de culture de drosophiles, photo Masur, CC BY-SA 4.0 (Wikimedia Commons).
+- Foule devant la Bourse de New York, octobre 1929, domaine public.
+- Hooverville à Seattle, 1933, Seattle Municipal Archives, CC BY 2.0.
+- Chômeurs devant une soupe populaire, Chicago, février 1931, US National Archives, domaine public.
+- La pleine Lune vue depuis l'espace, NASA, domaine public.
+- La lunette de 40 pouces de l'observatoire Yerkes, 1897, domaine public.
+- Henry Dawson, Navires sur une mer calme au crépuscule, XIXe siècle, domaine public.
+
+
+==================================================================
+SHORT : niveauphilo
+==================================================================
+# Description TikTok / YouTube Shorts — niveauphilo
+
+## Titre (YouTube Shorts)
+Philo : niveau 1 → 10, à quel niveau tu t'arrêtes ? 🧠 #bacphilo
+
+## Description
+6 questions de philo, de plus en plus dures. Un chrono à chaque fois. Réponds avant la fin ! ⏱️
+
+Niveau 1 : « Je pense, donc je suis » : qui a dit ça ?
+Niveau 3 : pour Aristote, l'homme est un animal… quoi ?
+Niveau 5 : pour Sartre, l'existence précède… quoi ?
+Niveau 7 : chez Freud, le moi est coincé entre quoi et quoi ?
+Niveau 9 : pour Kant, le bonheur est un idéal… de quoi ?
+Niveau 10, boss final : selon Weber, l'État revendique le monopole… de quoi ?
+
+Les réponses sont dans la vidéo 👀
+👉 Toutes les réponses sont expliquées dans les séries de philo de Révisions Animées sur YouTube (lien en bio)
+
+Alors, tu t'es arrêté à quel niveau ? Dis-le en commentaire 👇
+
+## Hashtags
+#philosophie #bacphilo #bac2027 #terminale #quiz #descartes #sartre #freud #kant #weber #revisionbac #apprendresurtiktok
+
+## Sources (pour répondre aux commentaires)
+- Descartes, Discours de la méthode, IV (1637) : « Je pense, donc je suis ». Série « La conscience », épisode 2.
+- Aristote, Politique, I : l'homme est un animal politique (zôon politikon), fait pour vivre dans une cité ; la nature n'a donné qu'à l'homme la parole. Série « L'État », épisode 2.
+- Sartre, L'existentialisme est un humanisme (1946) : « l'existence précède l'essence » ; « l'homme n'est rien d'autre que ce qu'il se fait ». Série « La liberté », épisode 2.
+- Freud, Le Moi et le Ça (1923), seconde topique : le moi entre le ça (les pulsions) et le surmoi (les interdits des parents et de la société). Série « La conscience », épisode 3.
+- Kant, Fondements de la métaphysique des mœurs, section II (1785) : « Le bonheur est un idéal, non de la raison, mais de l'imagination ». Série « Le bonheur », épisode 1.
+- Weber, Le Métier et la vocation d'homme politique (conférence de Munich, 1919) : l'État revendique avec succès, sur un territoire, « le monopole de la violence physique légitime ». Série « L'État », épisode 1.
+
+## Images
+Platon (Raphaël, L'École d'Athènes, détail), buste de Socrate (copie romaine d'après Lysippe, musée du Louvre), Nietzsche (photographie de Gustav Schultze, 1882), Descartes, Discours de la méthode (Leyde, 1637, page de titre), Philipp von Foltz, Périclès parlant aux Athéniens (1852, Rijksmuseum), Freud (photographie de Max Halberstadt, vers 1921), Thomas Cole, Le Voyage de la vie : la jeunesse (1840-1842), Jean-Léon Gérôme, Le Duel après le bal masqué (vers 1857-1859), Raphaël, L'École d'Athènes (1509-1511) : domaine public.
+Jean-Paul Sartre : photographie de 1965, Nationaal Archief / Anefo, CC BY-SA 3.0 NL. Rodin, Le Penseur : photo Jebulon, CC0.
+
+
+==================================================================
+SHORT : devinephilo
+==================================================================
+# Description TikTok / YouTube Shorts — devinephilo
+
+## Titre (YouTube Shorts)
+Devine le philosophe en 3 indices 🕵️ #bacphilo
+
+## Description
+3 dossiers secrets. 3 indices par dossier, du plus dur au plus facile. Le portrait se dévoile à chaque indice… Trouve le philosophe le plus tôt possible ! 🕵️
+
+Dossier 1 : une voix intérieure qui lui dit « arrête »…
+Dossier 2 : il polit des verres de lunettes…
+Dossier 3 : il enseigne à Königsberg…
+
+Les réponses sont dans la vidéo 👀
+👉 Les 3 philosophes sont expliqués en détail dans les séries de philo de Révisions Animées sur YouTube (lien en bio)
+
+Combien tu en as trouvé ? Et en combien d'indices ? Dis-le en commentaire 👇
+
+## Hashtags
+#philosophie #bacphilo #bac2027 #terminale #quiz #devinette #socrate #spinoza #kant #revisionbac #apprendresurtiktok
+
+## Sources (pour répondre aux commentaires)
+- Socrate (v. 470 – 399 av. J.-C.) : la voix intérieure (le daimôn) qui ne fait que le détourner (Platon, Apologie de Socrate, 31c-d) ; « connais-toi toi-même », inscription du temple de Delphes qu'il avait faite sienne ; condamné à mort par un tribunal d'Athènes en 399 av. J.-C. ; « Une vie sans examen n'est pas une vie » (Apologie, 38a). Séries « La conscience », épisode 5, et « L'État », épisode 5.
+- Spinoza (1632 – 1677) : il vit modestement en polissant des verres de lunettes ; en 1656, à 23 ans, la communauté juive d'Amsterdam l'exclut pour ses idées ; la pierre lancée qui, si elle pensait, se croirait libre (lettre à Schuller, 1674) : les hommes sont « conscients de leurs désirs et ignorants des causes qui les déterminent ». Séries « La liberté », épisode 3, et « L'État », épisode 3.
+- Kant (1724 – 1804) : professeur à Königsberg ; refuse tout droit de mentir, même à l'assassin qui demande où se cache ton ami (Sur un prétendu droit de mentir par humanité, 1797) ; l'impératif catégorique : agir d'après une maxime dont on peut vouloir qu'elle devienne une loi universelle (Fondements de la métaphysique des mœurs, 1785). Série « Le devoir », épisode 3.
+
+## Images
+Domaine public : buste de Socrate (copie romaine d'après Lysippe, musée du Louvre) ; Spinoza (portrait anonyme, vers 1665) ; Kant (portrait anonyme, XVIIIᵉ s.) ; Raphaël, L'École d'Athènes (1509-1511) ; Leo von Klenze, l'Acropole et l'Aréopage d'Athènes (1846) ; Jacques-Louis David, La Mort de Socrate (1787, Metropolitan Museum) ; Samuel Hirszenberg, Spinoza excommunié (1907) ; Vilhelm Hammershøi, Portes blanches (1913) ; Kant, Grundlegung zur Metaphysik der Sitten (Riga, 1785, page de titre) ; Königsberg, photochrome (vers 1900).
+Rodin, Le Penseur : photo Jebulon, CC0.
+
+
