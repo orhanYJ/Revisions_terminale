@@ -34,7 +34,8 @@ que l'on développe à l'oral en **4 min 30** (5 min au maximum).
   elles tiennent 4 min 30.
 - Des **notes**, pas des phrases rédigées : l'idée en quelques mots, liens logiques (« → », « but », « so », « = »).
   Une puce se développe en 10 à 20 secondes. Exemple : « Each unpunished step encouraged the next — e.g. Rhineland, 7 March 1936 ».
-- La puce du jugement commence par « Judgement: » (« Jugement : » en français).
+- La puce du jugement commence par « Judgement: » (« Jugement : » en français) ; pour une question « Assess the aims… », qui demande une explication, « In short: » (« En bref : »).
+- Un discours rédigé accompagne les notes : voir `CAHIER_DISCOURS.md`.
 - L'exemple, quand il y en a un, est précis (date, nom, lieu) et unique.
 
 ## Règles de contenu
