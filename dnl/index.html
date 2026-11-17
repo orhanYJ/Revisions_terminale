@@ -1049,6 +1049,17 @@ html.mo .scrim.show{animation:mo-fadein .28s ease both}
 .or-chr-cible{position:absolute;top:-3px;bottom:-3px;left:90%;width:2px;background:var(--slate,#17233F);border-radius:1px}
 .or-chrono.depasse .or-chr-bar i{background:linear-gradient(90deg,#8E6F37,#C0632F)}
 .or-chrono.depasse .or-chr-t{color:#A4552A}
+.or-disc-btn{margin-right:8px}
+.or-disc{margin-top:8px;background:#fff;border:1px solid var(--line,#CBBFA3);border-left:3px solid var(--slate,#17233F);border-radius:0 8px 8px 0;padding:10px 16px 6px}
+.or-disc-n{margin:0 0 8px;font-size:12.5px;font-style:italic;color:var(--muted,#6B6350)}
+.or-disc-b{margin-bottom:10px}
+.or-disc-t{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:16.5px;color:var(--slate,#17233F);margin-bottom:2px}
+.or-disc-b p{margin:0 0 6px;font-size:15px;line-height:1.65;color:#2b2a26}
+.or-btn-theme{margin-top:10px;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--slate,#17233F);background:var(--slate,#17233F);color:#F5F1E8;border-radius:18px;padding:7px 14px;font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer}
+.or-btn-theme:hover{background:#24345c}
+.or-btn-menu{margin-left:auto;flex:0 0 auto;border:1px solid rgba(214,178,106,.55);background:transparent;color:#E9D8B0;border-radius:12px;padding:2px 9px;font-family:inherit;font-size:11.5px;font-weight:600;cursor:pointer}
+.or-btn-menu:hover,.or-btn-menu.here{background:rgba(214,178,106,.18)}
+.or-mic{font-size:26px;line-height:1}
 .or-jury-btn{margin-top:6px;border:1px solid var(--line,#CBBFA3);background:#fff;color:var(--slate,#17233F);border-radius:16px;padding:6px 12px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer}
 .or-jury{margin-top:8px;display:grid;gap:8px}
 .or-jq{background:var(--paper,#F7F3EA);border-radius:6px;padding:8px 12px}
@@ -5048,7 +5059,8 @@ const Home = ({ lang, go, openSearch, openGloss, openTrain }) => {
                       React.createElement("span", { className: "tc-title" }, title),
                       ok ? React.createElement(Icon, { name: "check", size: 14, className: "tc-state" })
                          : React.createElement("span", { className: "tc-state soon" }, FR ? "à venir" : "soon")));
-                }))));
+                })),
+              React.createElement(OralBouton, { id: oralThemeId(subj, t), FR: FR })));
         })))), React.createElement(PremBand, { lang: lang }));
 };
 
@@ -5589,7 +5601,7 @@ function Chapter({
   const quizSec = data.sections.find(s => s.num === "✓");
   const hasVocab = data.vocab && data.vocab.some(g => g.items && g.items.length);
   const hasExam = data.exam && data.exam.length;
-  /* 4 onglets au plus (16/11/2026) : Cours (avec L'essentiel) · Vidéo & carte · Réviser (quiz, vocabulaire, sujets) · Oral */
+  /* 3 onglets au plus (17/11/2026) : Cours (avec L'essentiel) · Vidéo & carte · Réviser (quiz, vocabulaire, sujets) ; l'oral est par thème (page Oral) */
   const WATCH = [].concat(serieDispo(data.code) ? [["video", FR ? "Vidéo" : "Video", "▶"]] : [])
     .concat(CARTES_ANIM.indexOf(data.code) >= 0 ? [["carte", FR ? "Carte animée" : "Animated map", "🗺️"]] : []);
   const REVISE = [].concat(quizSec ? [["quiz", "Quiz", "✅"]] : [])
@@ -5597,8 +5609,7 @@ function Chapter({
     .concat(hasExam ? [["exam", FR ? "Sujets corrigés" : "Model essays", "✍️"]] : []);
   const TABS = [["course", FR ? "Cours" : "Course", "📖"]]
     .concat(WATCH.length ? [["watch", WATCH.length > 1 ? (FR ? "Vidéo & carte" : "Video & map") : WATCH[0][1], WATCH.length > 1 ? "▶" : WATCH[0][2]]] : [])
-    .concat(REVISE.length ? [["revise", FR ? "Réviser" : "Revise", "✅"]] : [])
-    .concat(oralChap(data.code) ? [["oral", "Oral", "🎤"]] : []);
+    .concat(REVISE.length ? [["revise", FR ? "Réviser" : "Revise", "✅"]] : []);
   const go = (t, sub) => {
     if (t === "quiz" || t === "vocab" || t === "exam") { sub = t; t = "revise"; }
     if (t === "video" || t === "carte") { sub = t; t = "watch"; }
@@ -5675,7 +5686,6 @@ function Chapter({
     const [cur, barre] = sousTabs(REVISE, "revise");
     body = [barre, cur === "quiz" ? React.createElement("div", { className: "quiz-tab", key: "q" }, schemasOf(quizSec)) : cur === "vocab" ? vocab() : exam()];
   }
-  else if (tab === "oral") body = [React.createElement(OralTab, { key: "or", code: data.code, lang: lang })];
   else {
     const allOpen = courseSecs.every(([s, i]) => open[i]);
     body = [
@@ -5724,6 +5734,10 @@ const ORAL = {"h-t1": {"issues": [{"id": "h-t1-ki-1", "kind": "issue", "q": "Bla
    questions du jury). On parle à partir des notes, on ne récite pas : 4 min 30 visées, 5 min au maximum.
    L'oral se passe en anglais ; le bouton de langue du site affiche la traduction française. */
 const oralTheme = code => ORAL_SYLLABUS.find(t => t.chap.indexOf(code) >= 0);
+/* identifiant du thème (h-t1, g-t1…) d'après sa place dans STRUCTURE ; null si rien n'est publié */
+const oralThemeId = (subj, t) => { const m = /^Theme (\d+)/.exec(t.name); return m ? (subj === "hist" ? "h" : "g") + "-t" + m[1] : null; };
+const oralPret = id => { const d = id && ORAL[id]; return !!(d && d.issues.length + d.terms.length); };
+const oralOuvrir = id => window.dispatchEvent(new CustomEvent("open-oral", { detail: id }));
 /* l'onglet Oral porte tout le thème : toutes ses key issues et tous ses key terms, dans chaque chapitre du thème */
 const oralChap = code => {
   const th = oralTheme(code), d = th && ORAL[th.id];
@@ -5733,6 +5747,7 @@ const oralChap = code => {
 const ORAL_CIBLE = 270, ORAL_MAX = 300;
 const oralDuree = L => (L.sections || []).reduce((n, s) => n + (s.d || 0), 0);
 const oralPuces = L => (L.sections || []).reduce((n, s) => n + s.pts.length, 0);
+const oralMots = l => l.reduce((n, b) => n + b.p.split(/\s+/).filter(Boolean).length, 0);
 const oralMmss = t => Math.floor(t / 60) + ":" + String(t % 60).padStart(2, "0");
 const oralMin = d => d < 60 ? d + " s" : Math.floor(d / 60) + " min" + (d % 60 ? " " + String(d % 60).padStart(2, "0") : "");
 const OralChrono = ({ FR, t, on, basculer, remettre }) => {
@@ -5747,7 +5762,7 @@ const OralChrono = ({ FR, t, on, basculer, remettre }) => {
 };
 const OralItem = ({ it, FR, ouvert, basculer }) => {
   const L = FR ? it.fr : it.en, total = oralDuree(L);
-  const [jury, setJury] = React.useState(false), [t, setT] = React.useState(0), [on, setOn] = React.useState(false);
+  const [jury, setJury] = React.useState(false), [disc, setDisc] = React.useState(false), [t, setT] = React.useState(0), [on, setOn] = React.useState(false);
   React.useEffect(() => {
     if (!on) return;
     const h = setInterval(() => setT(v => Math.min(ORAL_MAX, v + 1)), 1000);
@@ -5778,13 +5793,24 @@ const OralItem = ({ it, FR, ouvert, basculer }) => {
         React.createElement("div", { className: "or-sec-h" },
           React.createElement("span", { className: "or-sec-t" }, s.t),
           React.createElement("span", { className: "or-sec-d" }, "≈ " + oralMin(s.d), React.createElement("small", null, oralMmss(bornes[k][0]) + " → " + oralMmss(bornes[k][1])))),
-        React.createElement("ul", null, s.pts.map((p, i) => React.createElement("li", { key: i, className: /^(Judgement|Jugement)\s*:/.test(p) ? "jug" : null }, glT(p))))))),
+        React.createElement("ul", null, s.pts.map((p, i) => React.createElement("li", { key: i, className: /^(Judgement|Jugement|In short|En bref)\s*:/.test(p) ? "jug" : null }, glT(p))))))),
+      L.discours && React.createElement("button", { className: "or-jury-btn or-disc-btn", onClick: () => setDisc(d => !d), "aria-expanded": disc },
+        (disc ? "▲ " : "▼ ") + (FR ? "📝 Le discours rédigé (≈ " : "📝 The written speech (≈ ") + oralMin(Math.round(oralMots(it.en.discours || L.discours) / 140 * 60 / 10) * 10) + (FR ? " à voix haute)" : " out loud)")),
+      disc && L.discours && React.createElement("div", { className: "or-disc" },
+        React.createElement("p", { className: "or-disc-n" }, FR
+          ? "Un exemple de ce que donnent les notes une fois développées à voix haute. À lire pour comprendre l'enchaînement, pas à apprendre par cœur."
+          : "An example of the notes developed out loud. Read it to see how the ideas link up, not to learn it by heart."),
+        L.discours.map((b, k) => React.createElement("div", { key: k, className: "or-disc-b" },
+          React.createElement("div", { className: "or-disc-t" }, b.t),
+          b.p.split("\n\n").map((x, i) => React.createElement("p", { key: i }, glT(x)))))),
       React.createElement("button", { className: "or-jury-btn", onClick: () => setJury(j => !j) }, (jury ? "▲ " : "▼ ") + (FR ? "Questions possibles du jury" : "Possible questions from the jury")),
       jury && React.createElement("div", { className: "or-jury" }, L.jury.map((j, i) => React.createElement("div", { key: i, className: "or-jq" },
         React.createElement("b", null, j[0]), React.createElement("p", null, j[1]))))));
 };
-function OralTab({ code, lang }) {
-  const FR = lang === "fr", data = oralChap(code), th = data && data.th;
+function OralTab({ code, themeId, lang }) {
+  const FR = lang === "fr";
+  const th0 = themeId ? ORAL_SYLLABUS.find(t => t.id === themeId) : oralTheme(code);
+  const data = th0 && oralPret(th0.id) ? { th: th0, issues: ORAL[th0.id].issues, terms: ORAL[th0.id].terms } : null, th = data && data.th;
   const [ouvert, setOuvert] = React.useState(null), [tirage, setTirage] = React.useState(null);
   if (!th) return null;
   const tirer = () => {
@@ -5801,7 +5827,7 @@ function OralTab({ code, lang }) {
     React.createElement("div", { className: "or-intro" },
       React.createElement("div", { className: "or-kicker" }, FR ? "L'oral de DNL" : "The DNL oral"),
       React.createElement("h2", null, FR ? th.theme[1] : th.theme[0]),
-      React.createElement("p", { className: "or-chap" }, FR ? "Toutes les key issues et tous les key terms du thème, d'après la liste officielle. C'est le même onglet dans chaque chapitre du thème ; les pastilles indiquent les chapitres à mobiliser." : "All the key issues and key terms of the theme, from the official list. It is the same tab in every chapter of the theme; the badges show which chapters to draw on."),
+      React.createElement("p", { className: "or-chap" }, FR ? "Toutes les key issues et tous les key terms du thème, d'après la liste officielle. Les pastilles indiquent les chapitres à mobiliser." : "All the key issues and key terms of the theme, from the official list. The badges show which chapters to draw on."),
       React.createElement("p", null, FR
         ? "À l'oral (coefficient 10) : 20 minutes de préparation, puis 5 minutes d'exposé sur une key issue tirée au sort, 5 minutes de questions, et 5 minutes sur un key term — le tirage croise l'histoire et la géographie. Chaque réponse ci-dessous est un jeu de notes à puces, à développer en anglais en 4 min 30 (5 minutes au maximum), avec un temps conseillé par partie."
         : "At the oral (coefficient 10): 20 minutes of preparation, then a 5-minute presentation on a key issue drawn at random, 5 minutes of questions, and 5 minutes on a key term — the draw crosses history and geography. Each answer below is a set of bullet-point notes, to develop in English in 4 min 30 (5 minutes at most), with a suggested time for each part."),
@@ -5811,7 +5837,7 @@ function OralTab({ code, lang }) {
           React.createElement("span", { className: "or-kind " + it.kind }, it.kind === "issue" ? "Key Issue" : "Key Term"),
           React.createElement("b", null, it.q),
           FR && React.createElement("em", null, it.q_fr))),
-        React.createElement("p", null, FR ? "Prépare-les en 20 minutes sans regarder les réponses, puis retrouve-les dans l'onglet Oral du chapitre concerné. Le tirage ne porte que sur les questions déjà rédigées." : "Prepare them in 20 minutes without looking at the answers, then find them in the Oral tab of the chapter concerned. The draw only uses the questions already written."))),
+        React.createElement("p", null, FR ? "Prépare-les en 20 minutes sans regarder les réponses, puis retrouve-les dans la page Oral du thème concerné. Le tirage ne porte que sur les questions déjà rédigées." : "Prepare them in 20 minutes without looking at the answers, then find them on the Oral page of the theme concerned. The draw only uses the questions already written."))),
     [data.issues.length ? bloc("Key Issues", data.issues) : null, data.terms.length ? bloc("Key Terms", data.terms) : null].filter(Boolean).map((x, i) => React.createElement(React.Fragment, { key: i }, x)),
     React.createElement("details", { className: "or-syll" },
       React.createElement("summary", null, FR ? "La liste officielle complète (tous les thèmes)" : "The full official list (all themes)"),
@@ -5822,6 +5848,23 @@ function OralTab({ code, lang }) {
           t.issues.length ? React.createElement("ul", null, t.issues.map((q, i) => React.createElement("li", { key: i }, q))) : React.createElement("p", { className: "or-none" }, FR ? "Pas de key issue dans la liste." : "No key issue in the list."),
           React.createElement("p", { className: "or-terms" }, React.createElement("b", null, FR ? "Key Terms : " : "Key Terms: "), t.terms.length ? t.terms.join(" · ") : (FR ? "aucun dans la liste" : "none in the list"))))))));
 }
+/* page Oral d'un thème (ouverte depuis l'accueil ou le menu : événement « open-oral ») */
+function OralPage({ id, lang }) {
+  const FR = lang === "fr", th = ORAL_SYLLABUS.find(t => t.id === id);
+  if (!th) return null;
+  return React.createElement("div", { className: "chap-root oral-page" },
+    React.createElement("div", { className: "chap-hero" },
+      React.createElement("div", { className: "hero-cartouche" },
+        React.createElement("span", { className: "hero-icon " + th.subject }, React.createElement("span", { className: "or-mic", "aria-hidden": true }, "🎤")),
+        React.createElement("div", null,
+          React.createElement("div", { className: "train-kicker" }, (th.subject === "hist" ? (FR ? "Histoire" : "History") : (FR ? "Géographie" : "Geography")) + " · " + (FR ? "Préparer l'oral" : "Oral preparation")),
+          React.createElement("h1", { className: "hero-title" }, "Oral")))),
+    React.createElement(OralTab, { themeId: id, lang: lang }));
+}
+/* bouton « Oral » d'un thème (accueil, menu) */
+const OralBouton = ({ id, FR, petit }) => oralPret(id) && React.createElement("button", {
+  className: petit ? "or-btn-menu" : "or-btn-theme", title: FR ? "Préparer l'oral de ce thème : key issues et key terms" : "Prepare the oral for this theme: key issues and key terms",
+  onClick: e => { e.stopPropagation(); oralOuvrir(id); } }, "🎤 ", petit ? "Oral" : (FR ? "Oral du thème" : "Theme oral"));
 function Placeholder({
   code,
   name
@@ -6831,10 +6874,16 @@ function App(
   const [fiche, setFiche] = useState(false);
   const [prem, setPrem] = useState(null);
   const [train, setTrain] = useState(false);
+  const [oral, setOral] = useState(null);
   useEffect(() => {
-    const h = e => { setTrain(false); setPrem(e.detail || "index"); setSubject("prem"); };
+    const o = e => { setTrain(false); setPrem(null); setCurrent(null); setOral(e.detail); if (e.detail) setSubject(e.detail[0] === "g" ? "geo" : "hist"); };
+    window.addEventListener("open-oral", o);
+    return () => window.removeEventListener("open-oral", o);
+  }, []);
+  useEffect(() => {
+    const h = e => { setTrain(false); setOral(null); setPrem(e.detail || "index"); setSubject("prem"); };
     window.addEventListener("open-prem", h);
-    const g = e => { if (e.detail) { setTrain(false); setPrem(null); const t = FLAT.find(c => c.code === e.detail); if (t) setSubject(t.subject); setCurrent(e.detail); } };
+    const g = e => { if (e.detail) { setTrain(false); setOral(null); setPrem(null); const t = FLAT.find(c => c.code === e.detail); if (t) setSubject(t.subject); setCurrent(e.detail); } };
     window.addEventListener("go-chap", g);
     return () => { window.removeEventListener("open-prem", h); window.removeEventListener("go-chap", g); };
   }, []);
@@ -6857,17 +6906,17 @@ function App(
     window.scrollTo(0, 0);
     setNavOpen(false);
     glFermer();
-  }, [current, prem, train]);
+  }, [current, prem, train, oral]);
   useEffect(() => { glFermer(); }, [lang]);
   const go = code => {
-    setTrain(false);
+    setTrain(false); setOral(null);
     if (code && code.indexOf("P-") === 0) { setPrem(code); setSubject("prem"); return; }
     setPrem(null);
     const target = FLAT.find(c => c.code === code);
     if (target) setSubject(target.subject);
     setCurrent(code);
   };
-  const home = () => { setTrain(false); setCurrent(null); setPrem(null); };
+  const home = () => { setTrain(false); setOral(null); setCurrent(null); setPrem(null); };
   const chapTitle = c => {
     const d = CHAPTERS[c.code];
     return (FR && d && d.fr && d.fr.title) ? d.fr.title : c.name;
@@ -6883,7 +6932,7 @@ function App(
     React.createElement("div", { className: "scrim" + (navOpen ? " show" : ""), onClick: () => setNavOpen(false) }),
     React.createElement("div", { className: "lang-fab desk-only" }, langToggle),
     React.createElement("aside", { className: "sidebar" + (navOpen ? " open" : "") },
-      React.createElement("button", { className: "brand" + (current || prem || train ? "" : " here"), onClick: home, title: FR ? "Accueil" : "Home" },
+      React.createElement("button", { className: "brand" + (current || prem || train || oral ? "" : " here"), onClick: home, title: FR ? "Accueil" : "Home" },
         React.createElement(CompassRose, { size: 44, className: "brand-rose" }),
         React.createElement("div", { className: "brand-txt" },
           React.createElement("div", { className: "brand-kicker" }, "Terminale BFI"),
@@ -6897,7 +6946,7 @@ function App(
         React.createElement("button", { className: "tool-btn gloss", onClick: () => setGlossOpen(true) },
           React.createElement(Icon, { name: "book", size: 17, className: "tool-ico" }),
           React.createElement("span", { className: "tool-lbl" }, FR ? "Glossaire" : "Glossary"))),
-      React.createElement("button", { className: "train-btn" + (train ? " here" : ""), onClick: () => setTrain(true) },
+      React.createElement("button", { className: "train-btn" + (train ? " here" : ""), onClick: () => { setOral(null); setTrain(true); } },
         React.createElement(Icon, { name: "target", size: 17, className: "tool-ico" }),
         React.createElement("span", null, FR ? "Entraînement" : "Practice"),
         React.createElement("span", { className: "train-sub" }, FR ? "quiz · fiches PDF" : "quiz · PDF sheets")),
@@ -6924,13 +6973,14 @@ function App(
         STRUCTURE[subject].themes.map((t, i) => React.createElement("div", { className: "theme-group", key: i },
           React.createElement("div", { className: "theme-head " + subject },
             React.createElement(Icon, { name: THEME_ICON[subject][i], size: 18, className: "theme-ico" }),
-            React.createElement("span", null, t.name.replace(/^Theme (\d+)\s*[—-]\s*/, FR ? "Thème $1 · " : "Theme $1 · "))),
+            React.createElement("span", null, t.name.replace(/^Theme (\d+)\s*[—-]\s*/, FR ? "Thème $1 · " : "Theme $1 · ")),
+            React.createElement(OralBouton, { id: oralThemeId(subject, t), FR: FR, petit: true })),
           t.chapters.map(c => {
             const d = CHAPTERS[c[0]];
             const filled = !!(d && !d.pending);
             return React.createElement("button", {
               key: c[0],
-              className: "chap-btn " + subject + (current === c[0] && !train ? " active" : "") + (filled ? "" : " soon"),
+              className: "chap-btn " + subject + (current === c[0] && !train && !oral ? " active" : "") + (filled ? "" : " soon"),
               onClick: () => go(c[0])
             }, React.createElement(Icon, { name: c[0], size: 16, className: "chap-ico" }),
                React.createElement("span", { className: "chap-code" }, c[0]),
@@ -6940,13 +6990,15 @@ function App(
       React.createElement("div", { className: "mobile-bar" },
         React.createElement("button", { className: "burger", "aria-label": "Menu", onClick: () => setNavOpen(o => !o) },
           React.createElement("span", null), React.createElement("span", null), React.createElement("span", null)),
-        train ? React.createElement("span", { className: "mb-code" }, React.createElement(Icon, { name: "target", size: 20 }))
+        oral ? React.createElement("span", { className: "mb-code" }, "🎤")
+        : train ? React.createElement("span", { className: "mb-code" }, React.createElement(Icon, { name: "target", size: 20 }))
         : prem ? React.createElement("span", { className: "mb-code" }, React.createElement("span", { className: "tab-1re" }, "1", React.createElement("sup", null, "re")))
         : cur ? React.createElement("span", { className: "mb-code" }, cur.code)
             : React.createElement("span", { className: "mb-code" }, React.createElement(CompassRose, { size: 22 })),
-        React.createElement("span", { className: "mb-title" }, train ? (FR ? "Entraînement" : "Practice") : prem ? (prem === "index" ? (FR ? "Rappels de Première" : "Première recaps") : (FR ? PREM_BY_ID[prem].title[1] : PREM_BY_ID[prem].title[0])) : cur ? chapTitle(cur) : "History & Geography"),
+        React.createElement("span", { className: "mb-title" }, oral ? "Oral · " + (oral[0] === "h" ? (FR ? "Histoire" : "History") : (FR ? "Géographie" : "Geography")) + " T" + oral.slice(3) : train ? (FR ? "Entraînement" : "Practice") : prem ? (prem === "index" ? (FR ? "Rappels de Première" : "Première recaps") : (FR ? PREM_BY_ID[prem].title[1] : PREM_BY_ID[prem].title[0])) : cur ? chapTitle(cur) : "History & Geography"),
         React.createElement("div", { className: "lang-mob mob-only" }, langToggle)),
-      train ? React.createElement(TrainingPage, { lang: lang })
+      oral ? React.createElement(OralPage, { id: oral, lang: lang })
+      : train ? React.createElement(TrainingPage, { lang: lang })
       : prem
         ? (prem === "index" ? React.createElement(PremIndex, { lang: lang }) : React.createElement(PremUnit, { id: prem, lang: lang, go: go }))
       : !current
@@ -6954,7 +7006,7 @@ function App(
         : data
           ? React.createElement(Chapter, { data: data, accent: accent, lang: lang, fiche: fiche, setFiche: setFiche })
           : React.createElement(Placeholder, { code: cur.code, name: cur.name }),
-      current && !prem && !train && React.createElement("div", { className: "chap-foot" },
+      current && !prem && !train && !oral && React.createElement("div", { className: "chap-foot" },
         React.createElement("button", { className: "foot-btn" + (prev ? "" : " disabled"), onClick: () => prev ? go(prev.code) : home() },
           React.createElement("div", { className: "foot-dir" }, prev ? (FR ? "← Précédent" : "← Previous") : (FR ? "← Accueil" : "← Home")),
           React.createElement("div", { className: "foot-name" }, prev ? React.createElement(React.Fragment, null, React.createElement("b", null, prev.code), " ", chapTitle(prev)) : (FR ? "Retour à l'atlas" : "Back to the atlas"))),
