@@ -14,7 +14,7 @@ PRINCIPAUX |= {"scene", "chrono", "document"}                               # HG
 
 def donnees(code):
     """Données d'un épisode philo (philo/serie) ou d'une vidéo de cours PC (pc/serie)."""
-    for site in ("philo", "pc", "acl-lughnasa", "dnl", "svt", "maths", "ses", "hggsp"):
+    for site in ("philo", "pc", "acl-lughnasa", "dnl", "svt", "maths", "ses", "hggsp", "hlp", "nsi"):
         f = os.path.join(RACINE, site, "serie", code + ".data.js")
         if os.path.exists(f):
             js = open(f, encoding="utf-8").read()

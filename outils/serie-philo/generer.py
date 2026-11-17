@@ -78,9 +78,10 @@ DEBUT = 1.6                           # musique seule avant la première phrase
 ROMAINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV"]
 V_MOTEUR = 12                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
 V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 5, "acl-lughnasa": 2, "dnl": 4, "svt": 9,
-                 "maths": 5, "ses": 4, "hggsp": 3}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
+                 "maths": 5, "ses": 4, "hggsp": 3, "hlp": 1, "nsi": 1}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
 TEINTE = {"philo": "#0b111e", "pc": "#120c07", "acl-lughnasa": "#0e1729", "dnl": "#0e1729", "svt": "#0b120e",
-          "maths": "#1b2422", "ses": "#0d1f24", "hggsp": "#141414"}
+          "maths": "#1b2422", "ses": "#0d1f24", "hggsp": "#141414",
+          "hlp": "#2a2018", "nsi": "#070b1a"}
 PAGE = """<!DOCTYPE html>
 <html lang="{langue}">
 <head>
@@ -565,7 +566,7 @@ def generer(nom_module):
         f.write(js)
     v = hashlib.sha1(js.encode("utf-8")).hexdigest()[:8]
     titre = (f"Chapitre {ep.NUM} — {ep.TITRE} · SVT Terminale" if site == "svt"
-             else f"Chapitre {ep.NUM} — {ep.TITRE} · " + {"maths": "Maths", "ses": "SES", "hggsp": "HGGSP"}[site] + " Terminale" if site in ("maths", "ses", "hggsp")
+             else f"Chapitre {ep.NUM} — {ep.TITRE} · " + {"maths": "Maths", "ses": "SES", "hggsp": "HGGSP", "hlp": "HLP", "nsi": "NSI"}[site] + " Terminale" if site in ("maths", "ses", "hggsp", "hlp", "nsi")
              else f"Chapitre {ep.NUM} — {ep.TITRE} · le cours en vidéo" if site == "pc"
              else f"{ep.NOTION} · Episode {ep.NUM} — {ep.TITRE}" if site == "dnl"
              else f"{ep.NOTION} · Part {ep.NUM} — {ep.TITRE}" if langue == "en" else f"{ep.NOTION} · Épisode {ep.NUM} — {ep.TITRE}")
@@ -573,7 +574,7 @@ def generer(nom_module):
     if site == "svt":   # carte mentale du thème (type mental) et illustrations propres au chapitre (illu-<code>.js)
         with open(os.path.join(RACINE, "svt", "carte-mentale.js"), "rb") as f:
             extra += f'<script src="../carte-mentale.js?v={hashlib.sha1(f.read()).hexdigest()[:8]}"></script>\n'
-    if site in ("svt", "maths", "ses", "hggsp"):   # illustrations (et scènes de carte, HGGSP) propres à la vidéo, si le fichier existe
+    if site in ("svt", "maths", "ses", "hggsp", "hlp", "nsi"):   # illustrations (et scènes de carte, HGGSP) propres à la vidéo, si le fichier existe
         illu = os.path.join(SORTIE, "illu-" + ep.CODE + ".js")
         if os.path.exists(illu):
             with open(illu, "rb") as f:

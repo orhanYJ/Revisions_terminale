@@ -2153,7 +2153,7 @@ STYLES["lughnasa1"] = dict(_CLASSIQUE, special={"reel": _reel_variante})
 
 
 # style de chaque site (choix du pilote du 10/11/2026 pour maths, ses, hggsp) ; piste(…, style="ses1") en force un autre
-STYLE = {"maths": "maths3", "ses": "ses2", "hggsp": "hggsp2",
+STYLE = {"maths": "maths3", "ses": "ses2", "hggsp": "hggsp2", "hlp": "hlp3", "nsi": "nsi5c",
          "philo": "philo1", "pc": "pc1", "svt": "svt1", "dnl": "dnl1", "acl-lughnasa": "lughnasa1"}
 
 # ---------------------------------------------------------------------------------------------------------------
@@ -3918,3 +3918,9 @@ def _transition_nsi5(sorte, cx, rng, delai):
 STYLES["nsi5"] = dict(couches=_couches_nsi5, mesure=_mesure_nsi5, phrase=_phrase_nsi5, mix=_mix_nsi5, init=_init_nsi5,
                       transition=_transition_nsi5, transitions=_TR3, leads=("synth", "equilibre", "electro"),
                       transpos=(0, 2, -2, 3, -3, 5), dbpm=3, coeur=("nappe", "arp"), options=("lead", "shaker", "accords"))
+
+
+# Choix de Cengiz (17/11/2026) : HLP = quatuor à cordes (hlp3) ; NSI = le mélange « côté électro » (5c de l'aperçu) :
+# toutes les parties au dosage electro, les variantes d'une partie à l'autre restant la tonalité, le tempo, la texture
+# et les timbres de l'arpège et des accords.
+STYLES["nsi5c"] = dict(STYLES["nsi5"], leads=("electro",), banque="nsi5")
