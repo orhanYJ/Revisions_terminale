@@ -170,6 +170,35 @@ META = {
               "puissance chinoise", "marine chinoise", "Fujian", "Tiangong", "Chang'e", "Beidou",
               "mer de Chine méridionale", "routes de la soie", "collier de perles", "Malacca", "AUKUS", "Quad",
               "dissertation HGGSP", "Grand oral"]),
+    "hlp-e1": dict(
+        titre_yt="Éducation, transmission et émancipation · Cours complet + sujets corrigés | HLP Terminale",
+        sous="Montaigne · Rousseau · Kant · Condorcet", img="e1-emile.jpg", gros="Éduquer",
+        accroche="« Plutôt la tête bien faite que bien pleine. » Éduquer, est-ce libérer ou dresser ? De Montaigne à Arendt, "
+                 "tout ce qu'il faut savoir sur la première entrée du programme de HLP.",
+        pill2="+ 2 sujets corrigés",
+        exos_txt="deux sujets type bac corrigés : une interprétation philosophique sur l'ouverture d'Émile, "
+                 "puis un essai littéraire",
+        exos=["Interprétation philosophique : selon Rousseau (ouverture d'Émile, 1762), pourquoi l'éducation est-elle "
+              "à la fois une menace et une nécessité ? (sujet d'entraînement)",
+              "Essai littéraire : « La littérature montre-t-elle que l'on devient soi-même contre son éducation ? » "
+              "(sujet d'entraînement)"],
+        tags=["HLP", "HLP terminale", "spécialité HLP", "bac HLP", "humanités littérature philosophie",
+              "éducation transmission émancipation", "Montaigne", "Rousseau", "Émile", "Kant", "Condorcet",
+              "Jules Ferry", "Vallès", "roman d'apprentissage", "Flaubert", "Arendt", "interprétation", "essai HLP"]),
+    "nsi-ch1": dict(
+        titre_yt="Programmation orientée objet · Cours complet + exercices corrigés | NSI Terminale",
+        sous="classe · objet · self · méthodes", img="nsi-ch1-memoire.jpg", gros="Les objets",
+        accroche="Une classe, un objet, self, __init__ : la programmation orientée objet en Python, expliquée pas à pas "
+                 "avec la mémoire dessinée, les pièges et trois exercices corrigés.",
+        pill2="+ 3 exercices corrigés",
+        exos_txt="trois exercices corrigés : prédire la sortie d'un programme, un sujet d'épreuve pratique "
+                 "(une médiathèque) et un exercice type bac (un parking)",
+        exos=["Exercice 1 : prédire ce qu'affichent deux courts programmes (références et alias).",
+              "Exercice 2, épreuve pratique : la médiathèque — compléter une méthode, trouver un bug, écrire des tests.",
+              "Exercice 3, type bac : un parking — prédire un affichage, écrire est_plein, garer et sortir."],
+        tags=["NSI", "NSI terminale", "spécialité NSI", "bac NSI", "programmation orientée objet", "POO", "Python",
+              "classe", "objet", "instance", "attribut", "méthode", "constructeur", "__init__", "self",
+              "encapsulation", "épreuve pratique NSI", "exercices corrigés"]),
     "ses-e2": dict(
         titre_yt="Commerce international et chaînes de valeur · Cours complet + sujets corrigés | SES Terminale",
         sous="Ricardo · HOS · compétitivité · protectionnisme", img="e2-elephant.jpg", gros="Le commerce",
@@ -252,11 +281,26 @@ MATIERE = {
                 acc="#F0BE4F", pill="#FF7B65", pill_c="#14232A", txt="#ECE6DA", txt2="#A5B0B3", ombre="0,0,0"),
     "hggsp": dict(nom="HGGSP", court="HGGSP", desc="HGGSP", fond="#07090b", fond_rgb="7,9,11",
                   acc="#FF5B49", pill="#B3241B", pill_c="#FFF8F0", txt="#DCE3E8", txt2="#93A3AF", ombre="0,0,0"),
+    # HLP « livre ancien » : cuir sombre, rubrication rouge et or ; les chapitres du programme s'appellent des entrées
+    "hlp": dict(nom="HLP", court="HLP", desc="HLP", fond="#2a2018", fond_rgb="42,32,24",
+                acc="#D9A441", pill="#A8322A", pill_c="#FBF3E2", txt="#F3E9D2", txt2="#C9B89A", ombre="0,0,0",
+                unite="Entrée", unite_court="Entrée", romain=True),
+    # NSI « flux de données » : nuit bleue, cyan et violet
+    "nsi": dict(nom="NSI", court="NSI", desc="NSI", fond="#070b1a", fond_rgb="7,11,26",
+                acc="#5CE1E6", pill="#5CE1E6", pill_c="#070b1a", txt="#E6ECFF", txt2="#9AA8D6", ombre="0,0,0"),
 }
+ROMAIN = ["", "I", "II", "III", "IV", "V", "VI"]
+
+
+def numero(mt, m, ep):
+    """Numéro affiché du chapitre : champ chap de META, sinon le numéro de l'épisode (en chiffres romains pour HLP)."""
+    if "chap" in m:
+        return m["chap"]
+    return ROMAIN[ep["num"]] if mt.get("romain") else ep["num"]
 
 
 def episode(code):
-    for site in ("pc", "svt", "philo", "maths", "ses", "hggsp"):
+    for site in ("pc", "svt", "philo", "maths", "ses", "hggsp", "hlp", "nsi"):
         f = os.path.join(RACINE, site, "serie", code + ".data.js")
         if os.path.exists(f):
             d = open(f, encoding="utf-8").read()
@@ -358,9 +402,9 @@ def kit(code, dossier):
     desc = [
         m["accroche"],
         "",
-        "Chapitre %s de %s de Terminale (spécialité) : « %s ». Tout le cours, en partant de zéro, "
+        "%s %s de %s de Terminale (spécialité) : « %s ». Tout le cours, en partant de zéro, "
         "avec les exemples, les méthodes et les pièges, puis %s. Environ %d minutes." % (
-            m.get("chap", ep["num"]), mt["desc"], ep["titre"], m.get("exos_txt", "trois exercices corrigés pas à pas : un simple, "
+            mt.get("unite", "Chapitre"), numero(mt, m, ep), mt["desc"], ep["titre"], m.get("exos_txt", "trois exercices corrigés pas à pas : un simple, "
                                                        "un plus difficile, un type bac"), duree),
         "",
         "Avant chaque correction, l'écran « À toi » t'invite à mettre la vidéo en pause et à chercher seul.",
@@ -430,14 +474,14 @@ html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:%(fond)s
 </style></head><body>
 <div class="img"></div>
 <div class="txt">
-  <div class="sur">Terminale · %(mat)s · Ch. %(num)s</div>
+  <div class="sur">Terminale · %(mat)s · %(unite)s %(num)s</div>
   <div class="gros">%(gros)s</div>
 %(trait_div)s  <div class="sous">%(sous)s</div>
   <div class="bas"><span class="pill">Cours complet</span><span class="pill c">%(pill2)s</span></div>
 </div>
 <div class="num">%(min)d min</div>
 <script>/* titre trop large ou trop haut : on réduit la taille */var g=document.querySelector(".gros"),t=document.querySelector(".txt"),f=120;g.style.fontSize=f+"px";function trop(){var a=t.firstElementChild.getBoundingClientRect(),b=t.lastElementChild.getBoundingClientRect();return g.scrollWidth>g.clientWidth||a.top<40||b.bottom>650}while(trop()&&f>48){f-=4;g.style.fontSize=f+"px"}</script>
-</body></html>""" % dict(base=base, img=m["img"], num=m.get("chap", ep["num"]), gros=e(m.get("gros", ep["titre"])).replace("-", "\u2011"), sous=e(m["sous"]),
+</body></html>""" % dict(base=base, img=m["img"], num=numero(mt, m, ep), unite=mt.get("unite_court", "Ch."), gros=e(m.get("gros", ep["titre"])).replace("-", "\u2011"), sous=e(m["sous"]),
                          min=round(ep["dur"] / 60), fond=mt["fond"], rgb=mt["fond_rgb"], txt=mt["txt"], txt2=mt["txt2"],
                          acc=mt["acc"], pill=mt["pill"], pillc=mt["pill_c"], mat=mt["nom"], pill2=e(m.get("pill2", "+ 3 exercices corrigés")),
                          police=mt.get("police", "Archivo,sans-serif"), spol=mt.get("sous_police", "Spectral,serif"), sstyle=mt.get("sous_style", "italic"),
