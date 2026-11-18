@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Révisions Terminale — Toutes les matières</title>
+<meta name="description" content="Sites de révision gratuits pour la Terminale : spécialités, philosophie, section internationale BFI, langues. Cours, animations, QCM, sujets corrigés. Une matière, un clic.">
+<meta name="apple-mobile-web-app-title" content="Révisions">
+<meta name="theme-color" content="#F6F3EC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14171C" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{
+  --bg:#F6F3EC; --surface:#FFFFFF; --ink:#1A1D23; --ink-2:#4E5560; --muted:#7A808A;
+  --line:#E4DED2; --accent:#C2410C; --shadow:0 1px 2px rgba(30,25,15,.06),0 6px 20px rgba(30,25,15,.06);
+  color-scheme:light dark;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#14171C; --surface:#1C2027; --ink:#ECEAE4; --ink-2:#B7BBC2; --muted:#8B9099; --line:#2C313A; --accent:#FB8A4C;
+    --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 24px rgba(0,0,0,.3)}
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.5;-webkit-font-smoothing:antialiased;padding:env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left)}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+
+/* ---------- en-tête ---------- */
+header{padding:44px 0 22px}
+.kick{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-weight:700;
+  font-size:clamp(2.2rem,8vw,3.6rem);line-height:1.02;letter-spacing:-.02em;margin-top:10px}
+.lead{margin-top:14px;max-width:58ch;color:var(--ink-2);font-size:1.05rem}
+.puces{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.puces span{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--ink-2)}
+
+/* ---------- filtre ---------- */
+.filtre{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0 12px;margin-bottom:6px}
+.champ{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0 14px;box-shadow:var(--shadow)}
+.champ svg{width:18px;height:18px;flex:none;opacity:.55}
+.champ input{flex:1;min-width:0;border:0;background:none;outline:none;font:inherit;font-size:16px;color:var(--ink);padding:12px 0}
+.champ:focus-within{border-color:var(--accent)}
+.vide{display:none;padding:28px 0;text-align:center;color:var(--muted)}
+
+/* ---------- sections et cartes ---------- */
+section{margin:26px 0 8px}
+section h2{display:flex;align-items:baseline;gap:10px;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);
+  padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:14px}
+section h2 small{font-size:12px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--muted)}
+.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.carte{position:relative;display:flex;gap:14px;align-items:flex-start;text-decoration:none;background:var(--surface);
+  border:1px solid var(--line);border-radius:16px;padding:14px 14px 14px 14px;box-shadow:var(--shadow);overflow:hidden;
+  transition:transform .2s cubic-bezier(.2,.8,.2,1),border-color .2s,box-shadow .2s}
+.carte::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c)}
+.carte img{width:56px;height:56px;flex:none;border-radius:14px;background:var(--c);object-fit:cover}
+.carte .txt{min-width:0;flex:1}
+.carte .mat{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c2,var(--c))}
+.carte .nom{display:block;font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:1.22rem;font-weight:700;line-height:1.2;margin-top:2px}
+.carte .desc{display:block;font-size:13.5px;color:var(--ink-2);margin-top:5px;line-height:1.45}
+.carte .fl{flex:none;align-self:center;width:18px;height:18px;opacity:.35;transition:transform .2s,opacity .2s}
+.carte:hover,.carte:focus-visible{border-color:var(--c);outline:none}
+.carte:hover .fl,.carte:focus-visible .fl{opacity:.9;transform:translateX(3px)}
+.carte:focus-visible{box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 35%,transparent)}
+@media (prefers-reduced-motion:no-preference){.carte:hover{transform:translateY(-2px)}}
+@media (prefers-color-scheme:dark){.carte .mat{color:var(--c3,var(--c))}}
+.sous{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.sous a{font-size:12.5px;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--ink-2);background:var(--bg)}
+.sous a:hover,.sous a:focus-visible{border-color:var(--c);color:var(--ink);outline:none}
+.cache{display:none!important}
+
+/* ---------- pied ---------- */
+.astuce{margin:34px 0 0;padding:16px 18px;border:1px dashed var(--line);border-radius:14px;color:var(--ink-2);font-size:14px}
+.astuce b{color:var(--ink)}
+footer{padding:26px 0 calc(34px + env(safe-area-inset-bottom));color:var(--muted);font-size:13px}
+@media (max-width:420px){.grille{grid-template-columns:1fr}header{padding-top:30px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <p class="kick">Terminale · bac 2027</p>
+  <h1>Révisions Terminale</h1>
+  <p class="lead">Des sites de révision gratuits, matière par matière : cours rédigés, animations, QCM, fiches et sujets corrigés. Choisis ta matière, un clic suffit.</p>
+  <div class="puces"><span>Gratuit</span><span>Sans compte</span><span>Sans publicité</span><span>Installable sur le téléphone</span></div>
+</header>
+
+<div class="filtre">
+  <label class="champ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8" stroke-linecap="round"/></svg>
+  <input id="f" type="search" placeholder="Chercher une matière…" autocomplete="off" aria-label="Chercher une matière"></label>
+</div>
+<p class="vide" id="vide">Aucune matière ne correspond.</p>
+
+<main>
+<section>
+  <h2>Spécialités <small>épreuves écrites de juin</small></h2>
+  <div class="grille">
+    <a class="carte" href="svt/" style="--c:#2F7D52;--c3:#7BC79A">
+      <img src="svt/icon-192.png" alt="" loading="lazy">
+      <span class="txt"><span class="mat">SVT</span><span class="nom">Le Vif du sujet</span>
+      <span class="desc">Génétique et évolution : cours, animations, vocabulaire, QCM et rédactions corrigées, vidéos des chapitres.</span></span>
+      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+    <a class="carte" href="pc/" style="--c:#EA580C;--c3:#FB8A4C">
+      <img src="pc/icon-192.png" alt="" loading="lazy">
+      <span class="txt"><span class="mat">Physique-Chimie</span><span class="nom">Liaisons</span>
+      <span class="desc">Acides-bases, analyse, titrages, photons, lunette, diffraction : cours, animations, TP, exercices et fiches mémo.</span></span>
+      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+    <a class="carte" href="maths/" style="--c:#2F55D4;--c3:#8FA8FF">
+      <img src="maths/icon-192.png" alt="" loading="lazy">
+      <span class="txt"><span class="mat">Mathématiques</span><span class="nom">CQFD</span>
+      <span class="desc">Tout le programme : démonstrations exigibles, Python, exercices en trois niveaux, annales, QCM et flashcards.</span></span>
+      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+    <a class="carte" href="ses/" style="--c:#0B6A7A;--c3:#5FC3D2">
+      <img src="ses/icon-192.png" alt="" loading="lazy">
+      <span class="txt"><span class="mat">SES</span><span class="nom">Faits &amp; Courbes</span>
+      <span class="desc">Économie, sociologie, regards croisés : mécanismes, chiffres sourcés, graphiques, savoir-faire et sujets corrigés.</span></span>
+      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+    <a class="carte" href="hggsp/" style="--c:#C8102E;--c3:#FF6B7F">
+      <img src="hggsp/icon-192.png" alt="" loading="lazy">
+      <span class="txt"><span class="mat">HGGSP</span><span class="nom">Ligne rouge</span>
+      <span class="desc">Les six thèmes : cours, frises, cartes animées, dissertations et études critiques corrigées.</span></span>
+      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+    <a class="carte" href="hlp/" style="--c:#9A5B22;--c3:#E0A66B">
+      <img src="hlp/icon-192.png" alt="" loading="lazy">
+      <span class="txt"><span class="mat">HLP</span><span class="nom">Ex libris</span>
+      <span class="desc">Humanités, littérature et philosophie : textes clés, atelier de lecture, sujets type bac corrigés.</span></span>
+      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+    <a class="carte" href="nsi/" style="--c:#1F9D5C;--c3:#4ADE80">
+      <img src="nsi/icon-192.png" alt="" loading="lazy">
+      <span class="txt"><span class="mat">NSI</span><span class="nom">import bac</span>
+      <span class="desc">Tout le programme : code Python testé, exécution pas à pas, SQL, arbres, graphes, exercices type bac.</span></span>
+      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Tronc commun</h2>
+  <div class="grille">
+    <a class="carte" href="philo/" style="--c:#B9852E;--c3:#E8B866">
+      <img src="philo/icon-192.png" alt="" loading="lazy">
+      <span class="txt"><span class="mat">Philosophie</span><span class="nom">L'Index raisonné</span>
+      <span class="desc">Les 17 notions, auteurs, repères, citations, méthode de la dissertation et de l'explication, séries vidéo.</span></span>
+      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Section internationale BFI <small>DNL et ACL</small></h2>
+  <div class="grille">
+    <a class="carte" href="dnl/" style="--c:#1F3B73;--c3:#8EA9E8">
+      <img src="dnl/icon-192.png" alt="" loading="lazy">
+      <span class="txt"><span class="mat">DNL Histoire-Géo</span><span class="nom">Revision Atlas</span>
+      <span class="desc">History &amp; Geography in English: chapters, animated maps, document studies, essays, DBQ, quizzes and videos.</span></span>
+      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+    <div class="carte" style="--c:#1E3366;--c3:#9CB2E6">
+      <img src="acl-ecrit/icon-192.png" alt="" loading="lazy">
+      <span class="txt"><a href="acl-ecrit/" style="text-decoration:none"><span class="mat">ACL écrit</span><span class="nom">British Literature</span></a>
+      <span class="desc">L'épreuve, la méthode du commentaire et de l'essay, l'atelier de réécriture, les œuvres :</span>
+      <span class="sous"><a href="acl-ecrit/">Le hub ACL écrit</a><a href="acl-lughnasa/">Dancing at Lughnasa</a><a href="acl-bricklane/">Brick Lane</a></span></span>
+    </div>
+    <div class="carte" style="--c:#D9622B;--c3:#F59A63">
+      <img src="acl-oral/icon-192.png" alt="" loading="lazy">
+      <span class="txt"><a href="acl-oral/" style="text-decoration:none"><span class="mat">ACL oral</span><span class="nom">Dystopian Writing</span></a>
+      <span class="desc">Cadrage de l'oral, poèmes analysés, ponts entre les œuvres :</span>
+      <span class="sous"><a href="acl-oral/">Le hub ACL oral</a><a href="acl-oral-1984/">1984 (Orwell)</a><a href="acl-oral-butler/">Parable of the Sower (Butler)</a></span></span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Langues</h2>
+  <div class="grille">
+    <a class="carte" href="redpen/" style="--c:#A8843E;--c3:#D8B676">
+      <img src="redpen/icon-192.png" alt="" loading="lazy">
+      <span class="txt"><span class="mat">Anglais B1 → C1</span><span class="nom">The Red Pen</span>
+      <span class="desc">Grammaire et syntaxe anglaises, méthodologie de l'essay, fautes typiques corrigées, exercices.</span></span>
+      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+    <a class="carte" href="italien/" style="--c:#1F7A4D;--c3:#6CCB97">
+      <img src="italien/icon-192.png" alt="" loading="lazy">
+      <span class="txt"><span class="mat">Italien LVB</span><span class="nom">La Grammatica</span>
+      <span class="desc">33 chapitres de grammaire A2 → B2, conjugaison, lexique et fonctions, erreurs à éviter.</span></span>
+      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Après le bac</h2>
+  <div class="grille">
+    <a class="carte" href="medecine/" style="--c:#2E6E9E;--c3:#7DB7E0">
+      <img src="medecine/icon-192.png" alt="" loading="lazy">
+      <span class="txt"><span class="mat">Études de santé</span><span class="nom">Protocole Santé</span>
+      <span class="desc">Préparer la licence portail santé : cinq méthodes de travail testées sur trois matières de première année.</span></span>
+      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+</main>
+
+<p class="astuce"><b>Sur le téléphone :</b> ouvre une matière, puis « Ajouter à l'écran d'accueil » dans le menu du navigateur. Elle s'ouvre alors comme une application ; la plupart des matières restent consultables sans connexion après une première visite.</p>
+<footer>Révisions Terminale · sites gratuits, sans compte ni publicité, construits sur le programme officiel de Terminale.</footer>
+</div>
+
+<script>
+/* Filtre des matières : insensible aux accents et aux majuscules. Rien n'est stocké. */
+(function(){
+  var f=document.getElementById('f'), vide=document.getElementById('vide');
+  var cartes=[].slice.call(document.querySelectorAll('.carte'));
+  function norm(s){return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
+  var textes=cartes.map(function(c){return norm(c.textContent);});
+  f.addEventListener('input',function(){
+    var mots=norm(f.value).split(/\s+/).filter(Boolean), n=0;
+    cartes.forEach(function(c,i){
+      var ok=mots.every(function(w){return textes[i].indexOf(w)>-1;});
+      c.classList.toggle('cache',!ok); if(ok){n++;}
+    });
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.toggle('cache',!s.querySelector('.carte:not(.cache)'));
+    });
+    vide.style.display=n?'none':'block';
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='/'&&document.activeElement!==f){e.preventDefault(); f.focus();}
+    if(e.key==='Escape'&&document.activeElement===f){f.value=''; f.dispatchEvent(new Event('input')); f.blur();}
+  });
+})();
+</script>
+</body>
+</html>
