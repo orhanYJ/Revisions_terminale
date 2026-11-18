@@ -3,5 +3,5 @@
    cours n'apparaissent que si dispo est vrai : passer dispo à true (et donner min, la durée en minutes) une fois la vidéo
    publiée avec sa voix, puis relancer build.py. */
 var VIDEOS = {
-  ch1: { code: "nsi-ch1", dispo: false, min: 26 }
+  ch1: { code: "nsi-ch1", dispo: true, min: 27 }
 };
