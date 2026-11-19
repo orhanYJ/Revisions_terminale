@@ -28,13 +28,26 @@ que l'on développe à l'oral en **4 min 30** (5 min au maximum).
   une qui nuance (« However … ») ; Conclusion (réponse nette, preuves les plus fortes, ouverture).
 - **Key term** : Definition (une phrase à savoir par cœur, gardée entière), Origins / context, Key features, Debates and limits, Links.
 
+## Évaluer tout au long (retour du professeur, 19/11/2026)
+Après un passage à l'oral sur « Assess the aims of the New European Order », le professeur a jugé les connaissances très bonnes, mais :
+« le seul truc qu'il faut rajouter, c'est vraiment dans la question *assess* : il faut tenir cet *assess* durant le développement également
+(par exemple à la fin de chaque partie), pas seulement dans la conclusion ».
+Règle pour **toutes les key issues** (« Assess… », « How far… ») :
+- **la dernière puce de chaque partie (I., II., III.) est un mini-jugement** qui commence par « Assessment: » (« Bilan : » en français) :
+  il répond à la question pour cette partie (quel poids, quelle importance, dans quelle mesure, avec quelle limite), en une phrase courte ;
+- l'introduction annonce le jugement d'ensemble (« Judgement: ») et la conclusion le confirme en reprenant les bilans partiels :
+  jugement d'ouverture, bilans de parties et conclusion doivent être **cohérents** entre eux ;
+- vocabulaire d'évaluation : *the most important / central / secondary / largely / partly / only in appearance / to a great extent / however…*
+- ton toujours mesuré : on pèse, on hiérarchise, on nuance ; pas de plaidoirie.
+Les key terms ne sont pas concernés (ils s'expliquent).
+
 ## Les puces
 - **Plus d'idées, moins d'exemples** (Cengiz, 16/11/2026) : une puce énonce une idée (argument, cause, mécanisme, conséquence, nuance, jugement), suivie au plus d'un exemple court après un tiret (« — e.g. Rhineland, 7 March 1936 »). Pas de listes de dates ni de chiffres. 16 à 20 puces, dont au moins 12 idées. Key term : la section de 90 s s'appelle « Key features » / « Caractéristiques » (les traits de la notion, un exemple chacun).
 - 6 à 20 mots par puce ; **220 à 320 mots anglais en tout** (puces seulement) : développées à l'oral,
   elles tiennent 4 min 30.
 - Des **notes**, pas des phrases rédigées : l'idée en quelques mots, liens logiques (« → », « but », « so », « = »).
   Une puce se développe en 10 à 20 secondes. Exemple : « Each unpunished step encouraged the next — e.g. Rhineland, 7 March 1936 ».
-- La puce du jugement commence par « Judgement: » (« Jugement : » en français) ; pour une question « Assess the aims… », qui demande une explication, « In short: » (« En bref : »).
+- La puce du jugement commence par « Judgement: » (« Jugement : » en français) ; y compris pour « Assess the aims… » (un jugement mesuré sur la hiérarchie des buts).
 - Un discours rédigé accompagne les notes : voir `CAHIER_DISCOURS.md`.
 - L'exemple, quand il y en a un, est précis (date, nom, lieu) et unique.
 
