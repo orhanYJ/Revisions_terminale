@@ -6,7 +6,7 @@
 <title>Révisions Terminale — Toutes les matières</title>
 <meta name="description" content="Sites de révision gratuits pour la Terminale : spécialités, philosophie, section internationale BFI, langues. Cours, animations, QCM, sujets corrigés. Une matière, un clic.">
 <meta name="apple-mobile-web-app-title" content="Révisions">
-<meta name="theme-color" content="#10241A">
+<meta name="theme-color" content="#050506">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -26,139 +26,125 @@
 @font-face{font-family:"H Garamond";src:url(hlp/polices/ebg-it.woff2) format("woff2");font-style:italic;font-display:swap}
 @font-face{font-family:"H Titrage";src:url(hlp/polices/titrage.woff2) format("woff2");font-display:swap}
 
-@property --a{syntax:"<angle>";inherits:true;initial-value:0deg}
-:root{--c1:#10241A;--c2:#2F5E3A;--ink:#F7F4EC;--acc:#B7D94C;--R:300px;
-  --sys:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+
+:root{--acc:#B7D94C;--noir:#050506;--blanc:#F4F1EA;--gris:#8E9097;
+  --sys:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --titre:"H Archivo","Arial Black",var(--sys)}
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%;background:#0E1013}
-body{font-family:var(--sys);line-height:1.5;-webkit-font-smoothing:antialiased;color:#ECEAE4;background:#0E1013}
+html{-webkit-text-size-adjust:100%;background:var(--noir)}
+body{font-family:var(--sys);line-height:1.5;-webkit-font-smoothing:antialiased;color:var(--blanc);background:var(--noir)}
 a{color:inherit}
-button{font:inherit;color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* ================= scène : la matière au centre, ses voisines sur les côtés ================= */
-.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;overflow:hidden;color:#F1EEE8;background:#08090C;
-  padding:env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);touch-action:pan-y}
-/* fond : halo à la couleur de la matière du centre, en fondu */
-.fond{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;
-  background:radial-gradient(60% 50% at 50% 46%,color-mix(in srgb,var(--fa) 30%,transparent),transparent 70%),
-             radial-gradient(120% 80% at 50% 0%,color-mix(in srgb,var(--fa) 16%,#08090C),#08090C 70%)}
+/* ================= écran de chargement ================= */
+.chargement{position:fixed;inset:0;z-index:50;background:var(--noir);display:grid;place-items:center;transition:opacity .6s ease,visibility .6s}
+.chargement.fini{opacity:0;visibility:hidden}
+.chargement .bloc{display:grid;justify-items:center;gap:26px}
+.chargement img{width:84px;height:84px;border-radius:20px;filter:grayscale(1) contrast(1.2);opacity:.9}
+.chargement .ligne-c{width:180px;height:1px;background:rgba(255,255,255,.18);overflow:hidden}
+.chargement .ligne-c i{display:block;height:100%;width:100%;background:var(--blanc);transform-origin:left;animation:charge .9s cubic-bezier(.6,0,.2,1) forwards}
+@keyframes charge{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* ================= en-tête ================= */
+.entete{position:fixed;z-index:20;top:0;left:0;right:0;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:calc(14px + env(safe-area-inset-top)) 22px 14px;background:linear-gradient(var(--noir),rgba(5,5,6,0))}
+.entete .nav{display:flex;gap:22px;font:700 11px/1 var(--titre);letter-spacing:.16em;text-transform:uppercase}
+.entete .nav a{text-decoration:none;opacity:.6;transition:opacity .2s,color .4s}
+.entete .nav a.actif{opacity:1;color:var(--acc)}
+.entete .nav a:hover,.entete .nav a:focus-visible{opacity:1;outline:none}
+.marque{justify-self:center;font:900 13px/1 var(--titre);letter-spacing:.22em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+.marque b{color:var(--acc);transition:color .6s}
+.entete .droite{justify-self:end;display:flex;gap:10px;align-items:center}
+.compte{font:600 12px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.08em;opacity:.65}
+@media (max-width:700px){.entete{grid-template-columns:auto 1fr}.entete .nav{display:none}.marque{justify-self:start}}
+
+/* ================= l'expérience : 4 étapes par matière ================= */
+.experience{position:relative;height:400vh;height:400svh}
+.scene{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+/* fond : grand motif en pointillés lumineux à la couleur de la matière */
+.fond{position:absolute;inset:0;opacity:0;transition:opacity 1s ease}
 .fond.on{opacity:1}
-/* le faisceau de lumière qui tombe sur la carte du centre */
-.faisceau{position:absolute;z-index:1;left:50%;top:0;width:min(110vw,1000px);height:88%;transform:translateX(-50%);pointer-events:none;
-  background:radial-gradient(50% 100% at 50% 0%,color-mix(in srgb,var(--acc) 34%,transparent),transparent 72%);
-  clip-path:polygon(38% 0,62% 0,96% 100%,4% 100%);opacity:.55;transition:background .8s}
-.faisceau.flash{animation:flash 1s ease}
-@keyframes flash{0%{opacity:.15}35%{opacity:.95}100%{opacity:.55}}
-/* poussières de lumière autour de la carte du centre */
-.grains{position:absolute;inset:0;z-index:1;pointer-events:none}
-.grain{position:absolute;width:var(--g,4px);height:var(--g,4px);border-radius:50%;background:var(--acc);box-shadow:0 0 8px var(--acc);opacity:0;
-  transition:background .8s,box-shadow .8s;animation:flotte var(--d,7s) ease-in-out infinite var(--de,0s)}
-@keyframes flotte{0%{opacity:0;transform:translate(0,20px) scale(.6)}25%{opacity:.85}70%{opacity:.5}100%{opacity:0;transform:translate(var(--dx,10px),-60px) scale(1)}}
+.fond .halo{position:absolute;inset:0;background:radial-gradient(70% 60% at 62% 52%,color-mix(in srgb,var(--c) 26%,transparent),transparent 70%)}
+.fond svg{position:absolute;left:50%;top:50%;width:max(130vw,130vh);height:max(130vw,130vh);color:var(--c);
+  transform:translate(-50%,-50%) scale(var(--zoom,1)) rotate(var(--rot,0deg));transition:transform 1.4s cubic-bezier(.2,.7,.2,1);
+  filter:drop-shadow(0 0 5px color-mix(in srgb,var(--c) 70%,transparent))}
+.fond .derive{animation:derive 60s linear infinite;transform-box:view-box;transform-origin:500px 500px}
+@keyframes derive{to{transform:rotate(360deg)}}
+.fond::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 50%,transparent 45%,var(--noir) 92%)}
+.fond svg{opacity:.5}
+/* zone du texte assombrie pour la lecture */
+.fond::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(5,5,6,.92) 0,rgba(5,5,6,.7) 32%,transparent 58%)}
+@media (max-width:700px){.fond::before{background:linear-gradient(0deg,rgba(5,5,6,.96) 0,rgba(5,5,6,.82) 40%,transparent 62%)}}
 
-.barre{position:relative;z-index:5;display:flex;align-items:center;gap:12px;padding:14px 18px}
-.marque{font-weight:800;font-size:14px;letter-spacing:.14em;text-transform:uppercase;opacity:.92}
-.marque small{display:block;font-weight:500;letter-spacing:.02em;text-transform:none;font-size:12px;opacity:.7}
-.compte{margin-left:auto;font:600 13px/1 ui-monospace,Menlo,Consolas,monospace;opacity:.75;letter-spacing:.06em}
-.liste-lien{font-size:13px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:6px 12px}
-.liste-lien:hover,.liste-lien:focus-visible{border-color:var(--acc);outline:none}
+/* l'objet de la matière, au centre, qui change à chaque étape */
+.objet{position:absolute;z-index:3;left:62%;top:50%;width:min(46vw,560px);aspect-ratio:1;margin:calc(min(46vw,560px) / -2) 0 0 calc(min(46vw,560px) / -2);
+  color:var(--acc);transform:translate(var(--ox,0),var(--oy,0)) rotate(var(--or,0deg)) scale(var(--os,1));transition:transform 1.1s cubic-bezier(.2,.75,.2,1)}
+.objet svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 30px 60px rgba(0,0,0,.6))}
+.objet .boite{width:100%;height:100%;transition:opacity .5s ease,transform .7s cubic-bezier(.2,.75,.2,1)}
+.objet .boite.part{opacity:0;transform:scale(.6) rotate(-25deg)}
+.objet .boite.arrive{opacity:0;transform:scale(1.25) rotate(20deg);transition:none}
 
-/* la piste en perspective et les cartes */
-.piste{position:relative;z-index:2;flex:1;min-height:440px;perspective:1500px;--cw:76vw}
-.carte{position:absolute;left:50%;top:0;bottom:0;margin:auto 0 auto calc(var(--cw) / -2);width:var(--cw);height:min(640px,calc(100% - 28px));
-  display:flex;flex-direction:column;border-radius:26px;overflow:hidden;cursor:pointer;color:var(--ink);
-  background:linear-gradient(165deg,var(--c1),var(--c2));box-shadow:0 30px 80px rgba(0,0,0,.6);
-  filter:saturate(.6);opacity:0;pointer-events:none;
-  transition:transform .75s cubic-bezier(.2,.8,.2,1),filter .75s ease,opacity .6s ease,box-shadow .75s ease}
-.carte.cote{opacity:1;pointer-events:auto}
-.carte.on{opacity:1;pointer-events:auto;cursor:default;filter:none;z-index:3;
-  box-shadow:0 0 0 1.5px color-mix(in srgb,var(--acc) 75%,transparent),0 0 70px color-mix(in srgb,var(--acc) 40%,transparent),0 40px 90px rgba(0,0,0,.65)}
-/* voile qui éteint les cartes de côté, quelle que soit leur couleur */
-.carte::before{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;background:linear-gradient(90deg,rgba(6,7,10,.86),rgba(6,7,10,.62) 50%,rgba(6,7,10,.86));opacity:1;transition:opacity .75s ease}
-.carte.on::before{opacity:0}
-.carte::after{content:"";position:absolute;inset:0;z-index:5;pointer-events:none;transform:translateX(-130%);
-  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.26) 50%,transparent 62%)}
-.carte.on::after{animation:reflet 1.2s .3s ease forwards}
-@keyframes reflet{to{transform:translateX(130%)}}
-.carte:not(.on) .motif *{animation-play-state:paused!important}
-.carte .motif{flex:none;height:34%;min-height:120px;padding:14px 14px 0;color:var(--acc)}
-.carte .motif svg{display:block;height:100%;width:auto;max-width:100%;margin:0 auto;overflow:visible}
-.carte .txt{flex:1;min-height:0;padding:6px 20px 20px;display:flex;flex-direction:column}
-.mat{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
-.mat img{width:24px;height:24px;border-radius:7px}
-.nom{font-size:clamp(1.9rem,8.6vw,3.3rem);line-height:1;margin:6px 0 8px;letter-spacing:-.01em}
-.desc{font-size:14.5px;line-height:1.45;opacity:.9}
-.points{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
-.points li{font-size:12px;border:1px solid color-mix(in srgb,var(--ink) 28%,transparent);background:color-mix(in srgb,var(--ink) 8%,transparent);border-radius:999px;padding:3px 10px}
-.actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:auto;padding-top:12px}
-.ouvrir{display:inline-flex;align-items:center;gap:10px;text-decoration:none;background:var(--acc);color:var(--c1);font-weight:800;font-size:15px;
-  border-radius:999px;padding:12px 20px;box-shadow:0 8px 24px color-mix(in srgb,var(--acc) 35%,transparent);transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
-.ouvrir svg{width:18px;height:18px}
-.ouvrir:hover,.ouvrir:focus-visible{transform:translateY(-2px) scale(1.03);outline:none}
-.ouvrir:focus-visible{box-shadow:0 0 0 3px var(--ink)}
-.sous{display:flex;flex-wrap:wrap;gap:6px}
-.sous a{font-size:12.5px;font-weight:600;text-decoration:none;border:1px solid color-mix(in srgb,var(--ink) 40%,transparent);border-radius:999px;padding:7px 11px}
-.sous a:hover,.sous a:focus-visible{border-color:var(--acc);color:var(--acc);outline:none}
-/* sur les côtés, seuls le motif et le nom restent ; au centre, le reste arrive en cascade */
-.carte .desc,.carte .points,.carte .actions{opacity:0;transform:translateY(12px);transition:opacity .4s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
-.carte .mat,.carte .nom{transition:opacity .4s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
-.carte.on .desc,.carte.on .points,.carte.on .actions{opacity:1;transform:none}
-.carte.on .desc{transition-delay:.3s}.carte.on .points{transition-delay:.4s}.carte.on .actions{transition-delay:.5s}
-.carte:not(.on) .txt *{pointer-events:none}
-@media (max-width:420px){.points li:nth-child(n+4){display:none}}
-@media (min-width:860px){
-  .piste{--cw:min(780px,58vw)}
-  .carte{flex-direction:row-reverse;align-items:stretch;height:min(560px,calc(100% - 28px))}
-  .carte .motif{height:auto;width:44%;padding:28px}
-  .carte .motif svg{width:100%;height:auto}
-  .carte .txt{justify-content:center;padding:34px 10px 34px 38px}
-  .carte .actions{margin-top:18px}
-  .desc{font-size:16px}
-  .nom{font-size:clamp(2.4rem,4.6vw,3.8rem)}
+/* le texte de l'étape, à gauche */
+.texte{position:absolute;z-index:4;left:max(14vw,220px);top:50%;transform:translateY(-50%);width:min(430px,38vw)}
+.texte .k{font:700 10.5px/1 var(--titre);letter-spacing:.2em;text-transform:uppercase;color:var(--gris)}
+.texte h2{font:900 clamp(2.1rem,4.2vw,3.6rem)/.98 var(--titre);text-transform:uppercase;letter-spacing:-.005em;margin:10px 0 16px}
+.texte .notes{border-top:1px solid rgba(255,255,255,.22);padding-top:12px;margin-bottom:14px;display:grid;grid-template-columns:auto 1fr;gap:7px 18px}
+.texte .notes dt{font:700 10px/1.6 var(--titre);letter-spacing:.18em;text-transform:uppercase;color:var(--gris)}
+.texte .notes dd{font:700 11px/1.6 var(--titre);letter-spacing:.1em;text-transform:uppercase}
+.texte p{font-size:14.5px;line-height:1.6;opacity:.86;max-width:40ch}
+.texte .boutons{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;background:var(--blanc);color:var(--noir);font:800 11px/1 var(--titre);
+  letter-spacing:.16em;text-transform:uppercase;padding:15px 22px;transition:background .25s,color .25s,transform .25s}
+.btn:hover,.btn:focus-visible{background:var(--acc);outline:none}
+.btn.creux{background:transparent;color:var(--blanc);box-shadow:inset 0 0 0 1px rgba(255,255,255,.45)}
+.btn.creux:hover,.btn.creux:focus-visible{box-shadow:inset 0 0 0 1px var(--acc);color:var(--acc)}
+.texte .entre>*{animation:entre .7s cubic-bezier(.2,.8,.2,1) both}
+.texte .entre>*:nth-child(2){animation-delay:.06s}.texte .entre>*:nth-child(3){animation-delay:.12s}
+.texte .entre>*:nth-child(4){animation-delay:.18s}.texte .entre>*:nth-child(5){animation-delay:.24s}.texte .entre>*:nth-child(6){animation-delay:.3s}
+@keyframes entre{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.etapes{position:absolute;z-index:4;right:28px;top:50%;transform:translateY(-50%);display:grid;gap:10px}
+.etapes i{display:block;width:2px;height:22px;background:rgba(255,255,255,.22);transition:background .4s,height .4s}
+.etapes i.on{background:var(--acc);height:40px}
+
+/* le sélecteur de matières */
+.choix{position:absolute;z-index:5;left:22px;top:50%;transform:translateY(-50%);display:grid;gap:6px;list-style:none}
+.choix button{display:flex;align-items:center;gap:12px;padding:2px;border-radius:10px}
+.choix img{width:26px;height:26px;border-radius:7px;filter:grayscale(1) brightness(.75);opacity:.55;transition:filter .4s,opacity .4s,transform .4s,box-shadow .4s}
+.choix span{font:700 10px/1 var(--titre);letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;opacity:0;transform:translateX(-6px);transition:opacity .4s,transform .4s;pointer-events:none}
+.choix button:hover img,.choix button:focus-visible img{filter:none;opacity:1}
+.choix button:focus-visible{outline:1px solid var(--acc)}
+.choix button.on img{filter:none;opacity:1;transform:scale(1.15);box-shadow:0 0 0 2px var(--acc),0 0 18px color-mix(in srgb,var(--acc) 60%,transparent)}
+.choix button.on span{opacity:1;transform:none;color:var(--blanc)}
+@media (min-width:701px){.choix button:hover span{opacity:.8;transform:none}}
+
+.fleche{position:absolute;z-index:5;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));width:42px;height:42px;margin-left:-21px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.4);display:grid;place-items:center;transition:border-color .3s,transform .3s}
+.fleche svg{width:16px;height:16px}
+.fleche:hover,.fleche:focus-visible{border-color:var(--acc);outline:none;transform:translateY(3px)}
+@media (prefers-reduced-motion:no-preference){.fleche svg{animation:rebond 2.2s ease-in-out infinite}}
+@keyframes rebond{50%{transform:translateY(4px)}}
+
+/* téléphone : l'objet en haut, le texte en bas, les matières en bande en bas */
+@media (max-width:700px){
+  .objet{left:50%;top:33%;width:min(78vw,40svh);margin:calc(min(78vw,40svh) / -2) 0 0 calc(min(78vw,40svh) / -2)}
+  .texte{left:22px;right:22px;top:auto;bottom:calc(124px + env(safe-area-inset-bottom));transform:none;width:auto}
+  .texte h2{font-size:clamp(1.8rem,8.4vw,2.4rem);margin:8px 0 12px}
+  .texte p{font-size:13.5px}
+  .texte .notes{gap:5px 14px;margin-bottom:10px;padding-top:9px}
+  .texte .boutons{margin-top:14px}
+  .btn{padding:13px 18px}
+  .etapes{right:12px;top:33%}
+  .choix{left:0;right:0;top:auto;bottom:calc(68px + env(safe-area-inset-bottom));transform:none;display:flex;gap:10px;overflow-x:auto;
+    padding:6px 50% 6px;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 25%,#000 75%,transparent);mask-image:linear-gradient(90deg,transparent,#000 25%,#000 75%,transparent)}
+  .choix::-webkit-scrollbar{display:none}
+  .choix li{scroll-snap-align:center;flex:none}
+  .choix button{padding:3px}
+  .choix img{width:34px;height:34px;border-radius:9px}
+  .choix span{display:none}
+  .fleche{bottom:calc(16px + env(safe-area-inset-bottom));width:38px;height:38px;margin-left:-19px}
 }
-
-/* flèches */
-.fl{position:absolute;z-index:6;top:46%;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.3);
-  background:rgba(0,0,0,.4);display:grid;place-items:center;cursor:pointer;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
-.fl svg{width:20px;height:20px}
-.fl:hover,.fl:focus-visible{border-color:var(--acc);outline:none}
-.fl.g{left:10px}.fl.d{right:10px}
-@media (max-width:600px){.fl{top:auto;bottom:150px;width:40px;height:40px}}
-
-/* ================= la roue ================= */
-.roue{position:relative;z-index:5;height:128px;overflow:hidden;margin-top:6px;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent)}
-.roue::before{content:"";position:absolute;left:50%;top:6px;width:0;height:0;border:7px solid transparent;border-top-color:var(--acc);transform:translateX(-50%);transition:border-color .6s}
-.anneau{position:absolute;left:50%;top:calc(58px + var(--R));width:0;height:0;transform:rotate(var(--a));transition:transform .75s cubic-bezier(.22,.9,.24,1),--a .75s cubic-bezier(.22,.9,.24,1)}
-.anneau::before{content:"";position:absolute;left:calc(-1 * var(--R));top:calc(-1 * var(--R));width:calc(2 * var(--R));height:calc(2 * var(--R));
-  border-radius:50%;border:1px dashed rgba(255,255,255,.22)}
-.dent{position:absolute;left:0;top:0;width:54px;height:54px;padding:0;border:0;background:none;cursor:pointer;border-radius:15px;
-  transform:translate(-50%,-50%) rotate(var(--t)) translateY(calc(-1 * var(--R))) rotate(calc(-1 * var(--t) - var(--a)));transition:opacity .5s}
-.dent img{display:block;width:100%;height:100%;border-radius:15px;box-shadow:0 4px 14px rgba(0,0,0,.35);transition:transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .45s}
-.dent.on img{transform:scale(1.28);box-shadow:0 0 0 3px var(--acc),0 8px 22px rgba(0,0,0,.4)}
-.dent:focus-visible{outline:none}.dent:focus-visible img{box-shadow:0 0 0 3px #fff}
-.indice{position:relative;z-index:5;text-align:center;font-size:12px;opacity:.7;padding:0 0 calc(12px + env(safe-area-inset-bottom));letter-spacing:.04em;transition:opacity .6s}
-
-/* ================= polices et caractères propres à chaque matière ================= */
-.f-svt .nom{font-family:"H Spectral",Georgia,serif;font-weight:600}
-.f-svt .nom em{font-family:"H Caveat",cursive;font-style:normal;color:var(--acc)}
-.f-pc .nom{font-family:"H PlexCond","Arial Narrow",sans-serif;font-weight:700;letter-spacing:-.01em}
-.f-maths .nom{font-family:"H Caveat",cursive;font-weight:700;font-size:clamp(2.6rem,11vw,4.4rem)}
-.f-ses .nom{font-family:"H Archivo",var(--sys);font-weight:900;font-stretch:85%;letter-spacing:-.03em}
-.f-hggsp .nom{font-family:"H PlexCond","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
-.f-hggsp .mat,.f-hggsp .points li{font-family:"H JBMono",ui-monospace,monospace}
-.f-hlp .nom{font-family:"H Titrage","H Garamond",Georgia,serif;font-weight:400}
-.f-hlp .desc{font-family:"H Garamond",Georgia,serif;font-size:1.08em}
-.f-nsi .nom,.f-nsi .mat,.f-nsi .points li{font-family:"H JBMono",ui-monospace,Menlo,monospace}
-.f-nsi .nom{font-weight:600;font-size:clamp(1.8rem,7.6vw,3.2rem)}
-.f-nsi .nom::after{content:"_";color:var(--acc);animation:cli 1s steps(1) infinite}
-.f-philo .nom,.f-redpen .nom{font-family:"H Instrument",Georgia,serif;font-weight:400}
-.f-redpen .nom{font-style:italic}
-.f-dnl .nom{font-family:"H Garamond",Georgia,serif;font-weight:400;letter-spacing:.01em}
-.f-acle .nom{font-family:"H Spectral",Georgia,serif;font-style:italic;font-weight:500}
-.f-aclo .nom{font-family:"H Grotesk",var(--sys);font-weight:700;letter-spacing:-.02em}
-.f-it .nom{font-family:"H Garamond",Georgia,serif;font-style:italic}
-@keyframes cli{50%{opacity:0}}
+@media (max-width:700px) and (max-height:700px){.texte p{display:none}}
 
 /* ================= animations des motifs ================= */
 .motif .trace{stroke-dasharray:var(--l,600);stroke-dashoffset:var(--l,600);animation:trace var(--du,3s) ease forwards var(--de,0s)}
@@ -212,48 +198,52 @@ button{font:inherit;color:inherit}
 .ruban{stroke-dasharray:40 18;animation:ruban 3s linear infinite var(--de,0s)}
 @keyframes ruban{to{stroke-dashoffset:-116}}
 
+
 @media (prefers-reduced-motion:reduce){
-  .carte,.carte *,.anneau,.fond,.dent,.dent img{transition:none!important}
-  .carte::after,.faisceau,.grain{animation:none!important}
-  .grain{display:none}
-  .motif *,.f-nsi .nom::after{animation:none!important}
-  .motif .trace{stroke-dashoffset:0}
+  .objet,.objet .boite,.fond,.fond svg,.choix img,.choix span{transition:none!important}
+  .objet *,.fond *,.texte .entre>*,.chargement .ligne-c i{animation:none!important}
+  .objet .trace{stroke-dashoffset:0}
   .ligne,.tape{opacity:1}
 }
 
 /* ================= accès direct ================= */
-.direct{max-width:1080px;margin:0 auto;padding:40px 18px calc(40px + env(safe-area-inset-bottom))}
-.direct h2{font-family:"H Instrument",Georgia,serif;font-weight:400;font-size:clamp(1.8rem,6vw,2.4rem);color:#F3EFE6}
-.direct>p{color:#A9ADB5;margin-top:4px;font-size:14.5px}
-.groupe{margin-top:24px}
-.groupe h3{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8D929B;margin-bottom:10px}
+.direct{max-width:1080px;margin:0 auto;padding:70px 18px calc(40px + env(safe-area-inset-bottom))}
+.direct h2{font:900 clamp(1.8rem,6vw,2.6rem)/1 var(--titre);text-transform:uppercase;color:var(--blanc)}
+.direct>p{color:#A9ADB5;margin-top:8px;font-size:14.5px}
+.groupe{margin-top:26px}
+.groupe h3{font:700 11px/1 var(--titre);letter-spacing:.2em;text-transform:uppercase;color:#8D929B;margin-bottom:12px}
 .puces{display:flex;flex-wrap:wrap;gap:8px}
-.puces a{display:inline-flex;align-items:center;gap:9px;text-decoration:none;background:#181B21;border:1px solid #2A2E36;border-radius:12px;padding:7px 13px 7px 7px;
+.puces a{display:inline-flex;align-items:center;gap:9px;text-decoration:none;background:#111216;border:1px solid #24262C;padding:7px 13px 7px 7px;
   color:#ECEAE4;font-size:14.5px;transition:border-color .2s,transform .2s}
 .puces a img{width:30px;height:30px;border-radius:8px}
 .puces a small{color:#8D929B;font-size:12.5px}
 .puces a:hover,.puces a:focus-visible{border-color:var(--p,#C2410C);outline:none;transform:translateY(-1px)}
-.astuce{margin-top:30px;padding:15px 17px;border:1px dashed #2E333C;border-radius:14px;color:#A9ADB5;font-size:14px}
+.astuce{margin-top:30px;padding:15px 17px;border:1px dashed #2E333C;color:#A9ADB5;font-size:14px}
 .astuce b{color:#ECEAE4}
 footer{margin-top:22px;color:#6F747D;font-size:13px}
 </style>
 </head>
 <body>
 
-<section class="hero" id="hero" aria-roledescription="carrousel" aria-label="Les matières">
-  <div class="barre">
-    <div class="marque">Révisions Terminale<small>Toutes les matières, un clic</small></div>
-    <span class="compte" id="compte" aria-hidden="true">01 / 13</span>
-    <a class="liste-lien" href="#direct">Liste</a>
+<div class="chargement" id="chargement" aria-hidden="true"><div class="bloc"><img src="icon-192.png" alt=""><div class="ligne-c"><i></i></div></div></div>
+
+<header class="entete">
+  <nav class="nav" aria-label="Rubriques"><a href="#haut" class="actif" id="lienMatieres">Les matières</a><a href="#direct">Accès direct</a></nav>
+  <a class="marque" href="#haut">Révisions <b>Terminale</b></a>
+  <div class="droite"><span class="compte" id="compte" aria-hidden="true">01 / 13</span></div>
+</header>
+
+<main>
+<section class="experience" id="haut" aria-label="Les matières">
+  <div class="scene" id="scene">
+    <h1 class="sr">Révisions Terminale : toutes les matières</h1>
+    <div id="fonds"></div>
+    <div class="objet" id="objet" aria-hidden="true"></div>
+    <div class="texte" id="texte" aria-live="polite"></div>
+    <div class="etapes" id="etapes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <ul class="choix" id="choix" aria-label="Choisir une matière"></ul>
+    <button class="fleche" id="fleche" type="button" aria-label="Étape suivante"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button>
   </div>
-  <div class="faisceau" id="faisceau" aria-hidden="true"></div>
-  <div class="grains" id="grains" aria-hidden="true"></div>
-  <h1 class="sr">Révisions Terminale : toutes les matières</h1>
-  <div class="piste" id="piste" aria-live="polite"></div>
-  <button class="fl g" id="prec" type="button" aria-label="Matière précédente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-  <button class="fl d" id="suiv" type="button" aria-label="Matière suivante"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
-  <div class="roue" id="roue"><div class="anneau" id="anneau"></div></div>
-  <p class="indice" id="indice">Glisse, touche une carte ou une icône de la roue</p>
 </section>
 
 <section class="direct" id="direct">
@@ -287,18 +277,21 @@ footer{margin-top:22px;color:#6F747D;font-size:13px}
   <p class="astuce"><b>Sur le téléphone :</b> ouvre une matière, puis « Ajouter à l'écran d'accueil » dans le menu du navigateur. Elle s'ouvre alors comme une application ; la plupart des matières restent consultables sans connexion après une première visite.</p>
   <footer>Révisions Terminale · sites gratuits, sans compte ni publicité, construits sur le programme officiel de Terminale.</footer>
 </section>
+</main>
 
 <script>
 /* =====================================================================
-   PAGE D'ACCUEIL — une matière à la fois, chacune avec son identité
-   (couleurs, police, animation), et une roue d'icônes pour passer de
-   l'une à l'autre. Rien n'est stocké ; l'adresse #id garde la matière.
+   PAGE D'ACCUEIL — sur le modèle d'une vitrine produit : une matière à la
+   fois, fond noir, grand motif lumineux à sa couleur, son objet animé au
+   centre. En défilant, quatre étapes : la présentation, puis trois atouts
+   du site ; l'objet tourne et zoome à chaque étape. Le sélecteur (à gauche,
+   en bas sur téléphone) change de matière. Rien n'est stocké ; l'adresse
+   (#nsi…) garde la matière.
    ===================================================================== */
 (function(){
   "use strict";
-  var FL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  var FL='<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
-  /* ---------- motifs animés (SVG 400 × 400, couleur d'accent = currentColor) ---------- */
   function feuille(x,d,de,s,c){return '<g class="chute" style="--x:'+x+'px;--d:'+d+'s;--de:'+de+'s"><path transform="scale('+s+')" d="M0 -14 C-10 -5 -10 7 0 16 C10 7 10 -5 0 -14Z" fill="'+c+'"/></g>';}
   var MOTIFS={
     feuilles:function(a){
@@ -352,7 +345,7 @@ footer{margin-top:22px;color:#6F747D;font-size:13px}
       return '<svg viewBox="0 0 400 400" aria-hidden="true"><g class="tourne vb" style="--d:80s">'+p+'</g>'+
         '<rect x="110" y="95" width="180" height="180" fill="#9E2B1E" stroke="#B8892F" stroke-width="6"/><rect x="122" y="107" width="156" height="156" fill="none" stroke="#E8C77A" stroke-width="1.5"/>'+
         '<text x="200" y="245" text-anchor="middle" font-family="H Titrage,Georgia,serif" font-size="150" fill="#F3E9D2">E</text>'+
-        '<path class="trace boucle" style="--l:420;--du:6s" d="M80 320 C140 300 170 345 220 322 S300 300 330 330" fill="none" stroke="#2B1D12" stroke-width="3" stroke-linecap="round"/>'+
+        '<path class="trace boucle" style="--l:420;--du:6s" d="M80 320 C140 300 170 345 220 322 S300 300 330 330" fill="none" stroke="'+a.ink+'" stroke-width="3" stroke-linecap="round"/>'+
         '<text x="200" y="372" text-anchor="middle" font-family="H Garamond,Georgia,serif" font-size="30" fill="#9E2B1E">❦</text></svg>';
     },
     terminal:function(a){
@@ -406,167 +399,203 @@ footer{margin-top:22px;color:#6F747D;font-size:13px}
     },
     ruban:function(a){
       var w='';[['#1F7A4D',150,0],['#FFFFFF',190,-.5],['#C8102E',230,-1]].forEach(function(r){w+='<path class="ruban" style="--de:'+r[2]+'s" d="M20 '+r[1]+' C90 '+(r[1]-40)+' 150 '+(r[1]+40)+' 210 '+r[1]+' S330 '+(r[1]-40)+' 390 '+r[1]+'" fill="none" stroke="'+r[0]+'" stroke-width="22" stroke-linecap="round"/>';});
-      return '<svg viewBox="0 0 400 400" aria-hidden="true"><path d="M20 190 C90 150 150 230 210 190 S330 150 390 190" fill="none" stroke="#1E3A2B" stroke-opacity=".12" stroke-width="110" stroke-linecap="round"/>'+w+
-        '<text x="200" y="110" text-anchor="middle" font-family="H Garamond,Georgia,serif" font-style="italic" font-size="44" fill="#1E3A2B">Mi chiamo…</text>'+
+      return '<svg viewBox="0 0 400 400" aria-hidden="true"><path d="M20 190 C90 150 150 230 210 190 S330 150 390 190" fill="none" stroke="#FFFFFF" stroke-opacity=".08" stroke-width="110" stroke-linecap="round"/>'+w+
+        '<text x="200" y="110" text-anchor="middle" font-family="H Garamond,Georgia,serif" font-style="italic" font-size="44" fill="'+a.ink+'">Mi chiamo…</text>'+
         '<text x="200" y="320" text-anchor="middle" font-family="H Garamond,Georgia,serif" font-size="34" fill="#C8102E">✓ Mi piace</text></svg>';
     }
   };
 
-  /* ---------- les matières : identité de chacune ---------- */
+
+  /* ---------- grands motifs de fond, en pointillés lumineux (1000 × 1000) ---------- */
+  function svgFond(c){return '<svg viewBox="0 0 1000 1000" aria-hidden="true"><g class="derive" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="0.1 9">'+c+'</g></svg>';}
+  function arrondi(n){return Math.round(n*10)/10;}
+  var FONDS={
+    contours:function(){var s='';for(var k=0;k<11;k++){var r=60+k*42,p='';for(var a=0;a<=64;a++){var t=a/64*Math.PI*2,rr=r*(1+.16*Math.sin(3*t+k*.7)+.07*Math.cos(5*t-k));p+=(a?'L':'M')+arrondi(500+rr*Math.cos(t))+' '+arrondi(500+rr*.86*Math.sin(t));}s+='<path d="'+p+'Z"/>';}return svgFond(s);},
+    hex:function(){var s='',R=58;for(var i=-1;i<11;i++)for(var j=-1;j<11;j++){var x=j*R*1.732+(i%2?R*.866:0),y=i*R*1.5,p='';for(var a=0;a<6;a++){var t=Math.PI/6+a*Math.PI/3;p+=(a?'L':'M')+arrondi(x+R*Math.cos(t))+' '+arrondi(y+R*Math.sin(t));}s+='<path d="'+p+'Z"/>';}return svgFond(s);},
+    grille:function(){var s='';for(var k=0;k<=1000;k+=50){s+='<path d="M0 '+k+'H1000"/>';if(k%100===0)s+='<path d="M'+k+' 0V1000" opacity=".6"/>';}return svgFond(s);},
+    courbes:function(){var s='';for(var k=0;k<14;k++){var y=930-k*58,p='M-20 '+y;for(var x=0;x<=1040;x+=40){p+=' L'+x+' '+arrondi(y-x*.25*(1+k*.05)+30*Math.sin(x/90+k));}s+='<path d="'+p+'"/>';}return svgFond(s);},
+    globe:function(){var s='<circle cx="500" cy="500" r="420"/>';for(var k=1;k<6;k++){var rx=420*Math.cos(k*Math.PI/12*2.2);s+='<ellipse cx="500" cy="500" rx="'+arrondi(Math.abs(rx))+'" ry="420"/>';}for(var j=-3;j<=3;j++){var y=500+j*120,rx2=Math.sqrt(Math.max(0,420*420-(j*120)*(j*120)));s+='<ellipse cx="500" cy="'+y+'" rx="'+arrondi(rx2)+'" ry="'+arrondi(rx2*.12)+'"/>';}return svgFond(s);},
+    radar:function(){var s='';for(var k=1;k<9;k++)s+='<circle cx="500" cy="500" r="'+k*55+'"/>';for(var a=0;a<12;a++){var t=a*Math.PI/6;s+='<path d="M500 500L'+arrondi(500+480*Math.cos(t))+' '+arrondi(500+480*Math.sin(t))+'"/>';}return svgFond(s);},
+    rosace:function(){var s='';for(var k=0;k<24;k++){var t=k*Math.PI/12;s+='<ellipse cx="'+arrondi(500+150*Math.cos(t))+'" cy="'+arrondi(500+150*Math.sin(t))+'" rx="150" ry="150"/>';}s+='<circle cx="500" cy="500" r="330"/><circle cx="500" cy="500" r="420"/>';return svgFond(s);},
+    code:function(){var s='';for(var x=30;x<1000;x+=46){var y0=(x*37)%300,l=300+(x*53)%500;s+='<path d="M'+x+' '+y0+'V'+(y0+l)+'"/>';}return svgFond(s);},
+    constellation:function(){var P=[],s='',g=7;for(var i=0;i<26;i++){g=(g*73+41)%997;var x=60+(g%880);g=(g*73+41)%997;var y=60+(g%880);P.push([x,y]);}P.forEach(function(p,i){var q=P[(i*5+3)%P.length];s+='<path d="M'+p[0]+' '+p[1]+'L'+q[0]+' '+q[1]+'"/><circle cx="'+p[0]+'" cy="'+p[1]+'" r="9"/>';});return svgFond(s);},
+    lignes:function(){var s='';for(var y=70;y<1000;y+=46){var l=520+((y*31)%380);s+='<path d="M'+(500-l/2)+' '+y+'H'+(500+l/2)+'"/>';}return svgFond(s);},
+    ondes:function(){var s='';for(var k=1;k<11;k++)s+='<circle cx="500" cy="500" r="'+k*44+'"'+(k%2?'':' opacity=".55"')+'/>';return svgFond(s);},
+    traits:function(){var s='';for(var k=-10;k<22;k++){s+='<path d="M'+(k*60)+' 1000L'+(k*60+600)+' 0"/>';}return svgFond(s);},
+    vagues:function(){var s='';for(var k=0;k<16;k++){var y=40+k*62,p='M-20 '+y;for(var x=0;x<=1040;x+=30)p+=' L'+x+' '+arrondi(y+26*Math.sin(x/70+k*.6));s+='<path d="'+p+'"/>';}return svgFond(s);}
+  };
+
+  /* ---------- les matières ---------- */
+  var BLANC='#F4F1EA';
   var APPS=[
-    {id:'svt',href:'svt/',mat:'SVT',nom:'Le Vif <em>du sujet</em>',txt:'Le Vif du sujet',desc:'La génétique et l’évolution expliquées unité par unité, avec des schémas qui bougent.',pts:['17 animations du vivant','Vocabulaire et QCM','Rédactions corrigées','Vidéos des chapitres'],c1:'#0F2218',c2:'#2F5E3A',ink:'#F7F4EC',acc:'#B7D94C',f:'svt',m:'feuilles'},
-    {id:'pc',href:'pc/',mat:'Physique-Chimie',nom:'Liaisons',desc:'Acides-bases, analyse, lumière, optique, ondes : comprendre pourquoi chaque formule dit ce qu’elle dit.',pts:['Animations et schémas interactifs','TP et exercices type bac','Fiches mémo','Vidéos du cours'],c1:'#141317',c2:'#33241B',ink:'#F4EFE9',acc:'#F26B1D',f:'pc',m:'molecule'},
-    {id:'maths',href:'maths/',mat:'Mathématiques',nom:'CQFD',desc:'Le carnet de maths de Terminale : tout le programme, démontré, illustré, entraîné.',pts:['15 chapitres','Démonstrations exigibles','Python','Exercices en trois niveaux'],c1:'#FBF8EF',c2:'#E8E2CE',ink:'#1F3A93',acc:'#D7263D',f:'maths',m:'carnet'},
-    {id:'ses',href:'ses/',mat:'SES',nom:'Faits &amp; Courbes',desc:'Économie, sociologie, science politique : les mécanismes, et les chiffres qui les prouvent.',pts:['Graphiques sur données réelles','Chaînes causales','Sujets corrigés','Fiches d’auteurs'],c1:'#0B5563',c2:'#062F37',ink:'#FFFFFF',acc:'#FF8A5B',f:'ses',m:'courbes'},
-    {id:'hggsp',href:'hggsp/',mat:'HGGSP',nom:'Ligne rouge',desc:'Puissances, frontières, patrimoine, environnement, savoirs : le dossier complet, déclassifié.',pts:['6 thèmes, 24 chapitres','Cartes animées date par date','Dissertations corrigées','Études critiques'],c1:'#18181A',c2:'#2E2620',ink:'#EFE9DF',acc:'#FF2A1A',f:'hggsp',m:'radar'},
-    {id:'hlp',href:'hlp/',mat:'HLP',nom:'Ex libris',desc:'Humanités, littérature et philosophie : les grands textes, lus de près, comme dans un livre ancien.',pts:['Les six entrées du programme','Textes clés vérifiés','Atelier de lecture','Sujets type bac corrigés'],c1:'#F3E9D2',c2:'#E2CFA6',ink:'#2B1D12',acc:'#9E2B1E',f:'hlp',m:'lettrine'},
-    {id:'nsi',href:'nsi/',mat:'NSI',nom:'import bac',desc:'Tout le programme de NSI, avec du code Python qui tourne vraiment, ligne par ligne.',pts:['18 chapitres','391 extraits testés','Exécution pas à pas','SQL, arbres, graphes'],c1:'#060E11',c2:'#0D2420',ink:'#D8F5E3',acc:'#39FF88',f:'nsi',m:'terminal'},
-    {id:'philo',href:'philo/',mat:'Philosophie',nom:'L’Index raisonné',desc:'Les notions, les auteurs, les repères et la méthode, pour penser une copie plutôt que réciter.',pts:['17 notions','Auteurs et citations','Dissertation et explication','Séries vidéo'],c1:'#121A2B',c2:'#2A3452',ink:'#F2EBDD',acc:'#D4A24C',f:'philo',m:'losange'},
-    {id:'dnl',href:'dnl/',mat:'DNL Histoire-Géo',nom:'Revision Atlas',desc:'History and Geography in English: every chapter, mapped, explained and ready for the essay, the DBQ and the oral.',pts:['Animated maps','Video episodes','Essays and DBQ','Oral key issues'],c1:'#0E1830',c2:'#1F3B73',ink:'#F3EBD8',acc:'#D9B25F',f:'dnl',m:'globe'},
-    {id:'acl-ecrit',href:'acl-ecrit/',mat:'ACL écrit · BFI',nom:'British Literature',desc:'Commentary and essay: the method, the works, and an atelier to climb from KP14 to KP20.',pts:['Méthode du commentaire','Essay pas à pas','Atelier de réécriture'],sous:[['Dancing at Lughnasa','acl-lughnasa/'],['Brick Lane','acl-bricklane/']],c1:'#111A30',c2:'#3A2440',ink:'#F5EFE2',acc:'#C9A54E',f:'acle',m:'livre'},
-    {id:'acl-oral',href:'acl-oral/',mat:'ACL oral · BFI',nom:'Dystopian Writing',desc:'Poems and novels of dystopia, analysed and linked for the oral exam.',pts:['Poèmes analysés','Ponts entre les œuvres','Scène par scène'],sous:[['1984','acl-oral-1984/'],['Parable of the Sower','acl-oral-butler/']],c1:'#100E0C',c2:'#3A1E0E',ink:'#F6E9DC',acc:'#FF8A3D',f:'aclo',m:'ondes'},
-    {id:'redpen',href:'redpen/',mat:'Anglais B1 → C1',nom:'The Red Pen',desc:'Grammar, syntax and the essay: the mistakes French speakers really make, and how to fix them.',pts:['Fautes typiques corrigées','Méthodologie de l’essay','Exercices auto-corrigés'],c1:'#0D1525',c2:'#1E2D4A',ink:'#EDE6D6',acc:'#E2483D',f:'redpen',m:'stylo'},
-    {id:'italien',href:'italien/',mat:'Italien LVB',nom:'La Grammatica',desc:'La grammaire italienne de A2 à B2, expliquée en français, avec les erreurs à éviter.',pts:['33 chapitres','Conjugaison','Lexique et fonctions'],c1:'#F7F2E5',c2:'#DDE9DC',ink:'#1E3A2B',acc:'#1F7A4D',f:'it',m:'ruban'}
+    {id:'svt',href:'svt/',mat:'SVT',nom:'Le Vif du sujet',c:'#B7D94C',m:'feuilles',f:'contours',
+     notes:[['Thème','Génétique et évolution'],['Outils','Animations, vocabulaire, QCM'],['Épreuve','Rédactions corrigées']],
+     desc:'La génétique et l’évolution expliquées unité par unité, avec des schémas qui bougent.',
+     etapes:[['Le cours','Unité par unité','Chaque chapitre découpé en unités courtes : l’idée, l’exemple, le schéma.'],['Les animations','17 schémas vivants','Méiose, crossing-over, endosymbiose : on voit le phénomène se produire, étape par étape.'],['S’entraîner','Rédiger et vérifier','Vocabulaire à connaître, QCM et rédactions corrigées pour chaque unité.']]},
+    {id:'pc',href:'pc/',mat:'Physique-Chimie',nom:'Liaisons',c:'#FF6B1A',m:'molecule',f:'hex',
+     notes:[['Thèmes','Matière, ondes, optique'],['Outils','Animations, schémas interactifs'],['Épreuve','Exercices type bac']],
+     desc:'Comprendre pourquoi chaque formule dit ce qu’elle dit, chapitre après chapitre.',
+     etapes:[['Le cours','Fiche par fiche','Acides-bases, analyse, titrages, photons, lunette, interférences et diffraction : chaque formule expliquée.'],['Les schémas','Interactifs','Fais varier la concentration, la focale ou la longueur d’onde, et regarde le résultat changer.'],['Les vidéos','Un chapitre, une vidéo','Le cours complet en vidéo, avec des exercices corrigés, du plus simple au type bac.']]},
+    {id:'maths',href:'maths/',mat:'Mathématiques',nom:'CQFD',c:'#5B8CFF',m:'carnet',f:'grille',
+     notes:[['Programme','15 chapitres'],['Outils','Python, démonstrations'],['Épreuve','Annales corrigées']],
+     desc:'Le carnet de maths de Terminale : tout le programme, démontré, illustré, entraîné.',
+     etapes:[['Le cours','Démontré','Les démonstrations exigibles rédigées pas à pas, avec ce qu’il faut savoir refaire.'],['Les exercices','Trois niveaux','Des exercices recalculés, du réflexe au type bac, et des sujets d’annales.'],['Le code','Python','Chaque algorithme du programme écrit, expliqué et testé.']]},
+    {id:'ses',href:'ses/',mat:'SES',nom:'Faits & Courbes',c:'#2EC4C9',m:'courbes',f:'courbes',
+     notes:[['Programme','Économie, sociologie, science politique'],['Outils','Graphiques, chaînes causales'],['Épreuve','Sujets corrigés']],
+     desc:'Les mécanismes, et les chiffres qui les prouvent.',
+     etapes:[['Les mécanismes','Chaînes causales','Chaque mécanisme se construit maillon par maillon.'],['Les données','Chiffres sourcés','Des graphiques sur données réelles et datées.'],['L’épreuve','Savoir-faire','Calculs, lecture de documents, épreuve composée et dissertation corrigées.']]},
+    {id:'hggsp',href:'hggsp/',mat:'HGGSP',nom:'Ligne rouge',c:'#FF2A1A',m:'radar',f:'globe',
+     notes:[['Programme','6 thèmes, 24 chapitres'],['Outils','Cartes animées, frises'],['Épreuve','Dissertations, études critiques']],
+     desc:'Puissances, frontières, patrimoine, environnement, savoirs : le dossier complet, déclassifié.',
+     etapes:[['Les cartes','Date par date','Des cartes qui évoluent au fil des événements.'],['Le dossier','Déclassifié','Jalons du programme, fiches de renseignement, frises chronologiques.'],['L’épreuve','Copies corrigées','Dissertations et études critiques sur de vrais sujets.']]},
+    {id:'hlp',href:'hlp/',mat:'HLP',nom:'Ex libris',c:'#D4955A',m:'lettrine',f:'rosace',
+     notes:[['Programme','Les six entrées'],['Outils','Atelier de lecture'],['Épreuve','Sujets type bac']],
+     desc:'Humanités, littérature et philosophie : les grands textes, lus de près.',
+     etapes:[['Les textes','Lus de près','Les textes clés, vérifiés mot pour mot, des Lumières à nos jours.'],['L’atelier','Lire, surligner','Repérer les procédés, les idées et les mouvements d’un texte.'],['L’épreuve','Interprétation et essai','Un sujet corrigé par entrée et une copie modèle.']]},
+    {id:'nsi',href:'nsi/',mat:'NSI',nom:'import bac',c:'#39FF88',m:'terminal',f:'code',
+     notes:[['Programme','18 chapitres'],['Outils','Exécution pas à pas'],['Épreuve','Écrit et pratique']],
+     desc:'Tout le programme de NSI, avec du code Python qui tourne vraiment.',
+     etapes:[['Le code','391 extraits testés','Tout le Python du site est exécuté et vérifié.'],['Pas à pas','La pile d’appels','Récursivité, piles, files, arbres : on suit l’exécution ligne par ligne.'],['L’épreuve','Type bac','QCM, exercices d’écrit et préparation de l’épreuve pratique.']]},
+    {id:'philo',href:'philo/',mat:'Philosophie',nom:'L’Index raisonné',c:'#A78BFA',m:'losange',f:'constellation',
+     notes:[['Notions','Les 17 du programme'],['Outils','Auteurs, repères, citations'],['Épreuve','Dissertation, explication']],
+     desc:'Les notions, les auteurs, les repères et la méthode, pour penser une copie plutôt que réciter.',
+     etapes:[['Les notions','Penser, pas réciter','Chaque notion avec ses problèmes, ses auteurs et ses distinctions.'],['La méthode','L’explication de texte','Un guide pas à pas et neuf corrigés expliqués.'],['Les vidéos','Cinq séries','La liberté, le devoir, le bonheur, la conscience, l’État.']]},
+    {id:'dnl',href:'dnl/',mat:'DNL Histoire-Géo',nom:'Revision Atlas',c:'#F2C14E',m:'globe',f:'globe',
+     notes:[['Programme','Histoire et géographie, en anglais'],['Outils','Cartes animées, vidéos'],['Épreuve','Essay, DBQ, oral']],
+     desc:'History and Geography in English: every chapter mapped, explained and ready for the exam.',
+     etapes:[['Les cartes','Le monde en mouvement','Des cartes animées qui suivent chaque chapitre, date par date.'],['L’écrit','Essay et DBQ','Des méthodes, des plans et des études de documents corrigées.'],['L’oral','Key issues','Des notes de 4 min 30 et un discours rédigé pour chaque key issue et key term.']]},
+    {id:'acl-ecrit',href:'acl-ecrit/',mat:'ACL écrit · BFI',nom:'British Literature',c:'#E3C79A',m:'livre',f:'lignes',sous:[['Lughnasa','acl-lughnasa/'],['Brick Lane','acl-bricklane/']],
+     notes:[['Œuvres','Lughnasa, Brick Lane'],['Outils','Atelier de réécriture'],['Épreuve','Commentaire, essay']],
+     desc:'Commentary and essay: the method, the works, and an atelier to climb from KP14 to KP20.',
+     etapes:[['La méthode','Commentary & essay','Construire une réponse qui vise le haut du barème.'],['L’atelier','De KP14 à KP20','Des copies réécrites et commentées, et des exercices ciblés.'],['Les œuvres','Scène par scène','Dancing at Lughnasa et Brick Lane, citations et analyses.']]},
+    {id:'acl-oral',href:'acl-oral/',mat:'ACL oral · BFI',nom:'Dystopian Writing',c:'#FF8FB1',m:'ondes',f:'ondes',sous:[['1984','acl-oral-1984/'],['Parable of the Sower','acl-oral-butler/']],
+     notes:[['Corpus','Dystopian writing'],['Œuvres','1984, Parable of the Sower'],['Outils','Poèmes analysés']],
+     desc:'Poems and novels of dystopia, analysed and linked for the oral exam.',
+     etapes:[['Les poèmes','Analysés','Byron, Wright, Atwood : lecture et pistes d’oral.'],['Les romans','Chapitre par chapitre','1984 et Parable of the Sower, en détail et en express.'],['Les ponts','Entre les œuvres','Des thèses transversales pour relier le corpus à l’oral.']]},
+    {id:'redpen',href:'redpen/',mat:'Anglais B1 → C1',nom:'The Red Pen',c:'#FF6F61',m:'stylo',f:'traits',
+     notes:[['Niveau','B1 → C1'],['Outils','Fiches, copies corrigées'],['Épreuve','Essay en anglais']],
+     desc:'Grammar, syntax and the essay: the mistakes French speakers really make, and how to fix them.',
+     etapes:[['La grammaire','Sans détour','Les points qui font la différence à l’écrit, expliqués en français.'],['Les fautes','Au stylo rouge','Les erreurs typiques d’un francophone, corrigées et expliquées.'],['L’essay','La méthode','Structurer, argumenter, écrire juste.']]},
+    {id:'italien',href:'italien/',mat:'Italien LVB',nom:'La Grammatica',c:'#7DD3A0',m:'ruban',f:'vagues',
+     notes:[['Niveau','A2 → B2'],['Outils','Conjugaison, lexique'],['Pièges','Da evitare']],
+     desc:'La grammaire italienne de A2 à B2, expliquée en français, avec les erreurs à éviter.',
+     etapes:[['La grammaire','33 chapitres','Expliquée en français, avec des exemples en italien.'],['La conjugaison','Tous les temps','Formes, emplois et irréguliers.'],['Les pièges','Da evitare','Les erreurs fréquentes des francophones, et les points clés.']]}
   ];
-  var N=APPS.length, PAS=360/N;
+  var N=APPS.length;
+  /* positions de l'objet à chaque étape : [x, y, rotation, échelle] */
+  var POSES=[[0,0,0,1],[6,-5,-12,1.32],[-6,5,9,.9],[4,0,-4,1.14]];
+  var ZOOMS=[[1,0],[1.12,8],[1.05,-6],[1.18,4]];
 
-  var hero=document.getElementById('hero'),piste=document.getElementById('piste'),anneau=document.getElementById('anneau'),faisceau=document.getElementById('faisceau'),
-      compte=document.getElementById('compte'),indice=document.getElementById('indice'),meta=document.querySelector('meta[name="theme-color"]');
+  var experience=document.getElementById('haut'),fonds=document.getElementById('fonds'),objet=document.getElementById('objet'),
+      texte=document.getElementById('texte'),choix=document.getElementById('choix'),compte=document.getElementById('compte'),
+      etapesEl=document.getElementById('etapes').children,fleche=document.getElementById('fleche');
   var reduit=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var pos=0, idx=-1, fondAct=null, dents=[], cartes=[];
-  function texte(a){return (a.txt||a.nom).replace(/<[^>]+>/g,'').replace(/&amp;/g,'&');}
+  var idx=-1,etape=-1,fondAct=null,boutons=[];
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
 
-  /* roue d'icônes */
+  /* sélecteur */
   APPS.forEach(function(a,k){
-    var b=document.createElement('button');
-    b.type='button';b.className='dent';b.style.setProperty('--t',(k*PAS)+'deg');
-    b.setAttribute('aria-label',a.mat+' : '+texte(a));
-    b.innerHTML='<img src="'+a.href+'icon-192.png" alt="">';
-    b.addEventListener('click',function(){aller(k);});
-    /* au clavier (Tab), l'icône atteinte vient au sommet de la roue */
-    b.addEventListener('focus',function(){try{if(b.matches(':focus-visible'))aller(k);}catch(e){}});
-    anneau.appendChild(b);dents.push(b);
-  });
-  /* la roue ne doit jamais défiler (le navigateur le fait pour montrer une icône cachée) */
-  var roueEl=document.getElementById('roue');
-  roueEl.addEventListener('scroll',function(){roueEl.scrollTop=0;roueEl.scrollLeft=0;});
-  function rayon(){var w=window.innerWidth;document.documentElement.style.setProperty('--R',Math.round(Math.max(240,Math.min(w*.72,520)))+'px');}
-  rayon();
-
-  /* poussières de lumière */
-  (function(){
-    var g=document.getElementById('grains'),h='';
-    for(var i=0;i<26;i++){
-      var x=(18+Math.random()*64).toFixed(1),y=(20+Math.random()*60).toFixed(1);
-      h+='<span class="grain" style="left:'+x+'%;top:'+y+'%;--g:'+(2+Math.random()*4).toFixed(1)+'px;--d:'+(5+Math.random()*6).toFixed(1)+'s;--de:-'+(Math.random()*8).toFixed(1)+'s;--dx:'+((Math.random()-.5)*60).toFixed(0)+'px"></span>';
-    }
-    g.innerHTML=h;
-  })();
-
-  /* les cartes, construites une fois */
-  APPS.forEach(function(a,k){
-    var s=document.createElement('article');
-    s.className='carte f-'+a.f;
-    ['c1','c2','ink','acc'].forEach(function(c){s.style.setProperty('--'+c,a[c]);});
-    s.setAttribute('aria-roledescription','diapositive');
-    s.setAttribute('aria-label',a.mat+' : '+texte(a));
-    var sous=a.sous?'<div class="sous">'+a.sous.map(function(x){return '<a href="'+x[1]+'">'+x[0]+'</a>';}).join('')+'</div>':'';
-    s.innerHTML='<div class="motif">'+MOTIFS[a.m](a)+'</div>'+
-      '<div class="txt"><span class="mat"><img src="'+a.href+'icon-192.png" alt="">'+a.mat+'</span>'+
-      '<h2 class="nom">'+a.nom+'</h2><p class="desc">'+a.desc+'</p>'+
-      '<ul class="points">'+a.pts.map(function(p){return '<li>'+p+'</li>';}).join('')+'</ul>'+
-      '<div class="actions"><a class="ouvrir" href="'+a.href+'">Ouvrir '+texte(a)+FL+'</a>'+sous+'</div></div>';
-    /* une carte de côté se touche pour venir au centre */
-    s.addEventListener('click',function(e){if(k!==idx){e.preventDefault();aller(k);}});
-    piste.appendChild(s);cartes.push(s);
+    var li=document.createElement('li'),b=document.createElement('button');
+    b.type='button';b.setAttribute('aria-label',a.mat+' : '+a.nom);
+    b.innerHTML='<img src="'+a.href+'icon-192.png" alt=""><span>'+esc(a.nom)+'</span>';
+    b.addEventListener('click',function(){changer(k,true);});
+    li.appendChild(b);choix.appendChild(li);boutons.push(b);
   });
 
-  function ecart(i){var d=((i-idx)%N+N)%N;if(d>N/2)d-=N;return d;}
-  function placer(){
-    var w=cartes[0].offsetWidth||300,large=window.innerWidth>=860,X=w*(large?.8:.74),R1=large?20:30,S1=large?.74:.8;
-    cartes.forEach(function(c,i){
-      var d=ecart(i),s=d<0?-1:1,a=Math.abs(d),tr;
-      if(d===0)tr='translateX(0) scale(1)';
-      else if(a===1)tr='translateX('+(s*X).toFixed(0)+'px) scale('+S1+') rotateY('+(-s*R1)+'deg)';
-      else tr='translateX('+(s*X*1.55).toFixed(0)+'px) scale(.6) rotateY('+(-s*42)+'deg)';
-      c.style.transform=tr;
-      c.classList.toggle('on',d===0);c.classList.toggle('cote',a===1);
-      c.style.zIndex=d===0?3:(a===1?2:1);
-      c.setAttribute('aria-hidden',d===0?'false':'true');
-      c.querySelectorAll('a').forEach(function(l){if(d===0)l.removeAttribute('tabindex');else l.setAttribute('tabindex','-1');});
-    });
-  }
-
-  function couleurs(a){
-    var r=document.documentElement.style;
-    r.setProperty('--acc',a.acc);
-    var f=document.createElement('div');f.className='fond';
-    f.style.setProperty('--f1',a.c1);f.style.setProperty('--fa',a.acc);
-    var ancien=fondAct;fondAct=f;
-    if(ancien)hero.insertBefore(f,ancien.nextSibling);else hero.insertBefore(f,hero.firstChild);
-    if(reduit){f.classList.add('on');if(ancien)ancien.remove();}
-    else{
-      requestAnimationFrame(function(){requestAnimationFrame(function(){f.classList.add('on');});});
-      if(ancien)setTimeout(function(){ancien.remove();},1000);
-      faisceau.classList.remove('flash');void faisceau.offsetWidth;faisceau.classList.add('flash');
+  function remplirTexte(){
+    var a=APPS[idx],h;
+    if(etape===0){
+      h='<span class="k">'+esc(a.mat)+'</span><h2>'+esc(a.nom)+'</h2>'+
+        '<dl class="notes">'+a.notes.map(function(n){return '<dt>'+esc(n[0])+'</dt><dd>'+esc(n[1])+'</dd>';}).join('')+'</dl>'+
+        '<p>'+esc(a.desc)+'</p>';
+    }else{
+      var e=a.etapes[etape-1];
+      h='<span class="k">'+esc(e[0])+'</span><h2>'+esc(e[1])+'</h2><p>'+esc(e[2])+'</p>';
     }
-    if(meta)meta.setAttribute('content','#08090C');
+    h+='<div class="boutons"><a class="btn" href="'+a.href+'">Ouvrir '+esc(a.nom)+FL+'</a>'+
+       (a.sous?a.sous.map(function(x){return '<a class="btn creux" href="'+x[1]+'">'+esc(x[0])+'</a>';}).join(''):'')+'</div>';
+    var d=document.createElement('div');d.className=reduit?'':'entre';d.innerHTML=h;
+    texte.innerHTML='';texte.appendChild(d);
   }
 
-  function montrer(k){
-    var a=APPS[k];
-    idx=k;
-    couleurs(a);
-    /* l'animation du centre repart du début */
-    var m=cartes[k].querySelector('.motif');m.innerHTML=MOTIFS[a.m](a);
-    placer();
-    anneau.style.setProperty('--a',(-pos*PAS)+'deg');
-    dents.forEach(function(d,i){
-      var e=((i-k)%N+N)%N;e=Math.min(e,N-e);
-      d.classList.toggle('on',i===k);d.style.opacity=e===0?1:Math.max(.25,1-e*.22);
-      d.setAttribute('aria-current',i===k?'true':'false');
-    });
+  function poser(){
+    var p=POSES[etape],z=ZOOMS[etape],tel=window.innerWidth<=700,f=tel?.55:1;
+    objet.style.setProperty('--ox',(p[0]*f)+'%');objet.style.setProperty('--oy',(p[1]*f)+'%');
+    objet.style.setProperty('--or',p[2]+'deg');objet.style.setProperty('--os',tel?1+(p[3]-1)*.6:p[3]);
+    if(fondAct){var s=fondAct.querySelector('svg');if(s){s.style.setProperty('--zoom',z[0]);s.style.setProperty('--rot',z[1]+'deg');}}
+    for(var i=0;i<4;i++)etapesEl[i].classList.toggle('on',i===etape);
+  }
+
+  function changerEtape(e){
+    if(e===etape)return;
+    etape=e;remplirTexte();poser();
+    fleche.setAttribute('aria-label',etape<3?'Étape suivante':'Accès direct à toutes les matières');
+  }
+
+  function changer(k,remonter){
+    if(k===idx){if(remonter)allerEtape(0);return;}
+    var a=APPS[k],premier=idx<0;idx=k;
+    document.documentElement.style.setProperty('--acc',a.c);
+    /* fond : nouveau motif en fondu */
+    var f=document.createElement('div');f.className='fond';f.style.setProperty('--c',a.c);
+    f.innerHTML='<div class="halo"></div>'+FONDS[a.f]();
+    fonds.appendChild(f);var ancien=fondAct;fondAct=f;
+    if(reduit||premier){f.classList.add('on');if(ancien)ancien.remove();}
+    else{requestAnimationFrame(function(){requestAnimationFrame(function(){f.classList.add('on');});});if(ancien)setTimeout(function(){ancien.remove();},1100);}
+    /* objet : l'ancien s'en va en tournant, le nouveau arrive */
+    var vieux=objet.querySelector('.boite'),bo=document.createElement('div');
+    bo.className='boite';bo.style.color=a.c;
+    bo.innerHTML=MOTIFS[a.m](Object.assign({ink:BLANC},a));
+    if(vieux&&!reduit){vieux.classList.add('part');setTimeout(function(){vieux.remove();},700);bo.classList.add('arrive');objet.appendChild(bo);void bo.offsetWidth;requestAnimationFrame(function(){bo.classList.remove('arrive');});}
+    else{if(vieux)vieux.remove();objet.appendChild(bo);}
+    boutons.forEach(function(b,i){b.classList.toggle('on',i===k);b.setAttribute('aria-current',i===k?'true':'false');});
+    var sel=boutons[k].parentNode;if(choix.scrollWidth>choix.clientWidth){choix.scrollTo({left:sel.offsetLeft-choix.clientWidth/2+sel.offsetWidth/2,behavior:reduit?'auto':'smooth'});}
     compte.textContent=(k+1<10?'0':'')+(k+1)+' / '+N;
     try{history.replaceState(null,'','#'+a.id);}catch(e){}
+    etape=-1;
+    if(remonter&&window.scrollY>experience.offsetTop+5){allerEtape(0);}
+    changerEtape(etapeCourante());
   }
 
-  function aller(k){
-    if(k===idx)return;
-    var d=((k-idx)%N+N)%N;if(d>N/2)d-=N;
-    pos+=d;montrer(k);
-    if(indice)indice.style.opacity='.35';
+  /* étapes : une hauteur d'écran de défilement par étape */
+  function hauteur(){return window.innerHeight;}
+  function etapeCourante(){
+    var y=window.scrollY-experience.offsetTop;
+    return Math.max(0,Math.min(3,Math.round(y/hauteur())));
   }
-  function pas(s){aller(((idx+s)%N+N)%N);}
-  window.addEventListener('resize',function(){rayon();placer();});
-  document.getElementById('prec').addEventListener('click',function(){pas(-1);});
-  document.getElementById('suiv').addEventListener('click',function(){pas(1);});
+  function allerEtape(e){window.scrollTo({top:experience.offsetTop+e*hauteur(),behavior:reduit?'auto':'smooth'});}
+  var att=false;
+  window.addEventListener('scroll',function(){
+    if(att)return;att=true;
+    requestAnimationFrame(function(){att=false;if(idx>=0)changerEtape(etapeCourante());});
+    var bas=window.scrollY>experience.offsetTop+experience.offsetHeight-hauteur()*.6;
+    document.getElementById('lienMatieres').classList.toggle('actif',!bas);
+  },{passive:true});
+  window.addEventListener('resize',function(){if(idx>=0)poser();});
+  fleche.addEventListener('click',function(){
+    if(etape<3)allerEtape(etape+1);
+    else document.getElementById('direct').scrollIntoView({behavior:reduit?'auto':'smooth'});
+  });
   document.addEventListener('keydown',function(e){
     if(e.target&&/input|textarea/i.test(e.target.tagName))return;
-    if(e.key==='ArrowRight'){pas(1);e.preventDefault();}
-    else if(e.key==='ArrowLeft'){pas(-1);e.preventDefault();}
+    if(window.scrollY>experience.offsetTop+experience.offsetHeight)return;
+    if(e.key==='ArrowRight'){changer((idx+1)%N,false);e.preventDefault();}
+    else if(e.key==='ArrowLeft'){changer((idx-1+N)%N,false);e.preventDefault();}
   });
-  /* glisser sur la scène ou la roue */
-  var x0=null,y0=0;
-  hero.addEventListener('pointerdown',function(e){x0=e.clientX;y0=e.clientY;},{passive:true});
-  hero.addEventListener('pointerup',function(e){
+  /* glisser horizontalement sur la scène : matière voisine */
+  var x0=null,y0=0,scene=document.getElementById('scene');
+  scene.addEventListener('pointerdown',function(e){if(e.target.closest('.choix'))return;x0=e.clientX;y0=e.clientY;},{passive:true});
+  scene.addEventListener('pointerup',function(e){
     if(x0===null)return;var dx=e.clientX-x0,dy=e.clientY-y0;x0=null;
-    if(Math.abs(dx)>48&&Math.abs(dx)>Math.abs(dy)*1.3){pas(dx<0?1:-1);}
+    if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)changer(((idx+(dx<0?1:-1))%N+N)%N,false);
   },{passive:true});
-  hero.addEventListener('pointercancel',function(){x0=null;});
-  /* molette sur la roue */
-  var molette=0;
-  document.getElementById('roue').addEventListener('wheel',function(e){
-    var v=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;
-    if(Math.abs(v)<8)return;
-    e.preventDefault();
-    if(Date.now()-molette<450)return;
-    molette=Date.now();pas(v>0?1:-1);
-  },{passive:false});
 
   /* départ : la matière de l'adresse (#nsi…), sinon la première */
   var h=(location.hash||'').slice(1),k0=0;
   APPS.forEach(function(a,i){if(a.id===h)k0=i;});
-  pos=k0;montrer(k0);
+  changer(k0,false);
+  var ch=document.getElementById('chargement');
+  setTimeout(function(){ch.classList.add('fini');setTimeout(function(){ch.remove();},700);},reduit?0:950);
 })();
 </script>
 </body>
