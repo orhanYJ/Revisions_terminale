@@ -6,224 +6,497 @@
 <title>Révisions Terminale — Toutes les matières</title>
 <meta name="description" content="Sites de révision gratuits pour la Terminale : spécialités, philosophie, section internationale BFI, langues. Cours, animations, QCM, sujets corrigés. Une matière, un clic.">
 <meta name="apple-mobile-web-app-title" content="Révisions">
-<meta name="theme-color" content="#F6F3EC" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#14171C" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#10241A">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
-:root{
-  --bg:#F6F3EC; --surface:#FFFFFF; --ink:#1A1D23; --ink-2:#4E5560; --muted:#7A808A;
-  --line:#E4DED2; --accent:#C2410C; --shadow:0 1px 2px rgba(30,25,15,.06),0 6px 20px rgba(30,25,15,.06);
-  color-scheme:light dark;
-}
-@media (prefers-color-scheme:dark){
-  :root{--bg:#14171C; --surface:#1C2027; --ink:#ECEAE4; --ink-2:#B7BBC2; --muted:#8B9099; --line:#2C313A; --accent:#FB8A4C;
-    --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 24px rgba(0,0,0,.3)}
-}
+/* ---------- polices des sites, chargées seulement quand la matière s'affiche ---------- */
+@font-face{font-family:"H Spectral";src:url(svt/serie/fonts/spectral-600-latin.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"H Spectral";src:url(svt/serie/fonts/spectral-it-500-latin.woff2) format("woff2");font-weight:500;font-style:italic;font-display:swap}
+@font-face{font-family:"H Caveat";src:url(svt/serie/fonts/caveat-700-latin.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"H Archivo";src:url(svt/serie/fonts/archivo-latin.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"H PlexCond";src:url(pc/polices/plex-cond-700.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"H JBMono";src:url(pc/polices/jb-mono-600.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"H JBMono";src:url(pc/polices/jb-mono-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"H Instrument";src:url(pc/polices/instrument-serif.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"H Instrument";src:url(pc/polices/instrument-serif-i.woff2) format("woff2");font-style:italic;font-display:swap}
+@font-face{font-family:"H Grotesk";src:url(pc/polices/space-grotesk-700.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"H Garamond";src:url(hlp/polices/ebg.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"H Garamond";src:url(hlp/polices/ebg-it.woff2) format("woff2");font-style:italic;font-display:swap}
+@font-face{font-family:"H Titrage";src:url(hlp/polices/titrage.woff2) format("woff2");font-display:swap}
+
+@property --a{syntax:"<angle>";inherits:true;initial-value:0deg}
+:root{--c1:#10241A;--c2:#2F5E3A;--ink:#F7F4EC;--acc:#B7D94C;--R:300px;
+  --sys:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  line-height:1.5;-webkit-font-smoothing:antialiased;padding:env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left)}
+html{-webkit-text-size-adjust:100%;background:#0E1013}
+body{font-family:var(--sys);line-height:1.5;-webkit-font-smoothing:antialiased;color:#ECEAE4;background:#0E1013}
 a{color:inherit}
-.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+button{font:inherit;color:inherit}
 
-/* ---------- en-tête ---------- */
-header{padding:44px 0 22px}
-.kick{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
-h1{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-weight:700;
-  font-size:clamp(2.2rem,8vw,3.6rem);line-height:1.02;letter-spacing:-.02em;margin-top:10px}
-.lead{margin-top:14px;max-width:58ch;color:var(--ink-2);font-size:1.05rem}
-.puces{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.puces span{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--ink-2)}
+/* ================= scène plein écran ================= */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;overflow:hidden;color:var(--ink);
+  transition:color .7s ease;padding:env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);touch-action:pan-y}
+.fond{position:absolute;inset:0;background:linear-gradient(160deg,var(--f1),var(--f2));opacity:0;transition:opacity .8s ease}
+.fond.on{opacity:1}
+.fond::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 70% at 50% 110%,rgba(0,0,0,.28),transparent 60%)}
+.barre{position:relative;z-index:3;display:flex;align-items:center;gap:12px;padding:14px 18px}
+.marque{font-weight:800;font-size:14px;letter-spacing:.14em;text-transform:uppercase;opacity:.92}
+.marque small{display:block;font-weight:500;letter-spacing:.02em;text-transform:none;font-size:12px;opacity:.7}
+.compte{margin-left:auto;font:600 13px/1 ui-monospace,Menlo,Consolas,monospace;opacity:.75;letter-spacing:.06em}
+.liste-lien{font-size:13px;font-weight:600;text-decoration:none;border:1px solid color-mix(in srgb,var(--ink) 35%,transparent);border-radius:999px;padding:6px 12px}
+.liste-lien:hover,.liste-lien:focus-visible{border-color:var(--acc);outline:none}
 
-/* ---------- filtre ---------- */
-.filtre{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0 12px;margin-bottom:6px}
-.champ{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0 14px;box-shadow:var(--shadow)}
-.champ svg{width:18px;height:18px;flex:none;opacity:.55}
-.champ input{flex:1;min-width:0;border:0;background:none;outline:none;font:inherit;font-size:16px;color:var(--ink);padding:12px 0}
-.champ:focus-within{border-color:var(--accent)}
-.vide{display:none;padding:28px 0;text-align:center;color:var(--muted)}
+.scenes{position:relative;z-index:2;flex:1;display:grid}
+.scene{grid-area:1/1;display:grid;grid-template-columns:1fr;align-content:center;gap:6px;padding:4px 22px 8px;max-width:1120px;width:100%;margin:0 auto;
+  transform-origin:50% 190%;transition:transform .62s cubic-bezier(.2,.75,.2,1),opacity .5s ease}
+.scene.sort-g{transform:rotate(-24deg);opacity:0}
+.scene.sort-d{transform:rotate(24deg);opacity:0}
+.scene.entre-g{transform:rotate(-24deg);opacity:0;transition:none}
+.scene.entre-d{transform:rotate(24deg);opacity:0;transition:none}
+.motif{width:min(62vw,300px);aspect-ratio:1;justify-self:center;color:var(--acc)}
+.motif svg{width:100%;height:100%;overflow:visible}
+.txt{max-width:560px}
+.mat{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.mat img{width:26px;height:26px;border-radius:7px}
+.nom{font-size:clamp(2.4rem,11vw,4.6rem);line-height:.98;margin:8px 0 10px;letter-spacing:-.01em}
+.desc{font-size:clamp(1rem,3.6vw,1.12rem);opacity:.9;max-width:46ch}
+.points{list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 0}
+.points li{font-size:13px;border:1px solid color-mix(in srgb,var(--ink) 28%,transparent);background:color-mix(in srgb,var(--ink) 7%,transparent);border-radius:999px;padding:4px 11px}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:18px}
+.ouvrir{display:inline-flex;align-items:center;gap:10px;text-decoration:none;background:var(--acc);color:var(--c1);font-weight:800;font-size:16px;
+  border-radius:999px;padding:13px 22px;box-shadow:0 8px 24px color-mix(in srgb,var(--acc) 35%,transparent);transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+.ouvrir svg{width:18px;height:18px}
+.ouvrir:hover,.ouvrir:focus-visible{transform:translateY(-2px) scale(1.03);outline:none}
+.ouvrir:focus-visible{box-shadow:0 0 0 3px var(--ink)}
+.sous{display:flex;flex-wrap:wrap;gap:7px}
+.sous a{font-size:13.5px;font-weight:600;text-decoration:none;border:1px solid color-mix(in srgb,var(--ink) 40%,transparent);border-radius:999px;padding:8px 13px}
+.sous a:hover,.sous a:focus-visible{border-color:var(--acc);color:var(--acc);outline:none}
+@media (min-width:860px){
+  .scene{grid-template-columns:1.05fr .95fr;gap:40px;padding:0 48px}
+  .motif{order:2;width:min(36vw,440px)}
+}
 
-/* ---------- sections et cartes ---------- */
-section{margin:26px 0 8px}
-section h2{display:flex;align-items:baseline;gap:10px;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);
-  padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:14px}
-section h2 small{font-size:12px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--muted)}
-.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
-.carte{position:relative;display:flex;gap:14px;align-items:flex-start;text-decoration:none;background:var(--surface);
-  border:1px solid var(--line);border-radius:16px;padding:14px 14px 14px 14px;box-shadow:var(--shadow);overflow:hidden;
-  transition:transform .2s cubic-bezier(.2,.8,.2,1),border-color .2s,box-shadow .2s}
-.carte::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c)}
-.carte img{width:56px;height:56px;flex:none;border-radius:14px;background:var(--c);object-fit:cover}
-.carte .txt{min-width:0;flex:1}
-.carte .mat{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c2,var(--c))}
-.carte .nom{display:block;font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:1.22rem;font-weight:700;line-height:1.2;margin-top:2px}
-.carte .desc{display:block;font-size:13.5px;color:var(--ink-2);margin-top:5px;line-height:1.45}
-.carte .fl{flex:none;align-self:center;width:18px;height:18px;opacity:.35;transition:transform .2s,opacity .2s}
-.carte:hover,.carte:focus-visible{border-color:var(--c);outline:none}
-.carte:hover .fl,.carte:focus-visible .fl{opacity:.9;transform:translateX(3px)}
-.carte:focus-visible{box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 35%,transparent)}
-@media (prefers-reduced-motion:no-preference){.carte:hover{transform:translateY(-2px)}}
-@media (prefers-color-scheme:dark){.carte .mat{color:var(--c3,var(--c))}}
-.sous{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
-.sous a{font-size:12.5px;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--ink-2);background:var(--bg)}
-.sous a:hover,.sous a:focus-visible{border-color:var(--c);color:var(--ink);outline:none}
-.cache{display:none!important}
+/* flèches */
+.fl{position:absolute;z-index:4;top:46%;width:46px;height:46px;border-radius:50%;border:1px solid color-mix(in srgb,var(--ink) 35%,transparent);
+  background:color-mix(in srgb,var(--c1) 55%,transparent);display:grid;place-items:center;cursor:pointer;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.fl svg{width:20px;height:20px}
+.fl:hover,.fl:focus-visible{border-color:var(--acc);outline:none}
+.fl.g{left:10px}.fl.d{right:10px}
+@media (max-width:600px){.fl{top:auto;bottom:150px;width:40px;height:40px}}
 
-/* ---------- pied ---------- */
-.astuce{margin:34px 0 0;padding:16px 18px;border:1px dashed var(--line);border-radius:14px;color:var(--ink-2);font-size:14px}
-.astuce b{color:var(--ink)}
-footer{padding:26px 0 calc(34px + env(safe-area-inset-bottom));color:var(--muted);font-size:13px}
-@media (max-width:420px){.grille{grid-template-columns:1fr}header{padding-top:30px}}
+/* ================= la roue ================= */
+.roue{position:relative;z-index:3;height:128px;overflow:hidden;margin-top:6px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent)}
+.roue::before{content:"";position:absolute;left:50%;top:6px;width:0;height:0;border:7px solid transparent;border-top-color:var(--acc);transform:translateX(-50%);transition:border-color .6s}
+.anneau{position:absolute;left:50%;top:calc(58px + var(--R));width:0;height:0;transform:rotate(var(--a));transition:transform .75s cubic-bezier(.22,.9,.24,1),--a .75s cubic-bezier(.22,.9,.24,1)}
+.anneau::before{content:"";position:absolute;left:calc(-1 * var(--R));top:calc(-1 * var(--R));width:calc(2 * var(--R));height:calc(2 * var(--R));
+  border-radius:50%;border:1px dashed color-mix(in srgb,var(--ink) 30%,transparent)}
+.dent{position:absolute;left:0;top:0;width:54px;height:54px;padding:0;border:0;background:none;cursor:pointer;border-radius:15px;
+  transform:translate(-50%,-50%) rotate(var(--t)) translateY(calc(-1 * var(--R))) rotate(calc(-1 * var(--t) - var(--a)));transition:opacity .5s}
+.dent img{display:block;width:100%;height:100%;border-radius:15px;box-shadow:0 4px 14px rgba(0,0,0,.35);transition:transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .45s}
+.dent.on img{transform:scale(1.28);box-shadow:0 0 0 3px var(--acc),0 8px 22px rgba(0,0,0,.4)}
+.dent:focus-visible{outline:none}.dent:focus-visible img{box-shadow:0 0 0 3px var(--ink)}
+.indice{position:relative;z-index:3;text-align:center;font-size:12px;opacity:.7;padding:0 0 calc(12px + env(safe-area-inset-bottom));letter-spacing:.04em;transition:opacity .6s}
+
+/* ================= polices et caractères propres à chaque matière ================= */
+.f-svt .nom{font-family:"H Spectral",Georgia,serif;font-weight:600}
+.f-svt .nom em{font-family:"H Caveat",cursive;font-style:normal;color:var(--acc)}
+.f-pc .nom{font-family:"H PlexCond","Arial Narrow",sans-serif;font-weight:700;letter-spacing:-.01em}
+.f-maths .nom{font-family:"H Caveat",cursive;font-weight:700;font-size:clamp(3rem,14vw,5.6rem)}
+.f-ses .nom{font-family:"H Archivo",var(--sys);font-weight:900;font-stretch:85%;letter-spacing:-.03em}
+.f-hggsp .nom{font-family:"H PlexCond","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+.f-hggsp .mat,.f-hggsp .points li{font-family:"H JBMono",ui-monospace,monospace}
+.f-hlp .nom{font-family:"H Titrage","H Garamond",Georgia,serif;font-weight:400}
+.f-hlp .desc{font-family:"H Garamond",Georgia,serif;font-size:1.15rem}
+.f-nsi .nom,.f-nsi .mat,.f-nsi .points li{font-family:"H JBMono",ui-monospace,Menlo,monospace}
+.f-nsi .nom{font-weight:600;font-size:clamp(2.1rem,10vw,4rem)}
+.f-nsi .nom::after{content:"_";color:var(--acc);animation:cli 1s steps(1) infinite}
+.f-philo .nom,.f-redpen .nom{font-family:"H Instrument",Georgia,serif;font-weight:400}
+.f-redpen .nom{font-style:italic}
+.f-dnl .nom{font-family:"H Garamond",Georgia,serif;font-weight:400;letter-spacing:.01em}
+.f-acle .nom{font-family:"H Spectral",Georgia,serif;font-style:italic;font-weight:500}
+.f-aclo .nom{font-family:"H Grotesk",var(--sys);font-weight:700;letter-spacing:-.02em}
+.f-it .nom{font-family:"H Garamond",Georgia,serif;font-style:italic}
+@keyframes cli{50%{opacity:0}}
+
+/* ================= animations des motifs ================= */
+.motif .trace{stroke-dasharray:var(--l,600);stroke-dashoffset:var(--l,600);animation:trace var(--du,3s) ease forwards var(--de,0s)}
+@keyframes trace{to{stroke-dashoffset:0}}
+.motif .boucle{animation-iteration-count:infinite;animation-name:traceb}
+@keyframes traceb{0%{stroke-dashoffset:var(--l,600)}45%,75%{stroke-dashoffset:0}100%{stroke-dashoffset:calc(-1 * var(--l,600))}}
+.vb{transform-box:view-box;transform-origin:200px 200px}
+.fb{transform-box:fill-box;transform-origin:center}
+/* SVT */
+.chute{animation:chute var(--d,8s) linear infinite var(--de,0s)}
+@keyframes chute{from{transform:translate(var(--x),-40px) rotate(0)}to{transform:translate(calc(var(--x) + 50px),440px) rotate(340deg)}}
+.respire{animation:respire 5s ease-in-out infinite}
+@keyframes respire{50%{transform:scale(1.04) rotate(-2deg)}}
+/* PC */
+.vibre{animation:vibre var(--d,1.6s) ease-in-out infinite alternate var(--de,0s)}
+@keyframes vibre{to{transform:translate(var(--vx,3px),var(--vy,-3px))}}
+.tourne{animation:tourne var(--d,6s) linear infinite}
+@keyframes tourne{to{transform:rotate(360deg)}}
+.tourne-r{animation:tourne var(--d,30s) linear infinite reverse}
+/* Maths, SES : apparitions en boucle */
+.ligne{opacity:0;animation:ligne 7s ease infinite var(--de,0s)}
+@keyframes ligne{0%{opacity:0;transform:translateX(-8px)}8%,78%{opacity:1;transform:none}92%,100%{opacity:0}}
+.barre-s{transform-box:fill-box;transform-origin:50% 100%;animation:monte 6s cubic-bezier(.2,.8,.2,1) infinite var(--de,0s)}
+@keyframes monte{0%{transform:scaleY(0)}25%,80%{transform:scaleY(1)}100%{transform:scaleY(0)}}
+/* HGGSP */
+.balaye{animation:tourne 4s linear infinite}
+.bip{animation:bip 4s ease-out infinite var(--de,0s)}
+@keyframes bip{0%,100%{opacity:0;transform:scale(.4)}8%{opacity:1;transform:scale(1.3)}40%{opacity:.6;transform:scale(1)}70%{opacity:0}}
+.tampon{animation:tampon 6s cubic-bezier(.3,1.6,.5,1) infinite}
+@keyframes tampon{0%,30%{opacity:0;transform:rotate(-14deg) scale(1.8)}38%,85%{opacity:.95;transform:rotate(-14deg) scale(1)}95%,100%{opacity:0;transform:rotate(-14deg) scale(1)}}
+/* NSI */
+.tape{opacity:0;animation:tape 8s steps(1) infinite var(--de,0s)}
+@keyframes tape{0%{opacity:0}1%,88%{opacity:1}89%,100%{opacity:0}}
+.curseur{animation:cli 1s steps(1) infinite}
+/* Philo, DNL */
+.scintille{animation:scint 3s ease-in-out infinite var(--de,0s)}
+@keyframes scint{50%{opacity:.15}}
+.meridien{animation:meridien 6s linear infinite var(--de,0s)}
+@keyframes meridien{0%{transform:scaleX(1)}50%{transform:scaleX(-1)}100%{transform:scaleX(1)}}
+/* ACL */
+.page{animation:page 5s cubic-bezier(.45,0,.2,1) infinite}
+@keyframes page{0%,20%{transform:scaleX(1)}55%,100%{transform:scaleX(-1)}}
+.onde{animation:onde 3s ease-out infinite var(--de,0s)}
+@keyframes onde{0%{opacity:.9;transform:scale(.55)}100%{opacity:0;transform:scale(1.5)}}
+.lueur{animation:lueur 2.4s ease-in-out infinite}
+@keyframes lueur{50%{opacity:.45;transform:scale(1.08)}}
+/* Red Pen */
+.stylo{animation:stylo 6s ease-in-out infinite}
+@keyframes stylo{0%{transform:translate(-120px,0)}45%{transform:translate(120px,0)}50%{transform:translate(120px,62px)}90%{transform:translate(-60px,62px)}100%{transform:translate(-120px,0)}}
+/* Italien */
+.ruban{stroke-dasharray:40 18;animation:ruban 3s linear infinite var(--de,0s)}
+@keyframes ruban{to{stroke-dashoffset:-116}}
+
+@media (prefers-reduced-motion:reduce){
+  .scene,.anneau,.fond,.dent,.dent img{transition:none!important}
+  .motif *,.f-nsi .nom::after{animation:none!important}
+  .motif .trace{stroke-dashoffset:0}
+  .ligne,.tape{opacity:1}
+}
+
+/* ================= accès direct ================= */
+.direct{max-width:1080px;margin:0 auto;padding:40px 18px calc(40px + env(safe-area-inset-bottom))}
+.direct h2{font-family:"H Instrument",Georgia,serif;font-weight:400;font-size:clamp(1.8rem,6vw,2.4rem);color:#F3EFE6}
+.direct>p{color:#A9ADB5;margin-top:4px;font-size:14.5px}
+.groupe{margin-top:24px}
+.groupe h3{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8D929B;margin-bottom:10px}
+.puces{display:flex;flex-wrap:wrap;gap:8px}
+.puces a{display:inline-flex;align-items:center;gap:9px;text-decoration:none;background:#181B21;border:1px solid #2A2E36;border-radius:12px;padding:7px 13px 7px 7px;
+  color:#ECEAE4;font-size:14.5px;transition:border-color .2s,transform .2s}
+.puces a img{width:30px;height:30px;border-radius:8px}
+.puces a small{color:#8D929B;font-size:12.5px}
+.puces a:hover,.puces a:focus-visible{border-color:var(--p,#C2410C);outline:none;transform:translateY(-1px)}
+.astuce{margin-top:30px;padding:15px 17px;border:1px dashed #2E333C;border-radius:14px;color:#A9ADB5;font-size:14px}
+.astuce b{color:#ECEAE4}
+footer{margin-top:22px;color:#6F747D;font-size:13px}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header>
-  <p class="kick">Terminale · bac 2027</p>
-  <h1>Révisions Terminale</h1>
-  <p class="lead">Des sites de révision gratuits, matière par matière : cours rédigés, animations, QCM, fiches et sujets corrigés. Choisis ta matière, un clic suffit.</p>
-  <div class="puces"><span>Gratuit</span><span>Sans compte</span><span>Sans publicité</span><span>Installable sur le téléphone</span></div>
-</header>
 
-<div class="filtre">
-  <label class="champ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8" stroke-linecap="round"/></svg>
-  <input id="f" type="search" placeholder="Chercher une matière…" autocomplete="off" aria-label="Chercher une matière"></label>
-</div>
-<p class="vide" id="vide">Aucune matière ne correspond.</p>
-
-<main>
-<section>
-  <h2>Spécialités <small>épreuves écrites de juin</small></h2>
-  <div class="grille">
-    <a class="carte" href="svt/" style="--c:#2F7D52;--c3:#7BC79A">
-      <img src="svt/icon-192.png" alt="" loading="lazy">
-      <span class="txt"><span class="mat">SVT</span><span class="nom">Le Vif du sujet</span>
-      <span class="desc">Génétique et évolution : cours, animations, vocabulaire, QCM et rédactions corrigées, vidéos des chapitres.</span></span>
-      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-    </a>
-    <a class="carte" href="pc/" style="--c:#EA580C;--c3:#FB8A4C">
-      <img src="pc/icon-192.png" alt="" loading="lazy">
-      <span class="txt"><span class="mat">Physique-Chimie</span><span class="nom">Liaisons</span>
-      <span class="desc">Acides-bases, analyse, titrages, photons, lunette, diffraction : cours, animations, TP, exercices et fiches mémo.</span></span>
-      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-    </a>
-    <a class="carte" href="maths/" style="--c:#2F55D4;--c3:#8FA8FF">
-      <img src="maths/icon-192.png" alt="" loading="lazy">
-      <span class="txt"><span class="mat">Mathématiques</span><span class="nom">CQFD</span>
-      <span class="desc">Tout le programme : démonstrations exigibles, Python, exercices en trois niveaux, annales, QCM et flashcards.</span></span>
-      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-    </a>
-    <a class="carte" href="ses/" style="--c:#0B6A7A;--c3:#5FC3D2">
-      <img src="ses/icon-192.png" alt="" loading="lazy">
-      <span class="txt"><span class="mat">SES</span><span class="nom">Faits &amp; Courbes</span>
-      <span class="desc">Économie, sociologie, regards croisés : mécanismes, chiffres sourcés, graphiques, savoir-faire et sujets corrigés.</span></span>
-      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-    </a>
-    <a class="carte" href="hggsp/" style="--c:#C8102E;--c3:#FF6B7F">
-      <img src="hggsp/icon-192.png" alt="" loading="lazy">
-      <span class="txt"><span class="mat">HGGSP</span><span class="nom">Ligne rouge</span>
-      <span class="desc">Les six thèmes : cours, frises, cartes animées, dissertations et études critiques corrigées.</span></span>
-      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-    </a>
-    <a class="carte" href="hlp/" style="--c:#9A5B22;--c3:#E0A66B">
-      <img src="hlp/icon-192.png" alt="" loading="lazy">
-      <span class="txt"><span class="mat">HLP</span><span class="nom">Ex libris</span>
-      <span class="desc">Humanités, littérature et philosophie : textes clés, atelier de lecture, sujets type bac corrigés.</span></span>
-      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-    </a>
-    <a class="carte" href="nsi/" style="--c:#1F9D5C;--c3:#4ADE80">
-      <img src="nsi/icon-192.png" alt="" loading="lazy">
-      <span class="txt"><span class="mat">NSI</span><span class="nom">import bac</span>
-      <span class="desc">Tout le programme : code Python testé, exécution pas à pas, SQL, arbres, graphes, exercices type bac.</span></span>
-      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-    </a>
+<section class="hero" id="hero" aria-roledescription="carrousel" aria-label="Les matières">
+  <div class="barre">
+    <div class="marque">Révisions Terminale<small>Toutes les matières, un clic</small></div>
+    <span class="compte" id="compte" aria-hidden="true">01 / 13</span>
+    <a class="liste-lien" href="#direct">Liste</a>
   </div>
+  <div class="scenes" id="scenes" aria-live="polite"></div>
+  <button class="fl g" id="prec" type="button" aria-label="Matière précédente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <button class="fl d" id="suiv" type="button" aria-label="Matière suivante"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  <div class="roue" id="roue"><div class="anneau" id="anneau"></div></div>
+  <p class="indice" id="indice">Fais tourner la roue : glisse, touche une icône ou utilise les flèches</p>
 </section>
 
-<section>
-  <h2>Tronc commun</h2>
-  <div class="grille">
-    <a class="carte" href="philo/" style="--c:#B9852E;--c3:#E8B866">
-      <img src="philo/icon-192.png" alt="" loading="lazy">
-      <span class="txt"><span class="mat">Philosophie</span><span class="nom">L'Index raisonné</span>
-      <span class="desc">Les 17 notions, auteurs, repères, citations, méthode de la dissertation et de l'explication, séries vidéo.</span></span>
-      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-    </a>
-  </div>
+<section class="direct" id="direct">
+  <h2>Accès direct</h2>
+  <p>Toutes les matières, en un clic.</p>
+  <div class="groupe"><h3>Spécialités</h3><div class="puces">
+    <a href="svt/" style="--p:#B7D94C"><img src="svt/icon-192.png" alt="">Le Vif du sujet <small>SVT</small></a>
+    <a href="pc/" style="--p:#F26B1D"><img src="pc/icon-192.png" alt="">Liaisons <small>Physique-Chimie</small></a>
+    <a href="maths/" style="--p:#5B7BE0"><img src="maths/icon-192.png" alt="">CQFD <small>Maths</small></a>
+    <a href="ses/" style="--p:#FF8A5B"><img src="ses/icon-192.png" alt="">Faits &amp; Courbes <small>SES</small></a>
+    <a href="hggsp/" style="--p:#E10600"><img src="hggsp/icon-192.png" alt="">Ligne rouge <small>HGGSP</small></a>
+    <a href="hlp/" style="--p:#C9963B"><img src="hlp/icon-192.png" alt="">Ex libris <small>HLP</small></a>
+    <a href="nsi/" style="--p:#39FF88"><img src="nsi/icon-192.png" alt="">import bac <small>NSI</small></a>
+  </div></div>
+  <div class="groupe"><h3>Tronc commun</h3><div class="puces">
+    <a href="philo/" style="--p:#D4A24C"><img src="philo/icon-192.png" alt="">L'Index raisonné <small>Philosophie</small></a>
+  </div></div>
+  <div class="groupe"><h3>Section internationale BFI</h3><div class="puces">
+    <a href="dnl/" style="--p:#D9B25F"><img src="dnl/icon-192.png" alt="">Revision Atlas <small>DNL Histoire-Géo</small></a>
+    <a href="acl-ecrit/" style="--p:#C9A54E"><img src="acl-ecrit/icon-192.png" alt="">ACL écrit <small>British Literature</small></a>
+    <a href="acl-lughnasa/" style="--p:#C9A54E"><img src="acl-lughnasa/icon-192.png" alt="">Dancing at Lughnasa <small>ACL écrit</small></a>
+    <a href="acl-bricklane/" style="--p:#C9A54E"><img src="acl-bricklane/icon-192.png" alt="">Brick Lane <small>ACL écrit</small></a>
+    <a href="acl-oral/" style="--p:#FF8A3D"><img src="acl-oral/icon-192.png" alt="">ACL oral <small>Dystopian Writing</small></a>
+    <a href="acl-oral-1984/" style="--p:#FF8A3D"><img src="acl-oral-1984/icon-192.png" alt="">1984 <small>ACL oral</small></a>
+    <a href="acl-oral-butler/" style="--p:#FF8A3D"><img src="acl-oral-butler/icon-192.png" alt="">Parable of the Sower <small>ACL oral</small></a>
+  </div></div>
+  <div class="groupe"><h3>Langues</h3><div class="puces">
+    <a href="redpen/" style="--p:#E2483D"><img src="redpen/icon-192.png" alt="">The Red Pen <small>Anglais</small></a>
+    <a href="italien/" style="--p:#1F7A4D"><img src="italien/icon-192.png" alt="">La Grammatica <small>Italien</small></a>
+  </div></div>
+  <p class="astuce"><b>Sur le téléphone :</b> ouvre une matière, puis « Ajouter à l'écran d'accueil » dans le menu du navigateur. Elle s'ouvre alors comme une application ; la plupart des matières restent consultables sans connexion après une première visite.</p>
+  <footer>Révisions Terminale · sites gratuits, sans compte ni publicité, construits sur le programme officiel de Terminale.</footer>
 </section>
-
-<section>
-  <h2>Section internationale BFI <small>DNL et ACL</small></h2>
-  <div class="grille">
-    <a class="carte" href="dnl/" style="--c:#1F3B73;--c3:#8EA9E8">
-      <img src="dnl/icon-192.png" alt="" loading="lazy">
-      <span class="txt"><span class="mat">DNL Histoire-Géo</span><span class="nom">Revision Atlas</span>
-      <span class="desc">History &amp; Geography in English: chapters, animated maps, document studies, essays, DBQ, quizzes and videos.</span></span>
-      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-    </a>
-    <div class="carte" style="--c:#1E3366;--c3:#9CB2E6">
-      <img src="acl-ecrit/icon-192.png" alt="" loading="lazy">
-      <span class="txt"><a href="acl-ecrit/" style="text-decoration:none"><span class="mat">ACL écrit</span><span class="nom">British Literature</span></a>
-      <span class="desc">L'épreuve, la méthode du commentaire et de l'essay, l'atelier de réécriture, les œuvres :</span>
-      <span class="sous"><a href="acl-ecrit/">Le hub ACL écrit</a><a href="acl-lughnasa/">Dancing at Lughnasa</a><a href="acl-bricklane/">Brick Lane</a></span></span>
-    </div>
-    <div class="carte" style="--c:#D9622B;--c3:#F59A63">
-      <img src="acl-oral/icon-192.png" alt="" loading="lazy">
-      <span class="txt"><a href="acl-oral/" style="text-decoration:none"><span class="mat">ACL oral</span><span class="nom">Dystopian Writing</span></a>
-      <span class="desc">Cadrage de l'oral, poèmes analysés, ponts entre les œuvres :</span>
-      <span class="sous"><a href="acl-oral/">Le hub ACL oral</a><a href="acl-oral-1984/">1984 (Orwell)</a><a href="acl-oral-butler/">Parable of the Sower (Butler)</a></span></span>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Langues</h2>
-  <div class="grille">
-    <a class="carte" href="redpen/" style="--c:#A8843E;--c3:#D8B676">
-      <img src="redpen/icon-192.png" alt="" loading="lazy">
-      <span class="txt"><span class="mat">Anglais B1 → C1</span><span class="nom">The Red Pen</span>
-      <span class="desc">Grammaire et syntaxe anglaises, méthodologie de l'essay, fautes typiques corrigées, exercices.</span></span>
-      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-    </a>
-    <a class="carte" href="italien/" style="--c:#1F7A4D;--c3:#6CCB97">
-      <img src="italien/icon-192.png" alt="" loading="lazy">
-      <span class="txt"><span class="mat">Italien LVB</span><span class="nom">La Grammatica</span>
-      <span class="desc">33 chapitres de grammaire A2 → B2, conjugaison, lexique et fonctions, erreurs à éviter.</span></span>
-      <svg class="fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-    </a>
-  </div>
-</section>
-
-</main>
-
-<p class="astuce"><b>Sur le téléphone :</b> ouvre une matière, puis « Ajouter à l'écran d'accueil » dans le menu du navigateur. Elle s'ouvre alors comme une application ; la plupart des matières restent consultables sans connexion après une première visite.</p>
-<footer>Révisions Terminale · sites gratuits, sans compte ni publicité, construits sur le programme officiel de Terminale.</footer>
-</div>
 
 <script>
-/* Filtre des matières : insensible aux accents et aux majuscules. Rien n'est stocké. */
+/* =====================================================================
+   PAGE D'ACCUEIL — une matière à la fois, chacune avec son identité
+   (couleurs, police, animation), et une roue d'icônes pour passer de
+   l'une à l'autre. Rien n'est stocké ; l'adresse #id garde la matière.
+   ===================================================================== */
 (function(){
-  var f=document.getElementById('f'), vide=document.getElementById('vide');
-  var cartes=[].slice.call(document.querySelectorAll('.carte'));
-  function norm(s){return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
-  var textes=cartes.map(function(c){return norm(c.textContent);});
-  f.addEventListener('input',function(){
-    var mots=norm(f.value).split(/\s+/).filter(Boolean), n=0;
-    cartes.forEach(function(c,i){
-      var ok=mots.every(function(w){return textes[i].indexOf(w)>-1;});
-      c.classList.toggle('cache',!ok); if(ok){n++;}
-    });
-    document.querySelectorAll('main section').forEach(function(s){
-      s.classList.toggle('cache',!s.querySelector('.carte:not(.cache)'));
-    });
-    vide.style.display=n?'none':'block';
+  "use strict";
+  var FL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+  /* ---------- motifs animés (SVG 400 × 400, couleur d'accent = currentColor) ---------- */
+  function feuille(x,d,de,s,c){return '<g class="chute" style="--x:'+x+'px;--d:'+d+'s;--de:'+de+'s"><path transform="scale('+s+')" d="M0 -14 C-10 -5 -10 7 0 16 C10 7 10 -5 0 -14Z" fill="'+c+'"/></g>';}
+  var MOTIFS={
+    feuilles:function(a){
+      return '<svg viewBox="0 0 400 400" aria-hidden="true">'+
+        '<g class="respire fb"><path d="M200 340 C120 280 105 160 200 60 C295 160 280 280 200 340Z" fill="currentColor" opacity=".16" stroke="currentColor" stroke-width="3"/>'+
+        '<path class="trace" style="--l:300;--du:2.4s" d="M200 340 L200 70" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"/>'+
+        '<path class="trace" style="--l:120;--du:1.6s;--de:.8s" d="M200 270 L150 220 M200 270 L250 220 M200 210 L160 170 M200 210 L240 170 M200 150 L175 120 M200 150 L225 120" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" opacity=".8"/></g>'+
+        feuille(20,9,-1,1.2,a.ink)+feuille(90,7,-4,.9,'currentColor')+feuille(300,8,-2,1.1,a.ink)+feuille(350,10,-6,.8,'currentColor')+feuille(250,11,-8,1,'currentColor')+feuille(60,12,-9,.7,a.ink)+
+        '</svg>';
+    },
+    molecule:function(a){
+      var P=[[200,110],[278,155],[278,245],[200,290],[122,245],[122,155]],s='';
+      for(var i=0;i<6;i++){var p=P[i],q=P[(i+1)%6];s+='<line x1="'+p[0]+'" y1="'+p[1]+'" x2="'+q[0]+'" y2="'+q[1]+'" stroke="'+a.ink+'" stroke-width="5" opacity=".7"/>';}
+      s+='<line x1="200" y1="110" x2="200" y2="40" stroke="'+a.ink+'" stroke-width="5" opacity=".7"/><line x1="278" y1="245" x2="345" y2="285" stroke="'+a.ink+'" stroke-width="5" opacity=".7"/><line x1="122" y1="245" x2="55" y2="285" stroke="'+a.ink+'" stroke-width="5" opacity=".7"/>';
+      P.concat([[200,40],[345,285],[55,285]]).forEach(function(p,i){
+        var c=i===0||i===3||i>5?'currentColor':a.ink;
+        s+='<g class="vibre" style="--d:'+(1.2+i*.17).toFixed(2)+'s;--de:-'+(i*.3).toFixed(1)+'s;--vx:'+(i%2?3:-3)+'px;--vy:'+(i%3?-3:3)+'px"><circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+(i>5?13:17)+'" fill="'+c+'"/></g>';
+      });
+      return '<svg viewBox="0 0 400 400" aria-hidden="true"><g class="tourne-r vb" style="--d:60s">'+s+'</g>'+
+        '<g class="tourne vb" style="--d:5s"><ellipse cx="200" cy="200" rx="175" ry="60" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 8" opacity=".6"/><circle cx="375" cy="200" r="7" fill="currentColor"/></g></svg>';
+    },
+    carnet:function(a){
+      var g='';for(var y=40;y<=380;y+=24){g+='<line x1="10" y1="'+y+'" x2="390" y2="'+y+'" stroke="#8FA8E8" stroke-width="1" opacity=".55"/>';}
+      for(var x=10;x<=390;x+=24){g+='<line x1="'+x+'" y1="20" x2="'+x+'" y2="390" stroke="#8FA8E8" stroke-width="1" opacity=".3"/>';}
+      var F='font-family="H Caveat,cursive" font-weight="700"';
+      return '<svg viewBox="0 0 400 400" aria-hidden="true"><rect x="10" y="20" width="380" height="370" rx="10" fill="#FFFDF6" stroke="#D8D0BC"/>'+g+
+        '<line x1="62" y1="20" x2="62" y2="390" stroke="#D7263D" stroke-width="2" opacity=".7"/>'+
+        '<text x="80" y="104" '+F+' font-size="34" fill="#1F3A93" class="ligne" style="--de:0s">Hérédité :</text>'+
+        '<text x="80" y="176" '+F+' font-size="40" fill="#1F3A93" class="ligne" style="--de:.9s">P(n) ⇒ P(n+1)</text>'+
+        '<text x="80" y="250" '+F+' font-size="34" fill="#1F3A93" class="ligne" style="--de:1.8s">u<tspan font-size="22" dy="8">n+1</tspan><tspan dy="-8"> = 2u</tspan><tspan font-size="22" dy="8">n</tspan><tspan dy="-8"> + 1</tspan></text>'+
+        '<text x="80" y="330" '+F+' font-size="44" fill="#D7263D" class="ligne" style="--de:2.8s">CQFD</text>'+
+        '<ellipse class="trace boucle" style="--l:420;--du:7s;--de:3s" cx="140" cy="318" rx="74" ry="34" fill="none" stroke="#D7263D" stroke-width="3" transform="rotate(-4 140 318)"/></svg>';
+    },
+    courbes:function(a){
+      var H=[80,120,105,170,150,215],s='';
+      H.forEach(function(h,i){s+='<rect class="barre-s" style="--de:'+(i*.18).toFixed(2)+'s" x="'+(70+i*50)+'" y="'+(330-h)+'" width="32" height="'+h+'" rx="4" fill="'+(i===5?'currentColor':a.ink)+'" opacity="'+(i===5?1:.35)+'"/>';});
+      return '<svg viewBox="0 0 400 400" aria-hidden="true"><line x1="50" y1="330" x2="370" y2="330" stroke="'+a.ink+'" stroke-width="3"/><line x1="50" y1="330" x2="50" y2="60" stroke="'+a.ink+'" stroke-width="3"/>'+s+
+        '<path class="trace boucle" style="--l:420;--du:6s" d="M70 260 C120 240 150 280 200 220 S280 150 360 90" fill="none" stroke="#F2B134" stroke-width="5" stroke-linecap="round"/>'+
+        '<text x="300" y="70" text-anchor="middle" font-family="H Archivo,sans-serif" font-weight="900" font-size="40" fill="currentColor">PIB</text></svg>';
+    },
+    radar:function(a){
+      return '<svg viewBox="0 0 400 400" aria-hidden="true"><defs><linearGradient id="gr" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="currentColor" stop-opacity="0"/><stop offset="1" stop-color="currentColor" stop-opacity=".55"/></linearGradient></defs>'+
+        '<g fill="none" stroke="'+a.ink+'" opacity=".35"><circle cx="200" cy="200" r="160"/><circle cx="200" cy="200" r="110"/><circle cx="200" cy="200" r="60"/><line x1="40" y1="200" x2="360" y2="200"/><line x1="200" y1="40" x2="200" y2="360"/></g>'+
+        '<g class="balaye vb"><path d="M200 200 L360 200 A160 160 0 0 0 313 87 Z" fill="url(#gr)"/></g>'+
+        '<circle class="bip fb" style="--de:.2s" cx="300" cy="140" r="7" fill="currentColor"/><circle class="bip fb" style="--de:1.4s" cx="130" cy="270" r="7" fill="currentColor"/><circle class="bip fb" style="--de:2.6s" cx="240" cy="300" r="6" fill="currentColor"/>'+
+        '<path class="trace boucle" style="--l:520;--du:6s" d="M30 330 L120 250 L190 270 L260 170 L370 120" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>'+
+        '<g class="tampon fb"><rect x="95" y="40" width="210" height="52" rx="6" fill="none" stroke="currentColor" stroke-width="4"/><text x="200" y="76" text-anchor="middle" font-family="H JBMono,monospace" font-weight="600" font-size="24" fill="currentColor" letter-spacing="3">CONFIDENTIEL</text></g></svg>';
+    },
+    lettrine:function(a){
+      var p='';for(var i=0;i<36;i++){var t=i*10*Math.PI/180;p+='<circle cx="'+(200+170*Math.cos(t)).toFixed(1)+'" cy="'+(200+170*Math.sin(t)).toFixed(1)+'" r="'+(i%3?2.5:5)+'" fill="#B8892F"/>';}
+      return '<svg viewBox="0 0 400 400" aria-hidden="true"><g class="tourne vb" style="--d:80s">'+p+'</g>'+
+        '<rect x="110" y="95" width="180" height="180" fill="#9E2B1E" stroke="#B8892F" stroke-width="6"/><rect x="122" y="107" width="156" height="156" fill="none" stroke="#E8C77A" stroke-width="1.5"/>'+
+        '<text x="200" y="245" text-anchor="middle" font-family="H Titrage,Georgia,serif" font-size="150" fill="#F3E9D2">E</text>'+
+        '<path class="trace boucle" style="--l:420;--du:6s" d="M80 320 C140 300 170 345 220 322 S300 300 330 330" fill="none" stroke="#2B1D12" stroke-width="3" stroke-linecap="round"/>'+
+        '<text x="200" y="372" text-anchor="middle" font-family="H Garamond,Georgia,serif" font-size="30" fill="#9E2B1E">❦</text></svg>';
+    },
+    terminal:function(a){
+      var M='font-family="H JBMono,ui-monospace,monospace" font-size="19"',L=[['>>> import bac','currentColor'],['✓ 391 tests passés','#9FE8BC'],['def reussir(bac):','#FFB627'],['    return True','#D8F5E3'],['>>> reussir(bac)','currentColor'],['True','#9FE8BC']],s='';
+      L.forEach(function(l,i){s+='<text class="tape" style="--de:'+(i*.75).toFixed(2)+'s" x="44" y="'+(128+i*38)+'" '+M+' fill="'+l[1]+'" xml:space="preserve">'+l[0].replace(/>/g,'&gt;')+'</text>';});
+      return '<svg viewBox="0 0 400 400" aria-hidden="true"><rect x="20" y="50" width="360" height="310" rx="14" fill="#0B171A" stroke="currentColor" stroke-opacity=".45"/>'+
+        '<rect x="20" y="50" width="360" height="36" rx="14" fill="#13252A"/><circle cx="46" cy="68" r="6" fill="#FF5F57"/><circle cx="68" cy="68" r="6" fill="#FFBD2E"/><circle cx="90" cy="68" r="6" fill="#28C840"/>'+
+        '<text x="200" y="74" text-anchor="middle" '+M+' font-size="13" fill="#6F9A87">terminal — bac.py</text>'+s+
+        '<rect class="curseur" x="44" y="334" width="12" height="20" fill="currentColor"/></svg>';
+    },
+    losange:function(a){
+      var st='',pts=[[60,90],[330,70],[350,300],[80,320],[200,30],[30,210],[370,190],[210,370]];
+      pts.forEach(function(p,i){st+='<circle class="scintille" style="--de:'+(i*.4).toFixed(1)+'s" cx="'+p[0]+'" cy="'+p[1]+'" r="3.5" fill="'+a.ink+'"/>';});
+      return '<svg viewBox="0 0 400 400" aria-hidden="true">'+st+'<g fill="none" stroke="'+a.ink+'" stroke-width="1" opacity=".3"><path d="M60 90 L200 30 L330 70 M30 210 L80 320 L210 370 L350 300 L370 190"/></g>'+
+        '<circle cx="200" cy="200" r="140" fill="none" stroke="currentColor" stroke-width="2.5"/>'+
+        '<g class="tourne vb" style="--d:24s"><rect x="130" y="130" width="140" height="140" fill="none" stroke="currentColor" stroke-width="8" transform="rotate(45 200 200)"/></g>'+
+        '<g class="tourne-r vb" style="--d:16s"><rect x="160" y="160" width="80" height="80" fill="none" stroke="currentColor" stroke-width="2" transform="rotate(45 200 200)"/></g>'+
+        '<rect x="183" y="183" width="34" height="34" fill="'+a.ink+'" transform="rotate(45 200 200)"/>'+
+        '<text x="200" y="322" text-anchor="middle" font-family="H Instrument,Georgia,serif" font-size="44" fill="currentColor">φ</text></svg>';
+    },
+    globe:function(a){
+      var m='';[0,-1.5,-3,-4.5].forEach(function(d){m+='<ellipse class="meridien vb" style="--de:'+d+'s" cx="200" cy="200" rx="140" ry="140" fill="none" stroke="currentColor" stroke-width="2" opacity=".75"/>';});
+      return '<svg viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="140" fill="currentColor" fill-opacity=".08" stroke="currentColor" stroke-width="3"/>'+m+
+        '<g fill="none" stroke="'+a.ink+'" stroke-width="1.5" opacity=".45"><line x1="60" y1="200" x2="340" y2="200"/><ellipse cx="200" cy="130" rx="122" ry="14"/><ellipse cx="200" cy="270" rx="122" ry="14"/></g>'+
+        '<g class="tourne vb" style="--d:14s"><path d="M200 22 L208 48 L200 42 L192 48 Z" fill="currentColor"/></g>'+
+        '<text x="200" y="388" text-anchor="middle" font-family="H Garamond,Georgia,serif" font-style="italic" font-size="22" fill="'+a.ink+'" opacity=".8">1929 · 1939 · 1945</text></svg>';
+    },
+    livre:function(a){
+      var l='';for(var i=0;i<7;i++){l+='<rect x="80" y="'+(140+i*22)+'" width="'+(90-i%3*14)+'" height="6" rx="3" fill="'+a.ink+'" opacity=".35"/>';}
+      var r='';for(var j=0;j<7;j++){r+='<rect x="225" y="'+(140+j*22)+'" width="'+(92-j%2*18)+'" height="6" rx="3" fill="'+a.ink+'" opacity=".35"/>';}
+      return '<svg viewBox="0 0 400 400" aria-hidden="true"><path d="M200 110 C160 92 100 92 60 104 L60 312 C100 300 160 300 200 318 Z" fill="'+a.ink+'" fill-opacity=".08" stroke="currentColor" stroke-width="3"/>'+
+        '<path d="M200 110 C240 92 300 92 340 104 L340 312 C300 300 240 300 200 318 Z" fill="'+a.ink+'" fill-opacity=".08" stroke="currentColor" stroke-width="3"/>'+l+r+
+        '<g class="page vb"><path d="M200 112 C236 96 290 96 330 108 L330 306 C290 296 236 296 200 314 Z" fill="currentColor" fill-opacity=".85"/></g>'+
+        '<line x1="200" y1="108" x2="200" y2="320" stroke="currentColor" stroke-width="4"/>'+
+        '<text x="200" y="372" text-anchor="middle" font-family="H Spectral,Georgia,serif" font-style="italic" font-size="26" fill="'+a.ink+'">Commentary · Essay</text></svg>';
+    },
+    ondes:function(a){
+      var o='';[0,1,2].forEach(function(i){o+='<circle class="onde vb" style="--de:'+i+'s;transform-origin:200px 190px" cx="200" cy="190" r="120" fill="none" stroke="currentColor" stroke-width="3"/>';});
+      return '<svg viewBox="0 0 400 400" aria-hidden="true"><circle class="lueur vb" style="transform-origin:200px 190px" cx="200" cy="190" r="70" fill="currentColor" opacity=".25"/>'+o+
+        '<rect x="172" y="110" width="56" height="110" rx="28" fill="'+a.ink+'"/><path d="M150 180 C150 250 250 250 250 180" fill="none" stroke="'+a.ink+'" stroke-width="7" stroke-linecap="round"/>'+
+        '<line x1="200" y1="240" x2="200" y2="290" stroke="'+a.ink+'" stroke-width="7"/><line x1="160" y1="292" x2="240" y2="292" stroke="'+a.ink+'" stroke-width="7" stroke-linecap="round"/>'+
+        '<text x="200" y="360" text-anchor="middle" font-family="H Grotesk,sans-serif" font-weight="700" font-size="24" fill="currentColor" letter-spacing="2">SPEAK · ARGUE · LINK</text></svg>';
+    },
+    stylo:function(a){
+      var l='';[[70,100,260],[70,140,220],[70,180,250],[70,220,190],[70,260,240]].forEach(function(r){l+='<rect x="'+r[0]+'" y="'+r[1]+'" width="'+r[2]+'" height="10" rx="5" fill="'+a.ink+'" opacity=".28"/>';});
+      return '<svg viewBox="0 0 400 400" aria-hidden="true">'+l+
+        '<path class="trace boucle" style="--l:260;--du:6s" d="M70 160 Q170 150 300 158" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>'+
+        '<ellipse class="trace boucle" style="--l:330;--du:6s;--de:1.5s" cx="160" cy="225" rx="70" ry="26" fill="none" stroke="currentColor" stroke-width="3.5"/>'+
+        '<text x="290" y="322" font-family="H Instrument,Georgia,serif" font-style="italic" font-size="38" fill="currentColor">C1</text>'+
+        '<g class="stylo"><g transform="translate(200 120) rotate(35)"><rect x="-7" y="-70" width="14" height="70" rx="3" fill="#C9A45C"/><path d="M-7 0 L7 0 L0 18 Z" fill="currentColor"/></g></g></svg>';
+    },
+    ruban:function(a){
+      var w='';[['#1F7A4D',150,0],['#FFFFFF',190,-.5],['#C8102E',230,-1]].forEach(function(r){w+='<path class="ruban" style="--de:'+r[2]+'s" d="M20 '+r[1]+' C90 '+(r[1]-40)+' 150 '+(r[1]+40)+' 210 '+r[1]+' S330 '+(r[1]-40)+' 390 '+r[1]+'" fill="none" stroke="'+r[0]+'" stroke-width="22" stroke-linecap="round"/>';});
+      return '<svg viewBox="0 0 400 400" aria-hidden="true"><path d="M20 190 C90 150 150 230 210 190 S330 150 390 190" fill="none" stroke="#1E3A2B" stroke-opacity=".12" stroke-width="110" stroke-linecap="round"/>'+w+
+        '<text x="200" y="110" text-anchor="middle" font-family="H Garamond,Georgia,serif" font-style="italic" font-size="44" fill="#1E3A2B">Mi chiamo…</text>'+
+        '<text x="200" y="320" text-anchor="middle" font-family="H Garamond,Georgia,serif" font-size="34" fill="#C8102E">✓ Mi piace</text></svg>';
+    }
+  };
+
+  /* ---------- les matières : identité de chacune ---------- */
+  var APPS=[
+    {id:'svt',href:'svt/',mat:'SVT',nom:'Le Vif <em>du sujet</em>',txt:'Le Vif du sujet',desc:'La génétique et l’évolution expliquées unité par unité, avec des schémas qui bougent.',pts:['17 animations du vivant','Vocabulaire et QCM','Rédactions corrigées','Vidéos des chapitres'],c1:'#0F2218',c2:'#2F5E3A',ink:'#F7F4EC',acc:'#B7D94C',f:'svt',m:'feuilles'},
+    {id:'pc',href:'pc/',mat:'Physique-Chimie',nom:'Liaisons',desc:'Acides-bases, analyse, lumière, optique, ondes : comprendre pourquoi chaque formule dit ce qu’elle dit.',pts:['Animations et schémas interactifs','TP et exercices type bac','Fiches mémo','Vidéos du cours'],c1:'#141317',c2:'#33241B',ink:'#F4EFE9',acc:'#F26B1D',f:'pc',m:'molecule'},
+    {id:'maths',href:'maths/',mat:'Mathématiques',nom:'CQFD',desc:'Le carnet de maths de Terminale : tout le programme, démontré, illustré, entraîné.',pts:['15 chapitres','Démonstrations exigibles','Python','Exercices en trois niveaux'],c1:'#FBF8EF',c2:'#E8E2CE',ink:'#1F3A93',acc:'#D7263D',f:'maths',m:'carnet'},
+    {id:'ses',href:'ses/',mat:'SES',nom:'Faits &amp; Courbes',desc:'Économie, sociologie, science politique : les mécanismes, et les chiffres qui les prouvent.',pts:['Graphiques sur données réelles','Chaînes causales','Sujets corrigés','Fiches d’auteurs'],c1:'#0B5563',c2:'#062F37',ink:'#FFFFFF',acc:'#FF8A5B',f:'ses',m:'courbes'},
+    {id:'hggsp',href:'hggsp/',mat:'HGGSP',nom:'Ligne rouge',desc:'Puissances, frontières, patrimoine, environnement, savoirs : le dossier complet, déclassifié.',pts:['6 thèmes, 24 chapitres','Cartes animées date par date','Dissertations corrigées','Études critiques'],c1:'#18181A',c2:'#2E2620',ink:'#EFE9DF',acc:'#FF2A1A',f:'hggsp',m:'radar'},
+    {id:'hlp',href:'hlp/',mat:'HLP',nom:'Ex libris',desc:'Humanités, littérature et philosophie : les grands textes, lus de près, comme dans un livre ancien.',pts:['Les six entrées du programme','Textes clés vérifiés','Atelier de lecture','Sujets type bac corrigés'],c1:'#F3E9D2',c2:'#E2CFA6',ink:'#2B1D12',acc:'#9E2B1E',f:'hlp',m:'lettrine'},
+    {id:'nsi',href:'nsi/',mat:'NSI',nom:'import bac',desc:'Tout le programme de NSI, avec du code Python qui tourne vraiment, ligne par ligne.',pts:['18 chapitres','391 extraits testés','Exécution pas à pas','SQL, arbres, graphes'],c1:'#060E11',c2:'#0D2420',ink:'#D8F5E3',acc:'#39FF88',f:'nsi',m:'terminal'},
+    {id:'philo',href:'philo/',mat:'Philosophie',nom:'L’Index raisonné',desc:'Les notions, les auteurs, les repères et la méthode, pour penser une copie plutôt que réciter.',pts:['17 notions','Auteurs et citations','Dissertation et explication','Séries vidéo'],c1:'#121A2B',c2:'#2A3452',ink:'#F2EBDD',acc:'#D4A24C',f:'philo',m:'losange'},
+    {id:'dnl',href:'dnl/',mat:'DNL Histoire-Géo',nom:'Revision Atlas',desc:'History and Geography in English: every chapter, mapped, explained and ready for the essay, the DBQ and the oral.',pts:['Animated maps','Video episodes','Essays and DBQ','Oral key issues'],c1:'#0E1830',c2:'#1F3B73',ink:'#F3EBD8',acc:'#D9B25F',f:'dnl',m:'globe'},
+    {id:'acl-ecrit',href:'acl-ecrit/',mat:'ACL écrit · BFI',nom:'British Literature',desc:'Commentary and essay: the method, the works, and an atelier to climb from KP14 to KP20.',pts:['Méthode du commentaire','Essay pas à pas','Atelier de réécriture'],sous:[['Dancing at Lughnasa','acl-lughnasa/'],['Brick Lane','acl-bricklane/']],c1:'#111A30',c2:'#3A2440',ink:'#F5EFE2',acc:'#C9A54E',f:'acle',m:'livre'},
+    {id:'acl-oral',href:'acl-oral/',mat:'ACL oral · BFI',nom:'Dystopian Writing',desc:'Poems and novels of dystopia, analysed and linked for the oral exam.',pts:['Poèmes analysés','Ponts entre les œuvres','Scène par scène'],sous:[['1984','acl-oral-1984/'],['Parable of the Sower','acl-oral-butler/']],c1:'#100E0C',c2:'#3A1E0E',ink:'#F6E9DC',acc:'#FF8A3D',f:'aclo',m:'ondes'},
+    {id:'redpen',href:'redpen/',mat:'Anglais B1 → C1',nom:'The Red Pen',desc:'Grammar, syntax and the essay: the mistakes French speakers really make, and how to fix them.',pts:['Fautes typiques corrigées','Méthodologie de l’essay','Exercices auto-corrigés'],c1:'#0D1525',c2:'#1E2D4A',ink:'#EDE6D6',acc:'#E2483D',f:'redpen',m:'stylo'},
+    {id:'italien',href:'italien/',mat:'Italien LVB',nom:'La Grammatica',desc:'La grammaire italienne de A2 à B2, expliquée en français, avec les erreurs à éviter.',pts:['33 chapitres','Conjugaison','Lexique et fonctions'],c1:'#F7F2E5',c2:'#DDE9DC',ink:'#1E3A2B',acc:'#1F7A4D',f:'it',m:'ruban'}
+  ];
+  var N=APPS.length, PAS=360/N;
+
+  var hero=document.getElementById('hero'),scenes=document.getElementById('scenes'),anneau=document.getElementById('anneau'),
+      compte=document.getElementById('compte'),indice=document.getElementById('indice'),meta=document.querySelector('meta[name="theme-color"]');
+  var reduit=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var pos=0, idx=0, scene=null, fondAct=null, dents=[];
+  function texte(a){return (a.txt||a.nom).replace(/<[^>]+>/g,'').replace(/&amp;/g,'&');}
+
+  /* roue d'icônes */
+  APPS.forEach(function(a,k){
+    var b=document.createElement('button');
+    b.type='button';b.className='dent';b.style.setProperty('--t',(k*PAS)+'deg');
+    b.setAttribute('aria-label',a.mat+' : '+texte(a));
+    b.innerHTML='<img src="'+a.href+'icon-192.png" alt="">';
+    b.addEventListener('click',function(){aller(k);});
+    /* au clavier (Tab), l'icône atteinte vient au sommet de la roue */
+    b.addEventListener('focus',function(){try{if(b.matches(':focus-visible'))aller(k);}catch(e){}});
+    anneau.appendChild(b);dents.push(b);
   });
+  /* la roue ne doit jamais défiler (le navigateur le fait pour montrer une icône cachée) */
+  var roueEl=document.getElementById('roue');
+  roueEl.addEventListener('scroll',function(){roueEl.scrollTop=0;roueEl.scrollLeft=0;});
+  function rayon(){var w=window.innerWidth;document.documentElement.style.setProperty('--R',Math.round(Math.max(240,Math.min(w*.72,520)))+'px');}
+  rayon();window.addEventListener('resize',rayon);
+
+  function construire(a){
+    var s=document.createElement('article');
+    s.className='scene f-'+a.f;
+    s.setAttribute('aria-roledescription','diapositive');
+    s.setAttribute('aria-label',a.mat+' : '+texte(a));
+    var sous=a.sous?'<div class="sous">'+a.sous.map(function(x){return '<a href="'+x[1]+'">'+x[0]+'</a>';}).join('')+'</div>':'';
+    s.innerHTML='<div class="motif">'+MOTIFS[a.m](a)+'</div>'+
+      '<div class="txt"><span class="mat"><img src="'+a.href+'icon-192.png" alt="">'+a.mat+'</span>'+
+      '<h1 class="nom">'+a.nom+'</h1><p class="desc">'+a.desc+'</p>'+
+      '<ul class="points">'+a.pts.map(function(p){return '<li>'+p+'</li>';}).join('')+'</ul>'+
+      '<div class="actions"><a class="ouvrir" href="'+a.href+'">Ouvrir '+texte(a)+FL+'</a>'+sous+'</div></div>';
+    return s;
+  }
+
+  function couleurs(a){
+    var r=document.documentElement.style;
+    r.setProperty('--c1',a.c1);r.setProperty('--c2',a.c2);r.setProperty('--ink',a.ink);r.setProperty('--acc',a.acc);
+    var f=document.createElement('div');f.className='fond';f.style.setProperty('--f1',a.c1);f.style.setProperty('--f2',a.c2);
+    hero.insertBefore(f,hero.firstChild);
+    var ancien=fondAct;fondAct=f;
+    if(reduit){f.classList.add('on');if(ancien)ancien.remove();}
+    else{
+      if(ancien)hero.insertBefore(f,ancien.nextSibling);
+      requestAnimationFrame(function(){requestAnimationFrame(function(){f.classList.add('on');});});
+      if(ancien)setTimeout(function(){ancien.remove();},900);
+    }
+    if(meta)meta.setAttribute('content',a.c1);
+  }
+
+  function montrer(k,sens){
+    var a=APPS[k],nv=construire(a),vieux=scene;
+    couleurs(a);
+    if(!vieux||reduit){if(vieux)vieux.remove();scenes.appendChild(nv);scene=nv;}
+    else{
+      nv.classList.add(sens>0?'entre-d':'entre-g');
+      scenes.appendChild(nv);scene=nv;
+      vieux.classList.add(sens>0?'sort-g':'sort-d');
+      setTimeout(function(){vieux.remove();},650);
+      void nv.offsetWidth;
+      requestAnimationFrame(function(){nv.classList.remove('entre-d','entre-g');});
+    }
+    anneau.style.setProperty('--a',(-pos*PAS)+'deg');
+    dents.forEach(function(d,i){
+      var e=((i-k)%N+N)%N;e=Math.min(e,N-e);
+      d.classList.toggle('on',i===k);d.style.opacity=e===0?1:Math.max(.25,1-e*.22);
+      d.setAttribute('aria-current',i===k?'true':'false');
+    });
+    compte.textContent=(k+1<10?'0':'')+(k+1)+' / '+N;
+    try{history.replaceState(null,'','#'+a.id);}catch(e){}
+  }
+
+  function aller(k){
+    if(k===idx&&scene)return;
+    var d=((k-idx)%N+N)%N;if(d>N/2)d-=N;
+    pos+=d;idx=k;montrer(k,d>=0?1:-1);
+    if(indice)indice.style.opacity='.35';
+  }
+  function pas(s){aller(((idx+s)%N+N)%N);}
+
+  document.getElementById('prec').addEventListener('click',function(){pas(-1);});
+  document.getElementById('suiv').addEventListener('click',function(){pas(1);});
   document.addEventListener('keydown',function(e){
-    if(e.key==='/'&&document.activeElement!==f){e.preventDefault(); f.focus();}
-    if(e.key==='Escape'&&document.activeElement===f){f.value=''; f.dispatchEvent(new Event('input')); f.blur();}
+    if(e.target&&/input|textarea/i.test(e.target.tagName))return;
+    if(e.key==='ArrowRight'){pas(1);e.preventDefault();}
+    else if(e.key==='ArrowLeft'){pas(-1);e.preventDefault();}
   });
+  /* glisser sur la scène ou la roue */
+  var x0=null,y0=0;
+  hero.addEventListener('pointerdown',function(e){x0=e.clientX;y0=e.clientY;},{passive:true});
+  hero.addEventListener('pointerup',function(e){
+    if(x0===null)return;var dx=e.clientX-x0,dy=e.clientY-y0;x0=null;
+    if(Math.abs(dx)>48&&Math.abs(dx)>Math.abs(dy)*1.3){pas(dx<0?1:-1);}
+  },{passive:true});
+  hero.addEventListener('pointercancel',function(){x0=null;});
+  /* molette sur la roue */
+  var molette=0;
+  document.getElementById('roue').addEventListener('wheel',function(e){
+    var v=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;
+    if(Math.abs(v)<8)return;
+    e.preventDefault();
+    if(Date.now()-molette<450)return;
+    molette=Date.now();pas(v>0?1:-1);
+  },{passive:false});
+
+  /* départ : la matière de l'adresse (#nsi…), sinon la première */
+  var h=(location.hash||'').slice(1),k0=0;
+  APPS.forEach(function(a,i){if(a.id===h)k0=i;});
+  idx=k0;pos=k0;montrer(k0,1);
 })();
 </script>
 </body>
