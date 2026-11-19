@@ -57,13 +57,13 @@ const OralItem = ({ it, FR, ouvert, basculer }) => {
         basculer: () => { if (t >= ORAL_MAX) { setT(0); setOn(true); } else setOn(o => !o); },
         remettre: () => { setOn(false); setT(0); } }),
       React.createElement("p", { className: "or-conseil" }, FR
-        ? "Ne lis pas : développe chaque puce avec tes mots, en 10 à 20 secondes. Le temps conseillé est donné pour chaque partie ; pendant l'entraînement, la partie où tu devrais en être s'allume."
-        : "Don't read: develop each bullet point in your own words, in 10 to 20 seconds. A suggested time is given for each part; while you practise, the part you should be on lights up."),
+        ? "Ne lis pas : développe chaque puce avec tes mots, en 10 à 20 secondes. Le temps conseillé est donné pour chaque partie ; pendant l'entraînement, la partie où tu devrais en être s'allume." + (it.kind === "issue" ? " Chaque partie finit par un bilan (⚖) qui répond à la question : « assess » se tient tout au long du développement, pas seulement en conclusion." : "")
+        : "Don't read: develop each bullet point in your own words, in 10 to 20 seconds. A suggested time is given for each part; while you practise, the part you should be on lights up." + (it.kind === "issue" ? " Each part ends with an assessment (⚖) that answers the question: keep assessing throughout, not only in the conclusion." : "")),
       React.createElement("div", { className: "or-secs" }, L.sections.map((s, k) => React.createElement("div", { key: k, className: "or-sec" + (k === actif ? " on" : "") + (k === 0 && it.kind === "term" ? " definition" : "") },
         React.createElement("div", { className: "or-sec-h" },
           React.createElement("span", { className: "or-sec-t" }, s.t),
           React.createElement("span", { className: "or-sec-d" }, "≈ " + oralMin(s.d), React.createElement("small", null, oralMmss(bornes[k][0]) + " → " + oralMmss(bornes[k][1])))),
-        React.createElement("ul", null, s.pts.map((p, i) => React.createElement("li", { key: i, className: /^(Judgement|Jugement|In short|En bref)\s*:/.test(p) ? "jug" : null }, glT(p))))))),
+        React.createElement("ul", null, s.pts.map((p, i) => React.createElement("li", { key: i, className: /^(Judgement|Jugement|In short|En bref)\s*:/.test(p) ? "jug" : /^(Assessment|Bilan)\s*:/.test(p) ? "bilan" : null }, glT(p))))))),
       L.discours && React.createElement("button", { className: "or-jury-btn or-disc-btn", onClick: () => setDisc(d => !d), "aria-expanded": disc },
         (disc ? "▲ " : "▼ ") + (FR ? "📝 Le discours rédigé (≈ " : "📝 The written speech (≈ ") + oralMin(Math.round(oralMots(it.en.discours || L.discours) / 140 * 60 / 10) * 10) + (FR ? " à voix haute)" : " out loud)")),
       disc && L.discours && React.createElement("div", { className: "or-disc" },

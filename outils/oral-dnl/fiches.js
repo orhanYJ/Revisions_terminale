@@ -23,7 +23,7 @@ function page(it, lang, theme) {
   let cum = 0;
   const secs = L.sections.map(s => {
     const a = cum; cum += s.d;
-    const lis = s.pts.map(p => `<li${/^(Judgement|Jugement|In short|En bref)\s*:/.test(p) ? ' class="jug"' : ""}>${esc(p)}</li>`).join("");
+    const lis = s.pts.map(p => `<li${/^(Judgement|Jugement|In short|En bref)\s*:/.test(p) ? ' class="jug"' : /^(Assessment|Bilan)\s*:/.test(p) ? ' class="bilan"' : ""}>${esc(p)}</li>`).join("");
     return `<div class="sec"><div class="sec-h"><span class="sec-t">${esc(s.t)}</span><span class="sec-d">≈ ${duree(s.d)} <small>${mmss(a)} → ${mmss(cum)}</small></span></div><ul>${lis}</ul></div>`;
   }).join("");
   const courtes = L.jury_court || L.jury.map(j => premiere(j[1]));
@@ -63,6 +63,8 @@ h1 { margin: 3px 0 0; font-family: 'Cormorant Garamond', Georgia, serif; font-we
 .sec li { margin-bottom: 1.5px; }
 .sec li::marker { color: var(--gold); }
 .sec li.jug { font-weight: 700; color: var(--slate); }
+.sec li.bilan { list-style: none; margin-left: -15px; padding: 1px 6px 1px 18px; position: relative; background: #F1E7D2; border-radius: 3px; font-weight: 700; color: var(--slate); }
+.sec li.bilan::before { content: "⚖"; position: absolute; left: 4px; color: var(--gold2); }
 .jury { margin-top: 8px; background: var(--paper); border: 1px solid var(--line); padding: 6px 10px 4px; break-inside: avoid; }
 .jq { margin-bottom: 4px; }
 .jq b { display: block; color: var(--slate); }

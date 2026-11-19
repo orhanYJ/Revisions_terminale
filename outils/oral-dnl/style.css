@@ -48,6 +48,8 @@
 .or-sec li{font-size:15px;line-height:1.5;color:#2b2a26;margin-bottom:4px}
 .or-sec li::marker{color:var(--gold,#B8924F)}
 .or-sec li.jug{font-weight:600;color:var(--slate,#17233F)}
+.or-sec li.bilan{list-style:none;margin-left:-18px;padding:4px 8px 4px 26px;position:relative;background:rgba(184,146,79,.13);border-radius:5px;font-weight:600;color:var(--slate,#17233F)}
+.or-sec li.bilan::before{content:"⚖";position:absolute;left:7px;top:4px;color:var(--gold-2,#8E6F37)}
 .or-chr-cible{position:absolute;top:-3px;bottom:-3px;left:90%;width:2px;background:var(--slate,#17233F);border-radius:1px}
 .or-chrono.depasse .or-chr-bar i{background:linear-gradient(90deg,#8E6F37,#C0632F)}
 .or-chrono.depasse .or-chr-t{color:#A4552A}

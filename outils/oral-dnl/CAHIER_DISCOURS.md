@@ -34,8 +34,15 @@ Dans chaque item, à côté de `sections` et `jury`, pour `en` et pour `fr` :
 - Pas de rhétorique d'avocat (« clearly », « undeniably », « it is obvious that », « we must reject »), pas d'exclamations.
 - Une question « How far do you agree… » ou « Assess the role… » attend une réponse : elle est donnée comme une **conclusion pesée**
   (ce que montrent les faits, et ses limites), pas comme une thèse à défendre.
-- Une question « Assess the aims… » attend une **explication des buts** (lesquels, comment ils se traduisent, comment ils s'articulent),
-  pas un réquisitoire.
+- Une question « Assess the aims… » attend une **explication des buts et leur évaluation** (lesquels, comment ils se traduisent,
+  lesquels étaient centraux ou secondaires, dans quelle mesure ils ont été réalisés), pas un réquisitoire.
+
+## Évaluer tout au long (key issues, retour du professeur du 19/11/2026)
+- Chaque paragraphe de partie **se termine par une phrase d'évaluation** qui développe la puce « Assessment: » de la partie
+  (« So, in assessing these aims, … », « This shows that … was the central / a secondary … », « To a large extent, …, but … »).
+- L'introduction énonce le jugement d'ensemble ; la conclusion le reprend en s'appuyant sur les bilans des parties.
+- Toujours mesuré : peser et hiérarchiser, pas plaider.
+- Longueur : 620 à 690 mots anglais (5 min au maximum).
 
 ## Règles communes (comme les notes)
 - Aucune référence à un cours, une classe, un professeur, une feuille, une worksheet, un diaporama ; aucun nom d'élève ni de professeur.
