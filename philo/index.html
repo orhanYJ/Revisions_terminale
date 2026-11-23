@@ -1384,6 +1384,9 @@ html[data-theme="obsidienne"] .notion-bgicon{filter:invert(1) brightness(1.4);op
   /* ---------- le texte reste visible pendant la lecture du corrigé ---------- */
   /* .main a overflow-x:clip, qui neutralise position:sticky — on le lève pour cette vue */
   .main:has(.gx-stick){overflow-x:visible}
+  /* élément de grille : sans min-width:0, le plus large de ses contenus (barre du texte, boutons)
+     peut l'élargir au-delà de l'écran, et le téléphone dézoome toute la page */
+  .main{min-width:0}
   .gx-stick{position:sticky;top:0;z-index:6;margin:18px 0 22px;border:1px solid var(--rule);
     border-radius:3px;background:var(--paper);box-shadow:0 6px 18px -12px rgba(var(--ink-rgb),.55)}
   .inner > .gx-stick{position:sticky;top:0;z-index:6}
@@ -1404,6 +1407,10 @@ html[data-theme="obsidienne"] .notion-bgicon{filter:invert(1) brightness(1.4);op
     /* la barre supérieure mobile est elle-même collante (71px) : on se cale dessous */
     .inner > .gx-stick{top:var(--gx-top,71px)}
     .gx-stick-body{max-height:30vh;padding:12px 14px}
+    /* la barre passe sur deux lignes : l'auteur, puis les deux boutons */
+    .gx-stick-bar{flex-wrap:wrap;gap:7px 8px;padding:8px 12px}
+    .gx-stick-a{flex:1 1 100%}
+    .gx-stick-b{flex:1 1 auto;text-align:center}
     .gx-stick-body p{font-size:14.5px}
   }
 </style>
