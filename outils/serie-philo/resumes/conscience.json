@@ -1,0 +1,506 @@
+{
+ "conscience-1": {
+  "intro": "Qu'est-ce que la conscience ? Sous anesthésie, le corps vit, mais pendant deux heures il ne se passe rien pour le patient, pas même du noir. Ce qui s'éteint puis se rallume n'est pas la vie, mais ce qui fait qu'il y a, pour quelqu'un, un monde et un moi qui le voit.",
+  "parties": [
+   {
+    "t": "Le mot : un savoir « avec »",
+    "p": [
+     "Conscientia : cum, « avec », scientia, « le savoir ». À Rome, le conscius partage un secret, témoin ou complice (les conscii de la conjuration de Catilina, dénoncée par Cicéron en 63 avant notre ère). Puis le témoin devient soi-même : la conscience est la connaissance, plus ou moins claire, de ses pensées, de ses actes et du monde.",
+     "Le même mot désigne la conscience morale, qui juge (Caïn chez Victor Hugo). Deux sens, psychologique et moral ; l'anglais dit consciousness et conscience. Le sens psychologique est récent : en 1700, Pierre Coste, traducteur de Locke, le signale comme nouveau."
+    ],
+    "cit": [
+     {
+      "t": "L'œil était dans la tombe et regardait Caïn.",
+      "a": "Victor Hugo, « La Conscience », *La Légende des siècles* (1859)"
+     }
+    ]
+   },
+   {
+    "t": "Spontanée ou réfléchie",
+    "p": [
+     "Le joueur qui frappe le ballon voit le but et le gardien sans penser à lui-même : conscience spontanée, ou immédiate, tournée vers le monde. Revoyant l'action après le match, il fait de sa pensée un objet qu'il juge : conscience réfléchie, médiate (réfléchir, c'est ce que fait un miroir), où commence la raison.",
+     "Degrés : vigilance, conscience du monde, conscience de soi. Au-dessous, les automatismes (nouer ses lacets, taper un message sans regarder le clavier), ni vraiment conscients ni tout à fait inconscients : une pénombre."
+    ]
+   },
+   {
+    "t": "Le miroir et le « je »",
+    "p": [
+     "Test du miroir (Gordon Gallup, 1970) : le chimpanzé endormi marqué d'une tache rouge touche, au réveil, la tache sur son propre visage ; l'enfant se reconnaît vers dix-huit mois, deux ans.",
+     "Étape plus décisive selon Kant : l'enfant qui disait « Charles veut manger » dit « je veux », et ne revient jamais en arrière. Se sentir n'est pas se penser comme un sujet unique, le même d'hier à demain ; le langage scelle ce passage, et ce pouvoir de dire « je » fait de l'homme une personne, qui a une dignité."
+    ],
+    "cit": [
+     {
+      "t": "Avant de dire Je, l'enfant avait simplement le sentiment de lui-même ; désormais, il en a la pensée.",
+      "a": "Kant, *Anthropologie du point de vue pragmatique*, § 1 (1798), trad. A. Renaut"
+     }
+    ]
+   },
+   {
+    "t": "Et les animaux ? (pour aller plus loin)",
+    "p": [
+     "Descartes : l'animal est une machine sans pensée, car aucun animal ne répond à propos, alors que le sourd-muet invente des signes ; qu'il fasse certaines choses mieux que l'homme ne prouve rien : une horloge compte les heures sans savoir l'heure.",
+     "Darwin (*La Descendance de l'homme*, 1871) : une différence de degré, non de nature. La déclaration de Cambridge (7 juillet 2012) reconnaît aux mammifères, aux oiseaux et à la pieuvre les structures nerveuses de la conscience. Thomas Nagel (1974) : tout savoir du cerveau d'une chauve-souris n'apprend pas l'effet que cela fait d'en être une."
+    ],
+    "cit": [
+     {
+      "t": "Et ceci ne témoigne pas seulement que les bêtes ont moins de raison que les hommes, mais qu'elles n'en ont point du tout.",
+      "a": "Descartes, *Discours de la méthode*, Ve partie (1637)"
+     }
+    ]
+   },
+   {
+    "t": "Les grandes questions",
+    "p": [
+     "Paradoxe : rien n'est plus proche que la conscience, rien n'est plus difficile à montrer (un cerveau ouvert montre des neurones, pas des pensées). Enjeu : sans elle, ni vérité pour soi, ni liberté, ni responsabilité ; on ne juge pas un somnambule comme un homme éveillé."
+    ]
+   }
+  ],
+  "reperes": [
+   "médiat / immédiat",
+   "conscience psychologique / conscience morale",
+   "se sentir / se penser",
+   "différence de nature / différence de degré"
+  ],
+  "retenir": [
+   "Conscience : « savoir avec » ; deux sens, psychologique (savoir ce que l'on vit) et moral (juger ce que l'on fait).",
+   "Spontanée, la conscience vit ; réfléchie, elle se regarde vivre (médiat / immédiat).",
+   "Le miroir vers dix-huit mois, puis le « je » : avant, l'enfant se sentait ; désormais, il se pense (Kant).",
+   "Animaux : différence de nature (Descartes) ou de degré (Darwin, Cambridge 2012)."
+  ]
+ },
+ "conscience-2": {
+  "intro": "De quoi peut-on être absolument certain ? Tchouang-tseu, ayant rêvé qu'il était un papillon, se demanda au réveil s'il n'était pas un papillon rêvant d'être Tchouang-tseu. Descartes doute de tout pour trouver une seule certitude : la conscience.",
+  "parties": [
+   {
+    "t": "Douter de tout",
+    "p": [
+     "Pour rebâtir le savoir sur des fondations solides (*Discours de la méthode*, 1637 ; *Méditations métaphysiques*, 1641), Descartes rejette comme absolument faux tout ce qui laisse place au moindre doute.",
+     "Les sens trompent parfois (le crayon dans l'eau paraît brisé), et il est imprudent de se fier à qui a trompé une seule fois ; aucun signe sûr ne distingue la veille du rêve ; un malin génie, aussi rusé que puissant, pourrait tromper jusque dans les calculs les plus simples.",
+     "Ce doute n'est pas sceptique : volontaire, radical, provisoire, il vide le panier de pommes pour en ôter les pourries. Il ne s'agit plus de croire, mais de savoir."
+    ]
+   },
+   {
+    "t": "« Je pense, donc je suis »",
+    "p": [
+     "Douter, c'est penser, et pour être trompé il faut être : c'est le point fixe que demandait Archimède. Le cogito n'est pas un raisonnement mais une intuition, au présent et à la première personne. La première vérité est la conscience de soi, non le monde, Dieu ou les mathématiques : Descartes fonde la philosophie du sujet."
+    ],
+    "cit": [
+     {
+      "t": "Cette vérité, je pense, donc je suis, était si ferme et si assurée, que toutes les plus extravagantes suppositions des sceptiques n'étaient pas capables de l'ébranler.",
+      "a": "Descartes, *Discours de la méthode*, IVe partie (1637)"
+     }
+    ]
+   },
+   {
+    "t": "Une chose qui pense",
+    "p": [
+     "Le sujet est une chose qui pense : douter, vouloir, imaginer, sentir, tout ce dont on a conscience est pensée.",
+     "Près du feu, le morceau de cire perd odeur, couleur, dureté et son : c'est pourtant la même cire, saisie non par les sens mais par une « inspection de l'esprit ». L'esprit est connu le premier et le plus sûrement, le corps (chose étendue) par lui : c'est le dualisme, et la conscience paraît transparente."
+    ],
+    "cit": [
+     {
+      "t": "Je vois clairement qu'il n'y a rien qui me soit plus facile à connaître que mon esprit.",
+      "a": "Descartes, *Méditations métaphysiques*, II (1641 ; trad. 1647)"
+     }
+    ]
+   },
+   {
+    "t": "Locke : la mémoire et la personne",
+    "p": [
+     "Rembrandt à vingt-deux et à soixante-trois ans : pas un trait identique. Pour Locke (*Essai sur l'entendement humain*, 1690), ni le corps ni une âme cachée ne font la personne, mais la conscience, qui s'étend dans le passé par la mémoire : le prince passé, avec ses souvenirs, dans le corps d'un savetier reste le prince.",
+     "Enjeu de justice : on ne répond que des actes dont on peut avoir conscience. Objection de Thomas Reid : le général se souvient de l'officier, l'officier de l'enfant fouetté pour des pommes, mais le général a oublié l'enfant ; selon Locke, il ne serait pas l'enfant, ce qui est absurde."
+    ]
+   },
+   {
+    "t": "Hume : un faisceau de perceptions",
+    "p": [
+     "Hume (*Traité de la nature humaine*, 1739) ne trouve en lui aucun moi, toujours une perception particulière. Le moi est un faisceau de perceptions en flux perpétuel, un théâtre sans théâtre ; son identité est une fiction de l'imagination, née de l'habitude, comme pour le navire dont on a changé presque toutes les pièces."
+    ],
+    "cit": [
+     {
+      "t": "Pour moi, quand je pénètre le plus intimement dans ce que j'appelle moi-même, je tombe toujours sur une perception particulière ou sur une autre […]",
+      "a": "Hume, *Traité de la nature humaine*, I, IV, 6 (1739), trad. courante"
+     }
+    ]
+   }
+  ],
+  "reperes": [
+   "croire / savoir",
+   "intuitif / discursif",
+   "essentiel / accidentel",
+   "l'esprit / le corps (dualisme)"
+  ],
+  "retenir": [
+   "Doute méthodique : volontaire, radical, provisoire (les sens, le rêve, le malin génie).",
+   "Cogito : « je pense, donc je suis », première vérité, celle de la conscience.",
+   "Une chose qui pense ; la cire : l'esprit est plus facile à connaître que le corps.",
+   "Locke : la mémoire fait la personne ; objection de Reid.",
+   "Hume : le moi, un faisceau de perceptions."
+  ]
+ },
+ "conscience-3": {
+  "intro": "La conscience dit-elle tout de ce qui se passe en soi ? Quand une pluie d'une heure s'arrête, on remarque le silence : on entendait donc un peu ce bruit qu'on n'écoutait plus. Contre la conscience transparente de Descartes, Leibniz, Freud et Nietzsche troublent l'eau claire ; Alain leur répond.",
+  "parties": [
+   {
+    "t": "Leibniz : les petites perceptions",
+    "p": [
+     "Dans les *Nouveaux Essais sur l'entendement humain* (vers 1704), écrits en français en réponse à l'*Essai* de Locke, Leibniz soutient, contre Locke et Descartes, qu'il y a de la pensée sans conscience.",
+     "Le bruit de la mer est fait du bruit de chaque vague, inaudible seul, car « cent mille riens ne sauraient faire quelque chose » ; près d'un moulin, on n'entend plus le bruit, qui frappe pourtant les oreilles.",
+     "Perception : tout ce qui affecte l'esprit ; aperception : la perception dont on a conscience. Les petites perceptions font goûts et humeurs ; la conscience naît d'elles par degrés, car la nature ne fait jamais de sauts : une continuité, sans rien de menaçant."
+    ],
+    "cit": [
+     {
+      "t": "Pour entendre ce bruit comme l'on fait, il faut bien qu'on entende les parties qui composent ce tout, c'est-à-dire les bruits de chaque vague…",
+      "a": "Leibniz, *Nouveaux Essais sur l'entendement humain*, préface (1704)"
+     }
+    ]
+   },
+   {
+    "t": "Freud : l'hypothèse de l'inconscient",
+    "p": [
+     "Pour Freud, l'inconscient n'est pas faible mais refoulé, tenu à l'écart parce qu'il dérange. Cherchant le nom du peintre des fresques d'Orvieto, il ne trouve que Botticelli, Boltraffio, jamais Signorelli : l'oubli touchait des pensées qu'il voulait écarter, la mort et la sexualité.",
+     "Argument : les données de la conscience sont lacunaires (nom oublié, lapsus, rêve absurde). Supposer des pensées inconscientes est nécessaire pour donner un sens à ces trous, et légitime : on prête de même aux autres une conscience qu'on ne voit jamais.",
+     "Objection de Karl Popper : une théorie qu'aucun fait ne peut démentir, puisque même le refus de l'interprétation devient résistance, est-elle une science ?"
+    ],
+    "cit": [
+     {
+      "t": "L'hypothèse de l'inconscient est nécessaire et légitime.",
+      "a": "Freud, *Métapsychologie*, « L'inconscient » (1915), trad. courante"
+     }
+    ]
+   },
+   {
+    "t": "Les deux topiques",
+    "p": [
+     "Première topique : inconscient, préconscient, conscient ; une censure, gardien de l'antichambre des désirs, repousse ceux qui déplaisent. La nuit, il somnole : les désirs passent déguisés, c'est le rêve, voie royale vers l'inconscient.",
+     "Seconde topique (1923) : le ça, réservoir des pulsions, sans temps, sans contradiction ni morale ; le surmoi, interdits des parents et de la société devenus voix intérieure (voir l'épisode 5) ; entre eux et la réalité, le moi, cavalier d'un cheval plus fort que lui. Le moi n'est pas maître dans sa propre maison."
+    ]
+   },
+   {
+    "t": "Nietzsche : une conscience de surface",
+    "p": [
+     "Pour Nietzsche (*Le Gai Savoir*), la conscience n'est pas le noyau de l'homme : la vie a longtemps fonctionné sans elle ; c'est l'instinct qui conserve, la conscience arrive tard et se trompe souvent.",
+     "Elle s'est développée pour communiquer : l'homme, animal fragile, a dû dire aux autres ce qu'il sentait et voulait. Devenir conscient, c'est traduire son vécu en signes communs ; ce qui devient conscient devient superficiel, le point de vue du troupeau. La conscience est un masque tourné vers les autres : « nous sommes inconnus à nous-mêmes »."
+    ],
+    "cit": [
+     {
+      "t": "… la conscience s'est seulement développée sous la pression du besoin de communication.",
+      "a": "Nietzsche, *Le Gai Savoir*, § 354 (1887), trad. Henri Albert"
+     }
+    ]
+   },
+   {
+    "t": "Alain contre l'inconscient (pour aller plus loin)",
+    "p": [
+     "Alain (Émile Chartier) admet que l'homme est obscur à lui-même, mais refuse l'inconscient conçu comme un autre moi caché, qui penserait à sa place : ce serait une excuse commode. Penser, c'est dire non, juger, se reprendre ; la conscience est un effort, au fond moral.",
+     "Freud lui-même fixe ce but : « là où était le ça, le moi doit advenir ». La conscience n'est pas un donné transparent, c'est une tâche. Sur « Peut-on se connaître soi-même ? », Leibniz, Freud et Nietzsche forment la partie qui doute, Alain ouvre la dernière."
+    ]
+   }
+  ],
+  "reperes": [
+   "perception / aperception",
+   "conscience / inconscient"
+  ],
+  "retenir": [
+   "Leibniz : petites perceptions sans aperception (le bruit de la mer).",
+   "Freud : l'inconscient, hypothèse nécessaire et légitime ; ça, moi, surmoi.",
+   "Nietzsche : une conscience tardive, faite pour communiquer, superficielle.",
+   "Alain : la conscience est un effort ; Freud : là où était le ça, le moi doit advenir."
+  ]
+ },
+ "conscience-4": {
+  "intro": "La conscience est-elle une chambre fermée ou une fenêtre ? Nul ne parvient à être conscient de rien pendant trois secondes : un bruit, un souffle, ou la pensée de ne penser à rien. Cet échec révèle une conscience tournée vers le monde et vers les autres.",
+  "parties": [
+   {
+    "t": "Husserl : conscience de quelque chose",
+    "p": [
+     "Husserl veut revenir aux choses mêmes et décrire ce qui apparaît (*Méditations cartésiennes*, 1929). L'intentionnalité (intendere, tendre vers) : la conscience n'est pas une boîte d'images, mais une flèche tournée vers autre chose qu'elle. Un même arbre est perçu, remémoré, imaginé, désiré ou craint : visé chaque fois autrement (la noèse, l'acte ; le noème, l'objet visé).",
+     "Le cogito ne va jamais sans son cogitatum : plus de conscience enfermée face à un monde à prouver ; elle est d'emblée ouverture au monde."
+    ],
+    "cit": [
+     {
+      "t": "Le mot intentionnalité ne signifie rien d'autre que cette particularité foncière et générale qu'a la conscience d'être conscience de quelque chose.",
+      "a": "Husserl, *Méditations cartésiennes*, § 14 (1929), trad. Peiffer et Levinas"
+     }
+    ]
+   },
+   {
+    "t": "Sartre : une conscience sans dedans",
+    "p": [
+     "Contre la « philosophie digestive », qui fait de la conscience un estomac, Sartre, lecteur de Husserl à Berlin (1933), décrit une conscience qui s'éclate vers le monde ; même les sentiments sont dehors (une personne aimable, c'est une manière dont elle apparaît). N'étant pas une chose, la conscience ne coïncide jamais avec elle-même : d'où la mauvaise foi, « je suis timide, c'est comme ça », vouloir être une chose pour ne plus choisir."
+    ],
+    "cit": [
+     {
+      "t": "La conscience n'a pas de « dedans ».",
+      "a": "Sartre, « Une idée fondamentale de la phénoménologie de Husserl : l'intentionnalité » (1939)"
+     }
+    ]
+   },
+   {
+    "t": "Le regard d'autrui",
+    "p": [
+     "*L'Être et le Néant* (1943) : l'œil à la serrure, on est tout entier dans la scène ; un pas, un regard, et le rouge monte : on existe pour soi tel qu'autrui voit, un voyeur. La honte est honte de soi devant autrui : il fige, mais révèle une part de soi. *Huis clos* (1944) : « l'enfer, c'est les autres » vaut pour des relations faussées, quand on dépend du jugement d'autrui pour se connaître."
+    ],
+    "cit": [
+     {
+      "t": "Autrui est le médiateur indispensable entre moi et moi-même. J'ai honte de moi tel que j'apparais à autrui.",
+      "a": "Sartre, *L'Être et le Néant*, IIIᵉ partie, chap. I (1943)"
+     }
+    ]
+   },
+   {
+    "t": "Hegel : se reconnaître dans ses œuvres",
+    "p": [
+     "Hegel (leçons d'esthétique, Berlin, années 1820) : l'enfant qui jette des pierres dans l'eau voit dans les cercles son propre pouvoir. L'homme se connaît par la pensée (conscience de soi théorique) et par l'action qui marque le monde (pratique) : mains peintes des grottes, chambre décorée, art. *Phénoménologie de l'esprit* (1807) : il veut être reconnu ; l'esclave qui travaille se reconnaît dans ses œuvres, le maître qui consomme reste dépendant."
+    ],
+    "cit": [
+     {
+      "t": "Les choses de la nature n'existent qu'immédiatement et d'une seule façon, tandis que l'homme, parce qu'il est esprit, a une double existence.",
+      "a": "Hegel, *Esthétique*, Introduction (1818-1829), trad. S. Jankélévitch"
+     }
+    ]
+   },
+   {
+    "t": "Bergson : conscience signifie mémoire",
+    "p": [
+     "Bergson (« La conscience et la vie », 1911) : une conscience qui oublierait tout à chaque instant ne serait plus une conscience ; elle retient le passé et anticipe l'avenir, comme on attend la fin d'une phrase dont on retient le début. Le geste appris (vélo, piano) devient automatique et la conscience s'en retire : conscience est synonyme de choix, endormie chez la plante, éveillée chez l'animal, vive dans l'hésitation. Elle a partie liée avec la liberté."
+    ],
+    "cit": [
+     {
+      "t": "Conscience signifie d'abord mémoire.",
+      "a": "Bergson, « La conscience et la vie » (1911), *L'Énergie spirituelle*"
+     }
+    ]
+   }
+  ],
+  "reperes": [
+   "noèse / noème",
+   "en théorie / en pratique (conscience de soi théorique et pratique)",
+   "mémoire / anticipation"
+  ],
+  "retenir": [
+   "Husserl : toute conscience est conscience de quelque chose (l'intentionnalité).",
+   "Sartre : la conscience n'a pas de dedans ; sous le regard d'autrui, la honte.",
+   "Hegel : se reconnaître dans ses œuvres, vouloir être reconnu.",
+   "Bergson : conscience signifie mémoire, anticipation, choix."
+  ]
+ },
+ "conscience-5": {
+  "intro": "Quelle est cette voix qui juge sans qu'on lui demande rien ? Dans *Crime et Châtiment* (1866), Raskolnikov tue une usurière ; personne ne le soupçonne, mais il ne se supporte plus. Le vrai châtiment est ce tribunal invisible : la conscience morale.",
+  "parties": [
+   {
+    "t": "Le démon de Socrate",
+    "p": [
+     "En 399 avant notre ère, Socrate, accusé de corrompre la jeunesse et d'introduire des divinités nouvelles, évoque son daimôn, voix intérieure qui ne pousse jamais à agir mais détourne : la première figure de la conscience morale. Il fait sien le « connais-toi toi-même » de Delphes : pour se juger, il faut se voir, et se voir, c'est déjà se demander si l'on agit bien."
+    ],
+    "cit": [
+     {
+      "t": "Une vie sans examen n'est pas une vie.",
+      "a": "Platon, *Apologie de Socrate*, 38a, trad. V. Cousin"
+     }
+    ]
+   },
+   {
+    "t": "Rousseau : un instinct divin ?",
+    "p": [
+     "Rousseau (*Émile*, 1762) : un « instinct divin », car on sent avant de penser (devant une humiliation, quelque chose se serre). La raison trouve des raisons à tout, même au pire ; la conscience ne trompe jamais, elle est à l'âme ce que l'instinct est au corps.",
+     "Objection : les morales varient (Pascal) ; la conscience serait la voix de l'éducation, ou le surmoi (Freud). Réponse : partout on admire la bonne foi et on méprise la trahison ; les règles changent, le sentiment du juste demeure."
+    ],
+    "cit": [
+     {
+      "t": "Il est donc au fond des âmes un principe inné de justice et de vertu, sur lequel, malgré nos propres maximes, nous jugeons nos actions et celles d'autrui comme bonnes ou mauvaises ; et c'est à ce principe que je donne le nom de conscience.",
+      "a": "Rousseau, *Émile*, IV, « Profession de foi du vicaire savoyard » (1762)"
+     },
+     {
+      "t": "Plaisante justice qu'une rivière borne ! Vérité au deçà des Pyrénées, erreur au delà.",
+      "a": "Pascal, *Pensées*, fr. 294 (éd. Brunschvicg)"
+     }
+    ]
+   },
+   {
+    "t": "Kant : le tribunal intérieur",
+    "p": [
+     "Kant (*Doctrine de la vertu*, 1797) : un procès, avec une loi (le devoir), un accusé, des pensées qui accusent ou excusent, un juge. Pour que le procès ne soit pas truqué, la conscience se représente un juge idéal qui sonde les cœurs : l'idée de Dieu entre en morale. Ce juge suit l'homme comme son ombre ; on peut ne plus s'en soucier, non le faire taire. Le regret porte sur ce qui arrive, le remords sur ce qu'on a fait."
+    ],
+    "cit": [
+     {
+      "t": "Ce tribunal intérieur que l'homme sent en lui (« devant lequel ses pensées s'accusent ou se justifient mutuellement ») est la conscience.",
+      "a": "Kant, *Doctrine de la vertu*, I, livre I, § 13 (1797), trad. J. Barni"
+     }
+    ]
+   },
+   {
+    "t": "Arendt : penser, c'est se parler",
+    "p": [
+     "Au procès d'Eichmann (1961), Arendt voit la banalité du mal : un organisateur efficace, qui connaissait les lois, mais ne pensait pas. Penser, c'est dialoguer avec soi-même (Platon, *Théétète*) ; celui qui pense refuse de devenir un assassin, avec qui il devrait vivre ; qui ne pense pas peut tout faire et tout oublier. Sous les dictatures, ont refusé le crime ceux qui se demandaient s'ils pourraient vivre en paix avec eux-mêmes."
+    ]
+   },
+   {
+    "t": "Pascal : un roseau pensant",
+    "p": [
+     "Une vapeur, une goutte d'eau suffit à tuer l'homme ; il est pourtant plus noble que l'univers qui l'écrase, car il sait qu'il meurt. Toute sa dignité consiste en la pensée : « Travaillons donc à bien penser : voilà le principe de la morale. » La conscience morale est la conscience appliquée à bien penser ce qu'on fait ; un arbre ne se connaît pas misérable (voir l'épisode 6)."
+    ],
+    "cit": [
+     {
+      "t": "L'homme n'est qu'un roseau, le plus faible de la nature ; mais c'est un roseau pensant.",
+      "a": "Pascal, *Pensées*, fr. 347 (éd. Brunschvicg ; 1670)"
+     }
+    ]
+   }
+  ],
+  "reperes": [
+   "conscience psychologique / conscience morale",
+   "regret / remords"
+  ],
+  "retenir": [
+   "Socrate : une voix qui retient, une vie qui s'examine.",
+   "Rousseau : un instinct divin ; objection : les morales varient (Pascal, Freud).",
+   "Kant : un tribunal intérieur, qui suit comme une ombre.",
+   "Arendt : penser, c'est dialoguer avec soi-même.",
+   "Pascal : toute notre dignité consiste en la pensée."
+  ]
+ },
+ "conscience-6": {
+  "intro": "Trois sujets et une explication de texte. Bonne accroche : un fait précis, comme la surprise d'entendre sa voix enregistrée, étrangère à soi alors que les autres la reconnaissent (méthode générale : série La liberté, épisode 6).",
+  "parties": [
+   {
+    "t": "Sujet 1 · « Suis-je ce que j'ai conscience d'être ? »",
+    "p": [
+     "Problématique : nul n'est mieux placé que soi pour savoir ce que l'on pense, mais ce miroir peut déformer, comme le miroir convexe d'un autoportrait. La conscience révèle-t-elle ce que l'on est, ou ce que l'on croit être ?",
+     "I. Oui, en un sens : Descartes (une chose qui pense), Locke (la mémoire fait la personne). II. La conscience ne voit pas tout : Leibniz, Freud ; la honte chez Sartre, comme la voix enregistrée, montre qu'autrui révèle ce qu'on ne voit pas de soi. III. On est ce que l'on fait : Sartre (la conscience se projette), Hegel (les œuvres). Exemple : « je suis nul en maths », dit comme « j'ai les yeux bleus », prend une image pour une nature.",
+     "Distinction qui dépasse : être, comme une chose qui est ce qu'elle est ; exister, comme une conscience qui se fait et devient."
+    ]
+   },
+   {
+    "t": "Sujet 2 · « Peut-on se connaître soi-même ? »",
+    "p": [
+     "Difficulté : l'observateur et l'observé ne font qu'un, comme l'œil qui voit tout sauf lui-même.",
+     "I. Oui, mieux que quiconque : Descartes, Socrate (« connais-toi toi-même »). II. Pas directement : Hume ne trouve que des perceptions, Freud l'inconscient ; l'amour-propre fait se juger en avocat. III. Par détours : autrui (Sartre, Hegel), les œuvres, les actes. Exemple : près de quatre-vingts autoportraits de Rembrandt en quarante ans ; un seul aurait suffi s'il se connaissait d'un regard.",
+     "Distinction : connaître, comme un objet, une fois pour toutes ; se comprendre, par une interprétation sans fin (repère : objectif / subjectif)."
+    ]
+   },
+   {
+    "t": "Sujet 3 · « La conscience fait-elle la dignité de l'homme ? »",
+    "p": [
+     "Les mots : « faire » (produire ou fonder), « la dignité » (ce qui n'a pas de prix, selon Kant), « de l'homme » (de tout homme). Piège : le nouveau-né ou le malade dans le coma auraient-ils moins de dignité ?",
+     "I. La conscience élève : Pascal (le roseau pensant), Kant (dire « je »). II. Elle est aussi source de misère (humilier, mentir, se mentir, se savoir mortel), et mesurer la dignité au degré de conscience menacerait les plus fragiles. III. La dignité appartient à la personne, non à ses performances : la conscience est le signe d'êtres responsables, statut reconnu à tous.",
+     "Distinction : avoir conscience, en fait, plus ou moins ; être une personne, en droit, toujours (repère : en fait / en droit)."
+    ],
+    "cit": [
+     {
+      "t": "Tous les êtres humains naissent libres et égaux en dignité et en droits. Ils sont doués de raison et de conscience […]",
+      "a": "Déclaration universelle des droits de l'homme, article 1 (10 décembre 1948)"
+     }
+    ]
+   },
+   {
+    "t": "L'explication de texte · Pascal, le roseau pensant",
+    "p": [
+     "Introduction en six éléments, avec les lignes. Thème : la place de l'homme dans l'univers. Question : qu'est-ce qui fait la dignité d'un être si faible ? Thèse adverse : la grandeur se mesure à la force, à la taille, aux biens. Thèse : l'homme est plus noble que l'univers qui l'écrase, car il sait qu'il meurt ; sa dignité consiste en la pensée. Enjeu : fonder la morale. Plan : l'image du roseau ; la démonstration par l'écrasement ; la conséquence morale, confirmée par le fragment 348.",
+     "Phrase charnière, « quand l'univers l'écraserait, l'homme serait encore plus noble que ce qui le tue » : quoi ? même vaincu, l'homme l'emporte ; comment ? hypothèse extrême, comparatif, cause (« parce qu'il sait ») ; pourquoi ? déplacer la grandeur de la force vers la conscience. Reformuler, définir (la pensée, ici la conscience de soi et du monde), illustrer (l'astronome qui mesure l'univers qui l'ignore).",
+     "Le double sens de « comprendre », cœur du texte : l'univers comprend l'homme (le contient), l'homme comprend l'univers (le saisit). Objection : savoir qu'on meurt rend peut-être plus malheureux ; réponse en avocat de l'auteur : la pensée rend digne, non heureux.",
+     "Conclusion : bilan, réponse, intérêt (une morale du bien penser), ouverture possible vers Kant. Pièges : raconter la vie ou la foi de Pascal, paraphraser le roseau, croire qu'il méprise l'homme ou le croit tout-puissant : un roseau, mais qui pense."
+    ],
+    "cit": [
+     {
+      "t": "par l'espace, l'univers me comprend et m'engloutit comme un point ; par la pensée, je le comprends.",
+      "a": "Pascal, *Pensées*, fr. 348"
+     }
+    ]
+   }
+  ],
+  "reperes": [
+   "être / exister",
+   "se connaître / se comprendre",
+   "objectif / subjectif",
+   "en fait / en droit"
+  ],
+  "retenir": [
+   "Chaque sujet se joue sur quelques mots : « suis-je », « soi-même », « faire la dignité ».",
+   "Trois distinctions : être et exister ; se connaître et se comprendre ; avoir conscience (en fait) et être une personne (en droit).",
+   "Explication : six éléments d'introduction ; quoi, comment, pourquoi ; discuter en avocat de l'auteur."
+  ]
+ },
+ "conscience-7": {
+  "intro": "Que faut-il retenir de la conscience ? Point de départ : sous anesthésie, le corps vivait, mais il n'y avait personne pour le vivre. Une vingtaine d'auteurs ont cherché ce qui s'était éteint puis rallumé.",
+  "parties": [
+   {
+    "t": "Qu'est-ce que la conscience ? (épisode 1)",
+    "p": [
+     "Conscientia, cum scientia : « savoir avec », le savoir qui accompagne tout ce que l'on vit ; le même mot désigne la voix qui juge (le Caïn de Victor Hugo).",
+     "Spontanée, tournée vers le monde (le joueur dans son geste) ; réfléchie, revenue sur elle-même (le joueur qui revoit l'action). Vers dix-huit mois, l'enfant se reconnaît dans le miroir ; plus tard, il dit « je » : il ne se sent plus seulement, il se pense (Kant).",
+     "Animaux : différence de nature (Descartes) ou de degré (Darwin) ; Nagel : l'effet que cela fait d'être une chauve-souris reste inaccessible."
+    ]
+   },
+   {
+    "t": "La certitude du moi (épisode 2)",
+    "p": [
+     "Descartes doute des sens, du rêve, et imagine le malin génie ; mais pour être trompé, il faut être : le cogito est la première vérité. Le sujet est une chose qui pense, et le morceau de cire montre que l'esprit est plus facile à connaître que le corps.",
+     "Locke : la personne s'étend aussi loin que la mémoire (le prince et le savetier) ; Reid objecte le vieux général qui a oublié l'enfant fouetté. Hume ne trouve jamais un moi, seulement des perceptions : le moi est un faisceau."
+    ],
+    "cit": [
+     {
+      "t": "Cette vérité, je pense, donc je suis, était si ferme et si assurée, que toutes les plus extravagantes suppositions des sceptiques n'étaient pas capables de l'ébranler.",
+      "a": "Descartes, *Discours de la méthode*, IVe partie (1637)"
+     }
+    ]
+   },
+   {
+    "t": "Une conscience opaque (épisode 3)",
+    "p": [
+     "Leibniz : le bruit de la mer suppose les petites perceptions, sans aperception. Freud : un nom oublié (Signorelli), un lapsus, un rêve rendent l'inconscient nécessaire et légitime ; ça, moi, surmoi ; le rêve, déguisé pour tromper le gardien, voie royale vers l'inconscient.",
+     "Nietzsche : la conscience, tardive, faite pour communiquer, ne saisit que la surface commune. Alain : l'inconscient ne doit pas devenir une excuse ; Freud : là où était le ça, le moi doit advenir. La conscience est une tâche."
+    ]
+   },
+   {
+    "t": "Ouverte au monde et aux autres (épisode 4)",
+    "p": [
+     "Husserl : un même arbre perçu, imaginé, regretté, désiré ; chaque fois, la conscience le vise. Une flèche, non une boîte.",
+     "Sartre : pas de dedans ; l'œil à la serrure découvre la honte sous le regard d'autrui. Hegel : l'enfant aux ricochets, l'homme qui se reconnaît dans ses œuvres et veut être reconnu. Bergson : mémoire, anticipation, choix ; l'automatisme chasse la conscience."
+    ],
+    "cit": [
+     {
+      "t": "Le mot intentionnalité ne signifie rien d'autre que cette particularité foncière et générale qu'a la conscience d'être conscience de quelque chose.",
+      "a": "Husserl, *Méditations cartésiennes*, § 14 (1929), trad. Peiffer et Levinas"
+     }
+    ]
+   },
+   {
+    "t": "La conscience morale (épisode 5)",
+    "p": [
+     "Raskolnikov, que personne n'accuse, sauf lui-même. Socrate : le daimôn qui retient, une vie qui s'examine. Rousseau : un instinct divin, mais les morales varient et Freud y soupçonne le surmoi. Kant : un tribunal intérieur, qui suit comme une ombre. Arendt : penser, c'est dialoguer avec soi ; Eichmann ne pensait pas.",
+     "Pascal donne la clé : l'homme sait qu'il meurt, l'univers n'en sait rien ; toute notre dignité consiste en la pensée, et bien penser est le principe de la morale."
+    ],
+    "cit": [
+     {
+      "t": "L'homme n'est qu'un roseau, le plus faible de la nature ; mais c'est un roseau pensant.",
+      "a": "Pascal, *Pensées*, fr. 347 (éd. Brunschvicg ; 1670)"
+     }
+    ]
+   },
+   {
+    "t": "Le jour J (épisode 6)",
+    "p": [
+     "Définir chaque mot du sujet ; problématiser par une tension, non une reformulation ; trois parties, la dernière déplaçant la question grâce à une distinction. Explication : six éléments d'introduction, puis quoi, comment, pourquoi.",
+     "Distinctions : être et exister ; se connaître et se comprendre ; avoir conscience, en fait, et être une personne, en droit. Sujets : « Suis-je ce que j'ai conscience d'être ? », « Peut-on se connaître soi-même ? », « La conscience fait-elle la dignité de l'homme ? », et le roseau pensant.",
+     "Exemples : l'anesthésie, le miroir, le malin génie, le prince et le savetier, la mer, la serrure, Raskolnikov. Piège : réciter Descartes contre Freud sans répondre ; un auteur est un outil pour penser, pas un argument d'autorité."
+    ]
+   }
+  ],
+  "reperes": [
+   "psychologique / morale",
+   "immédiat / médiat",
+   "nature / degré",
+   "perception / aperception",
+   "être / exister",
+   "se connaître / se comprendre",
+   "en fait / en droit"
+  ],
+  "retenir": [
+   "Descartes : « je pense, donc je suis ».",
+   "Husserl : toute conscience est conscience de quelque chose.",
+   "Pascal : toute notre dignité consiste en la pensée.",
+   "Définir, problématiser, distinguer : une idée, un auteur, un exemple précis."
+  ]
+ }
+}

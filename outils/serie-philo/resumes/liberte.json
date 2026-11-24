@@ -1,0 +1,518 @@
+{
+ "liberte-1": {
+  "intro": "Qu'est-ce qu'être libre ? Chacun se dit libre, mais qui a décidé d'ouvrir son téléphone ce matin, sans y penser ? Avant de savoir si l'on est libre, il faut savoir de quoi l'on parle.",
+  "parties": [
+   {
+    "t": "Le mot : s'appartenir",
+    "p": [
+     "À Athènes, le citoyen vote et décide des lois ; l'esclave, qui porte la même tunique, appartient à un autre. Le premier s'appartient. Éleuthéros en grec et liber en latin viendraient d'une racine qui désignait le peuple : être libre, c'est faire partie des siens, non être l'étranger capturé.",
+     "Pour Aristote, être libre, c'est ne pas être un instrument, mais poursuivre ses propres fins. Il jugeait pourtant l'esclavage naturel : l'histoire de la liberté est celle de son extension, jusqu'à Kant, qui exige de traiter toute personne comme une fin, jamais simplement comme un moyen."
+    ],
+    "cit": [
+     {
+      "t": "Nous appelons homme libre celui qui est à lui-même sa fin et n'existe pas pour un autre.",
+      "a": "Aristote, *Métaphysique*, livre A, 2"
+     }
+    ]
+   },
+   {
+    "t": "Faire ce que l'on veut ?",
+    "p": [
+     "Pour Hobbes (*Léviathan*, 1651), la liberté est l'absence d'obstacles extérieurs : l'eau retenue dans un vase n'est pas libre ; ne pas savoir voler est un manque de pouvoir, non de liberté. Cette liberté négative est claire, mais toujours relative, et ne demande jamais d'où vient ce que l'on veut.",
+     "Dans le *Gorgias* de Platon, Calliclès fait de la liberté la satisfaction de tous ses désirs. Socrate répond par les tonneaux percés : qui suit tous ses désirs passe sa vie à remplir un tonneau qui fuit, car un désir satisfait en appelle un autre (aujourd'hui, la vidéo suivante qui se lance toute seule).",
+     "Rousseau en tire la leçon : faire ce que l'on veut n'est pas forcément vouloir librement."
+    ],
+    "cit": [
+     {
+      "t": "L'impulsion du seul appétit est esclavage, et l'obéissance à la loi qu'on s'est prescrite est liberté.",
+      "a": "Rousseau, *Du contrat social*, I, 8 (1762)"
+     }
+    ]
+   },
+   {
+    "t": "Les trois libertés",
+    "p": [
+     "La liberté d'agir : faire ce que l'on a décidé, sans obstacle (le prisonnier l'a perdue). Le libre arbitre : aurait-on pu vouloir autre chose ? C'est la question métaphysique. La liberté politique : les libertés que la société garantit (expression, conscience, circulation, réunion).",
+     "Elles ne vont pas forcément ensemble. Épictète, esclave à Rome au Iᵉʳ siècle, prévient calmement son maître qui lui tord la jambe qu'elle va casser ; elle se brise, il remarque qu'il l'avait dit. Sans liberté politique, il reste maître de lui : c'est la liberté intérieure du sage (épisode 4). À l'inverse, on peut avoir tous les droits et rester esclave de ses désirs."
+    ],
+    "cit": [
+     {
+      "t": "La liberté consiste à pouvoir faire tout ce qui ne nuit pas à autrui.",
+      "a": "*Déclaration des droits de l'homme et du citoyen*, article 4 (26 août 1789)"
+     }
+    ]
+   },
+   {
+    "t": "Les repères pour le dire",
+    "p": [
+     "Obligation / contrainte. Le mur contraint, par la force ; le feu rouge oblige : il s'adresse à quelqu'un de libre d'obéir ou non. Le brigand de Rousseau contraint à donner sa bourse sans y obliger : la force ne fait pas le droit. L'obligation suppose la liberté.",
+     "Nécessaire / contingent. La pierre lâchée tombe nécessairement ; est contingent ce qui aurait pu ne pas être. Si tout est nécessaire, le libre arbitre semble une illusion.",
+     "En droit / en fait. En droit, chacun peut partir au bout du monde ; en fait, sans argent, ce droit ne vaut pas grand-chose : d'où, dans la lignée de Marx, libertés formelles et libertés réelles."
+    ],
+    "cit": [
+     {
+      "t": "La majestueuse égalité des lois, qui interdit au riche comme au pauvre de coucher sous les ponts, de mendier dans les rues et de voler du pain.",
+      "a": "Anatole France, *Le Lys rouge*, chap. VII (1894)"
+     }
+    ]
+   },
+   {
+    "t": "Le grand problème",
+    "p": [
+     "Pour Descartes, la liberté se connaît sans preuve, par expérience. Mais chaque événement a une cause (gènes, éducation, milieu, cerveau). Selon Spinoza, une pierre lancée qui pourrait penser se croirait libre : les hommes seraient conscients de leurs désirs, ignorants de leurs causes.",
+     "Le sentiment d'être libre prouve-t-il la liberté, ou n'est-il que l'ignorance des causes ? C'est la question de toute la série."
+    ]
+   }
+  ],
+  "reperes": [
+   "obligation / contrainte",
+   "nécessaire / contingent",
+   "en droit / en fait"
+  ],
+  "retenir": [
+   "Au sens premier, l'homme libre s'appartient : il n'est l'instrument de personne.",
+   "Faire ce que l'on veut ≠ vouloir librement : l'esclave de ses désirs n'est pas libre.",
+   "Trois libertés : d'agir, de vouloir, politique. Toujours se demander de laquelle parle le sujet."
+  ]
+ },
+ "liberte-2": {
+  "intro": "Le choix vient-il vraiment de soi ? Sous l'Occupation, un jeune homme dont le frère a été tué en 1940 demande conseil à Sartre : rejoindre les Forces françaises libres, ou rester auprès de sa mère ? Pour Descartes et Sartre, ce choix est absolument le sien.",
+  "parties": [
+   {
+    "t": "Qu'est-ce que le libre arbitre ?",
+    "p": [
+     "Du latin arbitrium, la décision : le libre arbitre est le pouvoir de se déterminer soi-même, sans y être forcé par aucune cause extérieure. Il suppose plusieurs possibles, un sujet qui tranche, et la possibilité réelle d'avoir voulu autre chose (le « pouvoir des contraires »).",
+     "Il suppose du contingent. L'enjeu est la responsabilité : peut-on punir celui qui ne pouvait pas faire autrement ? Sans libre arbitre, la morale et le droit vacillent."
+    ]
+   },
+   {
+    "t": "Descartes : une volonté infinie",
+    "p": [
+     "Dans les *Méditations métaphysiques* (1641), Descartes met tout en doute pour trouver une certitude. Quatrième méditation : toutes les facultés sont limitées, sauf la volonté. L'entendement est fini, la volonté infinie ; par elle, l'homme ressemble à Dieu. On ne peut pas être un peu libre.",
+     "L'erreur naît de cet écart : on comprend peu, mais on juge de tout. Elle ne vient ni de Dieu ni du monde, mais de l'usage de la liberté ; chacun en est donc responsable. Remède : suspendre son jugement tant qu'on ne voit pas clairement."
+    ],
+    "cit": [
+     {
+      "t": "D'où est-ce donc que naissent mes erreurs ? c'est à savoir de cela seul que la volonté étant beaucoup plus ample et plus étendue que l'entendement, je ne la contiens pas dans les mêmes limites.",
+      "a": "Descartes, *Méditations métaphysiques*, IV (1641 ; trad. 1647)"
+     }
+    ]
+   },
+   {
+    "t": "L'indifférence, plus bas degré de la liberté",
+    "p": [
+     "Choisir sans raison, à pile ou face, est le plus bas degré de la liberté. L'âne de Buridan, à égale distance de l'eau et de l'avoine, meurt faute de choisir : l'indifférence révèle l'ignorance, non la force de la volonté.",
+     "La vraie liberté est éclairée : plus on comprend, plus on est libre. Dans une lettre de 1645 au père Mesland, Descartes ajoute que la volonté peut se détourner même d'une évidence : elle est absolue."
+    ]
+   },
+   {
+    "t": "Sartre : condamné à être libre",
+    "p": [
+     "*L'existentialisme est un humanisme* (conférence de 1945). Pour un coupe-papier, l'essence précède l'existence : l'artisan en a l'idée avant de le fabriquer. Pour l'homme, l'existence précède l'essence : ni Dieu ni nature humaine ne fixent d'avance ce qu'il est ; on n'est pas lâche ou courageux par nature, on le devient par ses actes.",
+     "Ne pas choisir, c'est encore choisir. Pour Descartes, la liberté est une propriété de la volonté, reçue de Dieu ; pour Sartre, elle est ce que l'homme est."
+    ],
+    "cit": [
+     {
+      "t": "L'homme n'est rien d'autre que ce qu'il se fait.",
+      "a": "Sartre, *L'existentialisme est un humanisme* (1946)"
+     },
+     {
+      "t": "L'homme est condamné à être libre. Condamné, parce qu'il ne s'est pas créé lui-même, et par ailleurs cependant libre, parce qu'une fois jeté dans le monde, il est responsable de tout ce qu'il fait.",
+      "a": "Sartre, *L'existentialisme est un humanisme* (1946)"
+     }
+    ]
+   },
+   {
+    "t": "L'angoisse et la mauvaise foi",
+    "p": [
+     "L'angoisse est le vertige devant sa propre liberté : chaque choix dit ce que l'homme doit être. La mauvaise foi consiste à se mentir pour la fuir : le garçon de café, aux gestes trop empressés, se fait chose, comme si sa fonction était sa nature. De même, « c'est mon caractère », ou se dire « nul en maths » comme on a les yeux bleus.",
+     "Au jeune homme, Sartre répond : « Vous êtes libre, choisissez, c'est-à-dire inventez. » Contresens à éviter : on est toujours en situation (un corps, une époque, un passé), mais c'est soi qui lui donne un sens : un rocher n'est un obstacle que pour qui veut l'escalader."
+    ],
+    "cit": [
+     {
+      "t": "Il joue à être garçon de café.",
+      "a": "Sartre, *L'Être et le néant*, I, chap. 2 (1943)"
+     }
+    ]
+   }
+  ],
+  "reperes": [
+   "nécessaire / contingent"
+  ],
+  "retenir": [
+   "Libre arbitre : le pouvoir de se déterminer soi-même ; on aurait pu vouloir autrement.",
+   "Descartes : volonté infinie, entendement fini ; l'erreur vient de ce que l'on juge sans savoir. L'indifférence est le plus bas degré de la liberté.",
+   "Sartre : l'existence précède l'essence ; l'homme n'est rien d'autre que ce qu'il se fait.",
+   "Angoisse : le vertige de sa liberté. Mauvaise foi : se mentir pour la fuir."
+  ]
+ },
+ "liberte-3": {
+  "intro": "Et si le sentiment d'être libre était une illusion ? À la fin du XIXᵉ siècle, un patient reçoit sous hypnose l'ordre d'ouvrir la fenêtre au signal ; réveillé, il obéit sans s'en souvenir et explique : « Il fait chaud, ici. » Il ignore la vraie cause de son geste. Freud assiste à ces séances.",
+  "parties": [
+   {
+    "t": "Spinoza : la pierre qui se croit libre",
+    "p": [
+     "Pour Spinoza, tout fait partie d'une seule réalité, Dieu ou la Nature, où rien n'arrive sans cause ; l'homme n'est pas « un empire dans un empire ». La pierre lancée, si elle pensait, se croirait libre : consciente de son effort, elle ignore la main qui l'a lancée. De même, l'homme ivre croit parler par libre décision.",
+     "Le sentiment de liberté naît de l'ignorance des causes : plus on les ignore, plus on se croit libre. Repère croire / savoir : se sentir libre ne prouve pas qu'on l'est. Laplace imagine une intelligence qui connaîtrait toutes les forces de la nature : c'est le déterminisme, tout ce qui arrive est l'effet nécessaire de ce qui précède."
+    ],
+    "cit": [
+     {
+      "t": "Telle est cette liberté humaine que tous se vantent de posséder et qui consiste en cela seul que les hommes sont conscients de leurs désirs et ignorants des causes qui les déterminent.",
+      "a": "Spinoza, Lettre 58 à Schuller (octobre 1674, trad. Appuhn)"
+     }
+    ]
+   },
+   {
+    "t": "Freud : l'inconscient",
+    "p": [
+     "En 1917, Freud décrit trois blessures d'amour-propre : Copernic (la Terre n'est plus le centre de l'univers), Darwin (l'homme n'est plus à part du règne animal), la psychanalyse (l'homme ne commande pas dans son propre esprit).",
+     "Comme un iceberg, l'esprit a une partie visible, la conscience, et une partie immergée bien plus vaste, l'inconscient. Les désirs inacceptables sont refoulés, mais reviennent déguisés : lapsus, actes manqués, rêves (« voie royale » vers l'inconscient), symptômes. Le président de la Chambre autrichienne déclare la séance « close » au lieu d'« ouverte ». On croit choisir, et l'on se donne de bonnes raisons après coup. Sartre y verra une excuse de mauvaise foi (épisode 2)."
+    ],
+    "cit": [
+     {
+      "t": "Le moi n'est pas maître dans sa propre maison.",
+      "a": "Freud, *Une difficulté de la psychanalyse* (1917 ; trad. 1933)"
+     }
+    ]
+   },
+   {
+    "t": "La société en nous",
+    "p": [
+     "Pour Marx (1859), la condition matérielle détermine la conscience : les idées dominantes d'une époque sont le plus souvent celles de la classe qui domine ; c'est l'idéologie. Durkheim étudie les faits sociaux comme des choses, façons d'agir et de penser qui s'imposent à l'individu ; même le suicide varie régulièrement selon les époques, les pays, les religions.",
+     "Bourdieu nomme habitus les goûts et manières acquis dans la famille et à l'école, devenus une seconde nature ; dans *Les Héritiers* (1964), avec Passeron, il montre que la réussite à l'université dépend fortement du milieu d'origine : le don apparent est souvent un héritage."
+    ]
+   },
+   {
+    "t": "Le cerveau a-t-il décidé avant le sujet ?",
+    "p": [
+     "En 1983, Benjamin Libet demande à des volontaires de plier le poignet quand ils le veulent : une activité cérébrale commence environ une demi-seconde avant le geste, la conscience de vouloir à peine deux dixièmes de seconde avant. Mais le geste est sans enjeu, Libet lui-même relevait qu'on garde le temps d'un veto, et le signal pourrait n'être qu'un bruit de fond. Une expérience décrit des mécanismes ; elle ne tranche pas seule une question philosophique."
+    ]
+   },
+   {
+    "t": "Alors, tout est joué ?",
+    "p": [
+     "Pour Nietzsche, le libre arbitre est moins vrai qu'utile pour juger et punir. Trois réponses. Le déterminisme n'est pas le fatalisme : Œdipe accomplit l'oracle en le fuyant, mais si tout a une cause, une décision en est une. Comprendre ce qui détermine, c'est cesser de le subir : Spinoza, la cure psychanalytique, la sociologie donnent prise sur lui. Enfin, même celui qui nie la liberté continue de délibérer. La liberté n'est pas un point de départ, mais peut-être une conquête (épisode 4)."
+    ],
+    "cit": [
+     {
+      "t": "Les hommes ont été considérés comme « libres », pour pouvoir être jugés et punis.",
+      "a": "Nietzsche, *Crépuscule des idoles*, « Les quatre grandes erreurs », § 7 (1888 ; trad. H. Albert)"
+     }
+    ]
+   }
+  ],
+  "reperes": [
+   "croire / savoir",
+   "déterminisme / fatalisme"
+  ],
+  "retenir": [
+   "Spinoza : se croire libre, c'est être conscient de ses désirs et ignorant de leurs causes.",
+   "Freud : le moi n'est pas maître dans sa propre maison.",
+   "Marx, Durkheim, Bourdieu : idées et goûts portent la marque de la place occupée dans la société.",
+   "Déterminisme ≠ fatalisme : connaître ses déterminismes, c'est le premier pas vers la libération."
+  ]
+ },
+ "liberte-4": {
+  "intro": "Peut-on être libre en prison ? Abattu au-dessus du Viêt Nam en septembre 1965, le pilote James Stockdale passe sept ans et demi captif à Hoa Lo, à Hanoï ; on lui prend tout, sauf son jugement ; il avait lu à l'université le *Manuel* d'Épictète, un ancien esclave. Troisième voie, après les épisodes 2 et 3 : la liberté n'est ni un don ni une illusion, mais une conquête.",
+  "parties": [
+   {
+    "t": "Les stoïciens : ce qui dépend de nous",
+    "p": [
+     "Épictète, esclave affranchi, distingue ce qui ne dépend pas de nous (le corps, la richesse, la réputation, la mort) et ce qui en dépend (jugements, désirs, refus). Qui met son bonheur dans la première colonne est esclave du hasard. Au bac, le sujet ne dépend pas du candidat ; sa préparation et son calme, si.",
+     "Le maître pouvait tordre la jambe d'Épictète, non l'obliger à juger que c'était un malheur : colère, peur et plainte sont les vraies chaînes. Marc Aurèle, empereur, compare l'esprit libéré des passions à une forteresse (la « citadelle intérieure » de Pierre Hadot) ; Sénèque, condamné par Néron, meurt calmement. Limite : la sagesse peut glisser vers la résignation ; la liberté intérieure ne remplace pas la liberté politique."
+    ],
+    "cit": [
+     {
+      "t": "Ce qui trouble les hommes, ce ne sont pas les choses, mais les jugements qu'ils portent sur les choses.",
+      "a": "Épictète, *Manuel*, V"
+     }
+    ]
+   },
+   {
+    "t": "Spinoza : comprendre, c'est se libérer",
+    "p": [
+     "Spinoza nie le libre arbitre, mais l'*Éthique* est un livre de libération ; il refuse une chaire à Heidelberg pour garder sa liberté de penser. La servitude, c'est être gouverné par ses passions (colère, jalousie, peur, espoir) : voir le meilleur et faire le pire.",
+     "Le remède n'est pas la volonté, mais la connaissance : la colère contre un ami retombe quand on comprend ce qui l'a poussé. Être libre, ce n'est pas échapper à la nécessité, c'est la comprendre ; est libre ce qui agit par la seule nécessité de sa nature. Au bout, la béatitude, chemin aussi difficile que rare."
+    ],
+    "cit": [
+     {
+      "t": "Une affection qui est une passion cesse d'être une passion sitôt que nous en formons une idée claire et distincte.",
+      "a": "Spinoza, *Éthique*, V, proposition 3 (1677)"
+     }
+    ]
+   },
+   {
+    "t": "Rousseau et Kant : obéir à sa propre loi",
+    "p": [
+     "Pour Rousseau, la liberté morale consiste à obéir à la loi qu'on s'est donnée, non à ses envies. Kant la nomme autonomie (autos, soi-même ; nomos, la loi), contre l'hétéronomie, recevoir sa loi d'un maître ou de ses penchants.",
+     "Expérience du gibet : menacé d'être pendu, un homme résisterait à son désir ; sommé par son prince, sous peine de mort, de porter un faux témoignage contre un honnête homme, il reconnaît qu'il pourrait refuser. « Tu dois, donc tu peux » : le devoir révèle la liberté."
+    ],
+    "cit": [
+     {
+      "t": "Il juge donc qu'il peut faire quelque chose, parce qu'il a la conscience de le devoir, et il reconnaît ainsi en lui-même la liberté qui, sans la loi morale, lui serait toujours demeurée inconnue.",
+      "a": "Kant, *Critique de la raison pratique*, I, § 6, remarque (1788)"
+     }
+    ]
+   },
+   {
+    "t": "Les Lumières : oser penser",
+    "p": [
+     "En 1784, Kant définit les Lumières comme la sortie de l'homme hors de l'état de minorité, dont il est lui-même responsable : se laisser penser par un livre, un directeur de conscience, un médecin, par manque de courage plus que d'intelligence (aujourd'hui, le fil qui choisit ce que l'on voit). Penser par soi-même, c'est oser juger.",
+     "Pour aller plus loin, Hegel : la liberté se réalise dans l'histoire et les institutions ; un seul libre dans les empires d'Orient, quelques-uns chez les Grecs et les Romains, tous dans le monde moderne. Libéré en février 1973, Stockdale dira que le livre d'Épictète l'avait aidé à tenir ; mais une liberté seulement intérieure suffit-elle (épisode 5) ?"
+    ],
+    "cit": [
+     {
+      "t": "Sapere aude ! Aie le courage de te servir de ton propre entendement.",
+      "a": "Kant, *Réponse à la question : qu'est-ce que les Lumières ?* (1784)"
+     }
+    ]
+   }
+  ],
+  "reperes": [
+   "autonomie / hétéronomie"
+  ],
+  "retenir": [
+   "Stoïciens : distinguer ce qui dépend de nous de ce qui n'en dépend pas ; la liberté du sage est intérieure.",
+   "Spinoza : comprendre la nécessité, c'est se libérer des passions.",
+   "Rousseau, Kant : être libre, c'est obéir à la loi qu'on se donne ; « tu dois, donc tu peux ».",
+   "La liberté se conquiert : oser penser par soi-même et, selon Hegel, dans l'histoire."
+  ]
+ },
+ "liberte-5": {
+  "intro": "La loi limite-t-elle la liberté, ou la rend-elle possible ? Robinson Crusoé vit vingt-huit ans sur son île, sans roi ni loi : libre de tout, mais capable de presque rien.",
+  "parties": [
+   {
+    "t": "Hobbes : l'état de nature",
+    "p": [
+     "L'état de nature imagine les hommes sans loi ni gouvernement. Pour Hobbes, si chacun a droit à tout, chacun menace chacun : c'est la guerre de chacun contre chacun (« l'homme est un loup pour l'homme », formule reprise de Plaute).",
+     "Par un pacte, chacun remet sa liberté naturelle à un souverain tout-puissant, le Léviathan, en échange de la sécurité ; la liberté des sujets se loge là où la loi se tait. Mais qui protégera du Léviathan lui-même ?"
+    ],
+    "cit": [
+     {
+      "t": "La vie de l'homme est alors solitaire, besogneuse, pénible, quasi animale, et brève.",
+      "a": "Hobbes, *Léviathan*, chap. XIII (1651 ; trad. F. Tricaud)"
+     }
+    ]
+   },
+   {
+    "t": "Locke et Montesquieu : la loi qui libère",
+    "p": [
+     "Pour Locke (1690), sans loi, on est à la merci du plus fort : la liberté n'est pas la licence, mais ne dépendre de la volonté arbitraire de personne. Un pouvoir qui viole les droits naturels (la vie, la liberté, les biens) devient tyrannique, et le peuple peut lui résister.",
+     "Pour Montesquieu (1748), si l'on pouvait faire ce que les lois défendent, les autres le pourraient aussi : le code de la route limite, mais permet de circuler. Tout pouvoir tend à l'abus : il faut séparer les pouvoirs de faire les lois, de les exécuter, de juger (article 16 de la Déclaration de 1789)."
+    ],
+    "cit": [
+     {
+      "t": "Là où il n'y a pas de loi, il n'y a pas de liberté.",
+      "a": "Locke, *Second Traité du gouvernement civil*, chap. VI, § 57 (1690 ; trad. courante)"
+     },
+     {
+      "t": "La liberté est le droit de faire tout ce que les lois permettent.",
+      "a": "Montesquieu, *De l'esprit des lois*, XI, 3 (1748)"
+     }
+    ]
+   },
+   {
+    "t": "Rousseau : obéir à soi-même",
+    "p": [
+     "« L'homme est né libre, et partout il est dans les fers » : il faut une société qui ne soit pas une prison. Le peuple vote des lois qui expriment la volonté générale, ce que chacun veut en tant que citoyen pour le bien commun, et non la volonté de tous, somme des égoïsmes (chacun votant pour payer moins d'impôts). Obéir à la loi dont on est l'auteur, c'est n'obéir qu'à soi-même : l'autonomie.",
+     "Mais celui qui refuse d'obéir y sera contraint : « on le forcera d'être libre ». Qui décide de ce que chacun veut vraiment ? Les régimes autoritaires ont tous prétendu le savoir."
+    ],
+    "cit": [
+     {
+      "t": "Trouver une forme d'association qui défende et protège de toute la force commune la personne et les biens de chaque associé, et par laquelle chacun s'unissant à tous n'obéisse pourtant qu'à lui-même et reste aussi libre qu'auparavant.",
+      "a": "Rousseau, *Du contrat social*, I, 6 (1762)"
+     }
+    ]
+   },
+   {
+    "t": "Anciens et Modernes",
+    "p": [
+     "Benjamin Constant (1819) : pour un citoyen d'Athènes, être libre, c'est participer au pouvoir, mais la cité contrôle la vie privée (Socrate, condamné à mort en 399 avant notre ère pour ses idées). Pour un Moderne, c'est être tranquille chez soi, choisir sa religion, son métier, en déléguant le pouvoir. Danger : ne s'occuper que de ses affaires privées et perdre son indépendance ; il faut combiner les deux."
+    ]
+   },
+   {
+    "t": "Jusqu'où la société peut-elle aller ?",
+    "p": [
+     "Mill (*De la liberté*, 1859) : la seule raison légitime de contraindre est d'empêcher de nuire aux autres, jamais le propre bien de l'individu ; la société peut informer sur le tabac, interdire d'enfumer autrui. Il défend la liberté d'expression, même des opinions fausses.",
+     "Tocqueville, en Amérique, voit la tyrannie de la majorité : sans prison, elle pèse sur les esprits. Isaiah Berlin distingue liberté négative, « qu'on me laisse faire » (Hobbes, Mill), et liberté positive, se gouverner soi-même (Rousseau)."
+    ],
+    "cit": [
+     {
+      "t": "Sur lui-même, sur son corps et son esprit, l'individu est souverain.",
+      "a": "John Stuart Mill, *De la liberté*, chap. I (1859)"
+     }
+    ]
+   }
+  ],
+  "reperes": [
+   "volonté générale / volonté de tous",
+   "liberté négative / liberté positive"
+  ],
+  "retenir": [
+   "Hobbes : sans État, la guerre de chacun contre chacun ; on échange la liberté contre la sécurité.",
+   "Locke, Montesquieu : la loi protège la liberté ; le pouvoir doit arrêter le pouvoir.",
+   "Rousseau : obéir à la loi qu'on s'est donnée, c'est être autonome ; mais gare au « forcé d'être libre ».",
+   "Constant, Mill, Tocqueville : protéger l'individu, y compris contre la majorité.",
+   "La loi peut être une contrainte ou la condition de la liberté : tout dépend de qui la fait et de ce qu'elle protège."
+  ]
+ },
+ "liberte-6": {
+  "intro": "Comment mettre la notion au service d'une copie ? Deux dissertations, une explication, un seul sujet, quatre heures : le correcteur ne note pas ce que l'on sait, mais ce qu'on en fait.",
+  "parties": [
+   {
+    "t": "Lire le sujet",
+    "p": [
+     "« Être libre, est-ce faire ce que l'on veut ? » Définir chaque mot : quelle liberté (ici d'agir et de vouloir) ? « faire », passer à l'acte ; « ce que l'on veut », désir du moment ou volonté réfléchie ? Repérer le présupposé : on saurait ce qu'on veut, et ce vouloir viendrait de soi.",
+     "Problématiser, ce n'est pas recopier la question : c'est montrer que la réponse évidente se heurte à un fait. Celui qui suit tous ses désirs devrait être le plus libre ; on le dit pourtant esclave. D'où : peut-on faire ce qu'on veut sans être libre ? Introduction : accroche concrète, analyse des termes, problématique, plan ; conclusion : bilan, réponse nette, ouverture facultative."
+    ]
+   },
+   {
+    "t": "Sujet 1 · Faire ce que l'on veut",
+    "p": [
+     "Plan dialectique. I. Oui : n'être pas empêché (Hobbes ; le prisonnier). II. Mais l'esclave de ses désirs n'est pas libre (les tonneaux percés de Platon, Rousseau, Spinoza ; la vidéo qui se lance toute seule). III. Être libre, c'est être autonome (Rousseau, Kant) : Ulysse, sachant que le chant des sirènes va le rendre fou, se fait attacher au mât et ordonne qu'on ne le détache pas ; ligoté, il est plus libre, car il a choisi sa règle.",
+     "La troisième partie ne dit jamais « tout dépend » : elle déplace la question par une distinction, ici indépendance / autonomie."
+    ]
+   },
+   {
+    "t": "Sujet 2 · La liberté est-elle une illusion ?",
+    "p": [
+     "Travailler le mot : une erreur se corrige quand on la voit ; une illusion persiste, car elle dérive de nos souhaits (Freud, *L'Avenir d'une illusion*). I. Une évidence vécue (Descartes, Sartre). II. Un sentiment qui peut tromper (Spinoza, Freud, Bourdieu). III. Ni illusion ni fait : une conquête (stoïciens, Spinoza, Kant). Distinction : libre arbitre, peut-être illusoire, et libération, travail réel sur soi. Exemple : le fumeur qui veut arrêter et rallume une cigarette ; est-ce lui qui veut, ou l'habitude ?"
+    ]
+   },
+   {
+    "t": "Sujet 3 · Peut-on être libre sans les autres ?",
+    "p": [
+     "Exemple : Robinson. I. Oui : les autres sont des limites. II. Mais sans loi commune, chacun est menacé (Hobbes, Locke), et Robinson survit grâce aux outils, à la langue, aux savoirs des autres. III. La liberté se construit avec eux : liberté civile de Rousseau, droits, éducation (Kant : l'homme ne devient homme que par l'éducation). Seul, on est indépendant ; libre au sens plein, seulement avec les autres.",
+     "Pièges : « ma liberté s'arrête là où commence celle des autres » n'est d'aucun philosophe (la Déclaration dit : ne pas nuire à autrui) ; « l'enfer, c'est les autres » vise, selon Sartre, des rapports faussés avec autrui."
+    ],
+    "cit": [
+     {
+      "t": "Là où il n'y a pas de loi, il n'y a pas de liberté.",
+      "a": "Locke, *Second traité du gouvernement civil*, § 57 (1690 ; trad. courante)"
+     }
+    ]
+   },
+   {
+    "t": "L'explication de texte : Rousseau, *Du contrat social*, I, 8",
+    "p": [
+     "Six éléments d'introduction. Thème : la liberté quand on entre en société. Question : perd-on sa liberté en obéissant aux lois ? Thèse adverse : toute loi est une perte de liberté. Thèse : la liberté naturelle, sans limite mais précaire, est échangée contre la liberté civile, garantie par la loi. Enjeu : obéir sans servitude. Plan : pertes et gains, puis la liberté morale.",
+     "Trois gestes : reformuler (suivre chaque désir, c'est être mené par lui) ; définir (l'appétit, le désir immédiat, sans réflexion) ; illustrer (Ulysse au mât). Expliquer n'est pas paraphraser : c'est dire pourquoi l'auteur dit ce qu'il dit."
+    ],
+    "cit": [
+     {
+      "t": "Ce que l'homme perd par le contrat social, c'est sa liberté naturelle et un droit illimité à tout ce qui le tente et qu'il peut atteindre ; ce qu'il gagne, c'est la liberté civile et la propriété de tout ce qu'il possède.",
+      "a": "Rousseau, *Du contrat social*, I, 8 (1762)"
+     },
+     {
+      "t": "L'impulsion du seul appétit est esclavage, et l'obéissance à la loi qu'on s'est prescrite est liberté.",
+      "a": "Rousseau, *Du contrat social*, I, 8 (1762)"
+     }
+    ]
+   },
+   {
+    "t": "Les pièges et les atouts",
+    "p": [
+     "Pièges : réciter sans répondre ; empiler les auteurs ; confondre les trois libertés ; oublier la question ; la troisième partie molle ; l'accroche vide.",
+     "Atouts : des exemples travaillés, les repères bien employés, cinq ou six citations sûres. Chaque auteur sert un argument ; chaque argument a son exemple."
+    ]
+   }
+  ],
+  "reperes": [
+   "obligation / contrainte",
+   "nécessaire / contingent",
+   "en droit / en fait"
+  ],
+  "retenir": [
+   "Lire le sujet : définir chaque mot, repérer le présupposé.",
+   "Problématiser : une tension, pas une reformulation.",
+   "Construire : trois parties qui se répondent, la troisième déplaçant la question par une distinction.",
+   "Expliquer : six éléments d'introduction, puis pour chaque phrase quoi ? comment ? pourquoi ?"
+  ]
+ },
+ "liberte-7": {
+  "intro": "La veille de l'épreuve, l'essentiel de la série : les idées, les auteurs, les citations et les exemples qui font une bonne copie.",
+  "parties": [
+   {
+    "t": "Les fondations",
+    "p": [
+     "Pour Aristote, l'homme libre est à lui-même sa propre fin ; son contraire est l'esclave. Trois libertés, qui ne vont pas forcément ensemble : d'agir, de vouloir (libre arbitre), politique ; Épictète, esclave, restait maître de lui.",
+     "Faire ce que l'on veut n'est pas vouloir librement : Hobbes définit la liberté par l'absence d'obstacle (l'eau libérée du vase), Platon répond par les tonneaux percés. Repères : le mur contraint, le feu rouge oblige ; si tout est nécessaire, le libre arbitre semble une illusion ; en droit, la loi interdit au riche comme au pauvre de coucher sous les ponts (Anatole France) : une liberté écrite dans la loi n'est pas toujours une liberté réelle."
+    ]
+   },
+   {
+    "t": "Le grand débat",
+    "p": [
+     "Pour la liberté : Descartes (volonté infinie, indifférence plus bas degré de la liberté), Sartre (l'existence précède l'essence). Les soupçons : la pierre de Spinoza ; l'inconscient de Freud (lapsus, rêves, actes manqués) ; Marx, Durkheim, Bourdieu (la société pense en chacun) ; Libet (le cerveau se prépare avant la conscience, mais laisse dire non) ; Nietzsche (des hommes déclarés libres pour être jugés). Déterminisme ne veut pas dire fatalisme : connaître ce qui détermine est le premier pas pour s'en libérer."
+    ],
+    "cit": [
+     {
+      "t": "L'homme est condamné à être libre.",
+      "a": "Sartre, *L'existentialisme est un humanisme* (1946)"
+     },
+     {
+      "t": "Telle est cette liberté humaine que tous se vantent de posséder et qui consiste en cela seul que les hommes sont conscients de leurs désirs et ignorants des causes qui les déterminent.",
+      "a": "Spinoza, Lettre 58 à Schuller (octobre 1674, trad. Appuhn)"
+     },
+     {
+      "t": "Le moi n'est pas maître dans sa propre maison.",
+      "a": "Freud, *Une difficulté de la psychanalyse* (1917 ; trad. 1933)"
+     }
+    ]
+   },
+   {
+    "t": "Se libérer",
+    "p": [
+     "Les stoïciens distinguent ce qui dépend de nous ; Spinoza libère des passions par la connaissance ; Rousseau et Kant font de la liberté l'autonomie (« tu dois, donc tu peux » : face au gibet, l'homme découvre qu'il pourrait refuser le faux témoignage). Hegel : la liberté se réalise dans l'histoire, d'un seul homme libre, le despote, à tous."
+    ],
+    "cit": [
+     {
+      "t": "L'impulsion du seul appétit est esclavage, et l'obéissance à la loi qu'on s'est prescrite est liberté.",
+      "a": "Rousseau, *Du contrat social*, I, 8 (1762)"
+     },
+     {
+      "t": "Sapere aude ! Aie le courage de te servir de ton propre entendement.",
+      "a": "Kant, *Qu'est-ce que les Lumières ?* (1784)"
+     }
+    ]
+   },
+   {
+    "t": "Libres ensemble",
+    "p": [
+     "Hobbes : sans État, la guerre de tous contre tous. Locke : pas de liberté sans loi. Rousseau : le peuple est libre s'il obéit aux lois qu'il se donne. Mais la loi peut menacer : Constant oppose liberté des Anciens et des Modernes, Mill ne permet de contraindre que pour empêcher de nuire, Tocqueville redoute la tyrannie de la majorité. Berlin : liberté négative et liberté positive."
+    ],
+    "cit": [
+     {
+      "t": "La liberté consiste à pouvoir faire tout ce qui ne nuit pas à autrui.",
+      "a": "*Déclaration des droits de l'homme et du citoyen*, article 4 (26 août 1789)"
+     },
+     {
+      "t": "La liberté est le droit de faire tout ce que les lois permettent.",
+      "a": "Montesquieu, *De l'esprit des lois*, XI, 3 (1748)"
+     }
+    ]
+   },
+   {
+    "t": "Le jour de l'épreuve",
+    "p": [
+     "Définir et repérer le présupposé ; se demander de quelle liberté parle le sujet ; faire apparaître une tension ; construire (réponse spontanée, objection, distinction qui dépasse). Sujets qui reviennent : faire ce que l'on veut, l'illusion, l'État ennemi de la liberté, être libre sans les autres.",
+     "Exemples qui marchent : la jambe d'Épictète, les tonneaux percés, le garçon de café, la pierre de Spinoza, le gibet de Kant, Robinson, James Stockdale. Un exemple travaillé vaut mieux que dix citations ; un auteur n'est pas un argument d'autorité, mais un outil pour penser."
+    ]
+   }
+  ],
+  "reperes": [
+   "obligation / contrainte",
+   "nécessaire / contingent",
+   "en droit / en fait",
+   "déterminisme / fatalisme",
+   "autonomie / hétéronomie",
+   "liberté négative / liberté positive"
+  ],
+  "retenir": [
+   "Premier réflexe : de quelle liberté parle le sujet ? D'agir, de vouloir, ou politique ?",
+   "Déterminisme ≠ fatalisme : connaître ce qui détermine, c'est le premier pas vers la liberté.",
+   "On ne naît pas libre, on le devient : par le jugement, la connaissance, la loi qu'on se donne.",
+   "La loi n'est pas l'ennemie de la liberté : elle la protège, à condition d'être juste et limitée.",
+   "Trois phrases à garder : Rousseau sur l'obéissance à la loi qu'on s'est prescrite, Sartre sur l'homme condamné à être libre, Kant sur le courage de se servir de son propre entendement."
+  ]
+ }
+}
