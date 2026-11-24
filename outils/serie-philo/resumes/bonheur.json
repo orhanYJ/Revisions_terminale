@@ -1,0 +1,499 @@
+{
+ "bonheur-1": {
+  "intro": "Qu'est-ce que le bonheur ? Le gagnant d'une loterie croit qu'il va enfin être heureux : ce qu'il attend de l'argent, ce n'est pas l'argent, c'est le bonheur. Avant de chercher le bonheur, il faut savoir ce que l'on cherche.",
+  "parties": [
+   {
+    "t": "Le mot : chance, vie réussie, plénitude",
+    "p": [
+     "Bonheur, c'est le « bon heur » : l'heur est le sort, la chance (du latin augurium, le présage). L'anglais happiness vient de hap, le hasard ; l'allemand Glück signifie à la fois bonheur et chance. Le bonheur qui dépend de la chance est fragile : ce que la roue de la Fortune donne, elle le reprend.",
+     "Le grec eudaimonia, c'est avoir un bon génie (daimôn) ; les philosophes grecs en font la vie réussie, non plus ce qui arrive mais ce que l'on fait de sa vie (voir l'épisode 3). Le latin beatitudo désigne le bonheur parfait que la religion chrétienne promet aux élus.",
+     "Trois visages : la chance, la vie réussie, la plénitude."
+    ]
+   },
+   {
+    "t": "Plaisir, joie, satisfaction, bonheur",
+    "p": [
+     "Le plaisir est une sensation agréable, localisée et brève (un carré de chocolat). La joie touche tout l'être, mais passe : c'est un élan (un ami retrouvé). La satisfaction est un désir comblé : les hommes repus du pays de Cocagne sont satisfaits ; heureux, on a du mal à le croire.",
+     "Le bonheur est un état : une satisfaction durable qui porte sur l'ensemble d'une vie. On peut avoir mille plaisirs sans être heureux (la fête chaque soir pour oublier l'ennui), et être heureux malgré un deuil. Il demande de la durée : on se dit souvent heureux après coup."
+    ]
+   },
+   {
+    "t": "Une affaire de goût ? Subjectif ou objectif",
+    "p": [
+     "Chacun place le bonheur dans ce qui lui manque, remarque Aristote. D'où l'idée d'un bonheur subjectif : est heureux qui se sent heureux. Mais on dit aussi « il croit être heureux, il se trompe » : le bonheur objectif est une vie réellement bonne (santé, amis, activité qui a du sens).",
+     "La machine à expérience imaginée par Robert Nozick en 1974 ferait vivre, branchée sur le cerveau, la vie rêvée tenue pour réelle. La plupart des gens refusent d'y entrer : on veut que ce soit vrai, et le faire soi-même."
+    ],
+    "cit": [
+     {
+      "t": "S'il est malade, il voit le bonheur dans la santé ; s'il est pauvre, il le voit dans la richesse.",
+      "a": "Aristote, Éthique à Nicomaque, I, 4, trad. Thurot"
+     }
+    ]
+   },
+   {
+    "t": "Ce que tous veulent : la fin dernière",
+    "p": [
+     "Réviser pour le bac, le bac pour un métier, le métier pour être heureux ; et pourquoi être heureux ? La question n'a plus de sens. Aristote (*Éthique à Nicomaque*, IVᵉ siècle avant notre ère) : nos actions s'enchaînent comme des moyens en vue de fins, mais la chaîne ne peut aller à l'infini. Le bonheur est la fin dernière, voulue pour elle-même : on veut l'argent pour autre chose, le bonheur pour lui-même.",
+     "Pascal, au XVIIᵉ siècle : celui qui part à la guerre et celui qui reste chez lui cherchent la même chose par des chemins opposés."
+    ],
+    "cit": [
+     {
+      "t": "Tous les hommes recherchent d'être heureux ; cela est sans exception ; quelques différents moyens qu'ils y emploient, ils tendent tous à ce but.",
+      "a": "Pascal, Pensées, fragment 425 (éd. Brunschvicg)"
+     }
+    ]
+   },
+   {
+    "t": "Un idéal de l'imagination (Kant)",
+    "p": [
+     "Kant (*Fondements de la métaphysique des mœurs*, 1785) : tout homme veut être heureux, mais personne ne sait dire précisément ce qu'il veut. Richesse, connaissance, longue vie, santé : chacun peut se retourner en malheur. Devant les deux ambassadeurs d'Holbein s'étire une tête de mort déformée.",
+     "Le bonheur est une image formée à partir de l'expérience, que la raison ne peut calculer : pas de règle sûre, seulement des conseils de prudence. La morale ne peut donc reposer sur lui (série Le devoir ; voir l'épisode 5)."
+    ],
+    "cit": [
+     {
+      "t": "Le bonheur est un idéal, non de la raison, mais de l'imagination.",
+      "a": "Kant, Fondements, section II (1785), trad. Delbos"
+     }
+    ]
+   }
+  ],
+  "reperes": [
+   "objectif / subjectif",
+   "moyen / fin"
+  ],
+  "retenir": [
+   "Bonheur : la bonne chance ; eudaimonia : un bon génie ; beatitudo : la plénitude.",
+   "Le plaisir est un instant ; le bonheur, un état durable qui porte sur toute une vie.",
+   "Le bonheur est la fin dernière (Aristote), que tous recherchent (Pascal).",
+   "Kant : personne ne sait dire ce qu'il veut ; le bonheur est un idéal de l'imagination, non de la raison."
+  ]
+ },
+ "bonheur-2": {
+  "intro": "Le plaisir rend-il heureux ? Une soirée passée à ne faire que ce qui plaît laisse souvent un goût de vide. Les hédonistes (de hêdonê, le plaisir) répondent oui, mais il existe deux hédonismes presque opposés : courir après tous les plaisirs, ou apprendre à en refuser beaucoup.",
+  "parties": [
+   {
+    "t": "Aristippe : jouir de l'instant",
+    "p": [
+     "Pour Aristippe de Cyrène (vers 435 avant notre ère) et les Cyrénaïques, le seul bien est le plaisir présent, ressenti dans le corps : le passé n'est plus, l'avenir n'est pas encore. Familier de la courtisane Laïs, il veut pourtant rester maître : posséder sans être possédé.",
+     "Limites : un plaisir s'éteint dès qu'il est obtenu, et celui d'aujourd'hui fait parfois la douleur de demain. Il faut un calcul."
+    ],
+    "cit": [
+     {
+      "t": "Je possède Laïs ; mais je ne suis pas possédé de ses agréments",
+      "a": "Aristippe, rapporté par Diogène Laërce, Vies des philosophes, II"
+     }
+    ]
+   },
+   {
+    "t": "Épicure : le tri des désirs",
+    "p": [
+     "Vers 306 avant notre ère, Épicure fonde à Athènes l'école du Jardin. Le plaisir est le principe et la fin de la vie heureuse, mais tout plaisir n'est pas à rechercher : les « pourceaux d'Épicure » sont un contresens.",
+     "Trois sortes de désirs : naturels et nécessaires (manger, boire, s'abriter, avoir des amis), à satisfaire ; naturels non nécessaires (des mets raffinés), à accueillir sans en dépendre ; vains, nés de l'opinion (richesse sans fin, gloire, pouvoir), à refuser, car sans limite. L'amitié est le plus grand des biens de la sagesse.",
+     "C'est un calcul de la raison : refuser un plaisir qui entraîne une douleur plus grande, accepter une douleur qui mène à un plaisir plus grand."
+    ],
+    "cit": [
+     {
+      "t": "C'est pourquoi nous disons que le plaisir est le commencement et la fin de la vie heureuse.",
+      "a": "Épicure, Lettre à Ménécée, 128 (trad. O. Hamelin, 1910)"
+     }
+    ]
+   },
+   {
+    "t": "Le plaisir en repos",
+    "p": [
+     "Le vrai plaisir est le calme : l'aponie (le corps sans douleur) et l'ataraxie (l'âme sans trouble), une mer sans vagues. C'est le plaisir en repos, où rien ne manque, non le plaisir en mouvement d'Aristippe.",
+     "Le quadruple remède : les dieux ne sont pas à craindre ; la mort n'est pas à craindre ; le bien est facile à obtenir ; le mal est facile à supporter. La connaissance de la nature (des atomes dans le vide : l'éclair n'est pas la colère de Zeus) délivre de la peur. La mort n'est rien pour nous : quand elle est là, nous n'y sommes plus."
+    ],
+    "cit": [
+     {
+      "t": "Le plaisir dont nous parlons est celui qui consiste, pour le corps, à ne pas souffrir et, pour l'âme, à être sans trouble.",
+      "a": "Épicure, Lettre à Ménécée, 131 (trad. O. Hamelin, 1910)"
+     }
+    ]
+   },
+   {
+    "t": "Les tonneaux percés : intensité ou tranquillité ?",
+    "p": [
+     "Dans le *Gorgias* de Platon, Socrate oppose au jeune Calliclès le sage aux tonneaux sains et l'insatiable aux tonneaux percés, qui doit verser sans fin. Calliclès retourne l'argument : le sage sans manque vit comme une pierre ; mieux vaut une vie intense.",
+     "Socrate répond par le pluvier, qui rejette l'eau à peine bue, et par le galeux qui se gratte sans fin : si le plaisir naît du remplissage d'un manque, plus on veut de plaisir, plus il faut de manque. On n'est jamais rempli, on est occupé."
+    ],
+    "cit": [
+     {
+      "t": "L'homme aux tonneaux pleins n'a plus aucun plaisir, et c'est cela que j'appelais tout à l'heure vivre à la façon d'une pierre.",
+      "a": "Calliclès, dans Platon, Gorgias, 494a-b (trad. É. Chambry)"
+     }
+    ]
+   },
+   {
+    "t": "Pour aller plus loin : Mill",
+    "p": [
+     "Bentham calcule les plaisirs par leur intensité, leur durée, leur certitude : seule compte la quantité. Mill répond que certains plaisirs (l'esprit, l'amitié, l'art) sont supérieurs ; mieux vaut être Socrate insatisfait qu'un imbécile satisfait. Mais ce critère n'est plus le plaisir : l'hédonisme se dépasse.",
+     "Sorti à vingt ans d'une grave dépression grâce aux poèmes de Wordsworth, Mill en tire une leçon (*Autobiographie*) : se demander si l'on est heureux, c'est cesser de l'être. Le bonheur vient de surcroît, quand on s'occupe d'autre chose."
+    ]
+   }
+  ],
+  "reperes": [
+   "plaisir en mouvement / plaisir en repos",
+   "quantité / qualité des plaisirs"
+  ],
+  "retenir": [
+   "Aristippe : le plaisir présent, sans être possédé.",
+   "Épicure : le plaisir est la fin de la vie heureuse, à condition de trier ses désirs.",
+   "Le vrai plaisir est en repos : aponie et ataraxie ; le quadruple remède délivre des peurs.",
+   "Calliclès : l'intensité ; Socrate : la vie du pluvier. Mill : qui vise directement le bonheur le manque."
+  ]
+ },
+ "bonheur-3": {
+  "intro": "Le bonheur est-il ce que l'on possède, ou la manière dont on mène sa vie ? Crésus, l'homme le plus riche du monde, demande à Solon qui est le plus heureux ; Solon nomme Tellos, un Athénien mort en défendant sa patrie : « ne dis personne heureux avant sa mort ». Vaincu par Cyrus et placé sur un bûcher, Crésus appelle trois fois Solon, raconte Hérodote.",
+  "parties": [
+   {
+    "t": "Aristote : bien vivre, c'est bien agir",
+    "p": [
+     "Comme le bon flûtiste, chaque être est bon quand il accomplit bien sa fonction propre. Celle de l'homme est la raison : l'homme heureux vit selon la raison, de façon excellente.",
+     "Le bonheur est une activité, non un trésor : aux jeux Olympiques, la couronne revient à ceux qui combattent. La vertu est l'excellence ; la vie, complète.",
+     "Il faut aussi quelques biens extérieurs (santé, amis, une cité) : celui qui subit les malheurs de Priam ne peut être dit heureux. Le bonheur dépend surtout de nous, pas entièrement."
+    ],
+    "cit": [
+     {
+      "t": "Une hirondelle ne fait pas le printemps, ni aussi un seul jour ; de même un seul jour, ou un temps très-court, ne suffit pas pour rendre un homme complètement heureux.",
+      "a": "Aristote, Éthique à Nicomaque, I, 7, trad. Thurot (1823)"
+     }
+    ]
+   },
+   {
+    "t": "Devenir vertueux",
+    "p": [
+     "La vertu n'est ni un don ni un savoir, mais une habitude acquise par l'exercice ; elle devient une seconde nature, et même un plaisir.",
+     "Elle vise le juste milieu : le courage entre la lâcheté et la témérité, la générosité entre l'avarice et la prodigalité. Ce milieu n'est ni une moyenne ni de la tiédeur, mais un sommet entre deux pentes, comme le funambule au-dessus du Niagara ; il se trouve en situation."
+    ],
+    "cit": [
+     {
+      "t": "En bâtissant on devient maçon, en jouant de la lyre, on devient musicien ; et de même en pratiquant la justice, on devient juste.",
+      "a": "Aristote, Éthique à Nicomaque, II, 1, trad. Thurot (1823)"
+     }
+    ]
+   },
+   {
+    "t": "Des amis, et la vie de l'esprit",
+    "p": [
+     "Se suffire n'est pas vivre seul : l'homme est un animal politique, et personne ne voudrait vivre privé d'amis. L'amitié utile et l'amitié agréable se défont avec leur cause ; l'amitié vertueuse, qui aime l'autre pour ce qu'il est, dure : l'ami est un autre soi-même (Achille pansant Patrocle).",
+     "La vie la plus heureuse n'est ni celle des plaisirs, celle des bêtes, ni la vie politique, agitée, mais la vie contemplative, qui cherche la vérité pour le plaisir de comprendre : la plus continue, la plus libre, presque divine."
+    ]
+   },
+   {
+    "t": "Les stoïciens : la vertu suffit",
+    "p": [
+     "Zénon enseigne sous la Stoa vers 300 avant notre ère : être heureux, c'est vivre en accord avec la nature, la raison qui ordonne le monde. La vertu suffit ; santé, richesse, réputation sont indifférentes. Le malheur est l'écart entre ce qu'on veut et ce qui arrive : le stoïcien change ce qu'il veut.",
+     "Sénèque (*De la vie heureuse*) : le sage peut avoir des richesses, si elles ne l'ont pas. Marc Aurèle : la citadelle intérieure, où rien n'entre sans notre accord. Objection d'Aristote : dire heureux un homme vertueux étendu sur la roue n'a aucun sens."
+    ],
+    "cit": [
+     {
+      "t": "Ne demande pas que ce qui arrive arrive comme tu le veux, mais veux ce qui arrive comme il arrive, et tu couleras une vie heureuse.",
+      "a": "Épictète, Manuel, VIII (trad. J.-M. Guyau, 1875)"
+     }
+    ]
+   },
+   {
+    "t": "Pour aller plus loin : Spinoza et la joie",
+    "p": [
+     "Pour Spinoza (XVIIᵉ siècle), la joie est le passage à une plus grande perfection : l'augmentation de la puissance d'agir (comprendre un problème, retrouver un ami) ; la tristesse, sa diminution (la honte, la peur, l'envie). Il faut se méfier de la tristesse, dont usent ceux qui veulent gouverner ; la joie la plus solide vient de la connaissance.",
+     "Le bonheur n'est pas une récompense après l'effort : il est dans l'activité même."
+    ],
+    "cit": [
+     {
+      "t": "La béatitude n'est pas le prix de la vertu, c'est la vertu elle-même.",
+      "a": "Spinoza, Éthique, V, proposition 42 (trad. É. Saisset, 1861)"
+     }
+    ]
+   }
+  ],
+  "reperes": [
+   "ce qui dépend de nous / ce qui n'en dépend pas"
+  ],
+  "retenir": [
+   "Aristote : le bonheur est l'activité de l'âme conforme à la vertu, dans une vie complète.",
+   "La vertu est une habitude ; le juste milieu est un sommet, pas une moyenne.",
+   "Pas de bonheur sans amis ; le plus haut est la contemplation.",
+   "Stoïciens : la vertu suffit ; vouloir ce qui arrive. Spinoza : la béatitude est la vertu elle-même."
+  ]
+ },
+ "bonheur-4": {
+  "intro": "Le bonheur n'est-il qu'un mirage qui recule à mesure qu'on avance ? Pyrrhus veut vaincre les Romains, puis prendre la Sicile, Carthage et la Grèce, avant de se reposer, heureux ; son conseiller Cinéas demande ce qui l'empêche de le faire dès maintenant. Pyrrhus part en guerre (Plutarque, repris par Pascal). Quatre penseurs tiennent le bonheur pour une illusion.",
+  "parties": [
+   {
+    "t": "Pascal : le divertissement",
+    "p": [
+     "Seul et immobile dans une chambre, l'homme pense à sa condition (fragile, mortel, ignorant) : alors il fuit dans le divertissement, ce qui détourne (le jeu, la conversation, la guerre). Le chasseur ne voudrait pas du lièvre offert au départ : on aime la chasse, non la prise. Un roi sans divertissement est plus malheureux que le dernier de ses sujets qui joue et qui danse.",
+     "Le divertissement a une forme intérieure : vivre dans le passé ou l'avenir, jamais dans le présent. Pascal ne méprise pas ceux qui fuient ; mais le divertissement empêche de chercher le vrai remède, Dieu."
+    ],
+    "cit": [
+     {
+      "t": "j'ai découvert que tout le malheur des hommes vient d'une seule chose, qui est de ne savoir pas demeurer en repos, dans une chambre.",
+      "a": "Pascal, Pensées, fr. 139 (éd. Brunschvicg ; 1670)"
+     }
+    ]
+   },
+   {
+    "t": "Schopenhauer : le pendule",
+    "p": [
+     "Au fond de toute chose agit une force aveugle, la volonté ou vouloir-vivre. Désirer, c'est manquer, donc souffrir ; la satisfaction n'est que la fin d'une douleur, puis vient l'ennui. Le bonheur n'est que le point bas du pendule : on le traverse sans s'y arrêter. Le tonneau percé (voir l'épisode 2) devient la nature même du désir.",
+     "Deux issues : l'art, trêve où l'on contemple sans vouloir ; l'ascèse, qui éteint le vouloir-vivre, au prix d'un renoncement au bonheur."
+    ],
+    "cit": [
+     {
+      "t": "La vie donc oscille, comme un pendule, de droite à gauche, de la souffrance à l'ennui",
+      "a": "Schopenhauer, Le Monde comme volonté et comme représentation, IV, § 57 (1818), trad. Burdeau"
+     }
+    ]
+   },
+   {
+    "t": "Rousseau : heureux avant d'être heureux",
+    "p": [
+     "Dans *Julie ou la Nouvelle Héloïse* (1761), l'héroïne a tout et s'ennuie d'être heureuse : malheur à qui n'a plus rien à désirer. Le désir fait travailler l'imagination, qui embellit l'objet ; obtenu, il n'est que ce qu'il est (les préparatifs d'un voyage en sont souvent le meilleur moment).",
+     "Pour Schopenhauer, désirer, c'est souffrir ; pour Rousseau, c'est déjà être heureux : une illusion qui fait vivre, à condition de ne jamais l'atteindre."
+    ],
+    "cit": [
+     {
+      "t": "On jouit moins de ce qu'on obtient que de ce qu'on espère et l'on n'est heureux qu'avant d'être heureux.",
+      "a": "Rousseau, Julie ou la Nouvelle Héloïse, VI, lettre 8 (1761)"
+     }
+    ]
+   },
+   {
+    "t": "Freud : un bonheur pas prévu par la Création",
+    "p": [
+     "Dans *Malaise dans la civilisation* (1930), le principe de plaisir, inscrit dans l'inconscient, est en conflit avec le monde entier. Le bonheur est épisodique : seul le contraste procure une jouissance intense (un bain chaud est délicieux les cinq premières minutes). La souffrance vient du corps, du monde extérieur et des relations avec les autres.",
+     "Stratégies (ivresse, isolement, science et technique, sublimation, amour) : aucune n'est sûre, chacun doit chercher sa voie."
+    ]
+   },
+   {
+    "t": "Alors, une illusion ?",
+    "p": [
+     "En 1978, Philip Brickman et ses collègues trouvent que des gagnants de la loterie de l'Illinois ne se disent pas beaucoup plus heureux que des gens ordinaires, et des accidentés paralysés bien moins malheureux qu'on ne le croyait : c'est l'adaptation hédonique. Prudence : vingt-deux gagnants, une note de zéro à cinq ; des études sur des joueurs suédois trouvent une satisfaction durablement plus élevée. Un exemple, jamais une preuve.",
+     "Est illusoire le bonheur conçu comme un état complet et définitif. Reste le bonheur comme activité (Aristote, les stoïciens) : pour Alain (*Propos sur le bonheur*), il se fait et se veut, comme on apprend un métier."
+    ],
+    "cit": [
+     {
+      "t": "Le pessimisme est d'humeur ; l'optimisme est de volonté.",
+      "a": "Alain, Propos sur le bonheur, « Il faut jurer » (1923)"
+     }
+    ]
+   }
+  ],
+  "reperes": [
+   "bonheur-état / bonheur-activité"
+  ],
+  "retenir": [
+   "Pascal : nous fuyons dans le divertissement ; nous aimons la chasse, non la prise.",
+   "Schopenhauer : la vie oscille comme un pendule entre souffrance et ennui.",
+   "Rousseau : « on n'est heureux qu'avant d'être heureux » ; Freud : le bonheur n'est qu'épisodique.",
+   "On s'habitue au meilleur comme au pire, mais pas totalement. Le bonheur-état est illusoire ; le bonheur-activité se construit."
+  ]
+ },
+ "bonheur-5": {
+  "intro": "Le bonheur regarde-t-il la morale, la politique, ou seulement chacun ? Dans *Le Meilleur des mondes* (1932), Aldous Huxley imagine un monde sans guerre ni pauvreté, où chacun est conditionné à aimer son travail et où le soma efface tout chagrin. Tous y sont heureux, et le livre inquiète : un État qui rendrait heureux serait-il un bon État ?",
+  "parties": [
+   {
+    "t": "Kant : mériter d'être heureux",
+    "p": [
+     "Le bonheur ne peut fonder la morale : il est indéterminé (des conseils, non des lois) ; il ne commande que sous condition (un impératif hypothétique, pas un devoir) ; il corrompt le motif (le marchand honnête par intérêt, série Le devoir).",
+     "Être heureux ne dépend pas entièrement de soi ; être digne de l'être, toujours. L'élève qui triche est peut-être plus heureux ce soir que l'élève honnête qui échoue de peu : lequel mérite de l'être ?",
+     "Le souverain bien unirait la vertu et un bonheur à sa mesure ; rien ne le garantit sur terre, d'où l'espérance d'une vie future et d'un Dieu : la morale conduit à la religion, pour fonder l'espérance."
+    ],
+    "cit": [
+     {
+      "t": "la morale n'est pas proprement une doctrine qui nous apprenne à nous rendre heureux, mais seulement comment nous devons nous rendre dignes du bonheur.",
+      "a": "Kant, Critique de la raison pratique (1788), trad. Barni"
+     }
+    ]
+   },
+   {
+    "t": "Le plus grand bonheur du plus grand nombre",
+    "p": [
+     "Pour Bentham, juriste réformateur, une loi est bonne si elle augmente la somme de bonheur dans la société ; chacun compte pour un, le mendiant autant que le lord. Ses disciples défendent la réforme des prisons, l'abolition de l'esclavage, l'élargissement du droit de vote.",
+     "Mais une somme peut cacher un sacrifice : dans *Les Frères Karamazov* (1880), Ivan demande à Aliocha s'il bâtirait le bonheur humain sur les larmes d'un seul enfant torturé ; Aliocha refuse. La justice passe avant le calcul."
+    ]
+   },
+   {
+    "t": "Une idée neuve",
+    "p": [
+     "Le 4 juillet 1776, la Déclaration d'indépendance, rédigée surtout par Jefferson, garantit le droit de rechercher le bonheur, non le bonheur. En France, la Déclaration de 1793 fait du bonheur commun le but de la société.",
+     "Le bonheur, jusque-là affaire privée ou affaire du salut, devient un but politique : Saint-Just, député de vingt-six ans, veut distribuer aux patriotes indigents les biens des suspects. Mais c'est la Terreur : il est guillotiné moins de cinq mois plus tard."
+    ],
+    "cit": [
+     {
+      "t": "Le bonheur est une idée neuve en Europe.",
+      "a": "Saint-Just, rapport à la Convention, 13 ventôse an II (3 mars 1794)"
+     }
+    ]
+   },
+   {
+    "t": "Le despotisme doux",
+    "p": [
+     "Kant (1793) : le gouvernement paternel, qui traite les citoyens en mineurs et décide de leur bonheur, est le pire despotisme ; le gouvernement patriotique garantit à chacun la liberté de chercher le sien.",
+     "Tocqueville (1840) : un pouvoir immense et doux pourvoit à notre sécurité et à nos plaisirs, mais nous fixe dans l'enfance ; la nation devient un troupeau dont le gouvernement est le berger. Mill (série La liberté) : on ne contraint quelqu'un que pour l'empêcher de nuire aux autres, jamais pour son propre bien."
+    ],
+    "cit": [
+     {
+      "t": "Il travaille volontiers à leur bonheur ; mais il veut en être l'unique agent et le seul arbitre",
+      "a": "Tocqueville, De la démocratie en Amérique, II, IV, 6 (1840)"
+     }
+    ]
+   },
+   {
+    "t": "Le droit d'être malheureux",
+    "p": [
+     "Chez Huxley, enfants fabriqués en série, livres anciens interdits, tristesse supprimée chimiquement : tous heureux, personne libre. Le Sauvage, lecteur de Shakespeare, réclame la poésie, le danger, la liberté et le droit d'être malheureux ; le maître du monde répond qu'on a sacrifié l'art, la science, la religion au bonheur.",
+     "Comme le montre la machine à expérience (voir l'épisode 1), un bonheur fabriqué et imposé n'est plus le nôtre. Faire le bonheur des gens à leur place est un despotisme, même doux ; l'État doit en garantir les conditions (sécurité, justice, éducation, santé, libertés). La Constitution du Bhoutan (2008) parle des conditions de la recherche du « bonheur national brut »."
+    ]
+   }
+  ],
+  "reperes": [
+   "faire le bonheur / garantir les conditions du bonheur"
+  ],
+  "retenir": [
+   "Kant : le bonheur ne fonde pas la morale ; la morale apprend à se rendre digne du bonheur.",
+   "Bentham : chacun compte pour un ; mais le bonheur collectif ne justifie pas de sacrifier un innocent.",
+   "1776-1794 : le bonheur entre en politique ; un pouvoir chargé du bonheur de tous peut devenir terrible.",
+   "Kant, Tocqueville, Huxley : l'État ne doit pas faire notre bonheur, mais en garantir les conditions."
+  ]
+ },
+ "bonheur-6": {
+  "intro": "Le bonheur semble un sujet facile : c'est le danger. Trois pièges guettent : le relativisme (« chacun son bonheur »), le catalogue d'auteurs sans réponse, la copie de développement personnel. Méthode générale : séries La liberté et Le devoir, épisode 6.",
+  "parties": [
+   {
+    "t": "Sujet 1 · Le bonheur est-il affaire de chance ?",
+    "p": [
+     "Les mots : « affaire de », dépendre de ; « la chance », ce qui arrive sans qu'on l'ait voulu ; « bonheur », le bon heur. Problématique : si le bonheur dépend du hasard, à quoi bon les sagesses ? Se reçoit-il, ou se construit-il ?",
+     "I. Oui, en partie : santé, naissance, rencontres ne dépendent pas de nous (Aristote, Priam). II. Il dépend aussi de nous : Épicure trie ses désirs, les stoïciens distinguent ce qui dépend de nous ; Stockdale a tenu sept ans dans une prison du Vietnam avec le *Manuel* d'Épictète. III. La chance donne les conditions, la sagesse en fait quelque chose. Distinction : ce qui arrive, et ce que l'on en fait.",
+     "Piège : opposer chance et mérite (on peut mériter d'être heureux sans l'être, voir l'épisode 5). Introduction : accroche (le gagnant du loto, voir l'épisode 4), analyse des mots, problématique, plan."
+    ]
+   },
+   {
+    "t": "Sujet 2 · Faut-il renoncer à ses désirs pour être heureux ?",
+    "p": [
+     "« Renoncer » : choisir de lâcher, non être privé. « Ses désirs » : tous, ou certains ?",
+     "I. Oui : le désir est un manque sans fin (les tonneaux percés de Platon, le pendule de Schopenhauer, Tantale) ; d'où les sagesses du détachement. II. Mais ne plus rien désirer, c'est ne plus vivre : pour Calliclès, les pierres et les morts seraient les plus heureux ; Rousseau : malheur à qui n'a plus rien à désirer. III. Régler ses désirs : Épicure les trie ; Descartes ne désire pas plus la santé, malade, que des ailes pour voler.",
+     "Distinction : supprimer ses désirs, ou les régler ; le sage désire ce qui est à sa portée."
+    ],
+    "cit": [
+     {
+      "t": "Ma troisième maxime était de tâcher toujours plutôt à me vaincre que la fortune, et à changer mes désirs que l'ordre du monde",
+      "a": "Descartes, Discours de la méthode, IIIᵉ partie (1637)"
+     }
+    ]
+   },
+   {
+    "t": "Sujet 3 · L'État doit-il faire le bonheur des citoyens ?",
+    "p": [
+     "Le verbe décide de tout : « faire ». I. Oui, c'est sa raison d'être : la cité existe en vue de la vie bonne (Aristote) ; la Déclaration de 1793 ; la fresque du bon gouvernement de Sienne. II. Mais pas à notre place : bonheur indéterminé et gouvernement paternel (Kant) ; un bonheur imposé fait un troupeau (Tocqueville, Huxley). III. Garantir les conditions du bonheur : sécurité, justice, éducation, santé, libertés.",
+     "Distinction : un tuteur ou un garant."
+    ]
+   },
+   {
+    "t": "L'explication · Épicure, Lettre à Ménécée",
+    "p": [
+     "Trois temps : affirmation (le plaisir, fin de la vie heureuse), restriction (pas tout plaisir), mise au point (pas les plaisirs de l'homme déréglé).",
+     "Introduction en six éléments : thème (le plaisir et la vie heureuse) ; question (le plaisir est-il le but de la vie heureuse ?) ; thèse adverse (jouir le plus possible, ou fuir les plaisirs pour être sage) ; thèse (le plaisir, bien naturel, est l'absence de douleur et de trouble, obtenue en calculant) ; enjeu (fonder une sagesse sur le plaisir sans débauche) ; plan (le principe, le calcul, le contresens écarté)."
+    ],
+    "cit": [
+     {
+      "t": "Lors donc que nous disons que le plaisir est la fin de la vie, nous ne parlons pas des plaisirs de l'homme déréglé",
+      "a": "Épicure, Lettre à Ménécée, 131, trad. Hamelin"
+     }
+    ]
+   },
+   {
+    "t": "L'explication · Phrase par phrase",
+    "p": [
+     "Pour chaque phrase : quoi (Épicure écarte une mauvaise lecture), comment (« lors donc », une négation, les adversaires désignés), pourquoi (défendre l'école, préparer la définition).",
+     "Trois gestes : reformuler (le plaisir du sage n'est pas l'excès) ; définir (ataraxie, aponie) ; illustrer (renoncer à une fête la veille de l'épreuve). Paragraphe : annoncer, citer, expliquer, interroger, relier.",
+     "En avocat de l'auteur : un bonheur sans souffrance serait celui d'une pierre ? Épicure goûte mieux les plaisirs raffinés après une vie frugale, et la paix de l'âme vient d'une raison qui chasse les opinions fausses.",
+     "Conclusion : bilan, réponse, intérêt (défaire le préjugé de l'épicurien jouisseur), ouverture (Mill). Pièges : réciter tout Épicure, paraphraser, en faire un jouisseur ou un ascète."
+    ]
+   }
+  ],
+  "reperes": [
+   "ce qui arrive / ce que l'on en fait",
+   "supprimer / régler ses désirs",
+   "faire le bonheur / garantir ses conditions"
+  ],
+  "retenir": [
+   "Chaque sujet se joue sur un mot : « affaire de », « renoncer » et « ses », « faire ».",
+   "La troisième partie déplace la question par une distinction, jamais par « tout dépend ».",
+   "Exemples travaillés : Priam, Stockdale, Tantale, la fresque de Sienne, le gagnant du loto.",
+   "Explication : six éléments d'introduction, puis quoi, comment, pourquoi ; discuter en avocat de l'auteur."
+  ]
+ },
+ "bonheur-7": {
+  "intro": "Que faut-il vraiment retenir du bonheur ? Le gagnant de la loterie était sûr d'être enfin heureux : six épisodes ont interrogé cette certitude, du plaisir à la sagesse, du soupçon d'illusion à la politique.",
+  "parties": [
+   {
+    "t": "Le mot et le plaisir",
+    "p": [
+     "Bon heur, eudaimonia, béatitude : la chance, la vie réussie, la plénitude. Le plaisir dure un instant, la joie un moment, le bonheur une vie. Repère objectif / subjectif : presque personne n'accepterait la machine à bonheur de Nozick, car on veut que ce soit vrai.",
+     "Aristote : le bonheur est la fin dernière ; Pascal : tous le recherchent ; Kant : un idéal de l'imagination.",
+     "Aristippe jouit de l'instant sans être possédé ; Épicure trie ses désirs et vise l'aponie et l'ataraxie ; Calliclès veut des désirs immenses, Socrate lui oppose les tonneaux percés ; Mill : mieux vaut Socrate insatisfait qu'un imbécile satisfait, et le bonheur se dérobe quand on le vise."
+    ],
+    "cit": [
+     {
+      "t": "C'est pourquoi nous disons que le plaisir est le commencement et la fin de la vie heureuse.",
+      "a": "Épicure, Lettre à Ménécée, 128, trad. Hamelin (1910)"
+     }
+    ]
+   },
+   {
+    "t": "La sagesse des Anciens",
+    "p": [
+     "Crésus et Solon : ne dis personne heureux avant sa mort. Aristote : une activité de l'âme conforme à la vertu, dans une vie complète ; la vertu, habitude et juste milieu ; des amis, et la vie de l'esprit.",
+     "Les stoïciens : la vertu suffit ; vouloir les choses comme elles arrivent (Épictète), la citadelle intérieure (Marc Aurèle). Spinoza : la joie, passage à une plus grande perfection. Pour Aristote, il faut aussi un peu de chance : nul ne dirait heureux le vieux Priam."
+    ],
+    "cit": [
+     {
+      "t": "La béatitude n'est pas le prix de la vertu, c'est la vertu elle-même.",
+      "a": "Spinoza, Éthique, V, proposition 42 (1677), trad. Saisset"
+     }
+    ]
+   },
+   {
+    "t": "Une illusion ?",
+    "p": [
+     "Pyrrhus et Cinéas. Pascal : la chasse, non la prise. Schopenhauer : le pendule de la souffrance à l'ennui. Rousseau : heureux avant d'être heureux. Freud : un bonheur épisodique, menacé par le corps, le monde, les autres.",
+     "Les gagnants du loto ne se disent pas beaucoup plus heureux, mais l'étude est petite et l'adaptation n'est pas totale. Le bonheur-état est sans doute une illusion ; le bonheur-activité se construit (Alain : l'optimisme est de volonté)."
+    ],
+    "cit": [
+     {
+      "t": "Ainsi nous ne vivons jamais, mais nous espérons de vivre ; et, nous disposant toujours à être heureux, il est inévitable que nous ne le soyons jamais.",
+      "a": "Pascal, Pensées, fr. 172 (éd. Brunschvicg)"
+     }
+    ]
+   },
+   {
+    "t": "Morale et politique",
+    "p": [
+     "Kant : la morale apprend à se rendre digne du bonheur. L'utilitarisme en fait le critère des lois, le plus grand bonheur du plus grand nombre ; Ivan Karamazov refuse un bonheur bâti sur les larmes d'un seul enfant.",
+     "1776 : le droit de rechercher le bonheur ; 1794 : la formule de Saint-Just, guillotiné quelques mois plus tard en pleine Terreur. Kant refuse le gouvernement paternel, Tocqueville le pouvoir tutélaire, Huxley le bonheur imposé : l'État doit garantir les conditions du bonheur (sécurité, justice, liberté), non le faire."
+    ]
+   },
+   {
+    "t": "Le jour J et toute la notion",
+    "p": [
+     "Définir chaque mot, problématiser par une tension, trois parties dont la dernière déplace la question par une distinction ; en introduction, une scène précise, les mots, la problématique, le plan. Épicure, au plus juste : ni jouisseur, ni ascète.",
+     "Sujets qui reviennent : le bonheur est-il affaire de chance ? Faut-il renoncer à ses désirs ? L'État doit-il faire le bonheur des citoyens ? Le bonheur n'est-il qu'un idéal ? Exemples : le ticket de loterie, les tonneaux percés, Crésus et Solon, l'hirondelle, Pyrrhus et Cinéas, le roi sans divertissement, le soma, Priam.",
+     "Trois phrases à garder : Aristote, le bonheur est la fin de tous nos actes ; Pascal, nous ne vivons jamais, mais nous espérons de vivre ; Kant, se rendre digne du bonheur. Le bonheur n'est peut-être pas un lot qu'on gagne, mais une manière de vivre qui s'apprend."
+    ]
+   }
+  ],
+  "reperes": [
+   "objectif / subjectif",
+   "bonheur-état / bonheur-activité",
+   "faire le bonheur / garantir ses conditions"
+  ],
+  "retenir": [
+   "Le bonheur est la fin dernière, que tous veulent sans savoir la définir ; Épicure : un plaisir en repos.",
+   "Aristote : une activité conforme à la vertu dans une vie complète ; stoïciens : la vertu suffit ; Spinoza : la joie.",
+   "Le bonheur-état est illusoire ; le bonheur-activité se construit. L'État en garantit les conditions.",
+   "Jamais « chacun son bonheur » comme conclusion : définir, problématiser, distinguer."
+  ]
+ }
+}

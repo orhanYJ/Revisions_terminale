@@ -1,0 +1,505 @@
+{
+ "etat-1": {
+  "intro": "Eau du robinet, route, lycée, TVA sur un sandwich, carte d'identité : sans croiser un seul ministre, on rencontre l'État partout. Est-ce une personne, un bâtiment, ou une idée ?",
+  "parties": [
+   {
+    "t": "Le mot et la chose",
+    "p": [
+     "État vient du latin status, se tenir debout (stare : rester, demeurer). Machiavel (XVIe siècle) donne à stato le sens de pouvoir qui commande à des hommes sur un territoire.",
+     "Louis XIV, mourant en 1715, aurait dit : « … mais l'État demeurera toujours. » L'État n'est pas une personne mais une institution, qui dure au-delà de ceux qui l'exercent.",
+     "Le gouvernement dirige un temps et change après une élection ; l'État demeure (administrations, armée, justice, école, impôts).",
+     "La nation est un peuple uni par une histoire, une langue, une mémoire et surtout la volonté de vivre ensemble (Renan, 1882) : il existe des nations sans État (les Kurdes) et des États de plusieurs peuples (la Suisse).",
+     "La société civile regroupe ce que les hommes font sans que l'État l'organise (familles, marchés, associations) ; l'État en fixe les règles et les fait respecter."
+    ]
+   },
+   {
+    "t": "Puissance, pouvoir, autorité",
+    "p": [
+     "La puissance impose sa volonté par la force ; le pouvoir est une puissance organisée qui a le droit de commander (le juge, le maire) ; l'autorité est le pouvoir reconnu, obéi sans menace.",
+     "Hannah Arendt : l'autorité repose sur la reconnaissance, non sur la contrainte ; plus un pouvoir a besoin de frapper, moins il a d'autorité.",
+     "Est légal ce qui est conforme à la loi, légitime ce qui est juste et mérite d'être obéi. La force ne fait pas le droit."
+    ],
+    "cit": [
+     {
+      "t": "Le plus fort n'est jamais assez fort pour être toujours le maître, s'il ne transforme sa force en droit et l'obéissance en devoir.",
+      "a": "Rousseau, *Du contrat social*, I, 3 (1762)"
+     }
+    ]
+   },
+   {
+    "t": "Le monopole de la violence légitime",
+    "p": [
+     "Munich, 28 janvier 1919 : Max Weber définit l'État non par ses buts, mais par un moyen, la force.",
+     "Chaque mot compte : un territoire ; la violence physique (arrêter, enfermer, tuer à la guerre) ; un monopole, non partagé ; légitime, reconnue comme permise ; « avec succès » : sinon, l'État cesse d'en être un.",
+     "Exemple : le duel. L'État moderne interdit de se faire justice soi-même : la police arrête, le juge condamne, et chacun vit en sécurité.",
+     "Saint Augustin : sans la justice, les royaumes sont de grandes bandes de brigands. La mafia se fait obéir par la peur, l'État parce qu'on reconnaît son droit."
+    ],
+    "cit": [
+     {
+      "t": "… une communauté humaine qui, dans les limites d'un territoire déterminé, revendique avec succès pour son propre compte le monopole de la violence physique légitime.",
+      "a": "Max Weber, *Le Savant et le Politique* (1919), trad. J. Freund"
+     }
+    ]
+   },
+   {
+    "t": "Trois légitimités (Weber)",
+    "p": [
+     "La tradition : on obéit parce qu'on a toujours obéi, au roi sacré à Reims (Charles VII, 1429).",
+     "Le charisme : on obéit à un homme extraordinaire (Bonaparte franchissant les Alpes) ; il ne s'hérite pas et doit sans cesse se prouver.",
+     "La légalité rationnelle : on obéit à des règles impersonnelles, au policier pour sa fonction ; le pouvoir du fonctionnaire s'arrête où s'arrête la loi.",
+     "Types purs, mêlés dans la réalité : un président élu garde des traditions (le 14 juillet)."
+    ]
+   },
+   {
+    "t": "Les questions de la série",
+    "p": [
+     "À Sienne, au XIVe siècle, Lorenzetti oppose le bon gouvernement et la Tyrannie. D'où les questions de la série : l'État est-il naturel (épisode 2) ? Protège-t-il la liberté (épisode 3) ? Peut-on s'en passer (épisode 4) ? Peut-il être juste (épisode 5) ?"
+    ]
+   }
+  ],
+  "reperes": [
+   "légal / légitime",
+   "État / gouvernement / nation / société civile",
+   "puissance / pouvoir / autorité"
+  ],
+  "retenir": [
+   "L'État est l'institution qui demeure quand les gouvernants passent ; la force ne fait pas le droit.",
+   "Weber : l'État revendique avec succès, sur un territoire, le monopole de la violence physique légitime.",
+   "On obéit par tradition, par charisme ou par légalité rationnelle."
+  ]
+ },
+ "etat-2": {
+  "intro": "Montréal, 7 octobre 1969 : la police en grève, des pillages, un policier tué ; seize heures suffisent pour que la ville bascule. L'État est-il naturel, ou un contrat inventé pour sortir d'un monde sans loi ?",
+  "parties": [
+   {
+    "t": "Aristote : un animal politique",
+    "p": [
+     "Famille, village, puis cité, qui se suffit à elle-même : née pour vivre, elle existe pour bien vivre. L'homme est un animal politique, plus que les abeilles.",
+     "Argument : la nature ne fait rien en vain et n'a donné qu'à l'homme la parole, qui dit le juste et l'injuste, quand la voix animale dit le plaisir et la douleur.",
+     "La cité passe avant l'individu, comme le tout avant la partie : une main séparée du corps n'est plus une main que par le nom."
+    ],
+    "cit": [
+     {
+      "t": "… celui qui ne peut vivre en société, et dont l'indépendance n'a pas de besoins, celui-là ne saurait jamais être membre de l'État. C'est une brute ou un dieu.",
+      "a": "Aristote, *La Politique*, I, 1, § 12, trad. Barthélemy-Saint-Hilaire"
+     }
+    ]
+   },
+   {
+    "t": "Hobbes : la peur et le Léviathan",
+    "p": [
+     "Les hommes sont à peu près égaux : le plus faible peut tuer le plus fort. Rivalité, méfiance et gloire les opposent.",
+     "Cette guerre n'exige pas de combats, seulement d'être toujours prêt à se battre : ni agriculture, ni commerce, ni sciences, une vie solitaire, pauvre, brutale et courte. Preuve : on ferme sa porte à clé.",
+     "Par le pacte, chacun cède son droit de se gouverner à un souverain : le Léviathan, « dieu mortel », tient l'épée et la crosse. Il est absolu, car les conventions, sans l'épée, ne sont que des mots."
+    ],
+    "cit": [
+     {
+      "t": "Tant que les hommes vivent sans un pouvoir commun qui les tienne tous en respect, ils sont dans cette condition qu'on appelle guerre, et cette guerre est celle de chacun contre chacun.",
+      "a": "Hobbes, *Léviathan*, chap. XIII (1651), traduit de l'anglais"
+     }
+    ]
+   },
+   {
+    "t": "Locke : un juge impartial",
+    "p": [
+     "L'état de nature a déjà une loi naturelle, dictée par la raison, et une propriété, fondée sur le travail.",
+     "Il y manque des lois établies, un juge impartial (chacun y est juge dans sa propre cause) et une force pour exécuter. L'État garde les « propriétés » : la vie, la liberté, les biens.",
+     "Fuir les renards pour être dévoré par des lions serait folie : un gouvernement qui viole ces droits trahit le contrat, et le peuple peut lui résister (Déclaration d'indépendance, 1776)."
+    ]
+   },
+   {
+    "t": "Rousseau : le faux et le vrai contrat",
+    "p": [
+     "*Discours sur l'origine de l'inégalité* (1755) : la propriété apporte inégalités et guerre ; le riche propose aux pauvres un contrat qui protège ses biens et fige l'inégalité.",
+     "*Du contrat social* (1762) : chacun se donne à tous, donc à personne. Le peuple est souverain, et la souveraineté ne se délègue pas : le peuple anglais n'est libre que pendant l'élection du Parlement."
+    ],
+    "cit": [
+     {
+      "t": "Le premier qui, ayant enclos un terrain, s'avisa de dire : Ceci est à moi, et trouva des gens assez simples pour le croire, fut le vrai fondateur de la société civile.",
+      "a": "Rousseau, *Discours sur l'origine de l'inégalité*, seconde partie (1755)"
+     }
+    ]
+   },
+   {
+    "t": "Un contrat qui n'a jamais eu lieu ?",
+    "p": [
+     "Hume (1748) : personne n'a signé ce contrat ; les États naissent de la conquête (Guillaume, 1066).",
+     "Réponse : le contrat est une hypothèse ; pour Kant, une idée de la raison qui juge la légitimité : une loi est juste si tout un peuple pourrait y consentir.",
+     "Pour Aristote, la cité est naturelle ; pour les penseurs du contrat, l'État est artificiel et doit être justifié."
+    ]
+   }
+  ],
+  "reperes": [
+   "naturel / artificiel",
+   "fait historique / idée de la raison"
+  ],
+  "retenir": [
+   "Aristote : la cité est naturelle. Hobbes : sans pouvoir commun, la guerre de chacun contre chacun.",
+   "Locke : l'État garde la vie, la liberté, les biens ; s'il trahit, on lui résiste. Rousseau : le peuple souverain, sous la volonté générale.",
+   "Le contrat est une idée de la raison, qui juge la légitimité d'un État."
+  ]
+ },
+ "etat-3": {
+  "intro": "Dans *1984* (Orwell, 1949), Winston Smith vit sous l'œil du télécran et écrit en cachette « à bas Big Brother ». Un État assez puissant pour protéger l'est aussi pour écraser : comment l'empêcher de devenir geôlier ?",
+  "parties": [
+   {
+    "t": "Montesquieu : le pouvoir arrête le pouvoir",
+    "p": [
+     "Dans *De l'esprit des lois* (1748), Montesquieu part d'un constat réaliste : tout pouvoir tend à l'abus. Il faut donc que, par la disposition des choses, le pouvoir arrête le pouvoir.",
+     "Sur le modèle anglais, il distingue faire les lois, les exécuter, juger : le Parlement vote, le gouvernement exécute, les juges tranchent.",
+     "Exemple : le 24 juillet 1974, la Cour suprême ordonne à l'unanimité au président Nixon de livrer ses enregistrements (Watergate) ; le 9 août, il démissionne."
+    ],
+    "cit": [
+     {
+      "t": "… c'est une expérience éternelle, que tout homme qui a du pouvoir est porté à en abuser ; il va jusqu'à ce qu'il trouve des limites.",
+      "a": "Montesquieu, *De l'esprit des lois*, XI, 4 (1748)"
+     }
+    ]
+   },
+   {
+    "t": "L'État de droit",
+    "p": [
+     "Avant 1789, la lettre de cachet emprisonne sans procès (Voltaire, onze mois à la Bastille en 1717) ; l'Angleterre a l'habeas corpus depuis 1679 : toute personne arrêtée voit un juge.",
+     "Le meunier de Potsdam, menacé par Frédéric le Grand, répond : « il y a des juges à Berlin ». L'État de droit est lui-même soumis au droit, avec des juges indépendants et des droits que nul ne peut violer.",
+     "Légal ne veut pas dire juste : les lois de Nuremberg (1935) sont votées en bonne et due forme. Kelsen ordonne la hiérarchie des normes ; le 16 juillet 1971, le Conseil constitutionnel censure une loi contre la liberté d'association."
+    ]
+   },
+   {
+    "t": "Spinoza : la fin de l'État, c'est la liberté",
+    "p": [
+     "Exclu en 1656 par la communauté juive d'Amsterdam, Spinoza publie sans nom d'auteur le *Traité théologico-politique* (1670) : dans un État libre, chacun peut penser ce qu'il veut et dire ce qu'il pense.",
+     "On contraint les corps, non les esprits : qui veut régler les pensées fabrique des hypocrites et des rebelles. Nuance capitale : le citoyen obéit aux lois dans ses actes, mais garde le droit de juger et de critiquer (voir l'épisode 6). Mill en tirera le principe de non-nuisance."
+    ],
+    "cit": [
+     {
+      "t": "La fin de l'État, c'est donc véritablement la liberté.",
+      "a": "Spinoza, *Traité théologico-politique*, chap. XX (1670), trad. Saisset"
+     }
+    ]
+   },
+   {
+    "t": "Le totalitarisme",
+    "p": [
+     "Pour Hannah Arendt (*Les Origines du totalitarisme*, 1951), nazisme et stalinisme inventent un régime nouveau : le tyran veut l'obéissance, le totalitarisme l'homme tout entier, jusqu'à ses pensées.",
+     "Trois piliers : une idéologie qui explique tout par une seule loi (la race, la lutte des classes), un parti unique avec un chef, la terreur. Plus profond encore, il isole les individus et détruit la confiance : là où l'État est tout, l'homme n'est plus rien.",
+     "Exemple : la Stasi est-allemande s'appuie sur près de deux cent mille informateurs."
+    ],
+    "cit": [
+     {
+      "t": "Tout dans l'État, rien hors de l'État, rien contre l'État.",
+      "a": "Benito Mussolini, discours de la Scala de Milan, 28 octobre 1925 (trad. courante)"
+     }
+    ]
+   },
+   {
+    "t": "*1984* : le cauchemar d'Orwell",
+    "p": [
+     "Au ministère de la Vérité, Winston réécrit les vieux journaux : qui contrôle le passé contrôle l'avenir. Le novlangue supprime des mots pour restreindre les limites de la pensée : le langage devient une prison.",
+     "À l'inverse de Spinoza, ce pouvoir commande aux esprits en détruisant les mots, la mémoire, la vérité : brisé, Winston trace « deux et deux font cinq »."
+    ],
+    "cit": [
+     {
+      "t": "La liberté, c'est la liberté de dire que deux et deux font quatre. Lorsque cela est accordé, le reste suit.",
+      "a": "George Orwell, *1984*, I, 7 (1949), trad. courante"
+     }
+    ]
+   }
+  ],
+  "reperes": [
+   "légal / légitime",
+   "tyrannie / totalitarisme"
+  ],
+  "retenir": [
+   "Montesquieu : séparer les pouvoirs, pour que le pouvoir arrête le pouvoir.",
+   "L'État de droit soumet l'État au droit ; légal ne veut pas dire juste.",
+   "Spinoza : la fin de l'État est la liberté. Arendt et Orwell : le totalitarisme veut l'homme tout entier."
+  ]
+ },
+ "etat-4": {
+  "intro": "Bucarest, 21 décembre 1989 : la foule hue Ceaușescu, au pouvoir depuis vingt-quatre ans ; le lendemain il s'enfuit et le régime s'effondre. Il avait l'armée et la police ; il lui manquait l'obéissance. La force de l'État serait-elle la nôtre, prêtée ?",
+  "parties": [
+   {
+    "t": "La Boétie : la servitude volontaire",
+    "p": [
+     "Avant ses dix-huit ans, Étienne de La Boétie écrit le *Discours de la servitude volontaire* : un tyran n'a que deux yeux, deux mains, un seul corps ; ce sont les hommes qui se donnent. Il suffit de ne plus le soutenir pour qu'il tombe, comme un colosse privé de sa base.",
+     "Pourquoi obéit-on ? Par la coutume, qui fait prendre l'habitude pour la nature et oublier la liberté naturelle ; par les divertissements, « appâts de la servitude » ; surtout par la chaîne des complices : cinq ou six favoris, six cents, six mille, jusqu'à des millions. Le tyran a acheté un peu de chacun.",
+     "C'est une critique de notre obéissance, et un appel à la responsabilité."
+    ],
+    "cit": [
+     {
+      "t": "Soyez résolus de ne servir plus, et vous voilà libres.",
+      "a": "La Boétie, *Discours de la servitude volontaire*, orthographe modernisée"
+     }
+    ]
+   },
+   {
+    "t": "Marx et Engels : l'État d'une classe",
+    "p": [
+     "*Manifeste du parti communiste* (1848) : l'histoire de toute société est l'histoire de luttes de classes. L'État se dit neutre ; il est l'instrument de ceux qui possèdent les usines, la terre, le capital, et ses lois protègent d'abord la propriété.",
+     "Exemple : en France, la grève reste un délit jusqu'en 1864 ; le travail est libre en droit, mais celui qui n'a que ses bras subit les conditions du propriétaire de l'usine.",
+     "Sans classes, l'État devient inutile : après la dictature du prolétariat, il doit dépérir et finir au musée, à côté du rouet (Engels). Or les régimes qui se réclament de Marx ont bâti des États énormes, comme celui de Ceaușescu."
+    ],
+    "cit": [
+     {
+      "t": "Le gouvernement moderne n'est qu'un comité qui gère les affaires communes de la classe bourgeoise tout entière.",
+      "a": "Marx et Engels, *Manifeste du parti communiste*, I (1848), trad. courante"
+     }
+    ]
+   },
+   {
+    "t": "L'ordre sans maître : les anarchistes",
+    "p": [
+     "An-arkhè : l'absence de commandement, non le désordre. Proudhon (1840 : « la propriété, c'est le vol ») propose des contrats libres entre égaux, le mutuellisme (des banques qui prêtent sans intérêt) et le fédéralisme : l'ordre par l'accord.",
+     "Bakounine affronte Marx : un État gouverné au nom des ouvriers le sera par une minorité ; *Étatisme et anarchie* (1873) annonce une nouvelle classe de savants et de bureaucrates.",
+     "Objection de Hobbes : qui protégera le faible contre le fort ? Réponse anarchiste : l'entraide est aussi naturelle que la lutte."
+    ],
+    "cit": [
+     {
+      "t": "Être gouverné, c'est être gardé à vue, inspecté, espionné, dirigé, légiféré, réglementé […]",
+      "a": "Proudhon, *Idée générale de la Révolution au XIXᵉ siècle*, Épilogue (1851)"
+     }
+    ]
+   },
+   {
+    "t": "Nietzsche et Clastres",
+    "p": [
+     "*Ainsi parlait Zarathoustra* (1883) : les peuples naissent de valeurs créées ; l'État, machine froide, ne connaît que des administrés et des numéros. Nouvelle idole, il remplace les dieux et fabrique des hommes moyens. Nietzsche n'est pas anarchiste : il reproche à l'État d'étouffer les individus d'exception.",
+     "Pour aller plus loin : Pierre Clastres (*La Société contre l'État*, 1974), chez les Guayaki du Paraguay, montre des sociétés qui empêchent qu'un pouvoir séparé n'apparaisse. Le chef parle mais ne commande pas ; s'il voulait ordonner, on l'abandonnerait."
+    ],
+    "cit": [
+     {
+      "t": "L'État, c'est le plus froid de tous les monstres froids : il ment froidement et voici le mensonge qui rampe de sa bouche : « Moi, l'État, je suis le Peuple. »",
+      "a": "Nietzsche, *Ainsi parlait Zarathoustra*, I, « De la nouvelle idole » (1883), trad. Henri Albert"
+     }
+    ]
+   }
+  ],
+  "reperes": [
+   "en droit / en fait",
+   "anarchie / désordre"
+  ],
+  "retenir": [
+   "La Boétie : le tyran n'a que la force qu'on lui donne.",
+   "Marx et Engels : l'État, instrument de la classe dominante, devrait dépérir. Proudhon et Bakounine : l'ordre sans maître.",
+   "Nietzsche : le plus froid des monstres froids ; Clastres : des sociétés contre l'État."
+  ]
+ },
+ "etat-5": {
+  "intro": "Syracuse, vers 367 avant notre ère : Platon tente de faire du jeune tyran Denys un philosophe, et échoue. Qui doit gouverner : les plus sages, les plus habiles, ou tout le monde ? L'État peut-il être juste, ou seulement efficace ?",
+  "parties": [
+   {
+    "t": "Platon : les philosophes rois",
+    "p": [
+     "Marqué par la condamnation de Socrate (399), Platon écrit *La République*. La cité juste a trois parties (producteurs, gardiens, gouvernants) ; la justice, c'est que chacun fasse sa tâche sans empiéter sur celle des autres, comme dans l'âme où la raison commande au courage et aux désirs.",
+     "Le navire : les matelots flattent l'armateur et traitent de rêveur le vrai pilote. Gouverner est un savoir, comme la médecine ; les gardiens n'ont pas de propriété privée.",
+     "Objection : qui gardera les gardiens (Juvénal) ? Popper voit dans *La République* l'ancêtre des régimes qui prétendent faire le bonheur des hommes malgré eux."
+    ],
+    "cit": [
+     {
+      "t": "Tant que les philosophes ne seront pas rois, ou que ceux qu'on appelle aujourd'hui rois et souverains ne seront pas vraiment et sérieusement philosophes, … il n'est point, ô mon cher Glaucon, de remède aux maux qui désolent les États […]",
+      "a": "Platon, *La République*, V, 473c-d, trad. Victor Cousin"
+     }
+    ]
+   },
+   {
+    "t": "Machiavel : le lion et le renard",
+    "p": [
+     "Exilé après le retour des Médicis, Machiavel écrit *Le Prince* (1513) : il s'en tient à la vérité effective des choses, ce que font les hommes, non ce qu'ils devraient faire.",
+     "César Borgia pacifie la Romagne par la terreur de Ramiro d'Orco, puis le fait exposer, coupé en morceaux, sur la place de Césène : le peuple est satisfait et terrifié.",
+     "Le prince doit être lion pour épouvanter les loups, renard pour connaître les pièges. Machiavel n'a jamais écrit « la fin justifie les moyens » : il vise la conservation de l'État, la sécurité de tous.",
+     "Weber : tenir ensemble l'éthique de conviction (fidélité aux principes) et l'éthique de responsabilité (répondre des conséquences)."
+    ],
+    "cit": [
+     {
+      "t": "On peut combattre de deux manières : ou avec les lois, ou avec la force.",
+      "a": "Machiavel, *Le Prince*, XVIII (1513), trad. Périès"
+     }
+    ]
+   },
+   {
+    "t": "Hegel : l'État, raison en acte",
+    "p": [
+     "*Principes de la philosophie du droit* (1820) : la famille unit par l'amour, la société civile oppose les intérêts, l'État réconcilie l'intérêt particulier et l'intérêt général. L'individu y trouve sa liberté accomplie. Marx retournera l'idée : l'État masque la lutte des classes."
+    ]
+   },
+   {
+    "t": "L'État-providence",
+    "p": [
+     "En 1942, Beveridge veut terrasser cinq géants : le besoin, la maladie, l'ignorance, l'insalubrité, le chômage. En France, la Sécurité sociale naît en 1945.",
+     "L'État redistribue : impôt selon les facultés (1789), prestations (soins, retraites, école gratuite). C'est la justice distributive d'Aristote, qui répartit les biens communs selon ce qui revient à chacun, distincte de la justice commutative des échanges.",
+     "Critique : Nozick (1974) compare l'impôt sur le travail à du travail forcé."
+    ],
+    "cit": [
+     {
+      "t": "Elle garantit à tous, notamment à l'enfant, à la mère et aux vieux travailleurs, la protection de la santé, la sécurité matérielle, le repos et les loisirs.",
+      "a": "Préambule de la Constitution du 27 octobre 1946, alinéa 11 (« Elle » : la Nation)"
+     }
+    ]
+   },
+   {
+    "t": "Rawls : le voile d'ignorance",
+    "p": [
+     "Celui qui coupe le gâteau choisit en dernier : il fera des parts égales. Rawls (*Théorie de la justice*, 1971) fait choisir les règles sans savoir qui l'on sera : riche ou pauvre, malade ou en bonne santé.",
+     "Premier principe : les mêmes libertés fondamentales pour tous, qu'on ne sacrifie pas à la richesse. Second : des inégalités, si les places sont ouvertes à tous et si elles profitent aux plus défavorisés (principe de différence), comme le salaire du chirurgien quand les pauvres sont mieux soignés."
+    ]
+   }
+  ],
+  "reperes": [
+   "éthique de conviction / éthique de responsabilité",
+   "justice commutative / justice distributive"
+  ],
+  "retenir": [
+   "Platon : les philosophes rois ; mais qui gardera les gardiens ?",
+   "Machiavel : le prince est lion et renard. Hegel : l'État, liberté devenue institution.",
+   "Rawls : derrière le voile d'ignorance, libertés égales et inégalités au profit des plus défavorisés."
+  ]
+ },
+ "etat-6": {
+  "intro": "Le correcteur note ce qu'on fait de ce qu'on sait : un problème posé, des auteurs au service d'une réponse, des exemples précis. Trois sujets, puis un texte de Spinoza (méthode générale : série La liberté, épisode 6).",
+  "parties": [
+   {
+    "t": "Sujet 1 · « L'État est-il l'ennemi de la liberté ? »",
+    "p": [
+     "Les mots : « l'État », le monopole de la violence légitime, non le gouvernement ; « ennemi », plus fort qu'un obstacle ; « liberté », faire ce qu'on veut, ou vivre en sécurité sous des lois reconnues. Problème : l'État contraint, mais sans lui, qui protège du plus fort ?",
+     "I. L'État contraint et peut écraser (Proudhon, Nietzsche). II. Sans lui, pas de liberté : Montréal, 1969 ; Locke, l'État gardien. III. Il en est la condition s'il est limité (Montesquieu).",
+     "Distinction : liberté naturelle, limitée par nos forces, et liberté civile, garantie par la loi."
+    ]
+   },
+   {
+    "t": "Sujet 2 · « Peut-on se passer de l'État ? »",
+    "p": [
+     "« Peut-on » ouvre deux questions : en fait, est-ce possible ? En droit, est-ce souhaitable ? Un chef sans pouvoir n'est pas encore un État.",
+     "I. Il semble que oui : Clastres, Proudhon, le dépérissement selon Marx et Engels. II. Mais l'État n'a jamais dépéri (Bakounine), et l'homme est un animal politique (Aristote). III. On ne se passe pas de l'État, mais de la servitude (La Boétie).",
+     "Distinction : se passer de l'État ou d'un maître. À Bucarest, en 1989, la foule renvoie un tyran puis élit des représentants."
+    ]
+   },
+   {
+    "t": "Sujet 3 · « Faut-il toujours obéir à l'État ? »",
+    "p": [
+     "« Faut-il » : nécessité ou devoir ? « À l'État » : aux lois, mais aussi aux ordres d'un gouvernement, d'un chef.",
+     "I. Sans obéissance, plus d'État (Hobbes) ; Socrate refuse de s'évader. II. L'État peut trahir : droit de résistance (Locke) ; en juin 1940, à Bordeaux, le consul portugais Aristides de Sousa Mendes signe des milliers de visas malgré l'ordre reçu. III. Obéir en actes à l'État légitime sans abandonner son jugement (Spinoza).",
+     "Distinction : l'obéissance, les yeux ouverts, et la servitude, qui obéit sans penser."
+    ]
+   },
+   {
+    "t": "L'explication · Le texte et l'introduction",
+    "p": [
+     "*Traité théologico-politique* (1670), chapitre XX. Thème : la fin de l'État, son but. Question : existe-t-il pour dominer les hommes ou les rendre libres ? Thèse adverse : l'État, c'est la contrainte. Thèse : sa fin est la sécurité et la liberté, l'usage libre de la raison. Enjeu : un État de terreur trahit sa raison d'être. Plan : ce que l'État n'est pas, ce qu'il doit permettre, la liberté."
+    ],
+    "cit": [
+     {
+      "t": "[…] la fin dernière de l'État n'est pas de dominer les hommes, de les retenir par la crainte, de les soumettre à la volonté d'autrui, mais tout au contraire de permettre à chacun, autant que possible, de vivre en sécurité […]",
+      "a": "Spinoza, *Traité théologico-politique*, chap. XX (1670), trad. Saisset"
+     },
+     {
+      "t": "La fin de l'État, c'est donc véritablement la liberté.",
+      "a": "Spinoza, *Traité théologico-politique*, chap. XX (fin du passage)"
+     }
+    ]
+   },
+   {
+    "t": "L'explication · Phrase par phrase",
+    "p": [
+     "Phrase charnière : l'État ne doit pas transformer les hommes « d'êtres raisonnables en animaux ou en automates ». Quoi ? Ne pas les rabaisser. Comment ? Insistance et opposition. Pourquoi ? Gouverner par la crainte contredit leur nature raisonnable.",
+     "Trois gestes : reformuler, définir (des « automates » se meuvent sans penser), illustrer (la foule de Bucarest applaudissant sur ordre). Paragraphe en cinq temps : annoncer, citer, expliquer, interroger, relier.",
+     "En avocat de l'auteur : l'objection de Hobbes, qui fonde l'État sur la crainte ; réponse : l'État commande les actes, pas les esprits. Conclusion : bilan, réponse, intérêt, ouverture sur Rawls.",
+     "Pièges : faire de Spinoza un anarchiste ; confondre la fin (le but) et l'origine ; réciter Hobbes sans revenir au texte."
+    ]
+   }
+  ],
+  "reperes": [
+   "en fait / en droit",
+   "liberté naturelle / liberté civile",
+   "obéissance / servitude",
+   "la fin / l'origine"
+  ],
+  "retenir": [
+   "Chaque sujet se joue sur un mot : « ennemi », « peut-on », « toujours ».",
+   "Trois distinctions dépassent le problème : liberté naturelle et civile ; se passer de l'État et d'un maître ; obéissance et servitude.",
+   "Explication : six éléments d'introduction, puis quoi, comment, pourquoi, en avocat de l'auteur."
+  ]
+ },
+ "etat-7": {
+  "intro": "La veille de l'épreuve, tout le parcours : qu'est-ce que l'État, pourquoi existe-t-il, protège-t-il ou menace-t-il la liberté, peut-on s'en passer, peut-il être juste ?",
+  "parties": [
+   {
+    "t": "Qu'est-ce que l'État ?",
+    "p": [
+     "L'État (status, ce qui demeure) n'est ni le gouvernement, qui passe, ni la nation, ni la société civile. Plus un pouvoir a besoin de frapper, moins il a d'autorité.",
+     "Le mot décisif de Weber est « légitime » : sans justice, les royaumes sont de grandes bandes de brigands (saint Augustin). On obéit par tradition, par charisme, ou par légalité."
+    ],
+    "cit": [
+     {
+      "t": "… une communauté humaine qui, dans les limites d'un territoire déterminé, revendique avec succès pour son propre compte le monopole de la violence physique légitime.",
+      "a": "Max Weber, *Le Savant et le Politique* (1919), trad. J. Freund"
+     }
+    ]
+   },
+   {
+    "t": "Pourquoi l'État ?",
+    "p": [
+     "Aristote : l'homme, animal politique doué de parole ; la cité est naturelle. Hobbes : sans pouvoir commun, la guerre de chacun contre chacun ; le pacte crée le Léviathan. Locke : un juge impartial, gardien de la vie, de la liberté, des biens. Rousseau : contre le faux contrat du riche, le peuple souverain sous la volonté générale.",
+     "Hume : les États naissent de la conquête. Le contrat n'est pas un fait, mais une idée qui juge la légitimité."
+    ]
+   },
+   {
+    "t": "L'État et la liberté",
+    "p": [
+     "Montesquieu sépare les pouvoirs (Nixon contraint de céder en 1974) ; l'État de droit obéit lui-même au droit (« il y a des juges à Berlin »), car une loi peut être légale et monstrueuse ; Spinoza : on ne commande pas aux esprits.",
+     "L'inverse est le totalitarisme : pour Arendt, il veut l'homme tout entier, par l'idéologie, le parti unique et la terreur ; Orwell en fait *1984*, avec le télécran, le ministère de la Vérité, le novlangue."
+    ],
+    "cit": [
+     {
+      "t": "La fin de l'État, c'est donc véritablement la liberté.",
+      "a": "Spinoza, *Traité théologico-politique*, chap. XX (1670), trad. Saisset"
+     }
+    ]
+   },
+   {
+    "t": "Contre l'État ?",
+    "p": [
+     "La Boétie : le tyran n'a que la force qu'on lui donne (Bucarest, décembre 1989). Marx et Engels : l'instrument d'une classe, qui devrait dépérir et n'a jamais dépéri. Proudhon : l'ordre sans le commandement ; Bakounine : un État ouvrier fabriquera de nouveaux maîtres. Nietzsche : le plus froid des monstres froids. Clastres : le chef qui parle mais ne commande pas."
+    ],
+    "cit": [
+     {
+      "t": "Soyez résolus de ne servir plus, et vous voilà libres.",
+      "a": "La Boétie, *Discours de la servitude volontaire*, orthographe modernisée"
+     }
+    ]
+   },
+   {
+    "t": "L'État et la justice",
+    "p": [
+     "Platon : les philosophes rois, mais qui gardera les gardiens ? Machiavel : lion et renard ; Weber : conviction et responsabilité. Hegel : la raison devenue institution. L'État-providence, contre les cinq géants de Beveridge : la justice distributive. Rawls : derrière le voile d'ignorance, les mêmes libertés pour tous et des inégalités seulement au profit des plus défavorisés."
+    ]
+   },
+   {
+    "t": "Le jour J",
+    "p": [
+     "Définir chaque mot ; problématiser par une tension, non une reformulation ; trois parties, la dernière déplaçant la question par une distinction. Pour l'explication : six éléments d'introduction, puis quoi, comment, pourquoi.",
+     "Exemples précis : Montréal 1969, le Watergate, Bucarest 1989, le consul de Bordeaux, la place de Césène, le gâteau partagé.",
+     "Piège : réciter Hobbes contre Marx sans répondre à la question ; un auteur est un outil pour penser, pas un argument d'autorité."
+    ]
+   },
+   {
+    "t": "Toute la notion",
+    "p": [
+     "Définir : une institution, un monopole, une légitimité. Fonder : la nature, ou le contrat. Limiter et contester : le pouvoir qui arrête le pouvoir, la servitude volontaire, les critiques radicales. Juger : un État juste est-il possible ?",
+     "Trois phrases à garder : La Boétie, ne plus servir pour être libres ; Montesquieu, le pouvoir arrête le pouvoir ; Spinoza, la fin de l'État, c'est la liberté. L'État n'est pas seulement au-dessus des hommes : il est fait d'eux."
+    ]
+   }
+  ],
+  "reperes": [
+   "légal / légitime",
+   "nature / contrat",
+   "liberté naturelle / liberté civile",
+   "obéissance / servitude"
+  ],
+  "retenir": [
+   "L'État demeure et détient le monopole de la violence physique légitime (Weber).",
+   "Naturel pour Aristote, il naît d'un contrat chez Hobbes, Locke et Rousseau.",
+   "Le pouvoir arrête le pouvoir ; la fin de l'État est la liberté.",
+   "Une idée, un auteur, un exemple précis."
+  ]
+ }
+}
