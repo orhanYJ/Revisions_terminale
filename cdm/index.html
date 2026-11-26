@@ -2,6 +2,14 @@
 <html lang="fr" class="no-js">
 <head>
 <meta charset="utf-8">
+<script>
+(function () {
+  var l = null;
+  try { l = new URLSearchParams(location.search).get("lang"); } catch (e) {}
+  if (l !== "en" && l !== "fr") l = String(navigator.language || "fr").slice(0, 2).toLowerCase() === "en" ? "en" : "fr";
+  if (l === "en") { document.documentElement.classList.add("en"); document.documentElement.lang = "en"; }
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sensibiliser ou interdire — Projet CDM · Orhan Yildiz-Jalaguier</title>
 <meta name="description" content="Projet de Connaissance du Monde : pour protéger le sommeil et la santé des adolescents face aux écrans, le Royaume-Uni a-t-il raison de passer de la sensibilisation à l'interdiction ?">
@@ -100,6 +108,18 @@ body{
   white-space:nowrap;
 }
 .barre a:hover,.barre a:focus-visible{color:var(--ivoire);background:rgba(243,234,221,.07)}
+
+/* ── Deux langues : FR / EN ─────────────────── */
+html:not(.en) [data-l="en"],html.en [data-l="fr"]{display:none !important}
+.barre{display:flex;align-items:center}
+.barre nav{flex:1 1 auto;min-width:0}
+.langue{flex:none;display:inline-flex;margin:0 var(--marge) 0 .2rem;padding:2px;border-radius:999px;
+  border:1px solid rgba(243,234,221,.2);background:rgba(27,22,34,.7);cursor:pointer;
+  font-family:var(--hum);font-size:.74rem;letter-spacing:.06em;color:var(--ivoire-bas)}
+.langue span{padding:.3rem .6rem;border-radius:999px;transition:background-color .35s ease,color .35s ease}
+html:not(.en) .langue [data-c="fr"],html.en .langue [data-c="en"]{background:var(--ambre);color:var(--nuit-creux)}
+.langue:focus-visible{outline:2px solid var(--ambre);outline-offset:2px}
+@media print{.langue{display:none}}
 
 /* ── Trame générale ─────────────────────────── */
 main{max-width:64rem;margin:0 auto;padding:0 var(--marge)}
@@ -357,8 +377,8 @@ footer li::marker{color:var(--ambre-bas)}
 ::selection{background:rgba(232,163,79,.3)}
 </style>
 <!-- mouvement:debut — couche maintenue à part (motion.css, motion.js) ; à conserver lors des mises à jour -->
-<link rel="stylesheet" href="motion.css?v=1">
-<script src="motion.js?v=1" defer></script>
+<link rel="stylesheet" href="motion.css?v=2">
+<script src="motion.js?v=2" defer></script>
 <!-- mouvement:fin -->
 <!-- assistant:debut — bouton « Demander à une IA » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
 <script src="assistant.js?v=11" defer></script>
@@ -371,19 +391,30 @@ footer li::marker{color:var(--ambre-bas)}
 <div class="enveloppe">
 
 <div class="barre">
-  <nav aria-label="Sections du dossier">
-    <a href="#question">La question</a>
-    <a href="#probleme">Le problème</a>
-    <a href="#sensibiliser">Sensibiliser</a>
-    <a href="#interdire">Réguler, interdire</a>
-    <a href="#australie">L'Australie</a>
-    <a href="#partenaires">Partenaires</a>
-    <a href="#action">Mon action</a>
-    <a href="#position">Ma position</a>
+  <nav aria-label="Sections du dossier / Dossier sections">
+    <a data-l="fr" href="#question">La question</a>
+    <a data-l="fr" href="#probleme">Le problème</a>
+    <a data-l="fr" href="#sensibiliser">Sensibiliser</a>
+    <a data-l="fr" href="#interdire">Réguler, interdire</a>
+    <a data-l="fr" href="#australie">L'Australie</a>
+    <a data-l="fr" href="#partenaires">Partenaires</a>
+    <a data-l="fr" href="#action">Mon action</a>
+    <a data-l="fr" href="#position">Ma position</a>
+    <a data-l="en" href="#en-question">The question</a>
+    <a data-l="en" href="#en-problem">The problem</a>
+    <a data-l="en" href="#en-awareness">Awareness</a>
+    <a data-l="en" href="#en-prohibition">Regulation, ban</a>
+    <a data-l="en" href="#en-australia">Australia</a>
+    <a data-l="en" href="#en-partners">Partners</a>
+    <a data-l="en" href="#en-action">My action</a>
+    <a data-l="en" href="#en-position">My position</a>
   </nav>
+  <button type="button" class="langue" id="langue" aria-label="English version" title="Switch to English"><span data-c="fr">FR</span><span data-c="en">EN</span></button>
 </div>
 
 <main>
+
+<div data-l="fr" lang="fr">
 
 <!-- ══ OUVERTURE ══════════════════════════════ -->
 <section id="question" class="ouverture">
@@ -707,10 +738,339 @@ footer li::marker{color:var(--ambre-bas)}
   <p style="margin-top:1.6rem">Gardé en réserve pour l'entretien&nbsp;: le détail de la revue de Gaskin, les limites de la vérification de l'âge à seize ans et les VPN, la question de la liberté et des droits des adolescents, la différence entre l'Angleterre et les autres nations du Royaume-Uni, et le cas français du téléphone au collège.</p>
 </section>
 
+</div>
+
+<div data-l="en" lang="en">
+
+<!-- ══ OPENING ════════════════════════════════ -->
+<section id="en-question" class="ouverture">
+  <h1>To protect teenagers' sleep and health from screens, is the United Kingdom right to move from awareness to prohibition?</h1>
+  <p class="vo">Pour protéger le sommeil et la santé des adolescents face aux écrans, le Royaume-Uni a-t-il raison de passer de la sensibilisation à l'interdiction&nbsp;?</p>
+  <p class="chapo">For years, the United Kingdom relied on education: explaining to teenagers why sleep matters, and how to get more of it. In June 2026, it changed course: social media will be banned for under-16s from spring 2027. I took one precise case to judge this turn — sleep and screens — and looked at what British trials show, what Westminster has voted, and what Australia, one year ahead, has already seen.</p>
+  <p class="signature">
+    Orhan Yildiz-Jalaguier · Year 13 (Terminale), English section<br>
+    Cité Scolaire Internationale Jacques Chirac, Marseille<br>
+    French International Baccalaureate — Connaissance du Monde
+  </p>
+</section>
+
+<svg class="onde" viewBox="0 0 1200 52" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,30 C180,8 320,48 520,30 C700,14 840,44 1020,28 C1110,20 1160,26 1200,24"
+        fill="none" stroke="#E8A34F" stroke-width="1.4" opacity=".45"/>
+</svg>
+
+<!-- ══ THE PROBLEM ════════════════════════════ -->
+<section id="en-problem">
+  <h2>British teenagers' sleep, a public health problem</h2>
+  <p class="souffle">What the great British birth cohort reveals, and why the country took up the issue</p>
+
+  <p>Sleep loss in adolescence has documented effects on attention, memory, emotional regulation, weight and school results. The recommendation is eight to ten hours a night between the ages of 14 and 17. A large share of teenagers do not get there.</p>
+
+  <p>This risk looks like no classic health threat. There is no pathogen and no imposed exposure: the behaviour is voluntary, pleasant and socially valued, and its cost only shows later. This is exactly the kind of problem twenty-first-century public health has to learn to deal with.</p>
+
+  <div class="fiche">
+    <h3>In the UK, heavy users fall asleep later, and sleep worse</h3>
+    <p class="ref">Scott, Biello &amp; Woods, <i>BMJ Open</i>, 2019 · Kelly, Zilanawala, Booker &amp; Sacker, <i>EClinicalMedicine</i>, 2019 — two analyses of the Millennium Cohort Study, open access</p>
+
+    <p>The Millennium Cohort Study has followed some nineteen thousand children born in the UK around the year 2000 since birth. At about 14, they described their social media use and their sleep. Two British teams analysed these answers.</p>
+
+    <p>Scott and colleagues show that the heavier the use, the later teenagers fall asleep, on school days and at weekends. Kelly and colleagues go further: among 14-year-olds, heavy use goes with more depressive symptoms, and this link runs mainly through two pathways — poor sleep and online harassment.</p>
+
+    <ul class="chiffres">
+      <li><b>20.8%</b><span>of the 11,872 teenagers aged 13 to 15 spend five hours or more a day on social media (Scott, 2019)</span></li>
+      <li><b>× 2.14</b><span>odds of falling asleep late on school days for these very heavy users, compared with average users (odds ratio)</span></li>
+      <li><b>+50%</b><span>higher depressive symptom scores among 14-year-old girls at five hours or more a day, compared with one to three hours; +35% among boys (Kelly, 2019, 10,904 teenagers)</span></li>
+    </ul>
+
+    <p class="retenir">In the UK, sleep is the link between screens and mental health. <em>Acting on sleep means acting on one of the pathways through which social media harms teenagers' health.</em></p>
+
+    <p class="reserve"><b>My reservation.</b> These are cross-sectional, self-reported studies: they show an association, not causation. A teenager who is struggling may also spend more time on their phone and sleep badly for that reason. The authors say so themselves.</p>
+  </div>
+
+  <p>The British debate also has a face. In September 2022, the inquest into the death of Molly Russell, a 14-year-old who died in 2017, concluded that content she had viewed on Instagram and Pinterest contributed to it "in a more than minimal way". It was a world first, and the case weighs on everything that follows.</p>
+
+  <h3>The four concepts that frame my analysis</h3>
+  <ul class="notions">
+    <li>
+      <b>Global health</b>
+      <span>The same devices and the same platforms all over the world, but national responses. The UK and Australia watch and learn from each other: no state can solve on its own a problem produced by global companies.</span>
+    </li>
+    <li>
+      <b>Epidemiological transition</b>
+      <span>People no longer mainly die of infections but of chronic diseases linked to lifestyle. Poor sleep is part of this shift: it feeds obesity, high blood pressure and mood disorders.</span>
+    </li>
+    <li>
+      <b>Social determinants of health</b>
+      <span>School start times, the phone in the bedroom or in the school bag, an app's default settings. Sleep is not just an individual choice: it is a product of the environment.</span>
+    </li>
+    <li>
+      <b>The three levels of prevention</b>
+      <span>Raising awareness is primary prevention. So is prohibition, but through constraint. Spotting a teenager already short of sleep is secondary prevention. The UK is switching from one tool to the other at the same level of prevention.</span>
+    </li>
+  </ul>
+</section>
+
+<svg class="onde" viewBox="0 0 1200 52" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,26 C160,44 300,10 480,26 C660,42 800,12 980,28 C1090,37 1150,30 1200,32"
+        fill="none" stroke="#93A87C" stroke-width="1.4" opacity=".45"/>
+</svg>
+
+<!-- ══ AWARENESS ══════════════════════════════ -->
+<section id="en-awareness">
+  <h2>Raising awareness: what the UK has already tried</h2>
+  <p class="souffle">The country tested sleep education on a large scale, and measured the result</p>
+
+  <div class="fiche">
+    <h3>Teensleep: pupils know more, but do not sleep better</h3>
+    <p class="ref">Illingworth, Sharman, Harvey, Foster &amp; Espie (University of Oxford), <i>Sleep Medicine: X</i>, 2020 — open access</p>
+
+    <p>Teensleep is a sleep education programme designed at Oxford and funded by the Education Endowment Foundation, the British body that evaluates teaching methods. Ten lessons, taught by the teachers themselves, to Year 10 pupils (aged 14-15) in ten British state schools. Sleep was measured by questionnaire and, for some pupils, by a wristband that records movement.</p>
+
+    <p>The result is clear: knowledge improves a lot, sleep very little. Reported sleep quality and evening habits barely improve, and daytime sleepiness does not fall. Measured by wristband, sleep does not improve in any demonstrable way, according to the independent evaluation of the pilot. Only pupils who were already sleeping badly at the start clearly benefit.</p>
+
+    <ul class="chiffres">
+      <li><b>1,504</b><span>pupils aged 14-15, in ten state schools</span></li>
+      <li><b>d&nbsp;=&nbsp;0.78</b><span>gain in knowledge: a large effect</span></li>
+      <li><b>d&nbsp;=&nbsp;0.15</b><span>gain in reported sleep quality; 0.11 in evening habits: small effects</span></li>
+    </ul>
+
+    <p class="retenir">Informing raises knowledge, not sleep. <em>The country best equipped to test sleep education ended up with better-informed pupils, not better-rested ones.</em></p>
+
+    <p class="reserve"><b>My reservation.</b> The follow-up is short: we do not know whether the small gains last, and the authors themselves call for follow-up studies. On the other hand, pupils who slept badly did improve: awareness is not useless, it is mostly useful to those already struggling.</p>
+  </div>
+
+  <div class="galet">
+    <h3>The one lever that works, impossible to test in the UK</h3>
+    <p>Teensleep was also meant to compare, by random allocation, schools that moved their start time later. Despite wide media coverage, only two schools agreed. The researchers conclude that a randomised trial of school start times is unfeasible in the UK (Illingworth et al., <i>Sleep Medicine</i>, 2019).</p>
+    <p>Yet this is precisely the only lever that stands out internationally. The systematic review by Gaskin and colleagues (<i>SLEEP Advances</i>, 2024: 21 trials, 10,867 young people, thirteen countries) confirms what Teensleep found: sleep education is "typically ineffective" on behaviour, and its rare effects fade at later follow-ups. Only a later school start produces a clear effect, in a single study.</p>
+  </div>
+
+  <p>This finding explains the British turn: if explaining is not enough, the state turns to constraint. It is also the first point I want to discuss with Chloe, from The Sleep Charity: what happens when you really try to change a habit, one family at a time.</p>
+</section>
+
+<svg class="onde" viewBox="0 0 1200 52" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,32 C170,12 310,46 500,28 C690,10 830,42 1010,26 C1100,18 1155,24 1200,22"
+        fill="none" stroke="#7D95CE" stroke-width="1.4" opacity=".45"/>
+</svg>
+
+<!-- ══ REGULATION, PROHIBITION ════════════════ -->
+<section id="en-prohibition">
+  <h2>Regulating, then prohibiting: the British turn</h2>
+  <p class="souffle">Four years of legislation, from platform design to an age ban</p>
+
+  <p>The UK did not jump straight from awareness to prohibition. It first regulated how platforms are designed, then the school environment, before deciding to ban. What is happening as I write this dossier is the move to the final step.</p>
+
+  <ol class="chrono">
+    <li>
+      <time>30 September 2022</time>
+      <p><strong>Findings of the inquest into Molly Russell's death.</strong> The coroner then sends the platforms and the government a report to prevent future deaths; the government promises to speed up the online safety law.</p>
+    </li>
+    <li>
+      <time>26 October 2023</time>
+      <p><strong>The Online Safety Act becomes law.</strong> Platforms become responsible for the risks their services pose to children. The communications regulator, Ofcom, enforces it, with fines of up to 10% of global turnover.</p>
+    </li>
+    <li>
+      <time>February 2024</time>
+      <p><strong>First guidance on phones in schools</strong> in England: schools are encouraged to ban their use during the day. It is still only a recommendation.</p>
+    </li>
+    <li>
+      <time>25 July 2025</time>
+      <p><strong>Ofcom's Protection of Children Codes come into force.</strong> "Highly effective" age checks for the most harmful content, filtered feeds for minors. Design is regulated, not yet the age of access.</p>
+    </li>
+    <li>
+      <time>21 January 2026</time>
+      <p><strong>The House of Lords votes for a ban</strong> on social media for under-16s, by 261 votes to 150, against the government's wishes. The government responds with a public consultation, from 2 March to 26 May 2026: about 116,000 responses.</p>
+    </li>
+    <li>
+      <time>15 June 2026</time>
+      <p><strong>The government decides to ban social media for under-16s.</strong> Snapchat, TikTok, YouTube, Instagram, Facebook and X are given as examples; messaging services such as WhatsApp are not targeted. The measure will be introduced through regulations made under the Children's Wellbeing and Schools Act 2026.</p>
+    </li>
+    <li>
+      <time>15 July 2026</time>
+      <p><strong>A default curfew for 16-17-year-olds.</strong> Apps switch off from midnight to 6 am, but teenagers can override the setting. Infinite scrolling, autoplay and personalised feeds will be off by default. The stated aim: to avoid a "cliff edge" on a teenager's sixteenth birthday.</p>
+    </li>
+    <li>
+      <time>1 September 2026</time>
+      <p><strong>Phones in school change status.</strong> Under the same Act, state schools in England must follow the national guidance: it is no longer optional. This rule applies to England only.</p>
+    </li>
+    <li>
+      <time>29 October 2026</time>
+      <p><strong>Ofcom clarifies what a real age check at sixteen means.</strong> Self-declaring one's age, accepting terms of service or obtaining a parent's consent are not enough.</p>
+    </li>
+    <li>
+      <time>11 November 2026</time>
+      <p><strong>Further tightening in schools</strong>, announced in the House of Lords: the guidance will require that no pupil keeps an accessible phone in their bag or blazer during the school day.</p>
+    </li>
+    <li>
+      <time>December 2026 → spring 2027</time>
+      <p><strong>The regulations are due to be laid before Parliament</strong> by the end of the year, to come into force in spring 2027. The change of Prime Minister in July 2026 (Andy Burnham succeeded Keir Starmer) did not alter the timetable.</p>
+    </li>
+  </ol>
+
+  <div class="galet">
+    <h3>What makes the British model distinctive</h3>
+    <p>It is not a simple ban. The UK stacks three layers: platform design (the Online Safety Act), the school environment (phones put away) and the age of access (the under-16 ban). And for 16-17-year-olds, it invents a middle way: neither advice nor prohibition, but a <i>default setting</i>, which can be overridden, and which switches the app off at night.</p>
+    <p>For my topic, this is the most interesting measure: it is the only one that targets sleep directly. According to the Online Safety Minister, Kanishka Narayan, when some platforms introduced settings of this kind in October, over 90% of teenagers kept them. The figure has not been published in detail: I cite it as a statement, not as proof.</p>
+  </div>
+
+  <h3>The British debate</h3>
+  <ul class="notions">
+    <li>
+      <b>For</b>
+      <span>According to the government, about nine in ten parents who answered the consultation support the ban. Child protection charities such as the NSPCC find it helpful, while warning that it will not be enough on its own.</span>
+    </li>
+    <li>
+      <b>Researchers' caution</b>
+      <span>Amy Orben (University of Cambridge), in evidence to the Commons Science, Innovation and Technology Committee, distinguishes strong evidence of the most serious harms, such as exposure to distressing content, from limited evidence that a complete ban works. She considers independent evaluation essential; a study led by University College London will track teenagers' mental health before and after 2027.</span>
+    </li>
+    <li>
+      <b>Enforceability</b>
+      <span>Checking that a user is over sixteen is harder than checking they are an adult: bank cards do not work, facial age estimation errs near the threshold, and Ofcom acknowledges that 16-17-year-olds will more often have to show an ID document. Then there are virtual private networks (VPNs), which make it possible to get round the checks.</span>
+    </li>
+    <li>
+      <b>Freedom</b>
+      <span>A ban also deprives teenagers of what social media gives them: contact with friends, information, support for those who are isolated. That is the cost any ban has to justify.</span>
+    </li>
+  </ul>
+
+  <p class="reserve"><b>My reservation.</b> Nothing has come into force yet. I am judging a policy on its intentions and on other countries' experience, not on its results: that is why the comparison with Australia, one year ahead, is essential to me.</p>
+</section>
+
+<svg class="onde" viewBox="0 0 1200 52" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,24 C165,42 305,12 490,28 C675,44 815,14 995,30 C1095,39 1152,32 1200,34"
+        fill="none" stroke="#E8A34F" stroke-width="1.4" opacity=".45"/>
+</svg>
+
+<!-- ══ AUSTRALIA ══════════════════════════════ -->
+<section id="en-australia">
+  <h2>The Australian comparison: one year ahead</h2>
+  <p class="souffle">What Australia suggests for the United Kingdom</p>
+
+  <p>On 10 December 2025, Australia became the first country to ban social media for under-16s. As in the UK, the burden falls on the platforms: neither children nor parents are penalised. In January 2026, the eSafety regulator announced 4.7 million accounts deactivated. But its three-month evaluation, published at the end of July 2026, strongly qualifies this success.</p>
+
+  <ul class="chiffres">
+    <li><b>85.9&nbsp;→&nbsp;81.5%</b><span>of 10-15-year-olds still use at least one banned platform: use has barely fallen</span></li>
+    <li><b>52.4&nbsp;→&nbsp;42.1%</b><span>have their own account: accounts fall more than use, which continues through shared accounts or without logging in</span></li>
+    <li><b>50.2%</b><span>of children still on a platform say they were never asked to prove their age; 37.1% simply declared they were sixteen or over</span></li>
+  </ul>
+
+  <p>An independent analysis published in the <i>BMJ</i> in June 2026 points the same way: over 85% of the under-16s surveyed were still using these platforms.</p>
+
+  <div class="galet">
+    <h3>What the UK has learned from it</h3>
+    <p>Australia's weak point is age verification. The UK has learned the lesson: Ofcom rules out self-declared age in advance. And it adds what Australia lacks: default settings for 16-17-year-olds and phones put away at school. The British model is therefore broader, but it runs into the same limit: a ban aimed at individuals can be got round.</p>
+  </div>
+
+  <p class="reserve"><b>My reservation.</b> Three months is very short to judge a law, and the Australian evaluation is meant to run for two years. The data are self-reported. And the ban had a real indirect effect: it is what put the issue on the agenda in London.</p>
+</section>
+
+<svg class="onde" viewBox="0 0 1200 52" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,28 C175,10 315,44 505,26 C695,8 835,40 1015,24 C1105,16 1158,22 1200,20"
+        fill="none" stroke="#7D95CE" stroke-width="1.4" opacity=".45"/>
+</svg>
+
+<!-- ══ PARTNERS ═══════════════════════════════ -->
+<section id="en-partners">
+  <h2>My international partners</h2>
+  <p class="souffle">Two British perspectives, one Australian</p>
+
+  <p>The project requires an international partner bringing an outside, expert perspective. Two of my partners work in the UK, on the two sides of my question: changing habits, and understanding the real use that the law seeks to regulate. The third helps me read the Australian comparison.</p>
+
+  <div class="duo">
+    <div class="carte">
+      <h3>Chloe</h3>
+      <p class="role">Sleep practitioner · The Sleep Charity, United Kingdom</p>
+      <p>She supports British families with children's and teenagers' sleep. She brings what no article can: what happens when you really try to change a habit, one family at a time. Hers is the field perspective on raising awareness. Replies by email over the year.</p>
+    </div>
+    <div class="carte">
+      <h3>Dr Amanda Ferguson</h3>
+      <p class="role">Assistant Research Professor · University of Cambridge, Amy Orben's team</p>
+      <p>She works on how teenagers use and interpret social media. She helps me understand real use before judging the British law that claims to regulate it, within Amy Orben's team, which has given evidence to Parliament on this issue. Agreed format: about five written questions, one hour in total.</p>
+    </div>
+    <div class="carte">
+      <h3>Professor Bei Bei</h3>
+      <p class="role">Turner Institute for Brain and Mental Health · Monash University, Australia</p>
+      <p>Her lab runs the CLASS study, which follows a cohort of Australian teenagers through secondary school, linking sleep, circadian rhythms, mental health and school results. She helps me read what the Australian ban does, or does not, change to sleep. Five written questions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ACTION ═════════════════════════════════ -->
+<section id="en-action">
+  <h2>My action in a middle school</h2>
+  <p class="souffle">Raising awareness, drawing on what I have read</p>
+
+  <p>In Year 12 (Première), I ran an awareness campaign on sleep and screens: posters in the biology classroom. It was well received, but nothing shows that it changed anything. This year, I am planning an awareness session in a <i>collège</i> (a French middle school), lasting about twenty-five minutes. It is not a survey: I am not measuring anything and do not claim to prove anything with it. It is the "action" part of my project.</p>
+
+  <h3>How the research changes the way I raise awareness</h3>
+  <ol class="etapes">
+    <li><b>A workshop, not a lecture.</b> Teensleep and Gaskin's review show that informing raises knowledge without changing behaviour: a lecture is the least effective format.</li>
+    <li><b>Hands-on rather than explanation.</b> A true-or-false game with cards held up. A timeline to build by sorting evening activities into those that help or prevent sleep. A lamp demonstration showing why a screen feels harsher in a dark room.</li>
+    <li><b>Target the environment rather than willpower.</b> Instead of "go to bed earlier", steps that change the context: the phone spending the night outside the bedroom, night settings switched on once and for all. It is the logic of the British default settings, at the scale of a family.</li>
+  </ol>
+
+  <div class="galet">
+    <h3>Where this action fits in my oral</h3>
+    <p>It does not test the British law, and it takes place in France. It shows that I draw the consequences of my research: if awareness alone is not enough, mine should at least target the environment and help pupils understand why rules exist. That is exactly the role I give it in my position.</p>
+    <p>The figures in my dossier do not come from this session but from the major British studies: the Millennium Cohort Study and the World Health Organization's HBSC survey, which every four years gives the same questionnaire to 11, 13 and 15-year-olds, including in England, Scotland and Wales.</p>
+  </div>
+</section>
+
+<svg class="onde" viewBox="0 0 1200 52" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,28 C175,10 315,44 505,26 C695,8 835,40 1015,24 C1105,16 1158,22 1200,20"
+        fill="none" stroke="#93A87C" stroke-width="1.4" opacity=".45"/>
+</svg>
+
+<!-- ══ POSITION ═══════════════════════════════ -->
+<section id="en-position">
+  <h2>My position</h2>
+  <p class="souffle">Yes to the turn, but not for the reason people think</p>
+
+  <p>The UK is right to stop relying on awareness alone. Its own trials show it: Teensleep made pupils better informed, not better rested. But a ban alone will not be enough either: Australia shows that a rule aimed at individuals can be got round, and age checks at sixteen remain fragile.</p>
+
+  <p>What seems most promising to me in the British model is not the ban itself, but everything around it that changes the environment without asking teenagers to make an effort: phones put away during the school day, apps that switch off at midnight by default, infinite scrolling turned off. These measures are of the same kind as a later school start, the only lever with proven effect: they shift the context, and behaviour follows.</p>
+
+  <p>My answer is therefore: yes, the UK is right to move to constraint, on three conditions. That the constraint falls on designers and settings rather than on teenagers. That the law is independently evaluated, as British researchers already plan. And that awareness keeps a role: no longer changing behaviour on its own, but helping teenagers understand why the rule exists, so that they do not experience it as mere deprivation.</p>
+
+  <h3>The ten-minute plan</h3>
+  <ol class="plan">
+    <li>
+      <span class="minutage">2 min</span>
+      <b>The problem in the UK</b>
+      <span>The Millennium Cohort Study: sleep links screens to mental health. Molly Russell. The four concepts, set out quickly.</span>
+    </li>
+    <li>
+      <span class="minutage">2 min 30</span>
+      <b>Awareness put to the test</b>
+      <span>Teensleep: more knowledge, not more sleep. The school start time trial that could not be run. What Chloe says, and my action in a middle school.</span>
+    </li>
+    <li>
+      <span class="minutage">3 min 30</span>
+      <b>Regulating, then prohibiting</b>
+      <span>From the Online Safety Act to the 2027 ban; the default curfew for 16-17-year-olds; the debate, with Dr Ferguson's perspective.</span>
+    </li>
+    <li>
+      <span class="minutage">1 min</span>
+      <b>The Australian comparison</b>
+      <span>One year ahead, use barely falling, and the lesson London draws from it.</span>
+    </li>
+    <li>
+      <span class="minutage">1 min</span>
+      <b>My answer</b>
+      <span>Yes to the turn, on three conditions: target the environment, evaluate, keep awareness to explain the rule.</span>
+    </li>
+  </ol>
+
+  <p style="margin-top:1.6rem">Kept in reserve for the discussion: the detail of Gaskin's review, the limits of age checks at sixteen and VPNs, the question of teenagers' freedom and rights, the difference between England and the other nations of the UK, and the French case of phones in middle schools.</p>
+</section>
+
+</div>
+
 </main>
 
 <footer>
   <div class="dedans">
+  <div data-l="fr" lang="fr">
     <h2>Sources</h2>
     <ol>
       <li>Scott H., Biello S.&nbsp;M. &amp; Woods H.&nbsp;C., «&nbsp;Social media use and adolescent sleep patterns: cross-sectional findings from the UK Millennium Cohort Study&nbsp;», <i>BMJ Open</i>, 2019, 9(9), e031161. Accès libre.</li>
@@ -734,12 +1094,70 @@ footer li::marker{color:var(--ambre-bas)}
       Dossier de travail, mis à jour au fil de l'année. Dernière révision&nbsp;: novembre 2026.
     </p>
   </div>
+  <div data-l="en" lang="en">
+    <h2>Sources</h2>
+    <ol>
+      <li>Scott H., Biello S.&nbsp;M. &amp; Woods H.&nbsp;C., "Social media use and adolescent sleep patterns: cross-sectional findings from the UK Millennium Cohort Study", <i>BMJ Open</i>, 2019, 9(9), e031161. Open access.</li>
+      <li>Kelly Y., Zilanawala A., Booker C. &amp; Sacker A., "Social Media Use and Adolescent Mental Health: Findings From the UK Millennium Cohort Study", <i>EClinicalMedicine</i>, 2019, 6, pp. 59–68. Open access.</li>
+      <li>Illingworth G., Sharman R., Harvey C.-J., Foster R.&nbsp;G. &amp; Espie C.&nbsp;A., "The Teensleep study: the effectiveness of a school-based sleep education programme at improving early adolescent sleep", <i>Sleep Medicine: X</i>, 2020, 2, 100011. Open access.</li>
+      <li>Education Endowment Foundation, evaluation of the Teensleep pilot (University of York).</li>
+      <li>Illingworth G., Sharman R., Jowett A., Harvey C.-J., Foster R.&nbsp;G. &amp; Espie C.&nbsp;A., "Challenges in implementing and assessing outcomes of school start time change in the UK: experience of the Oxford Teensleep study", <i>Sleep Medicine</i>, 2019, 60, pp. 89–95. Open access.</li>
+      <li>Gaskin C.&nbsp;J., Venegas Hargous C., Stephens L.&nbsp;D. <i>et al.</i>, "Sleep behavioral outcomes of school-based interventions for promoting sleep health in children and adolescents aged 5 to 18 years: a systematic review", <i>SLEEP Advances</i>, 2024, 5(1), zpae019. Open access.</li>
+      <li>Findings of Coroner Andrew Walker on the death of Molly Russell, North London Coroner's Court, 30 September 2022.</li>
+      <li><i>Online Safety Act 2023</i>; Ofcom, <i>Protection of Children Codes of Practice</i> (in force 25 July 2025), <i>Use of Age Assurance Report</i> (July 2026) and rapid assessment of age checks at sixteen (29 October 2026).</li>
+      <li><i>Children's Wellbeing and Schools Act 2026</i>; Department for Education, guidance on mobile phones in schools.</li>
+      <li>Hansard, House of Commons, statement on the social media ban for under-16s, 15 June 2026; Department for Science, Innovation and Technology, announcement of 15 July 2026 on 16-17-year-olds; Hansard, House of Lords, "Mobile Phones in Schools", 11 November 2026.</li>
+      <li>Orben A., written evidence to the House of Commons Science, Innovation and Technology Committee, 2026; University College London, <i>Social Media Ban Study</i>.</li>
+      <li>eSafety Commissioner (Australia), <i>Early days, early insights</i>, three-month evaluation of the social media age restrictions, July 2026.</li>
+      <li>Independent analysis of Australia's <i>Social Media Minimum Age Act</i>, published in the <i>BMJ</i>, June 2026.</li>
+      <li>World Health Organization, <i>Health Behaviour in School-aged Children</i> (HBSC) study, 2021-2022 cycle.</li>
+    </ol>
+
+    <p class="colophon">
+      Connaissance du Monde project — oral exam, coefficient 20.<br>
+      Working dossier, updated throughout the year. Last revised: November 2026.
+    </p>
+  </div>
+  </div>
 </footer>
 
 </div>
 
 <script>
 document.documentElement.classList.remove('no-js');
+(function () {
+  var R = document.documentElement, b = document.getElementById('langue');
+  if (!b) return;
+  var TITRE = {
+    fr: 'Sensibiliser ou interdire \u2014 Projet CDM \u00b7 Orhan Yildiz-Jalaguier',
+    en: 'Awareness or prohibition? \u2014 CDM project \u00b7 Orhan Yildiz-Jalaguier'
+  };
+  function maj() {
+    var en = R.classList.contains('en');
+    R.lang = en ? 'en' : 'fr';
+    document.title = TITRE[R.lang];
+    b.setAttribute('aria-label', en ? 'Version fran\u00e7aise' : 'English version');
+    b.setAttribute('title', en ? 'Passer en fran\u00e7ais' : 'Switch to English');
+  }
+  function visibles() {
+    return [].filter.call(document.querySelectorAll('main section[id]'), function (s) { return s.offsetParent !== null; });
+  }
+  b.addEventListener('click', function () {
+    /* on reste dans la même partie du dossier en changeant de langue */
+    var haut = document.querySelector('.barre').getBoundingClientRect().bottom + innerHeight * .3;
+    var k = -1, ecart = 0;
+    if (scrollY > 40) visibles().forEach(function (s, i) { if (s.getBoundingClientRect().top <= haut) k = i; });
+    if (k >= 0) ecart = visibles()[k].getBoundingClientRect().top;
+    R.classList.toggle('en');
+    maj();
+    try { var u = new URL(location.href); u.searchParams.set('lang', R.lang); history.replaceState(history.state, '', u); } catch (e) {}
+    var cible = k >= 0 ? visibles()[k] : null;
+    var y = cible ? scrollY + cible.getBoundingClientRect().top - ecart : 0;
+    try { window.scrollTo({ top: y, behavior: 'instant' }); } catch (e) { window.scrollTo(0, y); }
+    window.dispatchEvent(new Event('resize'));
+  });
+  maj();
+})();
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
     navigator.serviceWorker.register('sw.js').catch(function () {});
