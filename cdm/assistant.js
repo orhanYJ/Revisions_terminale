@@ -18,7 +18,7 @@
   var NOM = "Dossier CDM";
   var LANGUE = "fr";   /* langue du panneau : "fr" ou "en" */
   var COTE = "gauche";   /* bouton en bas à "gauche" ou à "droite" */
-  var CONSIGNE = "Je suis élève de Terminale en France, et je prépare un dossier de recherche sur les comportements de santé des adolescents à l'ère du numérique (sensibilisation ou régulation, cas de l'Australie et du Royaume-Uni). Réponds précisément, avec des sources vérifiables (auteur, titre, date). N'invente aucune source, aucune étude ni aucun chiffre. Si tu n'es pas sûr d'un point, dis-le clairement.";
+  var CONSIGNE = "Je suis élève de Terminale en France, et je prépare un dossier de recherche sur les comportements de santé des adolescents à l'ère du numérique (faut-il passer de la sensibilisation à l'interdiction : le cas du Royaume-Uni, avec une courte comparaison australienne). Réponds précisément, avec des sources vérifiables (auteur, titre, date). N'invente aucune source, aucune étude ni aucun chiffre. Si tu n'es pas sûr d'un point, dis-le clairement.";
   var COULEURS = {
     fond: "var(--nuit-clair, #322A3B)", fond2: "var(--nuit-creux, #1B1622)",
     encre: "var(--ivoire, #F3EADD)", encre2: "var(--ivoire-bas, #BCAE9F)", ligne: "rgba(243,234,221,.16)",

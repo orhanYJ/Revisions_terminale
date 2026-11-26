@@ -1,7 +1,7 @@
 {
-  "name": "Connaissance du Monde — Sensibiliser ou réguler",
+  "name": "Connaissance du Monde — Sensibiliser ou interdire",
   "short_name": "CDM",
-  "description": "Dossier de recherche : sommeil, écrans et comportements de santé des adolescents",
+  "description": "Dossier de recherche : sommeil, écrans et santé des adolescents au Royaume-Uni",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
