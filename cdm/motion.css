@@ -31,7 +31,7 @@
 .mo-pastille{position:absolute;left:0;top:0;border-radius:999px;background:rgba(232,163,79,.14);
   box-shadow:inset 0 0 0 1px rgba(232,163,79,.22);pointer-events:none;z-index:0;opacity:0}
 
-/* ---------- D. la chronologie australienne ---------- */
+/* ---------- D. la chronologie ---------- */
 .chrono .mo-fil{position:absolute;left:5px;top:.6rem;width:2px;height:calc(100% - 1.2rem);transform-origin:50% 0;transform:scaleY(var(--f,1));
   background:linear-gradient(180deg,var(--ambre),var(--ecran));box-shadow:0 0 8px rgba(232,163,79,.35);pointer-events:none}
 

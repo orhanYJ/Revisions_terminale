@@ -3,7 +3,7 @@
    A. la lumière froide de l'écran, en bas, se retire à mesure qu'on lit
    B. la veillée : sous la barre, un filet passe du bleu écran à l'ambre
    C. la barre suit la section en cours : une pastille ambrée glisse
-   D. la chronologie australienne se dessine au fil de la lecture
+   D. la chronologie se dessine au fil de la lecture (langue affichée)
    E. ondes, notions, chiffres, plan : chacun s'éclaire quand on l'atteint
    F. au bout du dossier, le ciel du pied de page s'étoile
    Script maintenu à part de index.html. Il ne touche pas au seul moment
@@ -22,6 +22,8 @@ var barre = document.querySelector(".barre"), nav = barre && barre.querySelector
 var sections = [].slice.call(document.querySelectorAll("main section[id]"));
 var enveloppe = document.querySelector(".enveloppe");
 if(!sections.length) return;
+/* deux langues dans la page : seules comptent les sections affichées */
+function visibles(){ var v = sections.filter(function(s){ return s.offsetParent !== null; }); return v.length ? v : sections; }
 
 /* ---------- A. la lumière de l'écran ---------- */
 var ecran = document.createElement("div");
@@ -66,14 +68,13 @@ function suivre(id, sansAnim){
 }
 
 /* ---------- D. la chronologie ---------- */
-var chrono = document.querySelector(".chrono"), fil = null, dates = [];
-if(chrono){
-  fil = document.createElement("i");
+var chronos = [].map.call(document.querySelectorAll(".chrono"), function(chrono){
+  var fil = document.createElement("i");
   fil.className = "mo-fil"; fil.setAttribute("aria-hidden", "true");
   chrono.appendChild(fil);
   chrono.classList.add("mo-suivi");
-  dates = [].slice.call(chrono.children).filter(function(e){ return e.tagName === "LI"; });
-}
+  return {el:chrono, fil:fil, dates:[].slice.call(chrono.children).filter(function(e){ return e.tagName === "LI"; })};
+});
 
 /* ---------- F. le ciel ---------- */
 var footer = document.querySelector("footer"), ciel = null;
@@ -113,20 +114,21 @@ function lecture(){
   ecran.style.setProperty("--o", Math.pow(1 - p, 1.6).toFixed(3));
 
   /* section en cours */
-  var ligne = hb + innerHeight * .3, id = sections[0].id;
-  if(scrollY >= h - 4) id = sections[sections.length - 1].id;
-  else sections.forEach(function(s){ if(s.getBoundingClientRect().top <= ligne) id = s.id; });
+  var vs = visibles(), ligne = hb + innerHeight * .3, id = vs[0].id;
+  if(scrollY >= h - 4) id = vs[vs.length - 1].id;
+  else vs.forEach(function(s){ if(s.getBoundingClientRect().top <= ligne) id = s.id; });
   if(id !== ici){ suivre(id, ici === null); ici = id; }
 
   /* chronologie : le fil descend avec la lecture */
-  if(fil){
-    var r = chrono.getBoundingClientRect(), pointe = innerHeight * .62;
+  chronos.forEach(function(c){
+    if(c.el.offsetParent === null) return;
+    var r = c.el.getBoundingClientRect(), pointe = innerHeight * .62;
     var f = Math.max(0, Math.min(1, (pointe - r.top) / Math.max(1, r.height)));
-    fil.style.setProperty("--f", f.toFixed(4));
-    dates.forEach(function(li){
+    c.fil.style.setProperty("--f", f.toFixed(4));
+    c.dates.forEach(function(li){
       li.classList.toggle("mo-allume", li.getBoundingClientRect().top + 12 <= pointe);
     });
-  }
+  });
 
   if(footer && footer.getBoundingClientRect().top < innerHeight * .85) etoiler();
 }
@@ -158,8 +160,9 @@ if("IntersectionObserver" in window && !calme()){
     });
   }, {rootMargin:"0px 0px -10% 0px"});
   attente.forEach(function(el){
-    /* ce qui est déjà à l'écran au chargement ne bouge pas : la lampe a la scène */
-    if(el.getBoundingClientRect().top < innerHeight) return;
+    /* ce qui est déjà à l'écran au chargement ne bouge pas : la lampe a la scène ;
+       l'autre langue, masquée, n'attend rien (rien n'est caché en l'affichant) */
+    if(el.offsetParent === null || el.getBoundingClientRect().top < innerHeight) return;
     el.classList.add("mo-attente");
     io.observe(el);
   });
