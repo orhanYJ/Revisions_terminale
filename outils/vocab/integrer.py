@@ -47,13 +47,24 @@ def main():
     page = PAGE.read_text(encoding="utf-8")
     deja = {norm(w): "argu" for w in re.findall(r'^\{ id: "[a-z]+", w: "([^"]+)"', page, re.M)}
     erreurs, n = [], 0
+    lots = {}
     for f in sorted(LISTES.glob("*.json")):
-        lid = f.stem
-        mots = json.loads(f.read_text(encoding="utf-8"))
+        lots.setdefault(f.stem.split("-")[0], []).append(json.loads(f.read_text(encoding="utf-8")))
+    for lid, paquets in lots.items():
+        # les lots d'une même liste sont entrelacés (chacun est trié du plus utile au moins utile)
+        mots, vus = [], set()
+        for i in range(max(len(x) for x in paquets)):
+            for x in paquets:
+                if i < len(x):
+                    cle = norm(x[i].get("w", ""))
+                    if cle in vus or cle in deja:
+                        print(f"  doublon ignoré [{lid}] {x[i].get('w')}"); continue
+                    vus.add(cle); mots.append(x[i])
         mots = [{c: m[c] for c in CHAMPS + ["alt"] if c in m} for m in mots]
+        ids = set()
         for m in mots:
-            for tr in m.get("trous", []):
-                tr.pop("x", None)
+            while m["id"] in ids: m["id"] += "-2"
+            ids.add(m["id"])
         e, a = controler(mots, lid[0] + "-", deja)
         erreurs += [f"[{lid}] {x}" for x in e]
         for x in a: print(f"  avertissement [{lid}] {x}")

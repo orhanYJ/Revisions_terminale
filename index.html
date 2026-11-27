@@ -175,6 +175,7 @@ body{font-family:var(--sys);line-height:1.5;-webkit-font-smoothing:antialiased;c
 .f-nsi .nom::after{content:"_";color:var(--acc);animation:cli 1s steps(1) infinite}
 .f-philo .nom,.f-redpen .nom{font-family:"H Instrument",Georgia,serif;font-weight:400}
 .f-redpen .nom{font-style:italic}
+.f-vocab .nom{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-weight:700}
 .f-dnl .nom{font-family:"H Garamond",Georgia,serif;font-weight:400;letter-spacing:.01em}
 .f-acle .nom{font-family:"H Spectral",Georgia,serif;font-style:italic;font-weight:500}
 .f-aclo .nom{font-family:"H Grotesk",var(--sys);font-weight:700;letter-spacing:-.02em}
@@ -315,6 +316,7 @@ footer{margin-top:22px;color:#6F747D;font-size:13px}
   </div></div>
   <div class="groupe"><h3>Langues</h3><div class="puces">
     <a href="redpen/" style="--p:#E2483D"><img src="redpen/icon-192.png" alt="">The Red Pen <small>Anglais</small></a>
+    <a href="vocab/" style="--p:#E3A03A"><img src="vocab/icon-192.png" alt="">Wordsmith <small>Vocabulaire anglais</small></a>
     <a href="italien/" style="--p:#1F7A4D"><img src="italien/icon-192.png" alt="">La Grammatica <small>Italien</small></a>
   </div></div>
   <p class="astuce"><b>Sur le téléphone :</b> ouvre une matière, puis « Ajouter à l'écran d'accueil » dans le menu du navigateur. Elle s'ouvre alors comme une application ; la plupart des matières restent consultables sans connexion après une première visite.</p>
@@ -589,6 +591,16 @@ footer{margin-top:22px;color:#6F747D;font-size:13px}
       '<path class="f" d="M6 34h52l4 24H2z"/><rect class="f" x="16" y="6" width="32" height="24"/><path d="M20 12h20M20 17h24M20 22h14" opacity=".6"/><path d="M10 30h44" stroke-width="3"/><g class="ff"><circle cx="12" cy="42" r="1.6"/><circle cx="18" cy="42" r="1.6"/><circle cx="24" cy="42" r="1.6"/><circle cx="30" cy="42" r="1.6"/><circle cx="36" cy="42" r="1.6"/><circle cx="42" cy="42" r="1.6"/><circle cx="48" cy="42" r="1.6"/><circle cx="52" cy="42" r="1.6"/><circle cx="15" cy="48" r="1.6"/><circle cx="21" cy="48" r="1.6"/><circle cx="27" cy="48" r="1.6"/><circle cx="33" cy="48" r="1.6"/><circle cx="39" cy="48" r="1.6"/><circle cx="45" cy="48" r="1.6"/></g><path d="M22 54h20" stroke-width="2.2"/><path class="a c" d="M34 22h2" stroke-width="2.4"/>',
       '<path d="M4 18h40M4 26h22M4 34h40M4 42h30" opacity=".5"/><rect class="afs" x="26" y="22" width="18" height="7" rx="1" stroke="none"/><circle class="f" cx="36" cy="26" r="13" stroke-width="2.2"/><path d="M46 35l14 14" stroke-width="4"/>'
     ],
+    vocab:[
+      '<path class="f" d="M32 4C28 12 12 28 12 42a20 20 0 0 0 40 0C52 28 36 12 32 4z" stroke-width="1.8"/><ellipse class="ff" cx="26" cy="42" rx="3.4" ry="4"/><ellipse class="ff" cx="38" cy="42" rx="3.4" ry="4"/><path class="a" d="M27 50q5 4 10 0" stroke-width="2"/>',
+      '<path class="f" d="M6 8h52a4 4 0 0 1 4 4v26a4 4 0 0 1-4 4H26l-12 12v-12H6a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4z"/>'+tx(32,31,'Aa',15,'ta'),
+      '<rect class="f" x="14" y="16" width="40" height="28" rx="3" transform="rotate(8 34 30)"/><rect class="f" x="10" y="20" width="40" height="28" rx="3"/>'+tx(30,37,'aloof',8)+'<path class="a" d="M16 42h28" stroke-width="1.6"/>',
+      '<path class="afs o" d="M32 6c4 10 16 16 16 30a16 16 0 0 1-32 0c0-8 5-12 7-18 3 5 5 7 6 4 1-6 1-11 3-16z" stroke-width="1.8"/><path class="af" d="M32 34c2 4 6 6 6 11a6 6 0 0 1-12 0c0-3 3-6 6-11z"/>',
+      '<path class="f" d="M18 8h28v12a14 14 0 0 1-28 0z"/><path d="M18 12H8a8 8 0 0 0 10 10M46 12h10a8 8 0 0 1-10 10M32 34v10M22 54h20M26 44h12v10H26z"/><path class="af c" d="M32 12l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4z"/>',
+      '<rect class="f" x="8" y="30" width="48" height="10" rx="5"/><rect class="afs" x="8" y="30" width="30" height="10" rx="5" stroke="none"/><path class="a" d="M8 35h30" stroke-width="0"/>'+tx(32,22,'+10 XP',10,'ta'),
+      '<path class="f" d="M32 12C24 8 12 8 4 12v42c8-4 20-4 28 0 8-4 20-4 28 0V12c-8-4-20-4-28 0z"/><path d="M32 12v42"/><path d="M10 20h16M10 27h14M38 20h16M38 27h12" opacity=".55"/>'+tx(47,42,'A–Z',8,'ta'),
+      '<path class="f" d="M38 4l22 22-28 28H10V32z" stroke-width="1.8"/><path class="a" d="M38 4l22 22M10 54l14-14" stroke-width="2"/><circle class="af p" cx="26" cy="38" r="3"/>'
+    ],
     italien:[
       '<g transform="rotate(5 32 62)"><path class="f" d="M20 62V12h24v50"/><path d="M18 12h28M20 20h24M20 28h24M20 36h24M20 44h24M20 52h24"/><path d="M24 20v8M30 20v8M36 20v8M24 36v8M30 36v8M36 36v8" opacity=".6"/><path class="f" d="M24 12V6h16v6"/></g>',
       '<circle cx="14" cy="50" r="8" stroke-width="2.2"/><circle cx="50" cy="50" r="8" stroke-width="2.2"/><path class="f" d="M20 44c4-10 12-14 22-14h6l4 12c-6 0-10 4-10 8H24c0-3-2-5-4-6z"/><path class="af" d="M28 30h14l2-4H30z"/><path d="M48 30l-4-18M40 12h8" stroke-width="2"/><circle class="af c" cx="53" cy="24" r="2"/>',
@@ -615,6 +627,7 @@ footer{margin-top:22px;color:#6F747D;font-size:13px}
     {id:'acl-ecrit',f:'acle',mat:'ACL écrit · BFI',nom:'British Literature',desc:'Commentary, essay, and the works',m:'livre',c1:'#111A30',c2:'#3A2440',ink:'#F5EFE2',acc:'#C9A54E',glow:'#E3C79A',fond:'#3A2440',forme:[8,2.5,.1],sous:[['Dancing at Lughnasa','acl-lughnasa/'],['Brick Lane','acl-bricklane/']]},
     {id:'acl-oral',f:'aclo',mat:'ACL oral · BFI',nom:'Dystopian Writing',desc:'Dystopia, read and linked for the oral',m:'ondes',c1:'#100E0C',c2:'#3A1E0E',ink:'#F6E9DC',acc:'#FF8A3D',glow:'#FF8A3D',fond:'#4A2410',forme:[7,2,.14],sous:[['1984','acl-oral-1984/'],['Parable of the Sower','acl-oral-butler/']]},
     {id:'redpen',f:'redpen',mat:'Anglais B1 → C1',nom:'The Red Pen',desc:'English grammar, corrected in red',m:'stylo',c1:'#0D1525',c2:'#1E2D4A',ink:'#EDE6D6',acc:'#E2483D',glow:'#FF5A4E',fond:'#1E2D4A',forme:[8,2.7,.1]},
+    {id:'vocab',f:'vocab',mat:'Vocabulaire anglais',nom:'Wordsmith',desc:'Five words a day, for good',m:'stylo',c1:'#22142f',c2:'#3b2257',ink:'#F7F0E6',acc:'#E3A03A',glow:'#F0B453',fond:'#3b2257',forme:[7,2.3,.12]},
     {id:'italien',f:'it',mat:'Italien LVB',nom:'La Grammatica',desc:'La grammaire de A2 à B2, en français',m:'ruban',c1:'#F7F2E5',c2:'#D3E4D2',ink:'#1E3A2B',acc:'#1F7A4D',glow:'#6FD39A',fond:'#12452E',forme:[9,2.2,.1]}
   ];
   var N=APPS.length;
