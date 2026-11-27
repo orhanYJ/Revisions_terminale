@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wordsmith — Vocabulaire anglais Terminale</title>
+<meta name="description" content="Le vocabulaire anglais qui sert à l'essay et à l'oral : cinq mots par jour, révisions espacées, exercices où l'on produit le mot.">
+<meta name="theme-color" content="#3b2257">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Vocab">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{
+  --papier:#f7f3ec; --carte:#fffdf9; --encre:#22172e; --encre2:#6b5f78; --ligne:#e4dcd0;
+  --prune:#3b2257; --prune2:#5a3a80; --safran:#e3a03a; --safran-l:#fbe7c4;
+  --ok:#1f7a4d; --ok-l:#dff2e7; --ko:#b23a3a; --ko-l:#f8e1df;
+  --ombre:0 1px 2px rgba(34,23,46,.06),0 6px 18px rgba(34,23,46,.07);
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --papier:#16111d; --carte:#211a2b; --encre:#f1eaf7; --encre2:#a99cb8; --ligne:#352b42;
+    --prune:#c9a8f0; --prune2:#b28fe0; --safran:#f0b453; --safran-l:#4a3618;
+    --ok:#5fcf93; --ok-l:#173527; --ko:#f08a80; --ko-l:#3d1d1c;
+    --ombre:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25);
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--papier);color:var(--encre);font:16px/1.5 var(--sans);-webkit-text-size-adjust:100%;min-height:100vh;padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:var(--prune2)}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px}
+header.haut{padding:18px 0 6px}
+.marque{display:flex;align-items:center;gap:10px}
+.marque svg{width:34px;height:34px;flex:none}
+.marque b{font:700 1.45rem/1 var(--serif);letter-spacing:.01em;color:var(--prune)}
+.marque span{display:block;font-size:.78rem;color:var(--encre2);letter-spacing:.04em;text-transform:uppercase;margin-top:3px}
+h1,h2,h3{font-family:var(--serif);line-height:1.2}
+h2{font-size:1.25rem;margin:22px 0 10px;color:var(--prune)}
+.carte{background:var(--carte);border:1px solid var(--ligne);border-radius:16px;box-shadow:var(--ombre);padding:18px}
+.muted{color:var(--encre2)}
+.petit{font-size:.88rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:13px 18px;font-weight:600;background:var(--prune);color:#fff;min-height:48px}
+@media (prefers-color-scheme:dark){.btn{color:#16111d}}
+.btn.large{width:100%;font-size:1.05rem}
+.btn.sec{background:transparent;color:var(--prune);border:1.5px solid var(--prune)}
+.btn.safran{background:var(--safran);color:#2a1a05}
+.btn:disabled{opacity:.45;cursor:default}
+.btn:focus-visible,.seg button:focus-visible,nav.bas button:focus-visible,.mot-li:focus-visible{outline:3px solid var(--safran);outline-offset:2px}
+
+/* Aujourd'hui */
+.jour{position:relative;overflow:hidden}
+.jour .date{font-size:.82rem;color:var(--encre2);text-transform:capitalize}
+.jour h1{font-size:1.6rem;margin:4px 0 14px}
+.compteurs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 16px}
+.compteurs div{background:var(--papier);border:1px solid var(--ligne);border-radius:12px;padding:10px 8px;text-align:center}
+.compteurs b{display:block;font:700 1.6rem/1.1 var(--serif);color:var(--prune)}
+.compteurs span{font-size:.76rem;color:var(--encre2)}
+.fait{background:var(--ok-l);color:var(--ok);border-radius:12px;padding:12px 14px;font-weight:600;margin-bottom:12px}
+.alerte{display:flex;gap:10px;align-items:flex-start;background:var(--safran-l);border-radius:12px;padding:12px 14px;margin:14px 0 0;font-size:.92rem}
+.alerte button{margin-left:auto;flex:none;border:0;background:var(--safran);color:#2a1a05;border-radius:9px;padding:7px 11px;font-weight:600;font-size:.85rem}
+.seg{display:flex;background:var(--papier);border:1px solid var(--ligne);border-radius:12px;padding:3px;gap:3px}
+.seg button{flex:1;border:0;background:transparent;border-radius:9px;padding:9px 6px;font-weight:600;color:var(--encre2);min-height:42px}
+.seg button[aria-pressed="true"]{background:var(--carte);color:var(--prune);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.reglage{margin-top:16px}
+.reglage label{display:block;font-size:.86rem;color:var(--encre2);margin-bottom:6px}
+.methode li{margin:6px 0}
+
+/* Listes de mots */
+.liste-t{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.liste-t small{color:var(--encre2)}
+.mots{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
+.mot-li{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:var(--carte);border:1px solid var(--ligne);border-radius:12px;padding:11px 12px}
+.mot-li b{font:600 1.05rem var(--serif)}
+.mot-li .fr{color:var(--encre2);font-size:.88rem;margin-left:auto;text-align:right}
+.pastilles{display:flex;gap:3px;flex:none}
+.pastilles i{width:7px;height:7px;border-radius:50%;background:var(--ligne)}
+.pastilles i.on{background:var(--safran)}
+.bientot{opacity:.65}
+.bientot .tag{font-size:.72rem;background:var(--papier);border:1px solid var(--ligne);border-radius:99px;padding:2px 8px;color:var(--encre2)}
+
+/* Progrès */
+.boites{display:flex;align-items:flex-end;gap:8px;height:150px;margin:16px 0 6px;padding:0 4px;border-bottom:1px solid var(--ligne)}
+.boite{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.boite .barre{width:100%;background:var(--prune2);border-radius:8px 8px 0 0;min-height:3px;transform-origin:bottom}
+.boite:first-child .barre{background:var(--ligne)}
+.boite:nth-child(5) .barre,.boite:nth-child(6) .barre{background:var(--safran)}
+.boite b{font:700 1rem var(--serif);margin-bottom:4px}
+.boites-l{display:flex;gap:8px;padding:0 4px}
+.boites-l span{flex:1;text-align:center;font-size:.7rem;color:var(--encre2);line-height:1.2}
+.actions{display:grid;gap:8px;margin-top:12px}
+
+/* Fiche d'un mot (dictionnaire) */
+.fiche .tete{display:flex;align-items:flex-start;gap:10px}
+.fiche .mot{font:700 2rem/1.1 var(--serif);color:var(--prune);margin:0;word-break:break-word}
+.fiche .pos{font:italic .95rem var(--serif);color:var(--encre2)}
+.fiche .ipa{font:.95rem var(--mono);color:var(--encre2)}
+.son{margin-left:auto;flex:none;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ligne);background:var(--papier);display:grid;place-items:center}
+.son svg{width:20px;height:20px}
+.reg{display:inline-block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--ligne);border-radius:99px;padding:2px 8px;color:var(--encre2);margin-left:4px;vertical-align:middle}
+.sens{font:600 1.15rem/1.35 var(--serif);margin:12px 0 4px}
+.def{color:var(--encre2);margin:0 0 12px}
+.bloc{margin-top:14px}
+.bloc h4{margin:0 0 6px;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--encre2)}
+.colls{display:flex;flex-wrap:wrap;gap:6px}
+.colls span{background:var(--papier);border:1px solid var(--ligne);border-radius:99px;padding:4px 10px;font-size:.9rem}
+.ex{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.ex li{font-family:var(--serif);font-size:1.04rem;border-left:3px solid var(--safran);padding:2px 0 2px 10px}
+mark{background:linear-gradient(transparent 55%,var(--safran-l) 55%);color:inherit;font-weight:700;padding:0 1px}
+.piege{background:var(--ko-l);border-radius:12px;padding:10px 12px;font-size:.93rem}
+.piege b{color:var(--ko)}
+.famille{font-size:.92rem}
+
+/* Séance */
+#seance{position:fixed;inset:0;background:var(--papier);z-index:50;display:none;flex-direction:column;overflow-y:auto}
+#seance.on{display:flex}
+.s-haut{position:sticky;top:0;background:var(--papier);padding:calc(10px + env(safe-area-inset-top)) 16px 8px;display:flex;align-items:center;gap:12px;z-index:2}
+.s-haut button{border:0;background:transparent;width:40px;height:40px;border-radius:50%;font-size:1.3rem;color:var(--encre2)}
+.prog{flex:1;height:8px;background:var(--ligne);border-radius:99px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--safran);border-radius:99px;transition:width .35s}
+.s-corps{flex:1;width:100%;max-width:640px;margin:0 auto;padding:8px 16px calc(24px + env(safe-area-inset-bottom))}
+body:not(.sans-ia) .s-corps{padding-bottom:calc(110px + env(safe-area-inset-bottom))}
+.etape{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--encre2);margin:4px 0 10px}
+.consigne{font-weight:600;margin:0 0 10px}
+.phrase{font:1.25rem/1.75 var(--serif);margin:6px 0 14px}
+.phrase input{font:inherit;font-weight:700;color:var(--prune);background:transparent;border:0;border-bottom:2.5px solid var(--prune2);padding:0 4px;min-width:4ch;text-align:center;border-radius:0}
+.phrase input:focus{outline:0;border-bottom-color:var(--safran);background:var(--safran-l)}
+.indice{background:var(--papier);border:1px dashed var(--ligne);border-radius:12px;padding:10px 12px;font-size:.95rem;margin-bottom:12px}
+.indice .fr-ph{font-style:italic}
+.ligne-btn{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.ligne-btn .btn{flex:1}
+.lien{border:0;background:transparent;color:var(--prune2);text-decoration:underline;padding:6px 0;font-size:.92rem}
+textarea{width:100%;min-height:110px;font:1.1rem/1.5 var(--serif);color:var(--encre);background:var(--carte);border:1.5px solid var(--ligne);border-radius:12px;padding:12px}
+textarea:focus{outline:0;border-color:var(--prune2)}
+.retour{border-radius:14px;padding:14px;margin:14px 0 4px}
+.retour.ok{background:var(--ok-l)}
+.retour.ok b.titre{color:var(--ok)}
+.retour.ko{background:var(--ko-l)}
+.retour.ko b.titre{color:var(--ko)}
+.retour.presque{background:var(--safran-l)}
+.retour p{margin:6px 0 0}
+.retour .phrase-ok{font-family:var(--serif);font-size:1.05rem}
+.bilan{text-align:center;padding-top:30px}
+.bilan .grand{font:700 3rem/1 var(--serif);color:var(--prune)}
+.bilan ul{text-align:left}
+
+nav.bas{position:fixed;left:0;right:0;bottom:0;background:var(--carte);border-top:1px solid var(--ligne);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom);z-index:20}
+nav.bas div{display:flex;max-width:640px;width:100%}
+nav.bas button{flex:1;border:0;background:transparent;padding:9px 4px 10px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.74rem;color:var(--encre2);min-height:58px}
+nav.bas svg{width:23px;height:23px}
+nav.bas button[aria-current="page"]{color:var(--prune)}
+.vue{display:none}
+.vue.on{display:block}
+#modale{position:fixed;inset:0;z-index:40;display:none;align-items:flex-end;justify-content:center;background:rgba(20,12,28,.45);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+#modale.on{display:flex}
+#modale .carte{width:100%;max-width:640px;max-height:88vh;overflow-y:auto;border-radius:20px 20px 0 0;padding-bottom:calc(18px + env(safe-area-inset-bottom))}
+#modale .fermer{display:block;margin:-6px auto 8px;width:44px;height:5px;border-radius:99px;background:var(--ligne);border:0;padding:0}
+body.sans-ia .asr-btn{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* Mouvement : seulement si l'appareil ne demande pas d'en réduire */
+@media (prefers-reduced-motion:no-preference){
+  html.mo .vue.on>*{animation:monte .42s cubic-bezier(.2,.8,.2,1) both}
+  html.mo .vue.on>*:nth-child(2){animation-delay:.05s}
+  html.mo .vue.on>*:nth-child(3){animation-delay:.1s}
+  html.mo .vue.on>*:nth-child(4){animation-delay:.15s}
+  html.mo .vue.on>*:nth-child(5){animation-delay:.2s}
+  html.mo .s-corps>*{animation:entre .38s cubic-bezier(.2,.8,.2,1) both}
+  html.mo .retour.ok{animation:pop .4s cubic-bezier(.2,1.4,.4,1) both}
+  html.mo .retour.ko{animation:secoue .42s both}
+  html.mo .boite .barre{animation:pousse .7s cubic-bezier(.2,.8,.2,1) both}
+  html.mo .boite:nth-child(2) .barre{animation-delay:.06s}
+  html.mo .boite:nth-child(3) .barre{animation-delay:.12s}
+  html.mo .boite:nth-child(4) .barre{animation-delay:.18s}
+  html.mo .boite:nth-child(5) .barre{animation-delay:.24s}
+  html.mo .boite:nth-child(6) .barre{animation-delay:.3s}
+  html.mo #modale.on .carte{animation:feuille .36s cubic-bezier(.2,.8,.2,1) both}
+  html.mo .btn{transition:transform .12s}
+  html.mo .btn:active{transform:scale(.97)}
+  html.mo .marque svg .plume{animation:plume 3.2s ease-in-out infinite;transform-origin:50% 90%}
+  html.mo .bilan .grand{animation:pop .6s cubic-bezier(.2,1.4,.4,1) both}
+  html.mo mark{background-size:0 100%;background-repeat:no-repeat;background-image:linear-gradient(transparent 55%,var(--safran-l) 55%);background-color:transparent;animation:surligne .7s .25s ease-out forwards}
+}
+@keyframes monte{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes entre{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes secoue{0%,100%{transform:none}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(2px)}}
+@keyframes pousse{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes feuille{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+@keyframes plume{0%,100%{transform:rotate(0)}50%{transform:rotate(-6deg)}}
+@keyframes surligne{to{background-size:100% 100%}}
+</style>
+<!-- assistant:debut — bouton « Demander à une IA » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
+<script src="assistant.js?v=10" defer></script>
+<!-- assistant:fin -->
+</head>
+<body>
+<script>
+if (window.matchMedia && !matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("mo");
+</script>
+
+<div class="wrap">
+  <header class="haut">
+    <div class="marque">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="10" fill="var(--prune)"/><path d="M9 12l4.2 16h1.6L20 15.5 25.2 28h1.6L31 12" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><g class="plume"><rect x="11" y="31" width="18" height="2.6" rx="1.3" fill="var(--safran)"/></g></svg>
+      <div><b>Wordsmith</b><span>Vocabulaire anglais · BFI</span></div>
+    </div>
+  </header>
+</div>
+
+<main class="wrap">
+  <!-- Aujourd'hui -->
+  <section class="vue on" id="v-jour" aria-labelledby="t-jour"></section>
+  <!-- Mots -->
+  <section class="vue" id="v-mots" aria-labelledby="t-mots"></section>
+  <!-- Progrès -->
+  <section class="vue" id="v-progres" aria-labelledby="t-progres"></section>
+</main>
+
+<nav class="bas" aria-label="Navigation">
+  <div>
+    <button data-vue="jour" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Aujourd'hui</button>
+    <button data-vue="mots"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2.5z"/><path d="M8 7h7M8 11h5"/></svg>Mots</button>
+    <button data-vue="progres"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Progrès</button>
+  </div>
+</nav>
+
+<div id="seance" role="dialog" aria-modal="true" aria-label="Séance du jour">
+  <div class="s-haut"><button id="s-quitter" aria-label="Quitter la séance">✕</button><div class="prog" aria-hidden="true"><i id="s-prog"></i></div></div>
+  <div class="s-corps" id="s-corps"></div>
+</div>
+
+<div id="modale" role="dialog" aria-modal="true" aria-label="Fiche du mot"><div class="carte"><button class="fermer" aria-label="Fermer"></button><div id="m-corps"></div></div></div>
+<input type="file" id="f-import" accept="application/json,.json" class="sr" aria-hidden="true" tabindex="-1">
+<div class="sr" aria-live="polite" id="annonce"></div>
+
+<script>
+/* ============================================================
+   DONNÉES — listes de mots
+   Chaque mot : w (entrée), pos, ipa, reg (registre), fr (sens en français),
+   def (définition anglaise), col (collocations), ex (exemples, [[mot]] surligné),
+   piege, fam (famille), trous (phrases à compléter : s avec ___, a = réponse,
+   alt = autres réponses acceptées, fr = traduction), ecris (sujet de la phrase
+   personnelle), formes (formes acceptées dans la phrase personnelle).
+   Exemples et phrases : rédigés pour le site (pas de citation d'œuvre).
+   ============================================================ */
+var LISTES = [
+{ id: "argu", titre: "Argumenter et nuancer", sous: "Les mots de l'essay, du DBQ et de l'oral : évaluer, relier, nuancer.", dispo: true, mots: [
+{ id: "assess", w: "assess", pos: "verb", ipa: "/əˈses/", reg: "formel",
+  fr: "évaluer, juger (en pesant le pour et le contre)",
+  def: "To judge how important, true or successful something is, after weighing the evidence.",
+  col: ["assess the role of", "assess the impact of", "assess the extent to which", "carefully assess"],
+  ex: ["[[Assess]] the role of totalitarianism in the collapse of peace in the late 1930s.", "To [[assess]] the New Deal, its economic results must be weighed against its political impact."],
+  piege: "<b>Assess ≠ describe.</b> Une question « Assess… » attend un jugement (<i>largely, partly…</i>), pas un récit.",
+  fam: "assessment (n.) · reassess (v.)",
+  trous: [{ s: "Historians still ___ the impact of the New Deal in very different ways.", a: "assess", fr: "Les historiens évaluent encore l'impact du New Deal de manières très différentes." },
+          { s: "Before concluding, you must ___ the reliability of each document.", a: "assess", fr: "Avant de conclure, il faut évaluer la fiabilité de chaque document." }],
+  ecris: "une phrase d'introduction d'essay sur la crise de 1929", formes: ["assess", "assesses", "assessed", "assessing", "assessment"] },
+{ id: "undermine", w: "undermine", pos: "verb", ipa: "/ˌʌndəˈmaɪn/", reg: "courant",
+  fr: "saper, affaiblir (peu à peu)",
+  def: "To gradually weaken something, especially confidence, authority or a system.",
+  col: ["undermine confidence in", "undermine the authority of", "seriously undermine", "undermine democracy"],
+  ex: ["Mass unemployment [[undermined]] faith in parliamentary democracy across Europe.", "In <i>1984</i>, the Party [[undermines]] Winston's trust in his own memory."],
+  piege: "Le mot porte l'idée d'une <b>usure lente</b>, par en dessous. Pour une destruction brutale : <i>destroy, crush</i>.",
+  fam: "undermining (n./adj.)",
+  trous: [{ s: "The Great Depression ___ the Weimar Republic by discrediting its leaders.", a: "undermined", fr: "La Grande Dépression a sapé la République de Weimar en discréditant ses dirigeants." },
+          { s: "Constant propaganda can ___ people's ability to think for themselves.", a: "undermine", fr: "Une propagande permanente peut saper la capacité des gens à penser par eux-mêmes." }],
+  ecris: "une phrase sur l'effet du chômage de masse dans les années 1930", formes: ["undermine", "undermines", "undermined", "undermining"] },
+{ id: "albeit", w: "albeit", pos: "conjunction", ipa: "/ɔːlˈbiːɪt/", reg: "formel",
+  fr: "quoique, bien que (devant un adjectif, un adverbe ou un groupe de mots)",
+  def: "Although — used before an adjective, an adverb or a phrase, never before a full clause.",
+  col: ["albeit slowly", "albeit briefly", "albeit reluctantly", "albeit limited"],
+  ex: ["The New Deal reduced unemployment, [[albeit]] slowly.", "Britain fought on, [[albeit]] alone, after June 1940."],
+  piege: "<b>Jamais suivi d'un sujet + verbe.</b> <i>albeit it was slow</i> est faux → <i>although it was slow</i> ou <i>albeit slow</i>.",
+  fam: "—",
+  trous: [{ s: "Appeasement bought time, ___ at a high moral cost.", a: "albeit", fr: "L'apaisement a fait gagner du temps, quoique à un prix moral élevé." },
+          { s: "Roosevelt's response was effective, ___ late.", a: "albeit", fr: "La réponse de Roosevelt a été efficace, quoique tardive." }],
+  ecris: "une phrase qui juge une politique en la nuançant", formes: ["albeit"] },
+{ id: "stem", w: "stem from", pos: "phrasal verb", ipa: "/stem frɒm/", reg: "courant",
+  fr: "découler de, provenir de, avoir pour origine",
+  def: "To be caused by something, or to originate in it.",
+  col: ["stem largely from", "stem partly from", "stem directly from"],
+  ex: ["Appeasement [[stemmed]] partly from the trauma of the First World War.", "Much of the tension in <i>Dancing at Lughnasa</i> [[stems]] from economic insecurity."],
+  piege: "<b>Pas de passif</b> : <i>was stemmed from</i> est faux. Et toujours <i>from</i>, jamais <i>of</i>.",
+  fam: "—",
+  trous: [{ s: "Tensions in the South China Sea ___ from competing territorial claims.", a: "stem", fr: "Les tensions en mer de Chine méridionale découlent de revendications territoriales concurrentes." },
+          { s: "The crash of 1929 ___ partly from speculation on credit.", a: "stemmed", fr: "Le krach de 1929 a découlé en partie de la spéculation à crédit." }],
+  ecris: "une phrase qui donne l'origine d'un conflit ou d'une crise", formes: ["stem", "stems", "stemmed", "stemming"] },
+{ id: "outweigh", w: "outweigh", pos: "verb", ipa: "/ˌaʊtˈweɪ/", reg: "courant",
+  fr: "l'emporter sur, peser plus lourd que",
+  def: "To be greater or more important than something else.",
+  col: ["far outweigh", "the benefits outweigh the costs", "clearly outweigh", "outweigh the drawbacks"],
+  ex: ["Do the benefits of the Arctic routes far [[outweigh]] the constraints?", "For Chamberlain, the risks of war [[outweighed]] the dangers of concession."],
+  piege: "Construction directe : <b>A outweighs B</b>. Pas de préposition (<i>outweigh on</i> est faux).",
+  fam: "—",
+  trous: [{ s: "For shipping companies, the gains of containerisation far ___ its costs.", a: "outweigh", fr: "Pour les armateurs, les gains de la conteneurisation l'emportent largement sur ses coûts." },
+          { s: "In the end, the human cost of the policy ___ its benefits.", a: "outweighed", fr: "Au bout du compte, le coût humain de cette politique l'a emporté sur ses bénéfices." }],
+  ecris: "une phrase qui pèse avantages et inconvénients (routes arctiques, apaisement…)", formes: ["outweigh", "outweighs", "outweighed", "outweighing"] },
+{ id: "hinder", w: "hinder", pos: "verb", ipa: "/ˈhɪndə/", reg: "formel",
+  fr: "entraver, freiner, gêner",
+  def: "To make it difficult for something to happen or to make progress.",
+  col: ["hinder progress", "hinder development", "seriously hinder", "hinder trade"],
+  ex: ["Sea ice and the lack of ports still [[hinder]] navigation in the Arctic.", "Protectionist tariffs [[hindered]] world trade in the early 1930s."],
+  piege: "Plus fort que <i>slow down</i>, moins fort que <i>prevent</i> (empêcher complètement).",
+  fam: "hindrance (n.)",
+  trous: [{ s: "Piracy can ___ maritime trade through narrow straits.", a: "hinder", fr: "La piraterie peut entraver le commerce maritime dans les détroits étroits." },
+          { s: "High tariffs ___ the recovery of world trade after 1930.", a: "hindered", fr: "Des droits de douane élevés ont freiné la reprise du commerce mondial après 1930." }],
+  ecris: "une phrase sur un obstacle au commerce ou au développement", formes: ["hinder", "hinders", "hindered", "hindering", "hindrance"] },
+{ id: "foster", w: "foster", pos: "verb", ipa: "/ˈfɒstə/", reg: "formel",
+  fr: "favoriser, encourager (le développement de)",
+  def: "To encourage something to develop, usually something positive.",
+  col: ["foster cooperation", "foster growth", "foster a sense of", "foster dialogue"],
+  ex: ["International organisations aim to [[foster]] cooperation between states.", "Mass rallies [[fostered]] a sense of belonging to the national community."],
+  piege: "On favorise <b>une chose</b> (<i>foster growth</i>). Avec une personne, <i>foster a child</i> veut dire « accueillir un enfant en famille d'accueil ».",
+  fam: "foster (adj.) : foster family, foster child",
+  trous: [{ s: "Free trade agreements are meant to ___ economic growth.", a: "foster", fr: "Les accords de libre-échange sont censés favoriser la croissance économique." },
+          { s: "Youth movements ___ loyalty to the regime from an early age.", a: "fostered", fr: "Les mouvements de jeunesse favorisaient la loyauté envers le régime dès le plus jeune âge." }],
+  ecris: "une phrase sur une organisation internationale ou une politique qui encourage quelque chose", formes: ["foster", "fosters", "fostered", "fostering"] },
+{ id: "pivotal", w: "pivotal", pos: "adjective", ipa: "/ˈpɪvətl/", reg: "courant",
+  fr: "décisif, charnière, crucial",
+  def: "Of central importance; marking a turning point.",
+  col: ["a pivotal moment", "a pivotal role", "pivotal in + -ing"],
+  ex: ["Stalingrad was a [[pivotal]] moment in the war in the East.", "Michael plays a [[pivotal]] role as the narrator who frames every scene."],
+  piege: "Plus précis que <i>very important</i> : c'est le genre de mot qui fait monter la note de langue.",
+  fam: "pivot (n.)",
+  trous: [{ s: "The Wall Street Crash proved ___ in the rise of extremist parties.", a: "pivotal", fr: "Le krach de Wall Street s'est révélé décisif dans la montée des partis extrémistes." },
+          { s: "Straits such as Malacca play a ___ role in global trade.", a: "pivotal", fr: "Des détroits comme Malacca jouent un rôle crucial dans le commerce mondial." }],
+  ecris: "une phrase sur un tournant historique ou une scène clé d'une œuvre", formes: ["pivotal"] },
+{ id: "account", w: "account for", pos: "phrasal verb", ipa: "/əˈkaʊnt fɔː/", reg: "courant",
+  fr: "1. représenter (une part de) · 2. expliquer",
+  def: "1. To form a particular amount or part of something. 2. To explain the reason for something.",
+  col: ["account for X% of", "largely account for", "help to account for"],
+  ex: ["Maritime transport [[accounts for]] around 80% of world trade by volume.", "Several factors [[account for]] the collapse of the Weimar Republic."],
+  piege: "<b>Deux sens</b> : avec un chiffre → « représenter » ; avec une cause → « expliquer ». À ne pas confondre avec <i>take into account</i> (prendre en compte).",
+  fam: "—",
+  trous: [{ s: "Asia ___ for most of the world's container traffic.", a: "accounts", fr: "L'Asie représente l'essentiel du trafic mondial de conteneurs." },
+          { s: "Economic nationalism alone cannot ___ for the outbreak of war in 1939.", a: "account", fr: "Le nationalisme économique ne peut pas expliquer à lui seul le déclenchement de la guerre en 1939." }],
+  ecris: "une phrase avec un pourcentage, puis une autre qui explique une cause", formes: ["account for", "accounts for", "accounted for", "accounting for"] },
+{ id: "shortcoming", w: "shortcoming", pos: "noun", ipa: "/ˈʃɔːtkʌmɪŋ/", reg: "courant",
+  fr: "défaut, lacune, insuffisance",
+  def: "A fault or weakness that makes something less effective.",
+  col: ["major shortcomings", "despite its shortcomings", "the shortcomings of a source"],
+  ex: ["Despite its [[shortcomings]], the League of Nations was a first attempt at collective security.", "One [[shortcoming]] of this poster is that it only shows the official point of view."],
+  piege: "Souvent au <b>pluriel</b>. Idéal pour le paragraphe « limites » d'une étude de document.",
+  fam: "fall short of (v.) : ne pas atteindre",
+  trous: [{ s: "The main ___ of this source is that it was written for propaganda purposes.", a: "shortcoming", fr: "Le principal défaut de cette source est qu'elle a été écrite à des fins de propagande." },
+          { s: "Despite its ___, the New Deal restored confidence.", a: "shortcomings", fr: "Malgré ses insuffisances, le New Deal a rétabli la confiance." }],
+  ecris: "une phrase qui donne une limite d'un document", formes: ["shortcoming", "shortcomings"] },
+{ id: "biased", w: "biased", pos: "adjective", ipa: "/ˈbaɪəst/", reg: "courant",
+  fr: "partial, orienté, de parti pris",
+  def: "Unfairly favouring one side or one point of view.",
+  col: ["highly biased", "biased in favour of", "biased against", "a biased account"],
+  ex: ["Written by a party newspaper, the article is clearly [[biased]] in favour of the regime.", "A [[biased]] source can still be useful to understand propaganda."],
+  piege: "Prononciation <b>/ˈbaɪəst/</b>. Le nom est <i>bias</i> : <i>the author shows bias</i> (pas <i>a biased</i>).",
+  fam: "bias (n.) · unbiased (adj.)",
+  trous: [{ s: "Since it was written by a minister, the speech is probably ___ in favour of the government.", a: "biased", fr: "Comme il a été écrit par un ministre, le discours est sans doute partial en faveur du gouvernement." },
+          { s: "A good historian always looks for the ___ of a document.", a: "bias", fr: "Un bon historien cherche toujours le parti pris d'un document." }],
+  ecris: "une phrase qui juge la fiabilité d'un document", formes: ["biased", "bias", "unbiased"] },
+{ id: "shed", w: "shed light on", pos: "verb phrase", ipa: "/ʃed laɪt ɒn/", reg: "courant",
+  fr: "éclairer, faire la lumière sur",
+  def: "To help explain something or make it easier to understand.",
+  col: ["shed new light on", "help shed light on", "shed light on the reasons for"],
+  ex: ["Survivors' testimonies [[shed light on]] how the killing centres operated.", "This scene [[sheds light on]] Kate's fear of losing control of the family."],
+  piege: "Verbe <b>irrégulier</b> : shed / shed / shed. <i>Shedded</i> n'existe pas.",
+  fam: "—",
+  trous: [{ s: "This photograph ___ light on the living conditions of Dust Bowl migrants.", a: "sheds", fr: "Cette photographie éclaire les conditions de vie des migrants du Dust Bowl." },
+          { s: "New archives have ___ light on Stalin's decisions in 1941.", a: "shed", fr: "De nouvelles archives ont éclairé les décisions de Staline en 1941." }],
+  ecris: "une phrase qui dit ce qu'un document permet de comprendre", formes: ["shed light", "sheds light", "shedding light"] },
+{ id: "bring", w: "bring about", pos: "phrasal verb", ipa: "/brɪŋ əˈbaʊt/", reg: "courant",
+  fr: "provoquer, entraîner, amener",
+  def: "To cause something to happen.",
+  col: ["bring about change", "bring about the collapse of", "bring about reform"],
+  ex: ["The crisis of 1929 [[brought about]] a wave of protectionism.", "The invasion of Poland [[brought about]] the declaration of war by Britain and France."],
+  piege: "Irrégulier : bring / <b>brought</b> / brought. Ne pas confondre avec <i>bring up</i> (élever un enfant, aborder un sujet).",
+  fam: "—",
+  trous: [{ s: "Containerisation ___ about a revolution in shipping.", a: "brought", fr: "La conteneurisation a provoqué une révolution dans le transport maritime." },
+          { s: "Economic despair helped ___ about the rise of extremist parties.", a: "bring", fr: "Le désespoir économique a contribué à provoquer la montée des partis extrémistes." }],
+  ecris: "une phrase sur une cause et sa conséquence", formes: ["bring about", "brings about", "brought about", "bringing about", "brought", "bring"] },
+{ id: "farreaching", w: "far-reaching", pos: "adjective", ipa: "/ˌfɑːˈriːtʃɪŋ/", reg: "courant",
+  fr: "de grande portée, aux conséquences profondes",
+  def: "Having a great influence or effect on many people or things.",
+  col: ["far-reaching consequences", "far-reaching reforms", "far-reaching effects"],
+  ex: ["The Wall Street Crash had [[far-reaching]] consequences well beyond the United States.", "Opening the Northern Sea Route could have [[far-reaching]] effects on world trade."],
+  piege: "Toujours avec un <b>trait d'union</b> devant le nom : <i>far-reaching consequences</i>.",
+  fam: "—",
+  trous: [{ s: "The Treaty of Versailles had ___ consequences for Germany.", a: "far-reaching", alt: ["far reaching"], fr: "Le traité de Versailles a eu des conséquences profondes pour l'Allemagne." },
+          { s: "The New Deal introduced ___ reforms in banking and welfare.", a: "far-reaching", alt: ["far reaching"], fr: "Le New Deal a introduit des réformes de grande portée dans la banque et la protection sociale." }],
+  ecris: "une phrase sur les conséquences d'un événement", formes: ["far-reaching", "far reaching"] },
+{ id: "contend", w: "contend", pos: "verb", ipa: "/kənˈtend/", reg: "formel",
+  fr: "soutenir, affirmer (que)",
+  def: "To state that something is true, especially as part of an argument.",
+  col: ["contend that", "some historians contend that", "it could be contended that"],
+  ex: ["Some historians [[contend]] that appeasement gave Britain time to rearm.", "Critics [[contend]] that the ending of the novel leaves no room for hope."],
+  piege: "<b>Faux ami à éviter</b> : « prétendre que » ne se dit pas <i>pretend</i> (= faire semblant), mais <i>claim</i> ou <i>contend that</i>.",
+  fam: "contention (n.) : affirmation, thèse",
+  trous: [{ s: "Some economists ___ that the central bank made the Depression worse.", a: "contend", fr: "Certains économistes soutiennent que la banque centrale a aggravé la Dépression." },
+          { s: "Other historians ___ that the democracies had little choice.", a: "contend", fr: "D'autres historiens soutiennent que les démocraties n'avaient guère le choix." }],
+  ecris: "une phrase qui présente la thèse d'un historien ou d'un critique", formes: ["contend", "contends", "contended", "contending"] },
+{ id: "thereby", w: "thereby", pos: "adverb", ipa: "/ˌðeəˈbaɪ/", reg: "formel",
+  fr: "ainsi, de ce fait, par là même",
+  def: "As a result of the action just mentioned.",
+  col: ["…, thereby + -ing", "and thereby + verb"],
+  ex: ["Germany remilitarised the Rhineland in 1936, [[thereby]] breaking the Treaty of Versailles.", "The canal shortens the route, [[thereby]] reducing costs."],
+  piege: "Se place <b>juste avant la conséquence</b>, souvent suivi d'un verbe en -ing : <i>…, thereby increasing tensions.</i>",
+  fam: "—",
+  trous: [{ s: "American banks called in their loans, ___ spreading the crisis to Europe.", a: "thereby", fr: "Les banques américaines ont rappelé leurs prêts, propageant ainsi la crise en Europe." },
+          { s: "China built artificial islands, ___ extending its control over the sea.", a: "thereby", fr: "La Chine a construit des îles artificielles, étendant par là même son contrôle sur la mer." }],
+  ecris: "une phrase qui enchaîne une action et sa conséquence", formes: ["thereby"] },
+{ id: "whereas", w: "whereas", pos: "conjunction", ipa: "/weərˈæz/", reg: "courant",
+  fr: "tandis que, alors que (opposition)",
+  def: "Used to compare two facts and show how they differ.",
+  col: ["whereas + subject + verb"],
+  ex: ["The democracies hesitated, [[whereas]] the dictatorships acted quickly.", "Kate tries to hold the family together, [[whereas]] Chris is drawn towards Gerry."],
+  piege: "Opposition seulement. Pour « pendant que » au sens du temps, on dit <i>while</i>.",
+  fam: "—",
+  trous: [{ s: "Democracies reacted slowly, ___ dictatorships acted quickly.", a: "whereas", alt: ["while", "whilst"], fr: "Les démocraties ont réagi lentement, tandis que les dictatures ont agi vite." },
+          { s: "The Northern Sea Route follows the Russian coast, ___ the Northwest Passage crosses the Canadian archipelago.", a: "whereas", alt: ["while", "whilst"], fr: "La route maritime du Nord longe la côte russe, alors que le passage du Nord-Ouest traverse l'archipel canadien." }],
+  ecris: "une phrase qui oppose deux pays, deux personnages ou deux politiques", formes: ["whereas"] },
+{ id: "nonetheless", w: "nonetheless", pos: "adverb", ipa: "/ˌnʌnðəˈles/", reg: "courant",
+  fr: "néanmoins, pourtant",
+  def: "In spite of what has just been said.",
+  col: ["…; nonetheless, …", "…. Nonetheless, …"],
+  ex: ["The source is biased; [[nonetheless]], it is useful to understand propaganda.", "The Arctic routes remain dangerous. [[Nonetheless]], traffic is increasing."],
+  piege: "En <b>un seul mot</b>. Synonyme : <i>nevertheless</i>. C'est un adverbe : point-virgule ou point avant, pas une simple virgule.",
+  fam: "nevertheless (synonyme)",
+  trous: [{ s: "The plan failed; ___, it revealed the weaknesses of the regime.", a: "nonetheless", alt: ["nevertheless"], fr: "Le plan a échoué ; il a néanmoins révélé les faiblesses du régime." },
+          { s: "Victory came at a terrible cost. ___, it ended the occupation.", a: "nonetheless", alt: ["nevertheless"], fr: "La victoire a coûté terriblement cher. Elle a pourtant mis fin à l'occupation." }],
+  ecris: "deux phrases : une limite, puis un « néanmoins »", formes: ["nonetheless", "nevertheless"] },
+{ id: "eventually", w: "eventually", pos: "adverb", ipa: "/ɪˈventʃuəli/", reg: "courant",
+  fr: "finalement, au bout du compte (après un long moment)",
+  def: "In the end, after a long time or a series of events.",
+  col: ["eventually + verb", "…, and eventually …"],
+  ex: ["The German Sixth Army [[eventually]] surrendered at Stalingrad in early 1943.", "Michael [[eventually]] reveals what became of his aunts."],
+  piege: "<b>Faux ami !</b> <i>Eventually</i> ≠ éventuellement. « Éventuellement » se dit <i>possibly</i> ou <i>if necessary</i>.",
+  fam: "eventual (adj.) : final",
+  trous: [{ s: "After weeks of resistance, the uprising was ___ crushed.", a: "eventually", fr: "Après des semaines de résistance, le soulèvement a finalement été écrasé." },
+          { s: "The USA ___ entered the war after Pearl Harbor.", a: "eventually", fr: "Les États-Unis sont finalement entrés en guerre après Pearl Harbor." }],
+  ecris: "une phrase qui raconte l'issue d'un long processus", formes: ["eventually"] },
+{ id: "extent", w: "to a large extent", pos: "adverbial phrase", ipa: "/ɪkˈstent/", reg: "courant",
+  fr: "dans une large mesure",
+  def: "Mostly, but not completely — used to give a nuanced judgement.",
+  col: ["to a large / great extent", "to some extent", "to a limited extent", "to what extent…?"],
+  ex: ["[[To a large extent]], the democracies share the blame for the failure of collective security.", "The Depression was, [[to some extent]], a consequence of the boom of the 1920s."],
+  piege: "<i>In a large extent</i> est faux : toujours <b>to</b>. Parfait pour répondre à « How far do you agree? ».",
+  fam: "extent (n.) : étendue, ampleur",
+  trous: [{ s: "To a large ___, the crisis explains the rise of extremism.", a: "extent", fr: "Dans une large mesure, la crise explique la montée de l'extrémisme." },
+          { s: "The policy succeeded only to a limited ___.", a: "extent", fr: "Cette politique n'a réussi que dans une mesure limitée." }],
+  ecris: "une phrase de jugement pour répondre à « How far do you agree? »", formes: ["extent"] }
+]},
+{ id: "histoire", titre: "Histoire-géo en anglais", sous: "Crise, guerre, mondialisation, espaces maritimes.", dispo: false, mots: [] },
+{ id: "litt", titre: "Analyser une œuvre", sous: "Le vocabulaire du commentaire et de l'essay littéraire.", dispo: false, mots: [] },
+{ id: "c1", titre: "Anglais courant C1", sous: "Les mots du quotidien qui font la différence à l'oral.", dispo: false, mots: [] }
+];
+
+/* ============================================================
+   RÉPÉTITION ESPACÉE — boîtes de Leitner
+   boîte 0 = jamais vu ; une bonne réponse fait monter d'une boîte,
+   une erreur renvoie en boîte 1. Intervalles en jours.
+   ============================================================ */
+var INTERVALLES = [0, 1, 3, 7, 14, 30];
+var MAITRISE = 4;   /* boîte à partir de laquelle un mot compte comme acquis */
+
+/* ============================================================
+   PROGRESSION — gardée en mémoire le temps de la page ;
+   sauvegarde par fichier JSON téléchargé puis réimporté
+   (règle du projet : pas de stockage dans le navigateur).
+   Tout passe par Stockage : changer de méthode = changer ce seul objet.
+   ============================================================ */
+var Stockage = {
+  sauver: function (etat) {
+    var blob = new Blob([JSON.stringify(etat, null, 1)], { type: "application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "wordsmith-progression-" + dateISO(new Date()) + ".json";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+  },
+  charger: function (texte) {
+    var e = JSON.parse(texte);
+    if (!e || e.app !== "wordsmith" || typeof e.mots !== "object") throw new Error("format");
+    return e;
+  }
+};
+
+var params = new URLSearchParams(location.search);
+var DECALAGE = parseInt(params.get("decalage") || "0", 10) || 0;   /* pour tester : ?decalage=3 avance de 3 jours */
+function dateISO(d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+function jourNum(d) { return Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 864e5); }
+function aujourdhui() { return jourNum(new Date()) + DECALAGE; }
+
+function etatNeuf() { return { app: "wordsmith", v: 1, parJour: 5, mots: {}, jours: {} }; }
+var etat = etatNeuf();
+var modifie = false;
+
+function tousLesMots() { var t = []; LISTES.forEach(function (l) { if (l.dispo) t = t.concat(l.mots); }); return t; }
+var MOTS = tousLesMots();
+var PAR_ID = {}; MOTS.forEach(function (m) { PAR_ID[m.id] = m; });
+function suivi(id) { return etat.mots[id] || { b: 0, due: 0, ok: 0, ko: 0 }; }
+
+function nouveauxDuJour() {
+  var d = aujourdhui(), deja = (etat.jours[d] && etat.jours[d].nv) || 0;
+  var reste = Math.max(0, etat.parJour - deja);
+  return MOTS.filter(function (m) { return !etat.mots[m.id]; }).slice(0, reste);
+}
+function revisionsDuJour() {
+  var d = aujourdhui();
+  return MOTS.filter(function (m) { var s = etat.mots[m.id]; return s && s.b > 0 && s.due <= d; });
+}
+function serie() {
+  var d = aujourdhui(), n = 0;
+  if (!(etat.jours[d] && etat.jours[d].fini)) d--;
+  while (etat.jours[d] && etat.jours[d].fini) { n++; d--; }
+  return n;
+}
+
+/* ---------- outils ---------- */
+function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+function surligne(s) { return s.replace(/\[\[(.+?)\]\]/g, "<mark>$1</mark>"); }
+function norm(s) { return String(s).toLowerCase().replace(/[’‘]/g, "'").replace(/[‐-—]/g, "-").replace(/[.,;:!?"]/g, " ").replace(/\s+/g, " ").trim(); }
+function distance(a, b) {
+  var m = a.length, n = b.length, d = [], i, j;
+  for (i = 0; i <= m; i++) { d[i] = [i]; }
+  for (j = 0; j <= n; j++) { d[0][j] = j; }
+  for (i = 1; i <= m; i++) for (j = 1; j <= n; j++)
+    d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+  return d[m][n];
+}
+function melange(t) { t = t.slice(); for (var i = t.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var x = t[i]; t[i] = t[j]; t[j] = x; } return t; }
+function annonce(t) { var a = document.getElementById("annonce"); a.textContent = ""; setTimeout(function () { a.textContent = t; }, 30); }
+var ICONE_SON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>';
+function prononcer(t) {
+  if (!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(t);
+  u.lang = "en-GB"; u.rate = 0.92;
+  var v = speechSynthesis.getVoices().filter(function (x) { return /^en-GB/i.test(x.lang); })[0];
+  if (v) u.voice = v;
+  speechSynthesis.speak(u);
+}
+if ("speechSynthesis" in window) speechSynthesis.getVoices();
+
+/* ---------- fiche d'un mot ---------- */
+function ficheHTML(m) {
+  var s = suivi(m.id);
+  return '<div class="fiche">' +
+    '<div class="tete"><div><p class="mot">' + esc(m.w) + '</p>' +
+    '<span class="pos">' + esc(m.pos) + '</span> <span class="ipa">' + esc(m.ipa) + '</span><span class="reg">' + esc(m.reg) + '</span></div>' +
+    '<button class="son" data-dire="' + esc(m.w) + '" aria-label="Écouter la prononciation">' + ICONE_SON + '</button></div>' +
+    '<p class="sens">' + esc(m.fr) + '</p><p class="def">' + esc(m.def) + '</p>' +
+    '<div class="bloc"><h4>Va avec</h4><div class="colls">' + m.col.map(function (c) { return '<span>' + esc(c) + '</span>'; }).join("") + '</div></div>' +
+    '<div class="bloc"><h4>En contexte</h4><ul class="ex">' + m.ex.map(function (e) { return '<li>' + surligne(e) + '</li>'; }).join("") + '</ul></div>' +
+    '<div class="bloc piege">⚠ ' + m.piege + '</div>' +
+    (m.fam && m.fam !== "—" ? '<div class="bloc famille"><h4>Famille</h4>' + esc(m.fam) + '</div>' : '') +
+    (s.b > 0 ? '<p class="petit muted bloc">Boîte ' + s.b + ' sur 5 · ' + s.ok + ' bonne' + (s.ok > 1 ? 's' : '') + ' réponse' + (s.ok > 1 ? 's' : '') + ', ' + s.ko + ' erreur' + (s.ko > 1 ? 's' : '') + '</p>' : '') +
+    '</div>';
+}
+document.addEventListener("click", function (e) {
+  var b = e.target.closest("[data-dire]");
+  if (b) prononcer(b.getAttribute("data-dire"));
+});
+
+/* ---------- vues ---------- */
+function rendreJour() {
+  var nv = nouveauxDuJour(), rv = revisionsDuJour(), d = aujourdhui();
+  var fini = etat.jours[d] && etat.jours[d].fini && !nv.length && !rv.length;
+  var acquis = MOTS.filter(function (m) { return suivi(m.id).b >= MAITRISE; }).length;
+  var dateTxt = new Date(Date.now() + DECALAGE * 864e5).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" });
+  var restants = MOTS.filter(function (m) { return !etat.mots[m.id]; }).length;
+  var h = '<div class="carte jour">' +
+    '<div class="date">' + esc(dateTxt) + '</div>' +
+    '<h1 id="t-jour">' + (fini ? "Séance du jour terminée" : "Ta séance du jour") + '</h1>' +
+    (fini ? '<div class="fait">✓ Bravo, tout est fait pour aujourd\'hui. Reviens demain : les mots reviendront juste avant que tu les oublies.</div>' : '') +
+    '<div class="compteurs">' +
+    '<div><b>' + nv.length + '</b><span>nouveaux</span></div>' +
+    '<div><b>' + rv.length + '</b><span>à revoir</span></div>' +
+    '<div><b>' + serie() + '</b><span>jour' + (serie() > 1 ? 's' : '') + ' d\'affilée</span></div></div>' +
+    (nv.length || rv.length ? '<button class="btn large" id="go">Commencer · environ ' + Math.max(2, Math.round(nv.length * 1.5 + rv.length * 0.7)) + ' min</button>'
+      : (!restants ? '<p class="muted">Tous les mots de la liste ont été vus. D\'autres listes arrivent.</p>' : '')) +
+    (modifie ? '<div class="alerte" role="status"><span>Progression non sauvegardée. Elle disparaîtra si tu fermes la page.</span><button id="sauver1">Sauvegarder</button></div>' : '') +
+    '</div>' +
+    '<div class="carte reglage"><label id="l-rythme">Mots nouveaux par jour</label><div class="seg" role="group" aria-labelledby="l-rythme">' +
+    [3, 5, 8].map(function (n) { return '<button data-par="' + n + '" aria-pressed="' + (etat.parJour === n) + '">' + n + '</button>'; }).join("") +
+    '</div><p class="petit muted" style="margin:8px 0 0">' + acquis + ' mot' + (acquis > 1 ? 's' : '') + ' acquis sur ' + MOTS.length + '. Avec 5 mots par jour, compte environ 10 minutes, révisions comprises.</p></div>' +
+    '<div class="carte" style="margin-top:16px"><h2 style="margin-top:0">Comment ça marche</h2><ol class="methode">' +
+    '<li><b>Découvrir</b> : le sens, les mots qui vont avec, deux exemples, le piège pour un francophone.</li>' +
+    '<li><b>Retrouver</b> : tu écris le mot dans une phrase à trous. Le retrouver soi-même fixe bien mieux que le reconnaître dans une liste.</li>' +
+    '<li><b>Revoir</b> : chaque mot revient après 1, 3, 7, 14 puis 30 jours. Une erreur le fait revenir dès le lendemain.</li>' +
+    '<li><b>L\'employer</b> : au bout de quelques révisions, tu écris ta propre phrase.</li></ol></div>';
+  document.getElementById("v-jour").innerHTML = h;
+  var go = document.getElementById("go"); if (go) go.onclick = demarrer;
+  var s1 = document.getElementById("sauver1"); if (s1) s1.onclick = sauver;
+  document.querySelectorAll("[data-par]").forEach(function (b) {
+    b.onclick = function () { etat.parJour = +b.getAttribute("data-par"); modifie = true; rendreJour(); };
+  });
+}
+
+function rendreMots() {
+  var h = '<h2 id="t-mots" style="margin-top:6px">Les listes</h2>';
+  LISTES.forEach(function (l) {
+    if (!l.dispo) {
+      h += '<div class="carte bientot" style="margin-top:10px"><div class="liste-t"><b>' + esc(l.titre) + '</b><span class="tag">bientôt</span></div><p class="petit muted" style="margin:4px 0 0">' + esc(l.sous) + '</p></div>';
+      return;
+    }
+    var vus = l.mots.filter(function (m) { return etat.mots[m.id]; }).length;
+    h += '<div class="carte" style="margin-top:10px"><div class="liste-t"><b>' + esc(l.titre) + '</b><small>' + vus + ' / ' + l.mots.length + ' vus</small></div>' +
+      '<p class="petit muted" style="margin:4px 0 0">' + esc(l.sous) + '</p><ul class="mots">' +
+      l.mots.map(function (m) {
+        var b = suivi(m.id).b, p = "";
+        for (var i = 1; i <= 5; i++) p += '<i class="' + (i <= b ? "on" : "") + '"></i>';
+        return '<li><button class="mot-li" data-mot="' + m.id + '"><span class="pastilles" aria-label="boîte ' + b + ' sur 5">' + p + '</span><b>' + esc(m.w) + '</b><span class="fr">' + esc(m.fr.split(",")[0].replace(/^1\. /, "")) + '</span></button></li>';
+      }).join("") + '</ul></div>';
+  });
+  h += '<p class="petit muted">Touche un mot pour ouvrir sa fiche. Les pastilles montrent sa boîte de révision (5 = acquis pour longtemps).</p>';
+  document.getElementById("v-mots").innerHTML = h;
+  document.querySelectorAll("[data-mot]").forEach(function (b) { b.onclick = function () { ouvrirFiche(b.getAttribute("data-mot")); }; });
+}
+
+function rendreProgres() {
+  var compte = [0, 0, 0, 0, 0, 0];
+  MOTS.forEach(function (m) { compte[suivi(m.id).b]++; });
+  var max = Math.max.apply(null, compte.concat([1]));
+  var noms = ["pas vus", "boîte 1<br>1 j", "boîte 2<br>3 j", "boîte 3<br>7 j", "boîte 4<br>14 j", "boîte 5<br>30 j"];
+  var tot = 0, ok = 0;
+  MOTS.forEach(function (m) { var s = suivi(m.id); tot += s.ok + s.ko; ok += s.ok; });
+  var h = '<h2 id="t-progres" style="margin-top:6px">Tes progrès</h2><div class="carte">' +
+    '<div class="boites" role="img" aria-label="Répartition des mots par boîte">' +
+    compte.map(function (c) { return '<div class="boite"><b>' + c + '</b><div class="barre" style="height:' + Math.round(c / max * 110) + 'px"></div></div>'; }).join("") +
+    '</div><div class="boites-l">' + noms.map(function (n) { return '<span>' + n + '</span>'; }).join("") + '</div>' +
+    '<p class="petit muted" style="margin:12px 0 0">' + (tot ? Math.round(ok / tot * 100) + ' % de bonnes réponses sur ' + tot + ' exercices. ' : '') + 'Un mot est acquis à partir de la boîte 4.</p></div>' +
+    '<h2>Sauvegarde</h2><div class="carte"><p style="margin-top:0">Ta progression n\'est pas gardée dans le navigateur. À la fin de chaque séance, <b>télécharge le fichier</b> ; la prochaine fois, <b>recharge-le</b> avant de commencer.</p>' +
+    '<div class="actions"><button class="btn" id="sauver2">Télécharger ma progression</button><button class="btn sec" id="charger">Recharger un fichier</button></div>' +
+    '<p class="petit muted" id="msg-imp" style="margin:10px 0 0" aria-live="polite"></p></div>';
+  document.getElementById("v-progres").innerHTML = h;
+  document.getElementById("sauver2").onclick = sauver;
+  document.getElementById("charger").onclick = function () { document.getElementById("f-import").click(); };
+}
+
+function sauver() { Stockage.sauver(etat); modifie = false; rendreTout(); annonce("Progression téléchargée."); }
+document.getElementById("f-import").addEventListener("change", function (e) {
+  var f = e.target.files[0]; if (!f) return;
+  var r = new FileReader();
+  r.onload = function () {
+    try { etat = Stockage.charger(r.result); modifie = false; rendreTout(); montrer("jour"); annonce("Progression rechargée."); }
+    catch (err) { var m = document.getElementById("msg-imp"); if (m) m.textContent = "Ce fichier n'est pas une progression Wordsmith."; }
+    e.target.value = "";
+  };
+  r.readAsText(f);
+});
+
+function rendreTout() { rendreJour(); rendreMots(); rendreProgres(); }
+var vueActive = "jour";
+function montrer(v) {
+  vueActive = v;
+  document.querySelectorAll(".vue").forEach(function (s) { s.classList.toggle("on", s.id === "v-" + v); });
+  document.querySelectorAll("nav.bas button").forEach(function (b) {
+    if (b.getAttribute("data-vue") === v) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
+  });
+  if (v === "jour") rendreJour(); else if (v === "mots") rendreMots(); else rendreProgres();
+  window.scrollTo(0, 0);
+}
+document.querySelectorAll("nav.bas button").forEach(function (b) { b.onclick = function () { montrer(b.getAttribute("data-vue")); }; });
+
+/* ---------- fiche en feuille du bas ---------- */
+var modale = document.getElementById("modale");
+function ouvrirFiche(id) {
+  document.getElementById("m-corps").innerHTML = ficheHTML(PAR_ID[id]);
+  modale.classList.add("on");
+  document.body.classList.add("sans-ia");
+  history.pushState({ fiche: 1 }, "");
+  modale.querySelector(".fermer").focus();
+}
+function fermerFiche(retour) { if (!modale.classList.contains("on")) return; modale.classList.remove("on"); document.body.classList.remove("sans-ia"); if (!retour) history.back(); }
+modale.addEventListener("click", function (e) { if (e.target === modale || e.target.classList.contains("fermer")) fermerFiche(); });
+
+/* ============================================================
+   SÉANCE
+   1. découverte des mots nouveaux ; 2. exercices mélangés
+   (nouveaux + révisions dues) ; une erreur fait revenir le mot
+   une fois en fin de séance ; 3. bilan.
+   ============================================================ */
+var S = null;
+var seanceEl = document.getElementById("seance"), corps = document.getElementById("s-corps");
+
+function typeExo(m) {
+  var s = suivi(m.id);
+  if (s.b >= 3 && (s.ok % 2 === 1)) return "phrase";
+  return "trou";
+}
+function demarrer() {
+  var nv = nouveauxDuJour(), rv = revisionsDuJour();
+  var file = nv.map(function (m) { return { id: m.id, type: "trou", k: 0, nouveau: true }; })
+    .concat(rv.map(function (m) { return { id: m.id, type: typeExo(m), k: Math.floor(Math.random() * m.trous.length), nouveau: false }; }));
+  S = { decouvrir: nv.map(function (m) { return m.id; }), i: 0, phase: nv.length ? "decouvrir" : "exo", file: melange(file), j: 0, reprises: {}, bons: 0, total: 0, rates: [] };
+  S.prevu = S.decouvrir.length + S.file.length;
+  seanceEl.classList.add("on");
+  document.body.classList.add("sans-ia");
+  document.body.style.overflow = "hidden";
+  history.pushState({ seance: 1 }, "");
+  etape();
+}
+function progres() {
+  var fait = (S.phase === "decouvrir" ? S.i : S.decouvrir.length + S.j);
+  var tot = S.decouvrir.length + S.file.length;
+  document.getElementById("s-prog").style.width = Math.min(100, Math.round(fait / Math.max(1, tot) * 100)) + "%";
+}
+function etape() {
+  progres();
+  if (S) document.body.classList.add("sans-ia");
+  corps.scrollTop = 0; seanceEl.scrollTop = 0;
+  if (S.phase === "decouvrir") {
+    if (S.i >= S.decouvrir.length) { S.phase = "exo"; return etape(); }
+    var m = PAR_ID[S.decouvrir[S.i]];
+    corps.innerHTML = '<div class="etape">Nouveau mot ' + (S.i + 1) + ' / ' + S.decouvrir.length + '</div>' +
+      '<div class="carte">' + ficheHTML(m) + '</div>' +
+      '<div class="ligne-btn" style="margin-top:14px"><button class="btn large" id="suite">' + (S.i + 1 < S.decouvrir.length ? "Mot suivant" : "Passer aux exercices") + '</button></div>';
+    document.getElementById("suite").onclick = function () { S.i++; etape(); };
+    document.getElementById("suite").focus({ preventScroll: true });
+    return;
+  }
+  if (S.j >= S.file.length) return bilan();
+  var it = S.file[S.j];
+  if (it.type === "phrase") exoPhrase(it); else exoTrou(it);
+}
+
+function exoTrou(it) {
+  var m = PAR_ID[it.id], t = m.trous[it.k], s = suivi(m.id);
+  var largeur = Math.max(t.a.length, 5) + 1;
+  var phrase = esc(t.s).replace("___", '<input id="rep" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" aria-label="Mot manquant" style="width:' + largeur + 'ch">');
+  var aide = (it.nouveau || s.b <= 1)
+    ? '<div class="indice"><b>' + esc(m.fr) + '</b><br><span class="fr-ph">' + esc(t.fr) + '</span></div>'
+    : '<div class="indice"><span class="fr-ph">' + esc(t.fr) + '</span></div>';
+  corps.innerHTML = '<div class="etape">' + (it.reprise ? "Encore une fois" : it.nouveau ? "À toi" : "Révision") + ' · ' + (S.j + 1) + ' / ' + S.file.length + '</div>' +
+    '<p class="consigne">Écris le mot qui manque, à la bonne forme.</p>' + aide +
+    '<p class="phrase">' + phrase + '</p>' +
+    '<button class="lien" id="lettre">Voir la première lettre</button>' +
+    '<div id="retour"></div>' +
+    '<div class="ligne-btn" id="btns"><button class="btn large" id="valider">Vérifier</button></div>';
+  var rep = document.getElementById("rep");
+  setTimeout(function () { rep.focus({ preventScroll: true }); }, 60);
+  document.getElementById("lettre").onclick = function () { rep.placeholder = t.a.charAt(0) + "…"; rep.focus(); this.remove(); };
+  rep.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); verifier(); } });
+  document.getElementById("valider").onclick = verifier;
+  function verifier() {
+    var v = norm(rep.value);
+    if (!v) { rep.focus(); return; }
+    var bonnes = [t.a].concat(t.alt || []).map(norm);
+    var juste = bonnes.indexOf(v) >= 0;
+    var presque = !juste && t.a.length > 4 && distance(v, norm(t.a)) === 1;
+    rep.readOnly = true;
+    var complet = surligne(t.s.replace("___", "[[" + t.a + "]]"));
+    var r = document.getElementById("retour");
+    if (juste) {
+      r.innerHTML = '<div class="retour ok" role="status"><b class="titre">✓ Exact</b><p class="phrase-ok">' + complet + '</p></div>';
+      annonce("Exact.");
+      fin(true);
+    } else if (presque) {
+      r.innerHTML = '<div class="retour presque" role="status"><b class="titre">Presque : vérifie l\'orthographe</b><p>Tu as écrit « ' + esc(rep.value) + ' », la réponse est <b>' + esc(t.a) + '</b>.</p><p class="phrase-ok">' + complet + '</p></div>';
+      annonce("Presque. La réponse est " + t.a);
+      choix();
+    } else {
+      r.innerHTML = '<div class="retour ko" role="status"><b class="titre">Pas tout à fait</b><p>La réponse : <b>' + esc(t.a) + '</b> (' + (norm(t.a) === norm(m.w) ? '' : esc(m.w) + ' · ') + esc(m.fr) + ')</p><p class="phrase-ok">' + complet + '</p><p class="petit">⚠ ' + m.piege + '</p></div>';
+      annonce("Pas tout à fait. La réponse est " + t.a);
+      choix();
+    }
+  }
+  function choix() {
+    document.getElementById("btns").innerHTML = '<button class="btn sec" id="jav">J\'avais bon</button><button class="btn" id="cont">Continuer</button>';
+    document.getElementById("jav").onclick = function () { noter(it, true); suivant(); };
+    document.getElementById("cont").onclick = function () { noter(it, false); suivant(); };
+    document.getElementById("cont").focus({ preventScroll: true });
+  }
+  function fin(bon) {
+    noter(it, bon);
+    document.getElementById("btns").innerHTML = '<button class="btn large" id="cont">Continuer</button>';
+    document.getElementById("cont").onclick = suivant;
+    document.getElementById("cont").focus({ preventScroll: true });
+  }
+}
+
+function exoPhrase(it) {
+  var m = PAR_ID[it.id];
+  corps.innerHTML = '<div class="etape">L\'employer · ' + (S.j + 1) + ' / ' + S.file.length + '</div>' +
+    '<p class="consigne">Écris ta propre phrase avec <b>' + esc(m.w) + '</b>.</p>' +
+    '<div class="indice">Idée : ' + esc(m.ecris) + '.<br><span class="muted petit">Va avec : ' + esc(m.col.slice(0, 3).join(" · ")) + '</span></div>' +
+    '<label class="sr" for="ta">Ta phrase</label><textarea id="ta" autocapitalize="sentences" spellcheck="true" placeholder="Ta phrase en anglais…"></textarea>' +
+    '<div id="retour"></div><div class="ligne-btn" id="btns"><button class="btn large" id="valider">Comparer</button></div>';
+  var ta = document.getElementById("ta");
+  setTimeout(function () { ta.focus({ preventScroll: true }); }, 60);
+  document.getElementById("valider").onclick = function () {
+    var v = norm(ta.value);
+    if (v.split(" ").length < 4) { ta.focus(); return; }
+    var present = m.formes.some(function (f) { return (" " + v + " ").indexOf(" " + norm(f) + " ") >= 0; });
+    ta.readOnly = true;
+    document.body.classList.remove("sans-ia");
+    document.getElementById("retour").innerHTML = '<div class="retour ' + (present ? 'presque' : 'ko') + '" role="status">' +
+      (present ? '<b class="titre">Relis-toi avec ces trois questions</b>' : '<b class="titre">Le mot n\'apparaît pas dans ta phrase</b><p>Formes attendues : ' + esc(m.formes.join(", ")) + '.</p>') +
+      '<p>1. Le sens est-il bien « ' + esc(m.fr) + ' » ?<br>2. La construction est-elle juste (' + esc(m.col[0]) + '…) ?<br>3. Le piège est-il évité ?</p>' +
+      '<p class="phrase-ok">Exemple : ' + surligne(m.ex[0]) + '</p>' +
+      '<p class="petit muted">Un doute ? Le bouton rond « Demander à une IA », en bas, peut corriger ta phrase.</p></div>';
+    document.getElementById("btns").innerHTML = '<button class="btn sec" id="non">À revoir</button><button class="btn" id="oui">Ma phrase est juste</button>';
+    document.getElementById("oui").onclick = function () { noter(it, present); suivant(); };
+    document.getElementById("non").onclick = function () { noter(it, false); suivant(); };
+  };
+}
+
+function noter(it, bon) {
+  var m = PAR_ID[it.id], d = aujourdhui();
+  var s = etat.mots[it.id] || { b: 0, due: 0, ok: 0, ko: 0 };
+  var j = etat.jours[d] || (etat.jours[d] = { nv: 0, rv: 0 });
+  S.total++;
+  if (!it.reprise) {
+    if (it.nouveau) j.nv++; else j.rv++;
+    if (bon) { s.ok++; s.b = Math.min(5, s.b + 1); S.bons++; }
+    else { s.ko++; s.b = 1; S.rates.push(m.w); }
+    s.due = d + (bon ? INTERVALLES[s.b] : 0);
+    if (!bon) { s.due = d + 1; }
+  } else if (bon) { S.bons++; }
+  etat.mots[it.id] = s;
+  if (!bon && !S.reprises[it.id]) {
+    S.reprises[it.id] = 1;
+    S.file.push({ id: it.id, type: "trou", k: (it.k + 1) % m.trous.length, nouveau: false, reprise: true });
+  }
+  modifie = true;
+}
+function suivant() { S.j++; etape(); }
+
+function bilan() {
+  var d = aujourdhui();
+  (etat.jours[d] || (etat.jours[d] = { nv: 0, rv: 0 })).fini = true;
+  modifie = true;
+  document.getElementById("s-prog").style.width = "100%";
+  var taux = S.total ? Math.round(S.bons / S.total * 100) : 100;
+  corps.innerHTML = '<div class="bilan"><div class="etape">Séance terminée</div><div class="grand">' + taux + ' %</div>' +
+    '<p>de bonnes réponses · ' + S.decouvrir.length + ' mot' + (S.decouvrir.length > 1 ? 's' : '') + ' nouveau' + (S.decouvrir.length > 1 ? 'x' : '') + ' · série de ' + serie() + ' jour' + (serie() > 1 ? 's' : '') + '</p>' +
+    (S.rates.length ? '<div class="carte" style="text-align:left"><b>Ils reviendront demain :</b><ul>' + S.rates.map(function (w) { return '<li>' + esc(w) + '</li>'; }).join("") + '</ul></div>' : '') +
+    '<div class="actions" style="margin-top:18px"><button class="btn large safran" id="b-sauver">Télécharger ma progression</button><button class="btn sec large" id="b-fin">Terminer</button></div>' +
+    '<p class="petit muted">Sans ce fichier, la progression du jour sera perdue à la fermeture de la page.</p></div>';
+  document.getElementById("b-sauver").onclick = function () { Stockage.sauver(etat); modifie = false; this.textContent = "✓ Téléchargée"; this.disabled = true; };
+  document.getElementById("b-fin").onclick = function () { quitter(); };
+}
+function quitter(retour) {
+  if (!S) return;
+  S = null;
+  seanceEl.classList.remove("on");
+  document.body.classList.remove("sans-ia");
+  document.body.style.overflow = "";
+  if ("speechSynthesis" in window) speechSynthesis.cancel();
+  if (!retour) history.back();
+  rendreTout();
+}
+document.getElementById("s-quitter").onclick = function () {
+  if (S && S.phase === "exo" && S.j < S.file.length && !confirm("Quitter la séance ? Les réponses déjà données sont gardées.")) return;
+  quitter();
+};
+window.addEventListener("popstate", function () {
+  if (modale.classList.contains("on")) fermerFiche(true);
+  else if (S) quitter(true);
+});
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") { if (modale.classList.contains("on")) fermerFiche(); }
+});
+window.addEventListener("beforeunload", function (e) { if (modifie) { e.preventDefault(); e.returnValue = ""; } });
+
+rendreTout();
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(function () {});
+</script>
+</body>
+</html>

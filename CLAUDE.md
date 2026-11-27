@@ -64,6 +64,7 @@ Préférence de travail de Cengiz : **conseiller de changer de modèle ou de niv
 | `acl-oral-butler/` | *Parable of the Sower* (Butler) | ~2,5 Mo | JS natif |
 | `italien/` | « La Grammatica » (LVB) | ~175 Ko | JS natif |
 | `redpen/` | « The Red Pen » (anglais B1→C1) | ~231 Ko | JS natif |
+| `vocab/` | « Wordsmith », vocabulaire anglais (maquette, 20 mots) | ~66 Ko | JS natif |
 | `cdm/` | Dossier CDM « Sensibiliser ou interdire » (Royaume-Uni, FR / EN) | ~35 Ko | JS natif |
 | `medecine/` | « Protocole Santé » : initiation à la licence portail santé, test de 5 méthodes de travail | ~660 Ko | JS natif |
 | `maths/` | « CQFD », spé maths, **site public** (voir §4 « Spécialités ouvertes au public ») | ~662 Ko (+ police STIX 97 Ko) | JS natif, MathML, généré par `outils/specialites/maths/build.py` |
@@ -182,6 +183,10 @@ Le hub porte les onglets de cadrage, l'onglet de thèses transversales, le diagr
 
 - **1984** : huit parties, un onglet chacune ; peu de citations (6).
 - **Butler** : roman **complet** (chapitres 1 à 25), scène par scène, bilingues, citations vérifiées contre le texte : 712 scènes, 113 citations (ch. 1-13 : 256 scènes, 53 citations ; ch. 14-25 ajoutés le 28/10/2026 : 456 scènes, 60 citations, contenu fourni par Cengiz depuis une version antérieure sans mouvement, reporté dans la version en ligne), modes détaillé / express. Le site pèse ~2,5 Mo : à surveiller (piste : scinder en deux moitiés si le chargement devient lent).
+
+### Vocabulaire anglais (`vocab/`, depuis le 27/11/2026)
+
+« Wordsmith — Vocabulaire anglais Terminale » (`short_name` « Vocab »). Demande d'Orhan (27/11/2026) : de vraies lacunes en vocabulaire, les applications « 5 mots par jour » donnent des mots farfelus, sont payantes ou peu qualitatives. Principe : des mots choisis parce qu'ils servent à l'essay, au DBQ et à l'oral BFI (pas des mots rares), appris en les **produisant** (phrase à trous à écrire, puis phrase personnelle), révisés par boîtes de Leitner (intervalles 1, 3, 7, 14, 30 jours ; erreur → boîte 1, le mot revient une fois en fin de séance ; acquis à partir de la boîte 4). Séance du jour : découverte des mots nouveaux (fiche « dictionnaire » : sens, définition anglaise, registre, collocations, deux exemples tirés de l'histoire-géo ou des œuvres étudiées, piège pour un francophone, famille, prononciation par la synthèse vocale du téléphone), puis exercices mélangés ; « J'avais bon » permet de corriger une faute de frappe ; à partir de la boîte 3, une révision sur deux demande sa propre phrase (auto-évaluation en trois questions, bouton IA visible à ce moment-là seulement). Réglage : 3, 5 ou 8 mots nouveaux par jour. Données : constante `LISTES` (une liste = `id`, `titre`, `sous`, `dispo`, `mots` ; format d'un mot commenté en tête). **Maquette du 27/11/2026** : liste 1 « Argumenter et nuancer » (20 mots : assess, undermine, albeit, stem from, outweigh, hinder, foster, pivotal, account for, shortcoming, biased, shed light on, bring about, far-reaching, contend, thereby, whereas, nonetheless, eventually, to a large extent) ; listes « Histoire-géo en anglais », « Analyser une œuvre », « Anglais courant C1 » en placeholder. Persistance conforme à la règle : progression en mémoire, fichier JSON téléchargé en fin de séance et rechargé (onglet Progrès) ; tout passe par l'objet `Stockage`, seul endroit à changer si Cengiz accorde une exception `localStorage` comme pour le thème de `pc/` (question posée à Orhan le 27/11/2026 : une appli quotidienne avec fichier à recharger risque d'être abandonnée). `?decalage=N` avance l'horloge de N jours (tests). Pas encore de carte sur la page d'accueil commune (à ajouter une fois le format validé). Cache `vocab-v1`.
 
 ### Italien, Red Pen, CDM
 
