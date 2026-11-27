@@ -163,6 +163,32 @@ nav.bas button[aria-current="page"]{color:var(--prune)}
 #modale .carte{width:100%;max-width:640px;max-height:88vh;overflow-y:auto;border-radius:20px 20px 0 0;padding-bottom:calc(18px + env(safe-area-inset-bottom))}
 #modale .fermer{display:block;margin:-6px auto 8px;width:44px;height:5px;border-radius:99px;background:var(--ligne);border:0;padding:0}
 body.sans-ia .asr-btn{display:none!important}
+.vf{margin:6px 0 4px}
+.vf summary{cursor:pointer;color:var(--prune2);font-size:.9rem;list-style:none;display:inline-flex;align-items:center;gap:6px;padding:6px 0;min-height:36px}
+.vf summary::-webkit-details-marker{display:none}
+.vf summary::before{content:"FR";font:700 .66rem var(--sans);letter-spacing:.04em;border:1.5px solid currentColor;border-radius:5px;padding:1px 4px}
+.vf[open] summary{color:var(--encre2)}
+.vf p{margin:2px 0 6px;font-weight:600}
+.indice .en{font-weight:600}
+.qcm{display:grid;gap:8px;margin:4px 0 6px}
+.opt{text-align:left;border:1.5px solid var(--ligne);background:var(--carte);border-radius:12px;padding:12px 14px;font-size:.98rem;line-height:1.4;min-height:48px}
+.opt:not(:disabled):hover{border-color:var(--prune2)}
+.opt:focus-visible{outline:3px solid var(--safran);outline-offset:2px}
+.opt.juste{border-color:var(--ok);background:var(--ok-l)}
+.opt.faux{border-color:var(--ko);background:var(--ko-l)}
+.opt:disabled{cursor:default;color:var(--encre)}
+.filtre{width:100%;font:inherit;color:var(--encre);background:var(--carte);border:1.5px solid var(--ligne);border-radius:12px;padding:12px 14px;margin:0 0 4px}
+.filtre:focus{outline:0;border-color:var(--prune2)}
+details.liste{margin-top:10px}
+details.liste>summary{cursor:pointer;list-style:none}
+details.liste>summary::-webkit-details-marker{display:none}
+details.liste>summary .liste-t b::after{content:" ▾";color:var(--encre2);font-size:.8em}
+details.liste[open]>summary .liste-t b::after{content:" ▴"}
+.actif{display:flex;gap:10px;align-items:center;font-size:.9rem;margin:12px 0 2px;color:var(--encre2)}
+.actif input{width:20px;height:20px;accent-color:var(--prune)}
+.par-liste{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.par-liste li{display:flex;justify-content:space-between;gap:10px}
+.par-liste b{font-family:var(--serif)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
 /* Mouvement : seulement si l'appareil ne demande pas d'en réduire */
@@ -244,6 +270,8 @@ if (window.matchMedia && !matchMedia("(prefers-reduced-motion: reduce)").matches
 <script>
 /* ============================================================
    DONNÉES — listes de mots
+   Les trois premières listes sont injectées entre deux marqueurs en commentaire
+   (mots:<id> … fin) depuis outils/vocab/listes/<id>.json par outils/vocab/integrer.py.
    Chaque mot : w (entrée), pos, ipa, reg (registre), fr (sens en français),
    def (définition anglaise), col (collocations), ex (exemples, [[mot]] surligné),
    piege, fam (famille), trous (phrases à compléter : s avec ___, a = réponse,
@@ -252,6 +280,9 @@ if (window.matchMedia && !matchMedia("(prefers-reduced-motion: reduce)").matches
    Exemples et phrases : rédigés pour le site (pas de citation d'œuvre).
    ============================================================ */
 var LISTES = [
+{ id: "soutenu", titre: "Mots soutenus du quotidien", sous: "Des mots riches mais pratiques partout : à l'oral, à l'écrit, en lisant.", dispo: true, mots: /*mots:soutenu*/[]/*fin*/ },
+{ id: "phrasal", titre: "Phrasal verbs et expressions", sous: "Ce qui rend l'anglais naturel, surtout à l'oral.", dispo: true, mots: /*mots:phrasal*/[]/*fin*/ },
+{ id: "emotions", titre: "Les gens et les émotions", sous: "Caractère, attitudes, sentiments : pour parler d'une personne, d'un personnage, de soi.", dispo: true, mots: /*mots:emotions*/[]/*fin*/ },
 { id: "argu", titre: "Argumenter et nuancer", sous: "Les mots de l'essay, du DBQ et de l'oral : évaluer, relier, nuancer.", dispo: true, mots: [
 { id: "assess", w: "assess", pos: "verb", ipa: "/əˈses/", reg: "formel",
   fr: "évaluer, juger (en pesant le pour et le contre)",
@@ -453,10 +484,7 @@ var LISTES = [
   trous: [{ s: "To a large ___, the crisis explains the rise of extremism.", a: "extent", fr: "Dans une large mesure, la crise explique la montée de l'extrémisme." },
           { s: "The policy succeeded only to a limited ___.", a: "extent", fr: "Cette politique n'a réussi que dans une mesure limitée." }],
   ecris: "une phrase de jugement pour répondre à « How far do you agree? »", formes: ["extent"] }
-]},
-{ id: "histoire", titre: "Histoire-géo en anglais", sous: "Crise, guerre, mondialisation, espaces maritimes.", dispo: false, mots: [] },
-{ id: "litt", titre: "Analyser une œuvre", sous: "Le vocabulaire du commentaire et de l'essay littéraire.", dispo: false, mots: [] },
-{ id: "c1", titre: "Anglais courant C1", sous: "Les mots du quotidien qui font la différence à l'oral.", dispo: false, mots: [] }
+]}
 ];
 
 /* ============================================================
@@ -468,26 +496,36 @@ var INTERVALLES = [0, 1, 3, 7, 14, 30];
 var MAITRISE = 4;   /* boîte à partir de laquelle un mot compte comme acquis */
 
 /* ============================================================
-   PROGRESSION — gardée en mémoire le temps de la page ;
-   sauvegarde par fichier JSON téléchargé puis réimporté
-   (règle du projet : pas de stockage dans le navigateur).
-   Tout passe par Stockage : changer de méthode = changer ce seul objet.
+   PROGRESSION — enregistrée toute seule sur l'appareil
+   (localStorage, clé « wordsmith » ; exception à la règle du projet
+   accordée pour cette appli, 27/11/2026). L'export / import d'un
+   fichier JSON reste possible pour changer d'appareil.
    ============================================================ */
+var CLE = "wordsmith";
 var Stockage = {
-  sauver: function (etat) {
+  lire: function () {
+    try { var t = localStorage.getItem(CLE); return t ? Stockage.valider(JSON.parse(t)) : null; }
+    catch (e) { return null; }
+  },
+  ecrire: function (etat) {
+    try { localStorage.setItem(CLE, JSON.stringify(etat)); return true; }
+    catch (e) { return false; }
+  },
+  valider: function (e) {
+    if (!e || e.app !== "wordsmith" || typeof e.mots !== "object") throw new Error("format");
+    e.jours = e.jours || {}; e.off = e.off || {}; e.parJour = e.parJour || 5;
+    return e;
+  },
+  exporter: function (etat) {
     var blob = new Blob([JSON.stringify(etat, null, 1)], { type: "application/json" });
     var a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
     a.download = "wordsmith-progression-" + dateISO(new Date()) + ".json";
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
-  },
-  charger: function (texte) {
-    var e = JSON.parse(texte);
-    if (!e || e.app !== "wordsmith" || typeof e.mots !== "object") throw new Error("format");
-    return e;
   }
 };
+if (navigator.storage && navigator.storage.persist) { try { navigator.storage.persist(); } catch (e) {} }
 
 var params = new URLSearchParams(location.search);
 var DECALAGE = parseInt(params.get("decalage") || "0", 10) || 0;   /* pour tester : ?decalage=3 avance de 3 jours */
@@ -495,19 +533,30 @@ function dateISO(d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).pa
 function jourNum(d) { return Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 864e5); }
 function aujourdhui() { return jourNum(new Date()) + DECALAGE; }
 
-function etatNeuf() { return { app: "wordsmith", v: 1, parJour: 5, mots: {}, jours: {} }; }
-var etat = etatNeuf();
-var modifie = false;
+function etatNeuf() { return { app: "wordsmith", v: 2, parJour: 5, mots: {}, jours: {}, off: {} }; }
+var etat = Stockage.lire() || etatNeuf();
+var stockageOk = true;
+function enregistrer() { stockageOk = Stockage.ecrire(etat); }
 
-function tousLesMots() { var t = []; LISTES.forEach(function (l) { if (l.dispo) t = t.concat(l.mots); }); return t; }
-var MOTS = tousLesMots();
+var ACTIVES = LISTES.filter(function (l) { return l.dispo; });
+var MOTS = []; ACTIVES.forEach(function (l) { l.mots.forEach(function (m) { m.liste = l.id; MOTS.push(m); }); });
 var PAR_ID = {}; MOTS.forEach(function (m) { PAR_ID[m.id] = m; });
+var LISTE_DE = {}; LISTES.forEach(function (l) { LISTE_DE[l.id] = l; });
 function suivi(id) { return etat.mots[id] || { b: 0, due: 0, ok: 0, ko: 0 }; }
 
+/* Mots nouveaux du jour : pris à tour de rôle dans chaque liste active,
+   dans l'ordre de chaque liste (les plus utiles d'abord). */
 function nouveauxDuJour() {
   var d = aujourdhui(), deja = (etat.jours[d] && etat.jours[d].nv) || 0;
-  var reste = Math.max(0, etat.parJour - deja);
-  return MOTS.filter(function (m) { return !etat.mots[m.id]; }).slice(0, reste);
+  var reste = Math.max(0, etat.parJour - deja), choisis = [];
+  var pools = ACTIVES.filter(function (l) { return !etat.off[l.id]; })
+    .map(function (l) { return l.mots.filter(function (m) { return !etat.mots[m.id]; }); });
+  var tour = (etat.tour || 0);
+  while (choisis.length < reste && pools.some(function (p) { return p.length; })) {
+    var p = pools[tour % pools.length]; tour++;
+    if (p.length) choisis.push(p.shift());
+  }
+  return choisis;
 }
 function revisionsDuJour() {
   var d = aujourdhui();
@@ -534,11 +583,12 @@ function distance(a, b) {
 }
 function melange(t) { t = t.slice(); for (var i = t.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var x = t[i]; t[i] = t[j]; t[j] = x; } return t; }
 function annonce(t) { var a = document.getElementById("annonce"); a.textContent = ""; setTimeout(function () { a.textContent = t; }, 30); }
+function pluriel(n, s, p) { return n + " " + (n > 1 ? (p || s + "s") : s); }
 var ICONE_SON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>';
 function prononcer(t) {
   if (!("speechSynthesis" in window)) return;
   speechSynthesis.cancel();
-  var u = new SpeechSynthesisUtterance(t);
+  var u = new SpeechSynthesisUtterance(t.replace(/\bsb\b/g, "somebody").replace(/\bsth\b/g, "something"));
   u.lang = "en-GB"; u.rate = 0.92;
   var v = speechSynthesis.getVoices().filter(function (x) { return /^en-GB/i.test(x.lang); })[0];
   if (v) u.voice = v;
@@ -546,19 +596,20 @@ function prononcer(t) {
 }
 if ("speechSynthesis" in window) speechSynthesis.getVoices();
 
-/* ---------- fiche d'un mot ---------- */
+/* ---------- fiche d'un mot : l'anglais d'abord, le français sur demande ---------- */
 function ficheHTML(m) {
   var s = suivi(m.id);
   return '<div class="fiche">' +
     '<div class="tete"><div><p class="mot">' + esc(m.w) + '</p>' +
     '<span class="pos">' + esc(m.pos) + '</span> <span class="ipa">' + esc(m.ipa) + '</span><span class="reg">' + esc(m.reg) + '</span></div>' +
     '<button class="son" data-dire="' + esc(m.w) + '" aria-label="Écouter la prononciation">' + ICONE_SON + '</button></div>' +
-    '<p class="sens">' + esc(m.fr) + '</p><p class="def">' + esc(m.def) + '</p>' +
-    '<div class="bloc"><h4>Va avec</h4><div class="colls">' + m.col.map(function (c) { return '<span>' + esc(c) + '</span>'; }).join("") + '</div></div>' +
-    '<div class="bloc"><h4>En contexte</h4><ul class="ex">' + m.ex.map(function (e) { return '<li>' + surligne(e) + '</li>'; }).join("") + '</ul></div>' +
+    '<p class="sens en">' + esc(m.def) + '</p>' +
+    '<details class="vf"><summary>Voir en français</summary><p>' + esc(m.fr) + '</p></details>' +
+    '<div class="bloc"><h4>Goes with</h4><div class="colls">' + m.col.map(function (c) { return '<span>' + esc(c) + '</span>'; }).join("") + '</div></div>' +
+    '<div class="bloc"><h4>In context</h4><ul class="ex">' + m.ex.map(function (e) { return '<li>' + surligne(e) + '</li>'; }).join("") + '</ul></div>' +
     '<div class="bloc piege">⚠ ' + m.piege + '</div>' +
-    (m.fam && m.fam !== "—" ? '<div class="bloc famille"><h4>Famille</h4>' + esc(m.fam) + '</div>' : '') +
-    (s.b > 0 ? '<p class="petit muted bloc">Boîte ' + s.b + ' sur 5 · ' + s.ok + ' bonne' + (s.ok > 1 ? 's' : '') + ' réponse' + (s.ok > 1 ? 's' : '') + ', ' + s.ko + ' erreur' + (s.ko > 1 ? 's' : '') + '</p>' : '') +
+    (m.fam && m.fam !== "—" ? '<div class="bloc famille"><h4>Word family</h4>' + esc(m.fam) + '</div>' : '') +
+    (s.b > 0 ? '<p class="petit muted bloc">Boîte ' + s.b + ' sur 5 · ' + pluriel(s.ok, "bonne réponse", "bonnes réponses") + ', ' + pluriel(s.ko, "erreur") + '</p>' : '') +
     '</div>';
 }
 document.addEventListener("click", function (e) {
@@ -571,55 +622,76 @@ function rendreJour() {
   var nv = nouveauxDuJour(), rv = revisionsDuJour(), d = aujourdhui();
   var fini = etat.jours[d] && etat.jours[d].fini && !nv.length && !rv.length;
   var acquis = MOTS.filter(function (m) { return suivi(m.id).b >= MAITRISE; }).length;
+  var vus = MOTS.filter(function (m) { return etat.mots[m.id]; }).length;
   var dateTxt = new Date(Date.now() + DECALAGE * 864e5).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" });
-  var restants = MOTS.filter(function (m) { return !etat.mots[m.id]; }).length;
+  var restants = MOTS.length - vus, s = serie();
+  var minutes = Math.max(2, Math.round(nv.length * 2 + rv.length * 0.6));
   var h = '<div class="carte jour">' +
     '<div class="date">' + esc(dateTxt) + '</div>' +
     '<h1 id="t-jour">' + (fini ? "Séance du jour terminée" : "Ta séance du jour") + '</h1>' +
-    (fini ? '<div class="fait">✓ Bravo, tout est fait pour aujourd\'hui. Reviens demain : les mots reviendront juste avant que tu les oublies.</div>' : '') +
+    (fini ? '<div class="fait">✓ Tout est fait pour aujourd\'hui. Reviens demain : tes mots reviendront juste avant que tu les oublies.</div>' : '') +
     '<div class="compteurs">' +
     '<div><b>' + nv.length + '</b><span>nouveaux</span></div>' +
     '<div><b>' + rv.length + '</b><span>à revoir</span></div>' +
-    '<div><b>' + serie() + '</b><span>jour' + (serie() > 1 ? 's' : '') + ' d\'affilée</span></div></div>' +
-    (nv.length || rv.length ? '<button class="btn large" id="go">Commencer · environ ' + Math.max(2, Math.round(nv.length * 1.5 + rv.length * 0.7)) + ' min</button>'
-      : (!restants ? '<p class="muted">Tous les mots de la liste ont été vus. D\'autres listes arrivent.</p>' : '')) +
-    (modifie ? '<div class="alerte" role="status"><span>Progression non sauvegardée. Elle disparaîtra si tu fermes la page.</span><button id="sauver1">Sauvegarder</button></div>' : '') +
+    '<div><b>' + s + '</b><span>' + (s > 1 ? "jours" : "jour") + ' d\'affilée</span></div></div>' +
+    (nv.length || rv.length ? '<button class="btn large" id="go">Commencer · environ ' + minutes + ' min</button>' +
+      '<p class="petit muted" style="margin:10px 0 0">' + (nv.length ? 'D\'abord tes ' + pluriel(nv.length, "mot nouveau", "mots nouveaux") : '') + (nv.length && rv.length ? ', ensuite ' : (rv.length ? 'Les ' : '')) + (rv.length ? pluriel(rv.length, "révision") + ' des jours précédents' : '') + '.</p>'
+      : (!restants ? '<p class="muted">Tous les mots ont été vus : continue les révisions chaque jour.</p>' : '')) +
+    (!stockageOk ? '<div class="alerte" role="status"><span>Ce navigateur refuse l\'enregistrement (navigation privée ?) : ta progression sera perdue à la fermeture.</span></div>' : '') +
     '</div>' +
     '<div class="carte reglage"><label id="l-rythme">Mots nouveaux par jour</label><div class="seg" role="group" aria-labelledby="l-rythme">' +
     [3, 5, 8].map(function (n) { return '<button data-par="' + n + '" aria-pressed="' + (etat.parJour === n) + '">' + n + '</button>'; }).join("") +
-    '</div><p class="petit muted" style="margin:8px 0 0">' + acquis + ' mot' + (acquis > 1 ? 's' : '') + ' acquis sur ' + MOTS.length + '. Avec 5 mots par jour, compte environ 10 minutes, révisions comprises.</p></div>' +
+    '</div><p class="petit muted" style="margin:8px 0 0">' + pluriel(acquis, "mot acquis", "mots acquis") + ' · ' + vus + ' vus sur ' + MOTS.length + '. Avec 5 mots par jour, compte 10 à 15 minutes, révisions comprises.</p></div>' +
     '<div class="carte" style="margin-top:16px"><h2 style="margin-top:0">Comment ça marche</h2><ol class="methode">' +
-    '<li><b>Découvrir</b> : le sens, les mots qui vont avec, deux exemples, le piège pour un francophone.</li>' +
-    '<li><b>Retrouver</b> : tu écris le mot dans une phrase à trous. Le retrouver soi-même fixe bien mieux que le reconnaître dans une liste.</li>' +
-    '<li><b>Revoir</b> : chaque mot revient après 1, 3, 7, 14 puis 30 jours. Une erreur le fait revenir dès le lendemain.</li>' +
-    '<li><b>L\'employer</b> : au bout de quelques révisions, tu écris ta propre phrase.</li></ol></div>';
+    '<li><b>Découvrir</b> : la définition en anglais, les mots qui vont avec, deux exemples, le piège. Le français reste caché : touche « Voir en français » si besoin.</li>' +
+    '<li><b>Comprendre</b> : retrouver le bon sens du mot dans une phrase.</li>' +
+    '<li><b>Retrouver</b> : écrire le mot dans une phrase à trous. Le produire soi-même fixe bien mieux que le reconnaître.</li>' +
+    '<li><b>Revoir</b> : après les mots du jour, les anciens reviennent après 1, 3, 7, 14 puis 30 jours. Une erreur fait revenir le mot le lendemain.</li>' +
+    '<li><b>L\'employer</b> : au bout de quelques révisions, tu écris ta propre phrase.</li></ol>' +
+    '<p class="petit muted" style="margin:0">Ta progression s\'enregistre toute seule sur ce téléphone.</p></div>';
   document.getElementById("v-jour").innerHTML = h;
   var go = document.getElementById("go"); if (go) go.onclick = demarrer;
-  var s1 = document.getElementById("sauver1"); if (s1) s1.onclick = sauver;
   document.querySelectorAll("[data-par]").forEach(function (b) {
-    b.onclick = function () { etat.parJour = +b.getAttribute("data-par"); modifie = true; rendreJour(); };
+    b.onclick = function () { etat.parJour = +b.getAttribute("data-par"); enregistrer(); rendreJour(); };
   });
 }
 
+var filtre = "";
 function rendreMots() {
-  var h = '<h2 id="t-mots" style="margin-top:6px">Les listes</h2>';
+  var v = document.getElementById("v-mots");
+  if (!v.querySelector("#filtre")) {
+    v.innerHTML = '<h2 id="t-mots" style="margin-top:6px">Les listes</h2>' +
+      '<label class="sr" for="filtre">Chercher un mot</label><input id="filtre" class="filtre" type="search" placeholder="Chercher un mot (anglais ou français)…" autocomplete="off" autocapitalize="off" spellcheck="false">' +
+      '<div id="listes"></div><p class="petit muted">Touche un mot pour ouvrir sa fiche. Les pastilles montrent sa boîte de révision (5 = acquis pour longtemps). Une liste mise en pause ne donne plus de mots nouveaux ; ses mots déjà vus continuent d\'être révisés.</p>';
+    var f = v.querySelector("#filtre");
+    f.value = filtre;
+    f.addEventListener("input", function () { filtre = f.value; rendreListes(); });
+  }
+  rendreListes();
+}
+function rendreListes() {
+  var q = norm(filtre), h = "";
   LISTES.forEach(function (l) {
-    if (!l.dispo) {
-      h += '<div class="carte bientot" style="margin-top:10px"><div class="liste-t"><b>' + esc(l.titre) + '</b><span class="tag">bientôt</span></div><p class="petit muted" style="margin:4px 0 0">' + esc(l.sous) + '</p></div>';
-      return;
-    }
-    var vus = l.mots.filter(function (m) { return etat.mots[m.id]; }).length;
-    h += '<div class="carte" style="margin-top:10px"><div class="liste-t"><b>' + esc(l.titre) + '</b><small>' + vus + ' / ' + l.mots.length + ' vus</small></div>' +
-      '<p class="petit muted" style="margin:4px 0 0">' + esc(l.sous) + '</p><ul class="mots">' +
-      l.mots.map(function (m) {
+    if (!l.dispo) return;
+    var mots = q ? l.mots.filter(function (m) { return norm(m.w + " " + m.fr + " " + m.def).indexOf(q) >= 0; }) : l.mots;
+    if (q && !mots.length) return;
+    var vus = l.mots.filter(function (m) { return etat.mots[m.id]; }).length, off = !!etat.off[l.id];
+    h += '<details class="carte liste"' + (q ? ' open' : '') + '><summary><div class="liste-t"><b>' + esc(l.titre) + '</b><small>' + vus + ' / ' + l.mots.length + ' vus</small></div>' +
+      '<p class="petit muted" style="margin:4px 0 0">' + esc(l.sous) + '</p></summary>' +
+      '<label class="actif"><input type="checkbox" data-liste="' + l.id + '"' + (off ? '' : ' checked') + '> Mots nouveaux de cette liste dans mes séances</label>' +
+      '<ul class="mots">' +
+      mots.map(function (m) {
         var b = suivi(m.id).b, p = "";
         for (var i = 1; i <= 5; i++) p += '<i class="' + (i <= b ? "on" : "") + '"></i>';
         return '<li><button class="mot-li" data-mot="' + m.id + '"><span class="pastilles" aria-label="boîte ' + b + ' sur 5">' + p + '</span><b>' + esc(m.w) + '</b><span class="fr">' + esc(m.fr.split(",")[0].replace(/^1\. /, "")) + '</span></button></li>';
-      }).join("") + '</ul></div>';
+      }).join("") + '</ul></details>';
   });
-  h += '<p class="petit muted">Touche un mot pour ouvrir sa fiche. Les pastilles montrent sa boîte de révision (5 = acquis pour longtemps).</p>';
-  document.getElementById("v-mots").innerHTML = h;
+  if (!h) h = '<p class="muted">Aucun mot ne correspond.</p>';
+  document.getElementById("listes").innerHTML = h;
   document.querySelectorAll("[data-mot]").forEach(function (b) { b.onclick = function () { ouvrirFiche(b.getAttribute("data-mot")); }; });
+  document.querySelectorAll("[data-liste]").forEach(function (c) {
+    c.onchange = function () { var id = c.getAttribute("data-liste"); if (c.checked) delete etat.off[id]; else etat.off[id] = true; enregistrer(); };
+  });
 }
 
 function rendreProgres() {
@@ -629,35 +701,41 @@ function rendreProgres() {
   var noms = ["pas vus", "boîte 1<br>1 j", "boîte 2<br>3 j", "boîte 3<br>7 j", "boîte 4<br>14 j", "boîte 5<br>30 j"];
   var tot = 0, ok = 0;
   MOTS.forEach(function (m) { var s = suivi(m.id); tot += s.ok + s.ko; ok += s.ok; });
+  var parListe = LISTES.filter(function (l) { return l.dispo; }).map(function (l) {
+    var a = l.mots.filter(function (m) { return suivi(m.id).b >= MAITRISE; }).length;
+    return '<li><span>' + esc(l.titre) + '</span><b>' + a + ' / ' + l.mots.length + '</b></li>';
+  }).join("");
   var h = '<h2 id="t-progres" style="margin-top:6px">Tes progrès</h2><div class="carte">' +
     '<div class="boites" role="img" aria-label="Répartition des mots par boîte">' +
     compte.map(function (c) { return '<div class="boite"><b>' + c + '</b><div class="barre" style="height:' + Math.round(c / max * 110) + 'px"></div></div>'; }).join("") +
     '</div><div class="boites-l">' + noms.map(function (n) { return '<span>' + n + '</span>'; }).join("") + '</div>' +
     '<p class="petit muted" style="margin:12px 0 0">' + (tot ? Math.round(ok / tot * 100) + ' % de bonnes réponses sur ' + tot + ' exercices. ' : '') + 'Un mot est acquis à partir de la boîte 4.</p></div>' +
-    '<h2>Sauvegarde</h2><div class="carte"><p style="margin-top:0">Ta progression n\'est pas gardée dans le navigateur. À la fin de chaque séance, <b>télécharge le fichier</b> ; la prochaine fois, <b>recharge-le</b> avant de commencer.</p>' +
-    '<div class="actions"><button class="btn" id="sauver2">Télécharger ma progression</button><button class="btn sec" id="charger">Recharger un fichier</button></div>' +
+    '<h2>Mots acquis par liste</h2><div class="carte"><ul class="par-liste">' + parListe + '</ul></div>' +
+    '<h2>Changer de téléphone</h2><div class="carte"><p style="margin-top:0">Ta progression s\'enregistre toute seule sur cet appareil. Pour la retrouver sur un autre, exporte-la ici puis importe le fichier là-bas.</p>' +
+    '<div class="actions"><button class="btn sec" id="exporter">Exporter ma progression</button><button class="btn sec" id="charger">Importer un fichier</button></div>' +
     '<p class="petit muted" id="msg-imp" style="margin:10px 0 0" aria-live="polite"></p></div>';
   document.getElementById("v-progres").innerHTML = h;
-  document.getElementById("sauver2").onclick = sauver;
+  document.getElementById("exporter").onclick = function () { Stockage.exporter(etat); annonce("Progression exportée."); };
   document.getElementById("charger").onclick = function () { document.getElementById("f-import").click(); };
 }
 
-function sauver() { Stockage.sauver(etat); modifie = false; rendreTout(); annonce("Progression téléchargée."); }
 document.getElementById("f-import").addEventListener("change", function (e) {
   var f = e.target.files[0]; if (!f) return;
   var r = new FileReader();
   r.onload = function () {
-    try { etat = Stockage.charger(r.result); modifie = false; rendreTout(); montrer("jour"); annonce("Progression rechargée."); }
-    catch (err) { var m = document.getElementById("msg-imp"); if (m) m.textContent = "Ce fichier n'est pas une progression Wordsmith."; }
+    var m = document.getElementById("msg-imp");
+    try {
+      var nouv = Stockage.valider(JSON.parse(r.result));
+      if (Object.keys(etat.mots).length && !confirm("Remplacer la progression de cet appareil par celle du fichier ?")) { e.target.value = ""; return; }
+      etat = nouv; enregistrer(); rendreTout(); montrer("jour"); annonce("Progression importée.");
+    } catch (err) { if (m) m.textContent = "Ce fichier n'est pas une progression Wordsmith."; }
     e.target.value = "";
   };
   r.readAsText(f);
 });
 
 function rendreTout() { rendreJour(); rendreMots(); rendreProgres(); }
-var vueActive = "jour";
 function montrer(v) {
-  vueActive = v;
   document.querySelectorAll(".vue").forEach(function (s) { s.classList.toggle("on", s.id === "v-" + v); });
   document.querySelectorAll("nav.bas button").forEach(function (b) {
     if (b.getAttribute("data-vue") === v) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
@@ -681,24 +759,29 @@ modale.addEventListener("click", function (e) { if (e.target === modale || e.tar
 
 /* ============================================================
    SÉANCE
-   1. découverte des mots nouveaux ; 2. exercices mélangés
-   (nouveaux + révisions dues) ; une erreur fait revenir le mot
-   une fois en fin de séance ; 3. bilan.
+   1. les mots nouveaux : découverte, puis « quel sens ? » (QCM),
+      puis phrase à trous à écrire ;
+   2. les révisions des jours précédents (phrase à trous, ou phrase
+      personnelle à partir de la boîte 3) ;
+   une erreur fait revenir le mot une fois, à la fin de sa partie ;
+   3. bilan.
    ============================================================ */
 var S = null;
 var seanceEl = document.getElementById("seance"), corps = document.getElementById("s-corps");
 
-function typeExo(m) {
+function typeRevision(m) {
   var s = suivi(m.id);
-  if (s.b >= 3 && (s.ok % 2 === 1)) return "phrase";
+  if (s.b >= 3 && s.ok % 2 === 1) return "phrase";
+  if (s.b === 1 && s.ko > 0 && Math.random() < 0.5) return "sens";
   return "trou";
 }
 function demarrer() {
   var nv = nouveauxDuJour(), rv = revisionsDuJour();
-  var file = nv.map(function (m) { return { id: m.id, type: "trou", k: 0, nouveau: true }; })
-    .concat(rv.map(function (m) { return { id: m.id, type: typeExo(m), k: Math.floor(Math.random() * m.trous.length), nouveau: false }; }));
-  S = { decouvrir: nv.map(function (m) { return m.id; }), i: 0, phase: nv.length ? "decouvrir" : "exo", file: melange(file), j: 0, reprises: {}, bons: 0, total: 0, rates: [] };
-  S.prevu = S.decouvrir.length + S.file.length;
+  var aSens = melange(nv).map(function (m) { return { id: m.id, type: "sens", nouveau: true }; });
+  var aTrou = melange(nv).map(function (m) { return { id: m.id, type: "trou", k: 0, nouveau: true }; });
+  var rev = melange(rv).map(function (m) { var t = typeRevision(m); return { id: m.id, type: t, k: Math.floor(Math.random() * m.trous.length), nouveau: false }; });
+  S = { decouvrir: nv.map(function (m) { return m.id; }), i: 0, phase: nv.length ? "decouvrir" : "exo",
+        file: aSens.concat(aTrou, rev), finNouveaux: aSens.length + aTrou.length, j: 0, reprises: {}, bons: 0, total: 0, rates: [], transition: !!(nv.length && rv.length) };
   seanceEl.classList.add("on");
   document.body.classList.add("sans-ia");
   document.body.style.overflow = "hidden";
@@ -713,11 +796,11 @@ function progres() {
 function etape() {
   progres();
   if (S) document.body.classList.add("sans-ia");
-  corps.scrollTop = 0; seanceEl.scrollTop = 0;
+  seanceEl.scrollTop = 0;
   if (S.phase === "decouvrir") {
     if (S.i >= S.decouvrir.length) { S.phase = "exo"; return etape(); }
     var m = PAR_ID[S.decouvrir[S.i]];
-    corps.innerHTML = '<div class="etape">Nouveau mot ' + (S.i + 1) + ' / ' + S.decouvrir.length + '</div>' +
+    corps.innerHTML = '<div class="etape">Mot nouveau ' + (S.i + 1) + ' / ' + S.decouvrir.length + '</div>' +
       '<div class="carte">' + ficheHTML(m) + '</div>' +
       '<div class="ligne-btn" style="margin-top:14px"><button class="btn large" id="suite">' + (S.i + 1 < S.decouvrir.length ? "Mot suivant" : "Passer aux exercices") + '</button></div>';
     document.getElementById("suite").onclick = function () { S.i++; etape(); };
@@ -725,19 +808,61 @@ function etape() {
     return;
   }
   if (S.j >= S.file.length) return bilan();
+  if (S.transition && S.j === S.finNouveaux) {
+    S.transition = false;
+    var n = S.file.length - S.finNouveaux;
+    corps.innerHTML = '<div class="bilan"><div class="etape">Mots du jour terminés</div><div class="grand">✓</div>' +
+      '<p>Place aux révisions : ' + pluriel(n, "exercice") + ' sur les mots des jours précédents.</p>' +
+      '<div class="actions" style="margin-top:18px"><button class="btn large" id="suite">Commencer les révisions</button></div></div>';
+    document.getElementById("suite").onclick = etape;
+    document.getElementById("suite").focus({ preventScroll: true });
+    return;
+  }
   var it = S.file[S.j];
-  if (it.type === "phrase") exoPhrase(it); else exoTrou(it);
+  if (it.type === "phrase") exoPhrase(it); else if (it.type === "sens") exoSens(it); else exoTrou(it);
+}
+function entete(it, nom) {
+  var dansNv = S.j < S.finNouveaux;
+  var pos = dansNv ? (S.j + 1) + ' / ' + S.finNouveaux : (S.j - S.finNouveaux + 1) + ' / ' + (S.file.length - S.finNouveaux);
+  return '<div class="etape">' + (it.reprise ? "Encore une fois" : (dansNv ? "Mots du jour" : "Révisions")) + ' · ' + nom + ' · ' + pos + '</div>';
 }
 
+/* Comprendre : quel est le sens du mot dans cette phrase ? */
+function exoSens(it) {
+  var m = PAR_ID[it.id];
+  var autres = melange((LISTE_DE[m.liste].mots.length > 4 ? LISTE_DE[m.liste].mots : MOTS).filter(function (x) { return x.id !== m.id && x.def !== m.def; })).slice(0, 3);
+  var choix = melange([m].concat(autres));
+  var ex = m.ex[Math.floor(Math.random() * m.ex.length)];
+  corps.innerHTML = entete(it, "comprendre") +
+    '<p class="consigne">Que veut dire <b>' + esc(m.w) + '</b> dans cette phrase ?</p>' +
+    '<p class="phrase">' + surligne(ex) + '</p>' +
+    '<div class="qcm" role="group" aria-label="Choisis le sens">' + choix.map(function (c) { return '<button class="opt" data-c="' + c.id + '">' + esc(c.def) + '</button>'; }).join("") + '</div>' +
+    '<div id="retour"></div><div class="ligne-btn" id="btns"></div>';
+  corps.querySelectorAll(".opt").forEach(function (b) {
+    b.onclick = function () {
+      var bon = b.getAttribute("data-c") === m.id;
+      corps.querySelectorAll(".opt").forEach(function (o) { o.disabled = true; if (o.getAttribute("data-c") === m.id) o.classList.add("juste"); });
+      if (!bon) b.classList.add("faux");
+      document.getElementById("retour").innerHTML = '<div class="retour ' + (bon ? 'ok' : 'ko') + '" role="status"><b class="titre">' + (bon ? '✓ Exact' : 'Pas tout à fait') + '</b>' +
+        '<p><b>' + esc(m.w) + '</b> : ' + esc(m.def) + '</p><details class="vf"><summary>Voir en français</summary><p>' + esc(m.fr) + '</p></details></div>';
+      annonce(bon ? "Exact." : "Pas tout à fait.");
+      noter(it, bon);
+      document.getElementById("btns").innerHTML = '<button class="btn large" id="cont">Continuer</button>';
+      document.getElementById("cont").onclick = suivant;
+      document.getElementById("cont").focus({ preventScroll: true });
+    };
+  });
+}
+
+/* Retrouver : écrire le mot qui manque */
 function exoTrou(it) {
-  var m = PAR_ID[it.id], t = m.trous[it.k], s = suivi(m.id);
+  var m = PAR_ID[it.id], t = m.trous[it.k];
   var largeur = Math.max(t.a.length, 5) + 1;
   var phrase = esc(t.s).replace("___", '<input id="rep" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" aria-label="Mot manquant" style="width:' + largeur + 'ch">');
-  var aide = (it.nouveau || s.b <= 1)
-    ? '<div class="indice"><b>' + esc(m.fr) + '</b><br><span class="fr-ph">' + esc(t.fr) + '</span></div>'
-    : '<div class="indice"><span class="fr-ph">' + esc(t.fr) + '</span></div>';
-  corps.innerHTML = '<div class="etape">' + (it.reprise ? "Encore une fois" : it.nouveau ? "À toi" : "Révision") + ' · ' + (S.j + 1) + ' / ' + S.file.length + '</div>' +
-    '<p class="consigne">Écris le mot qui manque, à la bonne forme.</p>' + aide +
+  corps.innerHTML = entete(it, "écrire") +
+    '<p class="consigne">Écris le mot qui manque, à la bonne forme.</p>' +
+    '<div class="indice"><span class="en">' + esc(m.def) + '</span>' +
+    '<details class="vf"><summary>Indice en français</summary><p><b>' + esc(m.fr) + '</b><br><span class="fr-ph">' + esc(t.fr) + '</span></p></details></div>' +
     '<p class="phrase">' + phrase + '</p>' +
     '<button class="lien" id="lettre">Voir la première lettre</button>' +
     '<div id="retour"></div>' +
@@ -756,39 +881,35 @@ function exoTrou(it) {
     rep.readOnly = true;
     var complet = surligne(t.s.replace("___", "[[" + t.a + "]]"));
     var r = document.getElementById("retour");
+    var rappel = (norm(t.a) === norm(m.w) ? '' : esc(m.w) + ' · ') + esc(m.fr);
     if (juste) {
       r.innerHTML = '<div class="retour ok" role="status"><b class="titre">✓ Exact</b><p class="phrase-ok">' + complet + '</p></div>';
       annonce("Exact.");
-      fin(true);
-    } else if (presque) {
-      r.innerHTML = '<div class="retour presque" role="status"><b class="titre">Presque : vérifie l\'orthographe</b><p>Tu as écrit « ' + esc(rep.value) + ' », la réponse est <b>' + esc(t.a) + '</b>.</p><p class="phrase-ok">' + complet + '</p></div>';
-      annonce("Presque. La réponse est " + t.a);
-      choix();
+      noter(it, true); continuer();
     } else {
-      r.innerHTML = '<div class="retour ko" role="status"><b class="titre">Pas tout à fait</b><p>La réponse : <b>' + esc(t.a) + '</b> (' + (norm(t.a) === norm(m.w) ? '' : esc(m.w) + ' · ') + esc(m.fr) + ')</p><p class="phrase-ok">' + complet + '</p><p class="petit">⚠ ' + m.piege + '</p></div>';
-      annonce("Pas tout à fait. La réponse est " + t.a);
-      choix();
+      r.innerHTML = '<div class="retour ' + (presque ? 'presque' : 'ko') + '" role="status"><b class="titre">' + (presque ? 'Presque : vérifie l\'orthographe' : 'Pas tout à fait') + '</b>' +
+        '<p>' + (presque ? 'Tu as écrit « ' + esc(rep.value) + ' ». ' : '') + 'La réponse : <b>' + esc(t.a) + '</b> (' + rappel + ')</p>' +
+        '<p class="phrase-ok">' + complet + '</p>' + (presque ? '' : '<p class="petit">⚠ ' + m.piege + '</p>') + '</div>';
+      annonce((presque ? "Presque. " : "Pas tout à fait. ") + "La réponse est " + t.a);
+      document.getElementById("btns").innerHTML = '<button class="btn sec" id="jav">J\'avais bon</button><button class="btn" id="cont">Continuer</button>';
+      document.getElementById("jav").onclick = function () { noter(it, true); suivant(); };
+      document.getElementById("cont").onclick = function () { noter(it, false); suivant(); };
+      document.getElementById("cont").focus({ preventScroll: true });
     }
   }
-  function choix() {
-    document.getElementById("btns").innerHTML = '<button class="btn sec" id="jav">J\'avais bon</button><button class="btn" id="cont">Continuer</button>';
-    document.getElementById("jav").onclick = function () { noter(it, true); suivant(); };
-    document.getElementById("cont").onclick = function () { noter(it, false); suivant(); };
-    document.getElementById("cont").focus({ preventScroll: true });
-  }
-  function fin(bon) {
-    noter(it, bon);
+  function continuer() {
     document.getElementById("btns").innerHTML = '<button class="btn large" id="cont">Continuer</button>';
     document.getElementById("cont").onclick = suivant;
     document.getElementById("cont").focus({ preventScroll: true });
   }
 }
 
+/* L'employer : écrire sa propre phrase */
 function exoPhrase(it) {
   var m = PAR_ID[it.id];
-  corps.innerHTML = '<div class="etape">L\'employer · ' + (S.j + 1) + ' / ' + S.file.length + '</div>' +
+  corps.innerHTML = entete(it, "employer") +
     '<p class="consigne">Écris ta propre phrase avec <b>' + esc(m.w) + '</b>.</p>' +
-    '<div class="indice">Idée : ' + esc(m.ecris) + '.<br><span class="muted petit">Va avec : ' + esc(m.col.slice(0, 3).join(" · ")) + '</span></div>' +
+    '<div class="indice"><span class="en">' + esc(m.def) + '</span><br>Idée : ' + esc(m.ecris) + '.<br><span class="muted petit">Goes with: ' + esc(m.col.slice(0, 3).join(" · ")) + '</span></div>' +
     '<label class="sr" for="ta">Ta phrase</label><textarea id="ta" autocapitalize="sentences" spellcheck="true" placeholder="Ta phrase en anglais…"></textarea>' +
     '<div id="retour"></div><div class="ligne-btn" id="btns"><button class="btn large" id="valider">Comparer</button></div>';
   var ta = document.getElementById("ta");
@@ -801,8 +922,8 @@ function exoPhrase(it) {
     document.body.classList.remove("sans-ia");
     document.getElementById("retour").innerHTML = '<div class="retour ' + (present ? 'presque' : 'ko') + '" role="status">' +
       (present ? '<b class="titre">Relis-toi avec ces trois questions</b>' : '<b class="titre">Le mot n\'apparaît pas dans ta phrase</b><p>Formes attendues : ' + esc(m.formes.join(", ")) + '.</p>') +
-      '<p>1. Le sens est-il bien « ' + esc(m.fr) + ' » ?<br>2. La construction est-elle juste (' + esc(m.col[0]) + '…) ?<br>3. Le piège est-il évité ?</p>' +
-      '<p class="phrase-ok">Exemple : ' + surligne(m.ex[0]) + '</p>' +
+      '<p>1. Le sens est-il bien « ' + esc(m.def) + ' » ?<br>2. La construction est-elle juste (' + esc(m.col[0]) + '…) ?<br>3. Le piège est-il évité ?</p>' +
+      '<p class="phrase-ok">Exemple : ' + surligne(m.ex[1] || m.ex[0]) + '</p>' +
       '<p class="petit muted">Un doute ? Le bouton rond « Demander à une IA », en bas, peut corriger ta phrase.</p></div>';
     document.getElementById("btns").innerHTML = '<button class="btn sec" id="non">À revoir</button><button class="btn" id="oui">Ma phrase est juste</button>';
     document.getElementById("oui").onclick = function () { noter(it, present); suivant(); };
@@ -810,40 +931,43 @@ function exoPhrase(it) {
   };
 }
 
+/* Résultat d'un exercice. Le QCM de compréhension d'un mot nouveau ne
+   change pas sa boîte : c'est la phrase à trous qui décide. */
 function noter(it, bon) {
   var m = PAR_ID[it.id], d = aujourdhui();
   var s = etat.mots[it.id] || { b: 0, due: 0, ok: 0, ko: 0 };
   var j = etat.jours[d] || (etat.jours[d] = { nv: 0, rv: 0 });
-  S.total++;
-  if (!it.reprise) {
-    if (it.nouveau) j.nv++; else j.rv++;
-    if (bon) { s.ok++; s.b = Math.min(5, s.b + 1); S.bons++; }
-    else { s.ko++; s.b = 1; S.rates.push(m.w); }
-    s.due = d + (bon ? INTERVALLES[s.b] : 0);
-    if (!bon) { s.due = d + 1; }
-  } else if (bon) { S.bons++; }
-  etat.mots[it.id] = s;
-  if (!bon && !S.reprises[it.id]) {
-    S.reprises[it.id] = 1;
-    S.file.push({ id: it.id, type: "trou", k: (it.k + 1) % m.trous.length, nouveau: false, reprise: true });
+  S.total++; if (bon) S.bons++;
+  var compte = !it.reprise && !(it.nouveau && it.type === "sens");
+  if (compte) {
+    if (it.nouveau) { j.nv++; etat.tour = (etat.tour || 0) + 1; } else j.rv++;
+    if (bon) { s.ok++; s.b = Math.min(5, s.b + 1); s.due = d + INTERVALLES[s.b]; }
+    else { s.ko++; s.b = 1; s.due = d + 1; if (S.rates.indexOf(m.w) < 0) S.rates.push(m.w); }
   }
-  modifie = true;
+  etat.mots[it.id] = s;
+  if (!bon && !S.reprises[it.id + it.type]) {
+    S.reprises[it.id + it.type] = 1;
+    var r = { id: it.id, type: it.type === "phrase" ? "trou" : it.type, k: ((it.k || 0) + 1) % m.trous.length, nouveau: it.nouveau, reprise: true };
+    if (S.j < S.finNouveaux) { S.file.splice(S.finNouveaux, 0, r); S.finNouveaux++; }
+    else S.file.push(r);
+  }
+  enregistrer();
 }
 function suivant() { S.j++; etape(); }
 
 function bilan() {
   var d = aujourdhui();
   (etat.jours[d] || (etat.jours[d] = { nv: 0, rv: 0 })).fini = true;
-  modifie = true;
+  enregistrer();
   document.getElementById("s-prog").style.width = "100%";
   var taux = S.total ? Math.round(S.bons / S.total * 100) : 100;
   corps.innerHTML = '<div class="bilan"><div class="etape">Séance terminée</div><div class="grand">' + taux + ' %</div>' +
-    '<p>de bonnes réponses · ' + S.decouvrir.length + ' mot' + (S.decouvrir.length > 1 ? 's' : '') + ' nouveau' + (S.decouvrir.length > 1 ? 'x' : '') + ' · série de ' + serie() + ' jour' + (serie() > 1 ? 's' : '') + '</p>' +
+    '<p>de bonnes réponses · ' + pluriel(S.decouvrir.length, "mot nouveau", "mots nouveaux") + ' · série de ' + pluriel(serie(), "jour") + '</p>' +
     (S.rates.length ? '<div class="carte" style="text-align:left"><b>Ils reviendront demain :</b><ul>' + S.rates.map(function (w) { return '<li>' + esc(w) + '</li>'; }).join("") + '</ul></div>' : '') +
-    '<div class="actions" style="margin-top:18px"><button class="btn large safran" id="b-sauver">Télécharger ma progression</button><button class="btn sec large" id="b-fin">Terminer</button></div>' +
-    '<p class="petit muted">Sans ce fichier, la progression du jour sera perdue à la fermeture de la page.</p></div>';
-  document.getElementById("b-sauver").onclick = function () { Stockage.sauver(etat); modifie = false; this.textContent = "✓ Téléchargée"; this.disabled = true; };
+    '<div class="actions" style="margin-top:18px"><button class="btn large" id="b-fin">Terminer</button></div>' +
+    '<p class="petit muted">Ta progression est enregistrée sur ce téléphone.</p></div>';
   document.getElementById("b-fin").onclick = function () { quitter(); };
+  document.getElementById("b-fin").focus({ preventScroll: true });
 }
 function quitter(retour) {
   if (!S) return;
@@ -856,7 +980,7 @@ function quitter(retour) {
   rendreTout();
 }
 document.getElementById("s-quitter").onclick = function () {
-  if (S && S.phase === "exo" && S.j < S.file.length && !confirm("Quitter la séance ? Les réponses déjà données sont gardées.")) return;
+  if (S && S.phase === "exo" && S.j < S.file.length && !confirm("Quitter la séance ? Les réponses déjà données sont enregistrées.")) return;
   quitter();
 };
 window.addEventListener("popstate", function () {
@@ -866,7 +990,6 @@ window.addEventListener("popstate", function () {
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") { if (modale.classList.contains("on")) fermerFiche(); }
 });
-window.addEventListener("beforeunload", function (e) { if (modifie) { e.preventDefault(); e.returnValue = ""; } });
 
 rendreTout();
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(function () {});
