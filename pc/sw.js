@@ -1,4 +1,4 @@
-const CACHE = 'pc-v52';
+const CACHE = 'pc-v53';
 /* Les animations (anim/*.html) sont des pages à part : elles ont leur propre
    entrée de cache, pour ne jamais écraser la page d'accueil. */
 const ANIMS = ['photon', 'photoelec', 'cellule', 'acidebase', 'beerlambert', 'conductivite', 'titrage', 'lunette', 'diffraction', 'interferences'];
@@ -7,7 +7,7 @@ const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './ic
   './polices/plex-sans-400.woff2', './polices/plex-sans-400i.woff2', './polices/plex-sans-600.woff2', './polices/plex-sans-700.woff2',
   './polices/plex-cond-500.woff2', './polices/plex-cond-700.woff2', './polices/plex-mono-400.woff2', './polices/plex-mono-600.woff2',
   './polices/instrument-serif.woff2', './polices/instrument-serif-i.woff2', './polices/space-grotesk-400.woff2', './polices/space-grotesk-500.woff2',
-  './polices/space-grotesk-700.woff2', './polices/jb-mono-400.woff2', './polices/jb-mono-600.woff2'].concat(ANIMS.map(function (a) { return './anim/' + a + '.html'; }));
+  './polices/space-grotesk-700.woff2', './polices/jb-mono-400.woff2', './polices/jb-mono-600.woff2', './serie/fonts/stixtwotext-400-latin.woff2', './serie/fonts/stixtwotext-400-greek.woff2', './serie/fonts/stixtwotext-400-it-latin.woff2', './serie/fonts/stixtwotext-400-it-greek.woff2'].concat(ANIMS.map(function (a) { return './anim/' + a + '.html'; }));
 
 self.addEventListener('install', function (e) {
   e.waitUntil(
