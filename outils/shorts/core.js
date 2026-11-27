@@ -91,7 +91,20 @@
 
   // ---------- plans (découpage commun) : [{a, type, ...}] trié ; le plan k dure jusqu'au suivant
   let PLANS = [];
-  function plans(liste) { PLANS = liste.map(p => Object.assign({}, p, { a: Array.isArray(p.a) ? T(...p.a) - (p.av ?? .06) : p.a })).sort((x, y) => x.a - y.a); PLANS.forEach((p, i) => { p.i = i; p.b = i + 1 < PLANS.length ? PLANS[i + 1].a : D.dur; }); return PLANS; }
+  // un verdict (champ rep des formats participatifs) reste au moins TENIR s à l'écran : le plan qui le suit est retardé
+  // d'autant, sans jamais empiéter sur le plan d'après (qui garde au moins 0,6 s)
+  const TENIR = 1.3;
+  function tenir(L, T, dur) {
+    L.forEach((p, i) => {
+      if (!Array.isArray(p.rep) || i + 1 >= L.length) return;
+      let r; try { r = T(...p.rep) - .04; } catch (e) { return; }
+      const q = L[i + 1], apres = i + 2 < L.length ? L[i + 2].a : dur;
+      if (q.a >= r - .05 && q.a < r + TENIR) q.a = Math.max(q.a, Math.min(r + TENIR, apres - .6));
+    });
+    return L;
+  }
+  function plans(liste) { PLANS = tenir(liste.map(p => Object.assign({}, p, { a: Array.isArray(p.a) ? T(...p.a) - (p.av ?? .06) : p.a })).sort((x, y) => x.a - y.a), T, D.dur); PLANS.forEach((p, i) => { p.i = i; p.b = i + 1 < PLANS.length ? PLANS[i + 1].a : D.dur; }); return PLANS; }
+  window.SHORT_TENIR = tenir;
   const planA = t => { let r = PLANS[0]; for (const p of PLANS) if (p.a <= t) r = p; return r; };
 
   const CLES = new Set(['cerveau', 'marche', '1983', 'libet', 'experience', 'poignet', 'veux', 'horloge', 'linstant', 'electrodes',
