@@ -240,10 +240,10 @@ window.FORMATS_A = O => {
     }
     I.forEach(([a, txt], i) => {
       const ki = back(pr(t, tps(a), .3)); if (ki <= 0 || !avant) return;
-      const y = 1250 + i * 92; g.save(); g.globalAlpha = cl(ki); g.translate(lerp(-300, 0, ki), 0);
-      g.fillStyle = al(OR, .16); g.beginPath(); g.roundRect(110, y - 38, 860, 76, 38); g.fill();
-      S.texte('INDICE ' + (i + 1), 140, y, { taille: 30, coul: OR, align: 'left', poids: 700 });
-      S.texte(txt, 340, y, { taille: 40, coul: CREME, align: 'left', max: 610 }); g.restore();
+      const y = 1250 + i * 104; g.save(); g.globalAlpha = cl(ki); g.translate(lerp(-300, 0, ki), 0);
+      g.fillStyle = al(OR, .18); g.beginPath(); g.roundRect(70, y - 45, 940, 90, 45); g.fill();
+      S.texte('INDICE ' + (i + 1), 100, y, { taille: 32, coul: OR, align: 'left', poids: 700 });
+      S.texte(txt, 300, y, { taille: 48, coul: CREME, align: 'left', max: 690 }); g.restore();
     });
     if (!avant) {
       const kv = back(pr(t, tr, .35)); g.save(); g.translate(W / 2, 1300); g.scale(lerp(1.8, 1, kv), lerp(1.8, 1, kv)); g.globalAlpha = cl(kv);
