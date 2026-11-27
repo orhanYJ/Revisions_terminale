@@ -257,8 +257,8 @@ window.FORMATS_A = O => {
   // chrono, rep. La valeur de a est donnée ; celle de b défile au verdict, flèche PLUS / MOINS.
   function plusmoins(p, t) {
     const tr = tps(p.rep), tc = p.chrono ? tps(p.chrono) : p.a + .6, avant = t < tr;
-    const fmt = v => Math.round(v).toLocaleString('fr-FR');
-    [p.a_ || p.A, p.B].forEach(() => {});
+    // champ dec sur A ou B : nombre de décimales affichées (ex. 7,7 %)
+    const fmt = (v, d = 0) => v.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d });
     [['A', p.A, 0], ['B', p.B, 1]].forEach(([_, o, j]) => {
       if (!o) return; const y0 = j ? 960 : 0, hh = 960, ki = eo(pr(t, p.a + j * .2, .35));
       g.save(); g.beginPath(); g.rect(0, y0, W, hh); g.clip(); g.translate(j ? lerp(W, 0, ki) : lerp(-W, 0, ki), 0);
@@ -267,9 +267,9 @@ window.FORMATS_A = O => {
       else { g.fillStyle = j ? al(ROUGE, .15) : al(OR, .1); g.fillRect(0, y0, W, hh); }
       S.texte(o.t, W / 2, y0 + 380, { taille: 76, coul: CREME, contour: NOIR, contourL: 10, max: 980 });
       let val;
-      if (!j) val = fmt(o.v) + (o.u ? ' ' + o.u : '');
+      if (!j) val = fmt(o.v, o.dec) + (o.u ? ' ' + o.u : '');
       else if (avant) val = '?';
-      else val = fmt(o.v * eo(cl((t - tr) / .9))) + (o.u ? ' ' + o.u : '');
+      else val = fmt(o.v * eo(cl((t - tr) / .9)), o.dec) + (o.u ? ' ' + o.u : '');
       S.texte(val, W / 2, y0 + 540, { taille: 110, coul: j ? (avant ? CREME : OR) : OR, contour: NOIR, contourL: 12, police: 'Spectral', poids: 700, max: 980 });
       if (j && !avant && t > tr + .9) { const plus = p.B.v > p.A.v, kf = back(pr(t, tr + .9, .3)); g.save(); g.translate(W / 2, y0 + 700); g.scale(kf, kf);
         S.texte(plus ? '▲ PLUS' : '▼ MOINS', 0, 0, { taille: 90, coul: plus ? VERT : ROUGE, contour: NOIR, contourL: 10 }); g.restore(); }
