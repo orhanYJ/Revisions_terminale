@@ -330,7 +330,10 @@ window.SONS_FORMATS = (p, L) => {
     if (p.type === 'plusmoins') { for (let k = 0; k < 9; k++) L.push([tr + k * .1, 'tic', .4]); L.push([tr + .9, 'valide', .9]); }
     if (p.type === 'erreur') L.push([p.a, 'papier', .5], [tr, 'stylo', .8], [tr + .2, 'tampon', .8]);
   }
-  if (p.type === 'devine') { (p.indices || []).forEach(([a]) => L.push([tps(a), 'pop', .5])); L.push([tps(p.rep), 'gong', .8]); }
+  if (p.type === 'devine') {  // un plan devine peut revenir plusieurs fois : seuls les sons qui tombent pendant ce plan-ci
+    const dans = x => x >= p.a - .05 && x < (p.b ?? 1e9);
+    (p.indices || []).forEach(([a]) => { if (dans(tps(a))) L.push([tps(a), 'pop', .5]); });
+    if (dans(tps(p.rep))) L.push([tps(p.rep), 'gong', .8]); }
   if (p.type === 'vraifaux') {
     const tr = tps(p.rep), tc = p.chrono ? tps(p.chrono) : p.a;
     for (let x = tc + .1; x < tr - .05; x += 1) L.push([x, 'tic', .5]);

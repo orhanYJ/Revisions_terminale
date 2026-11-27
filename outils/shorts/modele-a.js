@@ -294,7 +294,7 @@
   };
 
   // ---------------------------------------------------------------- image complète
-  const SANS_ST = new Set(['mot', 'tampon', 'stop', 'date', 'chaine', 'bac', 'perso', 'portrait', ...(window.SANS_ST_A || []), ...(window.TYPES_FORMATS || [])]);
+  const SANS_ST = new Set(['photo', 'collage', 'mot', 'tampon', 'stop', 'date', 'chaine', 'bac', 'perso', 'portrait', ...(window.SANS_ST_A || []), ...(window.TYPES_FORMATS || [])]);
   function fond(t) {
     g.fillStyle = NOIR; g.fillRect(0, 0, W, H);
     if (TH.deco === 'carte') { g.drawImage(lignes, 0, 0); return; }
