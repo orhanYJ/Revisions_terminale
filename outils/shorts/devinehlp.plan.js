@@ -59,7 +59,7 @@ window.PLAN = S => S.plans([
   { a: ['o1', 0], type: 'score', imgs: [['rousseau', 'ROUSSEAU'], ['proust', 'PROUST'], ['freud', 'FREUD']], dis: ['o1', 'dis-le'], ch: 4 },
   // o2 « Rousseau et Freud sont expliqués dans les séries philo de Révisions Animées. »
   { a: ['o2', 0], type: 'collage', imgs: ['rousseau', 'freud'], t: 'EXPLIQUÉS|EN VIDÉO' },
-  { a: ['o2', 'séries'], type: 'chaine', serie: 'Philosophie', fond: 'emile' },
+  { a: ['o2', 'séries'], type: 'chaine', serie: 'Philosophie', sous: 'les séries de philosophie sur YouTube', fond: 'emile' },
   // o3 « Et le prochain auteur… tu le trouves en combien d'indices ? » (relance le jeu du début)
   { a: ['o3', 0], type: 'mosaique', fin: true },
 ]);

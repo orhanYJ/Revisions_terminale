@@ -56,7 +56,7 @@ window.PLAN = S => S.plans([
   { a: ['o1', 'dis-le'], type: 'score' },
   // o2 « Pascal et Arendt sont expliqués dans les séries philo de Révisions Animées. »
   { a: ['o2', 0], type: 'collage', imgs: ['pascal', 'arendt', 'pensees'], t: 'EXPLIQUÉS|EN VIDÉO' },
-  { a: ['o2', 'séries'], type: 'chaine', serie: 'Philosophie', fond: 'nuit' },
+  { a: ['o2', 'séries'], type: 'chaine', serie: 'Philosophie', sous: 'les séries de philosophie sur YouTube', fond: 'nuit' },
   // o3 « Et toi… tu en as reconnu combien ? » (relance la question du début)
   { a: ['o3', 0], type: 'cases', fin: true, q: ['o3', 0] },
 ]);
