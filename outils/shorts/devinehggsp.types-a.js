@@ -162,7 +162,7 @@ window.TYPES_A = O => {
     S.texte('? ? ?', 10, 20, { taille: 110, coul: ROUGE, police: 'Spectral', poids: 600 });
     S.texte(p.an || '', 10, 190, { taille: 70, coul: NOIR, police: 'Spectral', poids: 600 });
     g.restore();
-    const ks = pr(t, p.a + .5, .3); if (ks > 0) O.tampon(p.tampon || 'POSTHUME', W / 2 + 200, 1160, ks, -.12, 70);
+    const ks = pr(t, p.a + .5, .3); if (ks > 0) O.tampon(p.tampon || 'POSTHUME', W / 2 + 190, 1080, ks, -.12, 70);
     titrePop(p.t, 1360, t, p.a + .3, 110);
   }
 

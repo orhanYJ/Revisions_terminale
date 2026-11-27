@@ -301,7 +301,7 @@ window.FORMATS_A = O => {
         const kb = pr(t, tr, .35), w = Math.min(820, S.largeur(x, { taille: 52, police: 'Spectral', it: true, poids: 500 }));
         g.strokeStyle = '#c8372d'; g.lineWidth = 7; g.beginPath(); g.moveTo(-365, y); g.lineTo(-365 + w * kb, y - 4); g.stroke();
         const kc = eo(pr(t, tr + .4, .4)); g.globalAlpha = kc;
-        S.texte('→ ' + p.correction, -340, y + 58, { taille: 46, police: 'Spectral', it: true, poids: 600, coul: '#c8372d', align: 'left', max: 780 }); g.globalAlpha = 1;
+        S.texte('Corrigé : ' + p.correction, -340, y + 58, { taille: 46, police: 'Spectral', it: true, poids: 600, coul: '#c8372d', align: 'left', max: 780 }); g.globalAlpha = 1;
       }
     });
     g.restore();
