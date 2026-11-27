@@ -1,0 +1,407 @@
+==================================================================
+SHORT : vfnsi
+==================================================================
+# Description TikTok / YouTube Shorts — NSI : vrai ou faux ?
+
+## Titre (YouTube Shorts)
+Vrai ou faux ? 5 affirmations sur l'informatique 💻 #nsi #bac
+
+## Description
+5 affirmations sur l'informatique. Combien tu en as justes ? 💻⏱️
+
+1. Internet et le Web, c'est la même chose.
+2. Une adresse IPv4 tient sur 32 bits.
+3. Le mot « bug » vient d'un vrai insecte, trouvé dans un ordinateur en 1947.
+4. Le premier programme publié a été écrit par une femme, au 19e siècle.
+5. Avec assez de temps, un ordinateur peut résoudre n'importe quel problème.
+
+Les réponses sont dans la vidéo 👀
+👉 Plus de défis sur Révisions Animées (lien en bio)
+
+Ton score sur 5 ? Dis-le en commentaire 👇 (et celle qui t'a piégé)
+
+## Hashtags
+#nsi #informatique #internet #histoiredelinformatique #bac2027 #terminale #vraioufaux #quiz #revisionbac #apprendresurtiktok
+
+## Sources (pour répondre aux commentaires)
+- Internet est le réseau ; le Web est un service qui l'utilise, proposé par Tim Berners-Lee au CERN en mars 1989 ; le courrier électronique passe par Internet sans passer par le Web (CERN, « A short history of the Web »).
+- Une adresse IPv4 fait 4 octets, soit 32 bits (RFC 791, 1981) : 2 puissance 32 = 4 294 967 296 adresses. IPv6 (128 bits) a été créé parce qu'il n'y en a pas assez.
+- Le 9 septembre 1947, l'équipe du calculateur Harvard Mark II trouve une mite dans le relais n° 70 et la colle dans son journal avec la mention « First actual case of bug being found » : « premier cas réel », car le mot existait déjà (Smithsonian, National Museum of American History ; Computer History Museum). Thomas Edison employait déjà « bug » pour un défaut technique dans ses lettres de 1878 (IEEE Spectrum).
+- Ada Lovelace publie en 1843, dans ses notes sur la machine analytique de Charles Babbage (Note G), un algorithme pour calculer les nombres de Bernoulli, considéré comme le premier programme publié ; la machine n'a jamais été construite (Scientific American).
+- Le problème de l'arrêt est indécidable : aucun programme ne peut dire, pour tout programme, s'il finira par s'arrêter, quel que soit le temps dont il dispose (programme de NSI de Terminale ; Alan Turing, « On Computable Numbers », 1936).
+
+## Images
+- Glen Beck et Betty Snyder programment l'ENIAC, photo de l'US Army, domaine public (Wikimedia Commons).
+- Grace Hopper, photo officielle de l'US Navy par James S. Davis, 1984, domaine public (Wikimedia Commons).
+- Ada Lovelace, portrait d'Alfred Edward Chalon, vers 1840, domaine public (Wikimedia Commons).
+- Alan Turing en 1951, photo Elliott & Fry (recadrée), domaine public (Wikimedia Commons).
+- Le premier serveur web (CERN), photo Coolcaesar, CC BY-SA 3.0 (Wikimedia Commons).
+- Journal du Harvard Mark II, 9 septembre 1947, US Navy, domaine public (Wikimedia Commons).
+- Ada Lovelace, « Diagram for the computation of Bernoulli numbers » (Note G), 1843, domaine public (Wikimedia Commons).
+- Machine analytique de Babbage (essai partiel, Science Museum de Londres), photo Marcin Wichary, CC BY 2.0 (Wikimedia Commons).
+- Réseau, adresse IPv4, chronomètre et programme : dessinés.
+
+
+==================================================================
+SHORT : niveaunsi
+==================================================================
+# Description TikTok / YouTube Shorts — NSI, niveau 1 à 10
+
+## Titre (YouTube Shorts)
+NSI : niveau 1 à 10, tu t'arrêtes où ? 💻 #nsi #bac
+
+## Description
+NSI, niveau 1 à 10. À quel niveau tu t'arrêtes ? 💻⚡
+
+Niveau 1 : écris 13 en binaire.
+Niveau 2 : une pile, tu empiles A, B, puis C. Qui sort en premier ?
+Niveau 4 : en SQL, quel mot-clé filtre les lignes d'une table ?
+Niveau 6 : que renvoie cette fonction récursive pour f(4) ?
+Niveau 8 : recherche dichotomique dans 1 million d'éléments triés : combien d'étapes au pire ?
+Niveau 10 : un programme peut-il prédire si n'importe quel programme s'arrête ?
+
+Les réponses sont dans la vidéo 👀
+👉 Plus de défis sur Révisions Animées (lien en bio)
+
+Tu t'es arrêté à quel niveau ? Dis-le en commentaire 👇
+
+## Hashtags
+#nsi #numerique #informatique #python #sql #bac2027 #terminale #quiz #revisionbac #apprendresurtiktok
+
+## Sources (pour répondre aux commentaires)
+Programme officiel de la spécialité NSI de Terminale (Bulletin officiel spécial n° 8 du 25 juillet 2019, eduscol) ; chaque résultat a été vérifié en exécutant le code en Python.
+- 13 = 8 + 4 + 0 + 1 = 1101 en binaire (bin(13) donne '0b1101').
+- Une pile suit la règle « dernier entré, premier sorti » (LIFO) : on empile A, B, C, on dépile C. Une file suit « premier entré, premier sorti » (FIFO) : A sort en premier.
+- SQL : SELECT … FROM … WHERE condition ; WHERE ne garde que les lignes qui vérifient la condition.
+- def f(n): si n == 0, renvoyer 0 ; sinon renvoyer n + f(n - 1). f(4) = 4 + 3 + 2 + 1 + 0 = 10.
+- Recherche dichotomique : on coupe la zone de recherche en deux à chaque étape ; pour 1 000 000 d'éléments triés, 20 étapes au plus (2 puissance 20 = 1 048 576).
+- Le problème de l'arrêt est indécidable : aucun programme ne peut dire, pour tout programme et toute entrée, s'il finira par s'arrêter. L'idée remonte à l'article d'Alan Turing « On Computable Numbers » (1936), qui montre les premiers problèmes indécidables (Stanford Encyclopedia of Philosophy, « Turing Machines »).
+
+## Images
+- Alan Turing en 1951, photo Elliott & Fry (recadrée), domaine public (Wikimedia Commons).
+- Ada Lovelace, portrait d'Alfred Edward Chalon, vers 1840, domaine public (Wikimedia Commons).
+- Grace Hopper, photo officielle de l'US Navy par James S. Davis, 1984, domaine public (Wikimedia Commons).
+- Glen Beck et Betty Snyder programment l'ENIAC, photo de l'US Army, domaine public (Wikimedia Commons).
+- Centre de données, photo BalticServers.com, CC BY-SA 3.0 (Wikimedia Commons).
+- Ada Lovelace, « Diagram for the computation of Bernoulli numbers » (Note G), 1843, domaine public (Wikimedia Commons).
+- Échelle, terminal, cases binaires, pile et file, table SQL, appels récursifs et dichotomie : dessinés.
+
+
+==================================================================
+SHORT : niveaumaths
+==================================================================
+# Description TikTok / YouTube Shorts — Maths, niveau 1 à 10
+
+## Titre (YouTube Shorts)
+Maths : niveau 1 à 10, tu t'arrêtes où ? 🧮 #maths #bac
+
+## Description
+Spé maths, niveau 1 à 10. Pas de calculatrice. Tu t'arrêtes où ? 🧮⚡
+
+Niveau 1 : u(0) = 3, chaque terme double. u(2) ?
+Niveau 2 : f″ positive : convexe ou concave ?
+Niveau 4 : limite de (2n + 1) / (n + 3) ?
+Niveau 5 : ln(8) = k × ln(2). k ?
+Niveau 7 : intégrale de 0 à 1 de 2x ?
+Niveau 8 : 5 personnes se serrent toutes la main. Combien de poignées de main ?
+Niveau 10 (le boss) : 2 dés, probabilité d'avoir au moins un 6 ?
+
+Les réponses sont dans la vidéo 👀
+👉 Plus de défis du bac : Révisions Animées sur YouTube (lien en bio)
+
+Tu t'es arrêté à quel niveau ? Dis-le en commentaire 👇
+
+## Hashtags
+#maths #specialitemaths #bac2027 #terminale #logarithme #integrale #probabilites #quiz #revisionbac #apprendresurtiktok
+
+## Sources (pour répondre aux commentaires)
+Programme de spécialité mathématiques de Terminale générale (BO spécial n° 8 du 25 juillet 2019, eduscol). Résultats recalculés :
+- u(0) = 3 et u(n+1) = 2 u(n) : u(1) = 6, u(2) = 12 (suite géométrique de raison 2) ;
+- si f″ ≥ 0 sur un intervalle, f est convexe sur cet intervalle : sa courbe est au-dessus de ses tangentes ;
+- (2n + 1) / (n + 3) = (2 + 1/n) / (1 + 3/n), qui tend vers 2 quand n tend vers + l'infini ;
+- ln(8) = ln(2³) = 3 ln(2), donc k = 3 ;
+- une primitive de 2x est x² : l'intégrale de 0 à 1 de 2x vaut 1² − 0² = 1 (l'aire du triangle de base 1 et de hauteur 2) ;
+- 5 personnes : une poignée de main par paire, « 2 parmi 5 » = (5 × 4) / 2 = 10 ;
+- deux dés équilibrés : P(aucun 6) = (5/6)² = 25/36, donc P(au moins un 6) = 1 − 25/36 = 11/36 (environ 0,31).
+- À l'écran : Napier publie les logarithmes en 1614 ; Leibniz écrit le signe de l'intégrale pour la première fois en 1675 ; la planche de Galton illustre la loi binomiale.
+
+## Images
+- William Blake, Newton, 1795-1805, Tate (domaine public).
+- Calculatrice solaire, photo Evan-Amos (domaine public).
+- Jakob Emanuel Handmann, Leonhard Euler, 1753, Kunstmuseum Basel (domaine public).
+- Christian Albrecht Jensen, Carl Friedrich Gauss, 1840 (domaine public).
+- Niklaus Bernoulli, Jacques Bernoulli, 1687 (domaine public).
+- John Napier, gravure de Samuel Freeman, 1835, d'après un portrait de 1616 (domaine public).
+- Christoph Bernhard Francke, Gottfried Wilhelm Leibniz, vers 1695 (domaine public).
+- Planche de Galton, Matemateca IME-USP, photo Rodrigo Argenton, CC BY-SA 4.0.
+- Images trouvées sur Wikimedia Commons. Barres de la suite, courbe convexe, limite, aire, poignées de main et arbre de probabilités : dessinés.
+
+
+==================================================================
+SHORT : erreurmaths
+==================================================================
+# Description TikTok / YouTube Shorts — erreurmaths
+
+## Titre (YouTube Shorts)
+Trouve l'erreur dans ces 3 copies de maths 🔴 #maths #bac
+
+## Description
+3 copies de maths. 1 erreur cachée dans chacune. Tu la trouves avant la fin du chrono ? ⏱️
+
+📝 Manche 1 · les logarithmes
+📈 Manche 2 · l'exponentielle
+♾️ Manche 3 · les limites (la plus dure)
+
+Combien d'erreurs repérées ? 0, 1, 2 ou 3 ? Dis-le en commentaire 👇
+
+👉 Plus de défis du bac : Révisions Animées sur YouTube (lien en bio)
+
+## Hashtags
+#maths #specialitemaths #bac2027 #terminale #logarithme #exponentielle #limites #trouvelerreur #revisionbac #apprendresurtiktok
+
+## Sources (pour répondre aux commentaires)
+Programme de spécialité mathématiques de Terminale générale (BO spécial n° 8 du 25 juillet 2019, eduscol). Chaque ligne a été vérifiée :
+- Logarithmes : ln(ab) = ln(a) + ln(b), mais il n'y a pas de règle pour ln(a + b). ln(3 + 4) = ln(7) (environ 1,95), alors que ln(3) + ln(4) = ln(12) (environ 2,48). Les autres lignes sont justes : ln(1) = 0, ln(2 × 5) = ln(2) + ln(5), ln(e²) = 2.
+- Exponentielle : la dérivée de exp(u) est u′ × exp(u). Pour f(x) = exp(2x) : f′(x) = 2 exp(2x), et non exp(2x). Les autres lignes sont justes : exp(2x) > 0, f′(x) > 0 donc f croissante, f(0) = 1.
+- Limites : en + l'infini, x² − x donne « + l'infini − l'infini », une forme indéterminée, pas 0. On factorise : x² − x = x(x − 1), produit de deux facteurs qui tendent vers + l'infini, donc la limite est + l'infini.
+- À l'écran : Napier publie les logarithmes en 1614 ; e est appelé « nombre d'Euler ».
+
+## Images
+Salle d'examen (domaine public) ; John Napier, gravure de Samuel Freeman, 1835, d'après un portrait de 1616 (domaine public) ; Jakob Emanuel Handmann, Leonhard Euler, 1753, Kunstmuseum Basel (domaine public) ; Christoph Bernhard Francke, Leibniz, vers 1695 (domaine public) ; Archimède soulevant le monde, gravure du Mechanics Magazine, Londres, 1824 (domaine public) ; William Blake, Newton, 1795-1805, Tate (domaine public). Images trouvées sur Wikimedia Commons. Copies, règle du logarithme, dérivée, signe infini et parabole : dessinés.
+
+
+==================================================================
+SHORT : quidithlp
+==================================================================
+# Description TikTok / YouTube Shorts — quidithlp
+
+## Titre (YouTube Shorts)
+HLP : qui a dit ça ? 4 citations à reconnaître 🧠 #HLP
+
+## Description
+4 citations célèbres du programme d'HLP. 3 auteurs pour chacune. Un seul l'a écrite. Attention aux pièges ! 🧠
+
+1️⃣ « Je suis moi-même la matière de mon livre. »
+2️⃣ « Le moi est haïssable. »
+3️⃣ « Je est un autre. »
+4️⃣ « La banalité du mal. »
+
+Les réponses sont dans la vidéo 👀
+👉 Pascal et Arendt sont expliqués dans les séries de philo de Révisions Animées sur YouTube (lien en bio)
+
+Alors, ton score sur 4 ? Dis-le en commentaire 👇
+
+## Hashtags
+#HLP #humanites #litterature #philosophie #terminale #bac2027 #quiz #citation #montaigne #pascal #rimbaud #arendt #revisionbac #apprendresurtiktok
+
+## Sources (pour répondre aux commentaires)
+- Montaigne, Essais, « Au lecteur » (préface datée du 1er mars 1580) : « Je suis moi-même la matière de mon livre » (texte de 1580 sur Wikisource : « ie suis moy-mesmes la matiere de mon liure »). Les Confessions de Rousseau paraissent en 1782, après sa mort.
+- Pascal, Pensées (publication posthume, 1670) : « Le moi est haïssable » (fragment 455 de l'édition Brunschvicg) ; contre Montaigne : « Le sot projet qu'il a de se peindre ! » (fragment 644 de l'édition Sellier). Série « La conscience », épisode 5.
+- Rimbaud, lettres « du voyant » à Georges Izambard (13 mai 1871) et à Paul Demeny (15 mai 1871) : « Je est un autre » ; « le Poète se fait voyant ». Né le 20 octobre 1854, il a 16 ans.
+- Hannah Arendt, Eichmann à Jérusalem. Rapport sur la banalité du mal (1963), sur le procès d'Adolf Eichmann à Jérusalem (avril-août 1961). Série « Le devoir », épisode 5. Kant parle, lui, de « mal radical » (La Religion dans les limites de la simple raison, 1793).
+- Programme de spécialité HLP de Terminale (eduscol) : « La recherche de soi » et « L'humanité en question ».
+
+## Images
+Domaine public : Montaigne (portrait anonyme, musée Condé) ; Rousseau (Maurice Quentin de La Tour, 1753) ; Pascal (copie d'après François II Quesnel) ; Descartes (d'après Frans Hals) ; Kant (portrait anonyme, XVIIIᵉ s.) ; Hannah Arendt (photographie anonyme, 1933) ; Marcel Proust (Otto Wegener, vers 1895) ; Arthur Rimbaud (Étienne Carjat, 1872) ; Charles Baudelaire (Étienne Carjat, vers 1862) ; Paul Verlaine (Otto Wegener) ; Henri Fantin-Latour, Un coin de table (1872, musée d'Orsay) ; Pascal, Pensées, manuscrit (BnF) ; Adolf Eichmann à son procès (1961, Israel Government Press Office) ; Vincent van Gogh, La Nuit étoilée (1889).
+Jean-Paul Sartre : photographie de 1965, Nationaal Archief / Anefo, CC BY-SA 3.0 NL.
+La tour de Montaigne : photo Henry Salomé, CC BY-SA 4.0 (Wikimedia Commons).
+
+
+==================================================================
+SHORT : devinehlp
+==================================================================
+# Description TikTok / YouTube Shorts — devinehlp
+
+## Titre (YouTube Shorts)
+HLP : devine l'auteur en 3 indices 🔎 #HLP
+
+## Description
+3 auteurs du programme d'HLP. 3 indices chacun, du plus dur au plus facile. Le portrait se dévoile à chaque indice… Trouve avant la fin du compte ! 🔎
+
+Manche 1 (éducation) : il abandonne ses 5 enfants…
+Manche 2 (sensibilité) : il écrit la nuit, dans une chambre tapissée de liège…
+Manche 3 (métamorphoses du moi) : en 1938, il fuit les nazis pour Londres…
+
+Les réponses sont dans la vidéo 👀
+👉 Deux d'entre eux sont expliqués dans les séries de philo de Révisions Animées sur YouTube (lien en bio)
+
+Combien tu en as trouvé ? Et en combien d'indices ? Dis-le en commentaire 👇
+
+## Hashtags
+#HLP #humanites #litterature #philosophie #terminale #bac2027 #quiz #devinette #rousseau #proust #freud #revisionbac #apprendresurtiktok
+
+## Sources (pour répondre aux commentaires)
+- Rousseau (1712 – 1778) : ses cinq enfants, avec Thérèse Levasseur, déposés aux Enfants-Trouvés, ce qu'il avoue dans les Confessions (livres VIII et IX) ; Émile ou De l'éducation (1762) ; « L'homme est né libre, et partout il est dans les fers » (Du contrat social, I, 1, 1762). Stanford Encyclopedia of Philosophy, « Jean Jacques Rousseau ». Série « La liberté », épisode 5.
+- Proust (1871 – 1922) : chambre tapissée de liège (1910) au 102, boulevard Haussmann, où il écrit la nuit ; prix Goncourt le 10 décembre 1919 pour À l'ombre des jeunes filles en fleurs ; la madeleine trempée dans le thé (Du côté de chez Swann, 1913, « Combray ») : la mémoire involontaire.
+- Freud (1856 – 1939) : quitte Vienne le 4 juin 1938 pour Londres, où il meurt en 1939 (Freud Museum London) ; le rêve, « voie royale » vers l'inconscient (L'Interprétation du rêve, 1900) ; « le moi n'est pas maître dans sa propre maison » (Une difficulté de la psychanalyse, 1917). Série « La conscience », épisode 3.
+- Programme de spécialité HLP de Terminale (eduscol), semestre « La recherche de soi » : éducation, transmission et émancipation ; les expressions de la sensibilité ; les métamorphoses du moi.
+
+## Images
+Domaine public : Rousseau (Maurice Quentin de La Tour, 1753) ; Freud (Max Halberstadt, vers 1921) ; Marcel Proust (Otto Wegener, vers 1895) ; épreuves corrigées d'À la recherche du temps perdu ; Émile ou De l'éducation, page de titre (1762) ; Freud, Die Traumdeutung, page de titre (1900).
+Plaque au 19, Berggasse, Vienne : photo GuentherZ, CC BY 3.0.
+
+
+==================================================================
+SHORT : devinehggsp
+==================================================================
+# Description TikTok / YouTube Shorts — devinehggsp
+
+## Titre (YouTube Shorts)
+HGGSP : devine qui c'est 🕵️ 3 personnages du programme de Terminale #hggsp #bac
+
+## Description
+3 personnages du programme d'HGGSP de Terminale. 3 indices chacun, du plus dur au plus facile. Le portrait se précise à chaque indice… Trouve avant la fin du compte ⏱️
+
+🚀 Manche 1 : thème 1, les espaces de conquête
+⚔️ Manche 2 : thème 2, faire la guerre, faire la paix
+🔬 Manche 3 : thème 6, l'enjeu de la connaissance
+
+Combien tu en as trouvés ? Dis-le en commentaire 👇
+
+👉 Plus de défis sur YouTube : Révisions Animées (lien en bio)
+
+## Hashtags
+#hggsp #bac2027 #terminale #specialitehggsp #gagarine #clausewitz #mariecurie #geopolitique #devinequi #revisionbac #apprendresurtiktok
+
+## Sources (pour répondre aux commentaires)
+- Programme de spécialité HGGSP de Terminale (BO spécial n° 8 du 25 juillet 2019) : thème 1, « la course à l'espace des années 1950 à l'arrivée de nouveaux acteurs » ; thème 2, « La guerre, “continuation de la politique par d'autres moyens” (Clausewitz) » ; thème 6, les recherches et les échanges des scientifiques sur la radioactivité, de 1896 aux années 1950.
+- Youri Gagarine : pilote sur MiG-15 avant sa sélection ; le 12 avril 1961, à bord de Vostok 1, il est le premier homme dans l'espace et fait un tour de la Terre en 108 minutes ; au décollage, « Poyekhali ! » (« On y va ! ») (ESA, The Planetary Society, Guinness World Records).
+- Carl von Clausewitz (1780-1831) : officier prussien qui combat Napoléon ; « De la guerre » (Vom Kriege), inachevé, est publié en 1832, après sa mort, par sa veuve Marie (Britannica).
+- Marie Curie : née à Varsovie ; découvre en 1898 avec Pierre Curie le polonium, nommé d'après la Pologne, puis le radium ; Nobel de physique en 1903 et de chimie en 1911, seule personne récompensée dans deux sciences différentes (nobelprize.org).
+
+## Images
+- Youri Gagarine, 1961, photo Arto Jousi (Suomen valokuvataiteen museo, collection Uusi Suomi), restauration Adam Cuerden, domaine public (Wikimedia Commons).
+- Carl von Clausewitz, portrait par Karl Wilhelm Wach, domaine public (Wikimedia Commons).
+- Marie Curie vers 1920, photo Henri Manuel, domaine public (Wikimedia Commons).
+- Marie Curie dans son laboratoire de Paris, 1912, photographe inconnu, domaine public (Wikimedia Commons).
+- Page de titre de Vom Kriege, Berlin, 1832, domaine public (Wikimedia Commons).
+- Réplique de la capsule Vostok 1, Musée de l'air et de l'espace, Le Bourget, photo Alan Wilson, CC BY-SA 2.0 (Wikimedia Commons).
+- Louis Lejeune, La bataille de la Moskova, 7 septembre 1812, domaine public (Wikimedia Commons).
+- Buzz Aldrin sur la Lune, Apollo 11, 20 juillet 1969, photo Neil Armstrong, NASA, domaine public (Wikimedia Commons).
+
+
+==================================================================
+SHORT : ordrehggsp
+==================================================================
+# Description TikTok / YouTube Shorts — ordrehggsp
+
+## Titre (YouTube Shorts)
+HGGSP : remets dans l'ordre 🧩 12 événements, 3 manches #hggsp #bac
+
+## Description
+12 événements du programme d'HGGSP de Terminale, 3 manches. Remets-les dans l'ordre avant la fin du chrono ⏱️
+
+1️⃣ L'espace : Spoutnik, Apollo 11, la Station spatiale internationale, le premier Chinois dans l'espace
+2️⃣ Faire la paix : les traités de Westphalie, le traité de Versailles, la charte de l'ONU, les accords d'Oslo
+3️⃣ Patrimoine et climat : la convention du patrimoine mondial, le sommet de la Terre de Rio, le protocole de Kyoto, l'accord de Paris
+
+Combien de manches réussies sur 3 ? Dis-le en commentaire 👇
+
+👉 Plus de défis sur YouTube : Révisions Animées (lien en bio)
+
+## Hashtags
+#hggsp #bac2027 #terminale #specialitehggsp #geopolitique #conquetespatiale #onu #accorddeparis #patrimoinemondial #quiz #revisionbac #histoiregeo
+
+## Sources (pour répondre aux commentaires)
+- Programme de spécialité HGGSP de Terminale (BO spécial n° 8 du 25 juillet 2019) : thème 1 (course à l'espace, ISS, la Chine), thème 2 (traités de Westphalie, ONU, Moyen-Orient), thème 4 (patrimoine), thème 5 (le climat et les accords internationaux).
+- Manche 1 : Spoutnik 1, premier satellite artificiel, 4 octobre 1957 (NASA) ; Apollo 11, juillet 1969 (NASA) ; Zarya, premier module de la Station spatiale internationale, 20 novembre 1998 (NASA, ESA) ; Yang Liwei, Shenzhou 5, 15 octobre 2003 : la Chine, troisième pays à envoyer un homme dans l'espace (Britannica).
+- Manche 2 : traités de Westphalie, 1648, fin de la guerre de Trente Ans (Britannica) ; traité de Versailles, 28 juin 1919 ; Charte des Nations unies, San Francisco, 26 juin 1945 (un.org) ; accords d'Oslo, Washington, 13 septembre 1993, poignée de main Rabin-Arafat devant la Maison-Blanche (Britannica).
+- Manche 3 : convention du patrimoine mondial, UNESCO, 16 novembre 1972, née du succès de la campagne de Nubie et du déplacement des temples d'Abou Simbel (whc.unesco.org) ; Sommet de la Terre, Rio, juin 1992 ; protocole de Kyoto, décembre 1997 ; accord de Paris, 12 décembre 2015 : contenir le réchauffement bien en dessous de 2 °C (vie-publique.fr).
+
+## Images
+- Buzz Aldrin sur la Lune, Apollo 11, 20 juillet 1969, photo Neil Armstrong, NASA, domaine public (Wikimedia Commons).
+- Yang Liwei à son retour, Shenzhou 5, octobre 2003, China News Service, CC BY 3.0 (Wikimedia Commons).
+- Réplique de Spoutnik 1, World Museum Liverpool, photo Rept0n1x, CC BY-SA 3.0 (Wikimedia Commons).
+- La Station spatiale internationale vue de la navette Atlantis, mission STS-135, 2011, NASA, domaine public (Wikimedia Commons).
+- Gerard ter Borch, La ratification du traité de Münster, 1648, domaine public (Wikimedia Commons).
+- William Orpen, La signature de la paix dans la galerie des Glaces, Versailles, 28 juin 1919, domaine public (Wikimedia Commons).
+- Rabin, Clinton et Arafat à la Maison-Blanche, 13 septembre 1993, photo Vince Musi / The White House, domaine public (Wikimedia Commons).
+- Le grand temple de Ramsès II à Abou Simbel, 2022, photo Diego Delso, CC BY-SA 4.0 (Wikimedia Commons).
+- Chantier du déplacement des temples d'Abou Simbel, années 1960, Anefo (Nationaal Archief), CC0 (Wikimedia Commons).
+- Centre international de conférences de Kyoto, 2023, photo 663highland, CC BY-SA 4.0 (Wikimedia Commons).
+- Site de la COP21, Le Bourget, 2015, photo Jmdigne, CC BY-SA 4.0 (Wikimedia Commons).
+- La charte de l'ONU et le sommet de la Terre : dessins originaux.
+
+
+==================================================================
+SHORT : intrusses
+==================================================================
+# Description TikTok / YouTube Shorts — SES : trouve l'intrus
+
+## Titre (YouTube Shorts)
+SES : trouve l'intrus 🚨 4 manches, de plus en plus dures #ses #bac
+
+## Description
+Trouve l'intrus ! 4 manches de SES de Terminale 🚨
+
+1️⃣ Les auteurs : Smith, Keynes, Durkheim, Ricardo… trois économistes, un sociologue.
+2️⃣ La structure sociale : agriculteurs, classes moyennes, ouvriers, artisans… lequel n'est pas un groupe de l'INSEE ?
+3️⃣ Les crises : subprimes, krach de 1929, bulle internet, choc pétrolier… lequel n'est pas une crise financière ?
+4️⃣ Le chômage : chute de la demande, frictions, qualifications inadaptées, salaire d'efficience… trois causes structurelles, une conjoncturelle.
+
+Mets pause avant chaque réponse ⏸️
+👉 Plus de défis sur YouTube : Révisions Animées (lien en bio)
+
+Combien d'intrus tu as trouvés ? Dis-le en commentaire 👇
+
+## Hashtags
+#ses #bacses #bac2027 #terminale #economie #sociologie #chomage #crisefinanciere #trouvelintrus #quiz #revisionbac #apprendresurtiktok
+
+## Sources (pour répondre aux commentaires)
+- Programme de SES de Terminale (BO spécial n° 8 du 25 juillet 2019, repris sur eduscol) : appariement (frictions, inadéquations spatiales et de qualifications) et asymétries d'information (salaire d'efficience), sources de chômage structurel ; fluctuations de l'activité et chômage conjoncturel ; crises financières des années 1930 et de 2008 ; avantages comparatifs ; débat sur les classes sociales.
+- Insee, PCS 2020 : 6 groupes socioprofessionnels (agriculteurs exploitants ; artisans, commerçants et chefs d'entreprise ; cadres et professions intellectuelles supérieures ; professions intermédiaires ; employés ; ouvriers). Aucun ne s'appelle « classes moyennes ».
+- Premier choc pétrolier : prix du baril multiplié par 4 entre octobre 1973 et janvier 1974 (Connaissance des énergies ; La finance pour tous). Le schéma du short ne donne que ce rapport.
+- Lehman Brothers : faillite le 15 septembre 2008.
+- Durkheim, Les Règles de la méthode sociologique (1895). Ricardo, Des principes de l'économie politique et de l'impôt (1817) : drap anglais, vin portugais.
+- La courbe « activité / chômage » du short est un schéma, pas une série de données.
+
+## Images
+- Adam Smith, « The Muir portrait », auteur inconnu, domaine public (Wikimedia Commons).
+- David Ricardo par Thomas Phillips, domaine public (Wikimedia Commons).
+- John Maynard Keynes, 1929, photographe inconnu, domaine public (Wikimedia Commons).
+- Émile Durkheim, photographie, domaine public.
+- Siège de Lehman Brothers, Times Square, photo David Shankbone, CC BY-SA 3.0 (Wikimedia Commons).
+- Nasdaq MarketSite, Times Square, photo ajay_suresh, CC BY 2.0 (Wikimedia Commons).
+- Station-service de l'Oregon pendant la crise pétrolière de 1973, photo David Falconer, domaine public (NARA, Wikimedia Commons).
+- Foule devant la Bourse de New York, octobre 1929, domaine public.
+- Rosa Bonheur, Labourage nivernais, 1849 ; Gustave Caillebotte, Les Raboteurs de parquet, 1875, et Rue de Paris, temps de pluie, 1877 ; Jan Steen, Le Boulanger Arent Oostwaert et sa femme, vers 1658 : domaine public.
+
+
+==================================================================
+SHORT : plusmoinsses
+==================================================================
+# Description TikTok / YouTube Shorts — SES : plus ou moins ?
+
+## Titre (YouTube Shorts)
+SES : plus ou moins ? 4 chiffres surprenants 📈📉 #ses #bac
+
+## Description
+Plus ou moins ? 4 duels de chiffres de SES de Terminale 📈📉
+
+🏭 Travail : en 1975, l'industrie fait 29 % des emplois en France. Et en 2024 ?
+📊 Chômage : près de 8 % de chômage en France en 2025. Et chez les 15-24 ans ?
+⚖️ Inégalités : en 1995, dans le privé, les femmes gagnent en moyenne 34 % de moins que les hommes. Et en 2024 ?
+🚢 Mondialisation : en 1983, la Chine pèse à peine plus de 1 % des exportations mondiales. Et en 2024 ?
+
+Mets pause avant chaque réponse ⏸️
+👉 Plus de défis sur YouTube : Révisions Animées (lien en bio)
+
+Combien de bonnes réponses ? Dis-le en commentaire 👇
+
+## Hashtags
+#ses #bacses #bac2027 #terminale #economie #chomage #inegalites #mondialisation #plusoumoins #quiz #revisionbac #apprendresurtiktok
+
+## Sources (pour répondre aux commentaires)
+- Industrie : 29 % des emplois en 1975 (Insee, Économie et statistique n° 462-463, 2013, « Emploi et territoires de 1975 à 2009 », recensements, métropole) ; 12,6 % en 2024 (Insee, « Professions et secteurs d'activité », édition 2025, enquête Emploi). Deux sources différentes, même ordre de grandeur : la part a été divisée par plus de deux.
+- Chômage : 7,7 % en 2025, 19,8 % chez les 15-24 ans (Insee, « Évolution du chômage », juillet 2026). Le taux de chômage se calcule sur les actifs : les jeunes en études n'y entrent pas. Le schéma « 1 jeune actif sur 5 » arrondit 19,8 %.
+- Inégalités : dans le secteur privé, revenu salarial moyen des femmes inférieur de 33,7 % en 1995 et de 21,8 % en 2024 ; à temps de travail égal (EQTP), 14,0 % en 2024 : 31 200 € contre 36 270 € (Insee Focus n° 377, février 2026).
+- Mondialisation : Chine, 1,2 % des exportations mondiales de marchandises en 1983 (OMC, International Trade Statistics 2005, tableau II.2) ; 14,6 % en 2024, premier exportateur (OMC, Global Trade Outlook and Statistics, avril 2025).
+- Les chiffres affichés sont arrondis à l'unité (7,7 → 8 %, 19,8 → 20 %, 33,7 → 34 %, 21,8 → 22 %, 12,6 → 13 %, 1,2 → 1 %, 14,6 → 15 %).
+
+## Images
+- Adolph von Menzel, La Forge (Le Laminoir), 1872-1875, domaine public.
+- Personnes devant des écrans, photo Rawpixel, CC BY 2.0.
+- Salle d'examen, domaine public.
+- Port à conteneurs de Yangshan, Shanghai, 2013, photo Bruno Corpet (Quoique), CC BY-SA 3.0 (Wikimedia Commons).
+
+
