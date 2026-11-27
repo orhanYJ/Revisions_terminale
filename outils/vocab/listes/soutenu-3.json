@@ -1,0 +1,3982 @@
+[
+ {
+  "id": "s-striking",
+  "w": "striking",
+  "pos": "adjective",
+  "ipa": "/ˈstraɪkɪŋ/",
+  "reg": "courant",
+  "fr": "frappant, saisissant",
+  "def": "So unusual, clear or attractive that it immediately catches your attention.",
+  "col": [
+   "a striking contrast",
+   "a striking resemblance",
+   "a striking example of",
+   "strikingly similar"
+  ],
+  "ex": [
+   "There is a [[striking]] resemblance between my brother and our grandfather at his age.",
+   "The most [[striking]] feature of the 1930s is how quickly democracies collapsed across Europe."
+  ],
+  "piege": "Plus fort que <i>noticeable</i> : ce qui est <i>striking</i> saute aux yeux. Très utile en analyse : <i>What is striking is that…</i>",
+  "fam": "strikingly (adv.) · strike (v.)",
+  "trous": [
+   {
+    "s": "The ___ contrast between rich and poor districts shocked the visitors.",
+    "a": "striking",
+    "fr": "Le contraste frappant entre quartiers riches et pauvres a choqué les visiteurs."
+   },
+   {
+    "s": "The two paintings are ___ similar, although they were made a century apart.",
+    "a": "strikingly",
+    "fr": "Les deux tableaux sont étonnamment semblables, bien qu'ils aient été peints à un siècle d'écart."
+   }
+  ],
+  "ecris": "une phrase sur un contraste ou une ressemblance qui t'a frappé",
+  "formes": [
+   "striking",
+   "strikingly"
+  ]
+ },
+ {
+  "id": "s-overwhelming",
+  "w": "overwhelming",
+  "pos": "adjective",
+  "ipa": "/ˌəʊvəˈwelmɪŋ/",
+  "reg": "courant",
+  "fr": "écrasant, accablant, irrésistible",
+  "def": "Very great in amount or strength, so that it is impossible to resist or ignore.",
+  "col": [
+   "an overwhelming majority",
+   "overwhelming evidence",
+   "overwhelming support",
+   "the overwhelming feeling"
+  ],
+  "ex": [
+   "The amount of homework before the holidays felt [[overwhelming]] at first.",
+   "There is now [[overwhelming]] evidence that human activity is warming the planet."
+  ],
+  "piege": "Pour une situation ou une quantité. À ne pas confondre avec <i>overwhelmed</i>, qui décrit la personne débordée.",
+  "fam": "overwhelmingly (adv.) · overwhelm (v.)",
+  "trous": [
+   {
+    "s": "The proposal was approved by an ___ majority of members.",
+    "a": "overwhelming",
+    "fr": "La proposition a été approuvée par une majorité écrasante des membres."
+   },
+   {
+    "s": "The public was ___ in favour of the new law.",
+    "a": "overwhelmingly",
+    "fr": "L'opinion était massivement favorable à la nouvelle loi."
+   }
+  ],
+  "ecris": "une phrase sur une majorité ou une preuve écrasante",
+  "formes": [
+   "overwhelming",
+   "overwhelmingly"
+  ]
+ },
+ {
+  "id": "s-thorough",
+  "w": "thorough",
+  "pos": "adjective",
+  "ipa": "/ˈθʌrə/",
+  "reg": "courant",
+  "fr": "minutieux, approfondi, complet",
+  "def": "Done completely and carefully, so that nothing is forgotten or left out.",
+  "col": [
+   "a thorough investigation",
+   "a thorough knowledge of",
+   "a thorough check",
+   "thoroughly enjoy"
+  ],
+  "ex": [
+   "The mechanic gave my car a [[thorough]] check before the long journey.",
+   "A [[thorough]] investigation is needed before anyone can be blamed for the disaster."
+  ],
+  "piege": "Prononciation : /ˈθʌrə/, ne pas confondre avec <i>through</i> /θruː/ ni <i>though</i> /ðəʊ/. <i>Thoroughly</i> renforce aussi un verbe : <i>I thoroughly enjoyed it</i>.",
+  "fam": "thoroughly (adv.) · thoroughness (n.)",
+  "trous": [
+   {
+    "s": "Before signing the contract, she read it ___ from beginning to end.",
+    "a": "thoroughly",
+    "fr": "Avant de signer le contrat, elle l'a lu minutieusement du début à la fin."
+   },
+   {
+    "s": "To write a good essay, you need a ___ knowledge of the period.",
+    "a": "thorough",
+    "fr": "Pour écrire une bonne dissertation, il faut une connaissance approfondie de la période."
+   }
+  ],
+  "ecris": "une phrase sur un travail que tu as fait très soigneusement",
+  "formes": [
+   "thorough",
+   "thoroughly",
+   "thoroughness"
+  ]
+ },
+ {
+  "id": "s-hardly",
+  "w": "hardly",
+  "pos": "adverb",
+  "ipa": "/ˈhɑːdli/",
+  "reg": "courant",
+  "fr": "à peine, presque pas",
+  "def": "Almost not at all; only just.",
+  "col": [
+   "hardly ever",
+   "hardly anyone",
+   "can hardly believe",
+   "hardly surprising"
+  ],
+  "ex": [
+   "I can [[hardly]] hear you because the music is too loud.",
+   "It is [[hardly]] surprising that voters turned to extremists during the economic crisis."
+  ],
+  "piege": "Faux ami : <i>hardly</i> ne veut <b>jamais</b> dire « durement » (c'est <i>hard</i> : <i>work hard</i>). Sens déjà négatif : pas de <i>not</i> en plus.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "We ___ ever see each other since she moved to Scotland.",
+    "a": "hardly",
+    "fr": "On ne se voit presque jamais depuis qu'elle a déménagé en Écosse.",
+    "alt": [
+     "scarcely",
+     "barely"
+    ]
+   },
+   {
+    "s": "After such a long war, it is ___ surprising that the population wanted peace.",
+    "a": "hardly",
+    "fr": "Après une guerre aussi longue, il n'est guère surprenant que la population ait voulu la paix.",
+    "alt": [
+     "scarcely"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur quelque chose que tu ne fais presque jamais",
+  "formes": [
+   "hardly"
+  ]
+ },
+ {
+  "id": "s-barely",
+  "w": "barely",
+  "pos": "adverb",
+  "ipa": "/ˈbeəli/",
+  "reg": "courant",
+  "fr": "à peine, tout juste",
+  "def": "Only just; almost not.",
+  "col": [
+   "barely enough",
+   "barely visible",
+   "can barely",
+   "barely survive"
+  ],
+  "ex": [
+   "I [[barely]] had time to eat before the train left.",
+   "Many families in the 1930s earned [[barely]] enough to feed their children."
+  ],
+  "piege": "Faux ami : rien à voir avec « barre ». <i>Barely</i> insiste sur le « tout juste » (<i>barely enough</i>) ; déjà négatif, pas de <i>not</i>.",
+  "fam": "bare (adj.)",
+  "trous": [
+   {
+    "s": "The writing on the old sign is ___ visible now.",
+    "a": "barely",
+    "fr": "L'inscription sur le vieux panneau est à peine visible maintenant.",
+    "alt": [
+     "hardly",
+     "scarcely"
+    ]
+   },
+   {
+    "s": "He ___ passed the exam, with exactly the minimum mark.",
+    "a": "barely",
+    "fr": "Il a tout juste réussi l'examen, avec exactement la note minimale."
+   }
+  ],
+  "ecris": "une phrase sur quelque chose que tu as réussi de justesse",
+  "formes": [
+   "barely"
+  ]
+ },
+ {
+  "id": "s-staggering",
+  "w": "staggering",
+  "pos": "adjective",
+  "ipa": "/ˈstæɡərɪŋ/",
+  "reg": "courant",
+  "fr": "stupéfiant, faramineux",
+  "def": "So large, surprising or shocking that it is difficult to believe.",
+  "col": [
+   "a staggering amount",
+   "a staggering number of",
+   "staggering costs",
+   "a staggering 80%"
+  ],
+  "ex": [
+   "The bill for the repairs came to a [[staggering]] two thousand pounds.",
+   "The Great Depression left a [[staggering]] number of Americans without work or savings."
+  ],
+  "piege": "Surtout pour des quantités et des chiffres. Tournure fréquente avec l'article : <i>a staggering 40 per cent</i>.",
+  "fam": "staggeringly (adv.) · stagger (v.)",
+  "trous": [
+   {
+    "s": "Unemployment reached a ___ 25 per cent of the workforce in 1933.",
+    "a": "staggering",
+    "fr": "Le chômage a atteint le chiffre stupéfiant de 25 % de la population active en 1933."
+   },
+   {
+    "s": "Some footballers earn ___ high salaries compared with nurses.",
+    "a": "staggeringly",
+    "fr": "Certains footballeurs gagnent des salaires faramineux par rapport aux infirmières."
+   }
+  ],
+  "ecris": "une phrase avec un chiffre qui t'a stupéfié",
+  "formes": [
+   "staggering",
+   "staggeringly"
+  ]
+ },
+ {
+  "id": "s-somewhat",
+  "w": "somewhat",
+  "pos": "adverb",
+  "ipa": "/ˈsʌmwɒt/",
+  "reg": "formel",
+  "fr": "quelque peu, un peu, plutôt",
+  "def": "To some degree; slightly.",
+  "col": [
+   "somewhat surprised",
+   "somewhat different",
+   "somewhat ironically",
+   "somewhat surprisingly"
+  ],
+  "ex": [
+   "The hotel was [[somewhat]] smaller than it looked in the photos.",
+   "The treaty was [[somewhat]] harsher than the Germans had expected."
+  ],
+  "piege": "Plus soutenu que <i>a bit</i> ; idéal pour nuancer à l'écrit. Se place devant l'adjectif : <i>somewhat surprising</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The results were ___ disappointing, but not a disaster.",
+    "a": "somewhat",
+    "fr": "Les résultats étaient quelque peu décevants, mais pas catastrophiques.",
+    "alt": [
+     "rather",
+     "slightly"
+    ]
+   },
+   {
+    "s": "___ ironically, the anti-smoking campaign was funded by a tobacco tax.",
+    "a": "Somewhat",
+    "fr": "Assez ironiquement, la campagne anti-tabac était financée par une taxe sur le tabac.",
+    "alt": [
+     "somewhat"
+    ]
+   }
+  ],
+  "ecris": "une phrase pour nuancer une opinion",
+  "formes": [
+   "somewhat"
+  ]
+ },
+ {
+  "id": "s-admittedly",
+  "w": "admittedly",
+  "pos": "adverb",
+  "ipa": "/ədˈmɪtɪdli/",
+  "reg": "courant",
+  "fr": "certes, il faut le reconnaître",
+  "def": "Used when you accept that something is true, often before a contrasting point.",
+  "col": [
+   "admittedly, …",
+   "admittedly small",
+   "admittedly difficult",
+   "admittedly, but"
+  ],
+  "ex": [
+   "[[Admittedly]], the flat is small, but it is right in the centre.",
+   "[[Admittedly]], the New Deal did not end unemployment, but it restored confidence."
+  ],
+  "piege": "Outil de concession idéal en essay : <i>Admittedly, X… However, Y…</i> Ne veut pas dire « admis » au sens d'un concours.",
+  "fam": "admit (v.)",
+  "trous": [
+   {
+    "s": "___, the plan is expensive, but it will save money in the long term.",
+    "a": "Admittedly",
+    "fr": "Certes, le plan coûte cher, mais il fera économiser de l'argent à long terme.",
+    "alt": [
+     "admittedly"
+    ]
+   },
+   {
+    "s": "The film is ___ too long, yet the ending is unforgettable.",
+    "a": "admittedly",
+    "fr": "Le film est certes trop long, et pourtant la fin est inoubliable."
+   }
+  ],
+  "ecris": "une phrase qui concède un point avant de le nuancer",
+  "formes": [
+   "admittedly"
+  ]
+ },
+ {
+  "id": "s-drastic",
+  "w": "drastic",
+  "pos": "adjective",
+  "ipa": "/ˈdræstɪk/",
+  "reg": "courant",
+  "fr": "radical, draconien",
+  "def": "Extreme and sudden, with a strong effect.",
+  "col": [
+   "drastic measures",
+   "a drastic change",
+   "drastic cuts",
+   "drastically reduce"
+  ],
+  "ex": [
+   "I had to make a [[drastic]] decision and sell my car to pay the rent.",
+   "In 1933, the government took [[drastic]] measures to stop the banks from collapsing."
+  ],
+  "piege": "Neutre en anglais : une mesure <i>drastic</i> est radicale, pas forcément sévère. Pour « réglementation stricte », on dit plutôt <i>strict</i>.",
+  "fam": "drastically (adv.)",
+  "trous": [
+   {
+    "s": "The number of tourists fell ___ during the pandemic.",
+    "a": "drastically",
+    "fr": "Le nombre de touristes a chuté de façon radicale pendant la pandémie."
+   },
+   {
+    "s": "Without ___ cuts in emissions, the targets will never be reached.",
+    "a": "drastic",
+    "fr": "Sans réductions drastiques des émissions, les objectifs ne seront jamais atteints."
+   }
+  ],
+  "ecris": "une phrase sur une mesure radicale prise par un gouvernement",
+  "formes": [
+   "drastic",
+   "drastically"
+  ]
+ },
+ {
+  "id": "s-flawed",
+  "w": "flawed",
+  "pos": "adjective",
+  "ipa": "/flɔːd/",
+  "reg": "courant",
+  "fr": "imparfait, défectueux, vicié",
+  "def": "Containing a mistake or weakness that makes it less effective or less valid.",
+  "col": [
+   "deeply flawed",
+   "a flawed argument",
+   "a flawed system",
+   "fundamentally flawed"
+  ],
+  "ex": [
+   "The plan was [[flawed]] from the start: nobody had checked the train times.",
+   "Many historians argue that the Treaty of Versailles was deeply [[flawed]]."
+  ],
+  "piege": "Vient de <i>flaw</i> (un défaut, une faille). Plus soutenu que <i>wrong</i> : un raisonnement <i>flawed</i> a une faille, il n'est pas forcément entièrement faux.",
+  "fam": "flaw (n.) · flawless (adj.)",
+  "trous": [
+   {
+    "s": "The experiment's results are unreliable because its method was ___.",
+    "a": "flawed",
+    "fr": "Les résultats de l'expérience ne sont pas fiables car sa méthode était défectueuse."
+   },
+   {
+    "s": "Critics say the voting system is fundamentally ___ and unfair.",
+    "a": "flawed",
+    "fr": "Les critiques disent que le système électoral est fondamentalement vicié et injuste."
+   }
+  ],
+  "ecris": "une phrase sur un raisonnement ou un système qui a une faille",
+  "formes": [
+   "flawed",
+   "flaw",
+   "flaws"
+  ]
+ },
+ {
+  "id": "s-vibrant",
+  "w": "vibrant",
+  "pos": "adjective",
+  "ipa": "/ˈvaɪbrənt/",
+  "reg": "courant",
+  "fr": "plein de vie, animé, éclatant",
+  "def": "Full of energy, activity and life; also bright and strong in colour.",
+  "col": [
+   "a vibrant city",
+   "a vibrant community",
+   "vibrant colours",
+   "a vibrant cultural scene"
+  ],
+  "ex": [
+   "The market is [[vibrant]] on Saturday mornings, full of music and voices.",
+   "Immigration has helped make London one of the most [[vibrant]] cities in the world."
+  ],
+  "piege": "Ne pas confondre avec <i>vibrating</i> (qui vibre). Toujours positif : une ville <i>vibrant</i> est animée et attirante.",
+  "fam": "vibrancy (n.) · vibrantly (adv.)",
+  "trous": [
+   {
+    "s": "The old harbour has become a ___ neighbourhood full of cafés and galleries.",
+    "a": "vibrant",
+    "fr": "Le vieux port est devenu un quartier plein de vie, rempli de cafés et de galeries."
+   },
+   {
+    "s": "The painter is famous for the ___ colours of her landscapes.",
+    "a": "vibrant",
+    "fr": "La peintre est célèbre pour les couleurs éclatantes de ses paysages."
+   }
+  ],
+  "ecris": "une phrase sur un lieu plein de vie que tu connais",
+  "formes": [
+   "vibrant",
+   "vibrancy",
+   "vibrantly"
+  ]
+ },
+ {
+  "id": "s-abrupt",
+  "w": "abrupt",
+  "pos": "adjective",
+  "ipa": "/əˈbrʌpt/",
+  "reg": "courant",
+  "fr": "brusque, soudain",
+  "def": "Sudden and unexpected, often in an unpleasant way.",
+  "col": [
+   "an abrupt end",
+   "an abrupt change",
+   "come to an abrupt halt",
+   "end abruptly"
+  ],
+  "ex": [
+   "The film ended so [[abruptly]] that we thought the DVD was broken.",
+   "The Wall Street Crash brought an [[abrupt]] end to the prosperity of the 1920s."
+  ],
+  "piege": "Peut aussi décrire une manière de parler sèche (<i>an abrupt reply</i>). Expression à retenir : <i>come to an abrupt end / halt</i>.",
+  "fam": "abruptly (adv.) · abruptness (n.)",
+  "trous": [
+   {
+    "s": "The party came to an ___ end when the police arrived.",
+    "a": "abrupt",
+    "fr": "La fête a pris fin brusquement quand la police est arrivée."
+   },
+   {
+    "s": "The train stopped ___, and several passengers fell over.",
+    "a": "abruptly",
+    "fr": "Le train s'est arrêté brusquement, et plusieurs passagers sont tombés."
+   }
+  ],
+  "ecris": "une phrase sur une fin ou un changement brusque",
+  "formes": [
+   "abrupt",
+   "abruptly",
+   "abruptness"
+  ]
+ },
+ {
+  "id": "s-seldom",
+  "w": "seldom",
+  "pos": "adverb",
+  "ipa": "/ˈseldəm/",
+  "reg": "formel",
+  "fr": "rarement",
+  "def": "Not often; rarely.",
+  "col": [
+   "seldom seen",
+   "very seldom",
+   "seldom if ever",
+   "seldom used"
+  ],
+  "ex": [
+   "My grandparents [[seldom]] watch television; they prefer the radio.",
+   "Revolutions [[seldom]] achieve exactly what their leaders promised."
+  ],
+  "piege": "Plus soutenu que <i>rarely</i>. Se place avant le verbe (<i>I seldom go</i>). En tête de phrase, inversion : <i>Seldom have I seen…</i>",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "This road is ___ used now that the motorway is open.",
+    "a": "seldom",
+    "fr": "Cette route est rarement empruntée maintenant que l'autoroute est ouverte.",
+    "alt": [
+     "rarely"
+    ]
+   },
+   {
+    "s": "Wars ___ end as quickly as governments expect.",
+    "a": "seldom",
+    "fr": "Les guerres finissent rarement aussi vite que les gouvernements le prévoient.",
+    "alt": [
+     "rarely"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur quelque chose qui arrive rarement",
+  "formes": [
+   "seldom"
+  ]
+ },
+ {
+  "id": "s-worthwhile",
+  "w": "worthwhile",
+  "pos": "adjective",
+  "ipa": "/ˌwɜːθˈwaɪl/",
+  "reg": "courant",
+  "fr": "qui en vaut la peine, utile",
+  "def": "Useful, important or enjoyable enough to justify the time, money or effort spent.",
+  "col": [
+   "a worthwhile experience",
+   "a worthwhile cause",
+   "make it worthwhile",
+   "well worthwhile"
+  ],
+  "ex": [
+   "The view from the top made the long climb completely [[worthwhile]].",
+   "Investing in early education is one of the most [[worthwhile]] things a state can do."
+  ],
+  "piege": "Un seul mot : <i>worthwhile</i>. Comparer avec <i>it's worth it</i> (ça vaut le coup) : <i>worthwhile</i> peut se placer devant un nom (<i>a worthwhile project</i>).",
+  "fam": "worth (adj./n.)",
+  "trous": [
+   {
+    "s": "Volunteering at the food bank was a really ___ experience.",
+    "a": "worthwhile",
+    "fr": "Faire du bénévolat à la banque alimentaire a été une expérience qui en valait vraiment la peine."
+   },
+   {
+    "s": "If the project saves even one life, it will have been ___.",
+    "a": "worthwhile",
+    "fr": "Si le projet sauve ne serait-ce qu'une vie, il en aura valu la peine."
+   }
+  ],
+  "ecris": "une phrase sur un effort qui en a valu la peine",
+  "formes": [
+   "worthwhile"
+  ]
+ },
+ {
+  "id": "s-rewarding",
+  "w": "rewarding",
+  "pos": "adjective",
+  "ipa": "/rɪˈwɔːdɪŋ/",
+  "reg": "courant",
+  "fr": "gratifiant, enrichissant",
+  "def": "Giving satisfaction because it is useful or important, even if not well paid.",
+  "col": [
+   "a rewarding job",
+   "a rewarding experience",
+   "deeply rewarding",
+   "financially rewarding"
+  ],
+  "ex": [
+   "Teaching my little cousin to read has been incredibly [[rewarding]].",
+   "Nursing is a demanding but deeply [[rewarding]] profession."
+  ],
+  "piege": "Désigne la satisfaction personnelle, pas forcément l'argent. Pour l'argent, précise : <i>financially rewarding</i>.",
+  "fam": "reward (n./v.)",
+  "trous": [
+   {
+    "s": "Working with refugees is hard but very ___.",
+    "a": "rewarding",
+    "fr": "Travailler avec des réfugiés est difficile mais très gratifiant."
+   },
+   {
+    "s": "The job is not well paid, but it is ___ in other ways.",
+    "a": "rewarding",
+    "fr": "Le métier n'est pas bien payé, mais il est enrichissant à d'autres égards."
+   }
+  ],
+  "ecris": "une phrase sur une activité gratifiante",
+  "formes": [
+   "rewarding"
+  ]
+ },
+ {
+  "id": "s-relentless",
+  "w": "relentless",
+  "pos": "adjective",
+  "ipa": "/rɪˈlentləs/",
+  "reg": "courant",
+  "fr": "implacable, incessant, acharné",
+  "def": "Continuing without stopping or becoming weaker.",
+  "col": [
+   "relentless pressure",
+   "relentless rain",
+   "a relentless pace",
+   "relentlessly pursue"
+  ],
+  "ex": [
+   "The [[relentless]] rain ruined our camping holiday in Wales.",
+   "Under [[relentless]] pressure from the press, the minister finally resigned."
+  ],
+  "piege": "Insiste sur l'absence de répit. Peut être positif (<i>relentless effort</i>, effort acharné) ou négatif (<i>relentless criticism</i>).",
+  "fam": "relentlessly (adv.)",
+  "trous": [
+   {
+    "s": "The heat was ___: it stayed above 35 degrees for three weeks.",
+    "a": "relentless",
+    "fr": "La chaleur était implacable : elle est restée au-dessus de 35 degrés pendant trois semaines."
+   },
+   {
+    "s": "Journalists ___ pursued the story until the truth came out.",
+    "a": "relentlessly",
+    "fr": "Les journalistes ont poursuivi l'affaire sans relâche jusqu'à ce que la vérité éclate."
+   }
+  ],
+  "ecris": "une phrase sur quelque chose qui ne s'arrête jamais",
+  "formes": [
+   "relentless",
+   "relentlessly"
+  ]
+ },
+ {
+  "id": "s-enduring",
+  "w": "enduring",
+  "pos": "adjective",
+  "ipa": "/ɪnˈdjʊərɪŋ/",
+  "reg": "courant",
+  "fr": "durable, persistant",
+  "def": "Lasting for a long time, despite difficulties or changes.",
+  "col": [
+   "an enduring legacy",
+   "enduring popularity",
+   "an enduring friendship",
+   "of enduring value"
+  ],
+  "ex": [
+   "Their [[enduring]] friendship began on the first day of nursery school.",
+   "The [[enduring]] popularity of Shakespeare shows that his themes are universal."
+  ],
+  "piege": "Adjectif positif ou neutre (<i>enduring legacy</i>). Le verbe <i>endure</i> veut dire « endurer, subir » : sens voisins mais différents.",
+  "fam": "endure (v.) · endurance (n.)",
+  "trous": [
+   {
+    "s": "The welfare state is one of the most ___ legacies of the post-war period.",
+    "a": "enduring",
+    "fr": "L'État-providence est l'un des héritages les plus durables de l'après-guerre."
+   },
+   {
+    "s": "The ___ appeal of fairy tales lies in their simple moral lessons.",
+    "a": "enduring",
+    "fr": "L'attrait durable des contes de fées tient à leurs leçons morales simples."
+   }
+  ],
+  "ecris": "une phrase sur un héritage ou une amitié qui dure",
+  "formes": [
+   "enduring"
+  ]
+ },
+ {
+  "id": "s-abundant",
+  "w": "abundant",
+  "pos": "adjective",
+  "ipa": "/əˈbʌndənt/",
+  "reg": "courant",
+  "fr": "abondant, copieux",
+  "def": "Existing in large quantities; more than enough.",
+  "col": [
+   "abundant evidence",
+   "abundant resources",
+   "abundant wildlife",
+   "in abundance"
+  ],
+  "ex": [
+   "Wild strawberries are [[abundant]] in these woods at the start of summer.",
+   "Britain's [[abundant]] coal helped it become the first industrial nation."
+  ],
+  "piege": "Contraire de <i>scarce</i>. Expression utile : <i>in abundance</i> (en abondance), placée après le nom.",
+  "fam": "abundance (n.) · abound (v.) · abundantly (adv.)",
+  "trous": [
+   {
+    "s": "The region has ___ natural resources but remains poor.",
+    "a": "abundant",
+    "fr": "La région possède d'abondantes ressources naturelles mais reste pauvre."
+   },
+   {
+    "s": "It is ___ clear that the plan has failed.",
+    "a": "abundantly",
+    "fr": "Il est parfaitement clair que le plan a échoué."
+   }
+  ],
+  "ecris": "une phrase sur une ressource abondante dans une région",
+  "formes": [
+   "abundant",
+   "abundance",
+   "abundantly",
+   "abound"
+  ]
+ },
+ {
+  "id": "s-seamless",
+  "w": "seamless",
+  "pos": "adjective",
+  "ipa": "/ˈsiːmləs/",
+  "reg": "courant",
+  "fr": "fluide, sans accroc",
+  "def": "Smooth and continuous, with no sudden changes, breaks or problems.",
+  "col": [
+   "a seamless transition",
+   "seamless integration",
+   "work seamlessly",
+   "a seamless experience"
+  ],
+  "ex": [
+   "The new app makes paying for the bus a [[seamless]] experience.",
+   "The handover of power was far from [[seamless]]: riots broke out in several cities."
+  ],
+  "piege": "Littéralement « sans couture » (<i>seam</i>). Fréquent avec <i>transition</i>, <i>process</i>, <i>experience</i>.",
+  "fam": "seamlessly (adv.)",
+  "trous": [
+   {
+    "s": "The two companies merged, and the ___ transition went unnoticed by customers.",
+    "a": "seamless",
+    "fr": "Les deux entreprises ont fusionné, et la transition sans accroc est passée inaperçue des clients."
+   },
+   {
+    "s": "The film moves ___ between the past and the present.",
+    "a": "seamlessly",
+    "fr": "Le film passe de façon fluide du passé au présent."
+   }
+  ],
+  "ecris": "une phrase sur un changement qui s'est fait sans aucun problème",
+  "formes": [
+   "seamless",
+   "seamlessly"
+  ]
+ },
+ {
+  "id": "s-hectic",
+  "w": "hectic",
+  "pos": "adjective",
+  "ipa": "/ˈhektɪk/",
+  "reg": "courant",
+  "fr": "trépidant, mouvementé, chargé",
+  "def": "Very busy and full of activity, with no time to rest.",
+  "col": [
+   "a hectic schedule",
+   "a hectic day",
+   "hectic pace",
+   "life gets hectic"
+  ],
+  "ex": [
+   "My week has been [[hectic]] with exams, training and a family wedding.",
+   "The [[hectic]] pace of modern city life leaves many people exhausted."
+  ],
+  "piege": "Se dit d'une période, d'un emploi du temps, d'un rythme, pas d'une personne (« il est débordé » : <i>he is snowed under</i>).",
+  "fam": "hectically (adv.)",
+  "trous": [
+   {
+    "s": "Doctors in the emergency room work a ___ schedule with almost no breaks.",
+    "a": "hectic",
+    "fr": "Les médecins des urgences ont un emploi du temps chargé, presque sans pause."
+   },
+   {
+    "s": "Things get really ___ in the shop just before Christmas.",
+    "a": "hectic",
+    "fr": "Ça devient vraiment la folie au magasin juste avant Noël."
+   }
+  ],
+  "ecris": "une phrase sur ta journée ou ta semaine la plus chargée",
+  "formes": [
+   "hectic"
+  ]
+ },
+ {
+  "id": "s-sweeping",
+  "w": "sweeping",
+  "pos": "adjective",
+  "ipa": "/ˈswiːpɪŋ/",
+  "reg": "courant",
+  "fr": "radical, de grande ampleur ; hâtif (généralisation)",
+  "def": "Affecting many things or people at once; (of a statement) too general.",
+  "col": [
+   "sweeping changes",
+   "sweeping reforms",
+   "a sweeping generalisation",
+   "sweeping powers"
+  ],
+  "ex": [
+   "The new manager made [[sweeping]] changes to the menu.",
+   "Saying that all young people are lazy is a [[sweeping]] generalisation."
+  ],
+  "piege": "Deux sens à retenir : <i>sweeping reforms</i> (réformes de grande ampleur) et <i>sweeping generalisation</i> (généralisation abusive), très utile en essay.",
+  "fam": "sweep (v.)",
+  "trous": [
+   {
+    "s": "After the revolution, the new government introduced ___ reforms.",
+    "a": "sweeping",
+    "fr": "Après la révolution, le nouveau gouvernement a introduit des réformes de grande ampleur."
+   },
+   {
+    "s": "Avoid ___ statements like 'everyone hates politics' in your essays.",
+    "a": "sweeping",
+    "fr": "Évite les affirmations hâtives comme « tout le monde déteste la politique » dans tes dissertations."
+   }
+  ],
+  "ecris": "une phrase sur une réforme radicale ou une généralisation abusive",
+  "formes": [
+   "sweeping"
+  ]
+ },
+ {
+  "id": "s-utterly",
+  "w": "utterly",
+  "pos": "adverb",
+  "ipa": "/ˈʌtəli/",
+  "reg": "courant",
+  "fr": "complètement, totalement",
+  "def": "Completely; used to make a strong adjective or verb even stronger.",
+  "col": [
+   "utterly ridiculous",
+   "utterly exhausted",
+   "utterly convinced",
+   "utterly fail"
+  ],
+  "ex": [
+   "After the twelve-hour journey, we were [[utterly]] exhausted.",
+   "The idea that one man alone caused the war is [[utterly]] unconvincing."
+  ],
+  "piege": "S'emploie surtout avec des mots forts ou négatifs (<i>utterly ridiculous, utterly wrong</i>), pas avec <i>good</i>.",
+  "fam": "utter (adj.)",
+  "trous": [
+   {
+    "s": "The plan was ___ ridiculous, and nobody took it seriously.",
+    "a": "utterly",
+    "fr": "Le plan était complètement ridicule, et personne ne l'a pris au sérieux.",
+    "alt": [
+     "completely",
+     "totally"
+    ]
+   },
+   {
+    "s": "The army was ___ defeated in just six weeks.",
+    "a": "utterly",
+    "fr": "L'armée a été totalement vaincue en seulement six semaines.",
+    "alt": [
+     "completely",
+     "totally"
+    ]
+   }
+  ],
+  "ecris": "une phrase avec une idée que tu trouves complètement absurde",
+  "formes": [
+   "utterly"
+  ]
+ },
+ {
+  "id": "s-markedly",
+  "w": "markedly",
+  "pos": "adverb",
+  "ipa": "/ˈmɑːkɪdli/",
+  "reg": "formel",
+  "fr": "nettement, sensiblement",
+  "def": "In a way that is very clear and easy to notice.",
+  "col": [
+   "markedly different",
+   "markedly improve",
+   "markedly higher",
+   "differ markedly"
+  ],
+  "ex": [
+   "My little sister's handwriting has improved [[markedly]] this year.",
+   "Living standards rose [[markedly]] in Western Europe after 1950."
+  ],
+  "piege": "Prononciation : trois syllabes, /ˈmɑːkɪdli/ (le <i>-ed-</i> se prononce). Adjectif : <i>a marked difference</i>.",
+  "fam": "marked (adj.)",
+  "trous": [
+   {
+    "s": "The two regions have ___ different climates.",
+    "a": "markedly",
+    "fr": "Les deux régions ont des climats nettement différents."
+   },
+   {
+    "s": "Since the new law, road deaths have fallen ___.",
+    "a": "markedly",
+    "fr": "Depuis la nouvelle loi, le nombre de morts sur la route a nettement baissé.",
+    "alt": [
+     "sharply",
+     "significantly"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une amélioration nette",
+  "formes": [
+   "markedly"
+  ]
+ },
+ {
+  "id": "s-predominantly",
+  "w": "predominantly",
+  "pos": "adverb",
+  "ipa": "/prɪˈdɒmɪnəntli/",
+  "reg": "formel",
+  "fr": "majoritairement, principalement",
+  "def": "Mostly; mainly.",
+  "col": [
+   "predominantly white",
+   "predominantly rural",
+   "predominantly male",
+   "predominantly young"
+  ],
+  "ex": [
+   "The audience at the concert was [[predominantly]] teenagers.",
+   "Before 1850, France remained a [[predominantly]] rural society."
+  ],
+  "piege": "Plus soutenu que <i>mainly</i> ou <i>mostly</i>, fréquent pour décrire une population ou une société.",
+  "fam": "predominant (adj.) · predominate (v.)",
+  "trous": [
+   {
+    "s": "The workforce in the mines was ___ male.",
+    "a": "predominantly",
+    "fr": "La main-d'œuvre des mines était majoritairement masculine.",
+    "alt": [
+     "mainly",
+     "mostly",
+     "largely"
+    ]
+   },
+   {
+    "s": "The region is ___ agricultural, with few factories.",
+    "a": "predominantly",
+    "fr": "La région est principalement agricole, avec peu d'usines.",
+    "alt": [
+     "mainly",
+     "mostly",
+     "largely"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur la composition d'une population",
+  "formes": [
+   "predominantly",
+   "predominant"
+  ]
+ },
+ {
+  "id": "s-vastly",
+  "w": "vastly",
+  "pos": "adverb",
+  "ipa": "/ˈvɑːstli/",
+  "reg": "courant",
+  "fr": "considérablement, infiniment",
+  "def": "Very much; to a very great degree.",
+  "col": [
+   "vastly different",
+   "vastly improved",
+   "vastly superior",
+   "vastly outnumber"
+  ],
+  "ex": [
+   "The film is [[vastly]] better than the book, in my opinion.",
+   "The rebels were [[vastly]] outnumbered by the government forces."
+  ],
+  "piege": "Surtout devant un comparatif ou un participe : <i>vastly different, vastly improved</i>. Prononciation : /ˈvɑːst-/.",
+  "fam": "vast (adj.)",
+  "trous": [
+   {
+    "s": "Life in the city is ___ different from life in the village where I grew up.",
+    "a": "vastly",
+    "fr": "La vie en ville est considérablement différente de celle du village où j'ai grandi.",
+    "alt": [
+     "completely",
+     "totally",
+     "very"
+    ]
+   },
+   {
+    "s": "Medical care has ___ improved over the last century.",
+    "a": "vastly",
+    "fr": "Les soins médicaux se sont considérablement améliorés au cours du siècle dernier.",
+    "alt": [
+     "greatly",
+     "considerably"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur deux choses très différentes",
+  "formes": [
+   "vastly"
+  ]
+ },
+ {
+  "id": "s-conversely",
+  "w": "conversely",
+  "pos": "adverb",
+  "ipa": "/ˈkɒnvɜːsli/",
+  "reg": "formel",
+  "fr": "inversement, à l'inverse",
+  "def": "Used to introduce an idea that is the opposite of the one just mentioned.",
+  "col": [
+   "conversely, …",
+   "and conversely",
+   "or conversely",
+   "conversely, it may"
+  ],
+  "ex": [
+   "Some people work better in the morning; [[conversely]], others are at their best at night.",
+   "Rising prices hurt savers; [[conversely]], they reduce the real value of debts."
+  ],
+  "piege": "Connecteur d'opposition symétrique (A → B, et B → A). Pour une simple opposition, <i>on the other hand</i> suffit.",
+  "fam": "converse (n./adj.)",
+  "trous": [
+   {
+    "s": "A weak currency helps exports; ___, it makes imports more expensive.",
+    "a": "conversely",
+    "fr": "Une monnaie faible aide les exportations ; inversement, elle rend les importations plus chères."
+   },
+   {
+    "s": "Cold weather increases energy demand and, ___, hot summers reduce it.",
+    "a": "conversely",
+    "fr": "Le froid augmente la demande d'énergie et, à l'inverse, les étés chauds la réduisent."
+   }
+  ],
+  "ecris": "une phrase qui présente deux situations inverses",
+  "formes": [
+   "conversely"
+  ]
+ },
+ {
+  "id": "s-allegedly",
+  "w": "allegedly",
+  "pos": "adverb",
+  "ipa": "/əˈledʒɪdli/",
+  "reg": "formel",
+  "fr": "prétendument, selon les allégations",
+  "def": "According to what people say, although it has not been proved.",
+  "col": [
+   "allegedly involved",
+   "allegedly stolen",
+   "allegedly linked",
+   "was allegedly"
+  ],
+  "ex": [
+   "The cat [[allegedly]] ate my homework, according to my little brother.",
+   "The minister had [[allegedly]] accepted money from a foreign company."
+  ],
+  "piege": "Mot de prudence journalistique : on rapporte sans affirmer. Prononciation : /əˈledʒɪdli/, quatre syllabes.",
+  "fam": "allege (v.) · allegation (n.) · alleged (adj.)",
+  "trous": [
+   {
+    "s": "The suspect ___ broke into three houses in one night.",
+    "a": "allegedly",
+    "fr": "Le suspect aurait cambriolé trois maisons en une nuit."
+   },
+   {
+    "s": "The painting was ___ stolen by soldiers during the war.",
+    "a": "allegedly",
+    "fr": "Le tableau aurait été volé par des soldats pendant la guerre.",
+    "alt": [
+     "reportedly",
+     "supposedly"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un fait rapporté mais non prouvé",
+  "formes": [
+   "allegedly",
+   "alleged",
+   "allegation",
+   "allegations"
+  ]
+ },
+ {
+  "id": "s-ostensibly",
+  "w": "ostensibly",
+  "pos": "adverb",
+  "ipa": "/ɒˈstensəbli/",
+  "reg": "formel",
+  "fr": "en apparence, officiellement",
+  "def": "Apparently or officially, although the real reason or situation may be different.",
+  "col": [
+   "ostensibly to",
+   "ostensibly because",
+   "ostensibly independent",
+   "ostensibly for"
+  ],
+  "ex": [
+   "He went to the library, [[ostensibly]] to study, but spent the afternoon chatting.",
+   "The troops were sent, [[ostensibly]] to protect civilians, but in fact to seize the oil fields."
+  ],
+  "piege": "Faux ami : ne veut pas dire « ostensiblement » (<i>conspicuously, openly</i>). <i>Ostensibly</i> = en apparence, raison officielle qui cache autre chose.",
+  "fam": "ostensible (adj.)",
+  "trous": [
+   {
+    "s": "The meeting was ___ about safety, but everyone knew it was about job cuts.",
+    "a": "ostensibly",
+    "fr": "La réunion portait officiellement sur la sécurité, mais tout le monde savait qu'il s'agissait de suppressions de postes.",
+    "alt": [
+     "supposedly",
+     "apparently"
+    ]
+   },
+   {
+    "s": "The newspaper is ___ independent, but it is owned by the ruling party.",
+    "a": "ostensibly",
+    "fr": "Le journal est indépendant en apparence, mais il appartient au parti au pouvoir.",
+    "alt": [
+     "supposedly",
+     "apparently"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une raison officielle qui en cache une autre",
+  "formes": [
+   "ostensibly",
+   "ostensible"
+  ]
+ },
+ {
+  "id": "s-dubious",
+  "w": "dubious",
+  "pos": "adjective",
+  "ipa": "/ˈdjuːbiəs/",
+  "reg": "courant",
+  "fr": "douteux, discutable",
+  "def": "Probably not honest, true or of good quality; open to doubt.",
+  "col": [
+   "a dubious claim",
+   "of dubious quality",
+   "dubious practices",
+   "morally dubious"
+  ],
+  "ex": [
+   "The pizza had a [[dubious]] smell, so we decided not to eat it.",
+   "The company was fined for its [[dubious]] accounting practices."
+  ],
+  "piege": "Sens principal : une chose douteuse. <i>Be dubious about something</i> (avoir des doutes) existe aussi, mais on dit plus souvent <i>doubtful</i>.",
+  "fam": "dubiously (adv.)",
+  "trous": [
+   {
+    "s": "The website sells medicines of ___ quality at very low prices.",
+    "a": "dubious",
+    "fr": "Le site vend des médicaments de qualité douteuse à très bas prix."
+   },
+   {
+    "s": "The advert makes ___ claims about curing every illness.",
+    "a": "dubious",
+    "fr": "La publicité fait des affirmations douteuses sur la guérison de toutes les maladies."
+   }
+  ],
+  "ecris": "une phrase sur une affirmation ou une pratique douteuse",
+  "formes": [
+   "dubious",
+   "dubiously"
+  ]
+ },
+ {
+  "id": "s-glaring",
+  "w": "glaring",
+  "pos": "adjective",
+  "ipa": "/ˈɡleərɪŋ/",
+  "reg": "courant",
+  "fr": "flagrant, criant ; aveuglant",
+  "def": "Very obvious, used about something bad such as a mistake; also very bright.",
+  "col": [
+   "a glaring error",
+   "a glaring omission",
+   "glaring inequalities",
+   "glaring sunlight"
+  ],
+  "ex": [
+   "There was a [[glaring]] spelling mistake on the restaurant's new sign.",
+   "The report ignores the [[glaring]] inequalities between rich and poor regions."
+  ],
+  "piege": "Pour un défaut ou une injustice qui crève les yeux. Le verbe <i>glare</i> signifie aussi « lancer un regard furieux ».",
+  "fam": "glare (v./n.) · glaringly (adv.)",
+  "trous": [
+   {
+    "s": "The essay was good, apart from one ___ error in the dates.",
+    "a": "glaring",
+    "fr": "La dissertation était bonne, à part une erreur flagrante dans les dates."
+   },
+   {
+    "s": "It is ___ obvious that the plan cannot work.",
+    "a": "glaringly",
+    "fr": "Il est d'une évidence criante que le plan ne peut pas marcher."
+   }
+  ],
+  "ecris": "une phrase sur une erreur ou une injustice flagrante",
+  "formes": [
+   "glaring",
+   "glaringly"
+  ]
+ },
+ {
+  "id": "s-conspicuous",
+  "w": "conspicuous",
+  "pos": "adjective",
+  "ipa": "/kənˈspɪkjuəs/",
+  "reg": "formel",
+  "fr": "visible, voyant, remarquable",
+  "def": "Very easy to see or notice, often because it is different.",
+  "col": [
+   "conspicuous consumption",
+   "conspicuous by its absence",
+   "highly conspicuous",
+   "feel conspicuous"
+  ],
+  "ex": [
+   "In his bright orange coat, he was [[conspicuous]] among the dark suits.",
+   "The government's silence on the scandal was [[conspicuous]]."
+  ],
+  "piege": "Expression utile : <i>conspicuous by one's absence</i> (remarqué par son absence). Contraire : <i>inconspicuous</i> (discret).",
+  "fam": "conspicuously (adv.) · inconspicuous (adj.)",
+  "trous": [
+   {
+    "s": "The minister was ___ by his absence at the ceremony.",
+    "a": "conspicuous",
+    "fr": "Le ministre a brillé par son absence à la cérémonie."
+   },
+   {
+    "s": "The new tower is ___ from every part of the city.",
+    "a": "conspicuous",
+    "fr": "La nouvelle tour se voit de partout dans la ville.",
+    "alt": [
+     "visible"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur quelqu'un ou quelque chose qui se remarque",
+  "formes": [
+   "conspicuous",
+   "conspicuously",
+   "inconspicuous"
+  ]
+ },
+ {
+  "id": "s-counterintuitive",
+  "w": "counterintuitive",
+  "pos": "adjective",
+  "ipa": "/ˌkaʊntərɪnˈtjuːɪtɪv/",
+  "reg": "formel",
+  "fr": "contre-intuitif, paradoxal",
+  "def": "Different from what you would naturally expect, although it is true.",
+  "col": [
+   "it seems counterintuitive",
+   "a counterintuitive result",
+   "counterintuitive as it may seem",
+   "highly counterintuitive"
+  ],
+  "ex": [
+   "It sounds [[counterintuitive]], but drinking a hot tea can cool you down.",
+   "[[Counterintuitive]] as it may seem, building more roads often increases traffic."
+  ],
+  "piege": "Très utile pour introduire un paradoxe : <i>Counterintuitive as it may seem, …</i>. S'écrit aussi <i>counter-intuitive</i>.",
+  "fam": "counterintuitively (adv.)",
+  "trous": [
+   {
+    "s": "It may seem ___, but resting more can make you a faster runner.",
+    "a": "counterintuitive",
+    "fr": "Cela peut sembler contre-intuitif, mais se reposer davantage peut rendre plus rapide à la course.",
+    "alt": [
+     "counter-intuitive"
+    ]
+   },
+   {
+    "s": "The study reached a ___ conclusion: more choice made people less happy.",
+    "a": "counterintuitive",
+    "fr": "L'étude est arrivée à une conclusion paradoxale : plus de choix rendait les gens moins heureux.",
+    "alt": [
+     "counter-intuitive"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un fait qui va contre ce qu'on attendrait",
+  "formes": [
+   "counterintuitive",
+   "counter-intuitive",
+   "counterintuitively"
+  ]
+ },
+ {
+  "id": "s-precarious",
+  "w": "precarious",
+  "pos": "adjective",
+  "ipa": "/prɪˈkeəriəs/",
+  "reg": "formel",
+  "fr": "précaire, instable",
+  "def": "Not safe or secure; likely to fall, fail or get worse at any moment.",
+  "col": [
+   "a precarious position",
+   "precarious jobs",
+   "a precarious balance",
+   "precariously balanced"
+  ],
+  "ex": [
+   "A pile of books was [[precariously]] balanced on the edge of the desk.",
+   "Millions of young people live in [[precarious]] jobs with no long-term contract."
+  ],
+  "piege": "Plus large que le français « précaire » : se dit aussi d'un objet en équilibre instable (<i>precariously balanced</i>).",
+  "fam": "precariously (adv.) · precariousness (n.)",
+  "trous": [
+   {
+    "s": "The climbers were in a ___ position, hanging above a 200-metre drop.",
+    "a": "precarious",
+    "fr": "Les grimpeurs étaient dans une position précaire, suspendus au-dessus d'un vide de 200 mètres."
+   },
+   {
+    "s": "Peace in the region remains ___ despite the ceasefire.",
+    "a": "precarious",
+    "fr": "La paix dans la région reste précaire malgré le cessez-le-feu."
+   }
+  ],
+  "ecris": "une phrase sur une situation instable",
+  "formes": [
+   "precarious",
+   "precariously",
+   "precariousness"
+  ]
+ },
+ {
+  "id": "s-flimsy",
+  "w": "flimsy",
+  "pos": "adjective",
+  "ipa": "/ˈflɪmzi/",
+  "reg": "courant",
+  "fr": "fragile, peu solide, mince (preuve)",
+  "def": "Thin and easily broken; also (of an argument or excuse) weak and unconvincing.",
+  "col": [
+   "a flimsy excuse",
+   "flimsy evidence",
+   "flimsy material",
+   "a flimsy structure"
+  ],
+  "ex": [
+   "The tent was so [[flimsy]] that the first storm tore it apart.",
+   "The accusation rested on [[flimsy]] evidence and was soon dropped."
+  ],
+  "piege": "Deux sens : matériel (tissu, construction) et figuré (excuse, preuve). Contraire : <i>sturdy</i> pour un objet, <i>solid</i> pour une preuve.",
+  "fam": "flimsiness (n.)",
+  "trous": [
+   {
+    "s": "He gave a ___ excuse about his alarm clock, but nobody believed him.",
+    "a": "flimsy",
+    "fr": "Il a donné une excuse peu convaincante à propos de son réveil, mais personne ne l'a cru."
+   },
+   {
+    "s": "These cheap plastic chairs are too ___ to sit on safely.",
+    "a": "flimsy",
+    "fr": "Ces chaises en plastique bon marché sont trop fragiles pour qu'on s'y asseye sans risque."
+   }
+  ],
+  "ecris": "une phrase sur une excuse peu convaincante",
+  "formes": [
+   "flimsy",
+   "flimsier",
+   "flimsiest",
+   "flimsiness"
+  ]
+ },
+ {
+  "id": "s-tentative",
+  "w": "tentative",
+  "pos": "adjective",
+  "ipa": "/ˈtentətɪv/",
+  "reg": "courant",
+  "fr": "provisoire, hésitant, timide",
+  "def": "Not certain or final; done without confidence.",
+  "col": [
+   "a tentative agreement",
+   "a tentative conclusion",
+   "tentative steps",
+   "a tentative smile"
+  ],
+  "ex": [
+   "We made a [[tentative]] plan to meet on Friday, but nothing is confirmed.",
+   "The two countries took [[tentative]] steps towards peace after years of conflict."
+  ],
+  "piege": "Faux ami : ce n'est pas « une tentative » (<i>an attempt</i>). <i>Tentative</i> = provisoire ou hésitant.",
+  "fam": "tentatively (adv.)",
+  "trous": [
+   {
+    "s": "The two sides reached a ___ agreement that still needs to be signed.",
+    "a": "tentative",
+    "fr": "Les deux parties sont parvenues à un accord provisoire qui doit encore être signé.",
+    "alt": [
+     "provisional"
+    ]
+   },
+   {
+    "s": "The baby took a few ___ steps before falling over.",
+    "a": "tentative",
+    "fr": "Le bébé a fait quelques pas hésitants avant de tomber.",
+    "alt": [
+     "hesitant"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un accord ou un pas encore hésitant",
+  "formes": [
+   "tentative",
+   "tentatively"
+  ]
+ },
+ {
+  "id": "s-outdated",
+  "w": "outdated",
+  "pos": "adjective",
+  "ipa": "/ˌaʊtˈdeɪtɪd/",
+  "reg": "courant",
+  "fr": "dépassé, démodé, périmé",
+  "def": "No longer useful or modern because better ideas or methods exist.",
+  "col": [
+   "outdated technology",
+   "outdated ideas",
+   "outdated equipment",
+   "hopelessly outdated"
+  ],
+  "ex": [
+   "My phone is so [[outdated]] that most apps no longer work on it.",
+   "Many laws on marriage were [[outdated]] and had to be reformed in the 1970s."
+  ],
+  "piege": "Se dit d'idées, de lois, d'équipements. Pour un objet complètement hors d'usage, on dit plutôt <i>obsolete</i>.",
+  "fam": "out of date (expr.)",
+  "trous": [
+   {
+    "s": "The hospital still uses ___ equipment from the 1990s.",
+    "a": "outdated",
+    "fr": "L'hôpital utilise encore un équipement dépassé des années 1990.",
+    "alt": [
+     "old-fashioned"
+    ]
+   },
+   {
+    "s": "The idea that women should not vote now seems absurdly ___.",
+    "a": "outdated",
+    "fr": "L'idée que les femmes ne devraient pas voter paraît aujourd'hui absurdement dépassée."
+   }
+  ],
+  "ecris": "une phrase sur une idée ou un objet dépassé",
+  "formes": [
+   "outdated"
+  ]
+ },
+ {
+  "id": "s-groundbreaking",
+  "w": "groundbreaking",
+  "pos": "adjective",
+  "ipa": "/ˈɡraʊndˌbreɪkɪŋ/",
+  "reg": "courant",
+  "fr": "novateur, révolutionnaire",
+  "def": "Completely new and showing a new way of doing or thinking about something.",
+  "col": [
+   "groundbreaking research",
+   "a groundbreaking discovery",
+   "a groundbreaking film",
+   "truly groundbreaking"
+  ],
+  "ex": [
+   "The band's first album was [[groundbreaking]] and inspired a whole generation.",
+   "Penicillin was a [[groundbreaking]] discovery that saved millions of lives."
+  ],
+  "piege": "Positif et fort : quelque chose qui ouvre une voie nouvelle. S'écrit aussi <i>ground-breaking</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The scientists published ___ research on the causes of the disease.",
+    "a": "groundbreaking",
+    "fr": "Les scientifiques ont publié des recherches novatrices sur les causes de la maladie.",
+    "alt": [
+     "ground-breaking"
+    ]
+   },
+   {
+    "s": "When it came out, the film's use of special effects was ___.",
+    "a": "groundbreaking",
+    "fr": "À sa sortie, l'utilisation des effets spéciaux dans le film était révolutionnaire.",
+    "alt": [
+     "ground-breaking"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une invention ou une œuvre novatrice",
+  "formes": [
+   "groundbreaking",
+   "ground-breaking"
+  ]
+ },
+ {
+  "id": "s-commonplace",
+  "w": "commonplace",
+  "pos": "adjective",
+  "ipa": "/ˈkɒmənpleɪs/",
+  "reg": "courant",
+  "fr": "banal, courant, ordinaire",
+  "def": "Happening or found very often, and therefore not unusual.",
+  "col": [
+   "become commonplace",
+   "now commonplace",
+   "fairly commonplace",
+   "a commonplace event"
+  ],
+  "ex": [
+   "Ten years ago, paying by phone was rare; now it is [[commonplace]].",
+   "Long-distance air travel, once a luxury, had become [[commonplace]] by the 1990s."
+  ],
+  "piege": "Tournure clé : <i>become commonplace</i> (se banaliser). Comme nom, <i>a commonplace</i> = un lieu commun, une banalité.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Electric scooters have become ___ in most big cities.",
+    "a": "commonplace",
+    "fr": "Les trottinettes électriques sont devenues banales dans la plupart des grandes villes.",
+    "alt": [
+     "common"
+    ]
+   },
+   {
+    "s": "Floods that were once rare are now ___ in the region.",
+    "a": "commonplace",
+    "fr": "Les inondations autrefois rares sont désormais courantes dans la région.",
+    "alt": [
+     "common"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur quelque chose qui est devenu banal",
+  "formes": [
+   "commonplace"
+  ]
+ },
+ {
+  "id": "s-rampant",
+  "w": "rampant",
+  "pos": "adjective",
+  "ipa": "/ˈræmpənt/",
+  "reg": "formel",
+  "fr": "endémique, galopant, effréné",
+  "def": "Spreading or growing quickly and out of control, usually something bad.",
+  "col": [
+   "rampant inflation",
+   "rampant corruption",
+   "run rampant",
+   "rampant crime"
+  ],
+  "ex": [
+   "Weeds were [[rampant]] in the garden after a month without anyone looking after it.",
+   "In 1923, [[rampant]] inflation wiped out the savings of the German middle class."
+  ],
+  "piege": "Toujours pour un fléau (inflation, corruption, maladie). Faux ami : ne veut pas dire « rampant » (<i>crawling</i>).",
+  "fam": "rampantly (adv.)",
+  "trous": [
+   {
+    "s": "___ inflation meant that prices doubled every few days.",
+    "a": "Rampant",
+    "fr": "Une inflation galopante faisait doubler les prix tous les quelques jours.",
+    "alt": [
+     "rampant"
+    ]
+   },
+   {
+    "s": "Corruption was ___ in the police force, from top to bottom.",
+    "a": "rampant",
+    "fr": "La corruption était endémique dans la police, du haut en bas de la hiérarchie."
+   }
+  ],
+  "ecris": "une phrase sur un fléau qui se répand sans contrôle",
+  "formes": [
+   "rampant"
+  ]
+ },
+ {
+  "id": "s-swift",
+  "w": "swift",
+  "pos": "adjective",
+  "ipa": "/swɪft/",
+  "reg": "courant",
+  "fr": "rapide, prompt",
+  "def": "Happening or done quickly and immediately.",
+  "col": [
+   "a swift response",
+   "swift action",
+   "a swift recovery",
+   "swiftly followed"
+  ],
+  "ex": [
+   "Thanks to the nurse's [[swift]] reaction, the boy was quickly out of danger.",
+   "The invasion provoked a [[swift]] response from the United Nations."
+  ],
+  "piege": "Plus soutenu que <i>quick</i>, fréquent avec <i>action, response, recovery</i>. Le martinet (oiseau) se dit aussi <i>swift</i>.",
+  "fam": "swiftly (adv.) · swiftness (n.)",
+  "trous": [
+   {
+    "s": "The government promised ___ action to help the flood victims.",
+    "a": "swift",
+    "fr": "Le gouvernement a promis une action rapide pour aider les victimes des inondations.",
+    "alt": [
+     "quick",
+     "prompt",
+     "rapid"
+    ]
+   },
+   {
+    "s": "The crisis was ___ followed by a recession.",
+    "a": "swiftly",
+    "fr": "La crise a été rapidement suivie d'une récession.",
+    "alt": [
+     "quickly",
+     "rapidly"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une réaction rapide",
+  "formes": [
+   "swift",
+   "swiftly",
+   "swiftness"
+  ]
+ },
+ {
+  "id": "s-sluggish",
+  "w": "sluggish",
+  "pos": "adjective",
+  "ipa": "/ˈslʌɡɪʃ/",
+  "reg": "courant",
+  "fr": "lent, poussif, atone",
+  "def": "Moving or working more slowly than usual; lacking energy.",
+  "col": [
+   "sluggish growth",
+   "a sluggish economy",
+   "feel sluggish",
+   "sluggish traffic"
+  ],
+  "ex": [
+   "My old laptop has become so [[sluggish]] that it takes ages to open a file.",
+   "Economic growth remained [[sluggish]] throughout the 1970s, and unemployment kept rising."
+  ],
+  "piege": "Pour une machine, l'économie, la circulation. Pour une personne, se sentir <i>sluggish</i> = sans énergie (après un gros repas).",
+  "fam": "sluggishly (adv.) · sluggishness (n.)",
+  "trous": [
+   {
+    "s": "The economy has been ___ for years, with almost no growth.",
+    "a": "sluggish",
+    "fr": "L'économie est atone depuis des années, presque sans croissance.",
+    "alt": [
+     "slow"
+    ]
+   },
+   {
+    "s": "Traffic was ___ on the motorway because of roadworks.",
+    "a": "sluggish",
+    "fr": "La circulation était lente sur l'autoroute à cause des travaux.",
+    "alt": [
+     "slow"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur quelque chose qui fonctionne au ralenti",
+  "formes": [
+   "sluggish",
+   "sluggishly",
+   "sluggishness"
+  ]
+ },
+ {
+  "id": "s-grim",
+  "w": "grim",
+  "pos": "adjective",
+  "ipa": "/ɡrɪm/",
+  "reg": "courant",
+  "fr": "sinistre, sombre, accablant",
+  "def": "Very serious, unpleasant and worrying.",
+  "col": [
+   "a grim reminder",
+   "grim news",
+   "a grim situation",
+   "the grim reality"
+  ],
+  "ex": [
+   "The hospital waiting room was a [[grim]] place with grey walls.",
+   "Behind the propaganda lay the [[grim]] reality of famine in the countryside."
+  ],
+  "piege": "Pour une situation, une nouvelle, une réalité. Aussi pour un visage grave et fermé (<i>a grim face</i>).",
+  "fam": "grimly (adv.)",
+  "trous": [
+   {
+    "s": "The latest figures paint a ___ picture of child poverty.",
+    "a": "grim",
+    "fr": "Les derniers chiffres dressent un tableau sombre de la pauvreté infantile."
+   },
+   {
+    "s": "The ruins are a ___ reminder of the bombing of the city.",
+    "a": "grim",
+    "fr": "Les ruines sont un rappel sinistre du bombardement de la ville."
+   }
+  ],
+  "ecris": "une phrase sur une réalité sombre",
+  "formes": [
+   "grim",
+   "grimmer",
+   "grimly"
+  ]
+ },
+ {
+  "id": "s-dismal",
+  "w": "dismal",
+  "pos": "adjective",
+  "ipa": "/ˈdɪzməl/",
+  "reg": "courant",
+  "fr": "lamentable, morne, déprimant",
+  "def": "Very bad or poor; also sad and depressing.",
+  "col": [
+   "a dismal failure",
+   "dismal weather",
+   "a dismal performance",
+   "dismal results"
+  ],
+  "ex": [
+   "We spent the weekend indoors because the weather was [[dismal]].",
+   "The attempt to reform the system ended in [[dismal]] failure."
+  ],
+  "piege": "Deux usages : très mauvais (<i>a dismal failure</i>, un échec lamentable) et morne (<i>dismal weather</i>).",
+  "fam": "dismally (adv.)",
+  "trous": [
+   {
+    "s": "The team's ___ performance led to the coach's dismissal.",
+    "a": "dismal",
+    "fr": "La prestation lamentable de l'équipe a entraîné le renvoi de l'entraîneur."
+   },
+   {
+    "s": "The plan failed ___, and nobody wanted to talk about it.",
+    "a": "dismally",
+    "fr": "Le plan a lamentablement échoué, et personne ne voulait en parler."
+   }
+  ],
+  "ecris": "une phrase sur un échec lamentable ou un temps déprimant",
+  "formes": [
+   "dismal",
+   "dismally"
+  ]
+ },
+ {
+  "id": "s-gruelling",
+  "w": "gruelling",
+  "pos": "adjective",
+  "ipa": "/ˈɡruːəlɪŋ/",
+  "reg": "courant",
+  "fr": "épuisant, éreintant",
+  "def": "Extremely tiring and difficult, demanding great effort for a long time.",
+  "col": [
+   "a gruelling schedule",
+   "a gruelling journey",
+   "gruelling training",
+   "a gruelling climb"
+  ],
+  "ex": [
+   "After a [[gruelling]] twelve-hour shift, the nurses could hardly stand.",
+   "Soldiers on the Eastern Front faced a [[gruelling]] winter with little food."
+  ],
+  "piege": "Orthographe britannique : <b>gruelling</b> (américain : <i>grueling</i>). Plus fort que <i>tiring</i> : épreuve longue et pénible.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The marathon runners trained for months for this ___ race.",
+    "a": "gruelling",
+    "fr": "Les marathoniens se sont entraînés pendant des mois pour cette course éreintante."
+   },
+   {
+    "s": "The candidates face a ___ selection process with five interviews.",
+    "a": "gruelling",
+    "fr": "Les candidats affrontent un processus de sélection épuisant, avec cinq entretiens."
+   }
+  ],
+  "ecris": "une phrase sur une épreuve physique épuisante",
+  "formes": [
+   "gruelling",
+   "grueling"
+  ]
+ },
+ {
+  "id": "s-arduous",
+  "w": "arduous",
+  "pos": "adjective",
+  "ipa": "/ˈɑːdjuəs/",
+  "reg": "formel",
+  "fr": "ardu, pénible",
+  "def": "Involving a lot of hard effort over a long period.",
+  "col": [
+   "an arduous task",
+   "an arduous journey",
+   "an arduous process",
+   "long and arduous"
+  ],
+  "ex": [
+   "Moving house with three children and a dog was an [[arduous]] task.",
+   "The road to independence was long and [[arduous]] for many former colonies."
+  ],
+  "piege": "Proche de <i>gruelling</i> mais plus soutenu, souvent avec <i>task, journey, process</i>. Le « d » se prononce /dj/ en anglais britannique.",
+  "fam": "arduously (adv.)",
+  "trous": [
+   {
+    "s": "Crossing the mountains on foot was an ___ journey of several weeks.",
+    "a": "arduous",
+    "fr": "Traverser les montagnes à pied était un voyage pénible de plusieurs semaines."
+   },
+   {
+    "s": "Rebuilding the economy after the war proved a long and ___ process.",
+    "a": "arduous",
+    "fr": "Reconstruire l'économie après la guerre s'est révélé un processus long et ardu."
+   }
+  ],
+  "ecris": "une phrase sur un long voyage ou un long processus difficile",
+  "formes": [
+   "arduous",
+   "arduously"
+  ]
+ },
+ {
+  "id": "s-effortless",
+  "w": "effortless",
+  "pos": "adjective",
+  "ipa": "/ˈefətləs/",
+  "reg": "courant",
+  "fr": "facile, aisé, sans effort apparent",
+  "def": "Done so well or so easily that it seems to need no effort.",
+  "col": [
+   "effortless elegance",
+   "make it look effortless",
+   "effortlessly switch",
+   "seemingly effortless"
+  ],
+  "ex": [
+   "She plays the piano with such [[effortless]] ease that it looks simple.",
+   "His speeches seemed [[effortless]], but each one had been rehearsed for hours."
+  ],
+  "piege": "Souvent un compliment : l'effort existe mais ne se voit pas. Expression utile : <i>make it look effortless</i>.",
+  "fam": "effortlessly (adv.)",
+  "trous": [
+   {
+    "s": "Bilingual children switch ___ from one language to another.",
+    "a": "effortlessly",
+    "fr": "Les enfants bilingues passent sans effort d'une langue à l'autre."
+   },
+   {
+    "s": "The dancer's movements looked ___, as if she weighed nothing.",
+    "a": "effortless",
+    "fr": "Les mouvements de la danseuse semblaient aisés, comme si elle ne pesait rien."
+   }
+  ],
+  "ecris": "une phrase sur quelqu'un qui fait quelque chose de difficile avec aisance",
+  "formes": [
+   "effortless",
+   "effortlessly"
+  ]
+ },
+ {
+  "id": "s-convoluted",
+  "w": "convoluted",
+  "pos": "adjective",
+  "ipa": "/ˈkɒnvəluːtɪd/",
+  "reg": "formel",
+  "fr": "alambiqué, compliqué",
+  "def": "Extremely complicated and difficult to follow.",
+  "col": [
+   "a convoluted plot",
+   "a convoluted explanation",
+   "convoluted reasoning",
+   "a convoluted process"
+  ],
+  "ex": [
+   "The film's plot was so [[convoluted]] that I gave up trying to follow it.",
+   "Citizens are often discouraged by the [[convoluted]] rules of the benefits system."
+  ],
+  "piege": "Critique : trop compliqué sans nécessité. Ne pas confondre avec <i>intricate</i> (complexe mais souvent admirable).",
+  "fam": "convolution (n.)",
+  "trous": [
+   {
+    "s": "His ___ explanation only made us more confused.",
+    "a": "convoluted",
+    "fr": "Son explication alambiquée n'a fait que nous embrouiller davantage."
+   },
+   {
+    "s": "Applying for a visa involves a ___ process with dozens of forms.",
+    "a": "convoluted",
+    "fr": "Demander un visa implique une procédure compliquée avec des dizaines de formulaires."
+   }
+  ],
+  "ecris": "une phrase sur une explication ou une procédure trop compliquée",
+  "formes": [
+   "convoluted",
+   "convolution"
+  ]
+ },
+ {
+  "id": "s-haphazard",
+  "w": "haphazard",
+  "pos": "adjective",
+  "ipa": "/hæpˈhæzəd/",
+  "reg": "courant",
+  "fr": "désordonné, fait au hasard",
+  "def": "Done without planning, order or organisation.",
+  "col": [
+   "a haphazard approach",
+   "in a haphazard way",
+   "haphazardly arranged",
+   "haphazard development"
+  ],
+  "ex": [
+   "The books were piled in a [[haphazard]] way, with no order at all.",
+   "The city grew in a [[haphazard]] fashion, without any planning by the authorities."
+  ],
+  "piege": "Insiste sur le manque d'organisation. Le <i>h</i> se prononce deux fois : /hæpˈhæzəd/.",
+  "fam": "haphazardly (adv.)",
+  "trous": [
+   {
+    "s": "Clothes were thrown ___ all over the bedroom floor.",
+    "a": "haphazardly",
+    "fr": "Des vêtements étaient jetés pêle-mêle sur tout le sol de la chambre."
+   },
+   {
+    "s": "The government's ___ response to the crisis was widely criticised.",
+    "a": "haphazard",
+    "fr": "La réponse désordonnée du gouvernement à la crise a été largement critiquée."
+   }
+  ],
+  "ecris": "une phrase sur quelque chose fait sans organisation",
+  "formes": [
+   "haphazard",
+   "haphazardly"
+  ]
+ },
+ {
+  "id": "s-erratic",
+  "w": "erratic",
+  "pos": "adjective",
+  "ipa": "/ɪˈrætɪk/",
+  "reg": "courant",
+  "fr": "irrégulier, imprévisible",
+  "def": "Changing often and without a regular pattern, so that you cannot predict it.",
+  "col": [
+   "erratic behaviour",
+   "an erratic driver",
+   "erratic results",
+   "behave erratically"
+  ],
+  "ex": [
+   "The Wi-Fi in this building is [[erratic]]: it works one minute and not the next.",
+   "Farmers struggle to plan because rainfall has become increasingly [[erratic]]."
+  ],
+  "piege": "Faux ami partiel : ne veut pas dire « errant » (<i>wandering</i>). Se dit de résultats, d'un comportement, d'un fonctionnement.",
+  "fam": "erratically (adv.)",
+  "trous": [
+   {
+    "s": "The car was moving ___ across the road, so the police stopped it.",
+    "a": "erratically",
+    "fr": "La voiture zigzaguait de façon imprévisible sur la route, alors la police l'a arrêtée."
+   },
+   {
+    "s": "His exam results have been ___: excellent one term, poor the next.",
+    "a": "erratic",
+    "fr": "Ses résultats ont été irréguliers : excellents un trimestre, faibles le suivant."
+   }
+  ],
+  "ecris": "une phrase sur quelque chose qui fonctionne de façon imprévisible",
+  "formes": [
+   "erratic",
+   "erratically"
+  ]
+ },
+ {
+  "id": "s-sporadic",
+  "w": "sporadic",
+  "pos": "adjective",
+  "ipa": "/spəˈrædɪk/",
+  "reg": "formel",
+  "fr": "sporadique, intermittent",
+  "def": "Happening only occasionally or in a few places, not regularly.",
+  "col": [
+   "sporadic fighting",
+   "sporadic attempts",
+   "sporadic outbreaks",
+   "sporadically"
+  ],
+  "ex": [
+   "We had [[sporadic]] showers all afternoon, but the match went ahead.",
+   "Despite the truce, [[sporadic]] fighting continued along the border."
+  ],
+  "piege": "Insiste sur l'irrégularité dans le temps ou l'espace. Proche de <i>occasional</i>, mais plus soutenu.",
+  "fam": "sporadically (adv.)",
+  "trous": [
+   {
+    "s": "He has only ___ contact with his father, a few times a year.",
+    "a": "sporadic",
+    "fr": "Il n'a que des contacts sporadiques avec son père, quelques fois par an."
+   },
+   {
+    "s": "The protests continued ___ for several months.",
+    "a": "sporadically",
+    "fr": "Les manifestations se sont poursuivies de façon sporadique pendant plusieurs mois."
+   }
+  ],
+  "ecris": "une phrase sur un phénomène qui se produit de temps en temps",
+  "formes": [
+   "sporadic",
+   "sporadically"
+  ]
+ },
+ {
+  "id": "s-tenuous",
+  "w": "tenuous",
+  "pos": "adjective",
+  "ipa": "/ˈtenjuəs/",
+  "reg": "formel",
+  "fr": "ténu, mince, fragile (lien)",
+  "def": "Very weak or slight, and easily broken or questioned.",
+  "col": [
+   "a tenuous link",
+   "a tenuous connection",
+   "a tenuous grip on power",
+   "at best tenuous"
+  ],
+  "ex": [
+   "The [[tenuous]] link between the film and the original book disappointed fans.",
+   "By 1944, the regime had only a [[tenuous]] grip on the occupied territories."
+  ],
+  "piege": "Surtout avec <i>link, connection, grip, hold</i>. Plus soutenu que <i>weak</i>.",
+  "fam": "tenuously (adv.)",
+  "trous": [
+   {
+    "s": "The connection between the two crimes seemed ___ at best.",
+    "a": "tenuous",
+    "fr": "Le lien entre les deux crimes semblait au mieux ténu."
+   },
+   {
+    "s": "After the elections, the government kept only a ___ hold on power.",
+    "a": "tenuous",
+    "fr": "Après les élections, le gouvernement n'a gardé qu'une mince emprise sur le pouvoir."
+   }
+  ],
+  "ecris": "une phrase sur un lien très faible entre deux choses",
+  "formes": [
+   "tenuous",
+   "tenuously"
+  ]
+ },
+ {
+  "id": "s-fraught",
+  "w": "fraught",
+  "pos": "adjective",
+  "ipa": "/frɔːt/",
+  "reg": "formel",
+  "fr": "chargé de, plein de ; tendu",
+  "def": "Full of something unpleasant such as problems or danger; also tense and worried.",
+  "col": [
+   "fraught with danger",
+   "fraught with difficulties",
+   "a fraught relationship",
+   "a fraught atmosphere"
+  ],
+  "ex": [
+   "The journey through the mountains was [[fraught]] with danger in winter.",
+   "Relations between the two neighbours have long been [[fraught]]."
+  ],
+  "piege": "Construction la plus fréquente : <i>fraught <b>with</b> + nom négatif</i> (<i>danger, risk, difficulty</i>). Seul, il veut dire « tendu ».",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The project was ___ with difficulties from the very beginning.",
+    "a": "fraught",
+    "fr": "Le projet était semé de difficultés dès le tout début.",
+    "alt": [
+     "filled",
+     "full"
+    ]
+   },
+   {
+    "s": "The negotiations took place in a ___ atmosphere.",
+    "a": "fraught",
+    "fr": "Les négociations se sont déroulées dans une atmosphère tendue.",
+    "alt": [
+     "tense"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une situation pleine de risques",
+  "formes": [
+   "fraught"
+  ]
+ },
+ {
+  "id": "s-thorny",
+  "w": "thorny",
+  "pos": "adjective",
+  "ipa": "/ˈθɔːni/",
+  "reg": "courant",
+  "fr": "épineux, délicat",
+  "def": "Difficult to deal with and likely to cause disagreement.",
+  "col": [
+   "a thorny issue",
+   "a thorny question",
+   "a thorny problem",
+   "the thorny subject of"
+  ],
+  "ex": [
+   "Deciding who would host Christmas this year became a [[thorny]] question.",
+   "Immigration remains one of the [[thorniest]] issues in European politics."
+  ],
+  "piege": "Comme en français, le sens figuré (<i>épineux</i>) domine : <i>a thorny issue</i>. Sens propre : couvert d'épines (<i>thorns</i>).",
+  "fam": "thorn (n.)",
+  "trous": [
+   {
+    "s": "The two leaders avoided the ___ issue of the border.",
+    "a": "thorny",
+    "fr": "Les deux dirigeants ont évité la question épineuse de la frontière.",
+    "alt": [
+     "sensitive",
+     "delicate"
+    ]
+   },
+   {
+    "s": "Funding the pension system is a ___ problem for every government.",
+    "a": "thorny",
+    "fr": "Le financement des retraites est un problème épineux pour tous les gouvernements.",
+    "alt": [
+     "difficult",
+     "tricky"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une question délicate",
+  "formes": [
+   "thorny",
+   "thornier",
+   "thorniest"
+  ]
+ },
+ {
+  "id": "s-insidious",
+  "w": "insidious",
+  "pos": "adjective",
+  "ipa": "/ɪnˈsɪdiəs/",
+  "reg": "formel",
+  "fr": "insidieux, sournois",
+  "def": "Spreading or developing gradually and unnoticed, but causing serious harm.",
+  "col": [
+   "an insidious threat",
+   "insidious effects",
+   "an insidious disease",
+   "particularly insidious"
+  ],
+  "ex": [
+   "Damp is [[insidious]]: you don't notice it until the walls start to crumble.",
+   "Propaganda is most [[insidious]] when people no longer realise they are hearing it."
+  ],
+  "piege": "Le danger agit lentement et sans se montrer. Voisin de <i>pervasive</i>, mais insiste sur le côté caché.",
+  "fam": "insidiously (adv.)",
+  "trous": [
+   {
+    "s": "Loneliness can be ___, slowly damaging both mental and physical health.",
+    "a": "insidious",
+    "fr": "La solitude peut être insidieuse, abîmant lentement la santé mentale et physique."
+   },
+   {
+    "s": "Racism often works in subtle and ___ ways.",
+    "a": "insidious",
+    "fr": "Le racisme agit souvent de manière subtile et sournoise."
+   }
+  ],
+  "ecris": "une phrase sur un danger qui agit lentement",
+  "formes": [
+   "insidious",
+   "insidiously"
+  ]
+ },
+ {
+  "id": "s-lucrative",
+  "w": "lucrative",
+  "pos": "adjective",
+  "ipa": "/ˈluːkrətɪv/",
+  "reg": "courant",
+  "fr": "lucratif, rentable",
+  "def": "Producing a large amount of money or profit.",
+  "col": [
+   "a lucrative business",
+   "a lucrative contract",
+   "highly lucrative",
+   "a lucrative market"
+  ],
+  "ex": [
+   "Selling homemade cakes online turned out to be surprisingly [[lucrative]].",
+   "The slave trade was a [[lucrative]] business for many European ports."
+  ],
+  "piege": "Prononciation : accent sur la première syllabe, /ˈluː-/. Toujours lié à l'argent.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The singer signed a ___ contract with a sportswear brand.",
+    "a": "lucrative",
+    "fr": "La chanteuse a signé un contrat lucratif avec une marque de vêtements de sport."
+   },
+   {
+    "s": "Tourism has become the most ___ industry on the island.",
+    "a": "lucrative",
+    "fr": "Le tourisme est devenu l'activité la plus rentable de l'île."
+   }
+  ],
+  "ecris": "une phrase sur une activité qui rapporte beaucoup d'argent",
+  "formes": [
+   "lucrative"
+  ]
+ },
+ {
+  "id": "s-hefty",
+  "w": "hefty",
+  "pos": "adjective",
+  "ipa": "/ˈhefti/",
+  "reg": "courant",
+  "fr": "lourd, gros, salé (prix)",
+  "def": "Large in amount, size or weight, especially a sum of money.",
+  "col": [
+   "a hefty fine",
+   "a hefty price",
+   "a hefty bill",
+   "a hefty increase"
+  ],
+  "ex": [
+   "I got a [[hefty]] fine for parking in front of the hospital.",
+   "Companies that break the new privacy rules will face [[hefty]] penalties."
+  ],
+  "piege": "Surtout pour l'argent (amende, facture, hausse). Plus expressif que <i>big</i> ou <i>heavy</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The gym charges a ___ fee if you cancel your membership early.",
+    "a": "hefty",
+    "fr": "La salle de sport fait payer de gros frais si on résilie son abonnement en avance."
+   },
+   {
+    "s": "Energy bills saw a ___ increase last winter.",
+    "a": "hefty",
+    "fr": "Les factures d'énergie ont fortement augmenté l'hiver dernier."
+   }
+  ],
+  "ecris": "une phrase sur une amende ou une facture très salée",
+  "formes": [
+   "hefty",
+   "heftier"
+  ]
+ },
+ {
+  "id": "s-exorbitant",
+  "w": "exorbitant",
+  "pos": "adjective",
+  "ipa": "/ɪɡˈzɔːbɪtənt/",
+  "reg": "formel",
+  "fr": "exorbitant, excessif",
+  "def": "Much too high, especially of a price or demand.",
+  "col": [
+   "exorbitant prices",
+   "exorbitant rents",
+   "an exorbitant fee",
+   "charge exorbitant interest"
+  ],
+  "ex": [
+   "Drinks at the concert were sold at [[exorbitant]] prices.",
+   "[[Exorbitant]] rents are pushing young families out of the capital."
+  ],
+  "piege": "Attention à l'orthographe : pas de <i>h</i> (<i>exorbitant</i>, comme en français). Toujours critique.",
+  "fam": "exorbitantly (adv.)",
+  "trous": [
+   {
+    "s": "The hotel charged an ___ fee for using the Wi-Fi.",
+    "a": "exorbitant",
+    "fr": "L'hôtel faisait payer des frais exorbitants pour utiliser le Wi-Fi."
+   },
+   {
+    "s": "Medicines are so ___ priced in some countries that patients go without them.",
+    "a": "exorbitantly",
+    "fr": "Les médicaments sont vendus à des prix si exorbitants dans certains pays que les patients s'en passent."
+   }
+  ],
+  "ecris": "une phrase sur un prix excessif",
+  "formes": [
+   "exorbitant",
+   "exorbitantly"
+  ]
+ },
+ {
+  "id": "s-meagre",
+  "w": "meagre",
+  "pos": "adjective",
+  "ipa": "/ˈmiːɡə/",
+  "reg": "courant",
+  "fr": "maigre, modeste, insuffisant",
+  "def": "Small in amount and not enough.",
+  "col": [
+   "a meagre income",
+   "meagre rations",
+   "meagre savings",
+   "a meagre diet"
+  ],
+  "ex": [
+   "After paying the rent, there was only a [[meagre]] amount left for food.",
+   "Prisoners survived on [[meagre]] rations of bread and watery soup."
+  ],
+  "piege": "Orthographe britannique : <b>meagre</b> (américain : <i>meager</i>). Ne décrit pas une personne mince (<i>thin, skinny</i>).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Pensioners struggled to live on a ___ income.",
+    "a": "meagre",
+    "fr": "Les retraités avaient du mal à vivre avec un maigre revenu.",
+    "alt": [
+     "meager"
+    ]
+   },
+   {
+    "s": "Despite months of effort, the results were ___.",
+    "a": "meagre",
+    "fr": "Malgré des mois d'efforts, les résultats étaient maigres.",
+    "alt": [
+     "meager"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une somme ou un résultat insuffisant",
+  "formes": [
+   "meagre",
+   "meager"
+  ]
+ },
+ {
+  "id": "s-marginally",
+  "w": "marginally",
+  "pos": "adverb",
+  "ipa": "/ˈmɑːdʒɪnəli/",
+  "reg": "formel",
+  "fr": "légèrement, de peu",
+  "def": "Only very slightly.",
+  "col": [
+   "marginally better",
+   "marginally higher",
+   "marginally more",
+   "only marginally"
+  ],
+  "ex": [
+   "The new phone is only [[marginally]] faster than the old one.",
+   "Unemployment fell [[marginally]] last month, from 7.2 to 7.1 per cent."
+  ],
+  "piege": "Pas de lien avec « marginal » au sens social. <i>Marginally</i> = très légèrement, souvent avec un comparatif.",
+  "fam": "marginal (adj.)",
+  "trous": [
+   {
+    "s": "Prices rose only ___ this year, by less than one per cent.",
+    "a": "marginally",
+    "fr": "Les prix n'ont augmenté que légèrement cette année, de moins d'un pour cent.",
+    "alt": [
+     "slightly"
+    ]
+   },
+   {
+    "s": "The second option is ___ cheaper, but much less comfortable.",
+    "a": "marginally",
+    "fr": "La deuxième option est légèrement moins chère, mais beaucoup moins confortable.",
+    "alt": [
+     "slightly"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une très légère différence",
+  "formes": [
+   "marginally"
+  ]
+ },
+ {
+  "id": "s-fleeting",
+  "w": "fleeting",
+  "pos": "adjective",
+  "ipa": "/ˈfliːtɪŋ/",
+  "reg": "courant",
+  "fr": "fugace, passager, bref",
+  "def": "Lasting only for a very short time.",
+  "col": [
+   "a fleeting glimpse",
+   "a fleeting moment",
+   "fleeting success",
+   "a fleeting smile"
+  ],
+  "ex": [
+   "I only caught a [[fleeting]] glimpse of the singer as her car drove past.",
+   "For many early film stars, fame proved [[fleeting]] once sound arrived."
+  ],
+  "piege": "Se place surtout devant le nom (<i>a fleeting glimpse</i>). Plus courant que <i>ephemeral</i>, plus littéraire.",
+  "fam": "fleetingly (adv.)",
+  "trous": [
+   {
+    "s": "We had a ___ moment of sunshine before the storm returned.",
+    "a": "fleeting",
+    "fr": "Nous avons eu un bref instant de soleil avant le retour de l'orage."
+   },
+   {
+    "s": "Social media fame is often ___: one week you are everywhere, the next forgotten.",
+    "a": "fleeting",
+    "fr": "La célébrité sur les réseaux est souvent passagère : une semaine on est partout, la suivante oublié."
+   }
+  ],
+  "ecris": "une phrase sur un moment ou un succès très bref",
+  "formes": [
+   "fleeting",
+   "fleetingly"
+  ]
+ },
+ {
+  "id": "s-incessant",
+  "w": "incessant",
+  "pos": "adjective",
+  "ipa": "/ɪnˈsesnt/",
+  "reg": "formel",
+  "fr": "incessant, continuel",
+  "def": "Never stopping, especially in an annoying way.",
+  "col": [
+   "incessant noise",
+   "incessant rain",
+   "incessant demands",
+   "incessantly"
+  ],
+  "ex": [
+   "The [[incessant]] barking of the neighbour's dog kept me awake all night.",
+   "Under [[incessant]] bombing, the population of the city lived in cellars for months."
+  ],
+  "piege": "Proche de <i>relentless</i>, mais insiste sur la gêne. Surtout pour un bruit, une pluie, des plaintes.",
+  "fam": "incessantly (adv.)",
+  "trous": [
+   {
+    "s": "The ___ noise of the traffic made it impossible to concentrate.",
+    "a": "incessant",
+    "fr": "Le bruit incessant de la circulation rendait toute concentration impossible.",
+    "alt": [
+     "constant"
+    ]
+   },
+   {
+    "s": "The children talked ___ during the whole car journey.",
+    "a": "incessantly",
+    "fr": "Les enfants ont parlé sans arrêt pendant tout le trajet en voiture.",
+    "alt": [
+     "constantly"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un bruit ou une gêne qui ne s'arrête pas",
+  "formes": [
+   "incessant",
+   "incessantly"
+  ]
+ },
+ {
+  "id": "s-eerie",
+  "w": "eerie",
+  "pos": "adjective",
+  "ipa": "/ˈɪəri/",
+  "reg": "courant",
+  "fr": "étrange et inquiétant, sinistre",
+  "def": "Strange and frightening in a mysterious way.",
+  "col": [
+   "an eerie silence",
+   "an eerie atmosphere",
+   "eerily quiet",
+   "an eerie feeling"
+  ],
+  "ex": [
+   "The empty school had an [[eerie]] silence during the holidays.",
+   "During the lockdown, city centres were [[eerily]] quiet."
+  ],
+  "piege": "Évoque un malaise mystérieux, pas la peur franche (<i>terrifying</i>). Prononciation : /ˈɪəri/, comme <i>ear</i>.",
+  "fam": "eerily (adv.) · eeriness (n.)",
+  "trous": [
+   {
+    "s": "An ___ mist covered the old cemetery at dawn.",
+    "a": "eerie",
+    "fr": "Une brume étrange et inquiétante recouvrait le vieux cimetière à l'aube."
+   },
+   {
+    "s": "The abandoned village was ___ silent, with no birds singing.",
+    "a": "eerily",
+    "fr": "Le village abandonné était d'un silence inquiétant, sans aucun chant d'oiseau."
+   }
+  ],
+  "ecris": "une phrase sur un lieu à l'atmosphère étrange",
+  "formes": [
+   "eerie",
+   "eerily",
+   "eeriness"
+  ]
+ },
+ {
+  "id": "s-uncanny",
+  "w": "uncanny",
+  "pos": "adjective",
+  "ipa": "/ʌnˈkæni/",
+  "reg": "courant",
+  "fr": "troublant, étrange, inexplicable",
+  "def": "Strange and difficult to explain, often because it is surprisingly similar or accurate.",
+  "col": [
+   "an uncanny resemblance",
+   "an uncanny ability",
+   "uncannily accurate",
+   "uncanny timing"
+  ],
+  "ex": [
+   "She has an [[uncanny]] ability to guess what I am thinking.",
+   "The novel's description of mass surveillance is [[uncannily]] close to today's reality."
+  ],
+  "piege": "Souvent avec <i>resemblance, ability, accuracy</i> : c'est l'exactitude qui trouble. Plus neutre que <i>eerie</i>.",
+  "fam": "uncannily (adv.)",
+  "trous": [
+   {
+    "s": "The boy bears an ___ resemblance to his great-grandfather.",
+    "a": "uncanny",
+    "fr": "Le garçon ressemble de façon troublante à son arrière-grand-père."
+   },
+   {
+    "s": "The fortune teller's predictions were ___ accurate.",
+    "a": "uncannily",
+    "fr": "Les prédictions de la voyante étaient d'une précision troublante."
+   }
+  ],
+  "ecris": "une phrase sur une ressemblance troublante",
+  "formes": [
+   "uncanny",
+   "uncannily"
+  ]
+ },
+ {
+  "id": "s-surreal",
+  "w": "surreal",
+  "pos": "adjective",
+  "ipa": "/səˈrɪəl/",
+  "reg": "courant",
+  "fr": "surréaliste, irréel",
+  "def": "So strange that it seems more like a dream than reality.",
+  "col": [
+   "a surreal experience",
+   "feel surreal",
+   "a surreal moment",
+   "almost surreal"
+  ],
+  "ex": [
+   "Meeting my favourite author in a supermarket queue was a [[surreal]] experience.",
+   "Watching the empty streets of Paris during the lockdown felt [[surreal]]."
+  ],
+  "piege": "Dans la langue courante, = « irréel, incroyable », sans lien avec le mouvement artistique (<i>surrealist</i>).",
+  "fam": "surreally (adv.)",
+  "trous": [
+   {
+    "s": "Seeing snow on the beach in May was completely ___.",
+    "a": "surreal",
+    "fr": "Voir de la neige sur la plage en mai était complètement irréel."
+   },
+   {
+    "s": "Winning the competition still feels ___ to her.",
+    "a": "surreal",
+    "fr": "Avoir gagné le concours lui semble encore irréel."
+   }
+  ],
+  "ecris": "une phrase sur un moment qui t'a semblé irréel",
+  "formes": [
+   "surreal"
+  ]
+ },
+ {
+  "id": "s-unsettling",
+  "w": "unsettling",
+  "pos": "adjective",
+  "ipa": "/ʌnˈsetlɪŋ/",
+  "reg": "courant",
+  "fr": "troublant, déstabilisant, perturbant",
+  "def": "Making you feel slightly worried, nervous or uncomfortable.",
+  "col": [
+   "an unsettling experience",
+   "deeply unsettling",
+   "an unsettling silence",
+   "find something unsettling"
+  ],
+  "ex": [
+   "There was something [[unsettling]] about the way the stranger kept staring.",
+   "The novel's [[unsettling]] ending leaves readers unsure who to trust."
+  ],
+  "piege": "Décrit la chose qui trouble ; la personne troublée est <i>unsettled</i>. Plus léger que <i>disturbing</i>.",
+  "fam": "unsettle (v.) · unsettled (adj.)",
+  "trous": [
+   {
+    "s": "It was ___ to come home and find the front door wide open.",
+    "a": "unsettling",
+    "fr": "C'était déstabilisant de rentrer et de trouver la porte d'entrée grande ouverte."
+   },
+   {
+    "s": "Many viewers found the documentary's images deeply ___.",
+    "a": "unsettling",
+    "fr": "Beaucoup de spectateurs ont trouvé les images du documentaire profondément troublantes."
+   }
+  ],
+  "ecris": "une phrase sur une expérience déstabilisante",
+  "formes": [
+   "unsettling",
+   "unsettle",
+   "unsettled"
+  ]
+ },
+ {
+  "id": "s-harrowing",
+  "w": "harrowing",
+  "pos": "adjective",
+  "ipa": "/ˈhærəʊɪŋ/",
+  "reg": "courant",
+  "fr": "déchirant, éprouvant, poignant",
+  "def": "Extremely upsetting because it involves great pain or suffering.",
+  "col": [
+   "a harrowing experience",
+   "a harrowing account",
+   "harrowing images",
+   "a harrowing ordeal"
+  ],
+  "ex": [
+   "The survivors gave a [[harrowing]] account of their days lost at sea.",
+   "Testimonies from the camps offer a [[harrowing]] record of the genocide."
+  ],
+  "piege": "Très fort : souffrance réelle et traumatisante. Fréquent avec <i>account, experience, story, testimony</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The refugees described their ___ journey across the desert.",
+    "a": "harrowing",
+    "fr": "Les réfugiés ont décrit leur traversée éprouvante du désert."
+   },
+   {
+    "s": "The film contains ___ scenes of war that some viewers may find hard to watch.",
+    "a": "harrowing",
+    "fr": "Le film contient des scènes de guerre déchirantes que certains spectateurs pourraient avoir du mal à regarder."
+   }
+  ],
+  "ecris": "une phrase sur un témoignage bouleversant",
+  "formes": [
+   "harrowing"
+  ]
+ },
+ {
+  "id": "s-poignant",
+  "w": "poignant",
+  "pos": "adjective",
+  "ipa": "/ˈpɔɪnjənt/",
+  "reg": "courant",
+  "fr": "poignant, émouvant",
+  "def": "Causing a strong feeling of sadness or emotion.",
+  "col": [
+   "a poignant moment",
+   "a poignant reminder",
+   "deeply poignant",
+   "particularly poignant"
+  ],
+  "ex": [
+   "Finding my grandfather's old letters was a [[poignant]] moment for the whole family.",
+   "The empty shoes on the riverbank are a [[poignant]] reminder of the victims."
+  ],
+  "piege": "Prononciation : le <i>g</i> est muet, /ˈpɔɪnjənt/. Expression très utile : <i>a poignant reminder of</i>.",
+  "fam": "poignancy (n.) · poignantly (adv.)",
+  "trous": [
+   {
+    "s": "The war memorial is a ___ reminder of the young men who never came back.",
+    "a": "poignant",
+    "fr": "Le monument aux morts est un rappel émouvant des jeunes hommes qui ne sont jamais revenus."
+   },
+   {
+    "s": "The final scene, where the father says goodbye, is especially ___.",
+    "a": "poignant",
+    "fr": "La scène finale, où le père fait ses adieux, est particulièrement poignante."
+   }
+  ],
+  "ecris": "une phrase sur un objet ou un moment très émouvant",
+  "formes": [
+   "poignant",
+   "poignancy",
+   "poignantly"
+  ]
+ },
+ {
+  "id": "s-gripping",
+  "w": "gripping",
+  "pos": "adjective",
+  "ipa": "/ˈɡrɪpɪŋ/",
+  "reg": "courant",
+  "fr": "captivant, palpitant",
+  "def": "So exciting or interesting that it holds your attention completely.",
+  "col": [
+   "a gripping story",
+   "a gripping thriller",
+   "gripping from start to finish",
+   "utterly gripping"
+  ],
+  "ex": [
+   "The series was so [[gripping]] that I watched the whole season in two days.",
+   "Her [[gripping]] account of life under occupation makes history feel immediate."
+  ],
+  "piege": "Pour un livre, un film, un match. Synonyme un peu plus soutenu : <i>riveting</i>. Pas d'idée de « grippe » !",
+  "fam": "grip (v./n.)",
+  "trous": [
+   {
+    "s": "The novel is ___ from the very first page.",
+    "a": "gripping",
+    "fr": "Le roman est captivant dès la toute première page."
+   },
+   {
+    "s": "The final was a ___ match decided in the last minute.",
+    "a": "gripping",
+    "fr": "La finale a été un match palpitant, décidé à la dernière minute."
+   }
+  ],
+  "ecris": "une phrase sur un livre, un film ou un match captivant",
+  "formes": [
+   "gripping"
+  ]
+ },
+ {
+  "id": "s-riveting",
+  "w": "riveting",
+  "pos": "adjective",
+  "ipa": "/ˈrɪvɪtɪŋ/",
+  "reg": "courant",
+  "fr": "fascinant, captivant",
+  "def": "So interesting or exciting that you cannot stop watching, reading or listening.",
+  "col": [
+   "a riveting performance",
+   "a riveting read",
+   "absolutely riveting",
+   "a riveting story"
+  ],
+  "ex": [
+   "The documentary about deep-sea creatures was absolutely [[riveting]].",
+   "Her [[riveting]] speech held the attention of the whole assembly for an hour."
+  ],
+  "piege": "Synonyme de <i>gripping</i>, un peu plus soutenu. Vient de <i>rivet</i> (rivet) : on est « rivé » à l'écran.",
+  "fam": "rivet (v.)",
+  "trous": [
+   {
+    "s": "The trial was ___: the whole country followed it on television.",
+    "a": "riveting",
+    "fr": "Le procès était captivant : tout le pays l'a suivi à la télévision.",
+    "alt": [
+     "gripping"
+    ]
+   },
+   {
+    "s": "The actor gave a ___ performance as the ageing king.",
+    "a": "riveting",
+    "fr": "L'acteur a donné une interprétation fascinante du vieux roi.",
+    "alt": [
+     "gripping"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un spectacle ou un discours fascinant",
+  "formes": [
+   "riveting"
+  ]
+ },
+ {
+  "id": "s-uplifting",
+  "w": "uplifting",
+  "pos": "adjective",
+  "ipa": "/ʌpˈlɪftɪŋ/",
+  "reg": "courant",
+  "fr": "réconfortant, édifiant, qui redonne espoir",
+  "def": "Making you feel happier, more hopeful or more positive.",
+  "col": [
+   "an uplifting story",
+   "an uplifting message",
+   "deeply uplifting",
+   "an uplifting film"
+  ],
+  "ex": [
+   "After a bad day, I like to watch something light and [[uplifting]].",
+   "The story of the rescue was an [[uplifting]] moment in a year of bad news."
+  ],
+  "piege": "Décrit ce qui remonte le moral. Ne pas confondre avec <i>upsetting</i> (bouleversant, sens inverse).",
+  "fam": "uplift (n./v.)",
+  "trous": [
+   {
+    "s": "The documentary ends on an ___ note, showing the village rebuilt.",
+    "a": "uplifting",
+    "fr": "Le documentaire se termine sur une note qui redonne espoir, en montrant le village reconstruit."
+   },
+   {
+    "s": "Her speech had an ___ message about solidarity and hope.",
+    "a": "uplifting",
+    "fr": "Son discours portait un message réconfortant de solidarité et d'espoir."
+   }
+  ],
+  "ecris": "une phrase sur une histoire qui redonne espoir",
+  "formes": [
+   "uplifting"
+  ]
+ },
+ {
+  "id": "s-eye-opening",
+  "w": "eye-opening",
+  "pos": "adjective",
+  "ipa": "/ˈaɪ ˌəʊpənɪŋ/",
+  "reg": "courant",
+  "fr": "révélateur, instructif",
+  "def": "Showing you something surprising that you did not know or understand before.",
+  "col": [
+   "an eye-opening experience",
+   "an eye-opening book",
+   "truly eye-opening",
+   "an eye-opening visit"
+  ],
+  "ex": [
+   "Working in a restaurant kitchen for a summer was an [[eye-opening]] experience.",
+   "The report is [[eye-opening]]: it shows how much food the country wastes."
+  ],
+  "piege": "On apprend quelque chose qui change notre regard. Nom associé : <i>an eye-opener</i> (une révélation).",
+  "fam": "eye-opener (n.)",
+  "trous": [
+   {
+    "s": "Visiting the slums was an ___ experience for the young volunteers.",
+    "a": "eye-opening",
+    "fr": "Visiter les bidonvilles a été une expérience révélatrice pour les jeunes bénévoles."
+   },
+   {
+    "s": "The documentary on fast fashion was truly ___.",
+    "a": "eye-opening",
+    "fr": "Le documentaire sur la mode éphémère était vraiment instructif."
+   }
+  ],
+  "ecris": "une phrase sur une expérience qui t'a ouvert les yeux",
+  "formes": [
+   "eye-opening",
+   "eye-opener"
+  ]
+ },
+ {
+  "id": "s-mind-boggling",
+  "w": "mind-boggling",
+  "pos": "adjective",
+  "ipa": "/ˈmaɪnd ˌbɒɡlɪŋ/",
+  "reg": "familier",
+  "fr": "ahurissant, sidérant",
+  "def": "So large, strange or complicated that it is very difficult to imagine or understand.",
+  "col": [
+   "a mind-boggling amount",
+   "mind-boggling complexity",
+   "a mind-boggling number",
+   "simply mind-boggling"
+  ],
+  "ex": [
+   "The number of stars in the universe is absolutely [[mind-boggling]].",
+   "Tech giants now hold a [[mind-boggling]] amount of personal data."
+  ],
+  "piege": "Registre plutôt oral et expressif : à l'écrit soutenu, préfère <i>staggering</i>. Vient de <i>boggle</i> (dépasser l'entendement) : <i>the mind boggles</i>.",
+  "fam": "boggle (v.)",
+  "trous": [
+   {
+    "s": "The sums of money spent on the World Cup stadiums are ___.",
+    "a": "mind-boggling",
+    "fr": "Les sommes dépensées pour les stades de la Coupe du monde sont ahurissantes."
+   },
+   {
+    "s": "The ___ complexity of the human brain still puzzles scientists.",
+    "a": "mind-boggling",
+    "fr": "La complexité sidérante du cerveau humain déroute encore les scientifiques."
+   }
+  ],
+  "ecris": "une phrase sur un chiffre ou une idée qui dépasse l'imagination",
+  "formes": [
+   "mind-boggling",
+   "mind-bogglingly"
+  ]
+ },
+ {
+  "id": "s-bittersweet",
+  "w": "bittersweet",
+  "pos": "adjective",
+  "ipa": "/ˌbɪtəˈswiːt/",
+  "reg": "courant",
+  "fr": "doux-amer",
+  "def": "Bringing happiness and sadness at the same time.",
+  "col": [
+   "a bittersweet moment",
+   "a bittersweet ending",
+   "bittersweet memories",
+   "a bittersweet victory"
+  ],
+  "ex": [
+   "Leaving school was a [[bittersweet]] moment: happy to finish, sad to leave friends.",
+   "For many soldiers, the end of the war was a [[bittersweet]] victory."
+  ],
+  "piege": "Équivalent exact du français « doux-amer ». Très utile pour décrire une fin de roman ou de film.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The film has a ___ ending: the couple survive but never meet again.",
+    "a": "bittersweet",
+    "fr": "Le film a une fin douce-amère : le couple survit mais ne se revoit jamais."
+   },
+   {
+    "s": "Our last day in the house where I grew up was ___.",
+    "a": "bittersweet",
+    "fr": "Notre dernier jour dans la maison où j'ai grandi a été doux-amer."
+   }
+  ],
+  "ecris": "une phrase sur un moment à la fois heureux et triste",
+  "formes": [
+   "bittersweet"
+  ]
+ },
+ {
+  "id": "s-overrated",
+  "w": "overrated",
+  "pos": "adjective",
+  "ipa": "/ˌəʊvəˈreɪtɪd/",
+  "reg": "courant",
+  "fr": "surfait, surestimé",
+  "def": "Thought to be better or more important than it really is.",
+  "col": [
+   "highly overrated",
+   "a bit overrated",
+   "vastly overrated",
+   "an overrated film"
+  ],
+  "ex": [
+   "Honestly, I think that famous burger place is completely [[overrated]].",
+   "Some economists argue that GDP is an [[overrated]] measure of a country's well-being."
+  ],
+  "piege": "Contraire : <i>underrated</i> (sous-estimé). Ne pas confondre avec <i>understated</i> (sobre).",
+  "fam": "overrate (v.) · underrated (adj.)",
+  "trous": [
+   {
+    "s": "Everyone loved the film, but I found it ___ and far too long.",
+    "a": "overrated",
+    "fr": "Tout le monde a adoré le film, mais je l'ai trouvé surfait et bien trop long."
+   },
+   {
+    "s": "The singer is hugely popular, yet many critics consider her ___.",
+    "a": "overrated",
+    "fr": "La chanteuse est très populaire, pourtant beaucoup de critiques la jugent surestimée."
+   }
+  ],
+  "ecris": "une phrase sur quelque chose que tu trouves surfait",
+  "formes": [
+   "overrated",
+   "overrate",
+   "underrated"
+  ]
+ },
+ {
+  "id": "s-mediocre",
+  "w": "mediocre",
+  "pos": "adjective",
+  "ipa": "/ˌmiːdiˈəʊkə/",
+  "reg": "courant",
+  "fr": "médiocre, quelconque",
+  "def": "Of only average quality, and not very good.",
+  "col": [
+   "a mediocre performance",
+   "mediocre results",
+   "at best mediocre",
+   "a mediocre film"
+  ],
+  "ex": [
+   "The restaurant was expensive, but the food was [[mediocre]].",
+   "Despite huge investment, the team's results remained [[mediocre]]."
+  ],
+  "piege": "Prononciation : /ˌmiːdiˈəʊkə/, accent sur <i>-o-</i>. Plus soutenu et plus sévère que <i>average</i>.",
+  "fam": "mediocrity (n.)",
+  "trous": [
+   {
+    "s": "After a ___ first half, the team played brilliantly in the second.",
+    "a": "mediocre",
+    "fr": "Après une première mi-temps médiocre, l'équipe a joué brillamment en seconde."
+   },
+   {
+    "s": "The sequel was ___ compared with the original film.",
+    "a": "mediocre",
+    "fr": "La suite était quelconque comparée au film original."
+   }
+  ],
+  "ecris": "une phrase sur un film, un repas ou un résultat médiocre",
+  "formes": [
+   "mediocre",
+   "mediocrity"
+  ]
+ },
+ {
+  "id": "s-flawless",
+  "w": "flawless",
+  "pos": "adjective",
+  "ipa": "/ˈflɔːləs/",
+  "reg": "courant",
+  "fr": "parfait, impeccable, sans défaut",
+  "def": "Perfect, with no mistakes or faults.",
+  "col": [
+   "a flawless performance",
+   "flawless English",
+   "flawless skin",
+   "work flawlessly"
+  ],
+  "ex": [
+   "She gave a [[flawless]] performance and won the competition.",
+   "No plan is [[flawless]], and the invasion soon met unexpected resistance."
+  ],
+  "piege": "Contraire de <i>flawed</i>. Pour une langue parlée parfaitement : <i>flawless English</i>.",
+  "fam": "flawlessly (adv.) · flaw (n.)",
+  "trous": [
+   {
+    "s": "He speaks ___ English after ten years in London.",
+    "a": "flawless",
+    "fr": "Il parle un anglais parfait après dix ans à Londres."
+   },
+   {
+    "s": "The new system worked ___ from the very first day.",
+    "a": "flawlessly",
+    "fr": "Le nouveau système a fonctionné parfaitement dès le premier jour."
+   }
+  ],
+  "ecris": "une phrase sur une prestation sans défaut",
+  "formes": [
+   "flawless",
+   "flawlessly"
+  ]
+ },
+ {
+  "id": "s-bland",
+  "w": "bland",
+  "pos": "adjective",
+  "ipa": "/blænd/",
+  "reg": "courant",
+  "fr": "fade, insipide, sans saveur",
+  "def": "Without a strong taste or character; boring.",
+  "col": [
+   "bland food",
+   "a bland taste",
+   "a bland statement",
+   "rather bland"
+  ],
+  "ex": [
+   "The soup was so [[bland]] that I added salt, pepper and chilli.",
+   "The minister gave a [[bland]] statement that avoided every difficult question."
+  ],
+  "piege": "Pour la nourriture, mais aussi un discours, une architecture, une personnalité publique sans relief.",
+  "fam": "blandly (adv.) · blandness (n.)",
+  "trous": [
+   {
+    "s": "Hospital food is often ___, with very little flavour.",
+    "a": "bland",
+    "fr": "La nourriture d'hôpital est souvent fade, avec très peu de goût."
+   },
+   {
+    "s": "Critics found the new shopping centre ___ and lacking in character.",
+    "a": "bland",
+    "fr": "Les critiques ont trouvé le nouveau centre commercial insipide et sans caractère."
+   }
+  ],
+  "ecris": "une phrase sur un plat ou un discours sans saveur",
+  "formes": [
+   "bland",
+   "blander",
+   "blandly",
+   "blandness"
+  ]
+ },
+ {
+  "id": "s-understated",
+  "w": "understated",
+  "pos": "adjective",
+  "ipa": "/ˌʌndəˈsteɪtɪd/",
+  "reg": "courant",
+  "fr": "sobre, discret, tout en retenue",
+  "def": "Simple and not trying to attract attention, often in an elegant way.",
+  "col": [
+   "understated elegance",
+   "an understated style",
+   "an understated performance",
+   "quietly understated"
+  ],
+  "ex": [
+   "She dresses in an [[understated]] way: plain colours, no logos.",
+   "The actor's [[understated]] performance makes the tragedy even more powerful."
+  ],
+  "piege": "Positif : élégance discrète. Ne pas confondre avec <i>underrated</i> (sous-estimé).",
+  "fam": "understatement (n.) · understate (v.)",
+  "trous": [
+   {
+    "s": "The hotel's ___ design uses natural wood and white walls.",
+    "a": "understated",
+    "fr": "Le design sobre de l'hôtel utilise du bois naturel et des murs blancs."
+   },
+   {
+    "s": "Her ___ acting style suits the quiet drama perfectly.",
+    "a": "understated",
+    "fr": "Son jeu tout en retenue convient parfaitement à ce drame intimiste."
+   }
+  ],
+  "ecris": "une phrase sur un style sobre et élégant",
+  "formes": [
+   "understated",
+   "understatement"
+  ]
+ },
+ {
+  "id": "s-renowned",
+  "w": "renowned",
+  "pos": "adjective",
+  "ipa": "/rɪˈnaʊnd/",
+  "reg": "formel",
+  "fr": "renommé, réputé",
+  "def": "Famous and admired for a special skill or quality.",
+  "col": [
+   "world-renowned",
+   "renowned for",
+   "a renowned author",
+   "internationally renowned"
+  ],
+  "ex": [
+   "This little town is [[renowned]] for its cheese and its Sunday market.",
+   "Venice was once [[renowned]] as the richest trading city in Europe."
+  ],
+  "piege": "Construction : <i>renowned <b>for</b> something</i>, <i>renowned <b>as</b> a…</i>. Prononciation : /-ˈnaʊnd/, comme <i>sound</i>.",
+  "fam": "renown (n.)",
+  "trous": [
+   {
+    "s": "The region is ___ for its wines and its beautiful castles.",
+    "a": "renowned",
+    "fr": "La région est réputée pour ses vins et ses beaux châteaux.",
+    "alt": [
+     "famous",
+     "known"
+    ]
+   },
+   {
+    "s": "The museum houses works by world-___ artists.",
+    "a": "renowned",
+    "fr": "Le musée abrite des œuvres d'artistes de renommée mondiale."
+   }
+  ],
+  "ecris": "une phrase sur un lieu réputé pour quelque chose",
+  "formes": [
+   "renowned",
+   "renown"
+  ]
+ },
+ {
+  "id": "s-exquisite",
+  "w": "exquisite",
+  "pos": "adjective",
+  "ipa": "/ɪkˈskwɪzɪt/",
+  "reg": "courant",
+  "fr": "exquis, raffiné",
+  "def": "Extremely beautiful, delicate and skilfully made.",
+  "col": [
+   "exquisite detail",
+   "exquisite taste",
+   "exquisitely made",
+   "an exquisite piece"
+  ],
+  "ex": [
+   "The cake was decorated with [[exquisite]] sugar flowers.",
+   "The stained-glass windows of the cathedral show [[exquisite]] medieval craftsmanship."
+  ],
+  "piege": "Plus fort que le français « exquis » pour la nourriture : surtout la beauté délicate d'un objet, d'un détail. Accent : /ɪkˈskwɪz-/ (aussi /ˈekskwɪz-/).",
+  "fam": "exquisitely (adv.)",
+  "trous": [
+   {
+    "s": "The old manuscript is illustrated in ___ detail.",
+    "a": "exquisite",
+    "fr": "Le vieux manuscrit est illustré avec un détail exquis."
+   },
+   {
+    "s": "The silk dress was ___ embroidered by hand.",
+    "a": "exquisitely",
+    "fr": "La robe en soie était brodée à la main avec un grand raffinement."
+   }
+  ],
+  "ecris": "une phrase sur un objet d'une grande beauté",
+  "formes": [
+   "exquisite",
+   "exquisitely"
+  ]
+ },
+ {
+  "id": "s-bustling",
+  "w": "bustling",
+  "pos": "adjective",
+  "ipa": "/ˈbʌslɪŋ/",
+  "reg": "courant",
+  "fr": "animé, grouillant d'activité",
+  "def": "Full of people who are busy and active.",
+  "col": [
+   "a bustling city",
+   "a bustling market",
+   "bustling streets",
+   "bustling with activity"
+  ],
+  "ex": [
+   "We had lunch in a [[bustling]] little café near the station.",
+   "In the 19th century, Liverpool became a [[bustling]] port linked to the whole world."
+  ],
+  "piege": "Se construit aussi avec <i>with</i> : <i>bustling with tourists</i>. Plus visuel que <i>busy</i> : beaucoup de gens qui s'activent.",
+  "fam": "bustle (n./v.)",
+  "trous": [
+   {
+    "s": "The old town is ___ with tourists every summer.",
+    "a": "bustling",
+    "fr": "La vieille ville grouille de touristes chaque été."
+   },
+   {
+    "s": "We wandered through the ___ streets of the market looking for spices.",
+    "a": "bustling",
+    "fr": "Nous avons flâné dans les rues animées du marché à la recherche d'épices."
+   }
+  ],
+  "ecris": "une phrase sur un lieu très animé",
+  "formes": [
+   "bustling",
+   "bustle"
+  ]
+ },
+ {
+  "id": "s-cramped",
+  "w": "cramped",
+  "pos": "adjective",
+  "ipa": "/kræmpt/",
+  "reg": "courant",
+  "fr": "exigu, à l'étroit",
+  "def": "Too small for the people or things in it, so there is not enough space.",
+  "col": [
+   "cramped conditions",
+   "a cramped flat",
+   "cramped living quarters",
+   "feel cramped"
+  ],
+  "ex": [
+   "Five of us shared a [[cramped]] flat with only one bathroom.",
+   "Workers in the factory towns lived in [[cramped]] and unhealthy conditions."
+  ],
+  "piege": "Se dit d'un lieu trop petit. Ne pas confondre avec <i>a cramp</i> (une crampe).",
+  "fam": "cramp (v.)",
+  "trous": [
+   {
+    "s": "The passengers spent ten hours in ___ seats with no legroom.",
+    "a": "cramped",
+    "fr": "Les passagers ont passé dix heures dans des sièges exigus, sans place pour les jambes."
+   },
+   {
+    "s": "The office is too ___ for twenty employees.",
+    "a": "cramped",
+    "fr": "Le bureau est trop exigu pour vingt employés."
+   }
+  ],
+  "ecris": "une phrase sur un logement ou un lieu trop petit",
+  "formes": [
+   "cramped"
+  ]
+ },
+ {
+  "id": "s-secluded",
+  "w": "secluded",
+  "pos": "adjective",
+  "ipa": "/sɪˈkluːdɪd/",
+  "reg": "courant",
+  "fr": "retiré, isolé, à l'écart",
+  "def": "Quiet, private and far away from other people.",
+  "col": [
+   "a secluded beach",
+   "a secluded spot",
+   "a secluded village",
+   "lead a secluded life"
+  ],
+  "ex": [
+   "We found a [[secluded]] beach that could only be reached on foot.",
+   "Many writers retreated to [[secluded]] country houses to escape the city."
+  ],
+  "piege": "Positif en général (calme, intimité). Pour un isolement subi et triste, on dit plutôt <i>isolated</i> ou <i>remote</i>.",
+  "fam": "seclusion (n.)",
+  "trous": [
+   {
+    "s": "The cottage is in a ___ valley, miles from the nearest road.",
+    "a": "secluded",
+    "fr": "Le cottage se trouve dans une vallée retirée, à des kilomètres de la route la plus proche."
+   },
+   {
+    "s": "The couple chose a ___ spot in the garden for their picnic.",
+    "a": "secluded",
+    "fr": "Le couple a choisi un coin à l'écart dans le jardin pour son pique-nique."
+   }
+  ],
+  "ecris": "une phrase sur un endroit calme et retiré",
+  "formes": [
+   "secluded",
+   "seclusion"
+  ]
+ },
+ {
+  "id": "s-picturesque",
+  "w": "picturesque",
+  "pos": "adjective",
+  "ipa": "/ˌpɪktʃəˈresk/",
+  "reg": "courant",
+  "fr": "pittoresque",
+  "def": "Pretty and charming, especially in an old-fashioned way, like a painting.",
+  "col": [
+   "a picturesque village",
+   "picturesque scenery",
+   "a picturesque setting",
+   "highly picturesque"
+  ],
+  "ex": [
+   "We stayed in a [[picturesque]] fishing village with colourful houses.",
+   "Behind the [[picturesque]] postcards, many coastal towns struggle with unemployment."
+  ],
+  "piege": "Accent sur la dernière syllabe : /-ˈresk/. En anglais, uniquement visuel (joli comme un tableau) ; « un personnage pittoresque » se dit <i>a colourful character</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The castle stands in a ___ setting above the lake.",
+    "a": "picturesque",
+    "fr": "Le château se dresse dans un cadre pittoresque au-dessus du lac."
+   },
+   {
+    "s": "Tourists flock to the ___ streets of the old town.",
+    "a": "picturesque",
+    "fr": "Les touristes affluent dans les rues pittoresques de la vieille ville."
+   }
+  ],
+  "ecris": "une phrase sur un village ou un paysage pittoresque",
+  "formes": [
+   "picturesque"
+  ]
+ },
+ {
+  "id": "s-breathtaking",
+  "w": "breathtaking",
+  "pos": "adjective",
+  "ipa": "/ˈbreθteɪkɪŋ/",
+  "reg": "courant",
+  "fr": "à couper le souffle, époustouflant",
+  "def": "Extremely beautiful, impressive or surprising.",
+  "col": [
+   "breathtaking views",
+   "breathtaking scenery",
+   "breathtakingly beautiful",
+   "breathtaking speed"
+  ],
+  "ex": [
+   "The view from the top of the cliff was absolutely [[breathtaking]].",
+   "The speed of technological change since 2000 has been [[breathtaking]]."
+  ],
+  "piege": "Aussi pour une vitesse ou une audace : <i>breathtaking arrogance</i> (une arrogance stupéfiante). Prononciation : /breθ/.",
+  "fam": "breathtakingly (adv.)",
+  "trous": [
+   {
+    "s": "The mountains offer ___ views over three countries.",
+    "a": "breathtaking",
+    "fr": "Les montagnes offrent des vues à couper le souffle sur trois pays."
+   },
+   {
+    "s": "The cathedral is ___ beautiful at sunset.",
+    "a": "breathtakingly",
+    "fr": "La cathédrale est d'une beauté époustouflante au coucher du soleil."
+   }
+  ],
+  "ecris": "une phrase sur un paysage qui t'a coupé le souffle",
+  "formes": [
+   "breathtaking",
+   "breathtakingly"
+  ]
+ },
+ {
+  "id": "s-idyllic",
+  "w": "idyllic",
+  "pos": "adjective",
+  "ipa": "/ɪˈdɪlɪk/",
+  "reg": "courant",
+  "fr": "idyllique",
+  "def": "Extremely pleasant, peaceful and beautiful, with no problems.",
+  "col": [
+   "an idyllic setting",
+   "an idyllic childhood",
+   "an idyllic spot",
+   "far from idyllic"
+  ],
+  "ex": [
+   "They spent an [[idyllic]] week on a small Greek island.",
+   "Life in the countryside was far from [[idyllic]] for most nineteenth-century farm workers."
+  ],
+  "piege": "Prononciation britannique : /ɪˈdɪlɪk/. Tournure critique utile : <i>far from idyllic</i>.",
+  "fam": "idyll (n.)",
+  "trous": [
+   {
+    "s": "She had an ___ childhood on a farm surrounded by animals.",
+    "a": "idyllic",
+    "fr": "Elle a eu une enfance idyllique dans une ferme entourée d'animaux."
+   },
+   {
+    "s": "The brochure shows an ___ beach, but the reality is crowded and noisy.",
+    "a": "idyllic",
+    "fr": "La brochure montre une plage idyllique, mais la réalité est bondée et bruyante."
+   }
+  ],
+  "ecris": "une phrase sur un lieu ou un moment idyllique",
+  "formes": [
+   "idyllic",
+   "idyll"
+  ]
+ },
+ {
+  "id": "s-desolate",
+  "w": "desolate",
+  "pos": "adjective",
+  "ipa": "/ˈdesələt/",
+  "reg": "courant",
+  "fr": "désolé, désert, lugubre",
+  "def": "Empty, with no people and nothing pleasant, and making you feel sad or lonely.",
+  "col": [
+   "a desolate landscape",
+   "a desolate place",
+   "desolate streets",
+   "bleak and desolate"
+  ],
+  "ex": [
+   "After midnight, the car park was dark and [[desolate]].",
+   "After the battle, the countryside was a [[desolate]] landscape of mud and ruins."
+  ],
+  "piege": "Faux ami : ne veut pas dire « je suis désolé » (<i>I'm sorry</i>). <i>Desolate</i> décrit un lieu vide et triste.",
+  "fam": "desolation (n.)",
+  "trous": [
+   {
+    "s": "The miners left, and the town became ___ and silent.",
+    "a": "desolate",
+    "fr": "Les mineurs sont partis, et la ville est devenue déserte et silencieuse."
+   },
+   {
+    "s": "They crossed a ___ plain where nothing grew.",
+    "a": "desolate",
+    "fr": "Ils ont traversé une plaine désolée où rien ne poussait."
+   }
+  ],
+  "ecris": "une phrase sur un lieu vide et triste",
+  "formes": [
+   "desolate",
+   "desolation"
+  ]
+ },
+ {
+  "id": "s-dilapidated",
+  "w": "dilapidated",
+  "pos": "adjective",
+  "ipa": "/dɪˈlæpɪdeɪtɪd/",
+  "reg": "formel",
+  "fr": "délabré, vétuste",
+  "def": "Old and in very bad condition because it has not been looked after.",
+  "col": [
+   "a dilapidated building",
+   "a dilapidated house",
+   "dilapidated schools",
+   "fall into dilapidation"
+  ],
+  "ex": [
+   "They bought a [[dilapidated]] farmhouse and spent years restoring it.",
+   "Many pupils still study in [[dilapidated]] schools with leaking roofs."
+  ],
+  "piege": "Se dit d'un bâtiment ou d'un véhicule, pas d'une personne. Équivalent plus courant : <i>run-down</i>.",
+  "fam": "dilapidation (n.)",
+  "trous": [
+   {
+    "s": "The old cinema is so ___ that it may have to be demolished.",
+    "a": "dilapidated",
+    "fr": "Le vieux cinéma est si délabré qu'il faudra peut-être le démolir."
+   },
+   {
+    "s": "The hospital was housed in a ___ building with broken windows.",
+    "a": "dilapidated",
+    "fr": "L'hôpital se trouvait dans un bâtiment vétuste aux fenêtres cassées."
+   }
+  ],
+  "ecris": "une phrase sur un bâtiment délabré",
+  "formes": [
+   "dilapidated",
+   "dilapidation"
+  ]
+ },
+ {
+  "id": "s-pristine",
+  "w": "pristine",
+  "pos": "adjective",
+  "ipa": "/ˈprɪstiːn/",
+  "reg": "courant",
+  "fr": "immaculé, intact, à l'état neuf",
+  "def": "In perfect condition, completely clean, or untouched by people.",
+  "col": [
+   "in pristine condition",
+   "pristine beaches",
+   "pristine wilderness",
+   "pristine white"
+  ],
+  "ex": [
+   "He sold his old bike, which was still in [[pristine]] condition.",
+   "Tourism threatens some of the last [[pristine]] forests on the planet."
+  ],
+  "piege": "Deux usages : un objet comme neuf (<i>in pristine condition</i>) et une nature intacte. Prononciation : /ˈprɪstiːn/.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The car is twenty years old but still in ___ condition.",
+    "a": "pristine",
+    "fr": "La voiture a vingt ans mais elle est encore à l'état neuf."
+   },
+   {
+    "s": "Oil drilling could damage the ___ waters of the Arctic.",
+    "a": "pristine",
+    "fr": "Les forages pétroliers pourraient abîmer les eaux intactes de l'Arctique."
+   }
+  ],
+  "ecris": "une phrase sur un objet ou un lieu resté intact",
+  "formes": [
+   "pristine"
+  ]
+ },
+ {
+  "id": "s-cluttered",
+  "w": "cluttered",
+  "pos": "adjective",
+  "ipa": "/ˈklʌtəd/",
+  "reg": "courant",
+  "fr": "encombré, en désordre",
+  "def": "Filled with too many things, in an untidy way.",
+  "col": [
+   "a cluttered room",
+   "a cluttered desk",
+   "cluttered with",
+   "a cluttered design"
+  ],
+  "ex": [
+   "My desk is so [[cluttered]] that I can never find a pen.",
+   "Modern websites are often [[cluttered]] with adverts and pop-ups."
+  ],
+  "piege": "Construction avec <i>with</i> : <i>cluttered with papers</i>. Nom : <i>clutter</i> (le fouillis), indénombrable.",
+  "fam": "clutter (n./v.) · declutter (v.)",
+  "trous": [
+   {
+    "s": "The garage was ___ with old furniture and broken toys.",
+    "a": "cluttered",
+    "fr": "Le garage était encombré de vieux meubles et de jouets cassés."
+   },
+   {
+    "s": "A ___ page with too many images is hard to read.",
+    "a": "cluttered",
+    "fr": "Une page surchargée, avec trop d'images, est difficile à lire."
+   }
+  ],
+  "ecris": "une phrase sur une pièce ou un bureau encombré",
+  "formes": [
+   "cluttered",
+   "clutter",
+   "declutter"
+  ]
+ },
+ {
+  "id": "s-immaculate",
+  "w": "immaculate",
+  "pos": "adjective",
+  "ipa": "/ɪˈmækjələt/",
+  "reg": "courant",
+  "fr": "impeccable, immaculé",
+  "def": "Perfectly clean and tidy, or without any mistake.",
+  "col": [
+   "an immaculate kitchen",
+   "in immaculate condition",
+   "immaculately dressed",
+   "an immaculate performance"
+  ],
+  "ex": [
+   "Her flat is always [[immaculate]], even when she is not expecting guests.",
+   "The ambassador arrived [[immaculately]] dressed, as protocol required."
+  ],
+  "piege": "Pour la propreté (<i>immaculate kitchen</i>), une tenue (<i>immaculately dressed</i>) ou une prestation sans faute.",
+  "fam": "immaculately (adv.)",
+  "trous": [
+   {
+    "s": "The hotel room was ___: not a speck of dust anywhere.",
+    "a": "immaculate",
+    "fr": "La chambre d'hôtel était impeccable : pas un grain de poussière nulle part."
+   },
+   {
+    "s": "The waiters were ___ dressed in white shirts and black ties.",
+    "a": "immaculately",
+    "fr": "Les serveurs étaient impeccablement vêtus de chemises blanches et de cravates noires."
+   }
+  ],
+  "ecris": "une phrase sur un lieu ou une tenue impeccable",
+  "formes": [
+   "immaculate",
+   "immaculately"
+  ]
+ },
+ {
+  "id": "s-lavish",
+  "w": "lavish",
+  "pos": "adjective",
+  "ipa": "/ˈlævɪʃ/",
+  "reg": "courant",
+  "fr": "somptueux, fastueux, généreux",
+  "def": "Very rich, expensive and generous, often more than necessary.",
+  "col": [
+   "a lavish party",
+   "a lavish lifestyle",
+   "lavish spending",
+   "lavishly decorated"
+  ],
+  "ex": [
+   "They threw a [[lavish]] party with a live band and fireworks.",
+   "The king's [[lavish]] lifestyle angered a population that could not afford bread."
+  ],
+  "piege": "Peut être admiratif ou critique (excès). Existe aussi comme verbe : <i>lavish praise on someone</i> (couvrir d'éloges).",
+  "fam": "lavishly (adv.)",
+  "trous": [
+   {
+    "s": "The palace was ___ decorated with gold and marble.",
+    "a": "lavishly",
+    "fr": "Le palais était somptueusement décoré d'or et de marbre."
+   },
+   {
+    "s": "The minister was criticised for his ___ spending on official trips.",
+    "a": "lavish",
+    "fr": "Le ministre a été critiqué pour ses dépenses fastueuses lors de ses voyages officiels."
+   }
+  ],
+  "ecris": "une phrase sur une fête ou un mode de vie fastueux",
+  "formes": [
+   "lavish",
+   "lavishly"
+  ]
+ },
+ {
+  "id": "s-shabby",
+  "w": "shabby",
+  "pos": "adjective",
+  "ipa": "/ˈʃæbi/",
+  "reg": "courant",
+  "fr": "miteux, usé, minable",
+  "def": "Old and in poor condition because of long use; also unfair or mean.",
+  "col": [
+   "a shabby coat",
+   "a shabby hotel",
+   "shabby treatment",
+   "look shabby"
+  ],
+  "ex": [
+   "He wore a [[shabby]] old jacket with holes in the elbows.",
+   "Veterans complained of [[shabby]] treatment after years of service."
+  ],
+  "piege": "Sens concret (vêtement, lieu usé) et figuré (traitement injuste, mesquin : <i>shabby treatment</i>).",
+  "fam": "shabbily (adv.) · shabbiness (n.)",
+  "trous": [
+   {
+    "s": "The hotel looked ___, with stained carpets and peeling wallpaper.",
+    "a": "shabby",
+    "fr": "L'hôtel avait l'air miteux, avec des moquettes tachées et du papier peint qui se décollait."
+   },
+   {
+    "s": "The workers felt they had been ___ treated by the company.",
+    "a": "shabbily",
+    "fr": "Les ouvriers estimaient avoir été traités de façon minable par l'entreprise."
+   }
+  ],
+  "ecris": "une phrase sur un lieu ou un objet usé",
+  "formes": [
+   "shabby",
+   "shabbier",
+   "shabbily",
+   "shabbiness"
+  ]
+ },
+ {
+  "id": "s-quaint",
+  "w": "quaint",
+  "pos": "adjective",
+  "ipa": "/kweɪnt/",
+  "reg": "courant",
+  "fr": "pittoresque, au charme désuet",
+  "def": "Attractive in an unusual or old-fashioned way.",
+  "col": [
+   "a quaint village",
+   "a quaint old shop",
+   "quaint customs",
+   "rather quaint"
+  ],
+  "ex": [
+   "We had tea in a [[quaint]] little shop with lace curtains.",
+   "What once seemed modern now looks [[quaint]], like a fax machine."
+  ],
+  "piege": "Charme ancien ; peut devenir légèrement condescendant (« vieillot ») : <i>a quaint idea</i>.",
+  "fam": "quaintly (adv.)",
+  "trous": [
+   {
+    "s": "The village is full of ___ cottages with thatched roofs.",
+    "a": "quaint",
+    "fr": "Le village est plein de chaumières pittoresques aux toits de chaume."
+   },
+   {
+    "s": "Writing letters by hand now seems a ___ habit to many teenagers.",
+    "a": "quaint",
+    "fr": "Écrire des lettres à la main semble aujourd'hui une habitude désuète à beaucoup d'adolescents."
+   }
+  ],
+  "ecris": "une phrase sur un lieu ou une coutume au charme ancien",
+  "formes": [
+   "quaint",
+   "quaintly"
+  ]
+ },
+ {
+  "id": "s-sprawling",
+  "w": "sprawling",
+  "pos": "adjective",
+  "ipa": "/ˈsprɔːlɪŋ/",
+  "reg": "courant",
+  "fr": "tentaculaire, étendu",
+  "def": "Spreading out over a large area in an untidy or uncontrolled way.",
+  "col": [
+   "a sprawling city",
+   "sprawling suburbs",
+   "a sprawling estate",
+   "urban sprawl"
+  ],
+  "ex": [
+   "Their school is a [[sprawling]] campus with buildings everywhere.",
+   "Lagos has become a [[sprawling]] megacity of more than fifteen million people."
+  ],
+  "piege": "Souvent pour une ville qui s'étend sans plan. Nom très utile en géographie courante : <i>urban sprawl</i> (l'étalement urbain).",
+  "fam": "sprawl (n./v.)",
+  "trous": [
+   {
+    "s": "The airport is a ___ complex of terminals and car parks.",
+    "a": "sprawling",
+    "fr": "L'aéroport est un complexe tentaculaire de terminaux et de parkings."
+   },
+   {
+    "s": "Farmland is disappearing under ___ suburbs of identical houses.",
+    "a": "sprawling",
+    "fr": "Les terres agricoles disparaissent sous des banlieues étendues de maisons identiques."
+   }
+  ],
+  "ecris": "une phrase sur une ville qui s'étend",
+  "formes": [
+   "sprawling",
+   "sprawl"
+  ]
+ },
+ {
+  "id": "s-serene",
+  "w": "serene",
+  "pos": "adjective",
+  "ipa": "/səˈriːn/",
+  "reg": "courant",
+  "fr": "serein, paisible",
+  "def": "Calm, peaceful and quiet.",
+  "col": [
+   "a serene atmosphere",
+   "a serene lake",
+   "serene beauty",
+   "serenely calm"
+  ],
+  "ex": [
+   "The lake was [[serene]] at dawn, without a single ripple.",
+   "Behind the [[serene]] image of the monarchy, the royal family was deeply divided."
+  ],
+  "piege": "Se dit d'un lieu, d'une atmosphère, d'un visage. Plus littéraire que <i>calm</i>.",
+  "fam": "serenity (n.) · serenely (adv.)",
+  "trous": [
+   {
+    "s": "The garden has a ___ atmosphere, far from the noise of the city.",
+    "a": "serene",
+    "fr": "Le jardin a une atmosphère paisible, loin du bruit de la ville."
+   },
+   {
+    "s": "The temple stood ___ on the hill above the busy town.",
+    "a": "serene",
+    "fr": "Le temple se dressait, paisible, sur la colline au-dessus de la ville animée.",
+    "alt": [
+     "serenely"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un lieu paisible",
+  "formes": [
+   "serene",
+   "serenity",
+   "serenely"
+  ]
+ },
+ {
+  "id": "s-tranquil",
+  "w": "tranquil",
+  "pos": "adjective",
+  "ipa": "/ˈtræŋkwɪl/",
+  "reg": "formel",
+  "fr": "paisible, tranquille",
+  "def": "Calm, quiet and peaceful.",
+  "col": [
+   "a tranquil setting",
+   "tranquil waters",
+   "a tranquil village",
+   "peaceful and tranquil"
+  ],
+  "ex": [
+   "We stayed in a [[tranquil]] village where the only sound was the river.",
+   "The [[tranquil]] surface of the lake hides dangerous currents."
+  ],
+  "piege": "Plus soutenu que le français « tranquille » : surtout un lieu, une eau. « Laisse-moi tranquille » se dit <i>leave me alone</i>.",
+  "fam": "tranquillity (n.)",
+  "trous": [
+   {
+    "s": "The garden offers a ___ escape from the busy streets.",
+    "a": "tranquil",
+    "fr": "Le jardin offre un refuge paisible loin des rues animées.",
+    "alt": [
+     "peaceful",
+     "serene"
+    ]
+   },
+   {
+    "s": "The boat glided across the ___ waters of the bay.",
+    "a": "tranquil",
+    "fr": "Le bateau glissait sur les eaux paisibles de la baie.",
+    "alt": [
+     "calm",
+     "peaceful"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un endroit paisible",
+  "formes": [
+   "tranquil",
+   "tranquillity"
+  ]
+ },
+ {
+  "id": "s-makeshift",
+  "w": "makeshift",
+  "pos": "adjective",
+  "ipa": "/ˈmeɪkʃɪft/",
+  "reg": "courant",
+  "fr": "de fortune, improvisé",
+  "def": "Made quickly from whatever is available, to be used for a short time.",
+  "col": [
+   "a makeshift shelter",
+   "a makeshift camp",
+   "a makeshift hospital",
+   "a makeshift table"
+  ],
+  "ex": [
+   "We used two boxes and a plank as a [[makeshift]] table.",
+   "Thousands of refugees were living in [[makeshift]] camps along the border."
+  ],
+  "piege": "Toujours devant le nom (<i>a makeshift bed</i>). Idée de solution provisoire et improvisée.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "After the earthquake, survivors slept in ___ shelters made of plastic sheets.",
+    "a": "makeshift",
+    "fr": "Après le séisme, les survivants ont dormi dans des abris de fortune faits de bâches."
+   },
+   {
+    "s": "The school gym was turned into a ___ hospital during the epidemic.",
+    "a": "makeshift",
+    "fr": "Le gymnase de l'école a été transformé en hôpital improvisé pendant l'épidémie."
+   }
+  ],
+  "ecris": "une phrase sur un objet ou un abri improvisé",
+  "formes": [
+   "makeshift"
+  ]
+ },
+ {
+  "id": "s-sleek",
+  "w": "sleek",
+  "pos": "adjective",
+  "ipa": "/sliːk/",
+  "reg": "courant",
+  "fr": "élégant, profilé, lisse",
+  "def": "Smooth, shiny and elegant in shape.",
+  "col": [
+   "a sleek design",
+   "a sleek car",
+   "sleek and modern",
+   "sleek hair"
+  ],
+  "ex": [
+   "The new laptop has a [[sleek]] aluminium design.",
+   "Behind the [[sleek]] image of the tech industry lie poorly paid factory workers."
+  ],
+  "piege": "Pour un objet au design fin et moderne, ou des cheveux lisses et brillants. Contraire familier : <i>clunky</i>.",
+  "fam": "sleekly (adv.)",
+  "trous": [
+   {
+    "s": "The high-speed train has a ___ silver body.",
+    "a": "sleek",
+    "fr": "Le train à grande vitesse a une carrosserie argentée profilée."
+   },
+   {
+    "s": "The shop has a ___, minimalist interior with white walls.",
+    "a": "sleek",
+    "fr": "Le magasin a un intérieur élégant et minimaliste aux murs blancs."
+   }
+  ],
+  "ecris": "une phrase sur un objet au design élégant",
+  "formes": [
+   "sleek",
+   "sleeker"
+  ]
+ },
+ {
+  "id": "s-sturdy",
+  "w": "sturdy",
+  "pos": "adjective",
+  "ipa": "/ˈstɜːdi/",
+  "reg": "courant",
+  "fr": "solide, robuste",
+  "def": "Strong and well made, so that it is not easily broken or damaged.",
+  "col": [
+   "sturdy boots",
+   "a sturdy table",
+   "sturdy construction",
+   "a sturdy frame"
+  ],
+  "ex": [
+   "You will need [[sturdy]] boots for walking in the mountains.",
+   "The old stone bridge proved [[sturdy]] enough to survive the floods."
+  ],
+  "piege": "Pour un objet solidement fait (meuble, chaussures, bâtiment). Contraire : <i>flimsy</i>.",
+  "fam": "sturdily (adv.)",
+  "trous": [
+   {
+    "s": "Buy a ___ suitcase if you travel a lot by plane.",
+    "a": "sturdy",
+    "fr": "Achète une valise solide si tu voyages beaucoup en avion.",
+    "alt": [
+     "solid",
+     "strong",
+     "robust"
+    ]
+   },
+   {
+    "s": "The house was small but ___, built to resist the storms.",
+    "a": "sturdy",
+    "fr": "La maison était petite mais robuste, construite pour résister aux tempêtes.",
+    "alt": [
+     "solid",
+     "strong",
+     "robust"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un objet solide",
+  "formes": [
+   "sturdy",
+   "sturdier",
+   "sturdily"
+  ]
+ }
+]

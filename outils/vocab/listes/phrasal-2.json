@@ -1,0 +1,4173 @@
+[
+ {
+  "id": "p-look-forward-to",
+  "w": "look forward to",
+  "pos": "phrasal verb",
+  "ipa": "/lʊk ˈfɔːwəd tə/",
+  "reg": "courant",
+  "fr": "attendre avec impatience, avoir hâte de",
+  "def": "To feel happy and excited about something that is going to happen.",
+  "col": [
+   "really look forward to",
+   "look forward to hearing from you",
+   "something to look forward to",
+   "eagerly look forward to"
+  ],
+  "ex": [
+   "I'm really [[looking forward to]] the summer holidays after such a long term.",
+   "Many voters were [[looking forward to]] real change, but the reforms came slowly."
+  ],
+  "piege": "<b>to</b> est ici une préposition : il est suivi d'un nom ou d'un verbe en <b>-ing</b> (<i>I look forward to seeing you</i>, jamais <i>to see</i>). Formule de fin de lettre : <i>I look forward to hearing from you</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "We're all looking ___ to meeting the new team next week.",
+    "a": "forward",
+    "fr": "Nous avons tous hâte de rencontrer la nouvelle équipe la semaine prochaine."
+   },
+   {
+    "s": "After a long winter, the whole town was looking forward ___ the spring festival.",
+    "a": "to",
+    "fr": "Après un long hiver, toute la ville attendait avec impatience la fête du printemps."
+   }
+  ],
+  "ecris": "une phrase sur un événement que tu attends avec impatience",
+  "formes": [
+   "look forward to",
+   "looks forward to",
+   "looked forward to",
+   "looking forward to"
+  ]
+ },
+ {
+  "id": "p-get-along-with",
+  "w": "get along with",
+  "pos": "phrasal verb",
+  "ipa": "/ɡet əˈlɒŋ wɪð/",
+  "reg": "courant",
+  "fr": "bien s'entendre avec",
+  "def": "To have a friendly relationship with someone.",
+  "col": [
+   "get along well with",
+   "get along with each other",
+   "get along fine",
+   "get along with colleagues"
+  ],
+  "ex": [
+   "My little sister and I [[get along with]] each other much better now that we're older.",
+   "A good diplomat must [[get along with]] people whose views are very different from her own."
+  ],
+  "piege": "Variante britannique très courante : <b>get on with</b> (<i>I get on well with my boss</i>). Sans complément : <i>We get along</i>. Ne pas dire <i>I agree with him</i> pour « je m'entends bien avec lui ».",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "He's easy-going and gets ___ with almost everyone in the office.",
+    "a": "along",
+    "alt": [
+     "on"
+    ],
+    "fr": "Il est facile à vivre et s'entend bien avec presque tout le monde au bureau."
+   },
+   {
+    "s": "The two neighbours never really ___ along with each other.",
+    "a": "got",
+    "fr": "Les deux voisins ne se sont jamais vraiment bien entendus."
+   }
+  ],
+  "ecris": "une phrase sur une personne avec qui tu t'entends (ou ne t'entends pas) bien",
+  "formes": [
+   "get along with",
+   "gets along with",
+   "got along with",
+   "getting along with",
+   "gotten along with",
+   "get on with",
+   "gets on with",
+   "got on with",
+   "getting on with"
+  ]
+ },
+ {
+  "id": "p-be-fed-up-with",
+  "w": "be fed up with",
+  "pos": "expression",
+  "ipa": "/ˌfed ˈʌp/",
+  "reg": "familier",
+  "fr": "en avoir marre de, en avoir assez de",
+  "def": "To be annoyed, bored or unhappy with a situation that has lasted too long.",
+  "col": [
+   "be fed up with waiting",
+   "get fed up with",
+   "be completely fed up",
+   "be fed up of (informal British)"
+  ],
+  "ex": [
+   "I'm [[fed up with]] my phone: the battery dies every afternoon.",
+   "By 1789, many peasants were [[fed up with]] paying taxes while the nobility paid almost nothing."
+  ],
+  "piege": "Suivi de <b>with</b> + nom ou verbe en <b>-ing</b> (<i>fed up with waiting</i>). <i>fed up of</i> s'entend à l'oral britannique mais est critiqué : à l'écrit, préfère <b>with</b>. Registre familier : à l'écrit formel, <i>frustrated with, weary of</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "She was fed ___ with doing all the housework on her own.",
+    "a": "up",
+    "fr": "Elle en avait assez de faire toutes les tâches ménagères seule."
+   },
+   {
+    "s": "Commuters are ___ up with constant train delays.",
+    "a": "fed",
+    "fr": "Les usagers en ont marre des retards de train permanents."
+   }
+  ],
+  "ecris": "une phrase sur quelque chose dont tu en as assez",
+  "formes": [
+   "fed up with",
+   "fed up of",
+   "be fed up",
+   "am fed up",
+   "is fed up",
+   "are fed up",
+   "was fed up",
+   "were fed up",
+   "been fed up",
+   "get fed up",
+   "got fed up"
+  ]
+ },
+ {
+  "id": "p-find-out",
+  "w": "find out",
+  "pos": "phrasal verb",
+  "ipa": "/ˌfaɪnd ˈaʊt/",
+  "reg": "courant",
+  "fr": "découvrir, apprendre, se renseigner",
+  "def": "To discover a fact or piece of information, often by asking or searching.",
+  "col": [
+   "find out about",
+   "find out the truth",
+   "find out why",
+   "try to find out"
+  ],
+  "ex": [
+   "I only [[found out]] about the party the day after it happened.",
+   "Historians only [[found out]] the full scale of the famine decades later."
+  ],
+  "piege": "Pour une information (et non un objet perdu : <i>I found my keys</i>). Séparable avec un pronom : <i>I'll <b>find it out</b></i> est rare ; on dit plutôt <i>I'll find out</i>. Prétérit irrégulier : <b>found</b>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Can you find ___ what time the film starts?",
+    "a": "out",
+    "fr": "Tu peux te renseigner sur l'heure à laquelle le film commence ?"
+   },
+   {
+    "s": "When his parents ___ out he had skipped school, they were furious.",
+    "a": "found",
+    "fr": "Quand ses parents ont découvert qu'il avait séché les cours, ils étaient furieux."
+   }
+  ],
+  "ecris": "une phrase sur une chose que tu as apprise par surprise",
+  "formes": [
+   "find out",
+   "finds out",
+   "found out",
+   "finding out"
+  ]
+ },
+ {
+  "id": "p-deal-with",
+  "w": "deal with",
+  "pos": "phrasal verb",
+  "ipa": "/ˈdiːl wɪð/",
+  "reg": "courant",
+  "fr": "s'occuper de, gérer, traiter",
+  "def": "To take action to solve a problem or to handle a person or a situation.",
+  "col": [
+   "deal with a problem",
+   "deal with stress",
+   "deal with complaints",
+   "hard to deal with"
+  ],
+  "ex": [
+   "Can you [[deal with]] the emails while I'm away?",
+   "The novel [[deals with]] themes of memory, guilt and exile."
+  ],
+  "piege": "Prétérit irrégulier : <b>dealt</b> /delt/. Sert aussi pour un livre ou un film : <i>it deals with</i> = « il traite de ». Inséparable.",
+  "fam": "dealt (prétérit) · dealings (n., relations)",
+  "trous": [
+   {
+    "s": "I'll deal ___ the bill; you just enjoy your meal.",
+    "a": "with",
+    "fr": "Je m'occupe de l'addition ; toi, profite de ton repas."
+   },
+   {
+    "s": "The government has ___ with the crisis badly from the start.",
+    "a": "dealt",
+    "fr": "Le gouvernement a mal géré la crise dès le début."
+   }
+  ],
+  "ecris": "une phrase sur un problème que tu as dû gérer",
+  "formes": [
+   "deal with",
+   "deals with",
+   "dealt with",
+   "dealing with"
+  ]
+ },
+ {
+  "id": "p-cope-with",
+  "w": "cope with",
+  "pos": "phrasal verb",
+  "ipa": "/ˈkəʊp wɪð/",
+  "reg": "courant",
+  "fr": "faire face à, supporter, s'en sortir",
+  "def": "To manage successfully in a difficult situation.",
+  "col": [
+   "cope with stress",
+   "cope with pressure",
+   "struggle to cope",
+   "learn to cope"
+  ],
+  "ex": [
+   "How do you [[cope with]] stress during exam week?",
+   "Many hospitals could not [[cope with]] the sudden rise in patients."
+  ],
+  "piege": "<b>cope</b> insiste sur la difficulté (tenir le coup), <b>deal with</b> sur l'action (régler). Sans complément : <i>I can't cope any more</i>.",
+  "fam": "coping (n./adj. : coping strategies)",
+  "trous": [
+   {
+    "s": "She found it hard to cope ___ living alone in a big city.",
+    "a": "with",
+    "fr": "Elle a eu du mal à faire face à la vie seule dans une grande ville."
+   },
+   {
+    "s": "The old bridge couldn't ___ with the weight of modern lorries.",
+    "a": "cope",
+    "fr": "Le vieux pont ne supportait pas le poids des camions modernes."
+   }
+  ],
+  "ecris": "une phrase sur la manière dont tu fais face à la pression",
+  "formes": [
+   "cope with",
+   "copes with",
+   "coped with",
+   "coping with",
+   "cope"
+  ]
+ },
+ {
+  "id": "p-to-be-honest",
+  "w": "to be honest",
+  "pos": "expression",
+  "ipa": "/ˈɒnɪst/",
+  "reg": "courant",
+  "fr": "pour être honnête, franchement",
+  "def": "Used before saying what you really think, especially something the listener may not like.",
+  "col": [
+   "to be honest with you",
+   "to be perfectly honest",
+   "to be brutally honest",
+   "honestly"
+  ],
+  "ex": [
+   "[[To be honest]], I didn't really enjoy the film.",
+   "[[To be honest]], the official figures probably underestimate the problem."
+  ],
+  "piege": "Le <b>h</b> ne se prononce pas : /ˈɒnɪst/, d'où <i>an honest answer</i>. Très fréquent à l'oral (abrégé <i>tbh</i> dans les messages) ; à l'écrit formel, préfère <i>frankly</i> ou <i>in reality</i>.",
+  "fam": "honest (adj.) · honestly (adv.) · honesty (n.)",
+  "trous": [
+   {
+    "s": "To be ___, I've forgotten what we decided last week.",
+    "a": "honest",
+    "fr": "Pour être honnête, j'ai oublié ce qu'on avait décidé la semaine dernière."
+   },
+   {
+    "s": "To be perfectly honest ___ you, I'm not sure it will work.",
+    "a": "with",
+    "fr": "Pour être tout à fait franc avec toi, je ne suis pas sûr que ça marche."
+   }
+  ],
+  "ecris": "une phrase où tu avoues franchement ce que tu penses d'un film, d'un livre ou d'une idée",
+  "formes": [
+   "to be honest",
+   "to be perfectly honest",
+   "to be honest with you"
+  ]
+ },
+ {
+  "id": "p-put-off",
+  "w": "put off",
+  "pos": "phrasal verb",
+  "ipa": "/ˌpʊt ˈɒf/",
+  "reg": "courant",
+  "fr": "1. remettre à plus tard · 2. dissuader, rebuter",
+  "def": "To delay doing something until a later time, or to make someone dislike or lose interest in something.",
+  "col": [
+   "put off a decision",
+   "put off doing something",
+   "keep putting it off",
+   "be put off by"
+  ],
+  "ex": [
+   "I keep [[putting off]] my driving test because I'm nervous.",
+   "Governments often [[put off]] unpopular reforms until after the next election."
+  ],
+  "piege": "Séparable : <i>Don't <b>put it off</b></i> (pronom au milieu). Suivi d'un verbe en <b>-ing</b> : <i>put off going</i>. Sens 2 : <i>The smell put me off</i> = ça m'a dégoûté.",
+  "fam": "off-putting (adj., rebutant)",
+  "trous": [
+   {
+    "s": "Stop putting ___ your homework and just start it.",
+    "a": "off",
+    "fr": "Arrête de remettre tes devoirs à plus tard et commence-les."
+   },
+   {
+    "s": "The meeting has been ___ off until next Thursday.",
+    "a": "put",
+    "fr": "La réunion a été repoussée à jeudi prochain."
+   }
+  ],
+  "ecris": "une phrase sur une tâche que tu repousses toujours",
+  "formes": [
+   "put off",
+   "puts off",
+   "putting off",
+   "put it off",
+   "put them off",
+   "putting it off",
+   "off-putting"
+  ]
+ },
+ {
+  "id": "p-look-after",
+  "w": "look after",
+  "pos": "phrasal verb",
+  "ipa": "/ˈlʊk ˌɑːftə/",
+  "reg": "courant",
+  "fr": "s'occuper de, prendre soin de",
+  "def": "To take care of someone or something and make sure they are safe and well.",
+  "col": [
+   "look after children",
+   "look after yourself",
+   "look after a pet",
+   "be well looked after"
+  ],
+  "ex": [
+   "Could you [[look after]] my cat while I'm away this weekend?",
+   "In many societies, grown-up children are expected to [[look after]] their elderly parents."
+  ],
+  "piege": "Inséparable : <i>look after <b>her</b></i>. Britannique ; en américain on dit plutôt <i>take care of</i>. Ne pas confondre avec <i>look for</i> (chercher).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "My grandmother looked ___ me when my parents were at work.",
+    "a": "after",
+    "fr": "Ma grand-mère s'occupait de moi quand mes parents étaient au travail."
+   },
+   {
+    "s": "You need to ___ after yourself and get some sleep.",
+    "a": "look",
+    "fr": "Tu dois prendre soin de toi et dormir un peu."
+   }
+  ],
+  "ecris": "une phrase sur une personne ou un animal dont tu t'occupes",
+  "formes": [
+   "look after",
+   "looks after",
+   "looked after",
+   "looking after"
+  ]
+ },
+ {
+  "id": "p-its-not-worth-it",
+  "w": "it's not worth it",
+  "pos": "expression",
+  "ipa": "/wɜːθ/",
+  "reg": "courant",
+  "fr": "ça n'en vaut pas la peine",
+  "def": "Used to say that something will not bring enough benefit to justify the effort, time or cost.",
+  "col": [
+   "it's not worth it",
+   "it's not worth the risk",
+   "it isn't worth waiting",
+   "it's well worth it"
+  ],
+  "ex": [
+   "Don't argue with him about football: [[it's not worth it]].",
+   "Some economists argue that the new motorway is expensive and [[it's not worth it]]."
+  ],
+  "piege": "<b>worth</b> + nom ou verbe en <b>-ing</b> : <i>it's not worth <b>waiting</b></i> (jamais <i>to wait</i>). Prononciation : /wɜːθ/, comme <i>word</i> mais avec <i>th</i>.",
+  "fam": "worthwhile (adj., qui en vaut la peine) · worthless (adj., sans valeur)",
+  "trous": [
+   {
+    "s": "It's a long queue; it's not ___ waiting.",
+    "a": "worth",
+    "fr": "La file est longue ; ça ne vaut pas la peine d'attendre."
+   },
+   {
+    "s": "The film was long, but it was well worth ___.",
+    "a": "it",
+    "fr": "Le film était long, mais il en valait vraiment la peine."
+   }
+  ],
+  "ecris": "une phrase sur une chose qui, selon toi, n'en vaut pas la peine",
+  "formes": [
+   "it's not worth it",
+   "not worth",
+   "it's not worth",
+   "it isn't worth it",
+   "it wasn't worth it",
+   "not worth it",
+   "it's worth it",
+   "worth it"
+  ]
+ },
+ {
+  "id": "p-get-over",
+  "w": "get over",
+  "pos": "phrasal verb",
+  "ipa": "/ˌɡet ˈəʊvə/",
+  "reg": "courant",
+  "fr": "se remettre de, surmonter",
+  "def": "To recover from an illness, a shock or an unhappy experience.",
+  "col": [
+   "get over a cold",
+   "get over a break-up",
+   "get over the shock",
+   "get over it"
+  ],
+  "ex": [
+   "It took her months to [[get over]] the end of the relationship.",
+   "The country never really [[got over]] the humiliation of defeat."
+  ],
+  "piege": "Inséparable : <i>get over <b>it</b></i>. À l'oral, <i>Get over it!</i> = « passe à autre chose ! » (un peu brusque). Proche de <i>recover from</i>, plus formel.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I still haven't got ___ this terrible cold.",
+    "a": "over",
+    "fr": "Je ne me suis toujours pas remis de ce terrible rhume."
+   },
+   {
+    "s": "He was disappointed, but he'll ___ over it soon.",
+    "a": "get",
+    "fr": "Il était déçu, mais il s'en remettra vite."
+   }
+  ],
+  "ecris": "une phrase sur une déception dont tu t'es remis",
+  "formes": [
+   "get over",
+   "gets over",
+   "got over",
+   "getting over",
+   "gotten over"
+  ]
+ },
+ {
+  "id": "p-give-up",
+  "w": "give up",
+  "pos": "phrasal verb",
+  "ipa": "/ˌɡɪv ˈʌp/",
+  "reg": "courant",
+  "fr": "abandonner, renoncer à, arrêter",
+  "def": "To stop trying to do something, or to stop a habit or activity.",
+  "col": [
+   "give up smoking",
+   "give up hope",
+   "never give up",
+   "give up on someone"
+  ],
+  "ex": [
+   "My dad finally [[gave up]] smoking last year.",
+   "The government refused to [[give up]] its plans despite massive protests."
+  ],
+  "piege": "Séparable : <i>give <b>it</b> up</i>. Suivi d'un verbe en <b>-ing</b> : <i>give up eating meat</i>. <i>give up on someone</i> = ne plus croire en quelqu'un.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Don't give ___ now: you're nearly at the top!",
+    "a": "up",
+    "fr": "N'abandonne pas maintenant : tu es presque au sommet !"
+   },
+   {
+    "s": "She ___ up her job to travel around the world.",
+    "a": "gave",
+    "fr": "Elle a quitté son emploi pour faire le tour du monde."
+   }
+  ],
+  "ecris": "une phrase sur une habitude que tu as arrêtée ou que tu voudrais arrêter",
+  "formes": [
+   "give up",
+   "gives up",
+   "gave up",
+   "giving up",
+   "given up",
+   "give it up",
+   "gave it up"
+  ]
+ },
+ {
+  "id": "p-carry-on",
+  "w": "carry on",
+  "pos": "phrasal verb",
+  "ipa": "/ˌkæri ˈɒn/",
+  "reg": "courant",
+  "fr": "continuer, poursuivre",
+  "def": "To continue doing something, especially after a pause or despite difficulties.",
+  "col": [
+   "carry on working",
+   "carry on with",
+   "carry on as usual",
+   "carry on regardless"
+  ],
+  "ex": [
+   "Sorry I interrupted you: please [[carry on]] with what you were saying.",
+   "Despite the bombing, Londoners tried to [[carry on]] as normal during the Blitz."
+  ],
+  "piege": "Suivi de <b>-ing</b> (<i>carry on talking</i>) ou de <b>with</b> + nom (<i>carry on with your work</i>). Très britannique ; synonyme neutre : <i>go on, continue</i>.",
+  "fam": "carry-on (n., bagage cabine)",
+  "trous": [
+   {
+    "s": "Carry ___ reading while I make the tea.",
+    "a": "on",
+    "fr": "Continue à lire pendant que je fais le thé."
+   },
+   {
+    "s": "The workers ___ on with the job even though it was raining.",
+    "a": "carried",
+    "fr": "Les ouvriers ont continué le travail même s'il pleuvait."
+   }
+  ],
+  "ecris": "une phrase sur quelque chose que tu as continué malgré une difficulté",
+  "formes": [
+   "carry on",
+   "carries on",
+   "carried on",
+   "carrying on"
+  ]
+ },
+ {
+  "id": "p-get-used-to",
+  "w": "get used to",
+  "pos": "expression",
+  "ipa": "/ɡet ˈjuːst tə/",
+  "reg": "courant",
+  "fr": "s'habituer à",
+  "def": "To become familiar with something so that it no longer seems strange or difficult.",
+  "col": [
+   "get used to the cold",
+   "get used to living",
+   "take some getting used to",
+   "be used to"
+  ],
+  "ex": [
+   "It took me weeks to [[get used to]] getting up at six.",
+   "Migrants often have to [[get used to]] a new language, climate and culture at once."
+  ],
+  "piege": "<b>to</b> est une préposition : <i>get used to <b>doing</b></i>. Ne pas confondre avec <i>used to do</i> (« avoir l'habitude, autrefois ») : <i>I used to live in Lyon</i>. <i>be used to</i> = être habitué.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "You'll soon get ___ to driving on the left.",
+    "a": "used",
+    "fr": "Tu t'habitueras vite à conduire à gauche."
+   },
+   {
+    "s": "I'm slowly getting used to ___ in a big city.",
+    "a": "living",
+    "fr": "Je m'habitue peu à peu à vivre dans une grande ville."
+   }
+  ],
+  "ecris": "une phrase sur quelque chose auquel tu as dû t'habituer",
+  "formes": [
+   "get used to",
+   "gets used to",
+   "got used to",
+   "getting used to",
+   "be used to",
+   "am used to",
+   "is used to",
+   "are used to",
+   "was used to"
+  ]
+ },
+ {
+  "id": "p-feel-like",
+  "w": "feel like",
+  "pos": "expression",
+  "ipa": "/ˈfiːl laɪk/",
+  "reg": "courant",
+  "fr": "avoir envie de",
+  "def": "To want to have or do something at a particular moment.",
+  "col": [
+   "feel like going out",
+   "feel like a coffee",
+   "don't feel like it",
+   "feel like doing nothing"
+  ],
+  "ex": [
+   "I don't [[feel like]] cooking tonight: shall we get a takeaway?",
+   "After the defeat, the players did not [[feel like]] celebrating anything."
+  ],
+  "piege": "Suivi d'un nom ou d'un verbe en <b>-ing</b> : <i>I feel like <b>going</b></i>, jamais <i>to go</i>. Autre sens : <i>I feel like an idiot</i> (« j'ai l'impression d'être »).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Do you feel ___ going to the cinema tonight?",
+    "a": "like",
+    "fr": "Tu as envie d'aller au cinéma ce soir ?"
+   },
+   {
+    "s": "I don't feel like ___ out: it's too cold.",
+    "a": "going",
+    "fr": "Je n'ai pas envie de sortir : il fait trop froid."
+   }
+  ],
+  "ecris": "une phrase sur ce dont tu as envie ce soir",
+  "formes": [
+   "feel like",
+   "feels like",
+   "felt like",
+   "feeling like"
+  ]
+ },
+ {
+  "id": "p-would-rather",
+  "w": "would rather",
+  "pos": "expression",
+  "ipa": "/wʊd ˈrɑːðə/",
+  "reg": "courant",
+  "fr": "préférer, aimer mieux",
+  "def": "Used to say that you would prefer to do or have one thing rather than another.",
+  "col": [
+   "I'd rather not",
+   "would rather stay",
+   "would rather you didn't",
+   "would rather… than…"
+  ],
+  "ex": [
+   "[[I'd rather]] stay at home tonight than go to a noisy party.",
+   "Many workers [[would rather]] earn less than spend three hours a day commuting."
+  ],
+  "piege": "Suivi de la <b>base verbale sans to</b> : <i>I'd rather <b>go</b></i>. Comparaison avec <b>than</b>. Avec un autre sujet, prétérit : <i>I'd rather you <b>didn't</b> smoke</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I'd ___ walk than wait for the bus in this cold.",
+    "a": "rather",
+    "fr": "Je préfère marcher plutôt qu'attendre le bus par ce froid."
+   },
+   {
+    "s": "I'd rather you ___ tell anyone about this.",
+    "a": "didn't",
+    "alt": [
+     "did not"
+    ],
+    "fr": "Je préférerais que tu n'en parles à personne."
+   }
+  ],
+  "ecris": "une phrase sur ce que tu préfères faire plutôt qu'autre chose",
+  "formes": [
+   "would rather",
+   "I'd rather",
+   "you'd rather",
+   "we'd rather",
+   "they'd rather",
+   "she'd rather",
+   "he'd rather",
+   "would rather not",
+   "I'd rather not"
+  ]
+ },
+ {
+  "id": "p-be-supposed-to",
+  "w": "be supposed to",
+  "pos": "expression",
+  "ipa": "/səˈpəʊzd tə/",
+  "reg": "courant",
+  "fr": "être censé, devoir (normalement)",
+  "def": "To be expected to do something because of a rule, an arrangement or a plan.",
+  "col": [
+   "be supposed to be",
+   "you're not supposed to",
+   "what am I supposed to do?",
+   "it's supposed to rain"
+  ],
+  "ex": [
+   "We [[were supposed to]] meet at six, but she didn't come.",
+   "The new law [[is supposed to]] protect renters, but critics doubt it will work."
+  ],
+  "piege": "On prononce souvent /səˈpəʊs tə/ (le <b>d</b> disparaît). <i>You're not supposed to</i> = « tu n'as pas le droit / tu n'es pas censé ». Ne pas confondre avec <i>suppose</i> (supposer).",
+  "fam": "suppose (v.) · supposedly (adv., soi-disant)",
+  "trous": [
+   {
+    "s": "You're not ___ to use your phone during the exam.",
+    "a": "supposed",
+    "fr": "Tu n'es pas censé utiliser ton téléphone pendant l'examen."
+   },
+   {
+    "s": "The train was supposed ___ arrive at ten, but it was late.",
+    "a": "to",
+    "fr": "Le train était censé arriver à dix heures, mais il avait du retard."
+   }
+  ],
+  "ecris": "une phrase sur quelque chose que tu étais censé faire mais n'as pas fait",
+  "formes": [
+   "be supposed to",
+   "am supposed to",
+   "is supposed to",
+   "are supposed to",
+   "was supposed to",
+   "were supposed to",
+   "'re supposed to",
+   "'m supposed to",
+   "supposed to"
+  ]
+ },
+ {
+  "id": "p-make-up-ones-mind",
+  "w": "make up one's mind",
+  "pos": "expression",
+  "ipa": "/ˌmeɪk ʌp wʌnz ˈmaɪnd/",
+  "reg": "courant",
+  "fr": "se décider, prendre une décision",
+  "def": "To decide something after thinking about the choices.",
+  "col": [
+   "make up your mind",
+   "can't make up my mind",
+   "have made up her mind",
+   "make up your own mind"
+  ],
+  "ex": [
+   "I can't [[make up my mind]] between the blue jacket and the black one.",
+   "Undecided voters often [[make up their minds]] in the last week of a campaign."
+  ],
+  "piege": "Le possessif change avec le sujet : <i>make up <b>my / your / their</b> mind</i>. Le pronom se met entre <i>make</i> et <i>mind</i> ; on dit aussi <i>make my mind up</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Hurry up and make up your ___: the shop closes in five minutes.",
+    "a": "mind",
+    "fr": "Dépêche-toi de te décider : le magasin ferme dans cinq minutes."
+   },
+   {
+    "s": "She has ___ up her mind to study medicine.",
+    "a": "made",
+    "fr": "Elle a décidé d'étudier la médecine."
+   }
+  ],
+  "ecris": "une phrase sur une décision que tu as eu du mal à prendre",
+  "formes": [
+   "make up my mind",
+   "make up your mind",
+   "made up my mind",
+   "made up her mind",
+   "made up his mind",
+   "made up their minds",
+   "make up their minds",
+   "making up my mind",
+   "make my mind up",
+   "made my mind up",
+   "makes up her mind",
+   "makes up his mind"
+  ]
+ },
+ {
+  "id": "p-come-across",
+  "w": "come across",
+  "pos": "phrasal verb",
+  "ipa": "/ˌkʌm əˈkrɒs/",
+  "reg": "courant",
+  "fr": "tomber sur, trouver par hasard",
+  "def": "To find something or meet someone by chance.",
+  "col": [
+   "come across an article",
+   "come across an old photo",
+   "happen to come across",
+   "come across a problem"
+  ],
+  "ex": [
+   "I [[came across]] some old photos while tidying my room.",
+   "While researching her family history, she [[came across]] letters written during the war."
+  ],
+  "piege": "Inséparable : <i>I came across <b>it</b></i>. Avec <b>as</b>, autre sens : « donner l'impression d'être » (<i>he comes across as shy</i>).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I came ___ a great recipe on a cooking website.",
+    "a": "across",
+    "fr": "Je suis tombé sur une super recette sur un site de cuisine."
+   },
+   {
+    "s": "If you ___ across any useful articles, please send them to me.",
+    "a": "come",
+    "fr": "Si tu tombes sur des articles utiles, envoie-les-moi s'il te plaît."
+   }
+  ],
+  "ecris": "une phrase sur quelque chose que tu as découvert par hasard",
+  "formes": [
+   "come across",
+   "comes across",
+   "came across",
+   "coming across"
+  ]
+ },
+ {
+  "id": "p-let-down",
+  "w": "let down",
+  "pos": "phrasal verb",
+  "ipa": "/ˌlet ˈdaʊn/",
+  "reg": "courant",
+  "fr": "laisser tomber, décevoir",
+  "def": "To disappoint someone by not doing what they expected or needed.",
+  "col": [
+   "let someone down",
+   "feel let down",
+   "let yourself down",
+   "never let you down"
+  ],
+  "ex": [
+   "I promised to help him move, and I won't [[let him down]].",
+   "Many young people feel [[let down]] by politicians who ignore their concerns."
+  ],
+  "piege": "Séparable, et presque toujours avec la personne au milieu : <i>let <b>me</b> down</i>. Ne pas traduire « laisser tomber » (abandonner une activité) par <i>let down</i> : c'est <i>give up / drop</i>.",
+  "fam": "letdown (n., déception)",
+  "trous": [
+   {
+    "s": "I'm counting on you, so please don't let me ___.",
+    "a": "down",
+    "fr": "Je compte sur toi, alors s'il te plaît ne me laisse pas tomber."
+   },
+   {
+    "s": "The fans felt ___ down by the team's poor performance.",
+    "a": "let",
+    "fr": "Les supporters se sont sentis déçus par la piètre prestation de l'équipe."
+   }
+  ],
+  "ecris": "une phrase sur une fois où tu t'es senti déçu par quelqu'un",
+  "formes": [
+   "let down",
+   "lets down",
+   "letting down",
+   "let me down",
+   "let him down",
+   "let her down",
+   "let them down",
+   "let you down",
+   "let us down",
+   "letdown"
+  ]
+ },
+ {
+  "id": "p-count-on",
+  "w": "count on",
+  "pos": "phrasal verb",
+  "ipa": "/ˈkaʊnt ɒn/",
+  "reg": "courant",
+  "fr": "compter sur",
+  "def": "To depend on someone to help you, or to expect something to happen.",
+  "col": [
+   "count on someone",
+   "count on your support",
+   "you can count on me",
+   "can't count on"
+  ],
+  "ex": [
+   "You can always [[count on]] my sister in an emergency.",
+   "The government was [[counting on]] a quick victory, but the war dragged on."
+  ],
+  "piege": "Inséparable : <i>count on <b>her</b></i>. Aussi <i>count on</i> + <b>-ing</b> : <i>Don't count on getting a refund</i>. Synonyme : <i>rely on</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Don't worry, you can count ___ me.",
+    "a": "on",
+    "fr": "Ne t'inquiète pas, tu peux compter sur moi."
+   },
+   {
+    "s": "We were ___ on good weather, but it rained all week.",
+    "a": "counting",
+    "fr": "Nous comptions sur le beau temps, mais il a plu toute la semaine."
+   }
+  ],
+  "ecris": "une phrase sur une personne sur qui tu peux toujours compter",
+  "formes": [
+   "count on",
+   "counts on",
+   "counted on",
+   "counting on"
+  ]
+ },
+ {
+  "id": "p-hand-in",
+  "w": "hand in",
+  "pos": "phrasal verb",
+  "ipa": "/ˌhænd ˈɪn/",
+  "reg": "courant",
+  "fr": "rendre, remettre (un devoir, un document)",
+  "def": "To give a piece of work or a document to someone in authority.",
+  "col": [
+   "hand in homework",
+   "hand in an essay",
+   "hand in your notice",
+   "hand in your resignation"
+  ],
+  "ex": [
+   "I have to [[hand in]] my history essay by Friday at the latest.",
+   "After the scandal, two ministers [[handed in]] their resignations."
+  ],
+  "piege": "Séparable : <i>hand <b>it</b> in</i>. « Rendre un devoir » ne se dit pas <i>give back</i> (qui veut dire « restituer »). Variante : <i>turn in</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Please hand ___ your exam papers when the bell rings.",
+    "a": "in",
+    "fr": "Veuillez rendre vos copies quand la sonnerie retentit."
+   },
+   {
+    "s": "She ___ in her notice and left the company a month later.",
+    "a": "handed",
+    "fr": "Elle a donné sa démission et a quitté l'entreprise un mois plus tard."
+   }
+  ],
+  "ecris": "une phrase sur un travail que tu dois rendre",
+  "formes": [
+   "hand in",
+   "hands in",
+   "handed in",
+   "handing in",
+   "hand it in",
+   "handed it in"
+  ]
+ },
+ {
+  "id": "p-fill-in",
+  "w": "fill in",
+  "pos": "phrasal verb",
+  "ipa": "/ˌfɪl ˈɪn/",
+  "reg": "courant",
+  "fr": "1. remplir (un formulaire) · 2. remplacer · 3. mettre au courant",
+  "def": "To complete a form with information, to replace someone for a short time, or to tell someone the latest news.",
+  "col": [
+   "fill in a form",
+   "fill in the gaps",
+   "fill in for a colleague",
+   "fill someone in on"
+  ],
+  "ex": [
+   "You need to [[fill in]] this form before you see the doctor.",
+   "While you're away, I'll [[fill in]] for you at the meetings."
+  ],
+  "piege": "Séparable : <i>fill <b>it</b> in</i>. Britannique pour un formulaire (américain : <i>fill out</i>). <i>fill <b>me</b> in on</i> = mets-moi au courant de.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I missed the meeting: can you fill me ___ on what was decided?",
+    "a": "in",
+    "fr": "J'ai raté la réunion : tu peux me mettre au courant de ce qui a été décidé ?"
+   },
+   {
+    "s": "Please ___ in the application form in black ink.",
+    "a": "fill",
+    "fr": "Veuillez remplir le formulaire de candidature à l'encre noire."
+   }
+  ],
+  "ecris": "une phrase sur un formulaire à remplir ou un collègue à remplacer",
+  "formes": [
+   "fill in",
+   "fills in",
+   "filled in",
+   "filling in",
+   "fill it in",
+   "fill me in",
+   "filled me in",
+   "fill out"
+  ]
+ },
+ {
+  "id": "p-turn-up",
+  "w": "turn up",
+  "pos": "phrasal verb",
+  "ipa": "/ˌtɜːn ˈʌp/",
+  "reg": "courant",
+  "fr": "1. arriver, se présenter · 2. monter (le son)",
+  "def": "To arrive or appear somewhere, often unexpectedly, or to increase the volume or heat.",
+  "col": [
+   "turn up late",
+   "turn up unannounced",
+   "fail to turn up",
+   "turn the volume up"
+  ],
+  "ex": [
+   "My cousin [[turned up]] at our door without any warning.",
+   "Fewer than half of the registered voters [[turned up]] to vote."
+  ],
+  "piege": "Intransitif au sens « arriver » (synonyme de <i>show up</i>, un peu plus britannique). Séparable au sens « monter » : <i>turn <b>it</b> up</i>. Nom dérivé : <i>turnout</i> (participation).",
+  "fam": "turnout (n.)",
+  "trous": [
+   {
+    "s": "We booked a table for six, but only four people turned ___.",
+    "a": "up",
+    "fr": "Nous avions réservé une table pour six, mais seules quatre personnes sont venues."
+   },
+   {
+    "s": "Can you ___ the radio up? I love this song.",
+    "a": "turn",
+    "fr": "Tu peux monter le son de la radio ? J'adore cette chanson."
+   }
+  ],
+  "ecris": "une phrase sur quelqu'un qui est arrivé à l'improviste",
+  "formes": [
+   "turn up",
+   "turns up",
+   "turned up",
+   "turning up",
+   "turn it up"
+  ]
+ },
+ {
+  "id": "p-show-up",
+  "w": "show up",
+  "pos": "phrasal verb",
+  "ipa": "/ˌʃəʊ ˈʌp/",
+  "reg": "courant",
+  "fr": "se pointer, arriver, venir",
+  "def": "To arrive somewhere, especially when expected, or late.",
+  "col": [
+   "show up late",
+   "fail to show up",
+   "show up on time",
+   "never showed up"
+  ],
+  "ex": [
+   "He [[showed up]] an hour late without even apologising.",
+   "Fewer young voters [[showed up]] at the polls than in the previous election."
+  ],
+  "piege": "Intransitif et un peu familier ; neutre : <i>turn up</i>, formel : <i>arrive, attend</i>. Transitif séparable au sens « faire honte » : <i>he showed me up</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "We waited for ages, but she never showed ___.",
+    "a": "up",
+    "fr": "On a attendu des heures, mais elle n'est jamais venue."
+   },
+   {
+    "s": "Only ten people ___ up to the meeting.",
+    "a": "showed",
+    "alt": [
+     "turned"
+    ],
+    "fr": "Seules dix personnes sont venues à la réunion."
+   }
+  ],
+  "ecris": "une phrase sur quelqu'un qui est arrivé en retard ou n'est pas venu",
+  "formes": [
+   "show up",
+   "shows up",
+   "showed up",
+   "showing up",
+   "shown up"
+  ]
+ },
+ {
+  "id": "p-brush-up-on",
+  "w": "brush up on",
+  "pos": "phrasal verb",
+  "ipa": "/ˌbrʌʃ ˈʌp ɒn/",
+  "reg": "courant",
+  "fr": "rafraîchir, réviser, se remettre à",
+  "def": "To practise or study something again to improve skills you have partly forgotten.",
+  "col": [
+   "brush up on your English",
+   "brush up on grammar",
+   "brush up on the basics",
+   "brush up on your skills"
+  ],
+  "ex": [
+   "I need to [[brush up on]] my Spanish before the trip to Seville.",
+   "Before the interview, she [[brushed up on]] the company's recent history."
+  ],
+  "piege": "S'utilise pour des connaissances qu'on a déjà mais qu'on a un peu oubliées. Variante britannique sans <b>on</b> : <i>brush up your French</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I should brush up ___ my maths before the test.",
+    "a": "on",
+    "fr": "Je devrais réviser mes maths avant le contrôle."
+   },
+   {
+    "s": "He ___ up on his driving skills before taking the car to Scotland.",
+    "a": "brushed",
+    "fr": "Il s'est remis à niveau en conduite avant de prendre la voiture pour l'Écosse."
+   }
+  ],
+  "ecris": "une phrase sur une compétence que tu aimerais rafraîchir",
+  "formes": [
+   "brush up on",
+   "brushes up on",
+   "brushed up on",
+   "brushing up on",
+   "brush up"
+  ]
+ },
+ {
+  "id": "p-pick-up",
+  "w": "pick up",
+  "pos": "phrasal verb",
+  "ipa": "/ˌpɪk ˈʌp/",
+  "reg": "courant",
+  "fr": "1. apprendre (sur le tas) · 2. aller chercher",
+  "def": "To learn something without studying it formally, or to collect someone or something.",
+  "col": [
+   "pick up a language",
+   "pick up a habit",
+   "pick someone up from the station",
+   "pick up speed"
+  ],
+  "ex": [
+   "I [[picked up]] a bit of Italian while working in a café in Rome.",
+   "The economy began to [[pick up]] slowly after the recession."
+  ],
+  "piege": "Séparable : <i>I'll <b>pick you up</b> at eight</i>. Intransitif : s'améliorer, reprendre (<i>sales are picking up</i>). Pour un apprentissage formel, on dit <i>learn</i>.",
+  "fam": "pick-up (n., reprise ; camionnette)",
+  "trous": [
+   {
+    "s": "Children pick ___ new languages much faster than adults.",
+    "a": "up",
+    "fr": "Les enfants apprennent les nouvelles langues bien plus vite que les adultes."
+   },
+   {
+    "s": "Can you ___ me up from the station at six?",
+    "a": "pick",
+    "fr": "Tu peux venir me chercher à la gare à six heures ?"
+   }
+  ],
+  "ecris": "une phrase sur quelque chose que tu as appris sans vraiment l'étudier",
+  "formes": [
+   "pick up",
+   "picks up",
+   "picked up",
+   "picking up",
+   "pick it up",
+   "pick you up",
+   "pick me up",
+   "picked it up"
+  ]
+ },
+ {
+  "id": "p-take-up",
+  "w": "take up",
+  "pos": "phrasal verb",
+  "ipa": "/ˌteɪk ˈʌp/",
+  "reg": "courant",
+  "fr": "1. se mettre à (une activité) · 2. occuper (du temps, de la place)",
+  "def": "To start a new hobby or activity, or to fill an amount of time or space.",
+  "col": [
+   "take up a hobby",
+   "take up the guitar",
+   "take up too much time",
+   "take up space"
+  ],
+  "ex": [
+   "My mum [[took up]] running at fifty and now does marathons.",
+   "Paperwork [[takes up]] almost half of a doctor's working day."
+  ],
+  "piege": "Séparable : <i>take <b>it</b> up</i>. Pour « se mettre à », on parle d'une activité de loisir : <i>take up painting</i>. <i>take up an offer</i> = accepter une offre.",
+  "fam": "uptake (n., adoption, taux de recours)",
+  "trous": [
+   {
+    "s": "I'd like to take ___ yoga to help me relax.",
+    "a": "up",
+    "fr": "J'aimerais me mettre au yoga pour m'aider à me détendre."
+   },
+   {
+    "s": "This old sofa ___ up half the living room.",
+    "a": "takes",
+    "alt": [
+     "took"
+    ],
+    "fr": "Ce vieux canapé occupe la moitié du salon."
+   }
+  ],
+  "ecris": "une phrase sur une activité que tu voudrais commencer",
+  "formes": [
+   "take up",
+   "takes up",
+   "took up",
+   "taking up",
+   "taken up",
+   "take it up",
+   "took it up"
+  ]
+ },
+ {
+  "id": "p-fall-out-with",
+  "w": "fall out with",
+  "pos": "phrasal verb",
+  "ipa": "/ˌfɔːl ˈaʊt wɪð/",
+  "reg": "courant",
+  "fr": "se brouiller avec, se fâcher avec",
+  "def": "To argue with someone and stop being friendly with them.",
+  "col": [
+   "fall out with a friend",
+   "fall out over money",
+   "have fallen out",
+   "fall out with each other"
+  ],
+  "ex": [
+   "I [[fell out with]] my best friend over something really silly.",
+   "The two allies [[fell out]] over how to divide the conquered territory."
+  ],
+  "piege": "Prétérit irrégulier : <b>fell</b>, participe <b>fallen</b>. <i>fall out <b>over</b></i> + sujet de la dispute. Britannique ; à l'américaine : <i>have a falling-out</i>.",
+  "fam": "falling-out (n., brouille) · fallout (n., retombées)",
+  "trous": [
+   {
+    "s": "They fell ___ with each other over who should pay.",
+    "a": "out",
+    "fr": "Ils se sont fâchés pour savoir qui devait payer."
+   },
+   {
+    "s": "She has ___ out with her brother and they no longer speak.",
+    "a": "fallen",
+    "fr": "Elle s'est brouillée avec son frère et ils ne se parlent plus."
+   }
+  ],
+  "ecris": "une phrase sur une dispute entre amis",
+  "formes": [
+   "fall out with",
+   "falls out with",
+   "fell out with",
+   "falling out with",
+   "fallen out with",
+   "fall out",
+   "fell out",
+   "fallen out"
+  ]
+ },
+ {
+  "id": "p-make-up-with",
+  "w": "make up with",
+  "pos": "phrasal verb",
+  "ipa": "/ˌmeɪk ˈʌp wɪð/",
+  "reg": "courant",
+  "fr": "se réconcilier avec",
+  "def": "To become friends again with someone after an argument.",
+  "col": [
+   "make up with a friend",
+   "kiss and make up",
+   "make up after a fight",
+   "finally make up"
+  ],
+  "ex": [
+   "After a week of silence, she finally [[made up with]] her brother.",
+   "The two former rivals [[made up]] and signed a trade agreement."
+  ],
+  "piege": "Sans complément : <i>They argued, then <b>made up</b></i>. Attention aux autres sens : <i>make up a story</i> (inventer), <i>make up 20%</i> (constituer), <i>make-up</i> (maquillage).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Have you made up ___ Sophie since your argument?",
+    "a": "with",
+    "fr": "Est-ce que tu t'es réconcilié avec Sophie depuis votre dispute ?"
+   },
+   {
+    "s": "They had a big row but ___ up the next morning.",
+    "a": "made",
+    "fr": "Ils se sont violemment disputés mais se sont réconciliés le lendemain matin."
+   }
+  ],
+  "ecris": "une phrase sur une réconciliation",
+  "formes": [
+   "make up with",
+   "makes up with",
+   "made up with",
+   "making up with",
+   "made up",
+   "make up"
+  ]
+ },
+ {
+  "id": "p-break-up",
+  "w": "break up",
+  "pos": "phrasal verb",
+  "ipa": "/ˌbreɪk ˈʌp/",
+  "reg": "courant",
+  "fr": "rompre, se séparer",
+  "def": "To end a romantic relationship, or to separate into smaller parts.",
+  "col": [
+   "break up with someone",
+   "break up after two years",
+   "the band broke up",
+   "break up a fight"
+  ],
+  "ex": [
+   "She [[broke up]] with her boyfriend just before the summer holidays.",
+   "When the Soviet Union [[broke up]] in 1991, fifteen new states emerged."
+  ],
+  "piege": "<i>break up <b>with</b></i> + personne. Prétérit irrégulier : <b>broke</b>, participe <b>broken</b>. Nom : <i>a break-up</i> (rupture, éclatement). Pour un mariage, on dit aussi <i>split up</i>.",
+  "fam": "break-up (n.)",
+  "trous": [
+   {
+    "s": "They broke ___ after five years together.",
+    "a": "up",
+    "fr": "Ils se sont séparés après cinq ans ensemble."
+   },
+   {
+    "s": "The empire ___ up into several small kingdoms.",
+    "a": "broke",
+    "fr": "L'empire s'est morcelé en plusieurs petits royaumes."
+   }
+  ],
+  "ecris": "une phrase sur une séparation (couple, groupe de musique, pays)",
+  "formes": [
+   "break up",
+   "breaks up",
+   "broke up",
+   "breaking up",
+   "broken up",
+   "break-up"
+  ]
+ },
+ {
+  "id": "p-look-up-to",
+  "w": "look up to",
+  "pos": "phrasal verb",
+  "ipa": "/ˌlʊk ˈʌp tə/",
+  "reg": "courant",
+  "fr": "admirer, prendre pour modèle",
+  "def": "To admire and respect someone, often an older or more experienced person.",
+  "col": [
+   "look up to someone",
+   "look up to your parents",
+   "someone to look up to",
+   "always look up to"
+  ],
+  "ex": [
+   "My little brother really [[looks up to]] me, so I try to set a good example.",
+   "Young athletes often [[look up to]] champions who overcame poverty."
+  ],
+  "piege": "Inséparable : <i>look up to <b>him</b></i>. Contraire : <b>look down on</b> (mépriser). Ne pas confondre avec <i>look up</i> (chercher un mot).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Children often look up ___ their older brothers and sisters.",
+    "a": "to",
+    "fr": "Les enfants admirent souvent leurs frères et sœurs aînés."
+   },
+   {
+    "s": "She was the kind of teacher everyone ___ up to.",
+    "a": "looked",
+    "fr": "C'était le genre de professeure que tout le monde admirait."
+   }
+  ],
+  "ecris": "une phrase sur une personne que tu admires",
+  "formes": [
+   "look up to",
+   "looks up to",
+   "looked up to",
+   "looking up to"
+  ]
+ },
+ {
+  "id": "p-look-down-on",
+  "w": "look down on",
+  "pos": "phrasal verb",
+  "ipa": "/ˌlʊk ˈdaʊn ɒn/",
+  "reg": "courant",
+  "fr": "mépriser, regarder de haut",
+  "def": "To think that you are better than someone.",
+  "col": [
+   "look down on someone",
+   "look down on people who",
+   "be looked down on",
+   "look down on manual work"
+  ],
+  "ex": [
+   "Some of the older students [[look down on]] the new ones.",
+   "For centuries, the aristocracy [[looked down on]] people who earned money through trade."
+  ],
+  "piege": "Inséparable : <i>look down on <b>them</b></i>. Au passif : <i>be looked down on</i>. Contraire : <b>look up to</b>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "He looks down ___ anyone who didn't go to university.",
+    "a": "on",
+    "alt": [
+     "upon"
+    ],
+    "fr": "Il méprise tous ceux qui ne sont pas allés à l'université."
+   },
+   {
+    "s": "She felt that her colleagues ___ down on her because of her accent.",
+    "a": "looked",
+    "fr": "Elle avait l'impression que ses collègues la regardaient de haut à cause de son accent."
+   }
+  ],
+  "ecris": "une phrase sur le mépris envers un groupe social",
+  "formes": [
+   "look down on",
+   "looks down on",
+   "looked down on",
+   "looking down on",
+   "look down upon"
+  ]
+ },
+ {
+  "id": "p-take-after",
+  "w": "take after",
+  "pos": "phrasal verb",
+  "ipa": "/ˈteɪk ˌɑːftə/",
+  "reg": "courant",
+  "fr": "tenir de, ressembler à (un parent)",
+  "def": "To look or behave like an older member of your family.",
+  "col": [
+   "take after your mother",
+   "take after his father",
+   "take after her grandmother",
+   "clearly take after"
+  ],
+  "ex": [
+   "Everyone says I [[take after]] my grandfather: we're both stubborn.",
+   "The young king [[took after]] his father in his love of war."
+  ],
+  "piege": "Uniquement pour un membre de la famille plus âgé. Ne s'emploie pas à la forme progressive (<i>She takes after her mum</i>, pas <i>is taking after</i>). Inséparable.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "She takes ___ her mother: they have the same laugh.",
+    "a": "after",
+    "fr": "Elle tient de sa mère : elles ont le même rire."
+   },
+   {
+    "s": "In temperament, he ___ after his father rather than his mother.",
+    "a": "takes",
+    "alt": [
+     "took"
+    ],
+    "fr": "Par le caractère, il tient de son père plutôt que de sa mère."
+   }
+  ],
+  "ecris": "une phrase sur le membre de ta famille à qui tu ressembles",
+  "formes": [
+   "take after",
+   "takes after",
+   "took after",
+   "taken after"
+  ]
+ },
+ {
+  "id": "p-settle-down",
+  "w": "settle down",
+  "pos": "phrasal verb",
+  "ipa": "/ˌsetl ˈdaʊn/",
+  "reg": "courant",
+  "fr": "1. se ranger, s'installer · 2. se calmer",
+  "def": "To start living a quiet, stable life in one place, or to become calm.",
+  "col": [
+   "settle down and have a family",
+   "settle down in the countryside",
+   "things settle down",
+   "settle down to work"
+  ],
+  "ex": [
+   "After years of travelling, he wants to [[settle down]] somewhere by the sea.",
+   "Once the revolution was over, daily life slowly began to [[settle down]]."
+  ],
+  "piege": "Intransitif : <i>they settled down in Wales</i>. Au sens « se calmer », s'emploie aussi pour une classe ou une situation : <i>Settle down, everyone!</i>",
+  "fam": "settled (adj., stable) · settlement (n.)",
+  "trous": [
+   {
+    "s": "They got married and settled ___ in a small town.",
+    "a": "down",
+    "fr": "Ils se sont mariés et se sont installés dans une petite ville."
+   },
+   {
+    "s": "Wait until the children have ___ down before you start the story.",
+    "a": "settled",
+    "fr": "Attends que les enfants se soient calmés avant de commencer l'histoire."
+   }
+  ],
+  "ecris": "une phrase sur l'endroit où tu aimerais t'installer plus tard",
+  "formes": [
+   "settle down",
+   "settles down",
+   "settled down",
+   "settling down"
+  ]
+ },
+ {
+  "id": "p-move-on",
+  "w": "move on",
+  "pos": "phrasal verb",
+  "ipa": "/ˌmuːv ˈɒn/",
+  "reg": "courant",
+  "fr": "passer à autre chose, tourner la page",
+  "def": "To stop thinking about a past event and start a new stage, or to change to a new subject.",
+  "col": [
+   "move on from",
+   "time to move on",
+   "move on with your life",
+   "let's move on to"
+  ],
+  "ex": [
+   "The break-up was painful, but I've [[moved on]] now.",
+   "After the war, the country had to [[move on]] without forgetting its victims."
+  ],
+  "piege": "<i>move on <b>from</b></i> + ce qu'on laisse derrière soi ; <i>move on <b>to</b></i> + le sujet suivant (<i>Let's move on to the next point</i>).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "It's time to forget the argument and move ___.",
+    "a": "on",
+    "fr": "Il est temps d'oublier la dispute et de passer à autre chose."
+   },
+   {
+    "s": "Let's ___ on to the second part of the presentation.",
+    "a": "move",
+    "fr": "Passons à la deuxième partie de l'exposé."
+   }
+  ],
+  "ecris": "une phrase sur un moment où tu as dû tourner la page",
+  "formes": [
+   "move on",
+   "moves on",
+   "moved on",
+   "moving on"
+  ]
+ },
+ {
+  "id": "p-open-up",
+  "w": "open up",
+  "pos": "phrasal verb",
+  "ipa": "/ˌəʊpən ˈʌp/",
+  "reg": "courant",
+  "fr": "se confier, s'ouvrir",
+  "def": "To start talking honestly about your feelings or private life.",
+  "col": [
+   "open up to someone",
+   "open up about",
+   "find it hard to open up",
+   "finally open up"
+  ],
+  "ex": [
+   "It took him months to [[open up]] about what had happened at his old school.",
+   "Campaigns encourage men to [[open up]] about their mental health."
+  ],
+  "piege": "<i>open up <b>to</b></i> + personne, <i>open up <b>about</b></i> + sujet. Autre sens : ouvrir (un marché, des possibilités) : <i>open up new opportunities</i>.",
+  "fam": "open (adj., ouvert, franc) · openness (n.)",
+  "trous": [
+   {
+    "s": "She finally opened ___ to her parents about her worries.",
+    "a": "up",
+    "fr": "Elle s'est enfin confiée à ses parents au sujet de ses inquiétudes."
+   },
+   {
+    "s": "Some people find it difficult to ___ up, even to close friends.",
+    "a": "open",
+    "fr": "Certaines personnes ont du mal à se confier, même à des amis proches."
+   }
+  ],
+  "ecris": "une phrase sur la difficulté de se confier",
+  "formes": [
+   "open up",
+   "opens up",
+   "opened up",
+   "opening up"
+  ]
+ },
+ {
+  "id": "p-fit-in",
+  "w": "fit in",
+  "pos": "phrasal verb",
+  "ipa": "/ˌfɪt ˈɪn/",
+  "reg": "courant",
+  "fr": "s'intégrer, trouver sa place",
+  "def": "To be accepted by a group because you are similar to its members.",
+  "col": [
+   "fit in with",
+   "try to fit in",
+   "never really fit in",
+   "fit in at school"
+  ],
+  "ex": [
+   "When I moved to a new school, it took me a while to [[fit in]].",
+   "Many immigrants felt pressure to [[fit in]] by hiding their own culture."
+  ],
+  "piege": "Intransitif : <i>I didn't fit in</i>. <i>fit in <b>with</b></i> + groupe ou projet (<i>it fits in with our plans</i>). Autre sens : trouver du temps pour quelqu'un (<i>I can fit you in at 3</i>).",
+  "fam": "misfit (n., inadapté)",
+  "trous": [
+   {
+    "s": "He tried hard to fit ___ with his new classmates.",
+    "a": "in",
+    "fr": "Il a fait de gros efforts pour s'intégrer avec ses nouveaux camarades."
+   },
+   {
+    "s": "She never felt she really ___ in at her parents' parties.",
+    "a": "fitted",
+    "alt": [
+     "fit"
+    ],
+    "fr": "Elle n'a jamais eu l'impression de trouver sa place aux fêtes de ses parents."
+   }
+  ],
+  "ecris": "une phrase sur une situation où tu as dû t'intégrer à un groupe",
+  "formes": [
+   "fit in",
+   "fits in",
+   "fitted in",
+   "fitting in"
+  ]
+ },
+ {
+  "id": "p-miss-out-on",
+  "w": "miss out on",
+  "pos": "phrasal verb",
+  "ipa": "/ˌmɪs ˈaʊt ɒn/",
+  "reg": "courant",
+  "fr": "rater, passer à côté de",
+  "def": "To lose the chance to do or have something good.",
+  "col": [
+   "miss out on an opportunity",
+   "miss out on the fun",
+   "feel like you're missing out",
+   "miss out on a promotion"
+  ],
+  "ex": [
+   "I was ill and [[missed out on]] the school trip to Edinburgh.",
+   "Rural areas risk [[missing out on]] the benefits of fast internet."
+  ],
+  "piege": "Toujours une chose positive qu'on rate. Sans complément : <i>Don't miss out!</i> D'où l'acronyme <b>FOMO</b> (<i>fear of missing out</i>).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Come with us tonight: you don't want to miss out ___ the fun.",
+    "a": "on",
+    "fr": "Viens avec nous ce soir : tu ne veux pas rater l'ambiance."
+   },
+   {
+    "s": "Because of his injury, he ___ out on the final.",
+    "a": "missed",
+    "fr": "À cause de sa blessure, il a raté la finale."
+   }
+  ],
+  "ecris": "une phrase sur une occasion que tu as ratée",
+  "formes": [
+   "miss out on",
+   "misses out on",
+   "missed out on",
+   "missing out on",
+   "miss out",
+   "missing out"
+  ]
+ },
+ {
+  "id": "p-call-off",
+  "w": "call off",
+  "pos": "phrasal verb",
+  "ipa": "/ˌkɔːl ˈɒf/",
+  "reg": "courant",
+  "fr": "annuler, interrompre",
+  "def": "To decide that a planned event will not happen, or to stop something already in progress.",
+  "col": [
+   "call off a match",
+   "call off the wedding",
+   "call off a strike",
+   "call off the search"
+  ],
+  "ex": [
+   "The match was [[called off]] because the pitch was frozen.",
+   "The unions [[called off]] the strike after the government agreed to talks."
+  ],
+  "piege": "Séparable : <i>They <b>called it off</b></i>. Plus familier que <i>cancel</i> ; s'emploie souvent au passif : <i>be called off</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The concert was called ___ at the last minute because of a storm.",
+    "a": "off",
+    "fr": "Le concert a été annulé à la dernière minute à cause d'un orage."
+   },
+   {
+    "s": "Rescuers ___ off the search when night fell.",
+    "a": "called",
+    "fr": "Les secouristes ont interrompu les recherches à la tombée de la nuit."
+   }
+  ],
+  "ecris": "une phrase sur un événement annulé",
+  "formes": [
+   "call off",
+   "calls off",
+   "called off",
+   "calling off",
+   "call it off",
+   "called it off"
+  ]
+ },
+ {
+  "id": "p-hang-out",
+  "w": "hang out",
+  "pos": "phrasal verb",
+  "ipa": "/ˌhæŋ ˈaʊt/",
+  "reg": "familier",
+  "fr": "traîner, passer du temps (avec des amis)",
+  "def": "To spend time relaxing somewhere or with someone, without doing anything special.",
+  "col": [
+   "hang out with friends",
+   "hang out at the park",
+   "hang out together",
+   "a place to hang out"
+  ],
+  "ex": [
+   "On Saturdays we usually [[hang out]] at the skate park.",
+   "Young people [[hang out]] online as much as in real places nowadays."
+  ],
+  "piege": "Familier. <i>hang out <b>with</b></i> + personne, <i>hang out <b>at / in</b></i> + lieu. Prétérit : <b>hung</b> (<i>we hung out</i>) ; <i>hanged</i> est réservé à la pendaison.",
+  "fam": "hangout (n., lieu de rendez-vous)",
+  "trous": [
+   {
+    "s": "Do you want to hang ___ after school today?",
+    "a": "out",
+    "fr": "Tu veux qu'on traîne ensemble après les cours aujourd'hui ?"
+   },
+   {
+    "s": "Last summer we ___ out at the beach almost every day.",
+    "a": "hung",
+    "fr": "L'été dernier, on passait du temps à la plage presque tous les jours."
+   }
+  ],
+  "ecris": "une phrase sur l'endroit où tu aimes passer du temps avec tes amis",
+  "formes": [
+   "hang out",
+   "hangs out",
+   "hung out",
+   "hanging out"
+  ]
+ },
+ {
+  "id": "p-cheer-up",
+  "w": "cheer up",
+  "pos": "phrasal verb",
+  "ipa": "/ˌtʃɪər ˈʌp/",
+  "reg": "courant",
+  "fr": "remonter le moral, reprendre courage",
+  "def": "To become happier, or to make someone feel happier.",
+  "col": [
+   "cheer someone up",
+   "cheer up!",
+   "try to cheer her up",
+   "something to cheer you up"
+  ],
+  "ex": [
+   "I bought her some flowers to [[cheer her up]] after her exam.",
+   "The good economic news did little to [[cheer up]] worried investors."
+  ],
+  "piege": "Intransitif (<i>Cheer up!</i> = « courage ! ») ou séparable : <i>cheer <b>him</b> up</i>. Ne pas confondre avec <i>cheer</i> (acclamer).",
+  "fam": "cheerful (adj., gai)",
+  "trous": [
+   {
+    "s": "Cheer ___! It's not the end of the world.",
+    "a": "up",
+    "fr": "Courage ! Ce n'est pas la fin du monde."
+   },
+   {
+    "s": "A long walk in the sun always ___ me up.",
+    "a": "cheers",
+    "fr": "Une longue balade au soleil me remonte toujours le moral."
+   }
+  ],
+  "ecris": "une phrase sur ce qui te remonte le moral",
+  "formes": [
+   "cheer up",
+   "cheers up",
+   "cheered up",
+   "cheering up",
+   "cheer her up",
+   "cheer him up",
+   "cheer me up",
+   "cheer you up",
+   "cheered me up"
+  ]
+ },
+ {
+  "id": "p-show-off",
+  "w": "show off",
+  "pos": "phrasal verb",
+  "ipa": "/ˌʃəʊ ˈɒf/",
+  "reg": "courant",
+  "fr": "frimer, se vanter, faire étalage de",
+  "def": "To try to impress people by showing your abilities or possessions, or to display something proudly.",
+  "col": [
+   "show off in front of",
+   "show off your skills",
+   "show off a new car",
+   "stop showing off"
+  ],
+  "ex": [
+   "He's always [[showing off]] his expensive trainers at school.",
+   "Louis XIV built Versailles partly to [[show off]] the power of the French monarchy."
+  ],
+  "piege": "Intransitif et péjoratif (<i>Stop showing off!</i>), ou séparable : <i>show <b>it</b> off</i>. Le nom <i>a show-off</i> désigne un frimeur.",
+  "fam": "show-off (n., frimeur)",
+  "trous": [
+   {
+    "s": "Stop showing ___: nobody cares how fast your car is.",
+    "a": "off",
+    "fr": "Arrête de frimer : tout le monde se moque de la vitesse de ta voiture."
+   },
+   {
+    "s": "She couldn't wait to ___ off her new phone to her friends.",
+    "a": "show",
+    "fr": "Elle avait hâte de montrer fièrement son nouveau téléphone à ses amis."
+   }
+  ],
+  "ecris": "une phrase sur quelqu'un qui aime frimer",
+  "formes": [
+   "show off",
+   "shows off",
+   "showed off",
+   "showing off",
+   "shown off",
+   "show it off",
+   "show-off"
+  ]
+ },
+ {
+  "id": "p-get-back-to",
+  "w": "get back to",
+  "pos": "phrasal verb",
+  "ipa": "/ˌɡet ˈbæk tə/",
+  "reg": "courant",
+  "fr": "1. recontacter, répondre plus tard · 2. revenir à",
+  "def": "To contact someone again later with an answer, or to return to an activity or subject.",
+  "col": [
+   "get back to you",
+   "get back to work",
+   "get back to normal",
+   "get back to the point"
+  ],
+  "ex": [
+   "I'm not sure yet, but I'll [[get back to]] you before Friday.",
+   "After the war, people longed to [[get back to]] a normal life."
+  ],
+  "piege": "Formule professionnelle très courante : <i>I'll get back to you</i> (« je reviens vers vous »). Prétérit : <b>got</b>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Let me check my diary and get back ___ you.",
+    "a": "to",
+    "fr": "Laisse-moi vérifier mon agenda et je te redis."
+   },
+   {
+    "s": "Enough chatting: let's ___ back to work.",
+    "a": "get",
+    "fr": "Assez bavardé : remettons-nous au travail."
+   }
+  ],
+  "ecris": "une phrase pour promettre une réponse plus tard",
+  "formes": [
+   "get back to",
+   "gets back to",
+   "got back to",
+   "getting back to"
+  ]
+ },
+ {
+  "id": "p-look-out-for",
+  "w": "look out for",
+  "pos": "phrasal verb",
+  "ipa": "/ˌlʊk ˈaʊt fə/",
+  "reg": "courant",
+  "fr": "1. guetter, faire attention à · 2. veiller sur",
+  "def": "To watch carefully in order to notice something, or to take care of someone and protect them.",
+  "col": [
+   "look out for signs of",
+   "look out for each other",
+   "look out for a friend",
+   "look out for mistakes"
+  ],
+  "ex": [
+   "[[Look out for]] a blue door: that's my house.",
+   "In difficult times, neighbours [[looked out for]] each other."
+  ],
+  "piege": "Inséparable : <i>look out for <b>him</b></i>. Sans complément, <i>Look out!</i> = « attention ! ». <i>look out for number one</i> = ne penser qu'à soi.",
+  "fam": "lookout (n., guetteur)",
+  "trous": [
+   {
+    "s": "Look out ___ spelling mistakes when you reread your essay.",
+    "a": "for",
+    "fr": "Fais attention aux fautes d'orthographe quand tu relis ta dissertation."
+   },
+   {
+    "s": "Older pupils are asked to ___ out for the new ones.",
+    "a": "look",
+    "fr": "On demande aux grands de veiller sur les nouveaux."
+   }
+  ],
+  "ecris": "une phrase sur des personnes qui veillent les unes sur les autres",
+  "formes": [
+   "look out for",
+   "looks out for",
+   "looked out for",
+   "looking out for"
+  ]
+ },
+ {
+  "id": "p-talk-into",
+  "w": "talk someone into",
+  "pos": "phrasal verb",
+  "ipa": "/ˈtɔːk ˌɪntuː/",
+  "reg": "courant",
+  "fr": "persuader (quelqu'un) de",
+  "def": "To persuade someone to do something they did not want to do at first.",
+  "col": [
+   "talk someone into doing",
+   "be talked into",
+   "talk someone out of",
+   "manage to talk her into it"
+  ],
+  "ex": [
+   "My friends [[talked me into]] going to the party, and I'm glad they did.",
+   "Investors were [[talked into]] buying shares that later proved worthless."
+  ],
+  "piege": "La personne se place toujours au milieu : <i>talk <b>him</b> into it</i>, suivi de <b>-ing</b> (<i>talked me into coming</i>). Contraire : <i>talk someone <b>out of</b></i> (dissuader).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I didn't want to come, but she talked me ___ it.",
+    "a": "into",
+    "fr": "Je ne voulais pas venir, mais elle m'a persuadé."
+   },
+   {
+    "s": "He ___ his parents into letting him go to the festival.",
+    "a": "talked",
+    "fr": "Il a persuadé ses parents de le laisser aller au festival."
+   }
+  ],
+  "ecris": "une phrase sur une fois où quelqu'un t'a persuadé de faire quelque chose",
+  "formes": [
+   "talk me into",
+   "talked me into",
+   "talk him into",
+   "talked him into",
+   "talk her into",
+   "talked her into",
+   "talk them into",
+   "talked into",
+   "talking into",
+   "talks into",
+   "talk you into"
+  ]
+ },
+ {
+  "id": "p-get-by",
+  "w": "get by",
+  "pos": "phrasal verb",
+  "ipa": "/ˌɡet ˈbaɪ/",
+  "reg": "courant",
+  "fr": "se débrouiller, s'en sortir",
+  "def": "To manage to live or do something with difficulty, using what you have.",
+  "col": [
+   "get by on a small income",
+   "get by in English",
+   "just about get by",
+   "get by without"
+  ],
+  "ex": [
+   "My German isn't great, but I can [[get by]] in a restaurant.",
+   "Millions of families struggle to [[get by]] on the minimum wage."
+  ],
+  "piege": "Intransitif : <i>We get by</i>. <i>get by <b>on</b></i> + somme d'argent, <i>get by <b>in</b></i> + langue, <i>get by <b>without</b></i> + chose.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Students often have to get ___ on very little money.",
+    "a": "by",
+    "fr": "Les étudiants doivent souvent se débrouiller avec très peu d'argent."
+   },
+   {
+    "s": "She speaks enough French to ___ by on holiday.",
+    "a": "get",
+    "fr": "Elle parle assez français pour se débrouiller en vacances."
+   }
+  ],
+  "ecris": "une phrase sur une langue ou une situation dans laquelle tu te débrouilles",
+  "formes": [
+   "get by",
+   "gets by",
+   "got by",
+   "getting by"
+  ]
+ },
+ {
+  "id": "p-follow-up-on",
+  "w": "follow up on",
+  "pos": "phrasal verb",
+  "ipa": "/ˌfɒləʊ ˈʌp ɒn/",
+  "reg": "courant",
+  "fr": "donner suite à, faire le suivi de",
+  "def": "To take further action about something that was started or mentioned earlier.",
+  "col": [
+   "follow up on a request",
+   "follow up on a promise",
+   "follow up on a lead",
+   "follow up with an email"
+  ],
+  "ex": [
+   "I'll [[follow up on]] your question and email you the answer tomorrow.",
+   "Journalists [[followed up on]] the rumour and uncovered a major scandal."
+  ],
+  "piege": "Variante séparable sans <b>on</b> : <i>follow <b>it</b> up</i>. Le nom s'écrit avec un trait d'union : <i>a follow-up</i> (une relance, une suite).",
+  "fam": "follow-up (n./adj.)",
+  "trous": [
+   {
+    "s": "The doctor wants to follow up ___ the test results next week.",
+    "a": "on",
+    "fr": "Le médecin veut faire le suivi des résultats d'analyse la semaine prochaine."
+   },
+   {
+    "s": "Nobody ___ up on the complaints, so the problem got worse.",
+    "a": "followed",
+    "fr": "Personne n'a donné suite aux plaintes, alors le problème s'est aggravé."
+   }
+  ],
+  "ecris": "une phrase sur une promesse ou une demande à laquelle il faut donner suite",
+  "formes": [
+   "follow up on",
+   "follows up on",
+   "followed up on",
+   "following up on",
+   "follow up",
+   "followed up",
+   "follow it up",
+   "follow-up"
+  ]
+ },
+ {
+  "id": "p-go-over",
+  "w": "go over",
+  "pos": "phrasal verb",
+  "ipa": "/ˌɡəʊ ˈəʊvə/",
+  "reg": "courant",
+  "fr": "revoir, relire, passer en revue",
+  "def": "To examine or check something carefully, often again.",
+  "col": [
+   "go over your notes",
+   "go over the details",
+   "go over it again",
+   "go over the main points"
+  ],
+  "ex": [
+   "Before the exam, I [[went over]] my notes one last time.",
+   "The lawyers [[went over]] every line of the treaty before it was signed."
+  ],
+  "piege": "Inséparable : <i>go over <b>it</b></i>. Proche de <i>go through</i> ; <i>go over</i> insiste davantage sur la révision ou la vérification.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Let's go ___ the main points once more before the test.",
+    "a": "over",
+    "fr": "Revoyons les points principaux une dernière fois avant le contrôle."
+   },
+   {
+    "s": "She ___ over her essay twice to check for mistakes.",
+    "a": "went",
+    "fr": "Elle a relu sa dissertation deux fois pour vérifier les fautes."
+   }
+  ],
+  "ecris": "une phrase sur ta manière de réviser avant un examen",
+  "formes": [
+   "go over",
+   "goes over",
+   "went over",
+   "going over",
+   "gone over"
+  ]
+ },
+ {
+  "id": "p-run-into",
+  "w": "run into",
+  "pos": "phrasal verb",
+  "ipa": "/ˈrʌn ˌɪntuː/",
+  "reg": "courant",
+  "fr": "1. croiser par hasard · 2. rencontrer (des difficultés)",
+  "def": "To meet someone by chance, or to start to experience problems.",
+  "col": [
+   "run into an old friend",
+   "run into problems",
+   "run into difficulties",
+   "run into trouble"
+  ],
+  "ex": [
+   "I [[ran into]] my old English teacher at the supermarket yesterday.",
+   "The project [[ran into]] serious financial difficulties after only a year."
+  ],
+  "piege": "Inséparable : <i>I ran into <b>her</b></i>. Prétérit irrégulier : <b>ran</b>. Synonyme pour la rencontre : <i>bump into</i> (plus familier).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Guess who I ran ___ at the station this morning?",
+    "a": "into",
+    "fr": "Devine qui j'ai croisé à la gare ce matin ?"
+   },
+   {
+    "s": "The negotiations ___ into problems over fishing rights.",
+    "a": "ran",
+    "fr": "Les négociations se sont heurtées à des difficultés sur les droits de pêche."
+   }
+  ],
+  "ecris": "une phrase sur une rencontre inattendue",
+  "formes": [
+   "run into",
+   "runs into",
+   "ran into",
+   "running into"
+  ]
+ },
+ {
+  "id": "p-pull-off",
+  "w": "pull off",
+  "pos": "phrasal verb",
+  "ipa": "/ˌpʊl ˈɒf/",
+  "reg": "courant",
+  "fr": "réussir (quelque chose de difficile)",
+  "def": "To succeed in doing something difficult or unexpected.",
+  "col": [
+   "pull off a victory",
+   "pull off a surprise",
+   "pull it off",
+   "manage to pull off"
+  ],
+  "ex": [
+   "Nobody thought we could organise the party in two days, but we [[pulled it off]].",
+   "The general [[pulled off]] a remarkable victory against a much larger army."
+  ],
+  "piege": "Séparable : <i>pull <b>it</b> off</i> (très fréquent). Un peu familier ; neutre : <i>succeed in, achieve</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "It was a risky plan, but they managed to pull it ___.",
+    "a": "off",
+    "fr": "C'était un plan risqué, mais ils ont réussi leur coup."
+   },
+   {
+    "s": "The underdogs ___ off a stunning win in the final.",
+    "a": "pulled",
+    "fr": "Les outsiders ont décroché une victoire éclatante en finale."
+   }
+  ],
+  "ecris": "une phrase sur un défi difficile que tu as réussi",
+  "formes": [
+   "pull off",
+   "pulls off",
+   "pulled off",
+   "pulling off",
+   "pull it off",
+   "pulled it off"
+  ]
+ },
+ {
+  "id": "p-own-up-to",
+  "w": "own up to",
+  "pos": "phrasal verb",
+  "ipa": "/ˌəʊn ˈʌp tə/",
+  "reg": "courant",
+  "fr": "avouer, reconnaître (une faute)",
+  "def": "To admit that you have done something wrong.",
+  "col": [
+   "own up to a mistake",
+   "own up to breaking",
+   "finally own up",
+   "nobody owned up"
+  ],
+  "ex": [
+   "Nobody [[owned up to]] eating the last piece of cake.",
+   "Few leaders are willing to [[own up to]] their mistakes in public."
+  ],
+  "piege": "Suivi d'un nom ou d'un verbe en <b>-ing</b> : <i>own up to breaking it</i>. Sans complément : <i>Come on, own up!</i> Plus familier que <i>admit, confess</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "It takes courage to own up ___ your mistakes.",
+    "a": "to",
+    "fr": "Il faut du courage pour reconnaître ses erreurs."
+   },
+   {
+    "s": "Eventually he ___ up to breaking the window.",
+    "a": "owned",
+    "fr": "Il a fini par avouer avoir cassé la fenêtre."
+   }
+  ],
+  "ecris": "une phrase sur une faute que quelqu'un a avouée",
+  "formes": [
+   "own up to",
+   "owns up to",
+   "owned up to",
+   "owning up to",
+   "own up",
+   "owned up"
+  ]
+ },
+ {
+  "id": "p-pass-up",
+  "w": "pass up",
+  "pos": "phrasal verb",
+  "ipa": "/ˌpɑːs ˈʌp/",
+  "reg": "courant",
+  "fr": "laisser passer (une occasion)",
+  "def": "To choose not to take an opportunity.",
+  "col": [
+   "pass up a chance",
+   "pass up an opportunity",
+   "pass up an offer",
+   "too good to pass up"
+  ],
+  "ex": [
+   "A free ticket to the final? That's too good to [[pass up]].",
+   "Britain [[passed up]] the chance to shape the early European project."
+  ],
+  "piege": "Séparable : <i>I couldn't <b>pass it up</b></i>. Volontaire, contrairement à <i>miss out on</i> (rater sans le vouloir).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I can't believe you passed ___ the chance to study abroad.",
+    "a": "up",
+    "fr": "Je n'arrive pas à croire que tu aies laissé passer la chance d'étudier à l'étranger."
+   },
+   {
+    "s": "Never ___ up an opportunity to learn something new.",
+    "a": "pass",
+    "fr": "Ne laisse jamais passer une occasion d'apprendre quelque chose de nouveau."
+   }
+  ],
+  "ecris": "une phrase sur une occasion que tu ne voudrais pas laisser passer",
+  "formes": [
+   "pass up",
+   "passes up",
+   "passed up",
+   "passing up",
+   "pass it up"
+  ]
+ },
+ {
+  "id": "p-drop-out",
+  "w": "drop out",
+  "pos": "phrasal verb",
+  "ipa": "/ˌdrɒp ˈaʊt/",
+  "reg": "courant",
+  "fr": "abandonner (ses études, une course)",
+  "def": "To leave a school, course or competition before you have finished it.",
+  "col": [
+   "drop out of school",
+   "drop out of university",
+   "drop out of the race",
+   "drop out early"
+  ],
+  "ex": [
+   "She hurt her ankle and had to [[drop out]] of the race.",
+   "Poverty forces many children to [[drop out]] of school before the age of twelve."
+  ],
+  "piege": "<i>drop out <b>of</b></i> + école, course, compétition. Le nom s'écrit en un mot : <i>a dropout</i> (élève qui a décroché).",
+  "fam": "dropout (n.)",
+  "trous": [
+   {
+    "s": "He dropped ___ of university after his first year.",
+    "a": "out",
+    "fr": "Il a abandonné l'université après sa première année."
+   },
+   {
+    "s": "Two candidates have ___ out of the election.",
+    "a": "dropped",
+    "fr": "Deux candidats se sont retirés de l'élection."
+   }
+  ],
+  "ecris": "une phrase sur le décrochage scolaire ou l'abandon d'une compétition",
+  "formes": [
+   "drop out",
+   "drops out",
+   "dropped out",
+   "dropping out",
+   "dropout"
+  ]
+ },
+ {
+  "id": "p-wear-out",
+  "w": "wear out",
+  "pos": "phrasal verb",
+  "ipa": "/ˌweər ˈaʊt/",
+  "reg": "courant",
+  "fr": "1. user · 2. épuiser (worn out : épuisé)",
+  "def": "To use something until it is damaged, or to make someone extremely tired.",
+  "col": [
+   "be worn out",
+   "wear out your shoes",
+   "wear yourself out",
+   "completely worn out"
+  ],
+  "ex": [
+   "After the hike, we were completely [[worn out]].",
+   "Constant overtime [[wears out]] nurses and pushes many to leave the profession."
+  ],
+  "piege": "Verbe irrégulier : <b>wear / wore / worn</b>. Séparable : <i>it <b>wears me out</b></i>. Le plus fréquent : l'adjectif <b>worn out</b> (épuisé, usé).",
+  "fam": "worn-out (adj.)",
+  "trous": [
+   {
+    "s": "I've worn ___ my trainers: there are holes in both of them.",
+    "a": "out",
+    "fr": "J'ai usé mes baskets : il y a des trous dans les deux."
+   },
+   {
+    "s": "Looking after three small children has ___ her out.",
+    "a": "worn",
+    "fr": "S'occuper de trois jeunes enfants l'a épuisée."
+   }
+  ],
+  "ecris": "une phrase sur quelque chose qui t'a épuisé",
+  "formes": [
+   "wear out",
+   "wears out",
+   "wore out",
+   "wearing out",
+   "worn out",
+   "worn-out",
+   "wear me out",
+   "wore me out"
+  ]
+ },
+ {
+  "id": "p-crop-up",
+  "w": "crop up",
+  "pos": "phrasal verb",
+  "ipa": "/ˌkrɒp ˈʌp/",
+  "reg": "courant",
+  "fr": "surgir, se présenter (à l'improviste)",
+  "def": "To appear or happen suddenly and unexpectedly.",
+  "col": [
+   "something has cropped up",
+   "problems crop up",
+   "crop up in conversation",
+   "crop up again"
+  ],
+  "ex": [
+   "Sorry, I can't come tonight: something has [[cropped up]] at work.",
+   "The same arguments [[crop up]] every time the question of the monarchy is raised."
+  ],
+  "piege": "Intransitif, souvent au <b>present perfect</b> : <i>something has cropped up</i>. Synonyme : <i>come up</i>. Pratique pour s'excuser poliment sans détailler.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I'll call you if any problems crop ___.",
+    "a": "up",
+    "fr": "Je t'appelle si des problèmes surgissent."
+   },
+   {
+    "s": "His name kept ___ up in the investigation.",
+    "a": "cropping",
+    "fr": "Son nom revenait sans cesse dans l'enquête."
+   }
+  ],
+  "ecris": "une phrase pour annuler poliment un rendez-vous à cause d'un imprévu",
+  "formes": [
+   "crop up",
+   "crops up",
+   "cropped up",
+   "cropping up"
+  ]
+ },
+ {
+  "id": "p-lay-off",
+  "w": "lay off",
+  "pos": "phrasal verb",
+  "ipa": "/ˌleɪ ˈɒf/",
+  "reg": "courant",
+  "fr": "licencier (pour raisons économiques)",
+  "def": "To stop employing workers because there is not enough work or money.",
+  "col": [
+   "lay off workers",
+   "lay off staff",
+   "be laid off",
+   "lay off hundreds of employees"
+  ],
+  "ex": [
+   "My uncle was [[laid off]] when the factory closed last year.",
+   "During the recession, car makers [[laid off]] thousands of workers."
+  ],
+  "piege": "Verbe irrégulier : <b>lay / laid / laid</b> (ne pas confondre avec <i>lie / lay / lain</i>). Séparable : <i>lay <b>them</b> off</i>. Pour une faute, on dit <i>be fired / dismissed</i>.",
+  "fam": "lay-off (n., licenciement)",
+  "trous": [
+   {
+    "s": "The company plans to lay ___ two hundred employees.",
+    "a": "off",
+    "fr": "L'entreprise prévoit de licencier deux cents salariés."
+   },
+   {
+    "s": "Half of the staff were ___ off when the shop closed.",
+    "a": "laid",
+    "fr": "La moitié du personnel a été licenciée à la fermeture du magasin."
+   }
+  ],
+  "ecris": "une phrase sur les conséquences d'une crise économique sur l'emploi",
+  "formes": [
+   "lay off",
+   "lays off",
+   "laid off",
+   "laying off",
+   "lay-off",
+   "lay them off"
+  ]
+ },
+ {
+  "id": "p-save-up",
+  "w": "save up",
+  "pos": "phrasal verb",
+  "ipa": "/ˌseɪv ˈʌp/",
+  "reg": "courant",
+  "fr": "mettre de l'argent de côté, économiser",
+  "def": "To keep money over a period of time in order to buy something.",
+  "col": [
+   "save up for a car",
+   "save up money",
+   "save up for months",
+   "save up to buy"
+  ],
+  "ex": [
+   "I'm [[saving up]] for a new bike, so I'm not going out much.",
+   "Many families [[save up]] for years to pay for their children's studies."
+  ],
+  "piege": "<i>save up <b>for</b></i> + objectif. Plus précis que <i>save</i>, qui veut aussi dire « sauver » ou « enregistrer ». Nom : <i>savings</i> (économies).",
+  "fam": "savings (n.)",
+  "trous": [
+   {
+    "s": "She's saving ___ for a trip to Japan next summer.",
+    "a": "up",
+    "fr": "Elle met de l'argent de côté pour un voyage au Japon l'été prochain."
+   },
+   {
+    "s": "He ___ up for two years to buy his first car.",
+    "a": "saved",
+    "fr": "Il a économisé pendant deux ans pour acheter sa première voiture."
+   }
+  ],
+  "ecris": "une phrase sur quelque chose pour lequel tu économises",
+  "formes": [
+   "save up",
+   "saves up",
+   "saved up",
+   "saving up"
+  ]
+ },
+ {
+  "id": "p-get-together",
+  "w": "get together",
+  "pos": "phrasal verb",
+  "ipa": "/ˌɡet təˈɡeðə/",
+  "reg": "courant",
+  "fr": "se réunir, se retrouver",
+  "def": "To meet in order to spend time together or to discuss something.",
+  "col": [
+   "get together for dinner",
+   "get together with friends",
+   "get together at Christmas",
+   "a family get-together"
+  ],
+  "ex": [
+   "We [[get together]] every Christmas at my grandparents' house.",
+   "Leaders of the main parties [[got together]] to find a compromise."
+  ],
+  "piege": "Intransitif : <i>Let's get together soon</i>. Nom : <i>a get-together</i> (petite réunion entre amis). Prétérit : <b>got</b>.",
+  "fam": "get-together (n.)",
+  "trous": [
+   {
+    "s": "Let's get ___ next week and plan the trip.",
+    "a": "together",
+    "fr": "Retrouvons-nous la semaine prochaine pour préparer le voyage."
+   },
+   {
+    "s": "The old school friends ___ together for the first time in twenty years.",
+    "a": "got",
+    "fr": "Les anciens camarades de classe se sont retrouvés pour la première fois en vingt ans."
+   }
+  ],
+  "ecris": "une phrase sur une réunion de famille ou d'amis",
+  "formes": [
+   "get together",
+   "gets together",
+   "got together",
+   "getting together",
+   "get-together"
+  ]
+ },
+ {
+  "id": "p-the-thing-is",
+  "w": "the thing is",
+  "pos": "expression",
+  "ipa": "/ðə ˈθɪŋ ɪz/",
+  "reg": "familier",
+  "fr": "le problème, c'est que ; le truc, c'est que",
+  "def": "Used to introduce an explanation or a problem, often before giving a reason or excuse.",
+  "col": [
+   "the thing is, …",
+   "but the thing is",
+   "the thing is that",
+   "the funny thing is"
+  ],
+  "ex": [
+   "I'd love to come. [[The thing is]], I've got an exam the next day.",
+   "[[The thing is]], cheap flights do not include the cost of pollution."
+  ],
+  "piege": "Marqueur très oral pour annoncer une difficulté ou une justification. Variantes : <i>the problem is, the point is</i>. À éviter dans un essay.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I want to help. The ___ is, I don't have much time this week.",
+    "a": "thing",
+    "fr": "Je veux aider. Le problème, c'est que je n'ai pas beaucoup de temps cette semaine."
+   },
+   {
+    "s": "The thing ___, nobody told us the meeting had moved.",
+    "a": "is",
+    "alt": [
+     "was"
+    ],
+    "fr": "Le problème, c'est que personne ne nous a dit que la réunion avait été déplacée."
+   }
+  ],
+  "ecris": "une phrase pour refuser poliment une invitation en expliquant pourquoi",
+  "formes": [
+   "the thing is",
+   "the thing was"
+  ]
+ },
+ {
+  "id": "p-be-up-to-someone",
+  "w": "be up to someone",
+  "pos": "expression",
+  "ipa": "/ˈʌp tə/",
+  "reg": "courant",
+  "fr": "dépendre de quelqu'un, c'est à toi de voir",
+  "def": "To be someone's responsibility or choice.",
+  "col": [
+   "it's up to you",
+   "it's up to them to decide",
+   "it's entirely up to you",
+   "leave it up to"
+  ],
+  "ex": [
+   "Pizza or curry? [[It's up to you]], I don't mind.",
+   "[[It is up to]] each citizen to decide whether to vote."
+  ],
+  "piege": "Construction : <i>It's up to <b>you</b></i>, <i>It's up to <b>them</b> to decide</i>. Ne pas confondre avec <i>What are you up to?</i> (« qu'est-ce que tu fabriques ? »).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I don't mind where we go: it's ___ to you.",
+    "a": "up",
+    "fr": "Ça m'est égal où on va : c'est toi qui choisis."
+   },
+   {
+    "s": "It's up ___ the parents to decide which school is best.",
+    "a": "to",
+    "fr": "C'est aux parents de décider quelle école est la meilleure."
+   }
+  ],
+  "ecris": "une phrase sur une décision qui revient à quelqu'un d'autre",
+  "formes": [
+   "it's up to you",
+   "it's up to",
+   "it is up to",
+   "it was up to",
+   "up to you",
+   "up to them",
+   "up to me"
+  ]
+ },
+ {
+  "id": "p-come-to-think-of-it",
+  "w": "come to think of it",
+  "pos": "expression",
+  "ipa": "/ˌkʌm tə ˈθɪŋk əv ɪt/",
+  "reg": "courant",
+  "fr": "maintenant que j'y pense, à la réflexion",
+  "def": "Used when you suddenly remember or realise something while speaking.",
+  "col": [
+   "come to think of it, …",
+   "now I come to think of it",
+   "actually, come to think of it"
+  ],
+  "ex": [
+   "[[Come to think of it]], I haven't seen Leo for weeks.",
+   "[[Come to think of it]], most of the great revolutions began with a food crisis."
+  ],
+  "piege": "Expression figée, sans sujet. Variante : <i>now (that) I come to think of it</i>. Exprime une idée qui vient en parlant.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Come to ___ of it, she did look a bit worried yesterday.",
+    "a": "think",
+    "fr": "Maintenant que j'y pense, elle avait l'air un peu inquiète hier."
+   },
+   {
+    "s": "Come to think ___ it, I left my keys on the kitchen table.",
+    "a": "of",
+    "fr": "Maintenant que j'y pense, j'ai laissé mes clés sur la table de la cuisine."
+   }
+  ],
+  "ecris": "une phrase où tu te rends compte de quelque chose en parlant",
+  "formes": [
+   "come to think of it"
+  ]
+ },
+ {
+  "id": "p-on-second-thoughts",
+  "w": "on second thoughts",
+  "pos": "expression",
+  "ipa": "/ɒn ˌsekənd ˈθɔːts/",
+  "reg": "courant",
+  "fr": "réflexion faite, tout bien réfléchi",
+  "def": "Used to say that you have changed your mind about something.",
+  "col": [
+   "on second thoughts, …",
+   "have second thoughts about",
+   "without a second thought"
+  ],
+  "ex": [
+   "I'll have the fish. [[On second thoughts]], I'll take the pasta.",
+   "[[On second thoughts]], the minister decided not to publish the report."
+  ],
+  "piege": "Britannique : <b>on second thoughts</b> (pluriel) ; américain : <i>on second thought</i>. <i>to have second thoughts</i> = avoir des doutes, hésiter.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Let's walk. On second ___, it's raining: let's take a taxi.",
+    "a": "thoughts",
+    "alt": [
+     "thought"
+    ],
+    "fr": "Allons-y à pied. Réflexion faite, il pleut : prenons un taxi."
+   },
+   {
+    "s": "She was going to accept the job, but now she's having ___ thoughts.",
+    "a": "second",
+    "fr": "Elle allait accepter le poste, mais maintenant elle a des doutes."
+   }
+  ],
+  "ecris": "une phrase où tu changes d'avis",
+  "formes": [
+   "on second thoughts",
+   "on second thought",
+   "second thoughts"
+  ]
+ },
+ {
+  "id": "p-fair-enough",
+  "w": "fair enough",
+  "pos": "expression",
+  "ipa": "/ˌfeər ɪˈnʌf/",
+  "reg": "familier",
+  "fr": "d'accord, c'est normal, je comprends",
+  "def": "Used to say that you accept what someone has said as reasonable, even if you do not fully agree.",
+  "col": [
+   "fair enough!",
+   "that's fair enough",
+   "a fair enough point",
+   "fair enough, but…"
+  ],
+  "ex": [
+   "You'd rather stay in tonight? [[Fair enough]], we'll go another time.",
+   "The criticism is [[fair enough]], but it ignores the progress already made."
+  ],
+  "piege": "Exprime une acceptation, parfois un peu réservée. Ne veut pas dire « assez juste » au sens de « presque correct ». Très britannique et oral.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "You're too tired to come? Fair ___, get some rest.",
+    "a": "enough",
+    "fr": "Tu es trop fatigué pour venir ? D'accord, repose-toi."
+   },
+   {
+    "s": "It's a ___ enough question, and I'll try to answer it.",
+    "a": "fair",
+    "fr": "C'est une question légitime, et je vais essayer d'y répondre."
+   }
+  ],
+  "ecris": "une réponse où tu acceptes la raison donnée par quelqu'un",
+  "formes": [
+   "fair enough"
+  ]
+ },
+ {
+  "id": "p-no-wonder",
+  "w": "no wonder",
+  "pos": "expression",
+  "ipa": "/ˌnəʊ ˈwʌndə/",
+  "reg": "courant",
+  "fr": "pas étonnant que, ce n'est pas étonnant",
+  "def": "Used to say that something is not surprising, given what you now know.",
+  "col": [
+   "no wonder you're tired",
+   "it's no wonder that",
+   "little wonder",
+   "small wonder"
+  ],
+  "ex": [
+   "You went to bed at three? [[No wonder]] you're exhausted.",
+   "With prices rising so fast, it's [[no wonder]] that people are angry."
+  ],
+  "piege": "Suivi directement d'une proposition, sans subjonctif : <i>No wonder he <b>is</b> late</i>. <b>wonder</b> se prononce /ˈwʌndə/, comme <i>under</i>, pas comme <i>wander</i>.",
+  "fam": "wonder (v./n.)",
+  "trous": [
+   {
+    "s": "He didn't revise at all. No ___ he failed the test.",
+    "a": "wonder",
+    "fr": "Il n'a pas du tout révisé. Pas étonnant qu'il ait raté le contrôle."
+   },
+   {
+    "s": "It's ___ wonder that so many young people are leaving the countryside.",
+    "a": "no",
+    "alt": [
+     "little",
+     "small"
+    ],
+    "fr": "Il n'est pas étonnant que tant de jeunes quittent la campagne."
+   }
+  ],
+  "ecris": "une phrase qui explique pourquoi une situation n'a rien d'étonnant",
+  "formes": [
+   "no wonder",
+   "it's no wonder",
+   "little wonder",
+   "small wonder"
+  ]
+ },
+ {
+  "id": "p-mind-you",
+  "w": "mind you",
+  "pos": "expression",
+  "ipa": "/ˈmaɪnd juː/",
+  "reg": "familier",
+  "fr": "remarque, notez bien",
+  "def": "Used to add a comment that makes what you have just said less strong or adds a contrast.",
+  "col": [
+   "mind you, …",
+   "mind you, it was cheap",
+   "not that I mind, mind you"
+  ],
+  "ex": [
+   "The food was a bit cold. [[Mind you]], it was very cheap.",
+   "He was a strict leader; [[mind you]], the times demanded it."
+  ],
+  "piege": "Placé au début ou à la fin d'une phrase pour nuancer. Très britannique et oral ; à l'écrit, préfère <i>however, admittedly</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "It's a long drive. ___ you, the scenery is beautiful.",
+    "a": "Mind",
+    "alt": [
+     "mind"
+    ],
+    "fr": "C'est un long trajet. Remarque, le paysage est magnifique."
+   },
+   {
+    "s": "She's never on time. Mind ___, neither am I.",
+    "a": "you",
+    "fr": "Elle n'est jamais à l'heure. Remarque, moi non plus."
+   }
+  ],
+  "ecris": "deux phrases : une critique, puis une nuance avec cette expression",
+  "formes": [
+   "mind you"
+  ]
+ },
+ {
+  "id": "p-for-what-its-worth",
+  "w": "for what it's worth",
+  "pos": "expression",
+  "ipa": "/fə ˌwɒt ɪts ˈwɜːθ/",
+  "reg": "courant",
+  "fr": "pour ce que ça vaut, si ça peut aider",
+  "def": "Used to offer an opinion or piece of information modestly, without being sure it will help.",
+  "col": [
+   "for what it's worth, …",
+   "for what it's worth, I think",
+   "that's my view, for what it's worth"
+  ],
+  "ex": [
+   "[[For what it's worth]], I think you made the right decision.",
+   "[[For what it's worth]], the polls suggest the result will be very close."
+  ],
+  "piege": "Formule de modestie : elle adoucit un avis. Ne pas confondre <i>it's</i> (<i>it is</i>) et <i>its</i> (possessif). Abrégé <i>fwiw</i> dans les messages.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "For what it's ___, I really enjoyed your presentation.",
+    "a": "worth",
+    "fr": "Pour ce que ça vaut, j'ai vraiment apprécié ton exposé."
+   },
+   {
+    "s": "For ___ it's worth, I'd take the earlier train.",
+    "a": "what",
+    "fr": "Si ça peut t'aider, moi je prendrais le train d'avant."
+   }
+  ],
+  "ecris": "une phrase où tu donnes modestement un conseil à un ami",
+  "formes": [
+   "for what it's worth",
+   "for what it is worth"
+  ]
+ },
+ {
+  "id": "p-i-couldnt-agree-more",
+  "w": "I couldn't agree more",
+  "pos": "expression",
+  "ipa": "/ˈkʊdnt əˈɡriː ˈmɔː/",
+  "reg": "courant",
+  "fr": "je suis entièrement d'accord",
+  "def": "Used to say that you agree completely with someone.",
+  "col": [
+   "I couldn't agree more",
+   "I couldn't agree with you more",
+   "couldn't agree more with"
+  ],
+  "ex": [
+   "You think we need a holiday? [[I couldn't agree more]].",
+   "[[I couldn't agree more]] with the idea that education is the key to equality."
+  ],
+  "piege": "Malgré la négation, c'est un accord <b>total</b> (« je ne pourrais pas être plus d'accord »). Contraire : <i>I couldn't disagree more</i>. Ne dis jamais <i>I am agree</i>.",
+  "fam": "agreement (n.) · agreeable (adj.)",
+  "trous": [
+   {
+    "s": "I couldn't agree ___: this rule makes no sense.",
+    "a": "more",
+    "fr": "Je suis entièrement d'accord : cette règle n'a aucun sens."
+   },
+   {
+    "s": "I ___ agree more with what you said about tolerance.",
+    "a": "couldn't",
+    "alt": [
+     "could not"
+    ],
+    "fr": "Je suis entièrement d'accord avec ce que tu as dit sur la tolérance."
+   }
+  ],
+  "ecris": "une réponse où tu approuves complètement l'avis de quelqu'un",
+  "formes": [
+   "I couldn't agree more",
+   "couldn't agree more",
+   "could not agree more",
+   "I couldn't agree with you more"
+  ]
+ },
+ {
+  "id": "p-thats-beside-the-point",
+  "w": "that's beside the point",
+  "pos": "expression",
+  "ipa": "/bɪˈsaɪd ðə ˈpɔɪnt/",
+  "reg": "courant",
+  "fr": "là n'est pas la question, c'est hors sujet",
+  "def": "Used to say that something is not relevant to the main issue being discussed.",
+  "col": [
+   "that's beside the point",
+   "quite beside the point",
+   "rather beside the point",
+   "completely beside the point"
+  ],
+  "ex": [
+   "Yes, he's charming, but [[that's beside the point]]: he lied to us.",
+   "Whether the king was popular is [[beside the point]]; the question is whether he was legitimate."
+  ],
+  "piege": "<b>beside</b> (à côté) et non <b>besides</b> (en plus). Utile en débat pour recentrer la discussion.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The price is beside the ___: the product simply doesn't work.",
+    "a": "point",
+    "fr": "Le prix n'est pas la question : le produit ne marche tout simplement pas."
+   },
+   {
+    "s": "Whether you like her is ___ the point; she's the best candidate.",
+    "a": "beside",
+    "fr": "Que tu l'apprécies ou non n'est pas la question ; c'est la meilleure candidate."
+   }
+  ],
+  "ecris": "une phrase pour recentrer un débat qui dérive",
+  "formes": [
+   "that's beside the point",
+   "beside the point",
+   "that is beside the point"
+  ]
+ },
+ {
+  "id": "p-cant-help-doing",
+  "w": "can't help doing",
+  "pos": "expression",
+  "ipa": "/ˌkɑːnt ˈhelp/",
+  "reg": "courant",
+  "fr": "ne pas pouvoir s'empêcher de",
+  "def": "To be unable to stop yourself from doing or feeling something.",
+  "col": [
+   "can't help laughing",
+   "can't help thinking",
+   "couldn't help noticing",
+   "can't help it"
+  ],
+  "ex": [
+   "I [[can't help]] laughing every time I see that video.",
+   "One [[can't help]] wondering whether the war could have been avoided."
+  ],
+  "piege": "Suivi d'un verbe en <b>-ing</b> : <i>I can't help <b>feeling</b></i>. N'a rien à voir avec « aider ». Sans verbe : <i>I can't help it</i> (« c'est plus fort que moi »).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I couldn't ___ noticing that you seemed upset.",
+    "a": "help",
+    "fr": "Je n'ai pas pu m'empêcher de remarquer que tu semblais contrarié."
+   },
+   {
+    "s": "She can't help ___ when she watches sad films.",
+    "a": "crying",
+    "fr": "Elle ne peut pas s'empêcher de pleurer quand elle regarde des films tristes."
+   }
+  ],
+  "ecris": "une phrase sur une chose que tu ne peux pas t'empêcher de faire",
+  "formes": [
+   "can't help",
+   "couldn't help",
+   "cannot help",
+   "can not help",
+   "could not help"
+  ]
+ },
+ {
+  "id": "p-if-i-were-you",
+  "w": "if I were you",
+  "pos": "expression",
+  "ipa": "/ɪf ˌaɪ ˈwɜː juː/",
+  "reg": "courant",
+  "fr": "si j'étais toi, à ta place",
+  "def": "Used to give advice by imagining yourself in the other person's situation.",
+  "col": [
+   "if I were you, I'd…",
+   "I wouldn't worry if I were you",
+   "if I were in your shoes"
+  ],
+  "ex": [
+   "[[If I were you]], I'd apologise to her as soon as possible.",
+   "[[If I were you]], I wouldn't sign the contract before reading it carefully."
+  ],
+  "piege": "<b>were</b> pour toutes les personnes (subjonctif) : <i>If I <b>were</b> you</i>. La suite est au conditionnel : <i>I <b>would</b> (I'd)</i>… <i>If I was you</i> s'entend mais est fautif à l'écrit.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "If I ___ you, I'd take the job in Bristol.",
+    "a": "were",
+    "fr": "Si j'étais toi, je prendrais le poste à Bristol."
+   },
+   {
+    "s": "If I were you, I ___ tell anyone about it.",
+    "a": "wouldn't",
+    "alt": [
+     "would not"
+    ],
+    "fr": "À ta place, je n'en parlerais à personne."
+   }
+  ],
+  "ecris": "une phrase pour donner un conseil à un ami",
+  "formes": [
+   "if I were you"
+  ]
+ },
+ {
+  "id": "p-theres-no-point-in",
+  "w": "there's no point in",
+  "pos": "expression",
+  "ipa": "/ˌnəʊ ˈpɔɪnt/",
+  "reg": "courant",
+  "fr": "ça ne sert à rien de",
+  "def": "Used to say that an action is useless because it will not achieve anything.",
+  "col": [
+   "there's no point in waiting",
+   "there's no point in arguing",
+   "what's the point of",
+   "see no point in"
+  ],
+  "ex": [
+   "[[There's no point in]] waiting: the last bus left ten minutes ago.",
+   "[[There's no point in]] building new roads if public transport is ignored."
+  ],
+  "piege": "Suivi d'un verbe en <b>-ing</b> : <i>There's no point in <b>trying</b></i> (le <b>in</b> peut tomber à l'oral). Question : <i>What's the point <b>of</b> doing it?</i>",
+  "fam": "pointless (adj., inutile)",
+  "trous": [
+   {
+    "s": "There's no ___ in arguing with him: he never changes his mind.",
+    "a": "point",
+    "fr": "Ça ne sert à rien de discuter avec lui : il ne change jamais d'avis."
+   },
+   {
+    "s": "There's no point in ___ about it now: it's too late.",
+    "a": "worrying",
+    "alt": [
+     "complaining",
+     "crying"
+    ],
+    "fr": "Ça ne sert à rien de s'en inquiéter maintenant : c'est trop tard."
+   }
+  ],
+  "ecris": "une phrase sur une action qui, selon toi, ne sert à rien",
+  "formes": [
+   "there's no point in",
+   "there is no point in",
+   "there's no point",
+   "there was no point in",
+   "no point in"
+  ]
+ },
+ {
+  "id": "p-its-high-time",
+  "w": "it's high time",
+  "pos": "expression",
+  "ipa": "/ˌhaɪ ˈtaɪm/",
+  "reg": "courant",
+  "fr": "il est grand temps que",
+  "def": "Used to say that something should have happened already and must happen now.",
+  "col": [
+   "it's high time we left",
+   "it's high time that",
+   "it's high time for a change",
+   "it's about time"
+  ],
+  "ex": [
+   "[[It's high time]] you tidied your room: it's a disaster.",
+   "[[It's high time]] governments took the climate crisis seriously."
+  ],
+  "piege": "Suivi du <b>prétérit</b> malgré le sens présent : <i>It's high time we <b>went</b></i> (pas <i>we go</i>). Ou <i>It's high time <b>for</b> + nom</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "It's high ___ we left, or we'll miss the train.",
+    "a": "time",
+    "fr": "Il est grand temps qu'on parte, sinon on va rater le train."
+   },
+   {
+    "s": "It's high time you ___ to bed: it's past midnight.",
+    "a": "went",
+    "fr": "Il est grand temps que tu ailles te coucher : il est plus de minuit."
+   }
+  ],
+  "ecris": "une phrase sur un changement qui, selon toi, devrait arriver",
+  "formes": [
+   "it's high time",
+   "it is high time",
+   "it was high time"
+  ]
+ },
+ {
+  "id": "p-cant-be-bothered",
+  "w": "can't be bothered",
+  "pos": "expression",
+  "ipa": "/ˈbɒðəd/",
+  "reg": "familier",
+  "fr": "avoir la flemme, ne pas avoir le courage de",
+  "def": "Used to say that you are too lazy or not interested enough to do something.",
+  "col": [
+   "can't be bothered to cook",
+   "couldn't be bothered",
+   "I can't be bothered",
+   "not be bothered"
+  ],
+  "ex": [
+   "It's raining and I [[can't be bothered]] to go out tonight.",
+   "Many young people say they [[can't be bothered]] to vote because nothing changes."
+  ],
+  "piege": "Suivi de <b>to</b> + base verbale : <i>I can't be bothered <b>to</b> cook</i>. Familier et britannique. <i>I'm not bothered</i> = « ça m'est égal ».",
+  "fam": "bother (v./n.)",
+  "trous": [
+   {
+    "s": "I can't be ___ to make dinner: let's order a pizza.",
+    "a": "bothered",
+    "fr": "J'ai la flemme de faire à dîner : commandons une pizza."
+   },
+   {
+    "s": "He ___ be bothered to reply to my message.",
+    "a": "couldn't",
+    "alt": [
+     "can't",
+     "could not",
+     "cannot"
+    ],
+    "fr": "Il n'a même pas pris la peine de répondre à mon message."
+   }
+  ],
+  "ecris": "une phrase sur une chose que tu as la flemme de faire",
+  "formes": [
+   "can't be bothered",
+   "couldn't be bothered",
+   "cannot be bothered",
+   "could not be bothered"
+  ]
+ },
+ {
+  "id": "p-keep-an-eye-on",
+  "w": "keep an eye on",
+  "pos": "expression",
+  "ipa": "/ˌkiːp ən ˈaɪ ɒn/",
+  "reg": "courant",
+  "fr": "surveiller, garder un œil sur",
+  "def": "To watch someone or something carefully, to make sure they are safe or to notice changes.",
+  "col": [
+   "keep an eye on the children",
+   "keep an eye on the time",
+   "keep a close eye on",
+   "keep an eye on prices"
+  ],
+  "ex": [
+   "Could you [[keep an eye on]] my bag while I get a coffee?",
+   "Central banks [[keep an eye on]] inflation before deciding on interest rates."
+  ],
+  "piege": "Toujours <b>an eye</b> au singulier. Prétérit irrégulier : <b>kept</b>. Variante renforcée : <i>keep a close eye on</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Keep an ___ on the soup so that it doesn't boil over.",
+    "a": "eye",
+    "fr": "Surveille la soupe pour qu'elle ne déborde pas."
+   },
+   {
+    "s": "The neighbours ___ an eye on our house while we were away.",
+    "a": "kept",
+    "fr": "Les voisins ont surveillé notre maison pendant notre absence."
+   }
+  ],
+  "ecris": "une phrase sur quelque chose ou quelqu'un qu'il faut surveiller",
+  "formes": [
+   "keep an eye on",
+   "keeps an eye on",
+   "kept an eye on",
+   "keeping an eye on",
+   "keep a close eye on",
+   "kept a close eye on"
+  ]
+ },
+ {
+  "id": "p-keep-in-touch",
+  "w": "keep in touch",
+  "pos": "expression",
+  "ipa": "/ˌkiːp ɪn ˈtʌtʃ/",
+  "reg": "courant",
+  "fr": "rester en contact, garder le contact",
+  "def": "To continue to communicate with someone, especially when you no longer see them often.",
+  "col": [
+   "keep in touch with",
+   "stay in touch",
+   "lose touch with",
+   "get in touch with"
+  ],
+  "ex": [
+   "We met on holiday ten years ago and still [[keep in touch]].",
+   "Social media allows emigrants to [[keep in touch]] with their families back home."
+  ],
+  "piege": "<i>keep / stay in touch <b>with</b></i> = rester en contact ; <i>get in touch with</i> = contacter ; <i>lose touch with</i> = perdre de vue. Formule d'adieu : <i>Keep in touch!</i>",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Let's keep in ___ after the end of the year.",
+    "a": "touch",
+    "fr": "Restons en contact après la fin de l'année."
+   },
+   {
+    "s": "I've ___ in touch with most of my old classmates.",
+    "a": "kept",
+    "alt": [
+     "stayed"
+    ],
+    "fr": "Je suis resté en contact avec la plupart de mes anciens camarades de classe."
+   }
+  ],
+  "ecris": "une phrase sur une personne avec qui tu es resté en contact",
+  "formes": [
+   "keep in touch",
+   "keeps in touch",
+   "kept in touch",
+   "keeping in touch",
+   "stay in touch",
+   "stayed in touch"
+  ]
+ },
+ {
+  "id": "p-to-make-matters-worse",
+  "w": "to make matters worse",
+  "pos": "expression",
+  "ipa": "/ˈmætəz ˈwɜːs/",
+  "reg": "courant",
+  "fr": "pour ne rien arranger, pour couronner le tout",
+  "def": "Used to introduce a further problem that makes a bad situation even worse.",
+  "col": [
+   "to make matters worse, …",
+   "and to make matters worse",
+   "make matters worse"
+  ],
+  "ex": [
+   "I missed the bus, and [[to make matters worse]], it started to rain.",
+   "The harvest failed; [[to make matters worse]], war broke out on the border."
+  ],
+  "piege": "<b>matters</b> au pluriel (« les choses »). Parfait pour enchaîner les difficultés dans un récit. Variante sans <i>to</i> : <i>this only made matters worse</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "We got lost, and to make matters ___, my phone died.",
+    "a": "worse",
+    "fr": "Nous nous sommes perdus et, pour ne rien arranger, mon téléphone s'est éteint."
+   },
+   {
+    "s": "His angry reply only made ___ worse.",
+    "a": "matters",
+    "alt": [
+     "things"
+    ],
+    "fr": "Sa réponse furieuse n'a fait qu'aggraver les choses."
+   }
+  ],
+  "ecris": "une phrase qui raconte une journée où tout est allé de travers",
+  "formes": [
+   "to make matters worse",
+   "make matters worse",
+   "made matters worse",
+   "makes matters worse"
+  ]
+ },
+ {
+  "id": "p-all-in-all",
+  "w": "all in all",
+  "pos": "expression",
+  "ipa": "/ˌɔːl ɪn ˈɔːl/",
+  "reg": "courant",
+  "fr": "tout compte fait, somme toute",
+  "def": "Used to give a general conclusion after considering all the facts.",
+  "col": [
+   "all in all, …",
+   "all in all, a success",
+   "all in all, not bad"
+  ],
+  "ex": [
+   "The weather was terrible, but [[all in all]] it was a great weekend.",
+   "[[All in all]], the reign was a period of stability and growth."
+  ],
+  "piege": "Sert à conclure, après avoir pesé le pour et le contre. Synonymes : <i>on the whole, overall, by and large</i>. Ne pas confondre avec <i>after all</i> (« après tout »).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "There were a few problems, but all in ___ the trip went well.",
+    "a": "all",
+    "fr": "Il y a eu quelques problèmes, mais tout compte fait le voyage s'est bien passé."
+   },
+   {
+    "s": "All ___ all, I think we made the right choice.",
+    "a": "in",
+    "fr": "Somme toute, je pense que nous avons fait le bon choix."
+   }
+  ],
+  "ecris": "une phrase qui conclut le bilan d'une année ou d'un voyage",
+  "formes": [
+   "all in all"
+  ]
+ },
+ {
+  "id": "p-sooner-or-later",
+  "w": "sooner or later",
+  "pos": "expression",
+  "ipa": "/ˌsuːnər ɔː ˈleɪtə/",
+  "reg": "courant",
+  "fr": "tôt ou tard",
+  "def": "Used to say that something will certainly happen, although you do not know when.",
+  "col": [
+   "sooner or later, …",
+   "will happen sooner or later",
+   "find out sooner or later"
+  ],
+  "ex": [
+   "You'll have to tell your parents [[sooner or later]].",
+   "[[Sooner or later]], every empire reaches the limits of its power."
+  ],
+  "piege": "Ordre inverse du français : <b>sooner</b> d'abord (« plus tôt »). Ne pas dire <i>soon or late</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Don't worry, she'll call you back sooner or ___.",
+    "a": "later",
+    "fr": "Ne t'inquiète pas, elle te rappellera tôt ou tard."
+   },
+   {
+    "s": "___ or later, the truth always comes out.",
+    "a": "Sooner",
+    "alt": [
+     "sooner"
+    ],
+    "fr": "Tôt ou tard, la vérité finit toujours par éclater."
+   }
+  ],
+  "ecris": "une phrase sur une chose qui arrivera tôt ou tard",
+  "formes": [
+   "sooner or later"
+  ]
+ },
+ {
+  "id": "p-once-in-a-while",
+  "w": "once in a while",
+  "pos": "expression",
+  "ipa": "/ˌwʌns ɪn ə ˈwaɪl/",
+  "reg": "courant",
+  "fr": "de temps en temps, de temps à autre",
+  "def": "Sometimes, but not often.",
+  "col": [
+   "once in a while",
+   "every once in a while",
+   "only once in a while"
+  ],
+  "ex": [
+   "I don't eat fast food often, but [[once in a while]] I treat myself.",
+   "[[Once in a while]], a single election changes the direction of a whole country."
+  ],
+  "piege": "Plus rare que <i>sometimes</i>. Variante : <i>every once in a while</i>. <b>once</b> se prononce /wʌns/.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "We go to the theatre once in a ___, maybe twice a year.",
+    "a": "while",
+    "fr": "Nous allons au théâtre de temps en temps, peut-être deux fois par an."
+   },
+   {
+    "s": "It's good to switch off your phone ___ in a while.",
+    "a": "once",
+    "fr": "C'est bien d'éteindre son téléphone de temps en temps."
+   }
+  ],
+  "ecris": "une phrase sur une chose que tu fais de temps en temps",
+  "formes": [
+   "once in a while",
+   "every once in a while"
+  ]
+ },
+ {
+  "id": "p-as-a-matter-of-fact",
+  "w": "as a matter of fact",
+  "pos": "expression",
+  "ipa": "/əz ə ˌmætər əv ˈfækt/",
+  "reg": "courant",
+  "fr": "en fait, à vrai dire",
+  "def": "Used to add something surprising or to correct what someone has just said.",
+  "col": [
+   "as a matter of fact, …",
+   "well, as a matter of fact",
+   "as a matter of fact, I do"
+  ],
+  "ex": [
+   "You don't know her? [[As a matter of fact]], we went to school together.",
+   "[[As a matter of fact]], the treaty was never ratified by the Senate."
+  ],
+  "piege": "Sert souvent à contredire poliment ou à apporter une précision inattendue. Synonymes : <i>actually, in fact</i>. <i>actually</i> ne veut jamais dire « actuellement ».",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I'm not busy tonight. As a matter of ___, I was hoping you'd call.",
+    "a": "fact",
+    "fr": "Je ne suis pas pris ce soir. À vrai dire, j'espérais que tu appellerais."
+   },
+   {
+    "s": "As a ___ of fact, the castle is much older than people think.",
+    "a": "matter",
+    "fr": "En fait, le château est bien plus ancien qu'on ne le pense."
+   }
+  ],
+  "ecris": "une phrase où tu corriges poliment une idée reçue",
+  "formes": [
+   "as a matter of fact"
+  ]
+ },
+ {
+  "id": "p-its-no-big-deal",
+  "w": "it's no big deal",
+  "pos": "expression",
+  "ipa": "/ˌnəʊ ˌbɪɡ ˈdiːl/",
+  "reg": "familier",
+  "fr": "ce n'est pas grave, ce n'est rien",
+  "def": "Used to say that something is not important or not a problem.",
+  "col": [
+   "it's no big deal",
+   "not a big deal",
+   "make a big deal of",
+   "what's the big deal?"
+  ],
+  "ex": [
+   "Don't worry about the broken glass: [[it's no big deal]].",
+   "For some, a two-degree rise sounds like [[no big deal]], but its effects would be huge."
+  ],
+  "piege": "Familier. Variante : <i>it's not a big deal</i>. <i>make a big deal (out) of something</i> = en faire toute une histoire.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "You forgot my birthday? It's no big ___, really.",
+    "a": "deal",
+    "fr": "Tu as oublié mon anniversaire ? Ce n'est pas grave, vraiment."
+   },
+   {
+    "s": "Stop making such a ___ deal of a tiny mistake.",
+    "a": "big",
+    "fr": "Arrête d'en faire toute une histoire pour une petite erreur."
+   }
+  ],
+  "ecris": "une phrase pour rassurer quelqu'un qui s'excuse",
+  "formes": [
+   "it's no big deal",
+   "no big deal",
+   "not a big deal",
+   "a big deal",
+   "it's not a big deal"
+  ]
+ },
+ {
+  "id": "p-drop-by",
+  "w": "drop by",
+  "pos": "phrasal verb",
+  "ipa": "/ˌdrɒp ˈbaɪ/",
+  "reg": "courant",
+  "fr": "passer (voir quelqu'un), faire un saut",
+  "def": "To make a short, informal visit, often without arranging it first.",
+  "col": [
+   "drop by for a coffee",
+   "drop by the office",
+   "feel free to drop by",
+   "drop by on the way home"
+  ],
+  "ex": [
+   "Feel free to [[drop by]] if you're in the neighbourhood.",
+   "The prime minister [[dropped by]] a local café to chat with voters."
+  ],
+  "piege": "Synonymes : <i>drop in (on someone)</i>, <i>pop in</i> (plus familier). <i>drop by</i> + lieu, sans préposition : <i>drop by the library</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I'll drop ___ later to give you your book back.",
+    "a": "by",
+    "alt": [
+     "in",
+     "round"
+    ],
+    "fr": "Je passerai plus tard pour te rendre ton livre."
+   },
+   {
+    "s": "A friend ___ by unexpectedly while we were having dinner.",
+    "a": "dropped",
+    "fr": "Un ami est passé à l'improviste pendant que nous dînions."
+   }
+  ],
+  "ecris": "une phrase pour inviter quelqu'un à passer chez toi",
+  "formes": [
+   "drop by",
+   "drops by",
+   "dropped by",
+   "dropping by",
+   "drop in",
+   "dropped in"
+  ]
+ },
+ {
+  "id": "p-tell-off",
+  "w": "tell off",
+  "pos": "phrasal verb",
+  "ipa": "/ˌtel ˈɒf/",
+  "reg": "courant",
+  "fr": "gronder, passer un savon à",
+  "def": "To speak angrily to someone because they have done something wrong.",
+  "col": [
+   "tell someone off",
+   "get told off",
+   "be told off for",
+   "tell him off"
+  ],
+  "ex": [
+   "I got [[told off]] for using my phone during the lesson.",
+   "The coach [[told off]] the players for their lack of effort."
+  ],
+  "piege": "Séparable, avec la personne au milieu : <i>She <b>told me off</b></i>. Très fréquent au passif : <i>get / be told off <b>for</b></i> + -ing. Prétérit irrégulier : <b>told</b>.",
+  "fam": "telling-off (n., réprimande)",
+  "trous": [
+   {
+    "s": "My mum told me ___ for coming home so late.",
+    "a": "off",
+    "fr": "Ma mère m'a grondé parce que je suis rentré très tard."
+   },
+   {
+    "s": "He was ___ off by his boss for missing the deadline.",
+    "a": "told",
+    "fr": "Il s'est fait passer un savon par son patron pour avoir raté l'échéance."
+   }
+  ],
+  "ecris": "une phrase sur une fois où tu t'es fait gronder",
+  "formes": [
+   "tell off",
+   "tells off",
+   "told off",
+   "telling off",
+   "tell him off",
+   "tell her off",
+   "told me off",
+   "told him off",
+   "telling-off"
+  ]
+ },
+ {
+  "id": "p-turn-to",
+  "w": "turn to",
+  "pos": "phrasal verb",
+  "ipa": "/ˈtɜːn tuː/",
+  "reg": "courant",
+  "fr": "se tourner vers, avoir recours à",
+  "def": "To go to someone or something for help, advice or comfort.",
+  "col": [
+   "turn to someone for help",
+   "turn to friends",
+   "have no one to turn to",
+   "turn to crime"
+  ],
+  "ex": [
+   "When I have a problem, I always [[turn to]] my older sister.",
+   "During the Depression, many desperate voters [[turned to]] extremist parties."
+  ],
+  "piege": "Inséparable : <i>turn to <b>her</b></i>. Souvent <i>turn to someone <b>for</b></i> + aide, conseil. Aussi : passer à (un sujet) : <i>Let's turn to the economy</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "She had nobody to turn ___ when she lost her job.",
+    "a": "to",
+    "fr": "Elle n'avait personne vers qui se tourner quand elle a perdu son emploi."
+   },
+   {
+    "s": "Many young people ___ to social media for news.",
+    "a": "turn",
+    "fr": "Beaucoup de jeunes se tournent vers les réseaux sociaux pour s'informer."
+   }
+  ],
+  "ecris": "une phrase sur la personne vers qui tu te tournes quand ça ne va pas",
+  "formes": [
+   "turn to",
+   "turns to",
+   "turned to",
+   "turning to"
+  ]
+ },
+ {
+  "id": "p-think-over",
+  "w": "think over",
+  "pos": "phrasal verb",
+  "ipa": "/ˌθɪŋk ˈəʊvə/",
+  "reg": "courant",
+  "fr": "réfléchir à, peser",
+  "def": "To consider an idea or decision carefully before making up your mind.",
+  "col": [
+   "think it over",
+   "think over an offer",
+   "think things over",
+   "take time to think it over"
+  ],
+  "ex": [
+   "It's a great offer, but I need a few days to [[think it over]].",
+   "The jury was sent away to [[think over]] the evidence one more time."
+  ],
+  "piege": "Séparable : <i><b>think it over</b></i> (très fréquent). Prétérit irrégulier : <b>thought</b>. Synonyme familier : <i>sleep on it</i> (attendre le lendemain pour décider).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Don't answer now: go home and think it ___.",
+    "a": "over",
+    "fr": "Ne réponds pas maintenant : rentre chez toi et réfléchis-y."
+   },
+   {
+    "s": "After he had ___ it over, he accepted the job.",
+    "a": "thought",
+    "fr": "Après y avoir réfléchi, il a accepté le poste."
+   }
+  ],
+  "ecris": "une phrase sur une proposition à laquelle tu dois réfléchir",
+  "formes": [
+   "think over",
+   "thinks over",
+   "thought over",
+   "thinking over",
+   "think it over",
+   "thought it over",
+   "think things over"
+  ]
+ },
+ {
+  "id": "p-get-round-to",
+  "w": "get round to",
+  "pos": "phrasal verb",
+  "ipa": "/ˌɡet ˈraʊnd tə/",
+  "reg": "courant",
+  "fr": "trouver le temps de, finir par faire",
+  "def": "To finally do something that you have intended to do for a long time.",
+  "col": [
+   "get round to doing",
+   "never get round to it",
+   "finally get round to",
+   "haven't got round to it yet"
+  ],
+  "ex": [
+   "I keep meaning to call her, but I never [[get round to]] it.",
+   "The government never [[got round to]] reforming the outdated tax system."
+  ],
+  "piege": "Britannique (américain : <i>get around to</i>). Suivi d'un nom ou de <b>-ing</b> : <i>get round to <b>fixing</b> it</i>. Souvent à la forme négative.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I haven't got round ___ reading the book you lent me.",
+    "a": "to",
+    "fr": "Je n'ai pas encore trouvé le temps de lire le livre que tu m'as prêté."
+   },
+   {
+    "s": "We finally ___ round to painting the kitchen last weekend.",
+    "a": "got",
+    "fr": "Nous avons enfin trouvé le temps de repeindre la cuisine le week-end dernier."
+   }
+  ],
+  "ecris": "une phrase sur une chose que tu n'as jamais trouvé le temps de faire",
+  "formes": [
+   "get round to",
+   "gets round to",
+   "got round to",
+   "getting round to",
+   "get around to",
+   "got around to"
+  ]
+ },
+ {
+  "id": "p-go-ahead",
+  "w": "go ahead",
+  "pos": "phrasal verb",
+  "ipa": "/ˌɡəʊ əˈhed/",
+  "reg": "courant",
+  "fr": "1. vas-y, je t'en prie · 2. avoir lieu, se poursuivre",
+  "def": "Used to give someone permission to do something, or to say that a planned event will happen.",
+  "col": [
+   "go ahead!",
+   "go ahead with a plan",
+   "the match will go ahead",
+   "give the go-ahead"
+  ],
+  "ex": [
+   "Can I borrow your pen? — Sure, [[go ahead]].",
+   "Despite the protests, the government [[went ahead]] with the pension reform."
+  ],
+  "piege": "<i>Go ahead</i> seul = permission (« je t'en prie »). <i>go ahead <b>with</b></i> + projet. Nom : <i>the go-ahead</i> (le feu vert).",
+  "fam": "go-ahead (n., feu vert)",
+  "trous": [
+   {
+    "s": "The concert will go ___ as planned, even if it rains.",
+    "a": "ahead",
+    "fr": "Le concert aura lieu comme prévu, même s'il pleut."
+   },
+   {
+    "s": "The council ___ ahead with the project despite local opposition.",
+    "a": "went",
+    "fr": "La municipalité a poursuivi le projet malgré l'opposition locale."
+   }
+  ],
+  "ecris": "une phrase sur un projet qui a été maintenu malgré des obstacles",
+  "formes": [
+   "go ahead",
+   "goes ahead",
+   "went ahead",
+   "going ahead",
+   "gone ahead",
+   "go-ahead"
+  ]
+ },
+ {
+  "id": "p-hang-on",
+  "w": "hang on",
+  "pos": "phrasal verb",
+  "ipa": "/ˌhæŋ ˈɒn/",
+  "reg": "familier",
+  "fr": "attendre, patienter ; tenir bon",
+  "def": "To wait for a short time, or to keep holding something or keep going in a difficult situation.",
+  "col": [
+   "hang on a minute",
+   "hang on a second",
+   "hang on to",
+   "just hang on"
+  ],
+  "ex": [
+   "[[Hang on]] a second, I just need to find my keys.",
+   "The besieged city managed to [[hang on]] until help arrived."
+  ],
+  "piege": "Familier : <i>Hang on!</i> = « une seconde ! », aussi pour interrompre (<i>Hang on, that's not what you said yesterday</i>). <i>hang on <b>to</b></i> = garder, s'accrocher à.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Hang ___, I'll be ready in two minutes.",
+    "a": "on",
+    "fr": "Attends, je suis prêt dans deux minutes."
+   },
+   {
+    "s": "___ on a minute: are you saying it was my fault?",
+    "a": "Hang",
+    "alt": [
+     "hang",
+     "Hold",
+     "hold"
+    ],
+    "fr": "Attends une minute : tu es en train de dire que c'était ma faute ?"
+   }
+  ],
+  "ecris": "une phrase pour demander à quelqu'un de patienter",
+  "formes": [
+   "hang on",
+   "hangs on",
+   "hung on",
+   "hanging on"
+  ]
+ },
+ {
+  "id": "p-come-in-handy",
+  "w": "come in handy",
+  "pos": "expression",
+  "ipa": "/ˈhændi/",
+  "reg": "courant",
+  "fr": "être utile, servir",
+  "def": "To be useful at some time, often in a situation you did not expect.",
+  "col": [
+   "come in handy for",
+   "might come in handy",
+   "really came in handy",
+   "come in handy one day"
+  ],
+  "ex": [
+   "Keep the box: it might [[come in handy]] when you move.",
+   "A second language always [[comes in handy]] when you look for a job abroad."
+  ],
+  "piege": "Expression figée avec l'adjectif <b>handy</b> (pratique). Souvent avec un modal : <i>it <b>might / will</b> come in handy</i>.",
+  "fam": "handy (adj., pratique)",
+  "trous": [
+   {
+    "s": "Take an umbrella: it might come in ___.",
+    "a": "handy",
+    "fr": "Prends un parapluie : ça pourrait servir."
+   },
+   {
+    "s": "My first-aid course really ___ in handy when my brother cut his hand.",
+    "a": "came",
+    "fr": "Ma formation aux premiers secours m'a vraiment servi quand mon frère s'est coupé la main."
+   }
+  ],
+  "ecris": "une phrase sur une compétence ou un objet qui t'a été utile",
+  "formes": [
+   "come in handy",
+   "comes in handy",
+   "came in handy",
+   "coming in handy"
+  ]
+ },
+ {
+  "id": "p-step-in",
+  "w": "step in",
+  "pos": "phrasal verb",
+  "ipa": "/ˌstep ˈɪn/",
+  "reg": "courant",
+  "fr": "intervenir",
+  "def": "To become involved in a difficult situation in order to help or stop something.",
+  "col": [
+   "step in to help",
+   "step in to stop a fight",
+   "the state stepped in",
+   "step in at the last minute"
+  ],
+  "ex": [
+   "When the two boys started fighting, a teacher [[stepped in]] immediately.",
+   "During the crisis, the state [[stepped in]] to save the banks."
+  ],
+  "piege": "Intransitif ; souvent suivi de <b>to</b> + base verbale (<i>stepped in to help</i>). Autre sens : remplacer quelqu'un au pied levé (<i>step in for</i>).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "If the argument gets worse, I'll have to step ___.",
+    "a": "in",
+    "fr": "Si la dispute s'aggrave, je vais devoir intervenir."
+   },
+   {
+    "s": "The United Nations ___ in to organise humanitarian aid.",
+    "a": "stepped",
+    "fr": "Les Nations unies sont intervenues pour organiser l'aide humanitaire."
+   }
+  ],
+  "ecris": "une phrase sur une personne ou une institution qui est intervenue dans une crise",
+  "formes": [
+   "step in",
+   "steps in",
+   "stepped in",
+   "stepping in"
+  ]
+ },
+ {
+  "id": "p-get-through",
+  "w": "get through",
+  "pos": "phrasal verb",
+  "ipa": "/ˌɡet ˈθruː/",
+  "reg": "courant",
+  "fr": "1. traverser, tenir le coup · 2. joindre (au téléphone)",
+  "def": "To manage to survive a difficult period, or to succeed in contacting someone by phone.",
+  "col": [
+   "get through a difficult time",
+   "get through the winter",
+   "get through to someone",
+   "get through an exam"
+  ],
+  "ex": [
+   "I only [[got through]] exam week thanks to my friends' support.",
+   "Rationing helped the population [[get through]] the long years of war."
+  ],
+  "piege": "Inséparable : <i>get through <b>it</b></i>. <i>get through <b>to</b></i> = réussir à joindre ou à se faire comprendre (<i>I can't get through to him</i>).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I tried to call the bank, but I couldn't get ___.",
+    "a": "through",
+    "fr": "J'ai essayé d'appeler la banque, mais je n'ai pas réussi à les joindre."
+   },
+   {
+    "s": "We ___ through the crisis by working together.",
+    "a": "got",
+    "fr": "Nous avons traversé la crise en travaillant ensemble."
+   }
+  ],
+  "ecris": "une phrase sur une période difficile que tu as réussi à traverser",
+  "formes": [
+   "get through",
+   "gets through",
+   "got through",
+   "getting through",
+   "gotten through"
+  ]
+ },
+ {
+  "id": "p-sign-up-for",
+  "w": "sign up for",
+  "pos": "phrasal verb",
+  "ipa": "/ˌsaɪn ˈʌp fə/",
+  "reg": "courant",
+  "fr": "s'inscrire à",
+  "def": "To officially agree to take part in an activity or to join a course or service.",
+  "col": [
+   "sign up for a course",
+   "sign up for a newsletter",
+   "sign up for a club",
+   "sign up online"
+  ],
+  "ex": [
+   "I've [[signed up for]] a pottery class on Wednesday evenings.",
+   "Thousands of young men [[signed up for]] the army in the first weeks of the war."
+  ],
+  "piege": "<i>sign up <b>for</b></i> + activité, <i>sign up <b>to</b></i> + service ou principe. Ne pas confondre avec <i>sign</i> (signer).",
+  "fam": "sign-up (n.)",
+  "trous": [
+   {
+    "s": "Have you signed up ___ the school trip yet?",
+    "a": "for",
+    "fr": "Tu t'es déjà inscrit à la sortie scolaire ?"
+   },
+   {
+    "s": "She ___ up for a free trial of the app.",
+    "a": "signed",
+    "fr": "Elle s'est inscrite à un essai gratuit de l'application."
+   }
+  ],
+  "ecris": "une phrase sur une activité à laquelle tu t'es inscrit",
+  "formes": [
+   "sign up for",
+   "signs up for",
+   "signed up for",
+   "signing up for",
+   "sign up",
+   "signed up"
+  ]
+ },
+ {
+  "id": "p-catch-on",
+  "w": "catch on",
+  "pos": "phrasal verb",
+  "ipa": "/ˌkætʃ ˈɒn/",
+  "reg": "courant",
+  "fr": "1. devenir à la mode · 2. comprendre, piger",
+  "def": "To become popular, or to begin to understand something.",
+  "col": [
+   "the idea caught on",
+   "never really caught on",
+   "catch on quickly",
+   "catch on to"
+  ],
+  "ex": [
+   "The new dance quickly [[caught on]] among teenagers.",
+   "Electric cars were slow to [[catch on]] because of their high price."
+  ],
+  "piege": "Intransitif. Prétérit irrégulier : <b>caught</b>. Au sens « comprendre » : <i>catch on <b>to</b></i> + chose (<i>she caught on to the joke</i>).",
+  "fam": "catchy (adj., entraînant)",
+  "trous": [
+   {
+    "s": "Online shopping caught ___ much faster than anyone expected.",
+    "a": "on",
+    "fr": "Les achats en ligne se sont répandus bien plus vite que prévu."
+   },
+   {
+    "s": "The fashion never really ___ on in Britain.",
+    "a": "caught",
+    "fr": "Cette mode n'a jamais vraiment pris au Royaume-Uni."
+   }
+  ],
+  "ecris": "une phrase sur une mode qui a pris ou n'a pas pris",
+  "formes": [
+   "catch on",
+   "catches on",
+   "caught on",
+   "catching on"
+  ]
+ },
+ {
+  "id": "p-hold-up",
+  "w": "hold up",
+  "pos": "phrasal verb",
+  "ipa": "/ˌhəʊld ˈʌp/",
+  "reg": "courant",
+  "fr": "retarder, bloquer",
+  "def": "To delay someone or something.",
+  "col": [
+   "be held up in traffic",
+   "hold up the process",
+   "sorry to hold you up",
+   "get held up"
+  ],
+  "ex": [
+   "Sorry I'm late: I was [[held up]] in traffic.",
+   "The reform was [[held up]] for years by disagreements in parliament."
+  ],
+  "piege": "Séparable : <i>hold <b>us</b> up</i>. Souvent au passif : <i>be held up</i>. Prétérit irrégulier : <b>held</b>. Le nom <i>a hold-up</i> peut signifier un retard ou un braquage.",
+  "fam": "hold-up (n.)",
+  "trous": [
+   {
+    "s": "I don't want to hold you ___, so I'll be quick.",
+    "a": "up",
+    "fr": "Je ne veux pas te retarder, alors je vais faire vite."
+   },
+   {
+    "s": "Our flight was ___ up by a strike.",
+    "a": "held",
+    "fr": "Notre vol a été retardé par une grève."
+   }
+  ],
+  "ecris": "une phrase pour expliquer un retard",
+  "formes": [
+   "hold up",
+   "holds up",
+   "held up",
+   "holding up",
+   "hold you up",
+   "hold-up"
+  ]
+ },
+ {
+  "id": "p-wrap-up",
+  "w": "wrap up",
+  "pos": "phrasal verb",
+  "ipa": "/ˌræp ˈʌp/",
+  "reg": "courant",
+  "fr": "conclure, terminer",
+  "def": "To finish a meeting, discussion or piece of work.",
+  "col": [
+   "wrap up a meeting",
+   "wrap things up",
+   "let's wrap up",
+   "wrap up the deal"
+  ],
+  "ex": [
+   "Let's [[wrap up]] now: it's almost six o'clock.",
+   "The leaders [[wrapped up]] the summit with a joint statement on climate."
+  ],
+  "piege": "Séparable : <i>wrap <b>it</b> up</i>. Autre sens : bien se couvrir (<i>wrap up warm</i>). Le <b>w</b> ne se prononce pas : /ræp/.",
+  "fam": "wrap-up (n., résumé final)",
+  "trous": [
+   {
+    "s": "To wrap ___, I'd like to thank you all for coming.",
+    "a": "up",
+    "fr": "Pour conclure, je voudrais tous vous remercier d'être venus."
+   },
+   {
+    "s": "We ___ up the project two days ahead of schedule.",
+    "a": "wrapped",
+    "fr": "Nous avons terminé le projet avec deux jours d'avance."
+   }
+  ],
+  "ecris": "une phrase pour conclure un exposé",
+  "formes": [
+   "wrap up",
+   "wraps up",
+   "wrapped up",
+   "wrapping up",
+   "wrap it up",
+   "wrap things up"
+  ]
+ },
+ {
+  "id": "p-reach-out",
+  "w": "reach out",
+  "pos": "phrasal verb",
+  "ipa": "/ˌriːtʃ ˈaʊt/",
+  "reg": "courant",
+  "fr": "tendre la main, contacter, demander de l'aide",
+  "def": "To try to communicate with someone, to offer help or to ask for it.",
+  "col": [
+   "reach out to someone",
+   "reach out for help",
+   "reach out to young people",
+   "don't hesitate to reach out"
+  ],
+  "ex": [
+   "If you ever feel low, [[reach out]] to a friend instead of staying alone.",
+   "The charity [[reaches out]] to homeless people living on the streets."
+  ],
+  "piege": "<i>reach out <b>to</b></i> + personne, <i>reach out <b>for</b></i> + aide. Dans les e-mails professionnels, <i>reach out</i> = contacter (usage d'origine américaine, parfois jugé jargonneux).",
+  "fam": "outreach (n., actions de proximité)",
+  "trous": [
+   {
+    "s": "Don't be afraid to reach ___ if you need help.",
+    "a": "out",
+    "fr": "N'aie pas peur de demander de l'aide si tu en as besoin."
+   },
+   {
+    "s": "The new mayor ___ out to all communities in the city.",
+    "a": "reached",
+    "fr": "Le nouveau maire a tendu la main à toutes les communautés de la ville."
+   }
+  ],
+  "ecris": "une phrase sur l'importance de demander de l'aide",
+  "formes": [
+   "reach out",
+   "reaches out",
+   "reached out",
+   "reaching out"
+  ]
+ },
+ {
+  "id": "p-in-a-nutshell",
+  "w": "in a nutshell",
+  "pos": "expression",
+  "ipa": "/ɪn ə ˈnʌtʃel/",
+  "reg": "courant",
+  "fr": "en bref, en un mot",
+  "def": "Used to say that you are going to express something in very few words.",
+  "col": [
+   "in a nutshell, …",
+   "to put it in a nutshell",
+   "that's it in a nutshell"
+  ],
+  "ex": [
+   "[[In a nutshell]], the film is about a family trying to stay together.",
+   "[[In a nutshell]], the crisis was caused by too much debt and too little regulation."
+  ],
+  "piege": "Image d'une coquille de noix, mais expression très courante et neutre. Synonymes : <i>briefly, to sum up</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "In a ___, we need more time and more money.",
+    "a": "nutshell",
+    "fr": "En bref, il nous faut plus de temps et plus d'argent."
+   },
+   {
+    "s": "That's the whole story ___ a nutshell.",
+    "a": "in",
+    "fr": "Voilà toute l'histoire en résumé."
+   }
+  ],
+  "ecris": "une phrase qui résume un film ou un livre en quelques mots",
+  "formes": [
+   "in a nutshell"
+  ]
+ },
+ {
+  "id": "p-get-on-someones-nerves",
+  "w": "get on someone's nerves",
+  "pos": "expression",
+  "ipa": "/ˈnɜːvz/",
+  "reg": "courant",
+  "fr": "taper sur les nerfs de quelqu'un, agacer",
+  "def": "To annoy someone, especially by doing something repeatedly.",
+  "col": [
+   "get on my nerves",
+   "really get on her nerves",
+   "start to get on his nerves"
+  ],
+  "ex": [
+   "His constant whistling really [[gets on my nerves]].",
+   "Endless advertising before videos tends to [[get on people's nerves]]."
+  ],
+  "piege": "Le possessif change : <i>get on <b>my / his / your</b> nerves</i>. Toujours <b>nerves</b> au pluriel.",
+  "fam": "nervous (adj.)",
+  "trous": [
+   {
+    "s": "That song is starting to get on my ___.",
+    "a": "nerves",
+    "fr": "Cette chanson commence à me taper sur les nerfs."
+   },
+   {
+    "s": "Her habit of interrupting everyone ___ on my nerves.",
+    "a": "gets",
+    "alt": [
+     "got"
+    ],
+    "fr": "Son habitude de couper la parole à tout le monde me tape sur les nerfs."
+   }
+  ],
+  "ecris": "une phrase sur une habitude qui t'agace",
+  "formes": [
+   "get on my nerves",
+   "gets on my nerves",
+   "got on my nerves",
+   "getting on my nerves",
+   "get on his nerves",
+   "get on her nerves",
+   "gets on her nerves",
+   "get on your nerves",
+   "get on people's nerves"
+  ]
+ },
+ {
+  "id": "p-on-the-spot",
+  "w": "on the spot",
+  "pos": "expression",
+  "ipa": "/ɒn ðə ˈspɒt/",
+  "reg": "courant",
+  "fr": "sur-le-champ, sur place",
+  "def": "Immediately, or at the place where something is happening.",
+  "col": [
+   "decide on the spot",
+   "be fired on the spot",
+   "put someone on the spot",
+   "on-the-spot fine"
+  ],
+  "ex": [
+   "They offered me the job [[on the spot]] at the end of the interview.",
+   "Journalists [[on the spot]] described scenes of chaos after the earthquake."
+  ],
+  "piege": "Deux sens : « immédiatement » et « sur place ». <i>put someone on the spot</i> = mettre quelqu'un dans l'embarras avec une question difficile.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The referee sent him off on the ___.",
+    "a": "spot",
+    "fr": "L'arbitre l'a expulsé sur-le-champ."
+   },
+   {
+    "s": "Please don't put me ___ the spot with questions like that.",
+    "a": "on",
+    "fr": "S'il te plaît, ne me mets pas dans l'embarras avec des questions pareilles."
+   }
+  ],
+  "ecris": "une phrase sur une décision prise sur-le-champ",
+  "formes": [
+   "on the spot"
+  ]
+ }
+]

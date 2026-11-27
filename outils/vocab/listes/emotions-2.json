@@ -1,0 +1,3987 @@
+[
+ {
+  "id": "e-reassure",
+  "w": "reassure",
+  "pos": "verb",
+  "ipa": "/ˌriːəˈʃʊə/",
+  "reg": "courant",
+  "fr": "rassurer",
+  "def": "To say or do something that makes someone feel less worried or afraid.",
+  "col": [
+   "reassure someone that",
+   "try to reassure",
+   "be reassured by",
+   "a reassuring smile"
+  ],
+  "ex": [
+   "The nurse [[reassured]] me that the injection would not hurt.",
+   "The government tried to [[reassure]] the public that food prices would soon stabilise."
+  ],
+  "piege": "Construction directe : <i>reassure <b>someone</b> that…</i> (pas de <i>to</i>). Ne pas confondre avec <i>ensure</i> (garantir) ni <i>insure</i> (assurer contre un risque).",
+  "fam": "reassurance (n.) · reassuring (adj.) · reassuringly (adv.)",
+  "trous": [
+   {
+    "s": "The doctor ___ her that the results were perfectly normal.",
+    "a": "reassured",
+    "fr": "Le médecin l'a rassurée : les résultats étaient parfaitement normaux."
+   },
+   {
+    "s": "He called his parents to ___ them that he had arrived safely.",
+    "a": "reassure",
+    "fr": "Il a appelé ses parents pour les rassurer : il était bien arrivé."
+   }
+  ],
+  "ecris": "une phrase sur une personne qui calme l'inquiétude d'une autre",
+  "formes": [
+   "reassure",
+   "reassures",
+   "reassured",
+   "reassuring",
+   "reassurance",
+   "reassuringly"
+  ]
+ },
+ {
+  "id": "e-reluctant",
+  "w": "reluctant",
+  "pos": "adjective",
+  "ipa": "/rɪˈlʌktənt/",
+  "reg": "courant",
+  "fr": "réticent, peu disposé",
+  "def": "Unwilling to do something and therefore slow or hesitant to do it.",
+  "col": [
+   "reluctant to admit",
+   "a reluctant hero",
+   "reluctantly agree",
+   "deeply reluctant"
+  ],
+  "ex": [
+   "My little brother was [[reluctant]] to go to bed while his cousins were still playing.",
+   "Many governments were [[reluctant]] to criticise a powerful trading partner."
+  ],
+  "piege": "Se construit avec <i>to</i> + base verbale : <i>reluctant <b>to</b> help</i>. Plus fort et plus courant que <i>hesitant</i> : on n'a pas envie, pas seulement un doute.",
+  "fam": "reluctance (n.) · reluctantly (adv.)",
+  "trous": [
+   {
+    "s": "She was ___ to lend him money again after he had failed to pay her back.",
+    "a": "reluctant",
+    "fr": "Elle était réticente à lui prêter encore de l'argent après qu'il ne l'eut pas remboursée."
+   },
+   {
+    "s": "He ___ agreed to apologise, although he still thought he was right.",
+    "a": "reluctantly",
+    "fr": "Il a accepté à contrecœur de s'excuser, même s'il pensait toujours avoir raison."
+   }
+  ],
+  "ecris": "une phrase sur une chose que tu fais à contrecœur",
+  "formes": [
+   "reluctant",
+   "reluctantly",
+   "reluctance"
+  ]
+ },
+ {
+  "id": "e-confide",
+  "w": "confide",
+  "pos": "verb",
+  "ipa": "/kənˈfaɪd/",
+  "reg": "courant",
+  "fr": "confier (un secret), se confier",
+  "def": "To tell someone something private or secret because you trust them.",
+  "col": [
+   "confide in someone",
+   "confide a secret to",
+   "confide that",
+   "a close friend to confide in"
+  ],
+  "ex": [
+   "She only [[confides]] in her older sister when something is really wrong.",
+   "Victims of harassment often need someone they can [[confide]] in before going to the police."
+  ],
+  "piege": "<i>Confide <b>in</b> someone</i> = se confier à quelqu'un ; <i>confide something <b>to</b> someone</i> = confier quelque chose à quelqu'un. Pour confier une tâche, on dit <i>entrust</i>, pas <i>confide</i>.",
+  "fam": "confidant(e) (n.) · confidence (n.) · confidential (adj.)",
+  "trous": [
+   {
+    "s": "He finally ___ in his best friend that he was thinking of leaving school.",
+    "a": "confided",
+    "fr": "Il a fini par confier à son meilleur ami qu'il pensait quitter le lycée."
+   },
+   {
+    "s": "Teenagers need an adult they can ___ in without being judged.",
+    "a": "confide",
+    "fr": "Les adolescents ont besoin d'un adulte à qui se confier sans être jugés."
+   }
+  ],
+  "ecris": "une phrase sur la personne à qui tu te confies et pourquoi",
+  "formes": [
+   "confide",
+   "confides",
+   "confided",
+   "confiding"
+  ]
+ },
+ {
+  "id": "e-rapport",
+  "w": "rapport",
+  "pos": "noun",
+  "ipa": "/ræˈpɔː/",
+  "reg": "courant",
+  "fr": "bonne entente, relation de confiance",
+  "def": "A friendly relationship in which people understand each other and communicate well.",
+  "col": [
+   "build a rapport with",
+   "establish rapport",
+   "a good rapport",
+   "an instant rapport"
+  ],
+  "ex": [
+   "Our new coach quickly built a strong [[rapport]] with the whole team.",
+   "A good teacher knows that learning depends on the [[rapport]] between pupils and adults."
+  ],
+  "piege": "<b>Faux ami</b> : <i>rapport</i> ne veut pas dire « un rapport » écrit (<i>a report</i>) ni « un lien logique » (<i>a link, a connection</i>). Toujours positif. Le <i>t</i> final ne se prononce pas.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The two leaders had an excellent ___ and spoke on the phone every week.",
+    "a": "rapport",
+    "fr": "Les deux dirigeants s'entendaient très bien et se parlaient au téléphone chaque semaine."
+   },
+   {
+    "s": "A good salesperson tries to build a ___ with customers before talking about prices.",
+    "a": "rapport",
+    "fr": "Un bon vendeur essaie de créer une relation de confiance avec ses clients avant de parler prix."
+   }
+  ],
+  "ecris": "une phrase sur une personne avec qui tu t'es tout de suite bien entendu",
+  "formes": [
+   "rapport"
+  ]
+ },
+ {
+  "id": "e-trustworthy",
+  "w": "trustworthy",
+  "pos": "adjective",
+  "ipa": "/ˈtrʌstwɜːði/",
+  "reg": "courant",
+  "fr": "digne de confiance, fiable",
+  "def": "Able to be trusted because you are honest and reliable.",
+  "col": [
+   "a trustworthy friend",
+   "completely trustworthy",
+   "a trustworthy source",
+   "prove trustworthy"
+  ],
+  "ex": [
+   "Leave your keys with Sam: he is the most [[trustworthy]] person I know.",
+   "Voters no longer see politicians as [[trustworthy]], which fuels support for extreme parties."
+  ],
+  "piege": "Se dit d'une personne ou d'une source. <i>Reliable</i> insiste sur la régularité (on peut compter sur lui), <i>trustworthy</i> sur l'honnêteté. Contraire : <i>untrustworthy</i>.",
+  "fam": "trust (n./v.) · trustworthiness (n.) · untrustworthy (adj.)",
+  "trous": [
+   {
+    "s": "I would never lend my car to him: he isn't ___ at all.",
+    "a": "trustworthy",
+    "fr": "Je ne lui prêterais jamais ma voiture : il n'est pas du tout digne de confiance."
+   },
+   {
+    "s": "Journalists must check that their sources are ___ before publishing a story.",
+    "a": "trustworthy",
+    "fr": "Les journalistes doivent vérifier que leurs sources sont fiables avant de publier un article."
+   }
+  ],
+  "ecris": "une phrase sur ce qui rend quelqu'un digne de confiance",
+  "formes": [
+   "trustworthy",
+   "trustworthiness",
+   "untrustworthy"
+  ]
+ },
+ {
+  "id": "e-betrayal",
+  "w": "betrayal",
+  "pos": "noun",
+  "ipa": "/bɪˈtreɪəl/",
+  "reg": "courant",
+  "fr": "trahison",
+  "def": "The act of harming someone who trusted you, for example by lying or revealing their secrets.",
+  "col": [
+   "a sense of betrayal",
+   "an act of betrayal",
+   "feel a deep betrayal",
+   "betrayal of trust"
+  ],
+  "ex": [
+   "Reading her diary out loud to the class was a real [[betrayal]] of their friendship.",
+   "Many workers saw the factory's closure as a [[betrayal]] by the party they had voted for."
+  ],
+  "piege": "Nom de <i>betray</i> (trahir). Le verbe est direct : <i>he betrayed <b>his friends</b></i>. <i>Treason</i> est réservé à la trahison envers son pays.",
+  "fam": "betray (v.) · traitor (n.)",
+  "trous": [
+   {
+    "s": "When he found out that his friend had lied to him for years, he felt a deep sense of ___.",
+    "a": "betrayal",
+    "fr": "Quand il a découvert que son ami lui mentait depuis des années, il a ressenti un profond sentiment de trahison."
+   },
+   {
+    "s": "She never forgave him for revealing her secret: it was the worst ___ of her life.",
+    "a": "betrayal",
+    "fr": "Elle ne lui a jamais pardonné d'avoir révélé son secret : ce fut la pire trahison de sa vie."
+   }
+  ],
+  "ecris": "une phrase sur une trahison, réelle ou dans un livre ou un film",
+  "formes": [
+   "betrayal",
+   "betrayals",
+   "betray",
+   "betrays",
+   "betrayed",
+   "betraying"
+  ]
+ },
+ {
+  "id": "e-loyal",
+  "w": "loyal",
+  "pos": "adjective",
+  "ipa": "/ˈlɔɪəl/",
+  "reg": "courant",
+  "fr": "loyal, fidèle",
+  "def": "Always supporting a person, group or cause, even in difficult times.",
+  "col": [
+   "loyal to someone",
+   "a loyal friend",
+   "fiercely loyal",
+   "remain loyal"
+  ],
+  "ex": [
+   "Even when everyone laughed at him, his dog stayed [[loyal]] and never left his side.",
+   "The army remained [[loyal]] to the government, which prevented the coup from succeeding."
+  ],
+  "piege": "Se construit avec <i>to</i> : <i>loyal <b>to</b> his friends</i>. Pour la fidélité en amour, on dit plutôt <i>faithful</i>.",
+  "fam": "loyalty (n.) · loyally (adv.) · disloyal (adj.)",
+  "trous": [
+   {
+    "s": "She has been a ___ customer of this little bookshop for twenty years.",
+    "a": "loyal",
+    "fr": "Elle est une cliente fidèle de cette petite librairie depuis vingt ans."
+   },
+   {
+    "s": "His ___ to his friends sometimes made him defend people who were clearly wrong.",
+    "a": "loyalty",
+    "fr": "Sa loyauté envers ses amis le poussait parfois à défendre des gens qui avaient clairement tort."
+   }
+  ],
+  "ecris": "une phrase sur une personne restée fidèle dans une période difficile",
+  "formes": [
+   "loyal",
+   "loyally",
+   "loyalty",
+   "loyalties",
+   "disloyal"
+  ]
+ },
+ {
+  "id": "e-awkward",
+  "w": "awkward",
+  "pos": "adjective",
+  "ipa": "/ˈɔːkwəd/",
+  "reg": "courant",
+  "fr": "gêné, gênant, maladroit",
+  "def": "Making people feel embarrassed or uncomfortable, or feeling embarrassed yourself.",
+  "col": [
+   "an awkward silence",
+   "feel awkward",
+   "an awkward moment",
+   "socially awkward"
+  ],
+  "ex": [
+   "There was an [[awkward]] silence when he realised everyone had heard his comment.",
+   "Asking for a pay rise can be [[awkward]], so many employees simply never do it."
+  ],
+  "piege": "Deux sens : une situation gênante (<i>an awkward question</i>) ou une personne mal à l'aise ou maladroite (<i>an awkward teenager</i>). Le <i>w</i> du milieu se prononce à peine : /ˈɔːkwəd/.",
+  "fam": "awkwardly (adv.) · awkwardness (n.)",
+  "trous": [
+   {
+    "s": "I felt really ___ at the party because I didn't know anyone.",
+    "a": "awkward",
+    "fr": "Je me suis senti vraiment mal à l'aise à la fête parce que je ne connaissais personne."
+   },
+   {
+    "s": "He smiled ___ and looked at his shoes when she thanked him.",
+    "a": "awkwardly",
+    "fr": "Il a souri, gêné, et a regardé ses chaussures quand elle l'a remercié."
+   }
+  ],
+  "ecris": "une phrase sur un moment gênant que tu as vécu",
+  "formes": [
+   "awkward",
+   "awkwardly",
+   "awkwardness"
+  ]
+ },
+ {
+  "id": "e-intimidating",
+  "w": "intimidating",
+  "pos": "adjective",
+  "ipa": "/ɪnˈtɪmɪdeɪtɪŋ/",
+  "reg": "courant",
+  "fr": "intimidant",
+  "def": "Making you feel nervous, less confident or slightly afraid.",
+  "col": [
+   "find something intimidating",
+   "an intimidating atmosphere",
+   "slightly intimidating",
+   "intimidating presence"
+  ],
+  "ex": [
+   "The interview panel looked quite [[intimidating]], but they were actually very kind.",
+   "For many first-generation students, university can be an [[intimidating]] place with unwritten rules."
+  ],
+  "piege": "Ne pas confondre <i>intimidating</i> (qui intimide) et <i>intimidated</i> (intimidé) : <i>I was <b>intimidated</b> by the <b>intimidating</b> examiner.</i> Le verbe <i>intimidate</i> peut aussi signifier menacer pour obtenir quelque chose.",
+  "fam": "intimidate (v.) · intimidated (adj.) · intimidation (n.)",
+  "trous": [
+   {
+    "s": "Speaking in front of the whole school was ___ at first.",
+    "a": "intimidating",
+    "fr": "Parler devant tout le lycée était intimidant au début."
+   },
+   {
+    "s": "She felt ___ by the other candidates, who all seemed older and more experienced.",
+    "a": "intimidated",
+    "fr": "Elle se sentait intimidée par les autres candidats, qui semblaient tous plus âgés et plus expérimentés."
+   }
+  ],
+  "ecris": "une phrase sur une situation ou une personne qui t'a intimidé",
+  "formes": [
+   "intimidating",
+   "intimidated",
+   "intimidate",
+   "intimidates",
+   "intimidation"
+  ]
+ },
+ {
+  "id": "e-supportive",
+  "w": "supportive",
+  "pos": "adjective",
+  "ipa": "/səˈpɔːtɪv/",
+  "reg": "courant",
+  "fr": "d'un grand soutien, encourageant",
+  "def": "Giving help, encouragement and kindness to someone, especially when they have problems.",
+  "col": [
+   "supportive of someone",
+   "a supportive family",
+   "incredibly supportive",
+   "a supportive environment"
+  ],
+  "ex": [
+   "My parents were really [[supportive]] when I decided to change my plans after school.",
+   "A [[supportive]] working environment reduces stress and helps employees stay longer."
+  ],
+  "piege": "Se construit avec <i>of</i> : <i>supportive <b>of</b> her decision</i>. <b>Faux ami</b> avec « supporter » au sens de tolérer : <i>I can't stand him</i>, pas <i>I can't support him</i>.",
+  "fam": "support (n./v.) · supporter (n.)",
+  "trous": [
+   {
+    "s": "Her friends were very ___ during her long illness.",
+    "a": "supportive",
+    "fr": "Ses amis lui ont apporté un grand soutien pendant sa longue maladie."
+   },
+   {
+    "s": "The school has created a ___ environment where pupils are not afraid to make mistakes.",
+    "a": "supportive",
+    "fr": "Le lycée a créé un cadre bienveillant où les élèves n'ont pas peur de se tromper."
+   }
+  ],
+  "ecris": "une phrase sur une personne qui t'a soutenu à un moment important",
+  "formes": [
+   "supportive",
+   "supportively"
+  ]
+ },
+ {
+  "id": "e-hostile",
+  "w": "hostile",
+  "pos": "adjective",
+  "ipa": "/ˈhɒstaɪl/",
+  "reg": "courant",
+  "fr": "hostile",
+  "def": "Unfriendly and aggressive, showing that you dislike or oppose someone.",
+  "col": [
+   "hostile to/towards",
+   "a hostile reaction",
+   "openly hostile",
+   "a hostile environment"
+  ],
+  "ex": [
+   "The neighbours became openly [[hostile]] after the argument about the fence.",
+   "Newcomers often face a [[hostile]] reception when unemployment is high."
+  ],
+  "piege": "Prononciation britannique : /ˈhɒstaɪl/ (rime avec <i>style</i>). Se construit avec <i>to</i> ou <i>towards</i> : <i>hostile <b>to</b> change</i>.",
+  "fam": "hostility (n.)",
+  "trous": [
+   {
+    "s": "The crowd was ___ and booed the speaker as soon as he appeared.",
+    "a": "hostile",
+    "fr": "La foule était hostile et a hué l'orateur dès son apparition."
+   },
+   {
+    "s": "There was open ___ between the two families after the inheritance dispute.",
+    "a": "hostility",
+    "fr": "Il y avait une hostilité déclarée entre les deux familles après le conflit d'héritage."
+   }
+  ],
+  "ecris": "une phrase sur un accueil hostile",
+  "formes": [
+   "hostile",
+   "hostility",
+   "hostilities"
+  ]
+ },
+ {
+  "id": "e-reconcile",
+  "w": "reconcile",
+  "pos": "verb",
+  "ipa": "/ˈrekənsaɪl/",
+  "reg": "courant",
+  "fr": "réconcilier, concilier",
+  "def": "To make two people or groups friendly again after a disagreement, or to make two ideas fit together.",
+  "col": [
+   "be reconciled with",
+   "reconcile two views",
+   "reconcile work and family life",
+   "attempt to reconcile"
+  ],
+  "ex": [
+   "After months of silence, the two brothers were finally [[reconciled]] at their mother's birthday.",
+   "Many parents struggle to [[reconcile]] a demanding job with family life."
+  ],
+  "piege": "Deux sens : réconcilier des personnes (<i>be reconciled <b>with</b> someone</i>) et concilier deux choses (<i>reconcile A <b>with</b> B</i>). Accent sur la première syllabe : /ˈrekənsaɪl/.",
+  "fam": "reconciliation (n.)",
+  "trous": [
+   {
+    "s": "It took years for the two former enemies to be ___.",
+    "a": "reconciled",
+    "fr": "Il a fallu des années pour que les deux anciens ennemis se réconcilient."
+   },
+   {
+    "s": "It is hard to ___ economic growth with the protection of the environment.",
+    "a": "reconcile",
+    "fr": "Il est difficile de concilier croissance économique et protection de l'environnement."
+   }
+  ],
+  "ecris": "une phrase sur deux personnes qui se réconcilient, ou deux choses difficiles à concilier",
+  "formes": [
+   "reconcile",
+   "reconciles",
+   "reconciled",
+   "reconciling",
+   "reconciliation"
+  ]
+ },
+ {
+  "id": "e-forgiveness",
+  "w": "forgiveness",
+  "pos": "noun",
+  "ipa": "/fəˈɡɪvnəs/",
+  "reg": "courant",
+  "fr": "pardon",
+  "def": "The act of stopping being angry with someone for something they have done wrong.",
+  "col": [
+   "ask for forgiveness",
+   "beg forgiveness",
+   "an act of forgiveness",
+   "forgiveness and reconciliation"
+  ],
+  "ex": [
+   "He wrote her a long letter asking for [[forgiveness]] after missing her graduation.",
+   "After apartheid, South Africa tried to build a future based on truth and [[forgiveness]]."
+  ],
+  "piege": "<i>Ask <b>for</b> forgiveness</i>, mais <i>beg someone's forgiveness</i> (sans préposition). Verbe : <i>forgive someone <b>for</b> something</i>. <i>Forgiving</i> = qui pardonne facilement.",
+  "fam": "forgive (v.) · forgiving (adj.) · unforgivable (adj.)",
+  "trous": [
+   {
+    "s": "She begged her sister's ___ for reading her private messages.",
+    "a": "forgiveness",
+    "fr": "Elle a supplié sa sœur de lui pardonner d'avoir lu ses messages privés."
+   },
+   {
+    "s": "Lying to your best friend is almost ___: trust is hard to rebuild.",
+    "a": "unforgivable",
+    "fr": "Mentir à son meilleur ami est presque impardonnable : la confiance est difficile à reconstruire."
+   }
+  ],
+  "ecris": "une phrase sur un pardon difficile à accorder",
+  "formes": [
+   "forgiveness",
+   "forgive",
+   "forgives",
+   "forgave",
+   "forgiven",
+   "forgiving",
+   "unforgivable"
+  ]
+ },
+ {
+  "id": "e-grievance",
+  "w": "grievance",
+  "pos": "noun",
+  "ipa": "/ˈɡriːvəns/",
+  "reg": "formel",
+  "fr": "grief, sujet de plainte",
+  "def": "A reason for complaining or feeling that you have been treated unfairly.",
+  "col": [
+   "air a grievance",
+   "a long-standing grievance",
+   "a sense of grievance",
+   "genuine grievances"
+  ],
+  "ex": [
+   "He spent the whole evening listing his [[grievances]] against his former boss.",
+   "Populist parties often feed on the [[grievances]] of people who feel forgotten by the elites."
+  ],
+  "piege": "<b>Faux ami partiel</b> : un « grief » au sens de reproche se dit <i>grievance</i> ; <i>grief</i> en anglais signifie le chagrin du deuil. Souvent au pluriel.",
+  "fam": "grieve (v., au sens de s'affliger) · aggrieved (adj.)",
+  "trous": [
+   {
+    "s": "The workers met the director to discuss their ___ about pay and safety.",
+    "a": "grievances",
+    "fr": "Les ouvriers ont rencontré le directeur pour discuter de leurs griefs sur les salaires et la sécurité."
+   },
+   {
+    "s": "Unfair taxes were a major ___ of the colonists before the revolution.",
+    "a": "grievance",
+    "fr": "Des impôts injustes étaient un grief majeur des colons avant la révolution."
+   }
+  ],
+  "ecris": "une phrase sur un groupe qui exprime ses griefs",
+  "formes": [
+   "grievance",
+   "grievances"
+  ]
+ },
+ {
+  "id": "e-rivalry",
+  "w": "rivalry",
+  "pos": "noun",
+  "ipa": "/ˈraɪvlri/",
+  "reg": "courant",
+  "fr": "rivalité",
+  "def": "A situation in which people or groups compete with each other for the same thing.",
+  "col": [
+   "a fierce rivalry",
+   "sibling rivalry",
+   "rivalry between",
+   "a friendly rivalry"
+  ],
+  "ex": [
+   "There has always been a friendly [[rivalry]] between my cousin and me at chess.",
+   "The [[rivalry]] between the two superpowers shaped international relations for decades."
+  ],
+  "piege": "<i>Sibling rivalry</i> = la rivalité entre frères et sœurs, expression très fréquente. Le verbe <i>rival</i> est transitif : <i>few cities <b>rival</b> Paris</i> (égaler).",
+  "fam": "rival (n./v./adj.)",
+  "trous": [
+   {
+    "s": "Sibling ___ is normal, but parents should avoid comparing their children.",
+    "a": "rivalry",
+    "fr": "La rivalité entre frères et sœurs est normale, mais les parents doivent éviter de comparer leurs enfants."
+   },
+   {
+    "s": "The ___ between the two clubs sometimes leads to violence among supporters.",
+    "a": "rivalry",
+    "fr": "La rivalité entre les deux clubs dégénère parfois en violences entre supporters."
+   }
+  ],
+  "ecris": "une phrase sur une rivalité, sportive, familiale ou historique",
+  "formes": [
+   "rivalry",
+   "rivalries"
+  ]
+ },
+ {
+  "id": "e-quarrel",
+  "w": "quarrel",
+  "pos": "noun",
+  "ipa": "/ˈkwɒrəl/",
+  "reg": "courant",
+  "fr": "dispute, querelle",
+  "def": "An angry argument between people who usually know each other well.",
+  "col": [
+   "have a quarrel with",
+   "a bitter quarrel",
+   "a quarrel over",
+   "settle a quarrel"
+  ],
+  "ex": [
+   "My parents had a [[quarrel]] about money, but they made up the same evening.",
+   "A trivial [[quarrel]] over a border village escalated into a full-scale war."
+  ],
+  "piege": "Plus littéraire que <i>argument</i> ou <i>row</i> (familier). <i>Have a quarrel <b>with</b> someone <b>about/over</b> something</i>. Le verbe existe aussi : <i>they quarrelled</i> (double <i>l</i> en britannique).",
+  "fam": "quarrel (v.) · quarrelsome (adj.)",
+  "trous": [
+   {
+    "s": "The two neighbours had a ___ over a tree that blocked the light.",
+    "a": "quarrel",
+    "fr": "Les deux voisins se sont disputés à propos d'un arbre qui bouchait la lumière."
+   },
+   {
+    "s": "They ___ constantly, yet they couldn't live without each other.",
+    "a": "quarrelled",
+    "fr": "Ils se disputaient sans cesse, et pourtant ils ne pouvaient pas vivre l'un sans l'autre."
+   }
+  ],
+  "ecris": "une phrase sur une dispute et la façon dont elle s'est terminée",
+  "formes": [
+   "quarrel",
+   "quarrels",
+   "quarrelled",
+   "quarrelling",
+   "quarrelsome"
+  ]
+ },
+ {
+  "id": "e-flatter",
+  "w": "flatter",
+  "pos": "verb",
+  "ipa": "/ˈflætə/",
+  "reg": "courant",
+  "fr": "flatter",
+  "def": "To praise someone too much or insincerely, often because you want something from them.",
+  "col": [
+   "flatter someone into",
+   "be flattered by",
+   "feel flattered",
+   "flattering comments"
+  ],
+  "ex": [
+   "He [[flattered]] his grandmother all afternoon, hoping she would give him some money.",
+   "Courtiers survived by [[flattering]] the king and never telling him unpleasant truths."
+  ],
+  "piege": "<i>I'm flattered</i> = « ça me touche » (sens positif). Mais <i>flatter</i> seul suggère souvent une intention intéressée. <i>Flattering</i> se dit aussi d'un vêtement qui avantage.",
+  "fam": "flattery (n.) · flattering (adj.) · flatterer (n.)",
+  "trous": [
+   {
+    "s": "I was ___ that she asked for my advice on such an important decision.",
+    "a": "flattered",
+    "fr": "J'ai été flatté qu'elle me demande conseil pour une décision aussi importante."
+   },
+   {
+    "s": "Don't try to ___ me: I know you only want to borrow my car.",
+    "a": "flatter",
+    "fr": "N'essaie pas de me flatter : je sais que tu veux juste emprunter ma voiture."
+   }
+  ],
+  "ecris": "une phrase sur quelqu'un qui flatte pour obtenir quelque chose",
+  "formes": [
+   "flatter",
+   "flatters",
+   "flattered",
+   "flattering",
+   "flattery"
+  ]
+ },
+ {
+  "id": "e-belittle",
+  "w": "belittle",
+  "pos": "verb",
+  "ipa": "/bɪˈlɪtl/",
+  "reg": "courant",
+  "fr": "rabaisser, minimiser",
+  "def": "To make someone or something seem unimportant or less valuable than they are.",
+  "col": [
+   "belittle someone's efforts",
+   "feel belittled",
+   "belittle the problem",
+   "constantly belittle"
+  ],
+  "ex": [
+   "Her older brother always [[belittled]] her drawings, so she stopped showing them.",
+   "It would be wrong to [[belittle]] the role played by women in the war economy."
+  ],
+  "piege": "Toujours négatif. Plus courant à l'écrit que <i>put down</i>, qui est familier. S'applique aux personnes (rabaisser) comme aux idées (minimiser).",
+  "fam": "belittling (adj.)",
+  "trous": [
+   {
+    "s": "A good manager never ___ employees in front of their colleagues.",
+    "a": "belittles",
+    "fr": "Un bon manager ne rabaisse jamais ses employés devant leurs collègues."
+   },
+   {
+    "s": "He felt ___ when his teacher laughed at his question.",
+    "a": "belittled",
+    "fr": "Il s'est senti rabaissé quand son professeur a ri de sa question."
+   }
+  ],
+  "ecris": "une phrase sur l'effet d'une remarque qui rabaisse",
+  "formes": [
+   "belittle",
+   "belittles",
+   "belittled",
+   "belittling"
+  ]
+ },
+ {
+  "id": "e-reproach",
+  "w": "reproach",
+  "pos": "verb",
+  "ipa": "/rɪˈprəʊtʃ/",
+  "reg": "formel",
+  "fr": "reprocher, faire des reproches",
+  "def": "To criticise someone, often gently or sadly, for something they have done wrong.",
+  "col": [
+   "reproach someone for",
+   "reproach oneself",
+   "beyond reproach",
+   "a look of reproach"
+  ],
+  "ex": [
+   "His mother did not shout; she simply [[reproached]] him for forgetting her birthday.",
+   "Survivors often [[reproach]] themselves for things they could not have prevented."
+  ],
+  "piege": "Construction : <i>reproach <b>someone</b> for something</i> (la personne est complément direct), à l'inverse du français « reprocher quelque chose à quelqu'un ». <i>Beyond reproach</i> = irréprochable.",
+  "fam": "reproach (n.) · reproachful (adj.) · reproachfully (adv.)",
+  "trous": [
+   {
+    "s": "She ___ him for not telling her the truth earlier.",
+    "a": "reproached",
+    "fr": "Elle lui a reproché de ne pas lui avoir dit la vérité plus tôt."
+   },
+   {
+    "s": "You shouldn't ___ yourself: nobody could have predicted the accident.",
+    "a": "reproach",
+    "fr": "Tu ne devrais pas t'en vouloir : personne n'aurait pu prévoir l'accident."
+   }
+  ],
+  "ecris": "une phrase sur un reproche fait à quelqu'un",
+  "formes": [
+   "reproach",
+   "reproaches",
+   "reproached",
+   "reproaching",
+   "reproachful",
+   "reproachfully"
+  ]
+ },
+ {
+  "id": "e-snub",
+  "w": "snub",
+  "pos": "verb",
+  "ipa": "/snʌb/",
+  "reg": "courant",
+  "fr": "snober, ignorer ostensiblement",
+  "def": "To insult someone by deliberately ignoring them or treating them as unimportant.",
+  "col": [
+   "feel snubbed",
+   "snub an invitation",
+   "a deliberate snub",
+   "snub someone at"
+  ],
+  "ex": [
+   "She [[snubbed]] me at the party and pretended she had never met me.",
+   "Several leaders [[snubbed]] the summit to protest against the host country's policies."
+  ],
+  "piege": "Proche du français « snober », mais <i>snub</i> désigne un geste précis (ignorer, refuser), pas une attitude. <i>A snob</i> = un snob (nom). Le nom <i>a snub</i> = un affront.",
+  "fam": "snub (n.)",
+  "trous": [
+   {
+    "s": "He felt ___ when his best friend didn't invite him to the wedding.",
+    "a": "snubbed",
+    "fr": "Il s'est senti mis à l'écart quand son meilleur ami ne l'a pas invité au mariage."
+   },
+   {
+    "s": "The president decided to ___ the ceremony and sent a junior minister instead.",
+    "a": "snub",
+    "fr": "Le président a décidé de bouder la cérémonie et a envoyé un secrétaire d'État à sa place."
+   }
+  ],
+  "ecris": "une phrase sur une personne qui en snobe une autre",
+  "formes": [
+   "snub",
+   "snubs",
+   "snubbed",
+   "snubbing"
+  ]
+ },
+ {
+  "id": "e-petty",
+  "w": "petty",
+  "pos": "adjective",
+  "ipa": "/ˈpeti/",
+  "reg": "courant",
+  "fr": "mesquin, insignifiant",
+  "def": "Unkind about small, unimportant things, or too concerned with details that do not matter.",
+  "col": [
+   "petty jealousy",
+   "petty arguments",
+   "a petty revenge",
+   "petty crime"
+  ],
+  "ex": [
+   "Refusing to lend her a pen because she forgot your birthday is a bit [[petty]].",
+   "Leaders must rise above [[petty]] rivalries when the nation faces a real crisis."
+  ],
+  "piege": "Négatif. Deux nuances : mesquin (personne, comportement) et sans importance (<i>petty details</i>). <i>Petty crime</i> = petite délinquance. Pas de lien avec « petit » au sens de taille.",
+  "fam": "pettiness (n.)",
+  "trous": [
+   {
+    "s": "Stop arguing about who paid for the coffee: it's so ___.",
+    "a": "petty",
+    "fr": "Arrêtez de vous disputer pour savoir qui a payé le café : c'est tellement mesquin."
+   },
+   {
+    "s": "The ___ of their quarrels shocked everyone who knew them.",
+    "a": "pettiness",
+    "fr": "La mesquinerie de leurs disputes a choqué tous ceux qui les connaissaient."
+   }
+  ],
+  "ecris": "une phrase sur une dispute mesquine",
+  "formes": [
+   "petty",
+   "pettier",
+   "pettiest",
+   "pettiness"
+  ]
+ },
+ {
+  "id": "e-bitter",
+  "w": "bitter",
+  "pos": "adjective",
+  "ipa": "/ˈbɪtə/",
+  "reg": "courant",
+  "fr": "amer, plein de rancœur",
+  "def": "Angry and unhappy because you think you have been treated unfairly.",
+  "col": [
+   "bitter about",
+   "feel bitter",
+   "a bitter dispute",
+   "bitter disappointment"
+  ],
+  "ex": [
+   "He is still [[bitter]] about losing the final because of a referee's mistake.",
+   "The civil war left [[bitter]] memories that divided families for generations."
+  ],
+  "piege": "Au sens moral, <i>bitter <b>about</b></i> = plein de rancœur à propos de. <i>A bitter dispute</i> = un conflit acharné. Le même mot sert pour le goût amer.",
+  "fam": "bitterly (adv.) · bitterness (n.)",
+  "trous": [
+   {
+    "s": "She felt ___ about the way the company had treated her after twenty years of work.",
+    "a": "bitter",
+    "fr": "Elle était amère de la façon dont l'entreprise l'avait traitée après vingt ans de travail."
+   },
+   {
+    "s": "He spoke ___ about the friends who had abandoned him.",
+    "a": "bitterly",
+    "fr": "Il parlait avec amertume des amis qui l'avaient abandonné."
+   }
+  ],
+  "ecris": "une phrase sur quelqu'un qui garde de l'amertume après une injustice",
+  "formes": [
+   "bitter",
+   "bitterly",
+   "bitterness"
+  ]
+ },
+ {
+  "id": "e-envious",
+  "w": "envious",
+  "pos": "adjective",
+  "ipa": "/ˈenviəs/",
+  "reg": "courant",
+  "fr": "envieux",
+  "def": "Wanting something that another person has, such as their possessions or success.",
+  "col": [
+   "envious of",
+   "envious glances",
+   "deeply envious",
+   "make someone envious"
+  ],
+  "ex": [
+   "I'm a bit [[envious]] of my friend who is spending the summer in Canada.",
+   "Satirists often show how [[envious]] neighbours turn small differences into lasting hatred."
+  ],
+  "piege": "Se construit avec <i>of</i> : <i>envious <b>of</b> her success</i>. <i>Jealous</i> peut aussi signifier la peur de perdre quelqu'un (jalousie amoureuse), pas <i>envious</i>.",
+  "fam": "envy (n./v.) · enviable (adj.) · enviously (adv.)",
+  "trous": [
+   {
+    "s": "He was ___ of his brother's success and never congratulated him.",
+    "a": "envious",
+    "fr": "Il enviait la réussite de son frère et ne l'a jamais félicité."
+   },
+   {
+    "s": "She looked ___ at the girls in designer clothes.",
+    "a": "enviously",
+    "fr": "Elle regardait avec envie les filles en vêtements de marque."
+   }
+  ],
+  "ecris": "une phrase sur une chose que tu envies chez quelqu'un",
+  "formes": [
+   "envious",
+   "enviously"
+  ]
+ },
+ {
+  "id": "e-content",
+  "w": "content",
+  "pos": "adjective",
+  "ipa": "/kənˈtent/",
+  "reg": "courant",
+  "fr": "satisfait, serein",
+  "def": "Happy and satisfied with what you have, without wanting more.",
+  "col": [
+   "content with",
+   "perfectly content",
+   "content to do",
+   "seem content"
+  ],
+  "ex": [
+   "My grandfather is [[content]] with a quiet life, his garden and his newspaper.",
+   "Some argue that people who are [[content]] with little are freer than those who always want more."
+  ],
+  "piege": "Adjectif <b>accentué sur la 2e syllabe</b> /kənˈtent/ ; le nom <i>content</i> (le contenu) se dit /ˈkɒntent/. Jamais devant le nom : <i>he is content</i>, mais <i>a contented man</i>. Plus calme que <i>happy</i>.",
+  "fam": "contentment (n.) · contented (adj.)",
+  "trous": [
+   {
+    "s": "She was ___ to sit in the garden and read all afternoon.",
+    "a": "content",
+    "fr": "Elle se contentait de s'asseoir au jardin et de lire tout l'après-midi."
+   },
+   {
+    "s": "He found ___ in simple things, like cooking for his friends.",
+    "a": "contentment",
+    "fr": "Il trouvait la sérénité dans les choses simples, comme cuisiner pour ses amis."
+   }
+  ],
+  "ecris": "une phrase sur ce qui te suffit pour être satisfait",
+  "formes": [
+   "content",
+   "contented",
+   "contentment"
+  ]
+ },
+ {
+  "id": "e-restless",
+  "w": "restless",
+  "pos": "adjective",
+  "ipa": "/ˈrestləs/",
+  "reg": "courant",
+  "fr": "agité, qui ne tient pas en place",
+  "def": "Unable to stay still or relax, often because you are bored or worried.",
+  "col": [
+   "feel restless",
+   "a restless night",
+   "grow restless",
+   "restless energy"
+  ],
+  "ex": [
+   "The children grew [[restless]] after two hours in the car.",
+   "By the 1780s, a [[restless]] population was openly questioning the authority of the monarchy."
+  ],
+  "piege": "Faux ami possible : <i>restless</i> ne veut pas dire « sans repos » au sens d'infatigable (<i>tireless</i>). Il exprime l'agitation, l'impatience ou l'ennui.",
+  "fam": "restlessly (adv.) · restlessness (n.)",
+  "trous": [
+   {
+    "s": "I spent a ___ night worrying about the exam.",
+    "a": "restless",
+    "fr": "J'ai passé une nuit agitée à m'inquiéter pour l'examen."
+   },
+   {
+    "s": "He walked ___ up and down the corridor, waiting for the news.",
+    "a": "restlessly",
+    "fr": "Il faisait les cent pas dans le couloir en attendant la nouvelle."
+   }
+  ],
+  "ecris": "une phrase sur un moment où tu ne tenais pas en place",
+  "formes": [
+   "restless",
+   "restlessly",
+   "restlessness"
+  ]
+ },
+ {
+  "id": "e-hesitant",
+  "w": "hesitant",
+  "pos": "adjective",
+  "ipa": "/ˈhezɪtənt/",
+  "reg": "courant",
+  "fr": "hésitant",
+  "def": "Slow to speak or act because you feel uncertain, nervous or unwilling.",
+  "col": [
+   "hesitant to do",
+   "hesitant about",
+   "a hesitant smile",
+   "slightly hesitant"
+  ],
+  "ex": [
+   "She gave a [[hesitant]] answer, as if she was afraid of being wrong.",
+   "Investors remain [[hesitant]] to commit money while the political situation is unclear."
+  ],
+  "piege": "Se construit avec <i>to</i> + verbe ou <i>about</i> + nom. Moins fort que <i>reluctant</i> : on doute, on n'est pas forcément contre.",
+  "fam": "hesitate (v.) · hesitation (n.) · hesitantly (adv.)",
+  "trous": [
+   {
+    "s": "He was ___ to ask for help because he didn't want to look weak.",
+    "a": "hesitant",
+    "fr": "Il hésitait à demander de l'aide parce qu'il ne voulait pas paraître faible."
+   },
+   {
+    "s": "The little girl took a few ___ steps towards the big dog.",
+    "a": "hesitant",
+    "fr": "La petite fille a fait quelques pas hésitants vers le gros chien."
+   }
+  ],
+  "ecris": "une phrase sur une décision que tu as hésité à prendre",
+  "formes": [
+   "hesitant",
+   "hesitantly",
+   "hesitate",
+   "hesitates",
+   "hesitated",
+   "hesitating",
+   "hesitation"
+  ]
+ },
+ {
+  "id": "e-devastated",
+  "w": "devastated",
+  "pos": "adjective",
+  "ipa": "/ˈdevəsteɪtɪd/",
+  "reg": "courant",
+  "fr": "anéanti, effondré",
+  "def": "Extremely shocked and sad because something terrible has happened.",
+  "col": [
+   "absolutely devastated",
+   "devastated by the news",
+   "left devastated",
+   "feel devastated"
+  ],
+  "ex": [
+   "She was [[devastated]] when her dog died after fourteen years together.",
+   "Entire communities were left [[devastated]] when the mines closed in the 1980s."
+  ],
+  "piege": "Très fort : bien plus que <i>sad</i> ou <i>upset</i>. Ne pas l'employer pour une petite déception. <i>Devastating</i> = qui anéantit (<i>devastating news</i>).",
+  "fam": "devastate (v.) · devastating (adj.) · devastation (n.)",
+  "trous": [
+   {
+    "s": "He was ___ when he learnt that he had failed the exam by one point.",
+    "a": "devastated",
+    "fr": "Il a été anéanti en apprenant qu'il avait raté l'examen à un point près."
+   },
+   {
+    "s": "The news of the accident was ___ for the whole village.",
+    "a": "devastating",
+    "fr": "La nouvelle de l'accident a été terrible pour tout le village."
+   }
+  ],
+  "ecris": "une phrase sur une nouvelle qui a anéanti quelqu'un",
+  "formes": [
+   "devastated",
+   "devastating",
+   "devastate",
+   "devastates",
+   "devastation"
+  ]
+ },
+ {
+  "id": "e-sincere",
+  "w": "sincere",
+  "pos": "adjective",
+  "ipa": "/sɪnˈsɪə/",
+  "reg": "courant",
+  "fr": "sincère",
+  "def": "Honest and really meaning what you say or feel.",
+  "col": [
+   "a sincere apology",
+   "sincere thanks",
+   "deeply sincere",
+   "sincerely believe"
+  ],
+  "ex": [
+   "His apology seemed [[sincere]], so I decided to forgive him.",
+   "Few voters believed the candidate's [[sincere]] promises after so many broken ones."
+  ],
+  "piege": "Proche du français. <i>Yours sincerely</i> = formule de fin de lettre quand on connaît le nom du destinataire. Nom : <i>sincerity</i>.",
+  "fam": "sincerely (adv.) · sincerity (n.) · insincere (adj.)",
+  "trous": [
+   {
+    "s": "I ___ hope that you will both be very happy together.",
+    "a": "sincerely",
+    "fr": "J'espère sincèrement que vous serez tous les deux très heureux ensemble."
+   },
+   {
+    "s": "Please accept my ___ apologies for the delay.",
+    "a": "sincere",
+    "fr": "Veuillez accepter mes sincères excuses pour le retard."
+   }
+  ],
+  "ecris": "une phrase sur des excuses sincères ou non",
+  "formes": [
+   "sincere",
+   "sincerely",
+   "sincerity",
+   "insincere"
+  ]
+ },
+ {
+  "id": "e-deceive",
+  "w": "deceive",
+  "pos": "verb",
+  "ipa": "/dɪˈsiːv/",
+  "reg": "courant",
+  "fr": "tromper, duper",
+  "def": "To make someone believe something that is not true, in order to gain an advantage.",
+  "col": [
+   "deceive someone into",
+   "deceive yourself",
+   "be deceived by",
+   "deliberately deceive"
+  ],
+  "ex": [
+   "He [[deceived]] his parents into thinking he was at the library all afternoon.",
+   "The regime [[deceived]] its own population about the scale of the disaster."
+  ],
+  "piege": "<b>Faux ami</b> : <i>deceive</i> = tromper, mentir ; « décevoir » se dit <i>disappoint</i>. Orthographe : <i>e</i> avant <i>i</i> après <i>c</i> (<i>receive, deceive</i>).",
+  "fam": "deception (n.) · deceit (n.) · deceptive (adj.) · deceitful (adj.)",
+  "trous": [
+   {
+    "s": "Don't be ___ by his charming smile: he only cares about himself.",
+    "a": "deceived",
+    "fr": "Ne te laisse pas tromper par son sourire charmant : il ne pense qu'à lui."
+   },
+   {
+    "s": "You can't ___ yourself forever: one day you'll have to face the truth.",
+    "a": "deceive",
+    "fr": "Tu ne peux pas te mentir éternellement : un jour, il faudra regarder la vérité en face."
+   }
+  ],
+  "ecris": "une phrase sur quelqu'un qui en trompe un autre",
+  "formes": [
+   "deceive",
+   "deceives",
+   "deceived",
+   "deceiving",
+   "deception",
+   "deceit"
+  ]
+ },
+ {
+  "id": "e-rift",
+  "w": "rift",
+  "pos": "noun",
+  "ipa": "/rɪft/",
+  "reg": "courant",
+  "fr": "fossé, désaccord, brouille",
+  "def": "A serious disagreement that breaks a friendship or divides a group.",
+  "col": [
+   "a rift between",
+   "heal the rift",
+   "a deep rift",
+   "cause a rift"
+  ],
+  "ex": [
+   "An argument about the inheritance caused a [[rift]] between the two cousins.",
+   "The war in Iraq created a deep [[rift]] between the United States and some European allies."
+  ],
+  "piege": "Image d'une fissure qui s'élargit. On dit <i>heal / repair a rift</i> (combler), <i>widen a rift</i> (creuser). Proche de <i>split</i>, plus fort que <i>disagreement</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "It took years to heal the ___ between the two families.",
+    "a": "rift",
+    "fr": "Il a fallu des années pour mettre fin à la brouille entre les deux familles."
+   },
+   {
+    "s": "The debate on immigration has opened a ___ within the party.",
+    "a": "rift",
+    "fr": "Le débat sur l'immigration a ouvert une fracture au sein du parti."
+   }
+  ],
+  "ecris": "une phrase sur un désaccord qui divise une famille ou un groupe",
+  "formes": [
+   "rift",
+   "rifts"
+  ]
+ },
+ {
+  "id": "e-clash",
+  "w": "clash",
+  "pos": "verb",
+  "ipa": "/klæʃ/",
+  "reg": "courant",
+  "fr": "s'affronter, se heurter",
+  "def": "To fight, argue or disagree strongly with someone.",
+  "col": [
+   "clash with someone",
+   "clash over something",
+   "violent clashes",
+   "personalities clash"
+  ],
+  "ex": [
+   "My sister and I always [[clash]] over which film to watch.",
+   "Protesters [[clashed]] with police outside parliament during the night."
+  ],
+  "piege": "<i>Clash <b>with</b> someone <b>over</b> something</i>. Le nom <i>a clash</i> = un affrontement. Se dit aussi de couleurs ou d'horaires qui ne vont pas ensemble.",
+  "fam": "clash (n.)",
+  "trous": [
+   {
+    "s": "The two ministers ___ over the budget during the meeting.",
+    "a": "clashed",
+    "fr": "Les deux ministres se sont affrontés sur le budget pendant la réunion."
+   },
+   {
+    "s": "Their personalities ___ from the very first day they worked together.",
+    "a": "clashed",
+    "fr": "Leurs personnalités se sont heurtées dès le premier jour de travail ensemble."
+   }
+  ],
+  "ecris": "une phrase sur deux personnes qui se heurtent régulièrement",
+  "formes": [
+   "clash",
+   "clashes",
+   "clashed",
+   "clashing"
+  ]
+ },
+ {
+  "id": "e-confront",
+  "w": "confront",
+  "pos": "verb",
+  "ipa": "/kənˈfrʌnt/",
+  "reg": "courant",
+  "fr": "affronter, confronter",
+  "def": "To face someone in order to argue with them or accuse them, or to deal with a difficult situation.",
+  "col": [
+   "confront someone about",
+   "confront a problem",
+   "be confronted with",
+   "confront the truth"
+  ],
+  "ex": [
+   "She finally [[confronted]] her flatmate about the dishes left in the sink.",
+   "Post-war Germany had to [[confront]] the crimes committed in its name."
+  ],
+  "piege": "Direct : <i>confront <b>someone</b> about something</i>. « Confronter deux témoignages » se dit plutôt <i>compare</i>. <i>Be confronted <b>with</b></i> = être confronté à.",
+  "fam": "confrontation (n.) · confrontational (adj.)",
+  "trous": [
+   {
+    "s": "He decided to ___ his boss about the unpaid overtime.",
+    "a": "confront",
+    "fr": "Il a décidé d'aller voir son patron pour lui parler des heures supplémentaires non payées."
+   },
+   {
+    "s": "Doctors are ___ with difficult choices every day.",
+    "a": "confronted",
+    "fr": "Les médecins sont confrontés chaque jour à des choix difficiles."
+   }
+  ],
+  "ecris": "une phrase sur une personne qui ose affronter un problème",
+  "formes": [
+   "confront",
+   "confronts",
+   "confronted",
+   "confronting",
+   "confrontation"
+  ]
+ },
+ {
+  "id": "e-compromise",
+  "w": "compromise",
+  "pos": "noun",
+  "ipa": "/ˈkɒmprəmaɪz/",
+  "reg": "courant",
+  "fr": "compromis",
+  "def": "An agreement in which each side accepts less than it wanted.",
+  "col": [
+   "reach a compromise",
+   "make compromises",
+   "a fair compromise",
+   "no room for compromise"
+  ],
+  "ex": [
+   "After an hour of arguing, we reached a [[compromise]]: pizza tonight, sushi next week.",
+   "Democracy depends on [[compromise]] between groups with very different interests."
+  ],
+  "piege": "<b>Faux ami partiel</b> : le verbe <i>compromise</i> signifie faire un compromis, mais aussi <b>mettre en danger</b> (<i>compromise security</i>) ; « compromettre quelqu'un » = <i>implicate</i>.",
+  "fam": "compromise (v.) · compromising (adj.)",
+  "trous": [
+   {
+    "s": "Both sides had to give something up to reach a ___.",
+    "a": "compromise",
+    "fr": "Les deux camps ont dû céder quelque chose pour parvenir à un compromis."
+   },
+   {
+    "s": "A healthy relationship requires a few ___ from both partners.",
+    "a": "compromises",
+    "fr": "Une relation saine exige quelques compromis de la part des deux partenaires."
+   }
+  ],
+  "ecris": "une phrase sur un compromis trouvé dans ta famille ou entre amis",
+  "formes": [
+   "compromise",
+   "compromises",
+   "compromised",
+   "compromising"
+  ]
+ },
+ {
+  "id": "e-concede",
+  "w": "concede",
+  "pos": "verb",
+  "ipa": "/kənˈsiːd/",
+  "reg": "formel",
+  "fr": "concéder, admettre",
+  "def": "To admit, often unwillingly, that something is true, or to accept defeat.",
+  "col": [
+   "concede that",
+   "concede defeat",
+   "reluctantly concede",
+   "concede a point"
+  ],
+  "ex": [
+   "He finally [[conceded]] that I had been right about the shortcut.",
+   "The candidate [[conceded]] defeat a few hours after the polls closed."
+  ],
+  "piege": "Très utile dans un essay : <i>One must <b>concede</b> that…</i> pour introduire une nuance. Nom : <i>concession</i>. <i>Concede defeat</i> = s'avouer vaincu.",
+  "fam": "concession (n.)",
+  "trous": [
+   {
+    "s": "She ___ that her plan had some weaknesses.",
+    "a": "conceded",
+    "fr": "Elle a admis que son plan avait quelques faiblesses."
+   },
+   {
+    "s": "Critics of the policy must ___ that unemployment has fallen.",
+    "a": "concede",
+    "fr": "Les détracteurs de cette politique doivent concéder que le chômage a baissé."
+   }
+  ],
+  "ecris": "une phrase où tu concèdes un point à quelqu'un",
+  "formes": [
+   "concede",
+   "concedes",
+   "conceded",
+   "conceding",
+   "concession"
+  ]
+ },
+ {
+  "id": "e-humiliate",
+  "w": "humiliate",
+  "pos": "verb",
+  "ipa": "/hjuːˈmɪlieɪt/",
+  "reg": "courant",
+  "fr": "humilier",
+  "def": "To make someone feel ashamed and stupid, especially in front of other people.",
+  "col": [
+   "humiliate someone in public",
+   "feel humiliated",
+   "a humiliating defeat",
+   "deeply humiliated"
+  ],
+  "ex": [
+   "The coach [[humiliated]] him by shouting at him in front of the whole team.",
+   "Many Germans felt [[humiliated]] by the terms of the Treaty of Versailles."
+  ],
+  "piege": "Prononciation : /hjuːˈmɪlieɪt/, le <i>h</i> se prononce. Nom : <i>humiliation</i>. <i>Humble</i> et <i>humility</i> (humilité) sont positifs, <i>humiliate</i> ne l'est jamais.",
+  "fam": "humiliation (n.) · humiliating (adj.) · humiliated (adj.)",
+  "trous": [
+   {
+    "s": "He felt ___ when his poem was read aloud and everyone laughed.",
+    "a": "humiliated",
+    "fr": "Il s'est senti humilié quand on a lu son poème à voix haute et que tout le monde a ri."
+   },
+   {
+    "s": "Losing ten to nil was a ___ defeat for the national team.",
+    "a": "humiliating",
+    "fr": "Perdre dix à zéro a été une défaite humiliante pour l'équipe nationale."
+   }
+  ],
+  "ecris": "une phrase sur l'effet d'une humiliation publique",
+  "formes": [
+   "humiliate",
+   "humiliates",
+   "humiliated",
+   "humiliating",
+   "humiliation"
+  ]
+ },
+ {
+  "id": "e-mock",
+  "w": "mock",
+  "pos": "verb",
+  "ipa": "/mɒk/",
+  "reg": "courant",
+  "fr": "se moquer de, ridiculiser",
+  "def": "To laugh at someone or something in an unkind way, often by copying them.",
+  "col": [
+   "mock someone for",
+   "openly mock",
+   "mocking tone",
+   "be mocked by"
+  ],
+  "ex": [
+   "The other children [[mocked]] him for his old-fashioned glasses.",
+   "Satirical cartoons [[mocked]] the king and helped to destroy his authority."
+  ],
+  "piege": "Transitif direct : <i>mock <b>someone</b></i> (pas de <i>of</i>, contrairement à <i>make fun of</i>). <i>A mock exam</i> = un examen blanc (adjectif, sens différent).",
+  "fam": "mockery (n.) · mocking (adj.)",
+  "trous": [
+   {
+    "s": "It's cruel to ___ someone because of their accent.",
+    "a": "mock",
+    "fr": "C'est cruel de se moquer de quelqu'un à cause de son accent."
+   },
+   {
+    "s": "The trial was a ___ of justice: the verdict had been decided in advance.",
+    "a": "mockery",
+    "fr": "Le procès était une parodie de justice : le verdict avait été décidé à l'avance."
+   }
+  ],
+  "ecris": "une phrase sur une moquerie que tu trouves injuste",
+  "formes": [
+   "mock",
+   "mocks",
+   "mocked",
+   "mocking",
+   "mockery"
+  ]
+ },
+ {
+  "id": "e-tease",
+  "w": "tease",
+  "pos": "verb",
+  "ipa": "/tiːz/",
+  "reg": "courant",
+  "fr": "taquiner, se moquer gentiment",
+  "def": "To laugh at someone or make jokes about them, usually in a friendly way.",
+  "col": [
+   "tease someone about",
+   "gently tease",
+   "playful teasing",
+   "stop teasing"
+  ],
+  "ex": [
+   "My uncle always [[teases]] me about my terrible sense of direction.",
+   "What adults see as harmless [[teasing]] can feel like bullying to a shy child."
+  ],
+  "piege": "Plus gentil que <i>mock</i> : souvent affectueux. Mais <i>teasing</i> répété et blessant devient du <i>bullying</i>. <i>Tease someone <b>about</b> something</i>.",
+  "fam": "teasing (n.) · teaser (n.)",
+  "trous": [
+   {
+    "s": "His friends ___ him about his new haircut all week.",
+    "a": "teased",
+    "fr": "Ses amis l'ont taquiné sur sa nouvelle coupe toute la semaine."
+   },
+   {
+    "s": "Stop ___ your little sister: you know she hates it.",
+    "a": "teasing",
+    "fr": "Arrête de taquiner ta petite sœur : tu sais qu'elle déteste ça."
+   }
+  ],
+  "ecris": "une phrase sur une taquinerie entre amis ou en famille",
+  "formes": [
+   "tease",
+   "teases",
+   "teased",
+   "teasing"
+  ]
+ },
+ {
+  "id": "e-gossip",
+  "w": "gossip",
+  "pos": "noun",
+  "ipa": "/ˈɡɒsɪp/",
+  "reg": "courant",
+  "fr": "commérages, ragots",
+  "def": "Conversation about other people's private lives, often unkind or untrue.",
+  "col": [
+   "spread gossip",
+   "a piece of gossip",
+   "office gossip",
+   "idle gossip"
+  ],
+  "ex": [
+   "By lunchtime, the [[gossip]] about their break-up had spread through the whole school.",
+   "Tabloid newspapers make money by turning celebrity [[gossip]] into headlines."
+  ],
+  "piege": "Indénombrable au sens de « ragots » : <i>some gossip, a piece of gossip</i>. <i>A gossip</i> désigne aussi une personne commère. Verbe : <i>gossip <b>about</b> someone</i>.",
+  "fam": "gossip (v.) · gossipy (adj.)",
+  "trous": [
+   {
+    "s": "Don't believe everything you hear: it's just ___.",
+    "a": "gossip",
+    "fr": "Ne crois pas tout ce que tu entends : ce ne sont que des ragots."
+   },
+   {
+    "s": "They spent the whole evening ___ about their neighbours.",
+    "a": "gossiping",
+    "fr": "Ils ont passé toute la soirée à cancaner sur leurs voisins."
+   }
+  ],
+  "ecris": "une phrase sur les dégâts que peuvent faire les rumeurs",
+  "formes": [
+   "gossip",
+   "gossips",
+   "gossiped",
+   "gossiping",
+   "gossipy"
+  ]
+ },
+ {
+  "id": "e-befriend",
+  "w": "befriend",
+  "pos": "verb",
+  "ipa": "/bɪˈfrend/",
+  "reg": "courant",
+  "fr": "se lier d'amitié avec, prendre sous son aile",
+  "def": "To become someone's friend, especially someone who needs help or is alone.",
+  "col": [
+   "befriend someone",
+   "be befriended by",
+   "befriend a newcomer",
+   "befriend strangers"
+  ],
+  "ex": [
+   "On my first day at the new school, a friendly girl [[befriended]] me at lunch.",
+   "Online predators often [[befriend]] teenagers by pretending to share their interests."
+  ],
+  "piege": "Transitif direct : <i>befriend <b>someone</b></i> (pas de préposition). Souvent avec l'idée d'aider quelqu'un d'isolé. Plus écrit que <i>make friends with</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The old man ___ the lonely boy who lived next door.",
+    "a": "befriended",
+    "fr": "Le vieil homme s'est lié d'amitié avec le garçon solitaire qui habitait à côté."
+   },
+   {
+    "s": "It isn't always easy to ___ people when you move to a new country.",
+    "a": "befriend",
+    "fr": "Ce n'est pas toujours facile de se faire des amis quand on s'installe dans un nouveau pays."
+   }
+  ],
+  "ecris": "une phrase sur une personne qui s'est liée d'amitié avec toi",
+  "formes": [
+   "befriend",
+   "befriends",
+   "befriended",
+   "befriending"
+  ]
+ },
+ {
+  "id": "e-boast",
+  "w": "boast",
+  "pos": "verb",
+  "ipa": "/bəʊst/",
+  "reg": "courant",
+  "fr": "se vanter",
+  "def": "To talk too proudly about yourself, your possessions or what you have done.",
+  "col": [
+   "boast about/of",
+   "boast that",
+   "constantly boast",
+   "nothing to boast about"
+  ],
+  "ex": [
+   "He keeps [[boasting]] about his new phone as if nobody else had one.",
+   "The city [[boasts]] one of the oldest universities in Europe."
+  ],
+  "piege": "<i>Boast <b>about/of</b></i> = se vanter de (négatif). Mais <i>the town boasts a castle</i> = la ville s'enorgueillit d'avoir un château (positif, sans préposition). Familier : <i>brag</i>.",
+  "fam": "boast (n.) · boastful (adj.)",
+  "trous": [
+   {
+    "s": "She never ___ about her marks, even though she is top of the class.",
+    "a": "boasts",
+    "fr": "Elle ne se vante jamais de ses notes, même si elle est première de la classe."
+   },
+   {
+    "s": "Stop ___: nobody cares how much your trainers cost.",
+    "a": "boasting",
+    "fr": "Arrête de te vanter : tout le monde se fiche du prix de tes baskets."
+   }
+  ],
+  "ecris": "une phrase sur une personne qui se vante",
+  "formes": [
+   "boast",
+   "boasts",
+   "boasted",
+   "boasting",
+   "boastful"
+  ]
+ },
+ {
+  "id": "e-harass",
+  "w": "harass",
+  "pos": "verb",
+  "ipa": "/ˈhærəs/",
+  "reg": "courant",
+  "fr": "harceler",
+  "def": "To keep annoying, threatening or attacking someone over a period of time.",
+  "col": [
+   "sexually harass",
+   "be harassed online",
+   "harass someone with",
+   "constantly harassed"
+  ],
+  "ex": [
+   "She changed her number because a stranger kept [[harassing]] her with messages.",
+   "Journalists in authoritarian states are often [[harassed]] by the police."
+  ],
+  "piege": "Prononciation britannique : /ˈhærəs/ (accent sur la 1re syllabe), aussi /həˈræs/. Un seul <i>r</i>, deux <i>s</i>. <i>Bully</i> s'emploie surtout entre enfants ou à l'école.",
+  "fam": "harassment (n.)",
+  "trous": [
+   {
+    "s": "Several employees complained that their manager ___ them.",
+    "a": "harassed",
+    "fr": "Plusieurs salariés se sont plaints d'être harcelés par leur responsable."
+   },
+   {
+    "s": "Online ___ can have serious effects on young people's mental health.",
+    "a": "harassment",
+    "fr": "Le harcèlement en ligne peut avoir des effets graves sur la santé mentale des jeunes."
+   }
+  ],
+  "ecris": "une phrase sur la lutte contre le harcèlement en ligne",
+  "formes": [
+   "harass",
+   "harasses",
+   "harassed",
+   "harassing",
+   "harassment"
+  ]
+ },
+ {
+  "id": "e-approachable",
+  "w": "approachable",
+  "pos": "adjective",
+  "ipa": "/əˈprəʊtʃəbl/",
+  "reg": "courant",
+  "fr": "abordable, accessible",
+  "def": "Friendly and easy to talk to.",
+  "col": [
+   "friendly and approachable",
+   "very approachable",
+   "an approachable manager",
+   "seem approachable"
+  ],
+  "ex": [
+   "Our new neighbour seems really [[approachable]]; she said hello on the first day.",
+   "Leaders who appear [[approachable]] often win more trust than distant, formal ones."
+  ],
+  "piege": "Se dit d'une personne qui met à l'aise. Contraire : <i>unapproachable, distant</i>. Peut aussi qualifier un livre ou une musique faciles d'accès.",
+  "fam": "approach (v./n.) · unapproachable (adj.)",
+  "trous": [
+   {
+    "s": "Students prefer teachers who are ___ and happy to answer questions.",
+    "a": "approachable",
+    "fr": "Les élèves préfèrent les professeurs abordables et prêts à répondre aux questions."
+   },
+   {
+    "s": "Despite his fame, the actor was surprisingly ___ and chatted with fans.",
+    "a": "approachable",
+    "fr": "Malgré sa célébrité, l'acteur était étonnamment accessible et discutait avec ses fans."
+   }
+  ],
+  "ecris": "une phrase sur un adulte facile à aborder",
+  "formes": [
+   "approachable",
+   "unapproachable"
+  ]
+ },
+ {
+  "id": "e-courteous",
+  "w": "courteous",
+  "pos": "adjective",
+  "ipa": "/ˈkɜːtiəs/",
+  "reg": "formel",
+  "fr": "courtois, poli",
+  "def": "Polite and respectful in a way that shows you care about other people.",
+  "col": [
+   "courteous to/towards",
+   "polite and courteous",
+   "a courteous reply",
+   "remain courteous"
+  ],
+  "ex": [
+   "The staff at the hotel were extremely [[courteous]] and helpful.",
+   "Even in a heated debate, it is possible to remain [[courteous]] towards your opponents."
+  ],
+  "piege": "Plus soutenu que <i>polite</i>. Prononciation : /ˈkɜːtiəs/ (comme <i>curt</i>). Nom : <i>courtesy</i> (<i>a courtesy call</i> = visite de politesse).",
+  "fam": "courtesy (n.) · courteously (adv.) · discourteous (adj.)",
+  "trous": [
+   {
+    "s": "The driver was ___ and helped me with my heavy suitcase.",
+    "a": "courteous",
+    "fr": "Le chauffeur était courtois et m'a aidé avec ma lourde valise."
+   },
+   {
+    "s": "She had the ___ to call and say she would be late.",
+    "a": "courtesy",
+    "fr": "Elle a eu la politesse d'appeler pour dire qu'elle serait en retard."
+   }
+  ],
+  "ecris": "une phrase sur une personne très courtoise",
+  "formes": [
+   "courteous",
+   "courteously",
+   "courtesy",
+   "discourteous"
+  ]
+ },
+ {
+  "id": "e-hospitable",
+  "w": "hospitable",
+  "pos": "adjective",
+  "ipa": "/hɒˈspɪtəbl/",
+  "reg": "courant",
+  "fr": "accueillant, hospitalier",
+  "def": "Friendly and generous to guests and visitors.",
+  "col": [
+   "hospitable to/towards",
+   "warm and hospitable",
+   "hospitable hosts",
+   "a hospitable welcome"
+  ],
+  "ex": [
+   "Our hosts in Scotland were incredibly [[hospitable]] and cooked for us every night.",
+   "A country that wants to attract foreign students must be [[hospitable]] towards newcomers."
+  ],
+  "piege": "Accent britannique sur la 2e syllabe : /hɒˈspɪtəbl/ (on entend aussi /ˈhɒspɪtəbl/). Nom : <i>hospitality</i>. Contraire : <i>inhospitable</i>, qui se dit aussi d'un lieu hostile.",
+  "fam": "hospitality (n.) · inhospitable (adj.)",
+  "trous": [
+   {
+    "s": "The villagers were poor but extremely ___ to travellers.",
+    "a": "hospitable",
+    "fr": "Les villageois étaient pauvres mais extrêmement accueillants envers les voyageurs."
+   },
+   {
+    "s": "Thank you for your kind ___ during our stay.",
+    "a": "hospitality",
+    "fr": "Merci pour votre aimable hospitalité pendant notre séjour."
+   }
+  ],
+  "ecris": "une phrase sur un accueil chaleureux que tu as reçu",
+  "formes": [
+   "hospitable",
+   "hospitality",
+   "inhospitable"
+  ]
+ },
+ {
+  "id": "e-solidarity",
+  "w": "solidarity",
+  "pos": "noun",
+  "ipa": "/ˌsɒlɪˈdærəti/",
+  "reg": "courant",
+  "fr": "solidarité",
+  "def": "Support and loyalty between people who share the same interests, aims or difficulties.",
+  "col": [
+   "in solidarity with",
+   "a sense of solidarity",
+   "show solidarity",
+   "international solidarity"
+  ],
+  "ex": [
+   "The whole class wore yellow ribbons in [[solidarity]] with their sick classmate.",
+   "The strike spread as dockers walked out in [[solidarity]] with the miners."
+  ],
+  "piege": "<i>In solidarity <b>with</b></i> = par solidarité avec. Adjectif rare : on dit <i>supportive</i> ou <i>stand together</i> plutôt que <i>solidary</i>, qui n'est pas idiomatique.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Thousands of people marched in ___ with the victims of the attack.",
+    "a": "solidarity",
+    "fr": "Des milliers de personnes ont défilé par solidarité avec les victimes de l'attentat."
+   },
+   {
+    "s": "Neighbours showed great ___ after the flood, sharing food and shelter.",
+    "a": "solidarity",
+    "fr": "Les voisins ont fait preuve d'une grande solidarité après l'inondation, en partageant nourriture et abri."
+   }
+  ],
+  "ecris": "une phrase sur un geste de solidarité",
+  "formes": [
+   "solidarity"
+  ]
+ },
+ {
+  "id": "e-acquaintance",
+  "w": "acquaintance",
+  "pos": "noun",
+  "ipa": "/əˈkweɪntəns/",
+  "reg": "courant",
+  "fr": "connaissance (personne)",
+  "def": "A person you know a little, but who is not a close friend.",
+  "col": [
+   "a casual acquaintance",
+   "make someone's acquaintance",
+   "an old acquaintance",
+   "friends and acquaintances"
+  ],
+  "ex": [
+   "He isn't really a friend, just an [[acquaintance]] from the gym.",
+   "On social media, the line between real friends and distant [[acquaintances]] becomes blurred."
+  ],
+  "piege": "Désigne une <b>personne</b> : « une connaissance ». Pour « la connaissance » au sens de savoir, on dit <i>knowledge</i>. <i>Make someone's acquaintance</i> = faire la connaissance de quelqu'un (soutenu).",
+  "fam": "acquainted (adj.) · acquaint (v.)",
+  "trous": [
+   {
+    "s": "She's not my friend, just an ___ I met at a party.",
+    "a": "acquaintance",
+    "fr": "Ce n'est pas une amie, juste une connaissance rencontrée à une fête."
+   },
+   {
+    "s": "He invited all his friends and ___ to the opening of his restaurant.",
+    "a": "acquaintances",
+    "fr": "Il a invité tous ses amis et connaissances à l'ouverture de son restaurant."
+   }
+  ],
+  "ecris": "une phrase qui fait la différence entre un ami et une connaissance",
+  "formes": [
+   "acquaintance",
+   "acquaintances"
+  ]
+ },
+ {
+  "id": "e-confidant",
+  "w": "confidant",
+  "pos": "noun",
+  "ipa": "/ˈkɒnfɪdænt/",
+  "reg": "courant",
+  "fr": "confident(e)",
+  "def": "A person you trust and tell your secrets or private feelings to.",
+  "col": [
+   "a close confidant",
+   "trusted confidant",
+   "become someone's confidant",
+   "act as a confidant"
+  ],
+  "ex": [
+   "My grandmother was my closest [[confidant]] when I was growing up.",
+   "The king's personal [[confidant]] had more influence than any of his ministers."
+  ],
+  "piege": "On écrit souvent <i>confidante</i> pour une femme. Ne pas confondre avec <i>confident</i> (sûr de soi, /ˈkɒnfɪdənt/) : la dernière syllabe de <i>confidant</i> se prononce /dænt/.",
+  "fam": "confide (v.) · confidence (n.)",
+  "trous": [
+   {
+    "s": "She became his only ___ after his wife died.",
+    "a": "confidant",
+    "fr": "Elle est devenue sa seule confidente après la mort de sa femme.",
+    "alt": [
+     "confidante"
+    ]
+   },
+   {
+    "s": "Everyone needs a trusted ___ to share their worries with.",
+    "a": "confidant",
+    "fr": "Tout le monde a besoin d'un confident de confiance avec qui partager ses soucis.",
+    "alt": [
+     "confidante"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur ton confident ou ta confidente",
+  "formes": [
+   "confidant",
+   "confidants",
+   "confidante",
+   "confidantes"
+  ]
+ },
+ {
+  "id": "e-ally",
+  "w": "ally",
+  "pos": "noun",
+  "ipa": "/ˈælaɪ/",
+  "reg": "courant",
+  "fr": "allié",
+  "def": "A person, group or country that supports you, especially in a conflict or argument.",
+  "col": [
+   "a close ally",
+   "a loyal ally",
+   "find an ally in",
+   "former allies"
+  ],
+  "ex": [
+   "In the argument about the holiday, my little sister was my only [[ally]].",
+   "Britain was the closest [[ally]] of the United States throughout the Cold War."
+  ],
+  "piege": "Accent sur la 1re syllabe pour le nom : /ˈælaɪ/. Le verbe <i>ally oneself <b>with</b></i> = s'allier à. Pluriel : <i>allies</i>.",
+  "fam": "ally (v.) · alliance (n.) · allied (adj.)",
+  "trous": [
+   {
+    "s": "In the debate, she found an unexpected ___ in her rival.",
+    "a": "ally",
+    "fr": "Pendant le débat, elle a trouvé un allié inattendu en la personne de son rival."
+   },
+   {
+    "s": "The two countries were ___ during the war but rivals afterwards.",
+    "a": "allies",
+    "fr": "Les deux pays étaient alliés pendant la guerre mais rivaux ensuite."
+   }
+  ],
+  "ecris": "une phrase sur une personne qui a été ton alliée",
+  "formes": [
+   "ally",
+   "allies",
+   "alliance",
+   "allied"
+  ]
+ },
+ {
+  "id": "e-scapegoat",
+  "w": "scapegoat",
+  "pos": "noun",
+  "ipa": "/ˈskeɪpɡəʊt/",
+  "reg": "courant",
+  "fr": "bouc émissaire",
+  "def": "A person or group blamed for problems or mistakes that are not their fault.",
+  "col": [
+   "make someone a scapegoat",
+   "a convenient scapegoat",
+   "look for a scapegoat",
+   "scapegoat for"
+  ],
+  "ex": [
+   "When the vase broke, my little brother became the family [[scapegoat]] as usual.",
+   "In times of crisis, minorities are often made [[scapegoats]] for economic problems."
+  ],
+  "piege": "Utile en histoire et en sociologie. Verbe : <i>to scapegoat someone</i> = faire de quelqu'un un bouc émissaire. Pluriel : <i>scapegoats</i>.",
+  "fam": "scapegoat (v.) · scapegoating (n.)",
+  "trous": [
+   {
+    "s": "The manager was fired, but many felt he was just a ___ for the company's failures.",
+    "a": "scapegoat",
+    "fr": "Le directeur a été renvoyé, mais beaucoup pensaient qu'il n'était qu'un bouc émissaire pour les échecs de l'entreprise."
+   },
+   {
+    "s": "Nazi propaganda used the Jews as ___ for Germany's defeat and economic crisis.",
+    "a": "scapegoats",
+    "fr": "La propagande nazie faisait des Juifs les boucs émissaires de la défaite et de la crise économique de l'Allemagne."
+   }
+  ],
+  "ecris": "une phrase sur un groupe pris comme bouc émissaire",
+  "formes": [
+   "scapegoat",
+   "scapegoats",
+   "scapegoated",
+   "scapegoating"
+  ]
+ },
+ {
+  "id": "e-outcast",
+  "w": "outcast",
+  "pos": "noun",
+  "ipa": "/ˈaʊtkɑːst/",
+  "reg": "courant",
+  "fr": "paria, exclu",
+  "def": "A person who has been rejected by their group or by society.",
+  "col": [
+   "a social outcast",
+   "treated like an outcast",
+   "feel like an outcast",
+   "become an outcast"
+  ],
+  "ex": [
+   "After the rumour spread, he felt like an [[outcast]] at his own school.",
+   "In many novels, the [[outcast]] sees the hypocrisy of society more clearly than anyone else."
+  ],
+  "piege": "Prononciation britannique : /ˈaʊtkɑːst/ (a long). Plus fort que <i>loner</i> (solitaire par choix) : l'<i>outcast</i> est rejeté par les autres.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "She was treated as an ___ because she refused to follow the group.",
+    "a": "outcast",
+    "fr": "Elle était traitée en paria parce qu'elle refusait de suivre le groupe."
+   },
+   {
+    "s": "The novel tells the story of two ___ who find friendship together.",
+    "a": "outcasts",
+    "fr": "Le roman raconte l'histoire de deux exclus qui trouvent l'amitié ensemble."
+   }
+  ],
+  "ecris": "une phrase sur un personnage rejeté par les autres",
+  "formes": [
+   "outcast",
+   "outcasts"
+  ]
+ },
+ {
+  "id": "e-shun",
+  "w": "shun",
+  "pos": "verb",
+  "ipa": "/ʃʌn/",
+  "reg": "formel",
+  "fr": "fuir, éviter, tenir à l'écart",
+  "def": "To deliberately avoid a person, place or activity, often as a form of rejection.",
+  "col": [
+   "be shunned by",
+   "shun publicity",
+   "shun the spotlight",
+   "socially shunned"
+  ],
+  "ex": [
+   "After the scandal, he was [[shunned]] by most of his former friends.",
+   "Families who refused to join the party were often [[shunned]] by their neighbours."
+  ],
+  "piege": "Plus fort que <i>avoid</i> : idée de rejet volontaire. Souvent au passif : <i>be shunned <b>by</b></i>. <i>Shun the limelight</i> = fuir les projecteurs.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The actress ___ publicity and rarely gave interviews.",
+    "a": "shunned",
+    "fr": "L'actrice fuyait la publicité et donnait rarement des interviews."
+   },
+   {
+    "s": "Whistleblowers are sometimes ___ by colleagues who see them as traitors.",
+    "a": "shunned",
+    "fr": "Les lanceurs d'alerte sont parfois mis à l'écart par des collègues qui les voient comme des traîtres."
+   }
+  ],
+  "ecris": "une phrase sur une personne mise à l'écart par un groupe",
+  "formes": [
+   "shun",
+   "shuns",
+   "shunned",
+   "shunning"
+  ]
+ },
+ {
+  "id": "e-ostracise",
+  "w": "ostracise",
+  "pos": "verb",
+  "ipa": "/ˈɒstrəsaɪz/",
+  "reg": "formel",
+  "fr": "ostraciser, exclure",
+  "def": "To exclude someone from a group and refuse to have contact with them.",
+  "col": [
+   "be ostracised by",
+   "socially ostracised",
+   "ostracise a member",
+   "fear of being ostracised"
+  ],
+  "ex": [
+   "She was [[ostracised]] by her classmates after she reported the cheating.",
+   "In some villages, women who left their husbands were [[ostracised]] for years."
+  ],
+  "piege": "Proche de <i>shun</i>, mais met l'accent sur l'exclusion par tout un groupe. Orthographe britannique <i>ostracise</i>. Nom : <i>ostracism</i>.",
+  "fam": "ostracism (n.)",
+  "trous": [
+   {
+    "s": "Teenagers often follow the crowd because they fear being ___.",
+    "a": "ostracised",
+    "fr": "Les adolescents suivent souvent le groupe par peur d'être exclus."
+   },
+   {
+    "s": "Online, a single post can lead people to ___ someone overnight.",
+    "a": "ostracise",
+    "fr": "En ligne, une seule publication peut pousser les gens à exclure quelqu'un du jour au lendemain."
+   }
+  ],
+  "ecris": "une phrase sur une personne exclue par son groupe",
+  "formes": [
+   "ostracise",
+   "ostracises",
+   "ostracised",
+   "ostracising",
+   "ostracism"
+  ]
+ },
+ {
+  "id": "e-bully",
+  "w": "bully",
+  "pos": "verb",
+  "ipa": "/ˈbʊli/",
+  "reg": "courant",
+  "fr": "harceler, brutaliser",
+  "def": "To repeatedly hurt, threaten or frighten someone who is weaker than you.",
+  "col": [
+   "be bullied at school",
+   "bully someone into",
+   "cyberbullying",
+   "victims of bullying"
+  ],
+  "ex": [
+   "He was [[bullied]] for years because he was small and wore glasses.",
+   "Schools now have a legal duty to protect pupils who are [[bullied]] online."
+  ],
+  "piege": "<i>Bully someone <b>into</b> doing something</i> = forcer par l'intimidation. Le nom <i>a bully</i> = la brute, le harceleur ; <i>bullying</i> = le harcèlement. Prononciation : /ˈbʊli/, comme <i>full</i>.",
+  "fam": "bully (n.) · bullying (n.)",
+  "trous": [
+   {
+    "s": "Children who are ___ at school often hide it from their parents.",
+    "a": "bullied",
+    "fr": "Les enfants harcelés à l'école le cachent souvent à leurs parents."
+   },
+   {
+    "s": "The boss tried to ___ his staff into working at weekends.",
+    "a": "bully",
+    "fr": "Le patron essayait de forcer son personnel à travailler le week-end par l'intimidation."
+   }
+  ],
+  "ecris": "une phrase sur la lutte contre le harcèlement",
+  "formes": [
+   "bully",
+   "bullies",
+   "bullied",
+   "bullying"
+  ]
+ },
+ {
+  "id": "e-provoke",
+  "w": "provoke",
+  "pos": "verb",
+  "ipa": "/prəˈvəʊk/",
+  "reg": "courant",
+  "fr": "provoquer",
+  "def": "To deliberately make someone angry, or to cause a strong reaction.",
+  "col": [
+   "provoke someone into",
+   "provoke a reaction",
+   "provoke outrage",
+   "easily provoked"
+  ],
+  "ex": [
+   "Ignore him: he's only trying to [[provoke]] you so that you get into trouble.",
+   "The cartoons [[provoked]] outrage across the country and led to protests."
+  ],
+  "piege": "Deux sens comme en français : énerver quelqu'un (<i>provoke <b>someone</b></i>) et causer (<i>provoke a debate</i>). Adjectif : <i>provocative</i> (pas « provocant »).",
+  "fam": "provocation (n.) · provocative (adj.)",
+  "trous": [
+   {
+    "s": "The decision to raise taxes ___ angry protests in the capital.",
+    "a": "provoked",
+    "fr": "La décision d'augmenter les impôts a provoqué des manifestations de colère dans la capitale."
+   },
+   {
+    "s": "Don't let him ___ you into saying something you'll regret.",
+    "a": "provoke",
+    "fr": "Ne le laisse pas te pousser à dire quelque chose que tu regretteras."
+   }
+  ],
+  "ecris": "une phrase sur une décision qui a provoqué une forte réaction",
+  "formes": [
+   "provoke",
+   "provokes",
+   "provoked",
+   "provoking",
+   "provocation",
+   "provocative"
+  ]
+ },
+ {
+  "id": "e-antagonise",
+  "w": "antagonise",
+  "pos": "verb",
+  "ipa": "/ænˈtæɡənaɪz/",
+  "reg": "formel",
+  "fr": "contrarier, se mettre à dos",
+  "def": "To make someone angry or hostile towards you.",
+  "col": [
+   "antagonise someone",
+   "risk antagonising",
+   "deliberately antagonise",
+   "antagonise allies"
+  ],
+  "ex": [
+   "Try not to [[antagonise]] the referee: he can still change his decision.",
+   "The new tariffs [[antagonised]] the country's closest trading partners."
+  ],
+  "piege": "Proche de <i>alienate</i>, mais avec une idée d'hostilité active. Le nom <i>antagonist</i> désigne aussi l'adversaire du héros dans un récit.",
+  "fam": "antagonism (n.) · antagonist (n.) · antagonistic (adj.)",
+  "trous": [
+   {
+    "s": "He ___ his colleagues by taking credit for their work.",
+    "a": "antagonised",
+    "fr": "Il s'est mis ses collègues à dos en s'attribuant leur travail."
+   },
+   {
+    "s": "The government did not want to ___ the unions before the election.",
+    "a": "antagonise",
+    "fr": "Le gouvernement ne voulait pas braquer les syndicats avant l'élection."
+   }
+  ],
+  "ecris": "une phrase sur une attitude qui braque les autres",
+  "formes": [
+   "antagonise",
+   "antagonises",
+   "antagonised",
+   "antagonising",
+   "antagonism"
+  ]
+ },
+ {
+  "id": "e-feud",
+  "w": "feud",
+  "pos": "noun",
+  "ipa": "/fjuːd/",
+  "reg": "courant",
+  "fr": "querelle (de longue date), vendetta",
+  "def": "A long and bitter quarrel between two people, families or groups.",
+  "col": [
+   "a family feud",
+   "a long-running feud",
+   "a bitter feud",
+   "the feud between"
+  ],
+  "ex": [
+   "Nobody remembers how the [[feud]] between the two families started.",
+   "The [[feud]] between the two rappers was fuelled by social media for years."
+  ],
+  "piege": "Insiste sur la <b>durée</b> : une querelle qui dure des années, parfois des générations. Le verbe <i>feud <b>with</b></i> existe aussi.",
+  "fam": "feud (v.) · feuding (adj.)",
+  "trous": [
+   {
+    "s": "A family ___ over the inheritance kept the brothers apart for twenty years.",
+    "a": "feud",
+    "fr": "Une querelle familiale autour de l'héritage a séparé les frères pendant vingt ans."
+   },
+   {
+    "s": "The play shows how a long-running ___ between two clans destroys the next generation.",
+    "a": "feud",
+    "fr": "La pièce montre comment une querelle ancienne entre deux clans détruit la génération suivante."
+   }
+  ],
+  "ecris": "une phrase sur une querelle qui dure depuis longtemps",
+  "formes": [
+   "feud",
+   "feuds",
+   "feuding",
+   "feuded"
+  ]
+ },
+ {
+  "id": "e-intimacy",
+  "w": "intimacy",
+  "pos": "noun",
+  "ipa": "/ˈɪntɪməsi/",
+  "reg": "courant",
+  "fr": "intimité, proximité",
+  "def": "A close, personal relationship in which people share their thoughts and feelings.",
+  "col": [
+   "emotional intimacy",
+   "a sense of intimacy",
+   "fear of intimacy",
+   "the intimacy between"
+  ],
+  "ex": [
+   "After years of living together, they shared a quiet [[intimacy]] that needed few words.",
+   "Some critics argue that social media offers the illusion of [[intimacy]] without its reality."
+  ],
+  "piege": "Désigne la proximité affective entre des personnes. « L'intimité » au sens de vie privée se dit plutôt <i>privacy</i>. Accent sur la 1re syllabe.",
+  "fam": "intimate (adj.) · intimately (adv.)",
+  "trous": [
+   {
+    "s": "Real friendship requires trust and a certain level of ___.",
+    "a": "intimacy",
+    "fr": "Une vraie amitié exige de la confiance et un certain degré d'intimité."
+   },
+   {
+    "s": "They had been ___ friends since primary school.",
+    "a": "intimate",
+    "fr": "Ils étaient amis intimes depuis l'école primaire."
+   }
+  ],
+  "ecris": "une phrase sur ce qui crée de la proximité entre deux amis",
+  "formes": [
+   "intimacy",
+   "intimate",
+   "intimately"
+  ]
+ },
+ {
+  "id": "e-amicable",
+  "w": "amicable",
+  "pos": "adjective",
+  "ipa": "/ˈæmɪkəbl/",
+  "reg": "formel",
+  "fr": "à l'amiable, cordial",
+  "def": "Friendly and without serious disagreement, especially after a conflict or separation.",
+  "col": [
+   "an amicable divorce",
+   "amicable relations",
+   "an amicable agreement",
+   "part on amicable terms"
+  ],
+  "ex": [
+   "My parents' separation was [[amicable]], and they still have dinner together sometimes.",
+   "The two countries reached an [[amicable]] settlement over the fishing dispute."
+  ],
+  "piege": "Se dit d'une relation ou d'un accord, rarement d'une personne (on dit <i>friendly</i>). <i>Amicably</i> = à l'amiable. Accent sur la 1re syllabe.",
+  "fam": "amicably (adv.)",
+  "trous": [
+   {
+    "s": "The two partners parted on ___ terms and remained friends.",
+    "a": "amicable",
+    "fr": "Les deux associés se sont séparés en bons termes et sont restés amis."
+   },
+   {
+    "s": "The dispute was settled ___, without going to court.",
+    "a": "amicably",
+    "fr": "Le différend a été réglé à l'amiable, sans passer par le tribunal."
+   }
+  ],
+  "ecris": "une phrase sur une séparation ou un désaccord réglé à l'amiable",
+  "formes": [
+   "amicable",
+   "amicably"
+  ]
+ },
+ {
+  "id": "e-sociable",
+  "w": "sociable",
+  "pos": "adjective",
+  "ipa": "/ˈsəʊʃəbl/",
+  "reg": "courant",
+  "fr": "sociable",
+  "def": "Friendly and enjoying spending time with other people.",
+  "col": [
+   "a sociable person",
+   "feel sociable",
+   "outgoing and sociable",
+   "not very sociable"
+  ],
+  "ex": [
+   "My brother is very [[sociable]]: he talks to everyone at every party.",
+   "Humans are [[sociable]] creatures, which is why isolation during lockdowns hurt so many."
+  ],
+  "piege": "Se dit d'une personne qui aime la compagnie. Ne pas confondre avec <i>social</i> (qui concerne la société : <i>social problems</i>). Contraire : <i>unsociable</i>.",
+  "fam": "sociability (n.) · unsociable (adj.)",
+  "trous": [
+   {
+    "s": "She's not very ___ in the morning; wait until she has had her coffee.",
+    "a": "sociable",
+    "fr": "Elle n'est pas très sociable le matin ; attends qu'elle ait bu son café."
+   },
+   {
+    "s": "Working ___ hours, at night and at weekends, can damage family life.",
+    "a": "unsociable",
+    "fr": "Travailler à des horaires décalés, la nuit et le week-end, peut nuire à la vie de famille."
+   }
+  ],
+  "ecris": "une phrase pour dire si tu es plutôt sociable ou non",
+  "formes": [
+   "sociable",
+   "unsociable",
+   "sociability"
+  ]
+ },
+ {
+  "id": "e-nag",
+  "w": "nag",
+  "pos": "verb",
+  "ipa": "/næɡ/",
+  "reg": "familier",
+  "fr": "harceler (de remarques), asticoter",
+  "def": "To keep asking or criticising someone in an annoying way.",
+  "col": [
+   "nag someone about",
+   "nag someone to do",
+   "constantly nag",
+   "a nagging doubt"
+  ],
+  "ex": [
+   "My mum keeps [[nagging]] me to tidy my room.",
+   "Studies suggest that [[nagging]] teenagers about their screen time often has the opposite effect."
+  ],
+  "piege": "Familier. <i>Nag someone <b>to</b> do / <b>about</b> something</i>. <i>A nagging doubt / pain</i> = un doute, une douleur qui ne vous lâche pas.",
+  "fam": "nagging (adj./n.) · nag (n.)",
+  "trous": [
+   {
+    "s": "She ___ him for weeks until he finally booked a dentist appointment.",
+    "a": "nagged",
+    "fr": "Elle l'a harcelé pendant des semaines jusqu'à ce qu'il prenne enfin rendez-vous chez le dentiste."
+   },
+   {
+    "s": "Stop ___ me: I said I would do it after dinner!",
+    "a": "nagging",
+    "fr": "Arrête de me harceler : j'ai dit que je le ferais après le dîner !"
+   }
+  ],
+  "ecris": "une phrase sur une chose qu'on te répète sans cesse",
+  "formes": [
+   "nag",
+   "nags",
+   "nagged",
+   "nagging"
+  ]
+ },
+ {
+  "id": "e-console",
+  "w": "console",
+  "pos": "verb",
+  "ipa": "/kənˈsəʊl/",
+  "reg": "courant",
+  "fr": "consoler, réconforter",
+  "def": "To comfort someone who is sad or disappointed.",
+  "col": [
+   "console someone",
+   "try to console",
+   "console oneself with",
+   "be inconsolable"
+  ],
+  "ex": [
+   "She [[consoled]] her friend after he failed his driving test.",
+   "Nothing could [[console]] the families who had lost their sons in the trenches."
+  ],
+  "piege": "Verbe accentué sur la 2e syllabe : /kənˈsəʊl/ ; le nom <i>console</i> (de jeux) se dit /ˈkɒnsəʊl/. <i>Inconsolable</i> = inconsolable.",
+  "fam": "consolation (n.) · inconsolable (adj.)",
+  "trous": [
+   {
+    "s": "Nothing she said could ___ the little boy who had lost his dog.",
+    "a": "console",
+    "fr": "Rien de ce qu'elle disait ne pouvait consoler le petit garçon qui avait perdu son chien."
+   },
+   {
+    "s": "The only ___ was that nobody had been hurt in the fire.",
+    "a": "consolation",
+    "fr": "La seule consolation était que personne n'avait été blessé dans l'incendie."
+   }
+  ],
+  "ecris": "une phrase sur une manière de consoler quelqu'un",
+  "formes": [
+   "console",
+   "consoles",
+   "consoled",
+   "consoling",
+   "consolation"
+  ]
+ },
+ {
+  "id": "e-condolences",
+  "w": "condolences",
+  "pos": "noun",
+  "ipa": "/kənˈdəʊlənsɪz/",
+  "reg": "formel",
+  "fr": "condoléances",
+  "def": "Expressions of sympathy to someone whose relative or friend has died.",
+  "col": [
+   "offer one's condolences",
+   "send condolences",
+   "my deepest condolences",
+   "a letter of condolence"
+  ],
+  "ex": [
+   "We sent our [[condolences]] to our neighbours after their father passed away.",
+   "World leaders offered their [[condolences]] to the victims' families after the earthquake."
+  ],
+  "piege": "Presque toujours au pluriel : <i>my condolences</i>. Mais <i>a letter <b>of condolence</b></i> (singulier). Ne s'emploie que pour un décès.",
+  "fam": "condole (v., rare)",
+  "trous": [
+   {
+    "s": "Please accept my deepest ___ on the death of your grandmother.",
+    "a": "condolences",
+    "fr": "Je vous présente mes plus sincères condoléances pour le décès de votre grand-mère."
+   },
+   {
+    "s": "The president wrote a letter of ___ to each family.",
+    "a": "condolence",
+    "fr": "Le président a écrit une lettre de condoléances à chaque famille."
+   }
+  ],
+  "ecris": "une phrase pour présenter des condoléances",
+  "formes": [
+   "condolences",
+   "condolence"
+  ]
+ },
+ {
+  "id": "e-commend",
+  "w": "commend",
+  "pos": "verb",
+  "ipa": "/kəˈmend/",
+  "reg": "formel",
+  "fr": "féliciter, louer, saluer",
+  "def": "To praise someone or something formally, often in public.",
+  "col": [
+   "commend someone for",
+   "highly commended",
+   "commend the efforts of",
+   "be commended for"
+  ],
+  "ex": [
+   "The headmaster [[commended]] the pupils for their work with the elderly.",
+   "The report [[commends]] the firefighters for their courage during the disaster."
+  ],
+  "piege": "Plus soutenu que <i>praise</i>. <i>Commend someone <b>for</b> something</i>. <b>Faux ami</b> : « commander » = <i>order</i>. <i>Highly commended</i> = mention très honorable.",
+  "fam": "commendable (adj.) · commendation (n.)",
+  "trous": [
+   {
+    "s": "The firefighter was ___ for saving three children from the fire.",
+    "a": "commended",
+    "fr": "Le pompier a été salué pour avoir sauvé trois enfants de l'incendie."
+   },
+   {
+    "s": "Her honesty is ___, even if it caused her problems.",
+    "a": "commendable",
+    "fr": "Son honnêteté est louable, même si elle lui a causé des ennuis."
+   }
+  ],
+  "ecris": "une phrase sur une personne félicitée pour son courage",
+  "formes": [
+   "commend",
+   "commends",
+   "commended",
+   "commending",
+   "commendable"
+  ]
+ },
+ {
+  "id": "e-appreciative",
+  "w": "appreciative",
+  "pos": "adjective",
+  "ipa": "/əˈpriːʃətɪv/",
+  "reg": "courant",
+  "fr": "reconnaissant, sensible à",
+  "def": "Showing that you are grateful for something or that you enjoy it.",
+  "col": [
+   "appreciative of",
+   "an appreciative audience",
+   "deeply appreciative",
+   "appreciative comments"
+  ],
+  "ex": [
+   "She was very [[appreciative]] of all the help her neighbours gave her after the operation.",
+   "An [[appreciative]] audience gave the young pianist a standing ovation."
+  ],
+  "piege": "<i>Appreciative <b>of</b></i> = reconnaissant de. Proche de <i>grateful</i>, mais insiste sur le fait de montrer sa reconnaissance ou son plaisir.",
+  "fam": "appreciate (v.) · appreciation (n.) · appreciatively (adv.)",
+  "trous": [
+   {
+    "s": "The customers were ___ of the extra effort the waiter made.",
+    "a": "appreciative",
+    "fr": "Les clients ont été sensibles aux efforts supplémentaires du serveur."
+   },
+   {
+    "s": "I really ___ everything you've done for me this year.",
+    "a": "appreciate",
+    "fr": "J'apprécie vraiment tout ce que tu as fait pour moi cette année."
+   }
+  ],
+  "ecris": "une phrase sur une aide pour laquelle tu es reconnaissant",
+  "formes": [
+   "appreciative",
+   "appreciatively",
+   "appreciate",
+   "appreciates",
+   "appreciated",
+   "appreciation"
+  ]
+ },
+ {
+  "id": "e-apologetic",
+  "w": "apologetic",
+  "pos": "adjective",
+  "ipa": "/əˌpɒləˈdʒetɪk/",
+  "reg": "courant",
+  "fr": "plein d'excuses, contrit",
+  "def": "Showing or saying that you are sorry for something you have done.",
+  "col": [
+   "apologetic about",
+   "an apologetic smile",
+   "deeply apologetic",
+   "sound apologetic"
+  ],
+  "ex": [
+   "The waiter was very [[apologetic]] about the mistake and offered us free desserts.",
+   "The minister was far from [[apologetic]], insisting the policy had been a success."
+  ],
+  "piege": "<b>Faux ami</b> : <i>apologetic</i> ≠ « apologétique » (qui défend une doctrine). <i>Apologetic <b>about</b></i> = qui s'excuse de.",
+  "fam": "apologise (v.) · apology (n.) · apologetically (adv.)",
+  "trous": [
+   {
+    "s": "She gave me an ___ smile when she realised she was standing on my foot.",
+    "a": "apologetic",
+    "fr": "Elle m'a fait un sourire d'excuse en se rendant compte qu'elle me marchait sur le pied."
+   },
+   {
+    "s": "He shrugged ___ and admitted he had forgotten the tickets.",
+    "a": "apologetically",
+    "fr": "Il a haussé les épaules, l'air désolé, et a admis qu'il avait oublié les billets."
+   }
+  ],
+  "ecris": "une phrase sur une personne qui s'excuse",
+  "formes": [
+   "apologetic",
+   "apologetically",
+   "apologise",
+   "apologises",
+   "apologised",
+   "apologising",
+   "apology"
+  ]
+ },
+ {
+  "id": "e-possessive",
+  "w": "possessive",
+  "pos": "adjective",
+  "ipa": "/pəˈzesɪv/",
+  "reg": "courant",
+  "fr": "possessif",
+  "def": "Wanting someone to love or pay attention only to you, and not wanting to share them.",
+  "col": [
+   "possessive of/about",
+   "a possessive boyfriend",
+   "jealous and possessive",
+   "possessive behaviour"
+  ],
+  "ex": [
+   "Her boyfriend was so [[possessive]] that he checked her phone every evening.",
+   "Campaigns warn young people that [[possessive]] behaviour can be an early sign of abuse."
+  ],
+  "piege": "Négatif dans une relation. <i>Possessive <b>of</b>/<b>about</b></i>. En grammaire, <i>possessive</i> désigne aussi le possessif (<i>my, your</i>).",
+  "fam": "possessiveness (n.) · possess (v.)",
+  "trous": [
+   {
+    "s": "He became jealous and ___ whenever she spoke to other men.",
+    "a": "possessive",
+    "fr": "Il devenait jaloux et possessif chaque fois qu'elle parlait à d'autres hommes."
+   },
+   {
+    "s": "Her ___ eventually destroyed the friendship.",
+    "a": "possessiveness",
+    "fr": "Son côté possessif a fini par détruire l'amitié."
+   }
+  ],
+  "ecris": "une phrase sur un comportement possessif dans une relation",
+  "formes": [
+   "possessive",
+   "possessively",
+   "possessiveness"
+  ]
+ },
+ {
+  "id": "e-vulnerable",
+  "w": "vulnerable",
+  "pos": "adjective",
+  "ipa": "/ˈvʌlnərəbl/",
+  "reg": "courant",
+  "fr": "vulnérable, fragile",
+  "def": "Easily hurt physically or emotionally, or easily influenced or attacked.",
+  "col": [
+   "vulnerable to",
+   "feel vulnerable",
+   "the most vulnerable",
+   "vulnerable groups"
+  ],
+  "ex": [
+   "After moving to a new city alone, she felt lonely and [[vulnerable]].",
+   "Cuts to social services hit the most [[vulnerable]] members of society first."
+  ],
+  "piege": "Se construit avec <i>to</i> : <i>vulnerable <b>to</b> criticism</i>. <i>The vulnerable</i> = les personnes vulnérables. Accent sur la 1re syllabe.",
+  "fam": "vulnerability (n.)",
+  "trous": [
+   {
+    "s": "Elderly people living alone are particularly ___ in a heatwave.",
+    "a": "vulnerable",
+    "fr": "Les personnes âgées vivant seules sont particulièrement vulnérables pendant une canicule."
+   },
+   {
+    "s": "Showing your ___ to a friend can make the relationship stronger.",
+    "a": "vulnerability",
+    "fr": "Montrer sa fragilité à un ami peut renforcer la relation."
+   }
+  ],
+  "ecris": "une phrase sur un moment où tu t'es senti vulnérable",
+  "formes": [
+   "vulnerable",
+   "vulnerability",
+   "vulnerabilities"
+  ]
+ },
+ {
+  "id": "e-offend",
+  "w": "offend",
+  "pos": "verb",
+  "ipa": "/əˈfend/",
+  "reg": "courant",
+  "fr": "vexer, offenser, choquer",
+  "def": "To make someone upset or angry by doing or saying something rude or insensitive.",
+  "col": [
+   "be offended by",
+   "offend someone",
+   "deeply offended",
+   "take offence"
+  ],
+  "ex": [
+   "I hope I didn't [[offend]] your grandmother by refusing a second helping.",
+   "The advertisement was withdrawn after it [[offended]] many viewers."
+  ],
+  "piege": "<i>Be offended <b>by</b></i> = être vexé par. Expression très fréquente : <i>take offence <b>at</b></i> (s'offusquer de). Adjectif : <i>offensive</i> (choquant, insultant).",
+  "fam": "offence (n.) · offensive (adj.) · offended (adj.)",
+  "trous": [
+   {
+    "s": "She was deeply ___ that nobody had invited her to the meeting.",
+    "a": "offended",
+    "fr": "Elle a été profondément vexée que personne ne l'ait invitée à la réunion."
+   },
+   {
+    "s": "Comedians sometimes ___ people without meaning to.",
+    "a": "offend",
+    "fr": "Les humoristes vexent parfois les gens sans le vouloir."
+   }
+  ],
+  "ecris": "une phrase sur une remarque qui a vexé quelqu'un",
+  "formes": [
+   "offend",
+   "offends",
+   "offended",
+   "offending",
+   "offence",
+   "offensive"
+  ]
+ },
+ {
+  "id": "e-hurtful",
+  "w": "hurtful",
+  "pos": "adjective",
+  "ipa": "/ˈhɜːtfl/",
+  "reg": "courant",
+  "fr": "blessant",
+  "def": "Making someone feel upset or offended, especially through words.",
+  "col": [
+   "hurtful comments",
+   "deeply hurtful",
+   "a hurtful remark",
+   "say hurtful things"
+  ],
+  "ex": [
+   "Calling her lazy in front of everyone was really [[hurtful]].",
+   "Online abuse can be deeply [[hurtful]], even when it comes from complete strangers."
+  ],
+  "piege": "Se dit des paroles ou des actes qui blessent moralement. Pour une blessure physique, on dit <i>painful</i>. Ne pas confondre avec <i>hurt</i> (blessé, vexé) : <i>I was <b>hurt</b> by his <b>hurtful</b> words.</i>",
+  "fam": "hurt (v./adj./n.) · hurtfully (adv.)",
+  "trous": [
+   {
+    "s": "He apologised for the ___ things he had said during the argument.",
+    "a": "hurtful",
+    "fr": "Il s'est excusé pour les choses blessantes qu'il avait dites pendant la dispute."
+   },
+   {
+    "s": "Jokes about someone's weight can be extremely ___.",
+    "a": "hurtful",
+    "fr": "Les blagues sur le poids de quelqu'un peuvent être extrêmement blessantes."
+   }
+  ],
+  "ecris": "une phrase sur une remarque blessante",
+  "formes": [
+   "hurtful",
+   "hurtfully"
+  ]
+ },
+ {
+  "id": "e-heartbroken",
+  "w": "heartbroken",
+  "pos": "adjective",
+  "ipa": "/ˈhɑːtbrəʊkən/",
+  "reg": "courant",
+  "fr": "au cœur brisé, effondré",
+  "def": "Extremely sad, especially because of the end of a relationship or a loss.",
+  "col": [
+   "absolutely heartbroken",
+   "leave someone heartbroken",
+   "heartbroken over",
+   "heartbroken fans"
+  ],
+  "ex": [
+   "She was [[heartbroken]] when her best friend moved to Australia.",
+   "Fans were [[heartbroken]] when the club was relegated after a century in the top league."
+  ],
+  "piege": "Très fort, souvent lié à l'amour ou à un deuil. Nom : <i>heartbreak</i> ; <i>heartbreaking</i> = déchirant (<i>heartbreaking images</i>).",
+  "fam": "heartbreak (n.) · heartbreaking (adj.)",
+  "trous": [
+   {
+    "s": "He was ___ when his girlfriend ended their relationship by text.",
+    "a": "heartbroken",
+    "fr": "Il a eu le cœur brisé quand sa copine a rompu par SMS."
+   },
+   {
+    "s": "The images of children in the refugee camp were ___.",
+    "a": "heartbreaking",
+    "fr": "Les images des enfants dans le camp de réfugiés étaient déchirantes."
+   }
+  ],
+  "ecris": "une phrase sur une situation où quelqu'un a le cœur brisé",
+  "formes": [
+   "heartbroken",
+   "heartbreak",
+   "heartbreaking"
+  ]
+ },
+ {
+  "id": "e-uneasy",
+  "w": "uneasy",
+  "pos": "adjective",
+  "ipa": "/ʌnˈiːzi/",
+  "reg": "courant",
+  "fr": "mal à l'aise, inquiet",
+  "def": "Slightly worried or uncomfortable because you feel something is wrong.",
+  "col": [
+   "feel uneasy about",
+   "an uneasy silence",
+   "an uneasy truce",
+   "uneasy relationship"
+  ],
+  "ex": [
+   "I felt [[uneasy]] when I noticed the same man following me for three streets.",
+   "After the war, the two former allies settled into an [[uneasy]] peace."
+  ],
+  "piege": "Ne signifie pas « pas facile » (<i>not easy, difficult</i>). <i>An uneasy truce / peace</i> = une trêve fragile. Nom : <i>unease</i>.",
+  "fam": "unease (n.) · uneasily (adv.)",
+  "trous": [
+   {
+    "s": "She felt ___ about leaving her little brother alone at home.",
+    "a": "uneasy",
+    "fr": "Elle n'était pas tranquille à l'idée de laisser son petit frère seul à la maison."
+   },
+   {
+    "s": "There was a growing sense of ___ in the town after the factory announced job cuts.",
+    "a": "unease",
+    "fr": "Un malaise grandissait dans la ville après l'annonce de suppressions d'emplois à l'usine."
+   }
+  ],
+  "ecris": "une phrase sur une situation qui t'a mis mal à l'aise",
+  "formes": [
+   "uneasy",
+   "uneasily",
+   "unease"
+  ]
+ },
+ {
+  "id": "e-tense",
+  "w": "tense",
+  "pos": "adjective",
+  "ipa": "/tens/",
+  "reg": "courant",
+  "fr": "tendu",
+  "def": "Nervous and unable to relax, or full of nervous feelings because of a difficult situation.",
+  "col": [
+   "a tense atmosphere",
+   "feel tense",
+   "tense relations",
+   "a tense moment"
+  ],
+  "ex": [
+   "The atmosphere at dinner was [[tense]] after my parents' argument.",
+   "Relations between the two countries remained [[tense]] for decades after the border war."
+  ],
+  "piege": "Se dit d'une personne, d'une ambiance ou de relations. Nom : <i>tension</i>. En grammaire, <i>tense</i> est aussi un nom : le temps d'un verbe (<i>the past tense</i>).",
+  "fam": "tension (n.) · tensely (adv.)",
+  "trous": [
+   {
+    "s": "She always feels ___ before speaking in public.",
+    "a": "tense",
+    "fr": "Elle est toujours tendue avant de parler en public."
+   },
+   {
+    "s": "The ___ between the two groups grew until fighting broke out.",
+    "a": "tension",
+    "fr": "La tension entre les deux groupes a monté jusqu'à ce que des affrontements éclatent."
+   }
+  ],
+  "ecris": "une phrase sur une ambiance tendue",
+  "formes": [
+   "tense",
+   "tensely",
+   "tension",
+   "tensions"
+  ]
+ },
+ {
+  "id": "e-torn",
+  "w": "torn",
+  "pos": "adjective",
+  "ipa": "/tɔːn/",
+  "reg": "courant",
+  "fr": "déchiré, partagé",
+  "def": "Unable to decide between two choices, because both seem important.",
+  "col": [
+   "torn between",
+   "feel torn",
+   "torn about",
+   "torn loyalties"
+  ],
+  "ex": [
+   "I'm [[torn]] between studying medicine and becoming an engineer.",
+   "Many immigrants feel [[torn]] between the culture of their parents and that of their new country."
+  ],
+  "piege": "<i>Torn <b>between</b> A and B</i> = partagé entre. Participe passé de <i>tear</i> (déchirer) : <i>a torn shirt</i> = une chemise déchirée.",
+  "fam": "tear (v.) · tore · torn",
+  "trous": [
+   {
+    "s": "She was ___ between staying with her friends and following her family abroad.",
+    "a": "torn",
+    "fr": "Elle était partagée entre rester avec ses amis et suivre sa famille à l'étranger."
+   },
+   {
+    "s": "He felt ___ about accepting the job, because it meant moving far away.",
+    "a": "torn",
+    "fr": "Il était partagé à l'idée d'accepter le poste, car cela impliquait de déménager loin."
+   }
+  ],
+  "ecris": "une phrase sur un choix qui te déchire",
+  "formes": [
+   "torn"
+  ]
+ },
+ {
+  "id": "e-preoccupied",
+  "w": "preoccupied",
+  "pos": "adjective",
+  "ipa": "/priˈɒkjupaɪd/",
+  "reg": "courant",
+  "fr": "absorbé, soucieux",
+  "def": "Thinking about something so much that you do not pay attention to other things.",
+  "col": [
+   "preoccupied with",
+   "seem preoccupied",
+   "too preoccupied to",
+   "preoccupied by"
+  ],
+  "ex": [
+   "He seemed [[preoccupied]] all through dinner and barely said a word.",
+   "Governments [[preoccupied]] with short-term polls often neglect long-term problems."
+  ],
+  "piege": "<b>Faux ami partiel</b> : <i>preoccupied</i> insiste sur l'esprit occupé ailleurs, absorbé. Pour « préoccupé » au sens d'inquiet, on dit plus souvent <i>worried, concerned</i>.",
+  "fam": "preoccupation (n.)",
+  "trous": [
+   {
+    "s": "She was too ___ with her exams to notice that her friend was sad.",
+    "a": "preoccupied",
+    "fr": "Elle était trop absorbée par ses examens pour remarquer que son amie était triste."
+   },
+   {
+    "s": "The public's main ___ is the rising cost of living.",
+    "a": "preoccupation",
+    "fr": "La principale préoccupation du public est la hausse du coût de la vie."
+   }
+  ],
+  "ecris": "une phrase sur une chose qui t'absorbe en ce moment",
+  "formes": [
+   "preoccupied",
+   "preoccupation",
+   "preoccupations"
+  ]
+ },
+ {
+  "id": "e-absent-minded",
+  "w": "absent-minded",
+  "pos": "adjective",
+  "ipa": "/ˌæbsəntˈmaɪndɪd/",
+  "reg": "courant",
+  "fr": "distrait, étourdi",
+  "def": "Often forgetting things or not noticing what is happening, because you are thinking about something else.",
+  "col": [
+   "an absent-minded professor",
+   "a bit absent-minded",
+   "absent-mindedly",
+   "absent-minded mistake"
+  ],
+  "ex": [
+   "My grandfather is so [[absent-minded]] that he once put the milk in the oven.",
+   "The stereotype of the [[absent-minded]] genius suggests that brilliant people are disorganised."
+  ],
+  "piege": "Plutôt affectueux, pas très négatif. Ne pas dire <i>distracted</i> pour un trait de caractère : <i>distracted</i> = distrait par quelque chose sur le moment.",
+  "fam": "absent-mindedly (adv.) · absent-mindedness (n.)",
+  "trous": [
+   {
+    "s": "He's so ___ that he forgets where he parked his car almost every day.",
+    "a": "absent-minded",
+    "fr": "Il est si distrait qu'il oublie où il a garé sa voiture presque tous les jours."
+   },
+   {
+    "s": "She stirred her coffee ___ while staring out of the window.",
+    "a": "absent-mindedly",
+    "fr": "Elle remuait son café d'un air distrait en regardant par la fenêtre."
+   }
+  ],
+  "ecris": "une phrase sur une étourderie que tu as faite",
+  "formes": [
+   "absent-minded",
+   "absent-mindedly",
+   "absent-mindedness"
+  ]
+ },
+ {
+  "id": "e-pensive",
+  "w": "pensive",
+  "pos": "adjective",
+  "ipa": "/ˈpensɪv/",
+  "reg": "courant",
+  "fr": "pensif",
+  "def": "Thinking deeply about something, often in a slightly sad or serious way.",
+  "col": [
+   "a pensive mood",
+   "look pensive",
+   "a pensive expression",
+   "fall silent and pensive"
+  ],
+  "ex": [
+   "She sat by the window, [[pensive]], watching the rain fall on the empty street.",
+   "The portrait shows the young king with a [[pensive]] expression, as if aware of the dangers ahead."
+  ],
+  "piege": "Plus littéraire que <i>thoughtful</i>, souvent teinté de mélancolie. Utile pour décrire un personnage ou un tableau.",
+  "fam": "pensively (adv.)",
+  "trous": [
+   {
+    "s": "After the phone call, he became quiet and ___ for the rest of the evening.",
+    "a": "pensive",
+    "fr": "Après le coup de fil, il est devenu silencieux et pensif pour le reste de la soirée."
+   },
+   {
+    "s": "She looked ___ out to sea, thinking about her future.",
+    "a": "pensively",
+    "fr": "Elle regardait la mer d'un air pensif, en songeant à son avenir."
+   }
+  ],
+  "ecris": "une phrase pour décrire un personnage pensif",
+  "formes": [
+   "pensive",
+   "pensively"
+  ]
+ },
+ {
+  "id": "e-weary",
+  "w": "weary",
+  "pos": "adjective",
+  "ipa": "/ˈwɪəri/",
+  "reg": "courant",
+  "fr": "las, lassé, épuisé",
+  "def": "Very tired, or tired of something because it has continued for too long.",
+  "col": [
+   "weary of",
+   "war-weary",
+   "a weary sigh",
+   "grow weary"
+  ],
+  "ex": [
+   "After a twelve-hour shift, the nurse gave a [[weary]] smile and went home.",
+   "By 1917, the soldiers and civilians of every nation were [[weary]] of war."
+  ],
+  "piege": "Deux nuances : la fatigue physique et la lassitude (<i>weary <b>of</b></i> = las de). Ne pas confondre avec <i>wary</i> (méfiant), qui se prononce /ˈweəri/.",
+  "fam": "weariness (n.) · wearily (adv.)",
+  "trous": [
+   {
+    "s": "The population was ___ of endless promises that were never kept.",
+    "a": "weary",
+    "fr": "La population était lasse de promesses sans fin jamais tenues."
+   },
+   {
+    "s": "He climbed the stairs ___ after the long journey home.",
+    "a": "wearily",
+    "fr": "Il a monté l'escalier avec lassitude après le long trajet du retour."
+   }
+  ],
+  "ecris": "une phrase sur une chose dont tu es las",
+  "formes": [
+   "weary",
+   "wearily",
+   "weariness"
+  ]
+ },
+ {
+  "id": "e-thrilled",
+  "w": "thrilled",
+  "pos": "adjective",
+  "ipa": "/θrɪld/",
+  "reg": "courant",
+  "fr": "ravi, enchanté",
+  "def": "Extremely pleased and excited about something.",
+  "col": [
+   "thrilled to bits",
+   "thrilled about/with",
+   "absolutely thrilled",
+   "thrilled to hear"
+  ],
+  "ex": [
+   "My little sister was [[thrilled]] with her birthday present.",
+   "Local residents were not exactly [[thrilled]] about plans for a new motorway near their homes."
+  ],
+  "piege": "Plus fort que <i>pleased</i>, très courant à l'oral. <i>Not exactly thrilled</i> = pas franchement ravi (ironie fréquente). <i>Thrilling</i> = palpitant.",
+  "fam": "thrill (n./v.) · thrilling (adj.)",
+  "trous": [
+   {
+    "s": "We were ___ to hear that our cousins were coming for Christmas.",
+    "a": "thrilled",
+    "fr": "Nous étions ravis d'apprendre que nos cousins venaient pour Noël."
+   },
+   {
+    "s": "The final minutes of the match were absolutely ___.",
+    "a": "thrilling",
+    "fr": "Les dernières minutes du match étaient absolument palpitantes."
+   }
+  ],
+  "ecris": "une phrase sur une nouvelle qui t'a ravi",
+  "formes": [
+   "thrilled",
+   "thrilling",
+   "thrill"
+  ]
+ },
+ {
+  "id": "e-disheartened",
+  "w": "disheartened",
+  "pos": "adjective",
+  "ipa": "/dɪsˈhɑːtnd/",
+  "reg": "courant",
+  "fr": "découragé, abattu",
+  "def": "Having lost hope or enthusiasm, especially after a failure or disappointment.",
+  "col": [
+   "feel disheartened",
+   "disheartened by",
+   "deeply disheartened",
+   "a disheartening result"
+  ],
+  "ex": [
+   "She felt [[disheartened]] after her third rejection letter, but she kept applying.",
+   "Many volunteers were [[disheartened]] by the lack of progress after years of campaigning."
+  ],
+  "piege": "Proche de <i>discouraged</i>, un peu plus émotionnel. <i>Disheartening</i> = décourageant. Contraire : <i>encouraged, heartened</i>.",
+  "fam": "dishearten (v.) · disheartening (adj.)",
+  "trous": [
+   {
+    "s": "Don't be ___ by one bad mark: you can still improve.",
+    "a": "disheartened",
+    "fr": "Ne te laisse pas abattre par une mauvaise note : tu peux encore progresser."
+   },
+   {
+    "s": "The low turnout at the election was ___ for everyone who believes in democracy.",
+    "a": "disheartening",
+    "fr": "La faible participation à l'élection a été décourageante pour tous ceux qui croient en la démocratie."
+   }
+  ],
+  "ecris": "une phrase sur un moment où tu t'es senti découragé",
+  "formes": [
+   "disheartened",
+   "disheartening",
+   "dishearten"
+  ]
+ },
+ {
+  "id": "e-upbeat",
+  "w": "upbeat",
+  "pos": "adjective",
+  "ipa": "/ˈʌpbiːt/",
+  "reg": "familier",
+  "fr": "optimiste, enjoué",
+  "def": "Cheerful and positive about the future.",
+  "col": [
+   "remain upbeat",
+   "an upbeat mood",
+   "sound upbeat",
+   "upbeat about"
+  ],
+  "ex": [
+   "Despite the rain, everyone at the picnic stayed [[upbeat]].",
+   "The minister gave an [[upbeat]] assessment of the economy, which few experts shared."
+  ],
+  "piege": "Plutôt familier ou journalistique. <i>Upbeat <b>about</b></i> = optimiste quant à. Se dit aussi d'une musique entraînante.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Even after losing the match, the coach remained ___ about the rest of the season.",
+    "a": "upbeat",
+    "fr": "Même après la défaite, l'entraîneur restait optimiste pour le reste de la saison."
+   },
+   {
+    "s": "She sounded tired on the phone, but her messages were always cheerful and ___.",
+    "a": "upbeat",
+    "fr": "Elle semblait fatiguée au téléphone, mais ses messages étaient toujours gais et enjoués."
+   }
+  ],
+  "ecris": "une phrase sur une personne qui reste optimiste",
+  "formes": [
+   "upbeat"
+  ]
+ },
+ {
+  "id": "e-carefree",
+  "w": "carefree",
+  "pos": "adjective",
+  "ipa": "/ˈkeəfriː/",
+  "reg": "courant",
+  "fr": "insouciant",
+  "def": "Having no worries or responsibilities.",
+  "col": [
+   "a carefree childhood",
+   "carefree days",
+   "carefree attitude",
+   "young and carefree"
+  ],
+  "ex": [
+   "We spent a [[carefree]] summer swimming in the lake and sleeping under the stars.",
+   "The so-called Roaring Twenties were [[carefree]] only for a privileged minority."
+  ],
+  "piege": "Positif ou nostalgique. Ne pas confondre avec <i>careless</i> (négligent, imprudent), qui est négatif.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "She remembered the ___ days of her childhood with nostalgia.",
+    "a": "carefree",
+    "fr": "Elle se souvenait avec nostalgie des jours insouciants de son enfance."
+   },
+   {
+    "s": "Exams are over, and for a few weeks the students feel completely ___.",
+    "a": "carefree",
+    "fr": "Les examens sont finis et, pendant quelques semaines, les élèves se sentent complètement insouciants."
+   }
+  ],
+  "ecris": "une phrase sur une période insouciante de ta vie",
+  "formes": [
+   "carefree"
+  ]
+ },
+ {
+  "id": "e-serene",
+  "w": "serene",
+  "pos": "adjective",
+  "ipa": "/səˈriːn/",
+  "reg": "courant",
+  "fr": "serein, paisible",
+  "def": "Calm and peaceful, without worry or stress.",
+  "col": [
+   "remain serene",
+   "a serene smile",
+   "calm and serene",
+   "serene atmosphere"
+  ],
+  "ex": [
+   "Even with three children running around, my aunt always looks [[serene]].",
+   "The [[serene]] faces in the painting contrast sharply with the violence of the battle behind them."
+  ],
+  "piege": "Plus littéraire que <i>calm</i>. Se dit d'une personne, d'un visage ou d'un lieu. Nom : <i>serenity</i>.",
+  "fam": "serenity (n.) · serenely (adv.)",
+  "trous": [
+   {
+    "s": "She smiled, calm and ___, as if nothing could disturb her.",
+    "a": "serene",
+    "fr": "Elle souriait, calme et sereine, comme si rien ne pouvait la troubler."
+   },
+   {
+    "s": "The monastery offers a sense of peace and ___ far from the city.",
+    "a": "serenity",
+    "fr": "Le monastère offre un sentiment de paix et de sérénité loin de la ville."
+   }
+  ],
+  "ecris": "une phrase sur un lieu ou une personne sereine",
+  "formes": [
+   "serene",
+   "serenely",
+   "serenity"
+  ]
+ },
+ {
+  "id": "e-camaraderie",
+  "w": "camaraderie",
+  "pos": "noun",
+  "ipa": "/ˌkæməˈrɑːdəri/",
+  "reg": "courant",
+  "fr": "camaraderie, esprit d'équipe",
+  "def": "A feeling of friendship and trust among people who spend time or work together.",
+  "col": [
+   "a sense of camaraderie",
+   "team camaraderie",
+   "the camaraderie of",
+   "build camaraderie"
+  ],
+  "ex": [
+   "What I love most about the rugby club is the [[camaraderie]] after training.",
+   "Soldiers often remember the [[camaraderie]] of the trenches more than the fighting itself."
+  ],
+  "piege": "Mot d'origine française, prononcé à l'anglaise : /ˌkæməˈrɑːdəri/. Indénombrable. Un camarade = <i>a comrade</i> ou <i>a classmate</i> selon le contexte.",
+  "fam": "comrade (n.)",
+  "trous": [
+   {
+    "s": "There was a real sense of ___ among the volunteers after the flood.",
+    "a": "camaraderie",
+    "fr": "Il régnait une vraie camaraderie entre les bénévoles après l'inondation."
+   },
+   {
+    "s": "Long tours on the road created a strong ___ between the members of the band.",
+    "a": "camaraderie",
+    "fr": "Les longues tournées ont créé une forte camaraderie entre les membres du groupe."
+   }
+  ],
+  "ecris": "une phrase sur l'esprit d'équipe dans un groupe dont tu fais partie",
+  "formes": [
+   "camaraderie"
+  ]
+ },
+ {
+  "id": "e-reciprocate",
+  "w": "reciprocate",
+  "pos": "verb",
+  "ipa": "/rɪˈsɪprəkeɪt/",
+  "reg": "formel",
+  "fr": "rendre la pareille, partager (un sentiment)",
+  "def": "To give, feel or do the same in return for what someone has given, felt or done for you.",
+  "col": [
+   "reciprocate feelings",
+   "reciprocate the favour",
+   "fail to reciprocate",
+   "reciprocate in kind"
+  ],
+  "ex": [
+   "He was in love with her, but she did not [[reciprocate]] his feelings.",
+   "When one country raises tariffs, its partners usually [[reciprocate]] with their own."
+  ],
+  "piege": "Utile pour l'amour non partagé (<i>unrequited love</i>) et en relations internationales. Adjectif : <i>reciprocal</i> = réciproque.",
+  "fam": "reciprocal (adj.) · reciprocity (n.)",
+  "trous": [
+   {
+    "s": "She invited them to dinner several times, but they never ___.",
+    "a": "reciprocated",
+    "fr": "Elle les a invités à dîner plusieurs fois, mais ils ne lui ont jamais rendu la pareille."
+   },
+   {
+    "s": "Friendship only lasts if both people ___ the effort.",
+    "a": "reciprocate",
+    "fr": "L'amitié ne dure que si les deux personnes fournissent le même effort."
+   }
+  ],
+  "ecris": "une phrase sur un sentiment partagé ou non",
+  "formes": [
+   "reciprocate",
+   "reciprocates",
+   "reciprocated",
+   "reciprocating",
+   "reciprocal"
+  ]
+ },
+ {
+  "id": "e-condone",
+  "w": "condone",
+  "pos": "verb",
+  "ipa": "/kənˈdəʊn/",
+  "reg": "formel",
+  "fr": "tolérer, fermer les yeux sur",
+  "def": "To accept or allow behaviour that is morally wrong.",
+  "col": [
+   "condone violence",
+   "refuse to condone",
+   "cannot condone",
+   "tacitly condone"
+  ],
+  "ex": [
+   "I understand why he was angry, but I can't [[condone]] what he did to his brother.",
+   "By staying silent, some governments effectively [[condoned]] the persecution of minorities."
+  ],
+  "piege": "Toujours à propos d'un comportement répréhensible, souvent à la forme négative : <i>we do not condone</i>. Ne veut pas dire « condamner » (<i>condemn</i>), presque le contraire.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The school does not ___ any form of bullying.",
+    "a": "condone",
+    "fr": "Le lycée ne tolère aucune forme de harcèlement."
+   },
+   {
+    "s": "Critics accused the club of having ___ racist chanting by doing nothing.",
+    "a": "condoned",
+    "fr": "Les critiques ont accusé le club d'avoir toléré des chants racistes en ne faisant rien."
+   }
+  ],
+  "ecris": "une phrase sur un comportement qu'on ne doit pas tolérer",
+  "formes": [
+   "condone",
+   "condones",
+   "condoned",
+   "condoning"
+  ]
+ },
+ {
+  "id": "e-taunt",
+  "w": "taunt",
+  "pos": "verb",
+  "ipa": "/tɔːnt/",
+  "reg": "courant",
+  "fr": "narguer, railler",
+  "def": "To say unkind things to someone in order to upset them or make them angry.",
+  "col": [
+   "taunt someone about",
+   "taunt the opponents",
+   "racist taunts",
+   "endure taunts"
+  ],
+  "ex": [
+   "The older boys [[taunted]] him about his accent until he burst into tears.",
+   "Supporters who [[taunt]] players with racist chants should be banned from stadiums."
+  ],
+  "piege": "Plus agressif que <i>tease</i>, plus provocateur que <i>mock</i> : on cherche à faire réagir. Le nom <i>a taunt</i> = une raillerie. Prononciation : /tɔːnt/, qui rime avec <i>haunt</i>.",
+  "fam": "taunt (n.) · taunting (adj./n.)",
+  "trous": [
+   {
+    "s": "The crowd ___ the goalkeeper every time he touched the ball.",
+    "a": "taunted",
+    "fr": "La foule a nargué le gardien chaque fois qu'il touchait le ballon."
+   },
+   {
+    "s": "He tried to ignore the ___ of his classmates, but it hurt.",
+    "a": "taunts",
+    "fr": "Il essayait d'ignorer les railleries de ses camarades, mais ça le blessait."
+   }
+  ],
+  "ecris": "une phrase sur une personne qui en nargue une autre",
+  "formes": [
+   "taunt",
+   "taunts",
+   "taunted",
+   "taunting"
+  ]
+ },
+ {
+  "id": "e-mutual",
+  "w": "mutual",
+  "pos": "adjective",
+  "ipa": "/ˈmjuːtʃuəl/",
+  "reg": "courant",
+  "fr": "mutuel, réciproque, commun",
+  "def": "Felt or done equally by two or more people towards each other, or shared by them.",
+  "col": [
+   "mutual respect",
+   "mutual trust",
+   "a mutual friend",
+   "by mutual agreement"
+  ],
+  "ex": [
+   "We met through a [[mutual]] friend at a birthday party.",
+   "Lasting peace between former enemies requires [[mutual]] trust and respect."
+  ],
+  "piege": "<i>A mutual friend</i> = un ami commun. <i>The feeling is mutual</i> = c'est réciproque (souvent ironique). Ne pas confondre avec « une mutuelle » (<i>health insurance</i>).",
+  "fam": "mutually (adv.)",
+  "trous": [
+   {
+    "s": "They decided to end their partnership by ___ agreement.",
+    "a": "mutual",
+    "fr": "Ils ont décidé de mettre fin à leur association d'un commun accord."
+   },
+   {
+    "s": "The two ideas are not ___ exclusive: you can be ambitious and kind.",
+    "a": "mutually",
+    "fr": "Les deux idées ne s'excluent pas : on peut être ambitieux et gentil."
+   }
+  ],
+  "ecris": "une phrase sur une relation fondée sur le respect mutuel",
+  "formes": [
+   "mutual",
+   "mutually"
+  ]
+ },
+ {
+  "id": "e-cordial",
+  "w": "cordial",
+  "pos": "adjective",
+  "ipa": "/ˈkɔːdiəl/",
+  "reg": "formel",
+  "fr": "cordial, courtois",
+  "def": "Friendly and polite, but often rather formal.",
+  "col": [
+   "cordial relations",
+   "a cordial welcome",
+   "a cordial meeting",
+   "cordial but distant"
+  ],
+  "ex": [
+   "The meeting with our new neighbours was [[cordial]], if a little formal.",
+   "Relations between the two leaders were [[cordial]] in public but tense behind closed doors."
+  ],
+  "piege": "Souvent employé pour des relations polies mais pas chaleureuses. <i>Entente cordiale</i> désigne l'accord franco-britannique de 1904. Prononciation : /ˈkɔːdiəl/.",
+  "fam": "cordially (adv.) · cordiality (n.)",
+  "trous": [
+   {
+    "s": "The talks were ___, but no agreement was reached.",
+    "a": "cordial",
+    "fr": "Les discussions ont été cordiales, mais aucun accord n'a été trouvé."
+   },
+   {
+    "s": "You are ___ invited to the opening of the new library.",
+    "a": "cordially",
+    "fr": "Vous êtes cordialement invités à l'inauguration de la nouvelle bibliothèque."
+   }
+  ],
+  "ecris": "une phrase sur une relation polie mais distante",
+  "formes": [
+   "cordial",
+   "cordially",
+   "cordiality"
+  ]
+ },
+ {
+  "id": "e-frosty",
+  "w": "frosty",
+  "pos": "adjective",
+  "ipa": "/ˈfrɒsti/",
+  "reg": "courant",
+  "fr": "glacial, froid (accueil)",
+  "def": "Unfriendly and cold in manner, showing disapproval.",
+  "col": [
+   "a frosty reception",
+   "frosty relations",
+   "a frosty silence",
+   "a frosty look"
+  ],
+  "ex": [
+   "I got a [[frosty]] look from the librarian when my phone rang.",
+   "The proposal received a [[frosty]] reception from the other member states."
+  ],
+  "piege": "Au sens figuré : froid, hostile. <i>A frosty reception</i> = un accueil glacial. Au sens propre : givré (<i>a frosty morning</i>).",
+  "fam": "frostily (adv.) · frost (n.)",
+  "trous": [
+   {
+    "s": "After the argument, there was a ___ silence between them for days.",
+    "a": "frosty",
+    "fr": "Après la dispute, un silence glacial a régné entre eux pendant des jours."
+   },
+   {
+    "s": "The singer's new album got a ___ reception from the critics.",
+    "a": "frosty",
+    "fr": "Le nouvel album du chanteur a reçu un accueil glacial de la part des critiques."
+   }
+  ],
+  "ecris": "une phrase sur un accueil glacial",
+  "formes": [
+   "frosty",
+   "frostily"
+  ]
+ },
+ {
+  "id": "e-rebuff",
+  "w": "rebuff",
+  "pos": "verb",
+  "ipa": "/rɪˈbʌf/",
+  "reg": "formel",
+  "fr": "repousser, rabrouer",
+  "def": "To refuse someone's offer, request or friendly approach in an unkind way.",
+  "col": [
+   "rebuff an offer",
+   "be rebuffed by",
+   "rebuff attempts",
+   "a sharp rebuff"
+  ],
+  "ex": [
+   "She tried to apologise, but he [[rebuffed]] her and walked away.",
+   "The government [[rebuffed]] all attempts by the opposition to open negotiations."
+  ],
+  "piege": "Refus brusque d'une main tendue. Plus fort que <i>refuse</i> ou <i>reject</i>. Le nom <i>a rebuff</i> = une rebuffade (même origine).",
+  "fam": "rebuff (n.)",
+  "trous": [
+   {
+    "s": "Every time he invited her out, she ___ him politely but firmly.",
+    "a": "rebuffed",
+    "fr": "Chaque fois qu'il l'invitait, elle le repoussait poliment mais fermement."
+   },
+   {
+    "s": "Don't be discouraged if your first offer of help is ___.",
+    "a": "rebuffed",
+    "fr": "Ne te décourage pas si ta première offre d'aide est repoussée."
+   }
+  ],
+  "ecris": "une phrase sur une offre ou une main tendue repoussée",
+  "formes": [
+   "rebuff",
+   "rebuffs",
+   "rebuffed",
+   "rebuffing"
+  ]
+ },
+ {
+  "id": "e-placate",
+  "w": "placate",
+  "pos": "verb",
+  "ipa": "/pləˈkeɪt/",
+  "reg": "formel",
+  "fr": "apaiser, calmer",
+  "def": "To make someone less angry, often by doing or giving them something.",
+  "col": [
+   "placate someone",
+   "attempt to placate",
+   "placate critics",
+   "placate the public"
+  ],
+  "ex": [
+   "She bought her little brother an ice cream to [[placate]] him after the fall.",
+   "The concessions were designed to [[placate]] the unions without changing the reform."
+  ],
+  "piege": "Souvent avec une idée de calcul : on calme pour éviter un problème. Proche de <i>appease</i>, plus courant en politique. Accent britannique : /pləˈkeɪt/.",
+  "fam": "placatory (adj.)",
+  "trous": [
+   {
+    "s": "The manager offered a refund to ___ the angry customer.",
+    "a": "placate",
+    "fr": "Le responsable a proposé un remboursement pour apaiser le client mécontent."
+   },
+   {
+    "s": "The protesters were not ___ by the minister's vague promises.",
+    "a": "placated",
+    "fr": "Les manifestants n'ont pas été apaisés par les vagues promesses du ministre."
+   }
+  ],
+  "ecris": "une phrase sur une manière de calmer quelqu'un en colère",
+  "formes": [
+   "placate",
+   "placates",
+   "placated",
+   "placating"
+  ]
+ },
+ {
+  "id": "e-conciliatory",
+  "w": "conciliatory",
+  "pos": "adjective",
+  "ipa": "/kənˈsɪliətəri/",
+  "reg": "formel",
+  "fr": "conciliant",
+  "def": "Intended to end a disagreement and make someone less angry.",
+  "col": [
+   "a conciliatory tone",
+   "conciliatory gesture",
+   "adopt a conciliatory approach",
+   "conciliatory remarks"
+  ],
+  "ex": [
+   "After the argument, he sent her a [[conciliatory]] message with a funny photo.",
+   "The new president adopted a more [[conciliatory]] tone towards neighbouring countries."
+  ],
+  "piege": "Se dit d'un ton, d'un geste ou d'une attitude. Contraire : <i>confrontational</i>. Verbe : <i>conciliate</i> (rare) ; nom : <i>conciliation</i>.",
+  "fam": "conciliation (n.) · conciliate (v.)",
+  "trous": [
+   {
+    "s": "In a ___ gesture, the company agreed to meet the strikers' leaders.",
+    "a": "conciliatory",
+    "fr": "Dans un geste conciliant, l'entreprise a accepté de rencontrer les meneurs de la grève."
+   },
+   {
+    "s": "Her tone became more ___ when she realised she had been wrong.",
+    "a": "conciliatory",
+    "fr": "Son ton est devenu plus conciliant quand elle s'est rendu compte qu'elle avait eu tort."
+   }
+  ],
+  "ecris": "une phrase sur un geste conciliant après une dispute",
+  "formes": [
+   "conciliatory",
+   "conciliation"
+  ]
+ },
+ {
+  "id": "e-meddle",
+  "w": "meddle",
+  "pos": "verb",
+  "ipa": "/ˈmedl/",
+  "reg": "courant",
+  "fr": "se mêler (de ce qui ne nous regarde pas)",
+  "def": "To get involved in something that does not concern you, in an annoying way.",
+  "col": [
+   "meddle in",
+   "meddle with",
+   "stop meddling",
+   "meddle in other people's affairs"
+  ],
+  "ex": [
+   "My aunt always tries to [[meddle]] in my love life.",
+   "Foreign powers were accused of [[meddling]] in the country's elections."
+  ],
+  "piege": "Négatif. <i>Meddle <b>in</b> someone's affairs</i> ; <i>meddle <b>with</b></i> = tripoter (un objet). Plus péjoratif que <i>interfere</i>.",
+  "fam": "meddling (n./adj.) · meddler (n.)",
+  "trous": [
+   {
+    "s": "Stop ___ in my business: I can make my own decisions.",
+    "a": "meddling",
+    "fr": "Arrête de te mêler de mes affaires : je peux prendre mes propres décisions."
+   },
+   {
+    "s": "Parents who constantly ___ in their children's friendships can do more harm than good.",
+    "a": "meddle",
+    "fr": "Les parents qui se mêlent sans cesse des amitiés de leurs enfants font parfois plus de mal que de bien."
+   }
+  ],
+  "ecris": "une phrase sur quelqu'un qui se mêle de ce qui ne le regarde pas",
+  "formes": [
+   "meddle",
+   "meddles",
+   "meddled",
+   "meddling",
+   "meddler"
+  ]
+ },
+ {
+  "id": "e-nosy",
+  "w": "nosy",
+  "pos": "adjective",
+  "ipa": "/ˈnəʊzi/",
+  "reg": "familier",
+  "fr": "curieux, fouineur",
+  "def": "Too interested in other people's private lives.",
+  "col": [
+   "nosy neighbours",
+   "don't be so nosy",
+   "a nosy question",
+   "nosy about"
+  ],
+  "ex": [
+   "Our [[nosy]] neighbour always watches who comes and goes from our house.",
+   "Some apps are so [[nosy]] that they collect data about everything users do."
+  ],
+  "piege": "Familier et négatif. Orthographe aussi <i>nosey</i>. Pour une curiosité positive, on dit <i>curious, inquisitive</i>.",
+  "fam": "nosiness (n.)",
+  "trous": [
+   {
+    "s": "Don't be so ___: it's none of your business who I was talking to.",
+    "a": "nosy",
+    "fr": "Ne sois pas si curieux : ça ne te regarde pas, à qui je parlais.",
+    "alt": [
+     "nosey"
+    ]
+   },
+   {
+    "s": "He asked a lot of ___ questions about my salary.",
+    "a": "nosy",
+    "fr": "Il m'a posé beaucoup de questions indiscrètes sur mon salaire.",
+    "alt": [
+     "nosey"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une personne trop curieuse",
+  "formes": [
+   "nosy",
+   "nosey",
+   "nosier",
+   "nosiest",
+   "nosiness"
+  ]
+ },
+ {
+  "id": "e-pester",
+  "w": "pester",
+  "pos": "verb",
+  "ipa": "/ˈpestə/",
+  "reg": "courant",
+  "fr": "harceler, importuner",
+  "def": "To annoy someone by repeatedly asking them for something.",
+  "col": [
+   "pester someone for",
+   "pester someone to do",
+   "keep pestering",
+   "pester the life out of"
+  ],
+  "ex": [
+   "The children [[pestered]] their parents for a dog until they finally gave in.",
+   "Advertisers deliberately target children so that they will [[pester]] their parents to buy products."
+  ],
+  "piege": "Familier mais courant. <i>Pester someone <b>for</b> something / <b>to</b> do something</i>. Moins grave que <i>harass</i> ; proche de <i>nag</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Stop ___ me for sweets: you've already had three!",
+    "a": "pestering",
+    "fr": "Arrête de me réclamer des bonbons : tu en as déjà eu trois !"
+   },
+   {
+    "s": "Journalists ___ the family for interviews after the accident.",
+    "a": "pestered",
+    "fr": "Les journalistes ont harcelé la famille pour obtenir des interviews après l'accident."
+   }
+  ],
+  "ecris": "une phrase sur quelqu'un qui réclame sans cesse quelque chose",
+  "formes": [
+   "pester",
+   "pesters",
+   "pestered",
+   "pestering"
+  ]
+ },
+ {
+  "id": "e-rebuke",
+  "w": "rebuke",
+  "pos": "verb",
+  "ipa": "/rɪˈbjuːk/",
+  "reg": "formel",
+  "fr": "réprimander, blâmer",
+  "def": "To speak angrily or critically to someone because they have done something wrong.",
+  "col": [
+   "rebuke someone for",
+   "sharply rebuke",
+   "a public rebuke",
+   "be rebuked by"
+  ],
+  "ex": [
+   "The referee [[rebuked]] the player for arguing about the penalty.",
+   "The minister was publicly [[rebuked]] by the prime minister for his comments."
+  ],
+  "piege": "Plus fort et plus formel que <i>reproach</i> (souvent triste ou doux) ; plus formel que <i>tell off</i> (familier). <i>Rebuke someone <b>for</b> something</i>.",
+  "fam": "rebuke (n.)",
+  "trous": [
+   {
+    "s": "The judge ___ the lawyer for interrupting the witness.",
+    "a": "rebuked",
+    "fr": "Le juge a réprimandé l'avocat pour avoir interrompu le témoin."
+   },
+   {
+    "s": "Instead of ___ the child, she calmly explained why it was dangerous.",
+    "a": "rebuking",
+    "fr": "Au lieu de réprimander l'enfant, elle lui a calmement expliqué pourquoi c'était dangereux."
+   }
+  ],
+  "ecris": "une phrase sur une personne réprimandée en public",
+  "formes": [
+   "rebuke",
+   "rebukes",
+   "rebuked",
+   "rebuking"
+  ]
+ },
+ {
+  "id": "e-irritable",
+  "w": "irritable",
+  "pos": "adjective",
+  "ipa": "/ˈɪrɪtəbl/",
+  "reg": "courant",
+  "fr": "irritable, grincheux",
+  "def": "Easily annoyed, often because you are tired, hungry or unwell.",
+  "col": [
+   "feel irritable",
+   "irritable and tired",
+   "grow irritable",
+   "irritable mood"
+  ],
+  "ex": [
+   "I get [[irritable]] when I don't have enough sleep.",
+   "Long working hours make people [[irritable]] and less productive."
+  ],
+  "piege": "Désigne un état passager ou une tendance. Plus fort et plus durable que <i>irritated</i> (agacé par une chose précise). Accent sur la 1re syllabe.",
+  "fam": "irritability (n.) · irritate (v.)",
+  "trous": [
+   {
+    "s": "He's always ___ before lunch: he needs to eat something.",
+    "a": "irritable",
+    "fr": "Il est toujours irritable avant le déjeuner : il a besoin de manger quelque chose."
+   },
+   {
+    "s": "Lack of sleep causes ___ and difficulty concentrating.",
+    "a": "irritability",
+    "fr": "Le manque de sommeil provoque de l'irritabilité et des difficultés de concentration."
+   }
+  ],
+  "ecris": "une phrase sur ce qui te rend irritable",
+  "formes": [
+   "irritable",
+   "irritability",
+   "irritably"
+  ]
+ },
+ {
+  "id": "e-outraged",
+  "w": "outraged",
+  "pos": "adjective",
+  "ipa": "/ˈaʊtreɪdʒd/",
+  "reg": "courant",
+  "fr": "indigné, scandalisé",
+  "def": "Extremely angry and shocked because something seems unfair or wrong.",
+  "col": [
+   "outraged by",
+   "outraged at",
+   "outraged public",
+   "be outraged that"
+  ],
+  "ex": [
+   "My grandmother was [[outraged]] when the price of her bus pass doubled.",
+   "Citizens were [[outraged]] when they learnt that ministers had broken their own rules."
+  ],
+  "piege": "Plus fort que <i>angry</i> : colère morale face à une injustice. <i>Outrageous</i> = scandaleux (<i>an outrageous price</i>). Nom : <i>outrage</i>.",
+  "fam": "outrage (n./v.) · outrageous (adj.)",
+  "trous": [
+   {
+    "s": "Parents were ___ by the decision to close the village school.",
+    "a": "outraged",
+    "fr": "Les parents ont été scandalisés par la décision de fermer l'école du village."
+   },
+   {
+    "s": "The verdict caused public ___ and protests across the country.",
+    "a": "outrage",
+    "fr": "Le verdict a provoqué l'indignation générale et des manifestations dans tout le pays."
+   }
+  ],
+  "ecris": "une phrase sur une décision qui t'indigne",
+  "formes": [
+   "outraged",
+   "outrage",
+   "outrageous"
+  ]
+ },
+ {
+  "id": "e-bicker",
+  "w": "bicker",
+  "pos": "verb",
+  "ipa": "/ˈbɪkə/",
+  "reg": "courant",
+  "fr": "se chamailler",
+  "def": "To argue about small, unimportant things.",
+  "col": [
+   "bicker about/over",
+   "constant bickering",
+   "stop bickering",
+   "bicker with"
+  ],
+  "ex": [
+   "My little brothers [[bicker]] about who sits in the front seat every single morning.",
+   "While the parties [[bickered]] over details, the crisis grew worse."
+  ],
+  "piege": "Désigne des disputes <b>mesquines et répétées</b>, souvent entre proches. Moins grave que <i>quarrel</i>. Nom : <i>bickering</i>.",
+  "fam": "bickering (n.)",
+  "trous": [
+   {
+    "s": "The two sisters ___ all the way to the beach about the music.",
+    "a": "bickered",
+    "fr": "Les deux sœurs se sont chamaillées pendant tout le trajet jusqu'à la plage à propos de la musique."
+   },
+   {
+    "s": "Voters are tired of politicians ___ instead of solving problems.",
+    "a": "bickering",
+    "fr": "Les électeurs en ont assez des politiques qui se chamaillent au lieu de résoudre les problèmes."
+   }
+  ],
+  "ecris": "une phrase sur des chamailleries dans ta famille",
+  "formes": [
+   "bicker",
+   "bickers",
+   "bickered",
+   "bickering"
+  ]
+ },
+ {
+  "id": "e-patronise",
+  "w": "patronise",
+  "pos": "verb",
+  "ipa": "/ˈpætrənaɪz/",
+  "reg": "courant",
+  "fr": "traiter avec condescendance",
+  "def": "To speak to someone as if they were less intelligent or less important than you.",
+  "col": [
+   "feel patronised",
+   "a patronising tone",
+   "don't patronise me",
+   "patronising attitude"
+  ],
+  "ex": [
+   "Don't [[patronise]] me: I know perfectly well how to use a washing machine.",
+   "Some campaigns [[patronise]] young people instead of treating them as responsible citizens."
+  ],
+  "piege": "<b>Faux ami</b> : rien à voir avec « patronner » ou « parrainer » (<i>sponsor</i>). Négatif. Orthographe britannique <i>patronise</i> (américaine <i>patronize</i>).",
+  "fam": "patronising (adj.) · patronisingly (adv.)",
+  "trous": [
+   {
+    "s": "She hated the ___ way the salesman explained everything slowly to her.",
+    "a": "patronising",
+    "fr": "Elle détestait la façon condescendante dont le vendeur lui expliquait tout lentement."
+   },
+   {
+    "s": "Elderly people often feel ___ by staff who speak to them like children.",
+    "a": "patronised",
+    "fr": "Les personnes âgées se sentent souvent traitées avec condescendance par un personnel qui leur parle comme à des enfants."
+   }
+  ],
+  "ecris": "une phrase sur une remarque condescendante",
+  "formes": [
+   "patronise",
+   "patronises",
+   "patronised",
+   "patronising",
+   "patronisingly"
+  ]
+ }
+]

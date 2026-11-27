@@ -1,4 +1,4 @@
-var CACHE = "vocab-v1";
+var CACHE = "vocab-v2";
 var ASSETS = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png", "assistant.js?v=10"];
 
 self.addEventListener("install", function (e) {
