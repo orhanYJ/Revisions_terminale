@@ -28,6 +28,9 @@ Plans de `modele-a.js` pour les images : `photo` (photo **en couleur** plein éc
 
 **Images** : celles du dépôt (`philo/serie/img/`, `dnl/serie/img/`, `svt/serie/img/`, `pc/serie/img/`, `acl-*/serie/img/`), licence retrouvée dans les `legende=` / `CREDITS` des scripts `outils/serie-*/*.py`. Une image nouvelle n'est permise que du domaine public ou sous CC BY / CC BY-SA, depuis Wikimedia Commons (vignette `upload.wikimedia.org/…/thumb/…/1280px-…`), enregistrée dans `outils/shorts/img/`, avec auteur et licence en commentaire dans `window.IMAGES` et dans la description.
 
+## Matières sans cours sur la chaîne (27/11/2026 : spé maths, SES, HGGSP, NSI, HLP)
+La chaîne n'a pas (encore) de cours dans ces matières. Les faits viennent alors du **programme officiel de Terminale** (Bulletin officiel, eduscol) et de **sources sérieuses vérifiées** (WebSearch, et pour lire une page l'agent `web-fetch` si tu ne peux pas la lire toi-même), listées en tête du script. Ne jamais dire « la réponse est sur Révisions Animées » ni « le cours complet est sur la chaîne » : finir par une invitation honnête (« Plus de défis sur Révisions Animées », « Abonne-toi pour la suite »). Le plan `chaine` prend `serie: 'Défis du bac'` (ou, pour la HLP, une série de philo existante si le short s'y rattache vraiment). Les chiffres économiques sont datés et sourcés (INSEE, Banque mondiale, OCDE…).
+
 ## Règles communes
 - **Faits** : uniquement ce que contient le cours de la chaîne (site et scripts des vidéos indiqués dans ta mission) ; tout fait pris ailleurs est vérifié sur une source sérieuse (WebSearch / WebFetch) et la source va en tête du script. Aucun fait inventé, aucune lacune comblée ; un point incertain est écarté.
 - **Aucune information personnelle** : aucun nom de professeur, d'élève, d'établissement, de ville.
