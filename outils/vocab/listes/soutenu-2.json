@@ -1,0 +1,4139 @@
+[
+ {
+  "id": "s-address",
+  "w": "address",
+  "pos": "verb",
+  "ipa": "/əˈdres/",
+  "reg": "courant",
+  "fr": "traiter, s'attaquer à (un problème)",
+  "def": "To start dealing with a problem or question by thinking about it and taking action.",
+  "col": [
+   "address an issue",
+   "address the problem of",
+   "address concerns",
+   "fail to address"
+  ],
+  "ex": [
+   "We need to [[address]] the noise problem before the neighbours complain again.",
+   "The essay never really [[addresses]] the question of who should pay for the reform."
+  ],
+  "piege": "Ici, rien à voir avec une adresse postale. Verbe transitif direct : <i>address a problem</i> (pas <i>address to</i>). Pour le verbe, accent sur la 2e syllabe : /əˈdres/.",
+  "fam": "address (n.) · unaddressed (adj.)",
+  "trous": [
+   {
+    "s": "The new law fails to ___ the real causes of poverty.",
+    "a": "address",
+    "fr": "La nouvelle loi ne s'attaque pas aux vraies causes de la pauvreté."
+   },
+   {
+    "s": "By the end, the speaker had ___ every concern raised by the audience.",
+    "a": "addressed",
+    "fr": "À la fin, l'intervenant avait répondu à chacune des inquiétudes soulevées par le public."
+   }
+  ],
+  "ecris": "une phrase sur un problème que ton lycée ou ta ville devrait traiter",
+  "formes": [
+   "address",
+   "addresses",
+   "addressed",
+   "addressing"
+  ]
+ },
+ {
+  "id": "s-constitute",
+  "w": "constitute",
+  "pos": "verb",
+  "ipa": "/ˈkɒnstɪtjuːt/",
+  "reg": "formel",
+  "fr": "constituer, représenter",
+  "def": "To be or form something, especially when this is how it is officially judged or counted.",
+  "col": [
+   "constitute a threat",
+   "constitute a majority",
+   "constitute a breach of",
+   "what constitutes"
+  ],
+  "ex": [
+   "Women [[constitute]] more than half of the students in my year.",
+   "Spreading false information about a candidate may [[constitute]] a crime."
+  ],
+  "piege": "Plus formel que <i>be</i> ou <i>make up</i>. Très utile dans <i>what constitutes…?</i> (qu'est-ce qui constitue… ?). Accent sur la 1re syllabe.",
+  "fam": "constituent (n.) · constitution (n.)",
+  "trous": [
+   {
+    "s": "Does publishing this photo ___ an invasion of privacy?",
+    "a": "constitute",
+    "fr": "La publication de cette photo constitue-t-elle une atteinte à la vie privée ?"
+   },
+   {
+    "s": "Young people ___ a growing share of the electorate.",
+    "a": "constitute",
+    "fr": "Les jeunes représentent une part croissante de l'électorat.",
+    "alt": [
+     "form"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur ce qui constitue, selon toi, une menace pour la démocratie",
+  "formes": [
+   "constitute",
+   "constitutes",
+   "constituted",
+   "constituting"
+  ]
+ },
+ {
+  "id": "s-dismiss",
+  "w": "dismiss",
+  "pos": "verb",
+  "ipa": "/dɪsˈmɪs/",
+  "reg": "courant",
+  "fr": "rejeter, écarter (une idée)",
+  "def": "To decide that an idea or opinion is not worth considering and refuse to take it seriously.",
+  "col": [
+   "dismiss an idea",
+   "dismiss something as nonsense",
+   "dismiss concerns",
+   "be quick to dismiss"
+  ],
+  "ex": [
+   "She [[dismissed]] my suggestion with a laugh before I had even finished.",
+   "Early warnings about climate change were often [[dismissed]] as exaggerated."
+  ],
+  "piege": "Construction fréquente : <i>dismiss something <b>as</b></i> + adjectif ou nom (<i>dismiss it as a joke</i>). Autre sens : licencier ou renvoyer quelqu'un (<i>be dismissed from a job</i>).",
+  "fam": "dismissive (adj.) · dismissal (n.)",
+  "trous": [
+   {
+    "s": "It would be a mistake to ___ the protesters as a small group of extremists.",
+    "a": "dismiss",
+    "fr": "Ce serait une erreur de balayer les manifestants comme un petit groupe d'extrémistes."
+   },
+   {
+    "s": "The minister ___ the report as politically motivated.",
+    "a": "dismissed",
+    "fr": "Le ministre a rejeté le rapport en le qualifiant de politiquement motivé."
+   }
+  ],
+  "ecris": "une phrase sur une idée qu'on a eu tort de rejeter trop vite",
+  "formes": [
+   "dismiss",
+   "dismisses",
+   "dismissed",
+   "dismissing",
+   "dismissive"
+  ]
+ },
+ {
+  "id": "s-foresee",
+  "w": "foresee",
+  "pos": "verb",
+  "ipa": "/fɔːˈsiː/",
+  "reg": "courant",
+  "fr": "prévoir, voir venir",
+  "def": "To know or guess that something will happen before it actually happens.",
+  "col": [
+   "foresee problems",
+   "foresee the consequences",
+   "in the foreseeable future",
+   "nobody could have foreseen"
+  ],
+  "ex": [
+   "I didn't [[foresee]] that the train strike would last the whole week.",
+   "Few economists [[foresaw]] how quickly the crisis would spread to other countries."
+  ],
+  "piege": "Verbe irrégulier : <i>foresee, foresaw, foreseen</i>. L'adjectif <i>foreseeable</i> est fréquent : <i>for the foreseeable future</i> (pour l'avenir prévisible). <i>Foresee</i> insiste sur le fait de voir venir, <i>predict</i> sur l'annonce.",
+  "fam": "foreseeable (adj.) · unforeseen (adj.)",
+  "trous": [
+   {
+    "s": "Nobody could have ___ that the small protest would turn into a revolution.",
+    "a": "foreseen",
+    "fr": "Personne n'aurait pu prévoir que la petite manifestation se transformerait en révolution."
+   },
+   {
+    "s": "Good leaders try to ___ problems before they become crises.",
+    "a": "foresee",
+    "fr": "Les bons dirigeants essaient de voir venir les problèmes avant qu'ils deviennent des crises."
+   }
+  ],
+  "ecris": "une phrase sur une conséquence que personne n'avait vue venir",
+  "formes": [
+   "foresee",
+   "foresees",
+   "foresaw",
+   "foreseen",
+   "foreseeing",
+   "foreseeable"
+  ]
+ },
+ {
+  "id": "s-trigger",
+  "w": "trigger",
+  "pos": "verb",
+  "ipa": "/ˈtrɪɡə/",
+  "reg": "courant",
+  "fr": "déclencher, provoquer",
+  "def": "To make something happen suddenly, especially a bad event or a strong reaction.",
+  "col": [
+   "trigger a crisis",
+   "trigger a reaction",
+   "trigger a debate",
+   "be triggered by"
+  ],
+  "ex": [
+   "The smell of smoke [[triggered]] the fire alarm in the middle of the night.",
+   "The assassination in Sarajevo [[triggered]] a chain of events that led to war."
+  ],
+  "piege": "Verbe et nom : <i>a trigger</i> (une gâchette, un déclencheur). <i>Trigger</i> désigne l'étincelle immédiate ; pour une cause profonde, préférer <i>cause</i>.",
+  "fam": "trigger (n.)",
+  "trous": [
+   {
+    "s": "A single video was enough to ___ a wave of protests across the country.",
+    "a": "trigger",
+    "fr": "Une seule vidéo a suffi à déclencher une vague de manifestations dans tout le pays."
+   },
+   {
+    "s": "The rise in bread prices ___ riots in several cities.",
+    "a": "triggered",
+    "fr": "La hausse du prix du pain a provoqué des émeutes dans plusieurs villes."
+   }
+  ],
+  "ecris": "une phrase sur l'événement qui a déclenché une crise",
+  "formes": [
+   "trigger",
+   "triggers",
+   "triggered",
+   "triggering"
+  ]
+ },
+ {
+  "id": "s-outcome",
+  "w": "outcome",
+  "pos": "noun",
+  "ipa": "/ˈaʊtkʌm/",
+  "reg": "courant",
+  "fr": "résultat, issue",
+  "def": "The final result of an action, process or event.",
+  "col": [
+   "the outcome of the election",
+   "a positive outcome",
+   "the likely outcome",
+   "regardless of the outcome"
+  ],
+  "ex": [
+   "Whatever the [[outcome]] of the match, we'll go out for pizza afterwards.",
+   "The [[outcome]] of the referendum divided the country for years."
+  ],
+  "piege": "Plus neutre et plus soutenu que <i>result</i>. Dénombrable : <i>an outcome</i>, <i>the outcomes</i>. Accent sur la première syllabe.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Both sides are waiting anxiously for the ___ of the negotiations.",
+    "a": "outcome",
+    "fr": "Les deux camps attendent avec inquiétude l'issue des négociations."
+   },
+   {
+    "s": "The study compared the health ___ of two groups of patients.",
+    "a": "outcomes",
+    "fr": "L'étude a comparé les résultats de santé de deux groupes de patients."
+   }
+  ],
+  "ecris": "une phrase sur l'issue d'une élection, d'un procès ou d'un match",
+  "formes": [
+   "outcome",
+   "outcomes"
+  ]
+ },
+ {
+  "id": "s-comply",
+  "w": "comply",
+  "pos": "verb",
+  "ipa": "/kəmˈplaɪ/",
+  "reg": "formel",
+  "fr": "se conformer à, obéir à",
+  "def": "To obey a rule, law or official request.",
+  "col": [
+   "comply with the law",
+   "comply with regulations",
+   "refuse to comply",
+   "fail to comply"
+  ],
+  "ex": [
+   "Most passengers [[complied]] with the request to switch off their phones.",
+   "Companies that fail to [[comply]] with the new rules will face heavy fines."
+  ],
+  "piege": "Toujours <i>comply <b>with</b></i> quelque chose. Nom : <i>compliance</i> (conformité). Ne pas confondre avec <i>compliment</i> ou <i>complement</i>.",
+  "fam": "compliance (n.)",
+  "trous": [
+   {
+    "s": "All restaurants must ___ with the new hygiene standards.",
+    "a": "comply",
+    "fr": "Tous les restaurants doivent se conformer aux nouvelles normes d'hygiène."
+   },
+   {
+    "s": "The country ___ with the UN resolution and withdrew its troops.",
+    "a": "complied",
+    "fr": "Le pays s'est conformé à la résolution de l'ONU et a retiré ses troupes."
+   }
+  ],
+  "ecris": "une phrase sur une règle qu'on accepte ou refuse de respecter",
+  "formes": [
+   "comply",
+   "complies",
+   "complied",
+   "complying",
+   "compliance"
+  ]
+ },
+ {
+  "id": "s-implement",
+  "w": "implement",
+  "pos": "verb",
+  "ipa": "/ˈɪmplɪment/",
+  "reg": "courant",
+  "fr": "mettre en œuvre, appliquer",
+  "def": "To put a plan, decision or law into action.",
+  "col": [
+   "implement a policy",
+   "implement reforms",
+   "fully implemented",
+   "implement changes"
+  ],
+  "ex": [
+   "The school [[implemented]] a new timetable, and nobody could find their classrooms.",
+   "Passing a law is easy; [[implementing]] it across the whole country is much harder."
+  ],
+  "piege": "Verbe : accent sur la première syllabe, finale /ment/. Le nom <i>an implement</i> (un outil) se prononce /ˈɪmplɪmənt/. Pour l'action : <i>implementation</i>.",
+  "fam": "implementation (n.)",
+  "trous": [
+   {
+    "s": "The reforms were announced in 2019 but never fully ___.",
+    "a": "implemented",
+    "fr": "Les réformes ont été annoncées en 2019 mais jamais pleinement mises en œuvre."
+   },
+   {
+    "s": "It will take years to ___ the new recycling rules in every town.",
+    "a": "implement",
+    "fr": "Il faudra des années pour appliquer les nouvelles règles de recyclage dans chaque ville."
+   }
+  ],
+  "ecris": "une phrase sur une réforme difficile à mettre en œuvre",
+  "formes": [
+   "implement",
+   "implements",
+   "implemented",
+   "implementing",
+   "implementation"
+  ]
+ },
+ {
+  "id": "s-implication",
+  "w": "implication",
+  "pos": "noun",
+  "ipa": "/ˌɪmplɪˈkeɪʃn/",
+  "reg": "courant",
+  "fr": "conséquence, répercussion (possible)",
+  "def": "A possible effect or result of an action or decision that is not immediately obvious.",
+  "col": [
+   "have implications for",
+   "serious implications",
+   "the wider implications",
+   "consider the implications"
+  ],
+  "ex": [
+   "Have you thought about the [[implications]] of moving so far from your family?",
+   "The ruling has major [[implications]] for freedom of speech online."
+  ],
+  "piege": "Faux ami : le sens courant n'est pas « participation » (<i>involvement</i>). Souvent au pluriel : <i>the implications <b>for</b> someone</i>. Autre sens : ce qui est sous-entendu (<i>by implication</i>).",
+  "fam": "imply (v.)",
+  "trous": [
+   {
+    "s": "The new technology raises serious ethical ___ for privacy.",
+    "a": "implications",
+    "fr": "Cette nouvelle technologie soulève de sérieuses questions éthiques pour la vie privée."
+   },
+   {
+    "s": "One ___ of rising sea levels is that whole islands may become uninhabitable.",
+    "a": "implication",
+    "fr": "L'une des conséquences de la montée des eaux est que des îles entières pourraient devenir inhabitables."
+   }
+  ],
+  "ecris": "une phrase sur les conséquences possibles d'une découverte ou d'une décision",
+  "formes": [
+   "implication",
+   "implications"
+  ]
+ },
+ {
+  "id": "s-outset",
+  "w": "outset",
+  "pos": "noun",
+  "ipa": "/ˈaʊtset/",
+  "reg": "courant",
+  "fr": "début, commencement",
+  "def": "The beginning of an event, process or period.",
+  "col": [
+   "at the outset",
+   "from the outset",
+   "right from the outset",
+   "at the outset of the war"
+  ],
+  "ex": [
+   "I told her from the [[outset]] that I couldn't stay late.",
+   "At the [[outset]] of the war, many soldiers expected to be home by Christmas."
+  ],
+  "piege": "Presque toujours dans <i>at the outset</i> (au début) ou <i>from the outset</i> (dès le départ). Très utile dans une introduction : <i>It must be stated at the outset that…</i>",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "It was clear from the ___ that the project would be expensive.",
+    "a": "outset",
+    "fr": "Il était clair dès le départ que le projet coûterait cher.",
+    "alt": [
+     "start"
+    ]
+   },
+   {
+    "s": "At the ___ of the negotiations, both sides seemed confident.",
+    "a": "outset",
+    "fr": "Au début des négociations, les deux camps semblaient confiants.",
+    "alt": [
+     "start"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur ce qui était clair dès le début d'une situation",
+  "formes": [
+   "outset"
+  ]
+ },
+ {
+  "id": "s-concede",
+  "w": "concede",
+  "pos": "verb",
+  "ipa": "/kənˈsiːd/",
+  "reg": "courant",
+  "fr": "concéder, admettre (à contrecœur)",
+  "def": "To admit, often unwillingly, that something is true or that the other side has a point.",
+  "col": [
+   "concede that",
+   "concede defeat",
+   "be forced to concede",
+   "reluctantly concede"
+  ],
+  "ex": [
+   "My brother finally [[conceded]] that I was right about the restaurant.",
+   "Even its critics [[concede]] that the reform has reduced unemployment."
+  ],
+  "piege": "Verbe-clé de l'essay pour nuancer : <i>It must be conceded that…</i> (il faut reconnaître que…). <i>Concede defeat</i> = reconnaître sa défaite.",
+  "fam": "concession (n.)",
+  "trous": [
+   {
+    "s": "After a long recount, the candidate ___ defeat and congratulated her rival.",
+    "a": "conceded",
+    "fr": "Après un long recomptage, la candidate a reconnu sa défaite et félicité sa rivale."
+   },
+   {
+    "s": "I ___ that your plan is cheaper, but I still don't think it will work.",
+    "a": "concede",
+    "fr": "Je concède que ton plan est moins cher, mais je ne pense toujours pas qu'il fonctionnera."
+   }
+  ],
+  "ecris": "une phrase où tu reconnais un point de l'argument adverse",
+  "formes": [
+   "concede",
+   "concedes",
+   "conceded",
+   "conceding",
+   "concession"
+  ]
+ },
+ {
+  "id": "s-loophole",
+  "w": "loophole",
+  "pos": "noun",
+  "ipa": "/ˈluːphəʊl/",
+  "reg": "courant",
+  "fr": "faille (juridique), vide juridique",
+  "def": "A small mistake or gap in a law or rule that allows people to avoid obeying it.",
+  "col": [
+   "a tax loophole",
+   "close a loophole",
+   "exploit a loophole",
+   "a legal loophole"
+  ],
+  "ex": [
+   "He found a [[loophole]] in the rules: nothing said we couldn't use a calculator.",
+   "Big companies use [[loopholes]] to avoid paying billions in tax every year."
+  ],
+  "piege": "Concerne une loi ou un règlement ; pour un défaut dans un raisonnement, on dit <i>flaw</i>. Verbes associés : <i>close / plug a loophole</i> (combler), <i>exploit a loophole</i> (en profiter).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The government has promised to close the ___ that lets landlords avoid the new rules.",
+    "a": "loophole",
+    "fr": "Le gouvernement a promis de combler la faille qui permet aux propriétaires d'échapper aux nouvelles règles."
+   },
+   {
+    "s": "Clever lawyers are paid to find ___ in contracts.",
+    "a": "loopholes",
+    "fr": "Des avocats habiles sont payés pour trouver des failles dans les contrats."
+   }
+  ],
+  "ecris": "une phrase sur une règle que certains contournent grâce à une faille",
+  "formes": [
+   "loophole",
+   "loopholes"
+  ]
+ },
+ {
+  "id": "s-breakthrough",
+  "w": "breakthrough",
+  "pos": "noun",
+  "ipa": "/ˈbreɪkθruː/",
+  "reg": "courant",
+  "fr": "percée, avancée décisive",
+  "def": "An important discovery or development that solves a problem or ends a long period without progress.",
+  "col": [
+   "a major breakthrough",
+   "a scientific breakthrough",
+   "make a breakthrough",
+   "a breakthrough in the talks"
+  ],
+  "ex": [
+   "After weeks of practice, I finally had a [[breakthrough]] with my piano piece.",
+   "The discovery of penicillin was a [[breakthrough]] that saved millions of lives."
+  ],
+  "piege": "Nom en un seul mot (<i>a breakthrough</i>), à distinguer du verbe à particule <i>break through</i> (percer, franchir). Se construit avec <i>in</i> : <i>a breakthrough in cancer research</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Negotiators announced a ___ after twelve hours of talks.",
+    "a": "breakthrough",
+    "fr": "Les négociateurs ont annoncé une percée après douze heures de discussions."
+   },
+   {
+    "s": "The vaccine was hailed as one of the greatest medical ___ of the century.",
+    "a": "breakthroughs",
+    "fr": "Le vaccin a été salué comme l'une des plus grandes avancées médicales du siècle."
+   }
+  ],
+  "ecris": "une phrase sur une découverte ou une avancée qui a tout changé",
+  "formes": [
+   "breakthrough",
+   "breakthroughs"
+  ]
+ },
+ {
+  "id": "s-reinforce",
+  "w": "reinforce",
+  "pos": "verb",
+  "ipa": "/ˌriːɪnˈfɔːs/",
+  "reg": "courant",
+  "fr": "renforcer, conforter",
+  "def": "To make an idea, feeling, belief or structure stronger or more certain.",
+  "col": [
+   "reinforce stereotypes",
+   "reinforce the idea that",
+   "reinforce inequality",
+   "mutually reinforcing"
+  ],
+  "ex": [
+   "Reading your notes aloud helps [[reinforce]] what you learned during the day.",
+   "Advertising often [[reinforces]] old stereotypes about men and women."
+  ],
+  "piege": "Pour une idée ou un préjugé, <i>reinforce</i> est plus juste que <i>strengthen</i>. Ne pas confondre avec <i>enforce</i> (faire appliquer). Le pluriel <i>reinforcements</i> désigne des renforts militaires.",
+  "fam": "reinforcement (n.)",
+  "trous": [
+   {
+    "s": "Each new success ___ her belief that she could win.",
+    "a": "reinforced",
+    "fr": "Chaque nouveau succès renforçait sa conviction qu'elle pouvait gagner."
+   },
+   {
+    "s": "Segregated schools tend to ___ social divisions rather than reduce them.",
+    "a": "reinforce",
+    "fr": "Les écoles ségréguées ont tendance à renforcer les divisions sociales plutôt qu'à les réduire."
+   }
+  ],
+  "ecris": "une phrase sur quelque chose qui renforce un préjugé ou une inégalité",
+  "formes": [
+   "reinforce",
+   "reinforces",
+   "reinforced",
+   "reinforcing",
+   "reinforcement"
+  ]
+ },
+ {
+  "id": "s-compound",
+  "w": "compound",
+  "pos": "verb",
+  "ipa": "/kəmˈpaʊnd/",
+  "reg": "formel",
+  "fr": "aggraver, alourdir (un problème)",
+  "def": "To make a problem or difficult situation worse by adding a new difficulty to it.",
+  "col": [
+   "compound the problem",
+   "be compounded by",
+   "compound the error",
+   "further compound"
+  ],
+  "ex": [
+   "I was late, and I [[compounded]] the problem by forgetting my homework.",
+   "Poor harvests were [[compounded]] by war, and famine soon followed."
+  ],
+  "piege": "Sens à connaître, différent du nom <i>a compound</i> (un composé, une enceinte). Verbe accentué sur la 2e syllabe, nom sur la 1re. Proche de <i>exacerbate</i>, mais <i>compound</i> insiste sur l'<b>ajout</b> d'un nouveau problème.",
+  "fam": "compound (n., adj.)",
+  "trous": [
+   {
+    "s": "Lying about the accident only ___ his mistake.",
+    "a": "compounded",
+    "fr": "Mentir sur l'accident n'a fait qu'aggraver son erreur."
+   },
+   {
+    "s": "Cutting the number of teachers would only ___ the crisis in schools.",
+    "a": "compound",
+    "fr": "Réduire le nombre d'enseignants ne ferait qu'aggraver la crise dans les écoles."
+   }
+  ],
+  "ecris": "une phrase sur une erreur qu'on aggrave en voulant la cacher",
+  "formes": [
+   "compound",
+   "compounds",
+   "compounded",
+   "compounding"
+  ]
+ },
+ {
+  "id": "s-erode",
+  "w": "erode",
+  "pos": "verb",
+  "ipa": "/ɪˈrəʊd/",
+  "reg": "courant",
+  "fr": "éroder, ronger peu à peu",
+  "def": "To wear away slowly, as water wears away rock, or to make trust, rights or value slowly disappear.",
+  "col": [
+   "erode trust",
+   "erode support",
+   "be gradually eroded",
+   "erode the value of"
+  ],
+  "ex": [
+   "Waves have [[eroded]] the cliffs so much that the coastal path had to be moved.",
+   "Years of broken promises have [[eroded]] public trust in politicians."
+  ],
+  "piege": "Sens propre (l'érosion des sols) et figuré (<i>erode confidence</i>). Proche de <i>undermine</i>, mais <i>erode</i> insiste sur la disparition progressive, couche après couche.",
+  "fam": "erosion (n.)",
+  "trous": [
+   {
+    "s": "Inflation ___ the value of people's savings throughout the 1970s.",
+    "a": "eroded",
+    "fr": "L'inflation a rongé la valeur de l'épargne des gens tout au long des années 1970."
+   },
+   {
+    "s": "Every new scandal continues to ___ support for the government.",
+    "a": "erode",
+    "fr": "Chaque nouveau scandale continue d'éroder le soutien au gouvernement."
+   }
+  ],
+  "ecris": "une phrase sur une confiance ou un droit qui disparaît peu à peu",
+  "formes": [
+   "erode",
+   "erodes",
+   "eroded",
+   "eroding",
+   "erosion"
+  ]
+ },
+ {
+  "id": "s-advocate",
+  "w": "advocate",
+  "pos": "verb",
+  "ipa": "/ˈædvəkeɪt/",
+  "reg": "formel",
+  "fr": "préconiser, prôner",
+  "def": "To argue in favour of a particular policy, method or solution and recommend it to others.",
+  "col": [
+   "advocate reform",
+   "advocate the use of",
+   "strongly advocate",
+   "an advocate of"
+  ],
+  "ex": [
+   "My dentist [[advocates]] brushing for two full minutes, twice a day.",
+   "Some economists [[advocate]] a shorter working week to share jobs more fairly."
+  ],
+  "piege": "Transitif direct en anglais britannique : <i>advocate a policy</i> (<i>advocate for</i> est surtout américain). Le nom <i>an advocate</i> (partisan, défenseur) se prononce /ˈædvəkət/. Un avocat se dit <i>a lawyer</i>.",
+  "fam": "advocate (n.) · advocacy (n.)",
+  "trous": [
+   {
+    "s": "The report ___ stricter controls on the sale of energy drinks.",
+    "a": "advocates",
+    "fr": "Le rapport préconise des contrôles plus stricts sur la vente de boissons énergisantes.",
+    "alt": [
+     "advocated"
+    ]
+   },
+   {
+    "s": "Gandhi ___ non-violent resistance against British rule.",
+    "a": "advocated",
+    "fr": "Gandhi prônait la résistance non violente contre la domination britannique."
+   }
+  ],
+  "ecris": "une phrase sur une solution que tu préconiserais pour un problème actuel",
+  "formes": [
+   "advocate",
+   "advocates",
+   "advocated",
+   "advocating",
+   "advocacy"
+  ]
+ },
+ {
+  "id": "s-repercussion",
+  "w": "repercussion",
+  "pos": "noun",
+  "ipa": "/ˌriːpəˈkʌʃn/",
+  "reg": "courant",
+  "fr": "répercussion, contrecoup",
+  "def": "An effect, usually bad, that an action or event has later, often in an unexpected way.",
+  "col": [
+   "serious repercussions",
+   "have repercussions for",
+   "political repercussions",
+   "face repercussions"
+  ],
+  "ex": [
+   "If you skip training again, there will be [[repercussions]] for your place in the team.",
+   "The crash of 1929 had [[repercussions]] far beyond the United States."
+  ],
+  "piege": "Presque toujours au pluriel et négatif. Construction : <i>repercussions <b>for</b> someone / <b>on</b> something</i>. Plus fort et plus inattendu que <i>consequences</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The decision to close the factory had ___ for the whole town.",
+    "a": "repercussions",
+    "fr": "La décision de fermer l'usine a eu des répercussions sur toute la ville."
+   },
+   {
+    "s": "Leaking the report could have serious legal ___ for the journalist.",
+    "a": "repercussions",
+    "fr": "La fuite du rapport pourrait avoir de graves répercussions judiciaires pour le journaliste."
+   }
+  ],
+  "ecris": "une phrase sur les répercussions inattendues d'une décision",
+  "formes": [
+   "repercussion",
+   "repercussions"
+  ]
+ },
+ {
+  "id": "s-shift",
+  "w": "shift",
+  "pos": "noun",
+  "ipa": "/ʃɪft/",
+  "reg": "courant",
+  "fr": "changement, glissement",
+  "def": "A change in position, direction, opinion or policy.",
+  "col": [
+   "a shift in public opinion",
+   "a major shift",
+   "a shift away from",
+   "a shift towards"
+  ],
+  "ex": [
+   "There has been a [[shift]] in my eating habits since I started cooking for myself.",
+   "The 1980s saw a [[shift]] away from state ownership towards free markets."
+  ],
+  "piege": "Nom et verbe (<i>opinion shifted</i>). Prépositions : <i>a shift <b>in</b></i> quelque chose, <i>a shift <b>from</b> X <b>to</b> Y</i>, <i>a shift <b>towards</b></i>. Autre sens : une équipe de travail (<i>a night shift</i>).",
+  "fam": "shift (v.)",
+  "trous": [
+   {
+    "s": "Polls show a clear ___ in public opinion in favour of the reform.",
+    "a": "shift",
+    "fr": "Les sondages montrent un net glissement de l'opinion publique en faveur de la réforme."
+   },
+   {
+    "s": "Over the decade, voters' priorities ___ from the economy to the environment.",
+    "a": "shifted",
+    "fr": "En dix ans, les priorités des électeurs sont passées de l'économie à l'environnement."
+   }
+  ],
+  "ecris": "une phrase sur un changement d'opinion ou de mentalité dans la société",
+  "formes": [
+   "shift",
+   "shifts",
+   "shifted",
+   "shifting"
+  ]
+ },
+ {
+  "id": "s-consensus",
+  "w": "consensus",
+  "pos": "noun",
+  "ipa": "/kənˈsensəs/",
+  "reg": "courant",
+  "fr": "consensus, accord général",
+  "def": "General agreement among a group of people.",
+  "col": [
+   "reach a consensus",
+   "a broad consensus",
+   "the scientific consensus",
+   "there is a growing consensus that"
+  ],
+  "ex": [
+   "After an hour of arguing, we reached a [[consensus]]: pizza, not sushi.",
+   "There is now a broad scientific [[consensus]] that human activity is warming the planet."
+  ],
+  "piege": "Orthographe : <i>consen<b>s</b>us</i>, jamais avec un c. Au singulier : <i>a consensus</i>, <i>the consensus</i>. Pléonasme à éviter : <i>general consensus</i>.",
+  "fam": "consensual (adj.)",
+  "trous": [
+   {
+    "s": "The committee failed to reach a ___ and the vote was postponed.",
+    "a": "consensus",
+    "fr": "Le comité n'est pas parvenu à un consensus et le vote a été reporté."
+   },
+   {
+    "s": "There is a growing ___ among doctors that sugar is as harmful as fat.",
+    "a": "consensus",
+    "fr": "Les médecins s'accordent de plus en plus à dire que le sucre est aussi nocif que le gras."
+   }
+  ],
+  "ecris": "une phrase sur un sujet où il existe (ou non) un accord général",
+  "formes": [
+   "consensus",
+   "consensual"
+  ]
+ },
+ {
+  "id": "s-misconception",
+  "w": "misconception",
+  "pos": "noun",
+  "ipa": "/ˌmɪskənˈsepʃn/",
+  "reg": "courant",
+  "fr": "idée fausse, idée reçue",
+  "def": "A belief or idea that is wrong because it is based on poor understanding.",
+  "col": [
+   "a common misconception",
+   "a popular misconception",
+   "the misconception that",
+   "correct a misconception"
+  ],
+  "ex": [
+   "It's a common [[misconception]] that goldfish have a three-second memory.",
+   "The film repeats the [[misconception]] that all refugees are poor and uneducated."
+  ],
+  "piege": "Se construit avec <i>that</i> (<i>the misconception that…</i>) ou <i>about</i> (<i>misconceptions about the past</i>). Plus soutenu que <i>a false idea</i>.",
+  "fam": "misconceived (adj.)",
+  "trous": [
+   {
+    "s": "Contrary to a popular ___, bulls are not angered by the colour red.",
+    "a": "misconception",
+    "fr": "Contrairement à une idée reçue, les taureaux ne sont pas énervés par la couleur rouge."
+   },
+   {
+    "s": "The museum tries to correct ___ about life in the Middle Ages.",
+    "a": "misconceptions",
+    "fr": "Le musée essaie de corriger les idées fausses sur la vie au Moyen Âge."
+   }
+  ],
+  "ecris": "une phrase sur une idée reçue que tu voudrais corriger",
+  "formes": [
+   "misconception",
+   "misconceptions"
+  ]
+ },
+ {
+  "id": "s-refute",
+  "w": "refute",
+  "pos": "verb",
+  "ipa": "/rɪˈfjuːt/",
+  "reg": "formel",
+  "fr": "réfuter",
+  "def": "To prove that a statement or argument is wrong, using evidence or reasoning.",
+  "col": [
+   "refute a claim",
+   "refute an argument",
+   "refute the allegations",
+   "be easily refuted"
+  ],
+  "ex": [
+   "My little sister tried to [[refute]] my theory by showing me a photo.",
+   "New evidence [[refuted]] the claim that the vaccine causes illness."
+  ],
+  "piege": "Au sens strict, <i>refute</i> = <b>prouver</b> que c'est faux, pas simplement le nier (<i>deny</i>). Dans la presse, il est souvent employé pour « démentir », ce que les puristes critiquent.",
+  "fam": "refutation (n.)",
+  "trous": [
+   {
+    "s": "The scientist published data that clearly ___ her rival's theory.",
+    "a": "refuted",
+    "fr": "La scientifique a publié des données qui réfutaient clairement la théorie de son rival."
+   },
+   {
+    "s": "It is easy to ___ this argument with a single counter-example.",
+    "a": "refute",
+    "fr": "Il est facile de réfuter cet argument avec un seul contre-exemple."
+   }
+  ],
+  "ecris": "une phrase où tu montres qu'un argument est faux",
+  "formes": [
+   "refute",
+   "refutes",
+   "refuted",
+   "refuting",
+   "refutation"
+  ]
+ },
+ {
+  "id": "s-pose",
+  "w": "pose",
+  "pos": "verb",
+  "ipa": "/pəʊz/",
+  "reg": "courant",
+  "fr": "poser (un problème, une menace)",
+  "def": "To create a threat, problem or challenge that has to be dealt with.",
+  "col": [
+   "pose a threat to",
+   "pose a risk",
+   "pose a challenge",
+   "pose a question"
+  ],
+  "ex": [
+   "The icy roads [[pose]] a real danger to cyclists this morning.",
+   "Artificial intelligence [[poses]] new challenges for schools and universities."
+  ],
+  "piege": "Toujours avec un nom comme complément : <i>pose a <b>threat / risk / problem / challenge</b></i>. Pour « poser » un objet, on dit <i>put</i> ; <i>pose for a photo</i> = poser pour une photo.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Rising sea levels ___ a serious threat to coastal cities.",
+    "a": "pose",
+    "fr": "La montée du niveau des mers représente une menace sérieuse pour les villes côtières."
+   },
+   {
+    "s": "The rapid spread of the disease ___ a huge challenge for hospitals.",
+    "a": "posed",
+    "fr": "La propagation rapide de la maladie a posé un énorme défi aux hôpitaux.",
+    "alt": [
+     "poses"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une menace ou un défi que pose un phénomène actuel",
+  "formes": [
+   "pose",
+   "poses",
+   "posed",
+   "posing"
+  ]
+ },
+ {
+  "id": "s-warrant",
+  "w": "warrant",
+  "pos": "verb",
+  "ipa": "/ˈwɒrənt/",
+  "reg": "formel",
+  "fr": "justifier, mériter",
+  "def": "To make an action necessary or appropriate; to be a good reason for something.",
+  "col": [
+   "warrant further investigation",
+   "warrant attention",
+   "be fully warranted",
+   "unwarranted criticism"
+  ],
+  "ex": [
+   "A tiny scratch doesn't [[warrant]] a trip to the hospital.",
+   "The scale of the crisis [[warrants]] an urgent response from the government."
+  ],
+  "piege": "Le sujet est la <b>situation</b>, pas la personne : <i>the problem warrants action</i>. L'adjectif <i>unwarranted</i> (injustifié) est très courant. Le nom <i>a warrant</i> = un mandat (d'arrêt, de perquisition).",
+  "fam": "unwarranted (adj.) · warrant (n.)",
+  "trous": [
+   {
+    "s": "These strange results ___ further investigation.",
+    "a": "warrant",
+    "fr": "Ces résultats étranges justifient une enquête plus approfondie."
+   },
+   {
+    "s": "The punishment was harsh, but the seriousness of the crime ___ it.",
+    "a": "warranted",
+    "fr": "La sanction était sévère, mais la gravité du crime la justifiait."
+   }
+  ],
+  "ecris": "une phrase sur une situation qui justifie une réaction rapide",
+  "formes": [
+   "warrant",
+   "warrants",
+   "warranted",
+   "warranting",
+   "unwarranted"
+  ]
+ },
+ {
+  "id": "s-allocate",
+  "w": "allocate",
+  "pos": "verb",
+  "ipa": "/ˈæləkeɪt/",
+  "reg": "courant",
+  "fr": "attribuer, allouer, affecter",
+  "def": "To officially give a particular amount of money, time or resources to someone or for a purpose.",
+  "col": [
+   "allocate funds",
+   "allocate resources",
+   "allocate time to",
+   "be allocated to"
+  ],
+  "ex": [
+   "We each [[allocated]] ten minutes to our part of the presentation.",
+   "The government [[allocated]] extra funds to schools in poorer areas."
+  ],
+  "piege": "Construction : <i>allocate something <b>to</b> someone / <b>for</b> something</i>. Plus officiel que <i>give</i> ; souvent au passif. Nom : <i>allocation</i>.",
+  "fam": "allocation (n.)",
+  "trous": [
+   {
+    "s": "How much money should be ___ to public transport?",
+    "a": "allocated",
+    "fr": "Quelle somme faudrait-il allouer aux transports publics ?"
+   },
+   {
+    "s": "The council has decided to ___ more resources to youth centres.",
+    "a": "allocate",
+    "fr": "La municipalité a décidé d'attribuer davantage de moyens aux maisons des jeunes.",
+    "alt": [
+     "devote"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur la façon dont un budget devrait être réparti",
+  "formes": [
+   "allocate",
+   "allocates",
+   "allocated",
+   "allocating",
+   "allocation"
+  ]
+ },
+ {
+  "id": "s-prompt",
+  "w": "prompt",
+  "pos": "verb",
+  "ipa": "/prɒmpt/",
+  "reg": "courant",
+  "fr": "pousser à, inciter, susciter",
+  "def": "To cause someone to take an action or make a decision; to be the reason for something.",
+  "col": [
+   "prompt someone to do",
+   "prompt a rethink",
+   "prompt calls for",
+   "prompted by"
+  ],
+  "ex": [
+   "The cold weather [[prompted]] me to finally buy a decent coat.",
+   "The disaster [[prompted]] calls for stricter safety rules in factories."
+  ],
+  "piege": "Construction : <i>prompt someone <b>to</b> do something</i>. L'adjectif <i>prompt</i> veut dire rapide (<i>a prompt reply</i>), d'où <i>promptly</i>. En informatique, <i>a prompt</i> est une invite.",
+  "fam": "prompt (adj.) · promptly (adv.)",
+  "trous": [
+   {
+    "s": "What ___ you to change your mind about studying abroad?",
+    "a": "prompted",
+    "fr": "Qu'est-ce qui t'a poussé à changer d'avis sur les études à l'étranger ?"
+   },
+   {
+    "s": "Rising rents are likely to ___ more young people to leave the capital.",
+    "a": "prompt",
+    "fr": "La hausse des loyers devrait pousser davantage de jeunes à quitter la capitale."
+   }
+  ],
+  "ecris": "une phrase sur un événement qui a poussé quelqu'un à agir",
+  "formes": [
+   "prompt",
+   "prompts",
+   "prompted",
+   "prompting"
+  ]
+ },
+ {
+  "id": "s-spark",
+  "w": "spark",
+  "pos": "verb",
+  "ipa": "/spɑːk/",
+  "reg": "courant",
+  "fr": "déclencher, susciter (débat, intérêt)",
+  "def": "To start a discussion, protest or wave of interest, like a small spark that lights a fire.",
+  "col": [
+   "spark a debate",
+   "spark outrage",
+   "spark interest in",
+   "spark protests"
+  ],
+  "ex": [
+   "A trip to the museum [[sparked]] my interest in ancient Egypt.",
+   "The new law [[sparked]] protests in dozens of cities."
+  ],
+  "piege": "Proche de <i>trigger</i>, mais <i>spark</i> s'emploie aussi pour des choses positives (<i>spark curiosity</i>). Nom : <i>a spark</i> (une étincelle).",
+  "fam": "spark (n.)",
+  "trous": [
+   {
+    "s": "Her controversial remarks ___ a fierce debate on social media.",
+    "a": "sparked",
+    "fr": "Ses propos controversés ont déclenché un vif débat sur les réseaux sociaux."
+   },
+   {
+    "s": "A good teacher can ___ a lifelong love of reading.",
+    "a": "spark",
+    "fr": "Un bon enseignant peut faire naître un amour de la lecture pour toute la vie."
+   }
+  ],
+  "ecris": "une phrase sur ce qui a éveillé ton intérêt pour un sujet",
+  "formes": [
+   "spark",
+   "sparks",
+   "sparked",
+   "sparking"
+  ]
+ },
+ {
+  "id": "s-fuel",
+  "w": "fuel",
+  "pos": "verb",
+  "ipa": "/ˈfjuːəl/",
+  "reg": "courant",
+  "fr": "alimenter, attiser",
+  "def": "To make a feeling, belief or situation stronger, as if adding fuel to a fire.",
+  "col": [
+   "fuel speculation",
+   "fuel anger",
+   "fuel inflation",
+   "fuel fears that"
+  ],
+  "ex": [
+   "His silence only [[fuelled]] rumours that he was leaving the band.",
+   "Rising inequality has [[fuelled]] support for extremist parties."
+  ],
+  "piege": "Orthographe britannique : <i>fuelled, fuelling</i> (deux l) ; américaine : <i>fueled</i>. L'image est celle du carburant qui entretient un mouvement déjà lancé.",
+  "fam": "fuel (n.)",
+  "trous": [
+   {
+    "s": "The minister's refusal to comment ___ speculation about his resignation.",
+    "a": "fuelled",
+    "fr": "Le refus du ministre de s'exprimer a alimenté les spéculations sur sa démission.",
+    "alt": [
+     "fueled"
+    ]
+   },
+   {
+    "s": "Cheap credit helped to ___ a housing boom.",
+    "a": "fuel",
+    "fr": "Le crédit bon marché a contribué à alimenter un boom immobilier."
+   }
+  ],
+  "ecris": "une phrase sur ce qui attise une colère ou une peur collective",
+  "formes": [
+   "fuel",
+   "fuels",
+   "fuelled",
+   "fuelling",
+   "fueled",
+   "fueling"
+  ]
+ },
+ {
+  "id": "s-spur",
+  "w": "spur",
+  "pos": "verb",
+  "ipa": "/spɜː/",
+  "reg": "courant",
+  "fr": "stimuler, encourager, pousser",
+  "def": "To make an activity or development happen faster or more strongly, like a rider's spur urging a horse on.",
+  "col": [
+   "spur economic growth",
+   "spur innovation",
+   "spur investment",
+   "spurred by"
+  ],
+  "ex": [
+   "My friend's success [[spurred]] me to start training for a marathon.",
+   "Low interest rates were meant to [[spur]] investment after the crisis."
+  ],
+  "piege": "Image de l'éperon (<i>a spur</i>). Construction : <i>spur someone <b>to</b> do / <b>into</b> action</i>. Expression : <i>on the spur of the moment</i> (sur un coup de tête).",
+  "fam": "spur (n.)",
+  "trous": [
+   {
+    "s": "The government cut taxes to ___ economic growth.",
+    "a": "spur",
+    "fr": "Le gouvernement a baissé les impôts pour stimuler la croissance économique.",
+    "alt": [
+     "boost"
+    ]
+   },
+   {
+    "s": "Fear of losing their jobs ___ the workers into action.",
+    "a": "spurred",
+    "fr": "La peur de perdre leur emploi a poussé les ouvriers à agir."
+   }
+  ],
+  "ecris": "une phrase sur ce qui stimule la croissance ou l'innovation",
+  "formes": [
+   "spur",
+   "spurs",
+   "spurred",
+   "spurring"
+  ]
+ },
+ {
+  "id": "s-aftermath",
+  "w": "aftermath",
+  "pos": "noun",
+  "ipa": "/ˈɑːftəmæθ/",
+  "reg": "courant",
+  "fr": "suites, lendemain (d'une catastrophe)",
+  "def": "The period or situation that follows a war, accident or other serious, unpleasant event.",
+  "col": [
+   "in the aftermath of",
+   "the immediate aftermath",
+   "deal with the aftermath",
+   "the aftermath of the war"
+  ],
+  "ex": [
+   "In the [[aftermath]] of the party, the kitchen looked like a battlefield.",
+   "In the [[aftermath]] of the Second World War, much of Europe had to be rebuilt."
+  ],
+  "piege": "Expression clé : <i>in the aftermath <b>of</b></i> (au lendemain de). S'emploie pour un événement <b>négatif</b> ; pour un événement heureux, dire <i>after</i> ou <i>following</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Thousands of volunteers helped in the ___ of the earthquake.",
+    "a": "aftermath",
+    "fr": "Des milliers de bénévoles ont aidé au lendemain du tremblement de terre."
+   },
+   {
+    "s": "In the immediate ___ of the attack, the borders were closed.",
+    "a": "aftermath",
+    "fr": "Juste après l'attentat, les frontières ont été fermées."
+   }
+  ],
+  "ecris": "une phrase sur ce qui s'est passé juste après une crise",
+  "formes": [
+   "aftermath"
+  ]
+ },
+ {
+  "id": "s-infer",
+  "w": "infer",
+  "pos": "verb",
+  "ipa": "/ɪnˈfɜː/",
+  "reg": "formel",
+  "fr": "déduire, conclure",
+  "def": "To reach a conclusion from the facts or evidence you have, rather than from direct statements.",
+  "col": [
+   "infer from",
+   "infer that",
+   "it is reasonable to infer",
+   "can be inferred"
+  ],
+  "ex": [
+   "From her smile, I [[inferred]] that she had passed her driving test.",
+   "Historians [[infer]] a great deal about daily life from ordinary household objects."
+  ],
+  "piege": "Ne pas confondre : celui qui parle <i>implies</i> (sous-entend), celui qui écoute <i>infers</i> (déduit). Construction : <i>infer something <b>from</b> something</i>. Doublement du r : <i>inferred, inferring</i>.",
+  "fam": "inference (n.)",
+  "trous": [
+   {
+    "s": "What can we ___ from the fact that the letter was never sent?",
+    "a": "infer",
+    "fr": "Que peut-on déduire du fait que la lettre n'a jamais été envoyée ?"
+   },
+   {
+    "s": "From the empty shelves, the journalist ___ that a shortage was coming.",
+    "a": "inferred",
+    "fr": "Devant les rayons vides, le journaliste a déduit qu'une pénurie approchait."
+   }
+  ],
+  "ecris": "une phrase où tu déduis quelque chose d'un indice",
+  "formes": [
+   "infer",
+   "infers",
+   "inferred",
+   "inferring",
+   "inference"
+  ]
+ },
+ {
+  "id": "s-deem",
+  "w": "deem",
+  "pos": "verb",
+  "ipa": "/diːm/",
+  "reg": "formel",
+  "fr": "juger, considérer (comme)",
+  "def": "To consider or officially judge something to be a particular thing.",
+  "col": [
+   "deem it necessary",
+   "be deemed unsafe",
+   "deemed appropriate",
+   "as they deem fit"
+  ],
+  "ex": [
+   "The referee [[deemed]] the goal offside, and the crowd went wild.",
+   "Books [[deemed]] dangerous by the regime were burned in public."
+  ],
+  "piege": "Formel. Pas de <i>as</i> : <i>it was deemed <b>unsafe</b></i> (évitez <i>deemed as</i>). Très fréquent au passif dans les textes officiels.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The building was ___ unsafe and closed immediately.",
+    "a": "deemed",
+    "fr": "Le bâtiment a été jugé dangereux et fermé immédiatement."
+   },
+   {
+    "s": "Do whatever you ___ necessary to finish on time.",
+    "a": "deem",
+    "fr": "Fais tout ce que tu jugeras nécessaire pour finir à temps."
+   }
+  ],
+  "ecris": "une phrase sur une chose jugée dangereuse ou inutile par une autorité",
+  "formes": [
+   "deem",
+   "deems",
+   "deemed",
+   "deeming"
+  ]
+ },
+ {
+  "id": "s-anticipate",
+  "w": "anticipate",
+  "pos": "verb",
+  "ipa": "/ænˈtɪsɪpeɪt/",
+  "reg": "courant",
+  "fr": "prévoir, s'attendre à, anticiper",
+  "def": "To expect something to happen and often to prepare for it in advance.",
+  "col": [
+   "anticipate problems",
+   "anticipate demand",
+   "than anticipated",
+   "eagerly anticipated"
+  ],
+  "ex": [
+   "We [[anticipated]] heavy traffic, so we left an hour early.",
+   "The government failed to [[anticipate]] how angry farmers would be about the new tax."
+  ],
+  "piege": "Transitif direct : <i>anticipate a problem</i>. Suivi d'un verbe : <i>anticipate <b>doing</b></i> ou <i>anticipate that</i>. Plus formel que <i>expect</i>, souvent avec l'idée de se préparer.",
+  "fam": "anticipation (n.)",
+  "trous": [
+   {
+    "s": "The concert was more popular than ___, and tickets sold out in minutes.",
+    "a": "anticipated",
+    "fr": "Le concert a eu plus de succès que prévu, et les billets se sont vendus en quelques minutes.",
+    "alt": [
+     "expected"
+    ]
+   },
+   {
+    "s": "Good chess players ___ their opponent's next three moves.",
+    "a": "anticipate",
+    "fr": "Les bons joueurs d'échecs anticipent les trois prochains coups de leur adversaire."
+   }
+  ],
+  "ecris": "une phrase sur un problème que tu as prévu et préparé",
+  "formes": [
+   "anticipate",
+   "anticipates",
+   "anticipated",
+   "anticipating",
+   "anticipation"
+  ]
+ },
+ {
+  "id": "s-envisage",
+  "w": "envisage",
+  "pos": "verb",
+  "ipa": "/ɪnˈvɪzɪdʒ/",
+  "reg": "formel",
+  "fr": "concevoir, se représenter",
+  "def": "To imagine something as possible in the future, or to picture how it might be.",
+  "col": [
+   "envisage a future",
+   "envisage doing",
+   "it is envisaged that",
+   "hard to envisage"
+  ],
+  "ex": [
+   "I can't [[envisage]] living anywhere without a sea view.",
+   "The founders of the European project [[envisaged]] a continent where war would become impossible."
+  ],
+  "piege": "Faux ami partiel : <i>envisage</i> = se représenter, imaginer. « Envisager de faire » (prévoir) se dit plutôt <i>consider doing</i> ou <i>plan to do</i>. Construction : <i>envisage <b>doing</b></i>, jamais <i>to do</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Twenty years ago, few people could ___ a world where everyone carried a smartphone.",
+    "a": "envisage",
+    "fr": "Il y a vingt ans, peu de gens pouvaient imaginer un monde où chacun aurait un smartphone.",
+    "alt": [
+     "imagine"
+    ]
+   },
+   {
+    "s": "The plan ___ a network of cycle lanes across the whole city.",
+    "a": "envisages",
+    "fr": "Le projet prévoit un réseau de pistes cyclables dans toute la ville.",
+    "alt": [
+     "envisaged"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur la société que tu imagines dans trente ans",
+  "formes": [
+   "envisage",
+   "envisages",
+   "envisaged",
+   "envisaging"
+  ]
+ },
+ {
+  "id": "s-bolster",
+  "w": "bolster",
+  "pos": "verb",
+  "ipa": "/ˈbəʊlstə/",
+  "reg": "courant",
+  "fr": "renforcer, soutenir, consolider",
+  "def": "To give extra support to something weak or uncertain, such as confidence, an economy or an argument.",
+  "col": [
+   "bolster confidence",
+   "bolster the economy",
+   "bolster an argument",
+   "bolster support for"
+  ],
+  "ex": [
+   "A few kind words from the coach [[bolstered]] his confidence before the final.",
+   "The government cut taxes in an attempt to [[bolster]] the struggling economy."
+  ],
+  "piege": "Image du traversin (<i>a bolster</i>) qui cale : on soutient quelque chose de <b>fragile</b>. Plus soutenu que <i>boost</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Use statistics to ___ your argument rather than vague claims.",
+    "a": "bolster",
+    "fr": "Utilise des statistiques pour étayer ton argument plutôt que des affirmations vagues."
+   },
+   {
+    "s": "The surprise victory ___ the team's morale for the rest of the season.",
+    "a": "bolstered",
+    "fr": "La victoire surprise a remonté le moral de l'équipe pour le reste de la saison."
+   }
+  ],
+  "ecris": "une phrase sur ce qui renforce la confiance de quelqu'un",
+  "formes": [
+   "bolster",
+   "bolsters",
+   "bolstered",
+   "bolstering"
+  ]
+ },
+ {
+  "id": "s-contemplate",
+  "w": "contemplate",
+  "pos": "verb",
+  "ipa": "/ˈkɒntəmpleɪt/",
+  "reg": "courant",
+  "fr": "envisager sérieusement ; contempler",
+  "def": "To think seriously about doing something, or to consider a possibility carefully.",
+  "col": [
+   "contemplate doing",
+   "contemplate the possibility",
+   "too awful to contemplate",
+   "contemplate resigning"
+  ],
+  "ex": [
+   "I briefly [[contemplated]] skipping the party, but my friends would never forgive me.",
+   "Few leaders in 1914 [[contemplated]] the possibility of a war lasting four years."
+  ],
+  "piege": "Sens le plus courant : envisager sérieusement, suivi de <i>-ing</i> (<i>contemplate leaving</i>). Le sens « contempler » existe, plus littéraire. Accent sur la 1re syllabe.",
+  "fam": "contemplation (n.)",
+  "trous": [
+   {
+    "s": "After the defeat, the party leader ___ resigning.",
+    "a": "contemplated",
+    "fr": "Après la défaite, le chef du parti a envisagé de démissionner.",
+    "alt": [
+     "considered"
+    ]
+   },
+   {
+    "s": "The idea of closing the hospital is too painful to ___.",
+    "a": "contemplate",
+    "fr": "L'idée de fermer l'hôpital est trop douloureuse à envisager."
+   }
+  ],
+  "ecris": "une phrase sur une décision difficile qu'on envisage sérieusement",
+  "formes": [
+   "contemplate",
+   "contemplates",
+   "contemplated",
+   "contemplating"
+  ]
+ },
+ {
+  "id": "s-plummet",
+  "w": "plummet",
+  "pos": "verb",
+  "ipa": "/ˈplʌmɪt/",
+  "reg": "courant",
+  "fr": "chuter, s'effondrer",
+  "def": "To fall suddenly and very quickly from a high level or position.",
+  "col": [
+   "prices plummet",
+   "plummet to a record low",
+   "sales plummeted",
+   "plummeting temperatures"
+  ],
+  "ex": [
+   "The temperature [[plummeted]] as soon as the sun went down.",
+   "Share prices [[plummeted]] on the morning of 24 October 1929."
+  ],
+  "piege": "Intransitif, avec une idée de <b>chute brutale</b> (<i>dwindle</i> = baisse lente). Pas de doublement du t : <i>plummeted, plummeting</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "After the scandal, the president's popularity ___ to 20%.",
+    "a": "plummeted",
+    "fr": "Après le scandale, la popularité du président s'est effondrée à 20 %."
+   },
+   {
+    "s": "Birth rates have continued to ___ in many European countries.",
+    "a": "plummet",
+    "fr": "Les taux de natalité ont continué de chuter dans de nombreux pays européens."
+   }
+  ],
+  "ecris": "une phrase sur une chute brutale (prix, popularité, température)",
+  "formes": [
+   "plummet",
+   "plummets",
+   "plummeted",
+   "plummeting"
+  ]
+ },
+ {
+  "id": "s-surge",
+  "w": "surge",
+  "pos": "noun",
+  "ipa": "/sɜːdʒ/",
+  "reg": "courant",
+  "fr": "flambée, montée soudaine",
+  "def": "A sudden, large increase in something, such as demand, prices or a feeling.",
+  "col": [
+   "a surge in demand",
+   "a sudden surge",
+   "a surge of anger",
+   "a surge in popularity"
+  ],
+  "ex": [
+   "There's always a [[surge]] in ice cream sales during the first heatwave.",
+   "The war caused a [[surge]] in energy prices across Europe."
+  ],
+  "piege": "Nom et verbe (<i>prices surged</i>). Préposition : <i>a surge <b>in</b></i> une quantité, <i>a surge <b>of</b></i> une émotion. Le contraire brutal : <i>plummet</i>.",
+  "fam": "surge (v.)",
+  "trous": [
+   {
+    "s": "The heatwave led to a ___ in demand for air conditioners.",
+    "a": "surge",
+    "fr": "La canicule a provoqué une flambée de la demande de climatiseurs."
+   },
+   {
+    "s": "Support for the party ___ after the televised debate.",
+    "a": "surged",
+    "fr": "Le soutien au parti a bondi après le débat télévisé."
+   }
+  ],
+  "ecris": "une phrase sur une hausse soudaine dans l'actualité",
+  "formes": [
+   "surge",
+   "surges",
+   "surged",
+   "surging"
+  ]
+ },
+ {
+  "id": "s-deteriorate",
+  "w": "deteriorate",
+  "pos": "verb",
+  "ipa": "/dɪˈtɪəriəreɪt/",
+  "reg": "courant",
+  "fr": "se détériorer, se dégrader",
+  "def": "To become worse in quality, condition or strength.",
+  "col": [
+   "deteriorate rapidly",
+   "a deteriorating situation",
+   "relations deteriorated",
+   "deteriorating health"
+  ],
+  "ex": [
+   "My grandmother's eyesight has [[deteriorated]], so she reads with a magnifying glass.",
+   "Relations between the two superpowers [[deteriorated]] rapidly after 1947."
+  ],
+  "piege": "Surtout intransitif : <i>the situation deteriorated</i>. Cinq syllabes : /dɪˈtɪəriəreɪt/ ; ne pas avaler le <i>-ior-</i>.",
+  "fam": "deterioration (n.)",
+  "trous": [
+   {
+    "s": "Without proper care, old paintings slowly ___.",
+    "a": "deteriorate",
+    "fr": "Sans soins appropriés, les vieux tableaux se dégradent lentement."
+   },
+   {
+    "s": "The patient's condition ___ during the night.",
+    "a": "deteriorated",
+    "fr": "L'état du patient s'est dégradé pendant la nuit.",
+    "alt": [
+     "worsened"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une situation qui se dégrade",
+  "formes": [
+   "deteriorate",
+   "deteriorates",
+   "deteriorated",
+   "deteriorating",
+   "deterioration"
+  ]
+ },
+ {
+  "id": "s-overhaul",
+  "w": "overhaul",
+  "pos": "verb",
+  "ipa": "/ˌəʊvəˈhɔːl/",
+  "reg": "courant",
+  "fr": "réformer en profondeur, réviser entièrement",
+  "def": "To examine a system thoroughly and make major changes so that it works better.",
+  "col": [
+   "overhaul the system",
+   "a complete overhaul",
+   "overhaul the tax system",
+   "in need of an overhaul"
+  ],
+  "ex": [
+   "The mechanic [[overhauled]] the engine, and the old car now runs like new.",
+   "The new government promised to [[overhaul]] the pension system within two years."
+  ],
+  "piege": "Plus fort que <i>reform</i> : on démonte tout pour réparer. Nom : <i>an overhaul</i> (accent sur la 1re syllabe) ; verbe : accent sur la dernière.",
+  "fam": "overhaul (n.)",
+  "trous": [
+   {
+    "s": "Experts agree that the exam system needs to be completely ___.",
+    "a": "overhauled",
+    "fr": "Les experts s'accordent à dire que le système d'examens doit être entièrement revu."
+   },
+   {
+    "s": "The club decided to ___ its training methods after a terrible season.",
+    "a": "overhaul",
+    "fr": "Le club a décidé de revoir de fond en comble ses méthodes d'entraînement après une saison catastrophique."
+   }
+  ],
+  "ecris": "une phrase sur un système que tu réformerais de fond en comble",
+  "formes": [
+   "overhaul",
+   "overhauls",
+   "overhauled",
+   "overhauling"
+  ]
+ },
+ {
+  "id": "s-reconcile",
+  "w": "reconcile",
+  "pos": "verb",
+  "ipa": "/ˈrekənsaɪl/",
+  "reg": "courant",
+  "fr": "concilier, réconcilier",
+  "def": "To find a way for two ideas, needs or people that seem opposed to exist together.",
+  "col": [
+   "reconcile X with Y",
+   "reconcile the two",
+   "difficult to reconcile",
+   "be reconciled"
+  ],
+  "ex": [
+   "It's hard to [[reconcile]] a part-time job with preparing for the bac.",
+   "Governments struggle to [[reconcile]] economic growth with protecting the environment."
+  ],
+  "piege": "Construction : <i>reconcile X <b>with</b> Y</i>. Deux sens : rendre compatibles deux idées ; réconcilier deux personnes (<i>they were reconciled</i>). Accent sur la 1re syllabe.",
+  "fam": "reconciliation (n.)",
+  "trous": [
+   {
+    "s": "How can we ___ freedom of speech with the need to protect people from hate?",
+    "a": "reconcile",
+    "fr": "Comment concilier la liberté d'expression et la nécessité de protéger les gens de la haine ?"
+   },
+   {
+    "s": "After years of silence, the two brothers were finally ___.",
+    "a": "reconciled",
+    "fr": "Après des années de silence, les deux frères se sont enfin réconciliés."
+   }
+  ],
+  "ecris": "une phrase sur deux exigences difficiles à concilier",
+  "formes": [
+   "reconcile",
+   "reconciles",
+   "reconciled",
+   "reconciling",
+   "reconciliation"
+  ]
+ },
+ {
+  "id": "s-caveat",
+  "w": "caveat",
+  "pos": "noun",
+  "ipa": "/ˈkæviæt/",
+  "reg": "formel",
+  "fr": "réserve, mise en garde",
+  "def": "A warning or condition that limits a statement and must be kept in mind.",
+  "col": [
+   "with one caveat",
+   "an important caveat",
+   "add a caveat",
+   "the caveat being that"
+  ],
+  "ex": [
+   "You can borrow my car, with one [[caveat]]: bring it back with a full tank.",
+   "The study is encouraging, but it comes with an important [[caveat]]: the sample was small."
+  ],
+  "piege": "Mot d'origine latine, trois syllabes : /ˈkæviæt/. Idéal pour nuancer une thèse dans un essay : <i>One caveat must be added, however…</i>",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I agree with your conclusion, with one ___: your figures are out of date.",
+    "a": "caveat",
+    "fr": "Je suis d'accord avec ta conclusion, avec une réserve : tes chiffres sont dépassés."
+   },
+   {
+    "s": "The report praises the reform but adds several ___ about its cost.",
+    "a": "caveats",
+    "fr": "Le rapport salue la réforme mais émet plusieurs réserves sur son coût."
+   }
+  ],
+  "ecris": "une phrase qui nuance une affirmation par une réserve",
+  "formes": [
+   "caveat",
+   "caveats"
+  ]
+ },
+ {
+  "id": "s-incentive",
+  "w": "incentive",
+  "pos": "noun",
+  "ipa": "/ɪnˈsentɪv/",
+  "reg": "courant",
+  "fr": "incitation, motivation",
+  "def": "Something, such as money or a reward, that encourages a person to do something.",
+  "col": [
+   "a financial incentive",
+   "an incentive to do",
+   "provide an incentive",
+   "tax incentives"
+  ],
+  "ex": [
+   "The promise of a free coffee is a great [[incentive]] to arrive early.",
+   "Tax [[incentives]] have encouraged many families to install solar panels."
+  ],
+  "piege": "Construction : <i>an incentive <b>to</b> do something</i> ou <i>an incentive <b>for</b> someone</i>. C'est un nom (« incitatif » adjectif se traduit autrement). Le contraire : <i>a disincentive</i> (un frein).",
+  "fam": "incentivise (v.) · disincentive (n.)",
+  "trous": [
+   {
+    "s": "Lower ticket prices would give people an ___ to leave their cars at home.",
+    "a": "incentive",
+    "fr": "Des billets moins chers inciteraient les gens à laisser leur voiture au garage."
+   },
+   {
+    "s": "The government offers tax ___ to companies that hire young people.",
+    "a": "incentives",
+    "fr": "Le gouvernement offre des avantages fiscaux aux entreprises qui embauchent des jeunes."
+   }
+  ],
+  "ecris": "une phrase sur une incitation qui pourrait changer un comportement",
+  "formes": [
+   "incentive",
+   "incentives",
+   "incentivise",
+   "incentivised"
+  ]
+ },
+ {
+  "id": "s-evade",
+  "w": "evade",
+  "pos": "verb",
+  "ipa": "/ɪˈveɪd/",
+  "reg": "courant",
+  "fr": "se soustraire à, éluder, échapper à",
+  "def": "To avoid dealing with something you should face, such as a question, a duty or a tax.",
+  "col": [
+   "evade taxes",
+   "evade the question",
+   "evade responsibility",
+   "evade capture"
+  ],
+  "ex": [
+   "Every time I ask my brother about his grades, he [[evades]] the question.",
+   "Wealthy individuals hide money abroad to [[evade]] taxes."
+  ],
+  "piege": "<i>Tax evasion</i> (fraude fiscale, illégale) ≠ <i>tax avoidance</i> (optimisation, légale). « S'évader » de prison se dit <i>escape</i>.",
+  "fam": "evasion (n.) · evasive (adj.)",
+  "trous": [
+   {
+    "s": "The minister ___ every question about the missing money.",
+    "a": "evaded",
+    "fr": "Le ministre a éludé toutes les questions sur l'argent disparu.",
+    "alt": [
+     "dodged"
+    ]
+   },
+   {
+    "s": "The prisoner managed to ___ capture for three weeks.",
+    "a": "evade",
+    "fr": "Le prisonnier a réussi à échapper à la capture pendant trois semaines.",
+    "alt": [
+     "escape"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur quelqu'un qui se dérobe à une responsabilité",
+  "formes": [
+   "evade",
+   "evades",
+   "evaded",
+   "evading",
+   "evasion",
+   "evasive"
+  ]
+ },
+ {
+  "id": "s-render",
+  "w": "render",
+  "pos": "verb",
+  "ipa": "/ˈrendə/",
+  "reg": "formel",
+  "fr": "rendre (+ adjectif)",
+  "def": "To cause something or someone to be in a particular state or condition.",
+  "col": [
+   "render something useless",
+   "render obsolete",
+   "render ineffective",
+   "render someone speechless"
+  ],
+  "ex": [
+   "The rain [[rendered]] the football pitch completely unplayable.",
+   "Smartphones have [[rendered]] cameras, maps and alarm clocks almost obsolete."
+  ],
+  "piege": "Construction : <i>render + complément + <b>adjectif</b></i> (<i>render it useless</i>). Plus soutenu que <i>make</i>. « Rendre » au sens de restituer se dit <i>give back</i>.",
+  "fam": "rendering (n.)",
+  "trous": [
+   {
+    "s": "The new law ___ the old agreement meaningless.",
+    "a": "rendered",
+    "fr": "La nouvelle loi a vidé l'ancien accord de son sens.",
+    "alt": [
+     "made"
+    ]
+   },
+   {
+    "s": "A single error can ___ the whole calculation useless.",
+    "a": "render",
+    "fr": "Une seule erreur peut rendre tout le calcul inutile.",
+    "alt": [
+     "make"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une invention qui a rendu un objet obsolète",
+  "formes": [
+   "render",
+   "renders",
+   "rendered",
+   "rendering"
+  ]
+ },
+ {
+  "id": "s-premise",
+  "w": "premise",
+  "pos": "noun",
+  "ipa": "/ˈpremɪs/",
+  "reg": "formel",
+  "fr": "prémisse, postulat, point de départ",
+  "def": "An idea or statement that an argument, theory or story is based on.",
+  "col": [
+   "the basic premise",
+   "on the premise that",
+   "a false premise",
+   "start from the premise that"
+  ],
+  "ex": [
+   "The film's [[premise]] is simple: a man wakes up every day on the same morning.",
+   "The whole argument rests on the [[premise]] that people always act rationally."
+  ],
+  "piege": "À ne pas confondre avec <i>premises</i> (pluriel) = les locaux (<i>on the premises</i>, sur place).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "If the ___ is false, the conclusion cannot be trusted.",
+    "a": "premise",
+    "fr": "Si la prémisse est fausse, on ne peut pas se fier à la conclusion."
+   },
+   {
+    "s": "The policy was based on the ___ that higher fines would reduce crime.",
+    "a": "premise",
+    "fr": "La politique reposait sur l'idée que des amendes plus lourdes réduiraient la délinquance."
+   }
+  ],
+  "ecris": "une phrase sur l'idée de départ d'un raisonnement ou d'un film",
+  "formes": [
+   "premise",
+   "premises"
+  ]
+ },
+ {
+  "id": "s-fallacy",
+  "w": "fallacy",
+  "pos": "noun",
+  "ipa": "/ˈfæləsi/",
+  "reg": "formel",
+  "fr": "raisonnement fallacieux, illusion",
+  "def": "An argument that seems logical but is based on faulty reasoning, or a widely held false belief.",
+  "col": [
+   "a common fallacy",
+   "it is a fallacy that",
+   "a logical fallacy",
+   "expose the fallacy"
+  ],
+  "ex": [
+   "It's a [[fallacy]] that you need expensive equipment to start running.",
+   "Saying that a policy is good because it is popular is a classic logical [[fallacy]]."
+  ],
+  "piege": "Plus fort que <i>misconception</i> : on vise une <b>erreur de raisonnement</b>. Adjectif : <i>fallacious</i> (formel).",
+  "fam": "fallacious (adj.)",
+  "trous": [
+   {
+    "s": "It is a ___ to believe that technology alone will solve climate change.",
+    "a": "fallacy",
+    "fr": "C'est une illusion de croire que la technologie seule résoudra le changement climatique."
+   },
+   {
+    "s": "Attacking your opponent instead of their argument is a well-known logical ___.",
+    "a": "fallacy",
+    "fr": "Attaquer son adversaire plutôt que son argument est un sophisme bien connu."
+   }
+  ],
+  "ecris": "une phrase sur un raisonnement trompeur que l'on entend souvent",
+  "formes": [
+   "fallacy",
+   "fallacies",
+   "fallacious"
+  ]
+ },
+ {
+  "id": "s-dispute",
+  "w": "dispute",
+  "pos": "verb",
+  "ipa": "/dɪˈspjuːt/",
+  "reg": "courant",
+  "fr": "contester, mettre en doute",
+  "def": "To say that a fact, claim or figure is not correct or true.",
+  "col": [
+   "dispute a claim",
+   "dispute the figures",
+   "be widely disputed",
+   "nobody disputes that"
+  ],
+  "ex": [
+   "My brother still [[disputes]] the result of our chess game last summer.",
+   "Few historians now [[dispute]] the role of the economic crisis in the rise of Nazism."
+  ],
+  "piege": "Transitif direct : <i>dispute a fact</i>. Le nom <i>a dispute</i> = un conflit, un différend (<i>a border dispute</i>). « Se disputer » se dit <i>argue</i> ou <i>quarrel</i>.",
+  "fam": "dispute (n.) · undisputed (adj.)",
+  "trous": [
+   {
+    "s": "Nobody ___ that the reform was necessary; the debate is about how to do it.",
+    "a": "disputes",
+    "fr": "Personne ne conteste que la réforme était nécessaire ; le débat porte sur la manière de la faire."
+   },
+   {
+    "s": "The company ___ the figures published by the newspaper.",
+    "a": "disputed",
+    "fr": "L'entreprise a contesté les chiffres publiés par le journal."
+   }
+  ],
+  "ecris": "une phrase où quelqu'un conteste un chiffre ou une affirmation",
+  "formes": [
+   "dispute",
+   "disputes",
+   "disputed",
+   "disputing",
+   "undisputed"
+  ]
+ },
+ {
+  "id": "s-grievance",
+  "w": "grievance",
+  "pos": "noun",
+  "ipa": "/ˈɡriːvəns/",
+  "reg": "formel",
+  "fr": "grief, doléance, sujet de mécontentement",
+  "def": "A real or imagined reason for complaint, especially about unfair treatment.",
+  "col": [
+   "a long-standing grievance",
+   "air a grievance",
+   "economic grievances",
+   "address grievances"
+  ],
+  "ex": [
+   "My neighbour has a [[grievance]] against everyone who parks in front of his house.",
+   "The cahiers de doléances recorded the [[grievances]] of ordinary French people in 1789."
+  ],
+  "piege": "Désigne le <b>motif</b> de plainte, pas la plainte elle-même (<i>complaint</i>). Expressions : <i>air / voice a grievance</i> (exprimer), <i>nurse a grievance</i> (ruminer).",
+  "fam": "aggrieved (adj.)",
+  "trous": [
+   {
+    "s": "Workers met the management to air their ___ about pay and hours.",
+    "a": "grievances",
+    "fr": "Les ouvriers ont rencontré la direction pour exprimer leurs griefs sur les salaires et les horaires."
+   },
+   {
+    "s": "The rebellion grew out of a long-standing ___ over land ownership.",
+    "a": "grievance",
+    "fr": "La rébellion est née d'un vieux grief sur la propriété des terres."
+   }
+  ],
+  "ecris": "une phrase sur les motifs de mécontentement d'un groupe social",
+  "formes": [
+   "grievance",
+   "grievances"
+  ]
+ },
+ {
+  "id": "s-inertia",
+  "w": "inertia",
+  "pos": "noun",
+  "ipa": "/ɪˈnɜːʃə/",
+  "reg": "courant",
+  "fr": "inertie, immobilisme",
+  "def": "A lack of desire or energy to change or act, so that things stay as they are.",
+  "col": [
+   "political inertia",
+   "overcome inertia",
+   "institutional inertia",
+   "out of sheer inertia"
+  ],
+  "ex": [
+   "Pure [[inertia]] kept me on the sofa all Sunday afternoon.",
+   "Decades of political [[inertia]] allowed the housing crisis to grow."
+  ],
+  "piege": "Sens figuré très fréquent (immobilisme), en plus du sens physique. Prononciation : /ɪˈnɜːʃə/, avec le son « ch » et non « t ».",
+  "fam": "inert (adj.)",
+  "trous": [
+   {
+    "s": "Bureaucratic ___ meant the reform took ten years to apply.",
+    "a": "inertia",
+    "fr": "L'inertie bureaucratique a fait que la réforme a mis dix ans à s'appliquer."
+   },
+   {
+    "s": "It takes a real crisis to overcome the ___ of large institutions.",
+    "a": "inertia",
+    "fr": "Il faut une vraie crise pour vaincre l'immobilisme des grandes institutions."
+   }
+  ],
+  "ecris": "une phrase sur l'immobilisme face à un problème connu",
+  "formes": [
+   "inertia",
+   "inert"
+  ]
+ },
+ {
+  "id": "s-predicament",
+  "w": "predicament",
+  "pos": "noun",
+  "ipa": "/prɪˈdɪkəmənt/",
+  "reg": "courant",
+  "fr": "situation délicate, mauvais pas",
+  "def": "A difficult or awkward situation from which it is hard to find a way out.",
+  "col": [
+   "be in a predicament",
+   "an awkward predicament",
+   "find yourself in a predicament",
+   "the same predicament"
+  ],
+  "ex": [
+   "I was in a [[predicament]]: two parties on the same night and two friends to please.",
+   "The government faces a [[predicament]]: raise taxes or cut public services."
+  ],
+  "piege": "Insiste sur l'embarras et la difficulté de trouver une issue ; proche de <i>dilemma</i>, mais pas limité à deux options. Accent sur la 2e syllabe.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Having lost his passport abroad, he found himself in a real ___.",
+    "a": "predicament",
+    "fr": "Ayant perdu son passeport à l'étranger, il s'est retrouvé dans une situation très délicate."
+   },
+   {
+    "s": "Many young graduates share the same ___: no job without experience, no experience without a job.",
+    "a": "predicament",
+    "fr": "Beaucoup de jeunes diplômés vivent la même impasse : pas d'emploi sans expérience, pas d'expérience sans emploi."
+   }
+  ],
+  "ecris": "une phrase sur une situation délicate dont il est difficile de sortir",
+  "formes": [
+   "predicament",
+   "predicaments"
+  ]
+ },
+ {
+  "id": "s-stalemate",
+  "w": "stalemate",
+  "pos": "noun",
+  "ipa": "/ˈsteɪlmeɪt/",
+  "reg": "courant",
+  "fr": "impasse, blocage",
+  "def": "A situation in which neither side in a conflict or argument can win or make progress.",
+  "col": [
+   "reach a stalemate",
+   "end in stalemate",
+   "break the stalemate",
+   "political stalemate"
+  ],
+  "ex": [
+   "The argument about where to go on holiday ended in a [[stalemate]].",
+   "By 1915, the war on the Western Front had settled into a bloody [[stalemate]]."
+  ],
+  "piege": "Vient des échecs (le pat). Synonymes : <i>deadlock</i>, <i>impasse</i>. Verbes associés : <i>reach</i> (arriver à), <i>break</i> (sortir de).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "After months of talks, the negotiations reached a ___ and both sides walked away.",
+    "a": "stalemate",
+    "fr": "Après des mois de discussions, les négociations sont arrivées dans une impasse et les deux camps sont partis.",
+    "alt": [
+     "deadlock"
+    ]
+   },
+   {
+    "s": "A surprise offer from the unions finally broke the ___.",
+    "a": "stalemate",
+    "fr": "Une offre surprise des syndicats a finalement débloqué la situation.",
+    "alt": [
+     "deadlock"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un conflit ou une négociation bloquée",
+  "formes": [
+   "stalemate",
+   "stalemates"
+  ]
+ },
+ {
+  "id": "s-turmoil",
+  "w": "turmoil",
+  "pos": "noun",
+  "ipa": "/ˈtɜːmɔɪl/",
+  "reg": "courant",
+  "fr": "chaos, tourmente, agitation",
+  "def": "A state of great confusion, disorder or uncertainty.",
+  "col": [
+   "in turmoil",
+   "political turmoil",
+   "economic turmoil",
+   "a period of turmoil"
+  ],
+  "ex": [
+   "My mind was in [[turmoil]] the night before the results came out.",
+   "The country was plunged into [[turmoil]] after the president's sudden death."
+  ],
+  "piege": "Indénombrable : <i>in turmoil</i>, <i>a period of turmoil</i>. Se dit d'un pays, d'un marché ou d'un esprit. <i>Turmoil</i> est un état ; <i>upheaval</i>, le changement qui le provoque.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Financial markets were in ___ after the bank collapsed.",
+    "a": "turmoil",
+    "fr": "Les marchés financiers étaient en pleine tourmente après la faillite de la banque."
+   },
+   {
+    "s": "The 1960s were a decade of social and political ___ in many countries.",
+    "a": "turmoil",
+    "fr": "Les années 1960 ont été une décennie d'agitation sociale et politique dans de nombreux pays."
+   }
+  ],
+  "ecris": "une phrase sur une période d'agitation politique ou personnelle",
+  "formes": [
+   "turmoil"
+  ]
+ },
+ {
+  "id": "s-disparity",
+  "w": "disparity",
+  "pos": "noun",
+  "ipa": "/dɪˈspærəti/",
+  "reg": "formel",
+  "fr": "disparité, écart, inégalité",
+  "def": "A large and often unfair difference between two or more groups or things.",
+  "col": [
+   "a growing disparity",
+   "regional disparities",
+   "the disparity between rich and poor",
+   "income disparities"
+  ],
+  "ex": [
+   "There's a huge [[disparity]] between the price of the same phone in different shops.",
+   "Regional [[disparities]] in life expectancy have grown over the last twenty years."
+  ],
+  "piege": "Implique souvent une <b>injustice</b>, contrairement à <i>difference</i>. Construction : <i>a disparity <b>between</b> X <b>and</b> Y</i> ou <i>disparities <b>in</b></i> quelque chose.",
+  "fam": "disparate (adj.)",
+  "trous": [
+   {
+    "s": "The ___ between men's and women's pay is still significant.",
+    "a": "disparity",
+    "fr": "L'écart de salaire entre hommes et femmes reste important.",
+    "alt": [
+     "gap"
+    ]
+   },
+   {
+    "s": "The report highlights growing ___ in access to healthcare.",
+    "a": "disparities",
+    "fr": "Le rapport souligne des inégalités croissantes dans l'accès aux soins."
+   }
+  ],
+  "ecris": "une phrase sur une inégalité entre deux groupes ou deux régions",
+  "formes": [
+   "disparity",
+   "disparities"
+  ]
+ },
+ {
+  "id": "s-discrepancy",
+  "w": "discrepancy",
+  "pos": "noun",
+  "ipa": "/dɪˈskrepənsi/",
+  "reg": "formel",
+  "fr": "écart, divergence, incohérence",
+  "def": "A difference between two things that should be the same, such as two figures or two accounts.",
+  "col": [
+   "a discrepancy between",
+   "a slight discrepancy",
+   "explain the discrepancy",
+   "discrepancies in the data"
+  ],
+  "ex": [
+   "There's a [[discrepancy]] between the price on the label and the price at the till.",
+   "Historians noticed [[discrepancies]] between the official report and the soldiers' letters."
+  ],
+  "piege": "Différent de <i>disparity</i> : la <i>discrepancy</i> est une <b>incohérence</b> entre deux choses qui devraient concorder (chiffres, témoignages).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The police noticed a ___ between the two witnesses' accounts.",
+    "a": "discrepancy",
+    "fr": "La police a remarqué une incohérence entre les récits des deux témoins."
+   },
+   {
+    "s": "Auditors found several ___ in the company's accounts.",
+    "a": "discrepancies",
+    "fr": "Les auditeurs ont trouvé plusieurs incohérences dans les comptes de l'entreprise."
+   }
+  ],
+  "ecris": "une phrase sur deux versions d'un fait qui ne concordent pas",
+  "formes": [
+   "discrepancy",
+   "discrepancies"
+  ]
+ },
+ {
+  "id": "s-shortfall",
+  "w": "shortfall",
+  "pos": "noun",
+  "ipa": "/ˈʃɔːtfɔːl/",
+  "reg": "courant",
+  "fr": "déficit, manque",
+  "def": "The amount by which something is less than what is needed or expected.",
+  "col": [
+   "a shortfall in funding",
+   "a budget shortfall",
+   "make up the shortfall",
+   "a shortfall of"
+  ],
+  "ex": [
+   "After the school trip, there was a [[shortfall]] of fifty euros in the class budget.",
+   "Hospitals face a [[shortfall]] of nurses that could take a decade to fill."
+  ],
+  "piege": "Désigne un <b>écart chiffré</b> entre le nécessaire et le disponible. Prépositions : <i>a shortfall <b>in</b></i> (un domaine), <i>a shortfall <b>of</b></i> (une quantité). Plus précis que <i>shortage</i> (pénurie).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The council must find a way to cover a ___ of two million pounds.",
+    "a": "shortfall",
+    "fr": "La municipalité doit trouver un moyen de combler un déficit de deux millions de livres."
+   },
+   {
+    "s": "A ___ in tax revenue forced the government to cut spending.",
+    "a": "shortfall",
+    "fr": "Un manque de recettes fiscales a obligé le gouvernement à réduire ses dépenses."
+   }
+  ],
+  "ecris": "une phrase sur un manque d'argent ou de personnel",
+  "formes": [
+   "shortfall",
+   "shortfalls"
+  ]
+ },
+ {
+  "id": "s-dispel",
+  "w": "dispel",
+  "pos": "verb",
+  "ipa": "/dɪˈspel/",
+  "reg": "courant",
+  "fr": "dissiper (une crainte, un mythe)",
+  "def": "To make a false belief, fear or doubt disappear, usually by showing that it is wrong.",
+  "col": [
+   "dispel a myth",
+   "dispel fears",
+   "dispel rumours",
+   "dispel the notion that"
+  ],
+  "ex": [
+   "The doctor's calm explanation [[dispelled]] all my fears about the operation.",
+   "The minister's speech did little to [[dispel]] doubts about the government's plans."
+  ],
+  "piege": "On <i>debunk</i> une idée fausse en la démontant ; on <i>dispel</i> une crainte ou un doute en le faisant disparaître. Doublement du l : <i>dispelled, dispelling</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The museum hopes to ___ the myth that Vikings wore horned helmets.",
+    "a": "dispel",
+    "fr": "Le musée espère dissiper le mythe selon lequel les Vikings portaient des casques à cornes.",
+    "alt": [
+     "debunk"
+    ]
+   },
+   {
+    "s": "Her honest answer ___ any suspicion that she had cheated.",
+    "a": "dispelled",
+    "fr": "Sa réponse sincère a dissipé tout soupçon de tricherie."
+   }
+  ],
+  "ecris": "une phrase sur une crainte ou une rumeur que des faits ont dissipée",
+  "formes": [
+   "dispel",
+   "dispels",
+   "dispelled",
+   "dispelling"
+  ]
+ },
+ {
+  "id": "s-burden",
+  "w": "burden",
+  "pos": "noun",
+  "ipa": "/ˈbɜːdn/",
+  "reg": "courant",
+  "fr": "fardeau, charge",
+  "def": "A heavy duty, responsibility or cost that is difficult to carry.",
+  "col": [
+   "a financial burden",
+   "the burden of debt",
+   "ease the burden",
+   "a burden on society"
+  ],
+  "ex": [
+   "I didn't want to be a [[burden]], so I took the bus instead of asking for a lift.",
+   "The [[burden]] of war reparations weighed heavily on the German economy."
+  ],
+  "piege": "Construction : <i>a burden <b>on / to</b> someone</i>. Expressions : <i>the burden of proof</i> (la charge de la preuve), <i>bear the burden</i> (supporter le fardeau). Verbe : <i>be burdened with</i>.",
+  "fam": "burden (v.) · burdensome (adj.)",
+  "trous": [
+   {
+    "s": "Rising rents place a heavy ___ on young workers.",
+    "a": "burden",
+    "fr": "La hausse des loyers fait peser une lourde charge sur les jeunes actifs."
+   },
+   {
+    "s": "Many students leave university ___ with debt.",
+    "a": "burdened",
+    "fr": "Beaucoup d'étudiants sortent de l'université accablés de dettes."
+   }
+  ],
+  "ecris": "une phrase sur une charge qui pèse sur une personne ou un groupe",
+  "formes": [
+   "burden",
+   "burdens",
+   "burdened",
+   "burdensome"
+  ]
+ },
+ {
+  "id": "s-strain",
+  "w": "strain",
+  "pos": "noun",
+  "ipa": "/streɪn/",
+  "reg": "courant",
+  "fr": "pression, tension",
+  "def": "Pressure on a person, relationship or system caused by having to deal with too much.",
+  "col": [
+   "put a strain on",
+   "under strain",
+   "the strain on public services",
+   "financial strain"
+  ],
+  "ex": [
+   "Working every weekend put a real [[strain]] on their relationship.",
+   "An ageing population puts growing [[strain]] on the health system."
+  ],
+  "piege": "Expressions clés : <i>put a strain <b>on</b></i>, <i>be under strain</i>. Verbe : <i>strain resources</i> (mettre à rude épreuve). Autre sens : une souche (de virus).",
+  "fam": "strain (v.) · strained (adj.)",
+  "trous": [
+   {
+    "s": "The heatwave put enormous ___ on the electricity network.",
+    "a": "strain",
+    "fr": "La canicule a mis le réseau électrique sous une pression énorme.",
+    "alt": [
+     "pressure"
+    ]
+   },
+   {
+    "s": "Relations between the two countries have been ___ since the election.",
+    "a": "strained",
+    "fr": "Les relations entre les deux pays sont tendues depuis l'élection."
+   }
+  ],
+  "ecris": "une phrase sur un système mis sous pression",
+  "formes": [
+   "strain",
+   "strains",
+   "strained",
+   "straining"
+  ]
+ },
+ {
+  "id": "s-safeguard",
+  "w": "safeguard",
+  "pos": "verb",
+  "ipa": "/ˈseɪfɡɑːd/",
+  "reg": "formel",
+  "fr": "protéger, sauvegarder",
+  "def": "To protect something or someone from harm, loss or damage, often by rules or measures.",
+  "col": [
+   "safeguard the interests of",
+   "safeguard jobs",
+   "safeguard democracy",
+   "safeguards against"
+  ],
+  "ex": [
+   "Always back up your files to [[safeguard]] your work against computer crashes.",
+   "Independent courts help to [[safeguard]] citizens' rights against abuses of power."
+  ],
+  "piege": "Verbe et nom : <i>a safeguard against</i> (un garde-fou contre). Plus formel que <i>protect</i>, souvent pour des droits, des intérêts ou des emplois.",
+  "fam": "safeguard (n.)",
+  "trous": [
+   {
+    "s": "The new law aims to ___ children from harmful content online.",
+    "a": "safeguard",
+    "fr": "La nouvelle loi vise à protéger les enfants des contenus dangereux en ligne.",
+    "alt": [
+     "protect"
+    ]
+   },
+   {
+    "s": "A free press is one of the best ___ against corruption.",
+    "a": "safeguards",
+    "fr": "Une presse libre est l'un des meilleurs garde-fous contre la corruption."
+   }
+  ],
+  "ecris": "une phrase sur un droit ou une ressource qu'il faut protéger",
+  "formes": [
+   "safeguard",
+   "safeguards",
+   "safeguarded",
+   "safeguarding"
+  ]
+ },
+ {
+  "id": "s-remedy",
+  "w": "remedy",
+  "pos": "noun",
+  "ipa": "/ˈremədi/",
+  "reg": "courant",
+  "fr": "remède, solution",
+  "def": "A way of solving or improving a problem, or a treatment for an illness.",
+  "col": [
+   "a remedy for",
+   "seek a remedy",
+   "an effective remedy",
+   "a home remedy"
+  ],
+  "ex": [
+   "My grandmother's [[remedy]] for a cold is hot lemon with honey.",
+   "There is no simple [[remedy]] for youth unemployment."
+  ],
+  "piege": "Préposition : <i>a remedy <b>for</b></i> (et non <i>to</i>). Verbe : <i>remedy a situation</i> (y remédier), transitif direct, sans préposition.",
+  "fam": "remedy (v.) · remedial (adj.)",
+  "trous": [
+   {
+    "s": "Planting more trees is one ___ for overheated city centres.",
+    "a": "remedy",
+    "fr": "Planter davantage d'arbres est une solution pour les centres-villes surchauffés.",
+    "alt": [
+     "solution"
+    ]
+   },
+   {
+    "s": "The government acted quickly to ___ the situation.",
+    "a": "remedy",
+    "fr": "Le gouvernement a agi rapidement pour remédier à la situation.",
+    "alt": [
+     "rectify"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une solution à un problème de société",
+  "formes": [
+   "remedy",
+   "remedies",
+   "remedied",
+   "remedying"
+  ]
+ },
+ {
+  "id": "s-rectify",
+  "w": "rectify",
+  "pos": "verb",
+  "ipa": "/ˈrektɪfaɪ/",
+  "reg": "formel",
+  "fr": "rectifier, corriger",
+  "def": "To correct something that is wrong or to put right an unfair situation.",
+  "col": [
+   "rectify the situation",
+   "rectify a mistake",
+   "rectify the problem",
+   "be rectified"
+  ],
+  "ex": [
+   "The shop apologised and promised to [[rectify]] the mistake on my bill.",
+   "Equal pay laws were meant to [[rectify]] decades of discrimination against women."
+  ],
+  "piege": "Plus formel que <i>correct</i> ou <i>put right</i>. Transitif direct : <i>rectify an error</i>.",
+  "fam": "rectification (n.)",
+  "trous": [
+   {
+    "s": "The error was spotted and quickly ___.",
+    "a": "rectified",
+    "fr": "L'erreur a été repérée et rapidement corrigée.",
+    "alt": [
+     "corrected"
+    ]
+   },
+   {
+    "s": "What can be done to ___ the injustice suffered by these workers?",
+    "a": "rectify",
+    "fr": "Que peut-on faire pour réparer l'injustice subie par ces travailleurs ?",
+    "alt": [
+     "redress"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une erreur ou une injustice qu'il faut corriger",
+  "formes": [
+   "rectify",
+   "rectifies",
+   "rectified",
+   "rectifying"
+  ]
+ },
+ {
+  "id": "s-redress",
+  "w": "redress",
+  "pos": "verb",
+  "ipa": "/rɪˈdres/",
+  "reg": "formel",
+  "fr": "réparer, rétablir (un équilibre, une injustice)",
+  "def": "To correct an unfair situation or restore a balance that has been lost.",
+  "col": [
+   "redress the balance",
+   "redress an injustice",
+   "redress grievances",
+   "seek redress"
+  ],
+  "ex": [
+   "I let my sister choose the film tonight to [[redress]] the balance after last week.",
+   "The reform aimed to [[redress]] the inequalities between rich and poor regions."
+  ],
+  "piege": "Expression la plus courante : <i>redress the balance</i> (rétablir l'équilibre). Nom : <i>redress</i> = réparation (<i>seek redress</i>, demander réparation). Accent sur la 2e syllabe.",
+  "fam": "redress (n.)",
+  "trous": [
+   {
+    "s": "More women on the board would help to ___ the balance.",
+    "a": "redress",
+    "fr": "Davantage de femmes au conseil d'administration aiderait à rétablir l'équilibre."
+   },
+   {
+    "s": "Victims of the scandal are still seeking ___ in the courts.",
+    "a": "redress",
+    "fr": "Les victimes du scandale demandent toujours réparation devant les tribunaux."
+   }
+  ],
+  "ecris": "une phrase sur une injustice historique qu'on essaie de réparer",
+  "formes": [
+   "redress",
+   "redresses",
+   "redressed",
+   "redressing"
+  ]
+ },
+ {
+  "id": "s-concur",
+  "w": "concur",
+  "pos": "verb",
+  "ipa": "/kənˈkɜː/",
+  "reg": "formel",
+  "fr": "être d'accord, s'accorder",
+  "def": "To agree with someone or have the same opinion, especially in a formal or official context.",
+  "col": [
+   "concur with",
+   "I concur",
+   "experts concur that",
+   "fully concur"
+  ],
+  "ex": [
+   "When I said the film was too long, everyone at the table [[concurred]].",
+   "Most historians [[concur]] that the peace treaty contained the seeds of the next war."
+  ],
+  "piege": "Formel ; à l'oral courant, dites <i>agree</i>. Construction : <i>concur <b>with</b> someone / <b>that</b>…</i>. Doublement du r : <i>concurred</i>. Faux ami : « concurrencer » se dit <i>compete with</i>.",
+  "fam": "concurrent (adj., simultané)",
+  "trous": [
+   {
+    "s": "The second doctor ___ with the first diagnosis.",
+    "a": "concurred",
+    "fr": "Le second médecin a confirmé le premier diagnostic.",
+    "alt": [
+     "agreed"
+    ]
+   },
+   {
+    "s": "Most economists ___ that the policy came too late.",
+    "a": "concur",
+    "fr": "La plupart des économistes s'accordent à dire que la mesure est arrivée trop tard.",
+    "alt": [
+     "agree"
+    ]
+   }
+  ],
+  "ecris": "une phrase où des experts s'accordent sur une conclusion",
+  "formes": [
+   "concur",
+   "concurs",
+   "concurred",
+   "concurring"
+  ]
+ },
+ {
+  "id": "s-circumvent",
+  "w": "circumvent",
+  "pos": "verb",
+  "ipa": "/ˌsɜːkəmˈvent/",
+  "reg": "formel",
+  "fr": "contourner (une règle)",
+  "def": "To find a way of avoiding a rule, law or obstacle, often in a clever or dishonest way.",
+  "col": [
+   "circumvent the rules",
+   "circumvent the law",
+   "circumvent restrictions",
+   "attempt to circumvent"
+  ],
+  "ex": [
+   "Some students use VPNs to [[circumvent]] the school's ban on social media.",
+   "During Prohibition, gangsters [[circumvented]] the law by smuggling alcohol from Canada."
+  ],
+  "piege": "Formel. Proche de <i>get round</i> (familier) ou <i>bypass</i>. On contourne une <b>règle</b> ou une <b>difficulté</b>, rarement un objet physique.",
+  "fam": "circumvention (n.)",
+  "trous": [
+   {
+    "s": "Companies set up offices abroad to ___ the new tax rules.",
+    "a": "circumvent",
+    "fr": "Des entreprises ouvrent des bureaux à l'étranger pour contourner les nouvelles règles fiscales.",
+    "alt": [
+     "bypass"
+    ]
+   },
+   {
+    "s": "The sanctions were easily ___ by trading through neighbouring countries.",
+    "a": "circumvented",
+    "fr": "Les sanctions ont été facilement contournées en commerçant par l'intermédiaire des pays voisins."
+   }
+  ],
+  "ecris": "une phrase sur une règle que certains contournent",
+  "formes": [
+   "circumvent",
+   "circumvents",
+   "circumvented",
+   "circumventing"
+  ]
+ },
+ {
+  "id": "s-empower",
+  "w": "empower",
+  "pos": "verb",
+  "ipa": "/ɪmˈpaʊə/",
+  "reg": "courant",
+  "fr": "donner du pouvoir, rendre autonome",
+  "def": "To give someone the confidence, ability or authority to control their own life or take action.",
+  "col": [
+   "empower women",
+   "empower communities",
+   "feel empowered",
+   "empower someone to do"
+  ],
+  "ex": [
+   "Learning to cook [[empowered]] me to stop relying on takeaways.",
+   "Small loans have [[empowered]] many women to start their own businesses."
+  ],
+  "piege": "Construction : <i>empower someone <b>to</b> do something</i>. Nom : <i>empowerment</i> (émancipation, autonomisation). Mot parfois galvaudé dans la publicité.",
+  "fam": "empowerment (n.)",
+  "trous": [
+   {
+    "s": "Education ___ young people to make their own choices.",
+    "a": "empowers",
+    "fr": "L'éducation donne aux jeunes les moyens de faire leurs propres choix.",
+    "alt": [
+     "empowered"
+    ]
+   },
+   {
+    "s": "The reform ___ local councils to set their own speed limits.",
+    "a": "empowered",
+    "fr": "La réforme a donné aux municipalités le pouvoir de fixer leurs propres limitations de vitesse."
+   }
+  ],
+  "ecris": "une phrase sur ce qui permet à un groupe de gagner en autonomie",
+  "formes": [
+   "empower",
+   "empowers",
+   "empowered",
+   "empowering",
+   "empowerment"
+  ]
+ },
+ {
+  "id": "s-instil",
+  "w": "instil",
+  "pos": "verb",
+  "ipa": "/ɪnˈstɪl/",
+  "reg": "courant",
+  "fr": "inculquer, insuffler",
+  "def": "To gradually make someone have a feeling, idea or habit.",
+  "col": [
+   "instil confidence",
+   "instil discipline",
+   "instil a sense of",
+   "instil values in"
+  ],
+  "ex": [
+   "My grandfather [[instilled]] in me a love of old black-and-white films.",
+   "Totalitarian regimes used schools to [[instil]] blind loyalty in the young."
+  ],
+  "piege": "Orthographe britannique <i>instil</i> (<i>instilled</i>), américaine <i>instill</i>. Construction : <i>instil something <b>in / into</b> someone</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Good coaches ___ confidence in their players.",
+    "a": "instil",
+    "fr": "Les bons entraîneurs donnent confiance à leurs joueurs.",
+    "alt": [
+     "instill"
+    ]
+   },
+   {
+    "s": "Her parents ___ in her a strong sense of justice.",
+    "a": "instilled",
+    "fr": "Ses parents lui ont inculqué un sens aigu de la justice."
+   }
+  ],
+  "ecris": "une phrase sur une valeur qu'on t'a transmise",
+  "formes": [
+   "instil",
+   "instils",
+   "instilled",
+   "instilling",
+   "instill",
+   "instills"
+  ]
+ },
+ {
+  "id": "s-exert",
+  "w": "exert",
+  "pos": "verb",
+  "ipa": "/ɪɡˈzɜːt/",
+  "reg": "formel",
+  "fr": "exercer (une pression, une influence)",
+  "def": "To use power, influence or pressure to affect someone or something.",
+  "col": [
+   "exert pressure on",
+   "exert influence over",
+   "exert control",
+   "exert yourself"
+  ],
+  "ex": [
+   "My parents [[exert]] gentle pressure on me to tidy my room every Sunday.",
+   "Big tech companies [[exert]] enormous influence over public debate."
+  ],
+  "piege": "Toujours avec un complément abstrait : <i>exert <b>pressure / influence / control / force</b></i>. <i>Exert yourself</i> = faire un gros effort physique.",
+  "fam": "exertion (n.)",
+  "trous": [
+   {
+    "s": "The United States ___ strong pressure on its allies to join the sanctions.",
+    "a": "exerted",
+    "fr": "Les États-Unis ont exercé une forte pression sur leurs alliés pour qu'ils se joignent aux sanctions."
+   },
+   {
+    "s": "Advertisers try to ___ influence over what children want.",
+    "a": "exert",
+    "fr": "Les publicitaires cherchent à exercer une influence sur les envies des enfants."
+   }
+  ],
+  "ecris": "une phrase sur un acteur qui exerce une forte influence",
+  "formes": [
+   "exert",
+   "exerts",
+   "exerted",
+   "exerting",
+   "exertion"
+  ]
+ },
+ {
+  "id": "s-wield",
+  "w": "wield",
+  "pos": "verb",
+  "ipa": "/wiːld/",
+  "reg": "courant",
+  "fr": "détenir, exercer (un pouvoir) ; manier",
+  "def": "To have and use power, authority or influence; also, to hold and use a weapon or tool.",
+  "col": [
+   "wield power",
+   "wield influence",
+   "wield authority",
+   "wield a sword"
+  ],
+  "ex": [
+   "The little boy [[wielded]] his plastic sword like a real knight.",
+   "In the Soviet Union, the Party [[wielded]] almost total power over daily life."
+  ],
+  "piege": "Proche de <i>exert</i>, mais <i>wield</i> = <b>détenir</b> et utiliser un pouvoir, comme on manie une arme. Se prononce comme <i>field</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Media owners ___ considerable influence over elections.",
+    "a": "wield",
+    "fr": "Les propriétaires de médias exercent une influence considérable sur les élections."
+   },
+   {
+    "s": "The king ___ absolute power until the revolution.",
+    "a": "wielded",
+    "fr": "Le roi a détenu un pouvoir absolu jusqu'à la révolution."
+   }
+  ],
+  "ecris": "une phrase sur une personne ou un groupe qui détient un grand pouvoir",
+  "formes": [
+   "wield",
+   "wields",
+   "wielded",
+   "wielding"
+  ]
+ },
+ {
+  "id": "s-harness",
+  "w": "harness",
+  "pos": "verb",
+  "ipa": "/ˈhɑːnɪs/",
+  "reg": "courant",
+  "fr": "exploiter, tirer parti de, canaliser",
+  "def": "To control and use the power of something, such as energy or talent, for a useful purpose.",
+  "col": [
+   "harness the power of",
+   "harness solar energy",
+   "harness technology",
+   "harness talent"
+  ],
+  "ex": [
+   "A good captain knows how to [[harness]] the energy of a noisy team.",
+   "Countries are racing to [[harness]] wind and solar power."
+  ],
+  "piege": "Image du harnais (<i>a harness</i>) qui dompte un cheval : on canalise une force. Connotation <b>positive</b>, contrairement à <i>exploit</i> (souvent négatif quand il s'agit de personnes).",
+  "fam": "harness (n.)",
+  "trous": [
+   {
+    "s": "Engineers built dams to ___ the power of the river.",
+    "a": "harness",
+    "fr": "Les ingénieurs ont construit des barrages pour exploiter la force du fleuve."
+   },
+   {
+    "s": "The campaign successfully ___ social media to reach young voters.",
+    "a": "harnessed",
+    "fr": "La campagne a su tirer parti des réseaux sociaux pour toucher les jeunes électeurs."
+   }
+  ],
+  "ecris": "une phrase sur une force ou une ressource qu'on pourrait mieux exploiter",
+  "formes": [
+   "harness",
+   "harnesses",
+   "harnessed",
+   "harnessing"
+  ]
+ },
+ {
+  "id": "s-galvanise",
+  "w": "galvanise",
+  "pos": "verb",
+  "ipa": "/ˈɡælvənaɪz/",
+  "reg": "courant",
+  "fr": "galvaniser, mobiliser",
+  "def": "To shock or excite people so much that they start taking action.",
+  "col": [
+   "galvanise support",
+   "galvanise public opinion",
+   "galvanise someone into action",
+   "galvanise the movement"
+  ],
+  "ex": [
+   "The coach's speech at half-time [[galvanised]] the team, and they scored twice.",
+   "The arrest of one woman on a bus [[galvanised]] the civil rights movement."
+  ],
+  "piege": "Orthographe britannique <i>galvanise</i>, américaine <i>galvanize</i>. Construction : <i>galvanise someone <b>into</b> action / doing something</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The images of the disaster ___ people into giving money.",
+    "a": "galvanised",
+    "fr": "Les images de la catastrophe ont poussé les gens à donner de l'argent.",
+    "alt": [
+     "galvanized"
+    ]
+   },
+   {
+    "s": "The new leader hopes to ___ support among young voters.",
+    "a": "galvanise",
+    "fr": "Le nouveau dirigeant espère mobiliser le soutien des jeunes électeurs.",
+    "alt": [
+     "galvanize"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un événement qui a mobilisé l'opinion",
+  "formes": [
+   "galvanise",
+   "galvanises",
+   "galvanised",
+   "galvanising",
+   "galvanize",
+   "galvanized"
+  ]
+ },
+ {
+  "id": "s-curtail",
+  "w": "curtail",
+  "pos": "verb",
+  "ipa": "/kɜːˈteɪl/",
+  "reg": "formel",
+  "fr": "restreindre, réduire, écourter",
+  "def": "To reduce or limit something, especially rights, freedoms or spending, or to cut something short.",
+  "col": [
+   "curtail freedom",
+   "curtail spending",
+   "severely curtail",
+   "curtail civil liberties"
+  ],
+  "ex": [
+   "Bad weather [[curtailed]] our holiday, and we came home three days early.",
+   "Emergency laws [[curtailed]] freedom of the press during the war."
+  ],
+  "piege": "Proche de <i>curb</i> et <i>limit</i>, mais plus formel ; souvent pour des <b>droits</b> ou des <b>dépenses</b>. Autre sens : écourter (<i>curtail a visit</i>). Accent sur la 2e syllabe.",
+  "fam": "curtailment (n.)",
+  "trous": [
+   {
+    "s": "Critics fear the new law will ___ the right to protest.",
+    "a": "curtail",
+    "fr": "Les critiques craignent que la nouvelle loi ne restreigne le droit de manifester.",
+    "alt": [
+     "restrict"
+    ]
+   },
+   {
+    "s": "Spending on culture was severely ___ during the crisis.",
+    "a": "curtailed",
+    "fr": "Les dépenses culturelles ont été fortement réduites pendant la crise."
+   }
+  ],
+  "ecris": "une phrase sur une liberté qu'un pouvoir a restreinte",
+  "formes": [
+   "curtail",
+   "curtails",
+   "curtailed",
+   "curtailing"
+  ]
+ },
+ {
+  "id": "s-uphold",
+  "w": "uphold",
+  "pos": "verb",
+  "ipa": "/ʌpˈhəʊld/",
+  "reg": "formel",
+  "fr": "maintenir, défendre, confirmer",
+  "def": "To support or defend a law, principle or decision and make sure it continues to exist.",
+  "col": [
+   "uphold the law",
+   "uphold human rights",
+   "uphold a decision",
+   "uphold values"
+  ],
+  "ex": [
+   "Referees are there to [[uphold]] the rules, even when the crowd disagrees.",
+   "The court [[upheld]] the ban, rejecting the company's appeal."
+  ],
+  "piege": "Verbe irrégulier : <i>uphold, upheld, upheld</i>. En justice, <i>uphold a decision</i> = la confirmer (le contraire de <i>overturn</i>).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "A democracy must ___ the rights of minorities.",
+    "a": "uphold",
+    "fr": "Une démocratie doit défendre les droits des minorités.",
+    "alt": [
+     "protect"
+    ]
+   },
+   {
+    "s": "The appeal court ___ the original verdict.",
+    "a": "upheld",
+    "fr": "La cour d'appel a confirmé le verdict initial."
+   }
+  ],
+  "ecris": "une phrase sur un principe qu'une institution doit défendre",
+  "formes": [
+   "uphold",
+   "upholds",
+   "upheld",
+   "upholding"
+  ]
+ },
+ {
+  "id": "s-overturn",
+  "w": "overturn",
+  "pos": "verb",
+  "ipa": "/ˌəʊvəˈtɜːn/",
+  "reg": "courant",
+  "fr": "annuler, casser, renverser",
+  "def": "To officially change a legal decision so that it no longer applies, or to reverse an accepted idea.",
+  "col": [
+   "overturn a decision",
+   "overturn a ruling",
+   "overturn the verdict",
+   "overturn assumptions"
+  ],
+  "ex": [
+   "The referee [[overturned]] his own decision after watching the video replay.",
+   "In 1954, the Supreme Court [[overturned]] the doctrine of 'separate but equal'."
+  ],
+  "piege": "En droit : <i>overturn</i> = casser, annuler (contraire : <i>uphold</i>). Sens propre : se retourner (<i>the car overturned</i>).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The new evidence led judges to ___ his conviction.",
+    "a": "overturn",
+    "fr": "Les nouvelles preuves ont conduit les juges à annuler sa condamnation.",
+    "alt": [
+     "quash"
+    ]
+   },
+   {
+    "s": "Scientific discoveries have ___ many ideas once taken for granted.",
+    "a": "overturned",
+    "fr": "Les découvertes scientifiques ont renversé bien des idées autrefois tenues pour acquises."
+   }
+  ],
+  "ecris": "une phrase sur une décision ou une idée qui a été renversée",
+  "formes": [
+   "overturn",
+   "overturns",
+   "overturned",
+   "overturning"
+  ]
+ },
+ {
+  "id": "s-condone",
+  "w": "condone",
+  "pos": "verb",
+  "ipa": "/kənˈdəʊn/",
+  "reg": "formel",
+  "fr": "tolérer, fermer les yeux sur, cautionner",
+  "def": "To accept or allow behaviour that most people think is morally wrong.",
+  "col": [
+   "condone violence",
+   "condone cheating",
+   "cannot condone",
+   "seem to condone"
+  ],
+  "ex": [
+   "I understand why you lied to your parents, but I can't [[condone]] it.",
+   "By staying silent, the government seemed to [[condone]] the attacks on journalists."
+  ],
+  "piege": "Presque toujours à la <b>forme négative</b> : <i>we do not condone…</i>. Ne pas confondre avec <i>condemn</i> (condamner), qui dit le contraire.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The school does not ___ bullying of any kind.",
+    "a": "condone",
+    "fr": "L'établissement ne tolère aucune forme de harcèlement.",
+    "alt": [
+     "tolerate"
+    ]
+   },
+   {
+    "s": "Many felt that the referee had ___ violent play by not showing a single card.",
+    "a": "condoned",
+    "fr": "Beaucoup ont estimé que l'arbitre avait cautionné le jeu violent en ne sortant aucun carton."
+   }
+  ],
+  "ecris": "une phrase sur un comportement qu'on ne peut pas cautionner",
+  "formes": [
+   "condone",
+   "condones",
+   "condoned",
+   "condoning"
+  ]
+ },
+ {
+  "id": "s-denounce",
+  "w": "denounce",
+  "pos": "verb",
+  "ipa": "/dɪˈnaʊns/",
+  "reg": "courant",
+  "fr": "dénoncer, condamner publiquement",
+  "def": "To criticise something or someone strongly and publicly as wrong or evil.",
+  "col": [
+   "denounce violence",
+   "publicly denounce",
+   "denounce something as",
+   "denounce corruption"
+  ],
+  "ex": [
+   "The club [[denounced]] the racist chants heard during Saturday's match.",
+   "Zola [[denounced]] the injustice done to Dreyfus in an open letter to the president."
+  ],
+  "piege": "Sens principal : condamner publiquement. Le sens « livrer quelqu'un aux autorités » existe (<i>denounce someone to the police</i>), mais pour « dénoncer » un camarade on dit plutôt <i>report</i>, voire <i>tell on</i> (familier).",
+  "fam": "denunciation (n.)",
+  "trous": [
+   {
+    "s": "Human rights groups ___ the arrest of the journalists.",
+    "a": "denounced",
+    "fr": "Les organisations de défense des droits humains ont dénoncé l'arrestation des journalistes.",
+    "alt": [
+     "condemned"
+    ]
+   },
+   {
+    "s": "Leaders from both parties were quick to ___ the attack.",
+    "a": "denounce",
+    "fr": "Les dirigeants des deux partis ont rapidement condamné l'attentat.",
+    "alt": [
+     "condemn"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une injustice qu'une personnalité a dénoncée",
+  "formes": [
+   "denounce",
+   "denounces",
+   "denounced",
+   "denouncing",
+   "denunciation"
+  ]
+ },
+ {
+  "id": "s-discredit",
+  "w": "discredit",
+  "pos": "verb",
+  "ipa": "/dɪsˈkredɪt/",
+  "reg": "courant",
+  "fr": "discréditer",
+  "def": "To make people stop believing in or respecting someone or something.",
+  "col": [
+   "discredit a theory",
+   "discredit a witness",
+   "be discredited",
+   "attempt to discredit"
+  ],
+  "ex": [
+   "He tried to [[discredit]] his rival by spreading rumours online.",
+   "The scandal [[discredited]] the government and led to early elections."
+  ],
+  "piege": "Accent sur la 2e syllabe : /dɪsˈkredɪt/. L'adjectif <i>discredited</i> est fréquent : <i>a discredited theory</i> (une théorie discréditée).",
+  "fam": "discredited (adj.)",
+  "trous": [
+   {
+    "s": "The lawyer tried to ___ the witness by pointing out contradictions in her story.",
+    "a": "discredit",
+    "fr": "L'avocat a tenté de discréditer le témoin en soulignant les contradictions de son récit."
+   },
+   {
+    "s": "The theory was ___ once new evidence emerged.",
+    "a": "discredited",
+    "fr": "La théorie a été discréditée dès que de nouvelles preuves sont apparues."
+   }
+  ],
+  "ecris": "une phrase sur une personne ou une idée qui a perdu toute crédibilité",
+  "formes": [
+   "discredit",
+   "discredits",
+   "discredited",
+   "discrediting"
+  ]
+ },
+ {
+  "id": "s-debunk",
+  "w": "debunk",
+  "pos": "verb",
+  "ipa": "/ˌdiːˈbʌŋk/",
+  "reg": "courant",
+  "fr": "démystifier, démonter (une idée fausse)",
+  "def": "To show that a popular belief, story or claim is false or greatly exaggerated.",
+  "col": [
+   "debunk a myth",
+   "debunk a claim",
+   "debunk conspiracy theories",
+   "thoroughly debunked"
+  ],
+  "ex": [
+   "My cousin loves [[debunking]] the fake health tips her aunt shares online.",
+   "Scientists have repeatedly [[debunked]] the myth that vaccines cause autism."
+  ],
+  "piege": "Proche de <i>refute</i>, mais <i>debunk</i> vise une <b>croyance populaire</b> ou un mythe, et a un ton plus courant.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "This video ___ ten popular myths about the Middle Ages.",
+    "a": "debunks",
+    "fr": "Cette vidéo démonte dix idées reçues sur le Moyen Âge."
+   },
+   {
+    "s": "Fact-checkers work hard to ___ false stories before they spread.",
+    "a": "debunk",
+    "fr": "Les vérificateurs de faits travaillent dur pour démonter les fausses informations avant qu'elles ne se propagent."
+   }
+  ],
+  "ecris": "une phrase sur une rumeur ou un mythe qu'il faudrait démonter",
+  "formes": [
+   "debunk",
+   "debunks",
+   "debunked",
+   "debunking"
+  ]
+ },
+ {
+  "id": "s-corroborate",
+  "w": "corroborate",
+  "pos": "verb",
+  "ipa": "/kəˈrɒbəreɪt/",
+  "reg": "formel",
+  "fr": "corroborer, confirmer",
+  "def": "To provide new evidence or information that confirms a statement, theory or finding.",
+  "col": [
+   "corroborate a story",
+   "corroborate the evidence",
+   "be corroborated by",
+   "corroborating evidence"
+  ],
+  "ex": [
+   "My friend [[corroborated]] my story: the dog really did eat my homework.",
+   "Archaeological finds [[corroborate]] ancient accounts of the city's destruction."
+  ],
+  "piege": "Formel. On corrobore grâce à une <b>autre source</b>, indépendante. Accent sur la 2e syllabe : /kəˈrɒbəreɪt/.",
+  "fam": "corroboration (n.)",
+  "trous": [
+   {
+    "s": "Two other witnesses ___ the victim's version of events.",
+    "a": "corroborated",
+    "fr": "Deux autres témoins ont confirmé la version des faits de la victime.",
+    "alt": [
+     "confirmed"
+    ]
+   },
+   {
+    "s": "A good historian looks for other sources to ___ what a document says.",
+    "a": "corroborate",
+    "fr": "Un bon historien cherche d'autres sources pour corroborer ce que dit un document.",
+    "alt": [
+     "confirm"
+    ]
+   }
+  ],
+  "ecris": "une phrase où une source en confirme une autre",
+  "formes": [
+   "corroborate",
+   "corroborates",
+   "corroborated",
+   "corroborating",
+   "corroboration"
+  ]
+ },
+ {
+  "id": "s-substantiate",
+  "w": "substantiate",
+  "pos": "verb",
+  "ipa": "/səbˈstænʃieɪt/",
+  "reg": "formel",
+  "fr": "étayer, prouver, justifier",
+  "def": "To support your own claim with facts or evidence so that it can be believed.",
+  "col": [
+   "substantiate a claim",
+   "substantiate an allegation",
+   "fail to substantiate",
+   "unsubstantiated rumours"
+  ],
+  "ex": [
+   "If you say the shop overcharged you, keep the receipt to [[substantiate]] it.",
+   "The minister made serious accusations but never [[substantiated]] them."
+  ],
+  "piege": "L'adjectif <i>unsubstantiated</i> (non fondé, sans preuve) est très courant : <i>unsubstantiated rumours</i>. On <i>substantiate</i> sa propre affirmation ; une autre source <i>corroborates</i> une affirmation.",
+  "fam": "unsubstantiated (adj.)",
+  "trous": [
+   {
+    "s": "Every claim in your essay should be ___ with evidence.",
+    "a": "substantiated",
+    "fr": "Chaque affirmation de ton essay doit être étayée par des preuves.",
+    "alt": [
+     "supported"
+    ]
+   },
+   {
+    "s": "The journalist could not ___ the rumours, so the story was never published.",
+    "a": "substantiate",
+    "fr": "Le journaliste n'a pas pu étayer les rumeurs, donc l'article n'a jamais été publié."
+   }
+  ],
+  "ecris": "une phrase sur une accusation qui doit être étayée par des preuves",
+  "formes": [
+   "substantiate",
+   "substantiates",
+   "substantiated",
+   "substantiating",
+   "unsubstantiated"
+  ]
+ },
+ {
+  "id": "s-gauge",
+  "w": "gauge",
+  "pos": "verb",
+  "ipa": "/ɡeɪdʒ/",
+  "reg": "courant",
+  "fr": "évaluer, jauger",
+  "def": "To judge or estimate something that is hard to measure exactly, such as people's feelings or opinions.",
+  "col": [
+   "gauge public opinion",
+   "gauge the mood",
+   "difficult to gauge",
+   "gauge the reaction"
+  ],
+  "ex": [
+   "I tried to [[gauge]] my dad's mood before asking to borrow the car.",
+   "Opinion polls are an imperfect way to [[gauge]] what voters really think."
+  ],
+  "piege": "Prononciation trompeuse : /ɡeɪdʒ/, rime avec <i>page</i> ; le <i>u</i> ne se prononce pas. Nom : <i>a gauge</i> (une jauge, un indicateur).",
+  "fam": "gauge (n.)",
+  "trous": [
+   {
+    "s": "It is too early to ___ the long-term effects of the reform.",
+    "a": "gauge",
+    "fr": "Il est trop tôt pour évaluer les effets à long terme de la réforme."
+   },
+   {
+    "s": "The survey ___ how satisfied customers were with the new service.",
+    "a": "gauged",
+    "fr": "L'enquête a mesuré la satisfaction des clients à l'égard du nouveau service."
+   }
+  ],
+  "ecris": "une phrase sur une manière de jauger l'opinion ou l'humeur",
+  "formes": [
+   "gauge",
+   "gauges",
+   "gauged",
+   "gauging"
+  ]
+ },
+ {
+  "id": "s-neglect",
+  "w": "neglect",
+  "pos": "verb",
+  "ipa": "/nɪˈɡlekt/",
+  "reg": "courant",
+  "fr": "négliger, délaisser",
+  "def": "To fail to give enough care or attention to someone or something.",
+  "col": [
+   "neglect your duties",
+   "be neglected",
+   "neglect to mention",
+   "years of neglect"
+  ],
+  "ex": [
+   "I [[neglected]] my plants during the exams, and half of them died.",
+   "Rural areas felt [[neglected]] by governments focused on the big cities."
+  ],
+  "piege": "Nom identique : <i>neglect</i> (l'abandon, le manque de soin) : <i>years of neglect</i>. <i>Neglect <b>to</b> do</i> = omettre de faire. Différent de <i>overlook</i> (ne pas remarquer).",
+  "fam": "neglect (n.) · negligent (adj.) · neglectful (adj.)",
+  "trous": [
+   {
+    "s": "The old castle fell into ruin after centuries of ___.",
+    "a": "neglect",
+    "fr": "Le vieux château est tombé en ruine après des siècles d'abandon."
+   },
+   {
+    "s": "Some parents ___ their children's emotional needs without realising it.",
+    "a": "neglect",
+    "fr": "Certains parents négligent les besoins affectifs de leurs enfants sans s'en rendre compte."
+   }
+  ],
+  "ecris": "une phrase sur un lieu ou un groupe délaissé",
+  "formes": [
+   "neglect",
+   "neglects",
+   "neglected",
+   "neglecting"
+  ]
+ },
+ {
+  "id": "s-disregard",
+  "w": "disregard",
+  "pos": "verb",
+  "ipa": "/ˌdɪsrɪˈɡɑːd/",
+  "reg": "formel",
+  "fr": "ne pas tenir compte de, faire fi de",
+  "def": "To ignore something or treat it as unimportant, often deliberately.",
+  "col": [
+   "disregard the rules",
+   "disregard advice",
+   "total disregard for",
+   "blatant disregard"
+  ],
+  "ex": [
+   "He [[disregarded]] the warning signs and went swimming in the rough sea.",
+   "The factory owners showed a total [[disregard]] for the safety of their workers."
+  ],
+  "piege": "Verbe et nom : <i>a disregard <b>for</b></i> (un mépris de). <i>Disregard</i> implique souvent un choix <b>délibéré</b>, contrairement à <i>overlook</i> (oubli). Accent sur la dernière syllabe.",
+  "fam": "disregard (n.)",
+  "trous": [
+   {
+    "s": "Please ___ the previous email; it was sent by mistake.",
+    "a": "disregard",
+    "fr": "Merci de ne pas tenir compte du message précédent ; il a été envoyé par erreur.",
+    "alt": [
+     "ignore"
+    ]
+   },
+   {
+    "s": "The regime acted with complete ___ for international law.",
+    "a": "disregard",
+    "fr": "Le régime a agi au mépris total du droit international."
+   }
+  ],
+  "ecris": "une phrase sur quelqu'un qui ignore volontairement une règle ou un conseil",
+  "formes": [
+   "disregard",
+   "disregards",
+   "disregarded",
+   "disregarding"
+  ]
+ },
+ {
+  "id": "s-withstand",
+  "w": "withstand",
+  "pos": "verb",
+  "ipa": "/wɪðˈstænd/",
+  "reg": "courant",
+  "fr": "résister à, supporter",
+  "def": "To be strong enough not to be harmed, damaged or defeated by something.",
+  "col": [
+   "withstand pressure",
+   "withstand criticism",
+   "withstand an attack",
+   "withstand high temperatures"
+  ],
+  "ex": [
+   "These boots can [[withstand]] the worst winter weather.",
+   "The young republic could not [[withstand]] the economic shock of the Depression."
+  ],
+  "piege": "Verbe irrégulier : <i>withstand, withstood, withstood</i>. Transitif direct : <i>withstand a storm</i>, sans préposition, contrairement à « résister <b>à</b> ».",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The buildings were designed to ___ powerful earthquakes.",
+    "a": "withstand",
+    "fr": "Les bâtiments ont été conçus pour résister à de puissants séismes.",
+    "alt": [
+     "resist"
+    ]
+   },
+   {
+    "s": "London ___ months of bombing during the Blitz.",
+    "a": "withstood",
+    "fr": "Londres a résisté à des mois de bombardements pendant le Blitz."
+   }
+  ],
+  "ecris": "une phrase sur quelqu'un ou quelque chose qui résiste à une forte pression",
+  "formes": [
+   "withstand",
+   "withstands",
+   "withstood",
+   "withstanding"
+  ]
+ },
+ {
+  "id": "s-sustain",
+  "w": "sustain",
+  "pos": "verb",
+  "ipa": "/səˈsteɪn/",
+  "reg": "courant",
+  "fr": "maintenir, entretenir ; subir",
+  "def": "To keep something going over a long period, or to suffer an injury or loss.",
+  "col": [
+   "sustain growth",
+   "sustain interest",
+   "sustain injuries",
+   "sustain an effort"
+  ],
+  "ex": [
+   "It's hard to [[sustain]] a conversation with someone who only answers yes or no.",
+   "No economy can [[sustain]] such rapid growth for ever."
+  ],
+  "piege": "Deux sens : faire durer (<i>sustain growth</i>) et subir (<i>sustain injuries</i>, être blessé). Adjectif : <i>sustainable</i> (durable). « Soutenir » une thèse se dit <i>argue</i> ou <i>support</i>.",
+  "fam": "sustainable (adj.) · sustainability (n.)",
+  "trous": [
+   {
+    "s": "Two passengers ___ minor injuries in the crash.",
+    "a": "sustained",
+    "fr": "Deux passagers ont été légèrement blessés dans l'accident.",
+    "alt": [
+     "suffered"
+    ]
+   },
+   {
+    "s": "The author fails to ___ the reader's interest after the first chapter.",
+    "a": "sustain",
+    "fr": "L'auteur ne parvient pas à maintenir l'intérêt du lecteur après le premier chapitre.",
+    "alt": [
+     "maintain"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un effort ou une croissance difficile à maintenir",
+  "formes": [
+   "sustain",
+   "sustains",
+   "sustained",
+   "sustaining",
+   "sustainable"
+  ]
+ },
+ {
+  "id": "s-necessitate",
+  "w": "necessitate",
+  "pos": "verb",
+  "ipa": "/nəˈsesɪteɪt/",
+  "reg": "formel",
+  "fr": "nécessiter, exiger",
+  "def": "To make something necessary as a result; used when a situation, not a person, requires something.",
+  "col": [
+   "necessitate changes",
+   "necessitate a rethink",
+   "circumstances necessitate",
+   "would necessitate"
+  ],
+  "ex": [
+   "A broken wrist [[necessitated]] six weeks with my arm in plaster.",
+   "An ageing population will [[necessitate]] major changes to the pension system."
+  ],
+  "piege": "Formel. Le sujet est une <b>situation</b>, pas une personne : <i>the crisis necessitates action</i>. Pour une personne, dites <i>need</i>.",
+  "fam": "necessity (n.)",
+  "trous": [
+   {
+    "s": "The flood damage will ___ months of repairs.",
+    "a": "necessitate",
+    "fr": "Les dégâts de l'inondation vont nécessiter des mois de réparations.",
+    "alt": [
+     "require"
+    ]
+   },
+   {
+    "s": "The rise in student numbers ___ the building of a new school.",
+    "a": "necessitated",
+    "fr": "La hausse du nombre d'élèves a rendu nécessaire la construction d'un nouvel établissement.",
+    "alt": [
+     "required"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une situation qui rend un changement nécessaire",
+  "formes": [
+   "necessitate",
+   "necessitates",
+   "necessitated",
+   "necessitating"
+  ]
+ },
+ {
+  "id": "s-streamline",
+  "w": "streamline",
+  "pos": "verb",
+  "ipa": "/ˈstriːmlaɪn/",
+  "reg": "courant",
+  "fr": "simplifier, rationaliser",
+  "def": "To make a system or process simpler and more efficient by removing unnecessary parts.",
+  "col": [
+   "streamline the process",
+   "streamline procedures",
+   "a streamlined service",
+   "streamline operations"
+  ],
+  "ex": [
+   "The new app [[streamlines]] booking: three clicks and you have your ticket.",
+   "The reform aims to [[streamline]] the procedures for asylum seekers."
+  ],
+  "piege": "Image de la forme aérodynamique (<i>streamlined</i>). Souvent positif, mais le mot peut masquer des suppressions d'emplois dans le discours des entreprises.",
+  "fam": "streamlined (adj.)",
+  "trous": [
+   {
+    "s": "The bank ___ its services and closed half of its branches.",
+    "a": "streamlined",
+    "fr": "La banque a rationalisé ses services et fermé la moitié de ses agences."
+   },
+   {
+    "s": "We need to ___ the application form; it is twelve pages long!",
+    "a": "streamline",
+    "fr": "Il faut simplifier le formulaire de candidature : il fait douze pages !",
+    "alt": [
+     "simplify"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une démarche administrative qu'il faudrait simplifier",
+  "formes": [
+   "streamline",
+   "streamlines",
+   "streamlined",
+   "streamlining"
+  ]
+ },
+ {
+  "id": "s-enforce",
+  "w": "enforce",
+  "pos": "verb",
+  "ipa": "/ɪnˈfɔːs/",
+  "reg": "courant",
+  "fr": "faire appliquer, faire respecter",
+  "def": "To make people obey a law or rule, by checking and punishing those who break it.",
+  "col": [
+   "enforce the law",
+   "enforce a ban",
+   "strictly enforced",
+   "difficult to enforce"
+  ],
+  "ex": [
+   "The new no-phone rule in the canteen is almost impossible to [[enforce]].",
+   "Without troops to [[enforce]] it, the ceasefire quickly collapsed."
+  ],
+  "piege": "Ne pas confondre avec <i>reinforce</i> (renforcer). <i>Enforce</i> = faire appliquer par la contrainte. Nom : <i>enforcement</i> (<i>law enforcement</i>, les forces de l'ordre).",
+  "fam": "enforcement (n.)",
+  "trous": [
+   {
+    "s": "The ban on smoking in bars is strictly ___.",
+    "a": "enforced",
+    "fr": "L'interdiction de fumer dans les bars est strictement appliquée."
+   },
+   {
+    "s": "Laws mean nothing if nobody is willing to ___ them.",
+    "a": "enforce",
+    "fr": "Les lois ne valent rien si personne n'est prêt à les faire respecter."
+   }
+  ],
+  "ecris": "une phrase sur une règle difficile à faire respecter",
+  "formes": [
+   "enforce",
+   "enforces",
+   "enforced",
+   "enforcing",
+   "enforcement"
+  ]
+ },
+ {
+  "id": "s-yield",
+  "w": "yield",
+  "pos": "verb",
+  "ipa": "/jiːld/",
+  "reg": "courant",
+  "fr": "produire, donner (des résultats) ; céder",
+  "def": "To produce a result, profit or crop; also, to finally give in to pressure.",
+  "col": [
+   "yield results",
+   "yield a profit",
+   "yield to pressure",
+   "yield valuable information"
+  ],
+  "ex": [
+   "My first attempts at baking bread [[yielded]] something closer to a brick.",
+   "Years of patient negotiations finally [[yielded]] a peace agreement."
+  ],
+  "piege": "Deux sens : produire (<i>yield results</i>) et céder (<i>yield <b>to</b> pressure</i>). Sur un panneau américain, <i>Yield</i> = cédez le passage.",
+  "fam": "yield (n.)",
+  "trous": [
+   {
+    "s": "The police search ___ no new evidence.",
+    "a": "yielded",
+    "fr": "La fouille de la police n'a apporté aucune nouvelle preuve."
+   },
+   {
+    "s": "The government refused to ___ to the strikers' demands.",
+    "a": "yield",
+    "fr": "Le gouvernement a refusé de céder aux revendications des grévistes."
+   }
+  ],
+  "ecris": "une phrase sur un effort qui a fini par donner des résultats",
+  "formes": [
+   "yield",
+   "yields",
+   "yielded",
+   "yielding"
+  ]
+ },
+ {
+  "id": "s-stagnate",
+  "w": "stagnate",
+  "pos": "verb",
+  "ipa": "/stæɡˈneɪt/",
+  "reg": "courant",
+  "fr": "stagner",
+  "def": "To stop developing, growing or improving and stay at the same level.",
+  "col": [
+   "wages stagnate",
+   "a stagnating economy",
+   "be allowed to stagnate",
+   "stagnate for years"
+  ],
+  "ex": [
+   "I felt I was [[stagnating]] in my old job, so I decided to retrain.",
+   "Wages [[stagnated]] for a decade while prices kept rising."
+  ],
+  "piege": "Intransitif. Nom : <i>stagnation</i>, très fréquent en économie. Accent sur la 2e syllabe : /stæɡˈneɪt/.",
+  "fam": "stagnation (n.) · stagnant (adj.)",
+  "trous": [
+   {
+    "s": "Without new investment, the economy will continue to ___.",
+    "a": "stagnate",
+    "fr": "Sans nouveaux investissements, l'économie continuera de stagner."
+   },
+   {
+    "s": "Her English ___ because she never practised outside school.",
+    "a": "stagnated",
+    "fr": "Son anglais a stagné parce qu'elle ne pratiquait jamais en dehors des cours."
+   }
+  ],
+  "ecris": "une phrase sur quelque chose qui stagne et ne progresse plus",
+  "formes": [
+   "stagnate",
+   "stagnates",
+   "stagnated",
+   "stagnating",
+   "stagnation"
+  ]
+ },
+ {
+  "id": "s-revamp",
+  "w": "revamp",
+  "pos": "verb",
+  "ipa": "/ˌriːˈvæmp/",
+  "reg": "courant",
+  "fr": "remanier, rénover, moderniser",
+  "def": "To change something in order to improve its appearance or make it more modern.",
+  "col": [
+   "revamp the website",
+   "a complete revamp",
+   "revamp the menu",
+   "a revamped version"
+  ],
+  "ex": [
+   "The café [[revamped]] its menu and now serves vegan dishes.",
+   "The party [[revamped]] its image to appeal to younger voters."
+  ],
+  "piege": "Courant, un peu journalistique. Nom : <i>a revamp</i>. Plus léger qu'<i>overhaul</i> : on modernise l'aspect plus qu'on ne reconstruit tout.",
+  "fam": "revamp (n.)",
+  "trous": [
+   {
+    "s": "The museum closed for a year to ___ its galleries.",
+    "a": "revamp",
+    "fr": "Le musée a fermé un an pour rénover ses salles.",
+    "alt": [
+     "renovate"
+    ]
+   },
+   {
+    "s": "The newly ___ station now has shops and a rooftop garden.",
+    "a": "revamped",
+    "fr": "La gare récemment rénovée compte désormais des boutiques et un jardin sur le toit.",
+    "alt": [
+     "renovated"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un lieu ou une marque qui s'est modernisé",
+  "formes": [
+   "revamp",
+   "revamps",
+   "revamped",
+   "revamping"
+  ]
+ },
+ {
+  "id": "s-momentum",
+  "w": "momentum",
+  "pos": "noun",
+  "ipa": "/məˈmentəm/",
+  "reg": "courant",
+  "fr": "élan, dynamique",
+  "def": "The force that keeps something moving or developing and makes it grow stronger over time.",
+  "col": [
+   "gain momentum",
+   "lose momentum",
+   "maintain the momentum",
+   "build momentum"
+  ],
+  "ex": [
+   "After a slow start, my revision gained [[momentum]] in the last two weeks.",
+   "The protest movement lost [[momentum]] when its leaders were arrested."
+  ],
+  "piege": "Indénombrable : <i>gain / lose momentum</i> (prendre / perdre de l'élan). Faux ami : rien à voir avec « un moment » (<i>a moment</i>).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The campaign for women's suffrage began to gain ___ in the early twentieth century.",
+    "a": "momentum",
+    "fr": "La campagne pour le droit de vote des femmes a commencé à prendre de l'ampleur au début du XXe siècle."
+   },
+   {
+    "s": "We must keep up the ___ and not stop now.",
+    "a": "momentum",
+    "fr": "Nous devons garder l'élan et ne pas nous arrêter maintenant."
+   }
+  ],
+  "ecris": "une phrase sur un mouvement ou un projet qui prend de l'élan",
+  "formes": [
+   "momentum"
+  ]
+ },
+ {
+  "id": "s-milestone",
+  "w": "milestone",
+  "pos": "noun",
+  "ipa": "/ˈmaɪlstəʊn/",
+  "reg": "courant",
+  "fr": "étape importante, jalon",
+  "def": "An important event or stage in the development of something or in a person's life.",
+  "col": [
+   "a major milestone",
+   "an important milestone",
+   "reach a milestone",
+   "a milestone in the history of"
+  ],
+  "ex": [
+   "Passing my driving test was a real [[milestone]] for me.",
+   "The right to vote in 1944 was a [[milestone]] in the history of French women."
+  ],
+  "piege": "Au sens propre, une borne kilométrique. Préposition : <i>a milestone <b>in</b></i> l'histoire de quelque chose. Plus positif que <i>turning point</i>, qui peut être neutre.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The first moon landing was a ___ in the history of exploration.",
+    "a": "milestone",
+    "fr": "Le premier alunissage a été une étape majeure de l'histoire de l'exploration."
+   },
+   {
+    "s": "Turning eighteen is an important ___ in a young person's life.",
+    "a": "milestone",
+    "fr": "Avoir dix-huit ans est une étape importante dans la vie d'un jeune."
+   }
+  ],
+  "ecris": "une phrase sur une étape importante de ta vie ou de l'histoire",
+  "formes": [
+   "milestone",
+   "milestones"
+  ]
+ },
+ {
+  "id": "s-watershed",
+  "w": "watershed",
+  "pos": "noun",
+  "ipa": "/ˈwɔːtəʃed/",
+  "reg": "formel",
+  "fr": "tournant décisif",
+  "def": "An event or period that marks a major and lasting change in the way things happen or people think.",
+  "col": [
+   "a watershed moment",
+   "mark a watershed",
+   "a watershed in the history of",
+   "a political watershed"
+  ],
+  "ex": [
+   "Getting my first phone was a [[watershed]] moment in my social life.",
+   "The fall of the Berlin Wall in 1989 was a [[watershed]] in European history."
+  ],
+  "piege": "Image de la ligne de partage des eaux : après, tout coule dans une autre direction. Souvent dans <i>a watershed moment</i>. Plus soutenu que <i>turning point</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Historians see 1945 as a ___ in international relations.",
+    "a": "watershed",
+    "fr": "Les historiens voient 1945 comme un tournant décisif dans les relations internationales."
+   },
+   {
+    "s": "The scandal was a ___ moment for the newspaper industry.",
+    "a": "watershed",
+    "fr": "Le scandale a marqué un tournant décisif pour la presse écrite."
+   }
+  ],
+  "ecris": "une phrase sur une date qui marque un tournant décisif",
+  "formes": [
+   "watershed",
+   "watersheds"
+  ]
+ },
+ {
+  "id": "s-fallout",
+  "w": "fallout",
+  "pos": "noun",
+  "ipa": "/ˈfɔːlaʊt/",
+  "reg": "courant",
+  "fr": "retombées (négatives)",
+  "def": "The unpleasant consequences that follow a scandal, crisis or decision, like dust falling after an explosion.",
+  "col": [
+   "the political fallout",
+   "the economic fallout",
+   "the fallout from",
+   "deal with the fallout"
+  ],
+  "ex": [
+   "The [[fallout]] from our argument lasted for weeks; we barely spoke.",
+   "The economic [[fallout]] from the pandemic hit young workers hardest."
+  ],
+  "piege": "Préposition : <i>the fallout <b>from</b></i>. Indénombrable. Sens propre : les retombées radioactives. Le verbe à particule <i>fall out</i> (se brouiller) s'écrit en deux mots.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The minister resigned in an attempt to limit the political ___ from the affair.",
+    "a": "fallout",
+    "fr": "Le ministre a démissionné pour tenter de limiter les retombées politiques de l'affaire."
+   },
+   {
+    "s": "Many families are still dealing with the ___ from the factory closure.",
+    "a": "fallout",
+    "fr": "Beaucoup de familles subissent encore les retombées de la fermeture de l'usine."
+   }
+  ],
+  "ecris": "une phrase sur les retombées d'un scandale ou d'une crise",
+  "formes": [
+   "fallout"
+  ]
+ },
+ {
+  "id": "s-tipping-point",
+  "w": "tipping point",
+  "pos": "noun",
+  "ipa": "/ˈtɪpɪŋ pɔɪnt/",
+  "reg": "courant",
+  "fr": "point de bascule",
+  "def": "The moment when a series of small changes becomes large enough to cause a bigger, often irreversible change.",
+  "col": [
+   "reach a tipping point",
+   "a climate tipping point",
+   "close to a tipping point",
+   "the tipping point for"
+  ],
+  "ex": [
+   "The third broken promise was the [[tipping point]]: I stopped trusting him.",
+   "Scientists warn that the Amazon rainforest may be close to a [[tipping point]]."
+  ],
+  "piege": "Nom composé en deux mots. Insiste sur le côté <b>irréversible</b> : une fois le seuil franchi, on ne revient pas en arrière. Différent de <i>turning point</i> (tournant), plus neutre.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "When rents doubled, the city reached a ___ point and thousands of families left.",
+    "a": "tipping",
+    "fr": "Quand les loyers ont doublé, la ville a atteint un point de bascule et des milliers de familles sont parties."
+   },
+   {
+    "s": "Many experts fear the ice sheet has already passed its ___ point.",
+    "a": "tipping",
+    "fr": "Beaucoup d'experts craignent que la calotte glaciaire ait déjà franchi son point de bascule."
+   }
+  ],
+  "ecris": "une phrase sur le moment où une situation bascule",
+  "formes": [
+   "tipping point",
+   "tipping points"
+  ]
+ },
+ {
+  "id": "s-merit",
+  "w": "merit",
+  "pos": "noun",
+  "ipa": "/ˈmerɪt/",
+  "reg": "courant",
+  "fr": "mérite, intérêt, qualité",
+  "def": "A good quality or advantage that makes something worth considering or praising.",
+  "col": [
+   "have its merits",
+   "the merits of",
+   "judge on its merits",
+   "of little merit"
+  ],
+  "ex": [
+   "Your plan has its [[merits]], but it will cost far too much.",
+   "Each proposal should be judged on its own [[merits]], not on who suggested it."
+  ],
+  "piege": "Très utile pour nuancer : <i>the idea has some merit</i> / <i>has its merits</i>. <i>Judge on its merits</i> = juger sur le fond. Verbe : <i>merit</i> (mériter), formel.",
+  "fam": "merit (v.)",
+  "trous": [
+   {
+    "s": "We discussed the ___ and drawbacks of each solution.",
+    "a": "merits",
+    "fr": "Nous avons discuté des avantages et des inconvénients de chaque solution."
+   },
+   {
+    "s": "There is some ___ in her argument, even if I disagree with her conclusion.",
+    "a": "merit",
+    "fr": "Son argument a un certain intérêt, même si je ne partage pas sa conclusion."
+   }
+  ],
+  "ecris": "une phrase où tu reconnais les qualités d'une idée que tu critiques",
+  "formes": [
+   "merit",
+   "merits",
+   "merited"
+  ]
+ },
+ {
+  "id": "s-dissent",
+  "w": "dissent",
+  "pos": "noun",
+  "ipa": "/dɪˈsent/",
+  "reg": "formel",
+  "fr": "désaccord, contestation",
+  "def": "Strong disagreement with an official or widely accepted opinion, especially in politics.",
+  "col": [
+   "political dissent",
+   "crush dissent",
+   "voices of dissent",
+   "a sign of dissent"
+  ],
+  "ex": [
+   "There was some [[dissent]] in the family when Dad suggested camping again.",
+   "Authoritarian regimes cannot tolerate [[dissent]], so they silence their critics."
+  ],
+  "piege": "Indénombrable ; désigne une opposition à l'opinion officielle. La personne : <i>a dissident</i>. Homophone de <i>descent</i> (descente).",
+  "fam": "dissident (n.) · dissent (v.)",
+  "trous": [
+   {
+    "s": "The government arrested journalists in an attempt to silence ___.",
+    "a": "dissent",
+    "fr": "Le gouvernement a arrêté des journalistes pour tenter de faire taire la contestation.",
+    "alt": [
+     "opposition"
+    ]
+   },
+   {
+    "s": "Within the party, voices of ___ grew louder after the defeat.",
+    "a": "dissent",
+    "fr": "Au sein du parti, les voix discordantes se sont fait plus fortes après la défaite."
+   }
+  ],
+  "ecris": "une phrase sur la contestation dans un régime autoritaire",
+  "formes": [
+   "dissent",
+   "dissents",
+   "dissented",
+   "dissenting"
+  ]
+ },
+ {
+  "id": "s-inflict",
+  "w": "inflict",
+  "pos": "verb",
+  "ipa": "/ɪnˈflɪkt/",
+  "reg": "courant",
+  "fr": "infliger, causer (des dégâts)",
+  "def": "To cause something unpleasant, such as damage, pain or suffering, to someone or something.",
+  "col": [
+   "inflict damage on",
+   "inflict suffering",
+   "inflict a defeat on",
+   "self-inflicted"
+  ],
+  "ex": [
+   "The storm [[inflicted]] serious damage on the old church roof.",
+   "The war [[inflicted]] immense suffering on civilians on both sides."
+  ],
+  "piege": "Construction : <i>inflict something <b>on</b> someone</i> (et non <i>to</i>). <i>Self-inflicted</i> = qu'on s'est infligé soi-même.",
+  "fam": "self-inflicted (adj.)",
+  "trous": [
+   {
+    "s": "The new tax would ___ real hardship on the poorest families.",
+    "a": "inflict",
+    "fr": "Le nouvel impôt infligerait de vraies difficultés aux familles les plus pauvres."
+   },
+   {
+    "s": "The team ___ a heavy defeat on the reigning champions.",
+    "a": "inflicted",
+    "fr": "L'équipe a infligé une lourde défaite aux champions en titre."
+   }
+  ],
+  "ecris": "une phrase sur les dégâts causés par une guerre ou une catastrophe",
+  "formes": [
+   "inflict",
+   "inflicts",
+   "inflicted",
+   "inflicting"
+  ]
+ },
+ {
+  "id": "s-relinquish",
+  "w": "relinquish",
+  "pos": "verb",
+  "ipa": "/rɪˈlɪŋkwɪʃ/",
+  "reg": "formel",
+  "fr": "renoncer à, céder (un pouvoir)",
+  "def": "To give up power, control or a right, especially when you do not want to.",
+  "col": [
+   "relinquish power",
+   "relinquish control",
+   "relinquish a claim",
+   "be reluctant to relinquish"
+  ],
+  "ex": [
+   "My brother refused to [[relinquish]] the TV remote for the whole evening.",
+   "The dictator only [[relinquished]] power after weeks of mass protests."
+  ],
+  "piege": "Formel, souvent avec l'idée de <b>contrainte</b> ou de réticence. Synonyme courant : <i>give up</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The founder agreed to ___ control of the company to a new manager.",
+    "a": "relinquish",
+    "fr": "Le fondateur a accepté de céder le contrôle de l'entreprise à un nouveau dirigeant."
+   },
+   {
+    "s": "Britain ___ control of India in 1947.",
+    "a": "relinquished",
+    "fr": "La Grande-Bretagne a renoncé au contrôle de l'Inde en 1947."
+   }
+  ],
+  "ecris": "une phrase sur quelqu'un qui renonce au pouvoir",
+  "formes": [
+   "relinquish",
+   "relinquishes",
+   "relinquished",
+   "relinquishing"
+  ]
+ }
+]
