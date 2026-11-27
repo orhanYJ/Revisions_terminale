@@ -29,7 +29,7 @@ window.PLAN = S => S.plans([
   // r2 « … L'INSEE classe les actifs en 6 groupes socioprofessionnels. »
   { a: ['r2', "l'insee"], type: 'pcs' },
   // e2 « Les classes moyennes, elles, font débat chez les sociologues. »
-  { a: ['e2', 0], type: 'mot', img: 'rue', t: 'CLASSES|MOYENNES', sous: 'un débat de sociologues' },
+  { a: ['e2', 0], type: 'photo', img: 'rue', t: 'CLASSES|MOYENNES', sous: 'un débat de sociologues', de: [1.05, .55, .4], vers: [1.2, .6, .35] },
   // m3a « Manche 3 : les crises. »
   { a: ['m3a', 0], type: 'manche', n: 3, t: 'LES|CRISES', img: 'wallstreet', ch: 3 },
   // m3b « Trois sont des crises financières. Une seule n'en est pas une. » (silence : chrono) — r3 « Le choc pétrolier de 1973 ! »

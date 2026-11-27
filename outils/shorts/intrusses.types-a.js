@@ -171,7 +171,7 @@ window.TYPES_A = O => {
     baril(750, base - h - 90, 110, ROUGE);
     S.texte('oct. 1973', 330, base + 60, { taille: 44, coul: CREME });
     S.texte('janv. 1974', 750, base + 60, { taille: 44, coul: CREME });
-    pop(back(pr(lt, .3, .3)), 540, base - 330, () => S.texte('× ' + n, 0, 0, { taille: 150, coul: OR, contour: NOIR, contourL: 12 }));
+    pop(back(pr(lt, .3, .3)), 330, base - 480, () => S.texte('× ' + n, 0, 0, { taille: 150, coul: OR, contour: NOIR, contourL: 12 }));
     const kt = eo(pr(lt, 1.4, .3)); g.save(); g.globalAlpha = kt; deux('UN CHOC|PÉTROLIER', 1460, 110, ROUGE); g.restore();
   }
 
