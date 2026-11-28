@@ -1,293 +1,411 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="encre">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Wordsmith — Vocabulaire anglais Terminale</title>
-<meta name="description" content="Le vocabulaire anglais qui sert à l'essay et à l'oral : cinq mots par jour, révisions espacées, exercices où l'on produit le mot.">
-<meta name="theme-color" content="#3b2257">
+<meta name="description" content="Le vocabulaire anglais qui sert vraiment : cinq mots par jour, révisions espacées, exercices où l'on produit le mot.">
+<meta name="theme-color" content="#FFF6E9">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Vocab">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preload" href="polices/lilita-one.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="polices/nunito-800.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+/* thème choisi, appliqué avant l'affichage (pas de flash) */
+(function () {
+  var t = "auto";
+  try { var e = JSON.parse(localStorage.getItem("wordsmith") || "{}"); if (e && e.theme) t = e.theme; } catch (x) {}
+  if (t === "auto") t = (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches) ? "minuit" : "encre";
+  document.documentElement.setAttribute("data-theme", t);
+  if (window.matchMedia && !matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("mo");
+})();
+</script>
 <style>
-:root{
-  --papier:#f7f3ec; --carte:#fffdf9; --encre:#22172e; --encre2:#6b5f78; --ligne:#e4dcd0;
-  --prune:#3b2257; --prune2:#5a3a80; --safran:#e3a03a; --safran-l:#fbe7c4;
-  --ok:#1f7a4d; --ok-l:#dff2e7; --ko:#b23a3a; --ko-l:#f8e1df;
-  --ombre:0 1px 2px rgba(34,23,46,.06),0 6px 18px rgba(34,23,46,.07);
-  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
-  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+@font-face{font-family:"Lilita";src:url(polices/lilita-one.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Nunito W";src:url(polices/nunito-600.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Nunito W";src:url(polices/nunito-800.woff2) format("woff2");font-weight:800;font-display:swap}
+@font-face{font-family:"Nunito W";src:url(polices/nunito-900.woff2) format("woff2");font-weight:900;font-display:swap}
+@font-face{font-family:"Fraunces W";src:url(polices/fraunces-600.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Fraunces W";src:url(polices/fraunces-700.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Fraunces W";src:url(polices/fraunces-600-italic.woff2) format("woff2");font-weight:600;font-style:italic;font-display:swap}
+
+/* ---------- Thèmes : chacun redéfinit toute la palette ---------- */
+:root,[data-theme="encre"]{
+  --fond:#FFF6E9;--fond2:#F7E6CB;--surface:#FFFFFF;--trait:#2B1F3D;--texte:#2B1F3D;--texte2:#6E6380;--ligne:#EADBC3;
+  --pri:#7B4FD6;--pri-d:#5531A8;--pri-l:#EEE5FF;--sur-pri:#FFFFFF;
+  --acc:#FFB547;--acc-d:#D98A10;--acc-l:#FFF0D6;
+  --ok:#35B371;--ok-d:#23874F;--ok-l:#E2F7EA;--ko:#F25555;--ko-d:#C23535;--ko-l:#FFE6E4;
+  --flamme:#FF8A1F;--blot:#7B4FD6;--blot-d:#4B2A93;--blot-reflet:rgba(255,255,255,.28);
   color-scheme:light;
 }
-@media (prefers-color-scheme:dark){
-  :root{
-    --papier:#16111d; --carte:#211a2b; --encre:#f1eaf7; --encre2:#a99cb8; --ligne:#352b42;
-    --prune:#c9a8f0; --prune2:#b28fe0; --safran:#f0b453; --safran-l:#4a3618;
-    --ok:#5fcf93; --ok-l:#173527; --ko:#f08a80; --ko-l:#3d1d1c;
-    --ombre:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25);
-    color-scheme:dark;
-  }
+[data-theme="minuit"]{
+  --fond:#15153A;--fond2:#1D1D4B;--surface:#22235A;--trait:#07071C;--texte:#F3EFFF;--texte2:#ABA6DA;--ligne:#353673;
+  --pri:#9A7CFF;--pri-d:#6A4BE0;--pri-l:#2D2B6E;--sur-pri:#120F33;
+  --acc:#FFD15C;--acc-d:#D7A21E;--acc-l:#3B3460;
+  --ok:#4BDB86;--ok-d:#23A35A;--ok-l:#173F31;--ko:#FF6E6E;--ko-d:#C94848;--ko-l:#45213A;
+  --flamme:#FFA43A;--blot:#9A7CFF;--blot-d:#5A3FD0;--blot-reflet:rgba(255,255,255,.22);
+  color-scheme:dark;
+}
+[data-theme="menthe"]{
+  --fond:#EAFBF1;--fond2:#D3F2E0;--surface:#FFFFFF;--trait:#12362A;--texte:#12362A;--texte2:#527264;--ligne:#C7E9D6;
+  --pri:#17A46C;--pri-d:#0E7A4F;--pri-l:#D5F5E5;--sur-pri:#FFFFFF;
+  --acc:#FF8A3D;--acc-d:#D9661A;--acc-l:#FFE9DA;
+  --ok:#17A46C;--ok-d:#0E7A4F;--ok-l:#DDF6E8;--ko:#F25555;--ko-d:#C23535;--ko-l:#FFE6E4;
+  --flamme:#FF8A3D;--blot:#17A46C;--blot-d:#0B6340;--blot-reflet:rgba(255,255,255,.3);
+  color-scheme:light;
+}
+[data-theme="corail"]{
+  --fond:#FFF1EB;--fond2:#FFDCCD;--surface:#FFFFFF;--trait:#3B1A1D;--texte:#3B1A1D;--texte2:#86605A;--ligne:#F5D3C6;
+  --pri:#EE5350;--pri-d:#BF3532;--pri-l:#FFE0DC;--sur-pri:#FFFFFF;
+  --acc:#22B8AA;--acc-d:#158C81;--acc-l:#D7F5F1;
+  --ok:#22B8AA;--ok-d:#158C81;--ok-l:#DDF6F3;--ko:#EE5350;--ko-d:#BF3532;--ko-l:#FFE3E0;
+  --flamme:#FF7A2E;--blot:#EE5350;--blot-d:#A72D2B;--blot-reflet:rgba(255,255,255,.3);
+  color-scheme:light;
+}
+[data-theme="ocean"]{
+  --fond:#EBF5FF;--fond2:#D2E8FF;--surface:#FFFFFF;--trait:#0E2A47;--texte:#0E2A47;--texte2:#4E6A88;--ligne:#CBE0F5;
+  --pri:#1F7BE0;--pri-d:#1459A9;--pri-l:#DAEAFF;--sur-pri:#FFFFFF;
+  --acc:#FFC23D;--acc-d:#D59B12;--acc-l:#FFF1D1;
+  --ok:#2DB36E;--ok-d:#1E874F;--ok-l:#E0F6EA;--ko:#F25555;--ko-d:#C23535;--ko-l:#FFE6E4;
+  --flamme:#FF8A1F;--blot:#1F7BE0;--blot-d:#114C8E;--blot-reflet:rgba(255,255,255,.3);
+  color-scheme:light;
+}
+[data-theme="bonbon"]{
+  --fond:#FFF0F7;--fond2:#FFDCEC;--surface:#FFFFFF;--trait:#3A1631;--texte:#3A1631;--texte2:#86607A;--ligne:#F5D2E4;
+  --pri:#E04A9A;--pri-d:#AF2F74;--pri-l:#FFE0F0;--sur-pri:#FFFFFF;
+  --acc:#7C5CFF;--acc-d:#5A3BD6;--acc-l:#ECE6FF;
+  --ok:#2DB36E;--ok-d:#1E874F;--ok-l:#E0F6EA;--ko:#F25555;--ko-d:#C23535;--ko-l:#FFE6E4;
+  --flamme:#FF8A1F;--blot:#E04A9A;--blot-d:#A22C6B;--blot-reflet:rgba(255,255,255,.3);
+  color-scheme:light;
+}
+:root{
+  --titre:"Lilita",system-ui,sans-serif;
+  --sans:"Nunito W",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mot:"Fraunces W",Georgia,"Times New Roman",serif;
+  --ipa:"Segoe UI","Noto Sans","DejaVu Sans",system-ui,sans-serif;
+  --r:18px;--b:2.5px;
 }
 *{box-sizing:border-box}
 html,body{margin:0}
-body{background:var(--papier);color:var(--encre);font:16px/1.5 var(--sans);-webkit-text-size-adjust:100%;min-height:100vh;padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+body{background-color:var(--fond);background-image:radial-gradient(var(--fond2) 1.6px,transparent 1.8px);background-size:22px 22px;color:var(--texte);font:600 16px/1.5 var(--sans);-webkit-text-size-adjust:100%;min-height:100vh;padding-bottom:calc(84px + env(safe-area-inset-bottom));-webkit-tap-highlight-color:transparent}
 button{font:inherit;color:inherit;cursor:pointer}
-a{color:var(--prune2)}
-.wrap{max-width:640px;margin:0 auto;padding:0 16px}
-header.haut{padding:18px 0 6px}
-.marque{display:flex;align-items:center;gap:10px}
-.marque svg{width:34px;height:34px;flex:none}
-.marque b{font:700 1.45rem/1 var(--serif);letter-spacing:.01em;color:var(--prune)}
-.marque span{display:block;font-size:.78rem;color:var(--encre2);letter-spacing:.04em;text-transform:uppercase;margin-top:3px}
-h1,h2,h3{font-family:var(--serif);line-height:1.2}
-h2{font-size:1.25rem;margin:22px 0 10px;color:var(--prune)}
-.carte{background:var(--carte);border:1px solid var(--ligne);border-radius:16px;box-shadow:var(--ombre);padding:18px}
-.muted{color:var(--encre2)}
+a{color:var(--pri)}
+.wrap{max-width:600px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:var(--titre);font-weight:400;letter-spacing:.01em;line-height:1.15;margin:0}
+h2{font-size:1.45rem;margin:26px 0 12px}
+.muted{color:var(--texte2)}
 .petit{font-size:.88rem}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:13px 18px;font-weight:600;background:var(--prune);color:#fff;min-height:48px}
-@media (prefers-color-scheme:dark){.btn{color:#16111d}}
-.btn.large{width:100%;font-size:1.05rem}
-.btn.sec{background:transparent;color:var(--prune);border:1.5px solid var(--prune)}
-.btn.safran{background:var(--safran);color:#2a1a05}
-.btn:disabled{opacity:.45;cursor:default}
-.btn:focus-visible,.seg button:focus-visible,nav.bas button:focus-visible,.mot-li:focus-visible{outline:3px solid var(--safran);outline-offset:2px}
-
-/* Aujourd'hui */
-.jour{position:relative;overflow:hidden}
-.jour .date{font-size:.82rem;color:var(--encre2);text-transform:capitalize}
-.jour h1{font-size:1.6rem;margin:4px 0 14px}
-.compteurs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 16px}
-.compteurs div{background:var(--papier);border:1px solid var(--ligne);border-radius:12px;padding:10px 8px;text-align:center}
-.compteurs b{display:block;font:700 1.6rem/1.1 var(--serif);color:var(--prune)}
-.compteurs span{font-size:.76rem;color:var(--encre2)}
-.fait{background:var(--ok-l);color:var(--ok);border-radius:12px;padding:12px 14px;font-weight:600;margin-bottom:12px}
-.alerte{display:flex;gap:10px;align-items:flex-start;background:var(--safran-l);border-radius:12px;padding:12px 14px;margin:14px 0 0;font-size:.92rem}
-.alerte button{margin-left:auto;flex:none;border:0;background:var(--safran);color:#2a1a05;border-radius:9px;padding:7px 11px;font-weight:600;font-size:.85rem}
-.seg{display:flex;background:var(--papier);border:1px solid var(--ligne);border-radius:12px;padding:3px;gap:3px}
-.seg button{flex:1;border:0;background:transparent;border-radius:9px;padding:9px 6px;font-weight:600;color:var(--encre2);min-height:42px}
-.seg button[aria-pressed="true"]{background:var(--carte);color:var(--prune);box-shadow:0 1px 3px rgba(0,0,0,.12)}
-.reglage{margin-top:16px}
-.reglage label{display:block;font-size:.86rem;color:var(--encre2);margin-bottom:6px}
-.methode li{margin:6px 0}
-
-/* Listes de mots */
-.liste-t{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
-.liste-t small{color:var(--encre2)}
-.mots{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
-.mot-li{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:var(--carte);border:1px solid var(--ligne);border-radius:12px;padding:11px 12px}
-.mot-li b{font:600 1.05rem var(--serif)}
-.mot-li .fr{color:var(--encre2);font-size:.88rem;margin-left:auto;text-align:right}
-.pastilles{display:flex;gap:3px;flex:none}
-.pastilles i{width:7px;height:7px;border-radius:50%;background:var(--ligne)}
-.pastilles i.on{background:var(--safran)}
-.bientot{opacity:.65}
-.bientot .tag{font-size:.72rem;background:var(--papier);border:1px solid var(--ligne);border-radius:99px;padding:2px 8px;color:var(--encre2)}
-
-/* Progrès */
-.boites{display:flex;align-items:flex-end;gap:8px;height:150px;margin:16px 0 6px;padding:0 4px;border-bottom:1px solid var(--ligne)}
-.boite{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
-.boite .barre{width:100%;background:var(--prune2);border-radius:8px 8px 0 0;min-height:3px;transform-origin:bottom}
-.boite:first-child .barre{background:var(--ligne)}
-.boite:nth-child(5) .barre,.boite:nth-child(6) .barre{background:var(--safran)}
-.boite b{font:700 1rem var(--serif);margin-bottom:4px}
-.boites-l{display:flex;gap:8px;padding:0 4px}
-.boites-l span{flex:1;text-align:center;font-size:.7rem;color:var(--encre2);line-height:1.2}
-.actions{display:grid;gap:8px;margin-top:12px}
-
-/* Fiche d'un mot (dictionnaire) */
-.fiche .tete{display:flex;align-items:flex-start;gap:10px}
-.fiche .mot{font:700 2rem/1.1 var(--serif);color:var(--prune);margin:0;word-break:break-word}
-.fiche .pos{font:italic .95rem var(--serif);color:var(--encre2)}
-.fiche .ipa{font:.95rem var(--mono);color:var(--encre2)}
-.son{margin-left:auto;flex:none;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ligne);background:var(--papier);display:grid;place-items:center}
-.son svg{width:20px;height:20px}
-.reg{display:inline-block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--ligne);border-radius:99px;padding:2px 8px;color:var(--encre2);margin-left:4px;vertical-align:middle}
-.sens{font:600 1.15rem/1.35 var(--serif);margin:12px 0 4px}
-.def{color:var(--encre2);margin:0 0 12px}
-.bloc{margin-top:14px}
-.bloc h4{margin:0 0 6px;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--encre2)}
-.colls{display:flex;flex-wrap:wrap;gap:6px}
-.colls span{background:var(--papier);border:1px solid var(--ligne);border-radius:99px;padding:4px 10px;font-size:.9rem}
-.ex{margin:0;padding:0;list-style:none;display:grid;gap:8px}
-.ex li{font-family:var(--serif);font-size:1.04rem;border-left:3px solid var(--safran);padding:2px 0 2px 10px}
-mark{background:linear-gradient(transparent 55%,var(--safran-l) 55%);color:inherit;font-weight:700;padding:0 1px}
-.piege{background:var(--ko-l);border-radius:12px;padding:10px 12px;font-size:.93rem}
-.piege b{color:var(--ko)}
-.famille{font-size:.92rem}
-
-/* Séance */
-#seance{position:fixed;inset:0;background:var(--papier);z-index:50;display:none;flex-direction:column;overflow-y:auto}
-#seance.on{display:flex}
-.s-haut{position:sticky;top:0;background:var(--papier);padding:calc(10px + env(safe-area-inset-top)) 16px 8px;display:flex;align-items:center;gap:12px;z-index:2}
-.s-haut button{border:0;background:transparent;width:40px;height:40px;border-radius:50%;font-size:1.3rem;color:var(--encre2)}
-.prog{flex:1;height:8px;background:var(--ligne);border-radius:99px;overflow:hidden}
-.prog i{display:block;height:100%;width:0;background:var(--safran);border-radius:99px;transition:width .35s}
-.s-corps{flex:1;width:100%;max-width:640px;margin:0 auto;padding:8px 16px calc(24px + env(safe-area-inset-bottom))}
-body:not(.sans-ia) .s-corps{padding-bottom:calc(110px + env(safe-area-inset-bottom))}
-.etape{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--encre2);margin:4px 0 10px}
-.consigne{font-weight:600;margin:0 0 10px}
-.phrase{font:1.25rem/1.75 var(--serif);margin:6px 0 14px}
-.phrase input{font:inherit;font-weight:700;color:var(--prune);background:transparent;border:0;border-bottom:2.5px solid var(--prune2);padding:0 4px;min-width:4ch;text-align:center;border-radius:0}
-.phrase input:focus{outline:0;border-bottom-color:var(--safran);background:var(--safran-l)}
-.indice{background:var(--papier);border:1px dashed var(--ligne);border-radius:12px;padding:10px 12px;font-size:.95rem;margin-bottom:12px}
-.indice .fr-ph{font-style:italic}
-.ligne-btn{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
-.ligne-btn .btn{flex:1}
-.lien{border:0;background:transparent;color:var(--prune2);text-decoration:underline;padding:6px 0;font-size:.92rem}
-textarea{width:100%;min-height:110px;font:1.1rem/1.5 var(--serif);color:var(--encre);background:var(--carte);border:1.5px solid var(--ligne);border-radius:12px;padding:12px}
-textarea:focus{outline:0;border-color:var(--prune2)}
-.retour{border-radius:14px;padding:14px;margin:14px 0 4px}
-.retour.ok{background:var(--ok-l)}
-.retour.ok b.titre{color:var(--ok)}
-.retour.ko{background:var(--ko-l)}
-.retour.ko b.titre{color:var(--ko)}
-.retour.presque{background:var(--safran-l)}
-.retour p{margin:6px 0 0}
-.retour .phrase-ok{font-family:var(--serif);font-size:1.05rem}
-.bilan{text-align:center;padding-top:30px}
-.bilan .grand{font:700 3rem/1 var(--serif);color:var(--prune)}
-.bilan ul{text-align:left}
-
-nav.bas{position:fixed;left:0;right:0;bottom:0;background:var(--carte);border-top:1px solid var(--ligne);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom);z-index:20}
-nav.bas div{display:flex;max-width:640px;width:100%}
-nav.bas button{flex:1;border:0;background:transparent;padding:9px 4px 10px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.74rem;color:var(--encre2);min-height:58px}
-nav.bas svg{width:23px;height:23px}
-nav.bas button[aria-current="page"]{color:var(--prune)}
-.vue{display:none}
-.vue.on{display:block}
-#modale{position:fixed;inset:0;z-index:40;display:none;align-items:flex-end;justify-content:center;background:rgba(20,12,28,.45);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
-#modale.on{display:flex}
-#modale .carte{width:100%;max-width:640px;max-height:88vh;overflow-y:auto;border-radius:20px 20px 0 0;padding-bottom:calc(18px + env(safe-area-inset-bottom))}
-#modale .fermer{display:block;margin:-6px auto 8px;width:44px;height:5px;border-radius:99px;background:var(--ligne);border:0;padding:0}
-body.sans-ia .asr-btn{display:none!important}
-.vf{margin:6px 0 4px}
-.vf summary{cursor:pointer;color:var(--prune2);font-size:.9rem;list-style:none;display:inline-flex;align-items:center;gap:6px;padding:6px 0;min-height:36px}
-.vf summary::-webkit-details-marker{display:none}
-.vf summary::before{content:"FR";font:700 .66rem var(--sans);letter-spacing:.04em;border:1.5px solid currentColor;border-radius:5px;padding:1px 4px}
-.vf[open] summary{color:var(--encre2)}
-.vf p{margin:2px 0 6px;font-weight:600}
-.indice .en{font-weight:600}
-.qcm{display:grid;gap:8px;margin:4px 0 6px}
-.opt{text-align:left;border:1.5px solid var(--ligne);background:var(--carte);border-radius:12px;padding:12px 14px;font-size:.98rem;line-height:1.4;min-height:48px}
-.opt:not(:disabled):hover{border-color:var(--prune2)}
-.opt:focus-visible{outline:3px solid var(--safran);outline-offset:2px}
-.opt.juste{border-color:var(--ok);background:var(--ok-l)}
-.opt.faux{border-color:var(--ko);background:var(--ko-l)}
-.opt:disabled{cursor:default;color:var(--encre)}
-.filtre{width:100%;font:inherit;color:var(--encre);background:var(--carte);border:1.5px solid var(--ligne);border-radius:12px;padding:12px 14px;margin:0 0 4px}
-.filtre:focus{outline:0;border-color:var(--prune2)}
-details.liste{margin-top:10px}
-details.liste>summary{cursor:pointer;list-style:none}
-details.liste>summary::-webkit-details-marker{display:none}
-details.liste>summary .liste-t b::after{content:" ▾";color:var(--encre2);font-size:.8em}
-details.liste[open]>summary .liste-t b::after{content:" ▴"}
-.actif{display:flex;gap:10px;align-items:center;font-size:.9rem;margin:12px 0 2px;color:var(--encre2)}
-.actif input{width:20px;height:20px;accent-color:var(--prune)}
-.par-liste{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.par-liste li{display:flex;justify-content:space-between;gap:10px}
-.par-liste b{font-family:var(--serif)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
-/* ---------- Jeu : Blot, niveaux, chemin, badges ---------- */
+/* ---------- barre du haut ---------- */
+.barre-haut{position:sticky;top:0;z-index:20;background:var(--fond);border-bottom:var(--b) solid var(--ligne);padding-top:env(safe-area-inset-top)}
+.barre-haut .wrap{display:flex;align-items:center;gap:8px;height:60px}
+.logo{display:flex;align-items:center;gap:8px;margin-right:auto;font-family:var(--titre);font-size:1.35rem;color:var(--texte)}
+.logo svg{width:34px;height:34px}
+.stat{display:inline-flex;align-items:center;gap:5px;font-family:var(--titre);font-size:1.12rem;padding:4px 8px;border-radius:12px}
+.stat svg{width:24px;height:24px}
+.stat.feu{color:var(--flamme)}
+.stat.feu.eteint{color:var(--texte2);opacity:.6}
+.stat.xp{color:var(--acc-d)}
+[data-theme="minuit"] .stat.xp{color:var(--acc)}
+.stat.niv{color:var(--pri)}
+
+/* ---------- surfaces ---------- */
+.carte{background:var(--surface);border:var(--b) solid var(--ligne);border-radius:var(--r);box-shadow:0 4px 0 var(--ligne);padding:18px}
+.carte+.carte{margin-top:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:var(--b) solid var(--trait);border-radius:16px;padding:12px 20px;font-family:var(--titre);font-size:1.15rem;letter-spacing:.02em;background:var(--pri);color:var(--sur-pri);box-shadow:0 5px 0 var(--trait);min-height:54px;position:relative;top:0}
+.btn:active{top:5px;box-shadow:0 0 0 var(--trait)}
+.btn.large{width:100%}
+.btn.sec{background:var(--surface);color:var(--texte)}
+.btn.safran{background:var(--acc);color:#2b1a04}
+.btn.ok{background:var(--ok);color:#fff}
+.btn.ko{background:var(--ko);color:#fff}
+.btn:disabled{opacity:.5;cursor:default;top:0;box-shadow:0 5px 0 var(--trait)}
+.btn:focus-visible,.seg button:focus-visible,nav.bas button:focus-visible,.mot-li:focus-visible,.opt:focus-visible,.theme:focus-visible,.n-btn:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.lien{border:0;background:transparent;color:var(--pri);font-weight:800;padding:8px 0;font-size:.95rem}
+
+/* ---------- accueil ---------- */
+.heros{display:flex;align-items:center;gap:6px;margin:18px 0 4px}
+.heros .blot{cursor:pointer}
+.bulle{position:relative;background:var(--surface);border:var(--b) solid var(--trait);border-radius:18px;padding:12px 14px;font-weight:800;line-height:1.35;box-shadow:0 4px 0 var(--trait);flex:1}
+.bulle::before{content:"";position:absolute;left:-12px;top:50%;margin-top:-9px;border:9px solid transparent;border-right:12px solid var(--trait);border-left:0}
+.bulle::after{content:"";position:absolute;left:-8px;top:50%;margin-top:-6px;border:6px solid transparent;border-right:9px solid var(--surface);border-left:0}
+.jour{background:var(--pri);color:var(--sur-pri);border:var(--b) solid var(--trait);border-radius:22px;box-shadow:0 6px 0 var(--trait);padding:18px;margin-top:18px;position:relative;overflow:hidden}
+.jour::after{content:"";position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.12)}
+.jour h1{font-size:1.6rem;margin:0 0 4px;position:relative}
+.jour p{margin:0;opacity:.92;position:relative}
+.compteurs{display:flex;gap:8px;margin:14px 0 16px;position:relative}
+.compteurs div{flex:1;background:rgba(255,255,255,.16);border-radius:14px;padding:8px 6px;text-align:center}
+[data-theme="minuit"] .compteurs div{background:rgba(0,0,0,.14)}
+.compteurs b{display:block;font-family:var(--titre);font-weight:400;font-size:1.7rem;line-height:1.1}
+.compteurs span{font-size:.78rem;font-weight:800;opacity:.9}
+.jour .btn{background:var(--acc);color:#2b1a04;position:relative}
+.jour .fait{position:relative;background:rgba(255,255,255,.18);border-radius:14px;padding:12px 14px;font-weight:800}
+.alerte{margin-top:12px;background:var(--acc-l);color:var(--texte);border:var(--b) solid var(--acc-d);border-radius:14px;padding:10px 12px;font-size:.9rem;position:relative}
+.jauge{height:16px;background:var(--ligne);border-radius:99px;overflow:hidden;border:var(--b) solid var(--trait)}
+.jauge i{display:block;height:100%;background:var(--acc);border-radius:99px;transition:width 1.2s cubic-bezier(.2,.8,.2,1);box-shadow:inset 0 4px 0 rgba(255,255,255,.35)}
+.niv{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px}
+.niv-t{font-family:var(--titre);font-size:1.15rem}
+.niv-xp{color:var(--texte2);font-size:.85rem;font-weight:800;white-space:nowrap}
+
+/* ---------- chemin ---------- */
+.unite{display:flex;align-items:center;gap:12px;background:var(--acc);color:#2b1a04;border:var(--b) solid var(--trait);border-radius:18px;padding:12px 14px;box-shadow:0 5px 0 var(--trait);margin:26px 0 8px}
+.unite .u-n{font-family:var(--titre);font-size:.95rem;opacity:.8}
+.unite b{display:block;font-family:var(--titre);font-weight:400;font-size:1.3rem;line-height:1.1}
+.unite .u-ic{margin-left:auto;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.35);display:grid;place-items:center}
+.unite .u-ic svg{width:28px;height:28px}
+.unite.suite{background:var(--surface);color:var(--texte2);box-shadow:0 5px 0 var(--ligne);border-color:var(--ligne);margin-top:10px}
+.chemin{position:relative;margin:4px 0 6px}
+.chemin-trace{position:absolute;left:50%;top:0;transform:translateX(-50%);overflow:visible}
+.chemin-trace polyline{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.t-fond{stroke:var(--ligne);stroke-width:12;stroke-dasharray:1 18}
+.t-fait{stroke:var(--acc);stroke-width:12;stroke-dasharray:1 18}
+.noeud{position:absolute;width:72px;height:72px}
+.n-btn{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;border:3px solid var(--trait);padding:0;position:relative;top:0;color:#fff}
+.n-btn svg{width:32px;height:32px}
+.noeud.n-fait .n-btn{background:var(--acc);color:#2b1a04;box-shadow:0 6px 0 var(--trait)}
+.noeud.courant .n-btn{background:var(--pri);color:var(--sur-pri);box-shadow:0 6px 0 var(--trait);cursor:pointer}
+.noeud.courant .n-btn:active{top:6px;box-shadow:0 0 0 var(--trait)}
+.noeud.courant::before{content:"";position:absolute;inset:-10px;border-radius:50%;border:4px solid var(--pri);opacity:.35}
+.noeud.verrou .n-btn{background:var(--ligne);color:var(--texte2);border-color:var(--ligne);box-shadow:0 6px 0 var(--fond2)}
+.noeud.palier .n-btn{border-radius:22px}
+.n-num{position:absolute;bottom:-22px;left:0;right:0;text-align:center;font-size:.74rem;color:var(--texte2);font-weight:900}
+.bulle-go{position:absolute;bottom:calc(100% + 16px);left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--surface);border:var(--b) solid var(--trait);color:var(--pri);font-family:var(--titre);font-size:1rem;padding:6px 12px;border-radius:12px;z-index:1;box-shadow:0 3px 0 var(--trait)}
+.bulle-go::after{content:"";position:absolute;top:100%;left:50%;margin-left:-8px;border:8px solid transparent;border-top-color:var(--trait)}
+.bulle-go.demain{color:var(--texte2)}
+.chemin-blot{position:absolute;width:84px}
+
+/* ---------- réglages, profil ---------- */
+.seg{display:flex;background:var(--fond);border:var(--b) solid var(--ligne);border-radius:14px;padding:4px;gap:4px}
+.seg button{flex:1;border:0;background:transparent;border-radius:10px;padding:8px 6px;font-family:var(--titre);font-size:1.2rem;color:var(--texte2);min-height:46px}
+.seg button[aria-pressed="true"]{background:var(--pri);color:var(--sur-pri);box-shadow:0 3px 0 var(--pri-d)}
+.reglage label.titre-r{display:block;font-weight:900;margin-bottom:8px}
+.actif{display:flex;gap:10px;align-items:center;font-weight:800;margin:14px 0 2px}
+.actif input{width:22px;height:22px;accent-color:var(--pri)}
+.themes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.theme{border:var(--b) solid var(--ligne);border-radius:16px;padding:8px 6px 10px;background:var(--surface);display:flex;flex-direction:column;align-items:center;gap:6px;font-weight:900;font-size:.86rem;position:relative;top:0;box-shadow:0 4px 0 var(--ligne);min-height:44px}
+.theme[aria-pressed="true"]{border-color:var(--trait);box-shadow:0 4px 0 var(--trait)}
+.theme[aria-pressed="true"]::after{content:"✓";position:absolute;top:-8px;right:-8px;width:24px;height:24px;border-radius:50%;background:var(--ok);color:#fff;border:2px solid var(--trait);display:grid;place-items:center;font-size:.8rem}
+.theme .apercu{width:100%;height:58px;border-radius:10px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;position:relative}
+.theme .apercu .blot{margin-bottom:-6px}
+.profil{display:flex;align-items:center;gap:14px}
+.profil .p-t{font-family:var(--titre);font-size:1.45rem;line-height:1.1}
+.tuiles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.tuile{background:var(--surface);border:var(--b) solid var(--ligne);border-radius:16px;padding:10px 12px;display:flex;align-items:center;gap:10px;box-shadow:0 4px 0 var(--ligne)}
+.tuile svg{width:30px;height:30px;flex:none}
+.tuile b{display:block;font-family:var(--titre);font-weight:400;font-size:1.3rem;line-height:1}
+.tuile span{font-size:.78rem;color:var(--texte2);font-weight:800}
+.methode{padding-left:20px}
+.methode li{margin:8px 0}
+details.aide>summary,details.liste>summary{cursor:pointer;list-style:none}
+details.aide>summary::-webkit-details-marker,details.liste>summary::-webkit-details-marker{display:none}
+details.aide>summary h2{margin:0;font-size:1.2rem}
+details.aide>summary h2::after{content:" +";color:var(--texte2)}
+details.aide[open]>summary h2::after{content:" −"}
+.actions{display:grid;gap:12px;margin-top:12px}
+
+/* ---------- boîtes et badges ---------- */
+.boites{display:flex;align-items:flex-end;gap:8px;height:150px;margin:10px 0 6px;padding:0 4px;border-bottom:var(--b) solid var(--ligne)}
+.boite{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.boite .barre{width:100%;background:var(--pri);border:var(--b) solid var(--trait);border-bottom:0;border-radius:10px 10px 0 0;min-height:4px;transform-origin:bottom}
+.boite:first-child .barre{background:var(--ligne);border-color:var(--ligne)}
+.boite:nth-child(5) .barre,.boite:nth-child(6) .barre{background:var(--acc)}
+.boite b{font-family:var(--titre);font-weight:400;font-size:1.05rem;margin-bottom:4px}
+.boites-l{display:flex;gap:8px;padding:0 4px}
+.boites-l span{flex:1;text-align:center;font-size:.7rem;color:var(--texte2);line-height:1.2;font-weight:800}
+.badges,.nouv-badges{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.nouv-badges{margin-top:16px;grid-template-columns:repeat(2,1fr)}
+.badge{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:6px 2px}
+.badge .medaille{width:70px;height:70px}
+.badge b{font-size:.84rem;font-weight:900;line-height:1.15}
+.badge small{font-size:.72rem;color:var(--texte2);line-height:1.2}
+.badge:not(.on) .medaille{filter:grayscale(1);opacity:.45}
+.par-liste{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.par-liste li span{display:flex;justify-content:space-between;font-weight:800;margin-bottom:5px}
+.par-liste .jauge{height:12px}
+
+/* ---------- mots ---------- */
+.filtre{width:100%;font:800 1rem var(--sans);color:var(--texte);background:var(--surface);border:var(--b) solid var(--ligne);border-radius:14px;padding:13px 14px;margin:0 0 4px}
+.filtre:focus{outline:0;border-color:var(--pri)}
+details.liste{margin-top:12px}
+.liste-t{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.liste-t b{font-family:var(--titre);font-weight:400;font-size:1.2rem}
+.liste-t small{font-weight:900;color:var(--texte2);white-space:nowrap}
+.liste-t b::after{content:" ▾";color:var(--texte2);font-size:.8em}
+details[open] .liste-t b::after{content:" ▴"}
+.mots{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
+.mot-li{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:var(--fond);border:var(--b) solid var(--ligne);border-radius:14px;padding:10px 12px;min-height:48px}
+.mot-li b{font:700 1.08rem var(--mot)}
+.mot-li .fr{color:var(--texte2);font-size:.85rem;margin-left:auto;text-align:right}
+.pastilles{display:flex;gap:3px;flex:none}
+.pastilles i{width:8px;height:8px;border-radius:50%;background:var(--ligne)}
+.pastilles i.on{background:var(--acc-d)}
+
+/* ---------- fiche d'un mot ---------- */
+.fiche .tete{display:flex;align-items:flex-start;gap:10px;background:var(--pri-l);margin:-18px -18px 14px;padding:18px 18px 16px;border-radius:calc(var(--r) - 3px) calc(var(--r) - 3px) 0 0;border-bottom:var(--b) solid var(--ligne)}
+.fiche .mot{font:700 2.3rem/1.05 var(--mot);margin:0 0 8px;word-break:break-word;color:var(--texte)}
+.puces{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.puce{background:var(--surface);border:2px solid var(--ligne);border-radius:99px;padding:2px 10px;font-size:.8rem;font-weight:900;color:var(--texte2)}
+.puce.ipa{font-family:var(--ipa);font-weight:500;color:var(--texte)}
+.puce.pos{font-family:var(--mot);font-style:italic;font-weight:600}
+.son{margin-left:auto;flex:none;width:52px;height:52px;border-radius:16px;border:var(--b) solid var(--trait);background:var(--acc);color:#2b1a04;display:grid;place-items:center;box-shadow:0 4px 0 var(--trait);position:relative;top:0}
+.son:active{top:4px;box-shadow:none}
+.son svg{width:26px;height:26px}
+.sens{font:600 1.22rem/1.35 var(--mot);margin:0 0 6px}
+.vf{margin:4px 0}
+.vf summary{cursor:pointer;color:var(--pri);font-weight:900;font-size:.92rem;list-style:none;display:inline-flex;align-items:center;gap:6px;padding:6px 0;min-height:38px}
+.vf summary::-webkit-details-marker{display:none}
+.vf summary::before{content:"FR";font:900 .7rem var(--sans);border:2px solid currentColor;border-radius:6px;padding:1px 5px}
+.vf[open] summary{color:var(--texte2)}
+.vf p{margin:2px 0 6px;font-weight:800}
+.bloc{margin-top:16px}
+.bloc h4{margin:0 0 8px;font-family:var(--titre);font-weight:400;font-size:1rem;letter-spacing:.03em;color:var(--texte2)}
+.colls{display:flex;flex-wrap:wrap;gap:6px}
+.colls span{background:var(--fond);border:2px solid var(--ligne);border-radius:10px;padding:4px 10px;font-weight:800;font-size:.9rem}
+.ex{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.ex li{font:600 1.08rem/1.45 var(--mot);background:var(--fond);border-radius:12px;padding:10px 12px}
+mark{background:linear-gradient(transparent 55%,var(--acc) 55%);color:inherit;font-weight:700;padding:0 1px;border-radius:2px}
+[data-theme="minuit"] mark{background:linear-gradient(transparent 55%,rgba(255,209,92,.45) 55%)}
+.piege{background:var(--ko-l);border:var(--b) solid var(--ko);border-radius:14px;padding:10px 12px;font-size:.94rem}
+.piege .p-t{display:flex;align-items:center;gap:6px;font-family:var(--titre);color:var(--ko-d);font-size:1rem;margin-bottom:2px}
+[data-theme="minuit"] .piege .p-t{color:var(--ko)}
+.piege .p-t svg{width:20px;height:20px}
+.famille{font-weight:800}
+
+/* ---------- séance ---------- */
+#seance{position:fixed;inset:0;background:var(--fond);z-index:50;display:none;flex-direction:column;overflow-y:auto}
+#seance.on{display:flex}
+.s-haut{position:sticky;top:0;background:var(--fond);padding:calc(12px + env(safe-area-inset-top)) 16px 10px;display:flex;align-items:center;gap:12px;z-index:3;max-width:600px;width:100%;margin:0 auto}
+.s-haut>button{border:0;background:transparent;width:40px;height:40px;border-radius:12px;color:var(--texte2);display:grid;place-items:center;flex:none}
+.s-haut>button svg{width:26px;height:26px}
+.prog{flex:1;height:18px;background:var(--ligne);border-radius:99px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--ok);border-radius:99px;transition:width .45s cubic-bezier(.2,.8,.2,1);box-shadow:inset 0 5px 0 rgba(255,255,255,.3)}
+.combo{font-family:var(--titre);color:var(--flamme);font-size:1.15rem;opacity:0;transform:scale(.5);transition:opacity .2s,transform .2s;min-width:46px;display:flex;align-items:center;gap:2px;justify-content:flex-end}
+.combo svg{width:22px;height:22px}
+.combo.on{opacity:1;transform:none}
+.s-corps{flex:1;width:100%;max-width:600px;margin:0 auto;padding:8px 16px 0;display:flex;flex-direction:column}
+.etape{font-family:var(--titre);font-size:.95rem;letter-spacing:.04em;color:var(--pri);margin:6px 0 10px;text-transform:uppercase}
+.consigne{font-family:var(--titre);font-size:1.45rem;line-height:1.2;margin:0 0 14px}
+.consigne b{color:var(--pri);font-family:var(--mot);font-weight:700}
+.phrase{font:600 1.3rem/1.9 var(--mot);margin:6px 0 14px;background:var(--surface);border:var(--b) solid var(--ligne);border-radius:16px;padding:14px 16px}
+.phrase input{font:inherit;font-weight:700;color:var(--pri);background:var(--pri-l);border:0;border-bottom:3px solid var(--pri);padding:0 6px;min-width:4ch;text-align:center;border-radius:8px 8px 0 0}
+.phrase input:focus{outline:0;background:var(--acc-l);border-bottom-color:var(--acc-d)}
+.indice{background:var(--pri-l);border-radius:16px;padding:12px 14px;margin-bottom:12px}
+.indice .en{font-weight:800}
+.indice .fr-ph{font-style:italic}
+textarea{width:100%;min-height:120px;font:600 1.15rem/1.5 var(--mot);color:var(--texte);background:var(--surface);border:var(--b) solid var(--ligne);border-radius:16px;padding:14px}
+textarea:focus{outline:0;border-color:var(--pri)}
+.qcm{display:grid;gap:10px;margin:4px 0 8px}
+.opt{text-align:left;border:var(--b) solid var(--ligne);background:var(--surface);border-radius:16px;padding:13px 15px;font-weight:800;line-height:1.35;min-height:54px;box-shadow:0 4px 0 var(--ligne);position:relative;top:0}
+.opt:not(:disabled):active{top:4px;box-shadow:none}
+.opt.juste{border-color:var(--ok);background:var(--ok-l);box-shadow:0 4px 0 var(--ok)}
+.opt.faux{border-color:var(--ko);background:var(--ko-l);box-shadow:0 4px 0 var(--ko)}
+.opt:disabled{cursor:default;color:var(--texte)}
+.pied{position:sticky;bottom:0;margin:auto -16px 0;padding:14px 16px calc(16px + env(safe-area-inset-bottom));background:var(--fond);border-top:var(--b) solid var(--ligne);z-index:2}
+.pied.ok{background:var(--ok-l);border-top-color:var(--ok)}
+.pied.ko{background:var(--ko-l);border-top-color:var(--ko)}
+.pied.presque{background:var(--acc-l);border-top-color:var(--acc-d)}
+.pied #retour:empty{display:none}
+.retour{margin-bottom:12px;max-height:46vh;overflow-y:auto}
+.r-tete{display:flex;align-items:center;gap:10px}
+.retour .titre{font-family:var(--titre);font-weight:400;font-size:1.4rem}
+.retour.ok .titre{color:var(--ok-d)}
+.retour.ko .titre{color:var(--ko-d)}
+[data-theme="minuit"] .retour.ok .titre{color:var(--ok)}
+[data-theme="minuit"] .retour.ko .titre{color:var(--ko)}
+.retour p{margin:6px 0 0}
+.retour .phrase-ok{font:600 1.05rem/1.45 var(--mot)}
+.pied.ok .btn{background:var(--ok);color:#fff}
+.pied.ko .btn:not(.sec){background:var(--ko);color:#fff}
+.ligne-btn{display:flex;gap:10px}
+.ligne-btn .btn{flex:1}
+.bilan{text-align:center;padding-top:10px}
+.bilan h1{font-size:2rem;color:var(--pri);margin:6px 0 4px}
+.gains{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+.gain{border:var(--b) solid var(--trait);border-radius:16px;overflow:hidden;background:var(--surface);box-shadow:0 4px 0 var(--trait)}
+.gain span{display:block;font-family:var(--titre);font-size:.82rem;padding:5px 2px;color:#fff;letter-spacing:.03em}
+.gain b{display:flex;align-items:center;justify-content:center;gap:4px;font-family:var(--titre);font-weight:400;font-size:1.55rem;padding:10px 2px}
+.gain b svg{width:22px;height:22px}
+.gain.g1 span{background:var(--acc-d)}.gain.g1 b{color:var(--acc-d)}
+.gain.g2 span{background:var(--ok)}.gain.g2 b{color:var(--ok-d)}
+.gain.g3 span{background:var(--flamme)}.gain.g3 b{color:var(--flamme)}
+[data-theme="minuit"] .gain b{color:var(--texte)!important}
+.bilan .niv{text-align:left}
+.revient{text-align:left;margin-top:16px}
+
+/* ---------- feuille du bas (fiche) ---------- */
+#modale{position:fixed;inset:0;z-index:40;display:none;align-items:flex-end;justify-content:center;background:rgba(10,6,20,.5);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+#modale.on{display:flex}
+#modale>.carte{width:100%;max-width:600px;max-height:90vh;overflow-y:auto;border-radius:24px 24px 0 0;border-color:var(--trait);box-shadow:none;padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+#modale .fermer{display:block;margin:-8px auto 10px;width:48px;height:6px;border-radius:99px;background:var(--ligne);border:0;padding:0;position:relative;z-index:1}
+#modale .fiche .tete{margin-top:-14px}
+
+/* ---------- navigation du bas ---------- */
+nav.bas{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:var(--b) solid var(--ligne);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom);z-index:20}
+nav.bas div{display:flex;max-width:600px;width:100%;padding:6px 10px}
+nav.bas button{flex:1;border:var(--b) solid transparent;background:transparent;border-radius:14px;padding:6px 4px;display:flex;flex-direction:column;align-items:center;gap:2px;font-family:var(--titre);font-size:.82rem;letter-spacing:.03em;color:var(--texte2);min-height:60px}
+nav.bas svg{width:30px;height:30px}
+nav.bas button[aria-current="page"]{color:var(--pri);background:var(--pri-l);border-color:var(--pri)}
+.vue{display:none}
+.vue.on{display:block}
+
+/* ---------- Blot ---------- */
 .blot{display:inline-block;flex:none;line-height:0;cursor:default}
 .blot-svg{width:100%;height:auto;overflow:visible}
-.b-goutte{fill:#5a3a80}
-.b-reflet{fill:rgba(255,255,255,.22)}
-.b-ombre{fill:rgba(34,23,46,.13)}
-.b-bras{fill:none;stroke:#4a2d6b;stroke-width:7;stroke-linecap:round}
-.b-pied{fill:#3b2257}
+.b-goutte{fill:var(--blot);stroke:var(--trait);stroke-width:3.5;stroke-linejoin:round}
+.b-reflet{fill:var(--blot-reflet)}
+.b-ombre{fill:rgba(0,0,0,.14)}
+.b-bras{fill:none;stroke:var(--trait);stroke-width:7.5;stroke-linecap:round}
+.b-bras-in{fill:none;stroke:var(--blot-d);stroke-width:3.5;stroke-linecap:round}
+.b-pied{fill:var(--blot-d);stroke:var(--trait);stroke-width:3}
 .b-pup{fill:#1b1026}
-.b-joue{fill:#e88fb5;opacity:.55}
-.b-bouche{fill:none;stroke:#fff;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
-.b-ouverte{fill:#2a0f3a}
-.b-yeux-joie,.b-yeux-dort{fill:none;stroke:#fff;stroke-width:3.4;stroke-linecap:round}
-.b-yeux-joie,.b-yeux-dort,.b-ouverte,.b-moue,.b-zzz{display:none}
+.b-joue{fill:#ff8fb8;opacity:.6}
+.b-bouche{fill:none;stroke:var(--trait);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.b-ouverte{fill:#3a0d2a}
+.b-langue{fill:#ff7aa8}
+.b-yeux-joie,.b-yeux-dort{fill:none;stroke:var(--trait);stroke-width:3.6;stroke-linecap:round}
+.b-yeux-joie,.b-yeux-dort,.b-ouverte,.b-langue,.b-moue,.b-zzz{display:none}
 .blot.joie .b-yeux,.blot.dort .b-yeux{display:none}
 .blot.joie .b-yeux-joie,.blot.dort .b-yeux-dort{display:inline}
 .blot.joie .b-sourire,.blot.triste .b-sourire{display:none}
-.blot.joie .b-ouverte,.blot.triste .b-moue{display:inline}
+.blot.joie .b-ouverte,.blot.joie .b-langue,.blot.triste .b-moue{display:inline}
 .blot.dort .b-zzz{display:inline}
-.b-zzz text{font:700 13px var(--sans);fill:var(--prune2)}
-.blot.triste .b-pup{transform:translateY(1.5px)}
-@media (prefers-color-scheme:dark){.b-goutte{fill:#7a52aa}.b-pied{fill:#5a3a80}.b-bras{stroke:#6a46a0}.b-ombre{fill:rgba(0,0,0,.35)}}
+.b-zzz text{font:400 15px var(--titre);fill:var(--pri)}
 
-.heros{display:flex;flex-direction:column;gap:12px}
-.heros-haut{display:flex;align-items:center;gap:12px}
-.heros .blot{cursor:pointer}
-.bulle{position:relative;background:var(--papier);border:1.5px solid var(--ligne);border-radius:16px;padding:11px 13px;font-size:.95rem;line-height:1.4}
-.bulle::before{content:"";position:absolute;left:-9px;top:50%;margin-top:-8px;border:8px solid transparent;border-right-color:var(--ligne);border-left:0}
-.bulle::after{content:"";position:absolute;left:-6px;top:50%;margin-top:-7px;border:7px solid transparent;border-right-color:var(--papier);border-left:0}
-.niv{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:.92rem}
-.niv-t b{font-family:var(--serif);font-size:1.08rem;color:var(--prune)}
-.niv-xp{color:var(--encre2);font-size:.82rem;white-space:nowrap}
-.jauge{height:12px;background:var(--ligne);border-radius:99px;overflow:hidden}
-.jauge i{display:block;height:100%;background:linear-gradient(90deg,var(--safran),#f2c46a);border-radius:99px;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
-.puces{display:flex;gap:6px;flex-wrap:wrap}
-.puce{background:var(--papier);border:1px solid var(--ligne);border-radius:99px;padding:4px 10px;font-size:.82rem;font-weight:600;color:var(--encre2)}
-.puce.feu.on{color:#c2410c;border-color:#f6c08a;background:#fff3e6}
-@media (prefers-color-scheme:dark){.puce.feu.on{color:#fdba74;border-color:#7c3f12;background:#3a2212}}
-.jour{margin-top:14px}
-.jour h1{font-size:1.35rem;margin:0 0 12px}
-.comment{margin-top:16px}
-.comment summary{cursor:pointer;list-style:none}
-.comment summary::-webkit-details-marker{display:none}
-.comment summary h2::after{content:" ▾";font-size:.8em;color:var(--encre2)}
-
-.chemin{position:relative;margin:6px 0 10px}
-.chemin-trace{position:absolute;left:50%;top:0;transform:translateX(-50%);overflow:visible}
-.chemin-trace polyline{fill:none;stroke-linecap:round;stroke-linejoin:round}
-.t-fond{stroke:var(--ligne);stroke-width:10;stroke-dasharray:2 16}
-.t-fait{stroke:var(--safran);stroke-width:10;stroke-dasharray:2 16}
-.noeud{position:absolute;width:68px;height:68px}
-.n-btn{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;border:0;padding:0;position:relative;color:#fff}
-.n-btn svg{width:30px;height:30px}
-.n-btn .ic-e{font-size:28px;line-height:1}
-.noeud.n-fait .n-btn{background:var(--safran);box-shadow:0 6px 0 #c98a1e}
-.noeud.courant .n-btn{background:var(--prune2);box-shadow:0 6px 0 var(--prune),0 0 0 6px rgba(138,92,196,.2);cursor:pointer}
-.noeud.verrou .n-btn{background:var(--ligne);color:var(--encre2);box-shadow:0 6px 0 rgba(0,0,0,.12)}
-.noeud.palier.verrou .n-btn{background:#f3e3c3}
-.noeud.palier.n-fait .n-btn{background:#f0b453}
-.n-num{position:absolute;bottom:-20px;left:0;right:0;text-align:center;font-size:.7rem;color:var(--encre2);font-weight:600}
-.bulle-go{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--carte);border:2px solid var(--prune2);color:var(--prune);font-weight:700;font-size:.8rem;padding:5px 10px;border-radius:10px;z-index:1}
-.bulle-go::after{content:"";position:absolute;top:100%;left:50%;margin-left:-7px;border:7px solid transparent;border-top-color:var(--prune2)}
-.bulle-go.demain{border-color:var(--ligne);color:var(--encre2)}
-.bulle-go.demain::after{border-top-color:var(--ligne)}
-.chemin-blot{position:absolute;width:80px}
-
-.r-tete{display:flex;align-items:center;gap:10px}
-.r-tete .blot{margin:-4px 0}
-.combo{margin-left:4px;font-weight:800;color:#c2410c;font-size:.95rem;opacity:0;transform:scale(.6);transition:opacity .2s,transform .2s;min-width:44px;text-align:right}
-.combo.on{opacity:1;transform:none}
-@media (prefers-color-scheme:dark){.combo{color:#fdba74}}
-.gains{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
-.gain{background:var(--carte);border:1px solid var(--ligne);border-radius:14px;padding:12px 6px}
-.gain b{display:block;font:700 1.5rem/1.1 var(--serif);color:var(--prune)}
-.gain span{font-size:.74rem;color:var(--encre2)}
-.bilan .niv{margin-top:6px;text-align:left}
-.bilan .jauge{margin-top:6px}
-.badges,.nouv-badges{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.nouv-badges{margin-top:14px}
-.badge{background:var(--carte);border:1px solid var(--ligne);border-radius:14px;padding:12px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:2px;opacity:.55}
-.badge.on{opacity:1;border-color:#f0c77a}
-.badge .b-ic{font-size:1.8rem;line-height:1.2}
-.badge b{font-size:.9rem}
-.badge small{font-size:.74rem;color:var(--encre2)}
-.stats{display:flex;align-items:center;gap:12px}
-.stats+.carte{margin-top:12px}
-.niveau-up{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:16px;background:rgba(20,12,28,.6);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
-.nu-carte{background:var(--carte);border-radius:24px;padding:24px 20px;max-width:360px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.nu-n{font:700 4.2rem/1 var(--serif);color:var(--safran)}
-.nu-t{font:600 1.3rem var(--serif);color:var(--prune);margin:4px 0 8px}
+/* ---------- fenêtres de célébration ---------- */
+.niveau-up{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:16px;background:rgba(10,6,20,.62);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.nu-carte{background:var(--surface);border:3px solid var(--trait);border-radius:28px;padding:24px 20px;max-width:360px;width:100%;text-align:center;box-shadow:0 8px 0 var(--trait)}
+.nu-carte .etape{color:var(--acc-d)}
+.nu-n{font-family:var(--titre);font-size:5rem;line-height:1;color:var(--pri);-webkit-text-stroke:2px var(--trait)}
+.nu-t{font-family:var(--titre);font-size:1.5rem;margin:6px 0 8px}
 .confettis{position:fixed;inset:0;pointer-events:none;z-index:90;overflow:hidden}
-.confettis i{position:absolute;top:-16px;left:var(--x);width:9px;height:13px;border-radius:2px;animation:tombe var(--d) var(--t) cubic-bezier(.25,.4,.5,1) forwards}
-.xp-vol{position:fixed;z-index:85;transform:translate(-50%,0);font-weight:800;color:var(--safran);font-size:1.05rem;pointer-events:none;animation:vole 1.2s ease-out forwards;text-shadow:0 1px 0 rgba(0,0,0,.15)}
+.confettis i{position:absolute;top:-16px;left:var(--x);width:10px;height:14px;border-radius:2px;border:1.5px solid rgba(0,0,0,.25);animation:tombe var(--d) var(--t) cubic-bezier(.25,.4,.5,1) forwards}
+.xp-vol{position:fixed;z-index:85;transform:translate(-50%,0);font-family:var(--titre);color:var(--acc);font-size:1.4rem;pointer-events:none;animation:vole 1.2s ease-out forwards;-webkit-text-stroke:1.5px var(--trait)}
 @keyframes tombe{0%{transform:translate(0,0) rotate(0)}100%{transform:translate(var(--dx),110vh) rotate(var(--r))}}
-@keyframes vole{0%{opacity:0;transform:translate(-50%,6px) scale(.8)}15%{opacity:1;transform:translate(-50%,-6px) scale(1.1)}100%{opacity:0;transform:translate(-50%,-60px) scale(1)}}
+@keyframes vole{0%{opacity:0;transform:translate(-50%,6px) scale(.8)}15%{opacity:1;transform:translate(-50%,-8px) scale(1.15)}100%{opacity:0;transform:translate(-50%,-70px) scale(1)}}
 
+/* ---------- mouvement (seulement si l'appareil ne demande pas d'en réduire) ---------- */
 @media (prefers-reduced-motion:no-preference){
+  html.mo .vue.on>*{animation:monte .45s cubic-bezier(.2,.8,.2,1) both}
+  html.mo .vue.on>*:nth-child(2){animation-delay:.05s}
+  html.mo .vue.on>*:nth-child(3){animation-delay:.1s}
+  html.mo .vue.on>*:nth-child(4){animation-delay:.15s}
+  html.mo .vue.on>*:nth-child(n+5){animation-delay:.2s}
+  html.mo .s-corps>*:not(.pied){animation:entre .38s cubic-bezier(.2,.8,.2,1) both}
+  html.mo .pied.ok,html.mo .pied.ko,html.mo .pied.presque{animation:feuille .34s cubic-bezier(.2,1.2,.4,1)}
+  html.mo .btn,html.mo .opt,html.mo .son,html.mo .n-btn,html.mo .theme{transition:top .08s,box-shadow .08s,background .2s,border-color .2s}
+  html.mo .opt.juste{animation:pop .35s cubic-bezier(.2,1.4,.4,1)}
+  html.mo .opt.faux{animation:secoue .42s}
+  html.mo .boite .barre{animation:pousse .7s cubic-bezier(.2,.8,.2,1) both}
+  html.mo .boite:nth-child(2) .barre{animation-delay:.06s}
+  html.mo .boite:nth-child(3) .barre{animation-delay:.12s}
+  html.mo .boite:nth-child(4) .barre{animation-delay:.18s}
+  html.mo .boite:nth-child(5) .barre{animation-delay:.24s}
+  html.mo .boite:nth-child(6) .barre{animation-delay:.3s}
+  html.mo #modale.on>.carte{animation:feuille .36s cubic-bezier(.2,1.1,.3,1) both}
   html.mo .blot .b-corps{animation:flotte 2.8s ease-in-out infinite;transform-box:view-box;transform-origin:60px 124px}
   html.mo .blot .b-yeux{animation:cligne 4.6s infinite;transform-box:fill-box;transform-origin:center}
   html.mo .blot.dort .b-corps{animation:respire 3.6s ease-in-out infinite}
@@ -297,9 +415,9 @@ details.liste[open]>summary .liste-t b::after{content:" ▴"}
   html.mo .blot.saute .b-corps{animation:saute .75s cubic-bezier(.3,1.4,.5,1)}
   html.mo .blot.secoue .b-corps{animation:secoueB .6s ease-in-out}
   html.mo .blot.fete .b-corps{animation:fete 1s cubic-bezier(.3,1.4,.5,1) 3}
-  html.mo .blot.fete .b-bras-g{animation:bras 0.5s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:100% 0}
-  html.mo .blot.fete .b-bras-d{animation:brasD 0.5s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:0 0}
-  html.mo .noeud.courant .n-btn{animation:pulse 1.8s ease-in-out infinite}
+  html.mo .blot.fete .b-bras-g{animation:bras .45s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:100% 0}
+  html.mo .blot.fete .b-bras-d{animation:brasD .45s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:0 0}
+  html.mo .noeud.courant::before{animation:onde 1.8s ease-out infinite}
   html.mo .bulle-go{animation:hop 1.6s ease-in-out infinite}
   html.mo .bulle{animation:bulle .5s .15s cubic-bezier(.3,1.4,.5,1) both;transform-origin:0 50%}
   html.mo .combo.pop{animation:popC .35s cubic-bezier(.3,1.6,.5,1)}
@@ -309,14 +427,19 @@ details.liste[open]>summary .liste-t b::after{content:" ▴"}
   html.mo .nu-carte{animation:nu .6s cubic-bezier(.3,1.5,.5,1) both}
   html.mo .nu-n{animation:pop .7s .2s cubic-bezier(.2,1.6,.4,1) both}
   html.mo .gain{animation:monte .45s cubic-bezier(.2,.8,.2,1) both}
-  html.mo .gain:nth-child(2){animation-delay:.08s}
-  html.mo .gain:nth-child(3){animation-delay:.16s}
-  html.mo .opt{transition:transform .12s,border-color .2s,background .2s}
-  html.mo .opt:not(:disabled):active{transform:scale(.98)}
-  html.mo .opt.juste{animation:pop .35s cubic-bezier(.2,1.4,.4,1)}
-  html.mo .opt.faux{animation:secoue .42s}
+  html.mo .gain:nth-child(2){animation-delay:.1s}
+  html.mo .gain:nth-child(3){animation-delay:.2s}
   html.mo .noeud{animation:monte .5s cubic-bezier(.2,.8,.2,1) both}
+  html.mo .stat.feu:not(.eteint) svg{animation:flamme 1.4s ease-in-out infinite;transform-origin:50% 90%}
+  html.mo .jour .btn{animation:appel 2.6s 1s ease-in-out infinite}
+  html.mo mark{background-size:0 100%;background-repeat:no-repeat;animation:surligne .7s .25s ease-out forwards}
 }
+@keyframes monte{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes entre{from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:none}}
+@keyframes feuille{from{transform:translateY(100%)}to{transform:none}}
+@keyframes pop{0%{transform:scale(.9)}60%{transform:scale(1.04)}100%{transform:scale(1)}}
+@keyframes secoue{0%,100%{transform:none}20%{transform:translateX(-8px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(2px)}}
+@keyframes pousse{from{transform:scaleY(0)}to{transform:scaleY(1)}}
 @keyframes flotte{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 @keyframes respire{0%,100%{transform:scale(1,1)}50%{transform:scale(1.03,.97)}}
 @keyframes cligne{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
@@ -324,85 +447,72 @@ details.liste[open]>summary .liste-t b::after{content:" ▴"}
 @keyframes saute{0%{transform:scale(1.12,.86)}35%{transform:translateY(-22px) scale(.92,1.1)}65%{transform:translateY(0) scale(1.1,.9)}82%{transform:scale(.97,1.03)}100%{transform:none}}
 @keyframes secoueB{0%,100%{transform:rotate(0)}20%{transform:rotate(-8deg)}45%{transform:rotate(7deg)}70%{transform:rotate(-4deg)}}
 @keyframes fete{0%{transform:scale(1.1,.88)}40%{transform:translateY(-26px) rotate(-6deg)}70%{transform:translateY(0) rotate(4deg) scale(1.06,.94)}100%{transform:none}}
-@keyframes bras{from{transform:rotate(0)}to{transform:rotate(55deg)}}
-@keyframes brasD{from{transform:rotate(0)}to{transform:rotate(-55deg)}}
-@keyframes pulse{0%,100%{box-shadow:0 6px 0 var(--prune),0 0 0 6px rgba(138,92,196,.2)}50%{box-shadow:0 6px 0 var(--prune),0 0 0 14px rgba(138,92,196,.08)}}
-@keyframes hop{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-4px)}}
+@keyframes bras{from{transform:rotate(0)}to{transform:rotate(60deg)}}
+@keyframes brasD{from{transform:rotate(0)}to{transform:rotate(-60deg)}}
+@keyframes onde{0%{transform:scale(.9);opacity:.5}100%{transform:scale(1.25);opacity:0}}
+@keyframes hop{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-5px)}}
 @keyframes bulle{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
-@keyframes popC{0%{transform:scale(1.5)}100%{transform:scale(1)}}
+@keyframes popC{0%{transform:scale(1.6)}100%{transform:scale(1)}}
 @keyframes badge{0%{transform:scale(.3) rotate(-15deg);opacity:0}100%{transform:none;opacity:1}}
 @keyframes fondu{from{opacity:0}to{opacity:1}}
 @keyframes nu{from{transform:scale(.6) translateY(30px);opacity:0}to{transform:none;opacity:1}}
-
-/* Mouvement : seulement si l'appareil ne demande pas d'en réduire */
-@media (prefers-reduced-motion:no-preference){
-  html.mo .vue.on>*{animation:monte .42s cubic-bezier(.2,.8,.2,1) both}
-  html.mo .vue.on>*:nth-child(2){animation-delay:.05s}
-  html.mo .vue.on>*:nth-child(3){animation-delay:.1s}
-  html.mo .vue.on>*:nth-child(4){animation-delay:.15s}
-  html.mo .vue.on>*:nth-child(5){animation-delay:.2s}
-  html.mo .s-corps>*{animation:entre .38s cubic-bezier(.2,.8,.2,1) both}
-  html.mo .retour.ok{animation:pop .4s cubic-bezier(.2,1.4,.4,1) both}
-  html.mo .retour.ko{animation:secoue .42s both}
-  html.mo .boite .barre{animation:pousse .7s cubic-bezier(.2,.8,.2,1) both}
-  html.mo .boite:nth-child(2) .barre{animation-delay:.06s}
-  html.mo .boite:nth-child(3) .barre{animation-delay:.12s}
-  html.mo .boite:nth-child(4) .barre{animation-delay:.18s}
-  html.mo .boite:nth-child(5) .barre{animation-delay:.24s}
-  html.mo .boite:nth-child(6) .barre{animation-delay:.3s}
-  html.mo #modale.on .carte{animation:feuille .36s cubic-bezier(.2,.8,.2,1) both}
-  html.mo .btn{transition:transform .12s}
-  html.mo .btn:active{transform:scale(.97)}
-  html.mo .marque svg .plume{animation:plume 3.2s ease-in-out infinite;transform-origin:50% 90%}
-  html.mo .bilan .grand{animation:pop .6s cubic-bezier(.2,1.4,.4,1) both}
-  html.mo mark{background-size:0 100%;background-repeat:no-repeat;background-image:linear-gradient(transparent 55%,var(--safran-l) 55%);background-color:transparent;animation:surligne .7s .25s ease-out forwards}
-}
-@keyframes monte{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@keyframes entre{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
-@keyframes pop{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
-@keyframes secoue{0%,100%{transform:none}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(2px)}}
-@keyframes pousse{from{transform:scaleY(0)}to{transform:scaleY(1)}}
-@keyframes feuille{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
-@keyframes plume{0%,100%{transform:rotate(0)}50%{transform:rotate(-6deg)}}
+@keyframes flamme{0%,100%{transform:scale(1) rotate(0)}30%{transform:scale(1.08,1.12) rotate(-4deg)}60%{transform:scale(.96,1.04) rotate(3deg)}}
+@keyframes appel{0%,86%,100%{transform:none}90%{transform:scale(1.04) rotate(-1deg)}94%{transform:scale(1.04) rotate(1deg)}}
 @keyframes surligne{to{background-size:100% 100%}}
+
+.tuile .c-feu{color:var(--flamme)}
+body.sans-ia .asr-btn{display:none!important}
+body:not(.sans-ia) #seance .pied{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+.badge .medaille text{font-family:var(--titre)}
+
 </style>
 <!-- assistant:debut — bouton « Demander à une IA » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
 <script src="assistant.js?v=10" defer></script>
 <!-- assistant:fin -->
 </head>
 <body>
-<script>
-if (window.matchMedia && !matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("mo");
-</script>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-feu" viewBox="0 0 32 32"><path d="M16 2.5c1.2 4.4 5.6 7 8 11.2 2.9 5.1.9 13.8-8 15.8-8.9-2-10.9-10.7-8-15.8 1.2-2.1 2.9-3.4 3.8-5.6.8 2 .7 3.6 0 5.4 2.6-1.8 4.6-5.4 4.2-11z" fill="currentColor" stroke="var(--trait)" stroke-width="2.2" stroke-linejoin="round"/><path d="M16 15c.8 2.6 3.6 4 3.6 7.4a3.6 3.6 0 0 1-7.2 0c0-2 1.2-2.8 1.9-4.3.4 1 .5 1.8.2 2.7 1-.9 1.7-2.8 1.5-5.8z" fill="#FFE27A"/></symbol>
+  <symbol id="i-goutte" viewBox="0 0 32 32"><path d="M16 2.5C13 9 6.5 13.5 6.5 20a9.5 9.5 0 0 0 19 0C25.5 13.5 19 9 16 2.5z" fill="var(--acc)" stroke="var(--trait)" stroke-width="2.2" stroke-linejoin="round"/><path d="M11.5 19.5c0-2.4 1.6-4.4 3.2-6.4" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".8"/></symbol>
+  <symbol id="i-bouclier" viewBox="0 0 32 32"><path d="M16 2.8 27 6.5v8.3c0 7-4.6 12.2-11 14.5C9.6 27 5 21.8 5 14.8V6.5z" fill="var(--pri)" stroke="var(--trait)" stroke-width="2.2" stroke-linejoin="round"/><path d="m16 9.5 1.9 3.9 4.3.6-3.1 3 .7 4.3-3.8-2-3.8 2 .7-4.3-3.1-3 4.3-.6z" fill="#fff"/></symbol>
+  <symbol id="i-maison" viewBox="0 0 32 32"><path d="M4.5 15 16 5l11.5 10v12a1.5 1.5 0 0 1-1.5 1.5h-6.5v-8h-7v8H6a1.5 1.5 0 0 1-1.5-1.5z" fill="currentColor" stroke="var(--trait)" stroke-width="2.2" stroke-linejoin="round"/><path d="M12.5 28.5v-8h7v8" fill="var(--surface)" stroke="var(--trait)" stroke-width="2.2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-livre" viewBox="0 0 32 32"><path d="M5 6.5c3.8-1.6 7.6-1.6 11 .8 3.4-2.4 7.2-2.4 11-.8v20c-3.8-1.6-7.6-1.6-11 .8-3.4-2.4-7.2-2.4-11-.8z" fill="currentColor" stroke="var(--trait)" stroke-width="2.2" stroke-linejoin="round"/><path d="M16 7.3v20" stroke="var(--trait)" stroke-width="2.2"/><path d="M8.5 12c2-.6 3.8-.4 5 .4M8.5 16.5c2-.6 3.8-.4 5 .4M18.5 12.4c1.2-.8 3-1 5-.4" stroke="var(--surface)" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-profil" viewBox="0 0 32 32"><path d="M16 3c-2 4.6-9.5 9.5-9.5 16a9.5 9.5 0 0 0 19 0C25.5 12.5 18 7.6 16 3z" fill="currentColor" stroke="var(--trait)" stroke-width="2.2" stroke-linejoin="round"/><circle cx="12.6" cy="19" r="2" fill="var(--surface)"/><circle cx="19.4" cy="19" r="2" fill="var(--surface)"/><path d="M13.5 23.5q2.5 2 5 0" fill="none" stroke="var(--surface)" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 32 32"><path d="m7 16.5 6 6L25.5 10" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cadenas" viewBox="0 0 32 32"><rect x="7" y="14" width="18" height="14" rx="3.5" fill="currentColor"/><path d="M11 14v-3.5a5 5 0 0 1 10 0V14" fill="none" stroke="currentColor" stroke-width="3.2"/></symbol>
+  <symbol id="i-etoile" viewBox="0 0 32 32"><path d="m16 3.5 3.7 7.6 8.3 1.2-6 5.9 1.4 8.3L16 22.6l-7.4 3.9L10 18.2l-6-5.9 8.3-1.2z" fill="currentColor" stroke="var(--trait)" stroke-width="2.2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-coffre" viewBox="0 0 32 32"><path d="M5 13h22v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z" fill="#E0913A" stroke="var(--trait)" stroke-width="2.2" stroke-linejoin="round"/><path d="M5 13c0-4.4 3.6-8 8-8h6c4.4 0 8 3.6 8 8z" fill="#F2AE55" stroke="var(--trait)" stroke-width="2.2" stroke-linejoin="round"/><rect x="13" y="11" width="6" height="7" rx="1.5" fill="#FFD966" stroke="var(--trait)" stroke-width="2"/></symbol>
+  <symbol id="i-son" viewBox="0 0 32 32"><path d="M5 12h5l7-6v20l-7-6H5z" fill="currentColor" stroke="var(--trait)" stroke-width="2.2" stroke-linejoin="round"/><path d="M21 11.5a6.5 6.5 0 0 1 0 9M24.5 8a11 11 0 0 1 0 16" fill="none" stroke="var(--trait)" stroke-width="2.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-croix" viewBox="0 0 32 32"><path d="m8 8 16 16M24 8 8 24" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></symbol>
+  <symbol id="i-attention" viewBox="0 0 32 32"><path d="M16 3.5 29 27H3z" fill="currentColor" stroke="var(--trait)" stroke-width="2" stroke-linejoin="round"/><path d="M16 12v7" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/><circle cx="16" cy="23" r="1.9" fill="#fff"/></symbol>
+  <symbol id="i-cible" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12.5" fill="var(--ko)" stroke="var(--trait)" stroke-width="2.2"/><circle cx="16" cy="16" r="8" fill="#fff" stroke="var(--trait)" stroke-width="2"/><circle cx="16" cy="16" r="3.6" fill="var(--ko)"/></symbol>
+</svg>
 
-<div class="wrap">
-  <header class="haut">
-    <div class="marque">
-      <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="10" fill="var(--prune)"/><path d="M9 12l4.2 16h1.6L20 15.5 25.2 28h1.6L31 12" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><g class="plume"><rect x="11" y="31" width="18" height="2.6" rx="1.3" fill="var(--safran)"/></g></svg>
-      <div><b>Wordsmith</b><span>Vocabulaire anglais · BFI</span></div>
-    </div>
-  </header>
-</div>
+<header class="barre-haut">
+  <div class="wrap">
+    <div class="logo"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="11" fill="var(--pri)" stroke="var(--trait)" stroke-width="2.5"/><path d="M10 12.5l4 15h1.8L20 16l4.2 11.5H26l4-15" fill="none" stroke="var(--sur-pri)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Wordsmith</div>
+    <span class="stat feu" id="st-feu" title="Jours d'affilée"><svg aria-hidden="true"><use href="#i-feu"/></svg><span>0</span></span>
+    <span class="stat xp" id="st-xp" title="Points d'expérience"><svg aria-hidden="true"><use href="#i-goutte"/></svg><span>0</span></span>
+    <span class="stat niv" id="st-niv" title="Niveau"><svg aria-hidden="true"><use href="#i-bouclier"/></svg><span>1</span></span>
+  </div>
+</header>
 
 <main class="wrap">
-  <!-- Aujourd'hui -->
   <section class="vue on" id="v-jour" aria-labelledby="t-jour"></section>
-  <!-- Mots -->
   <section class="vue" id="v-mots" aria-labelledby="t-mots"></section>
-  <!-- Progrès -->
   <section class="vue" id="v-progres" aria-labelledby="t-progres"></section>
 </main>
 
 <nav class="bas" aria-label="Navigation">
   <div>
-    <button data-vue="jour" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Aujourd'hui</button>
-    <button data-vue="mots"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2.5z"/><path d="M8 7h7M8 11h5"/></svg>Mots</button>
-    <button data-vue="progres"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Progrès</button>
+    <button data-vue="jour" aria-current="page"><svg aria-hidden="true"><use href="#i-maison"/></svg>Apprendre</button>
+    <button data-vue="mots"><svg aria-hidden="true"><use href="#i-livre"/></svg>Mots</button>
+    <button data-vue="progres"><svg aria-hidden="true"><use href="#i-profil"/></svg>Profil</button>
   </div>
 </nav>
 
 <div id="seance" role="dialog" aria-modal="true" aria-label="Séance du jour">
-  <div class="s-haut"><button id="s-quitter" aria-label="Quitter la séance">✕</button><div class="prog" aria-hidden="true"><i id="s-prog"></i></div><div class="combo" id="combo" aria-hidden="true"></div></div>
+  <div class="s-haut"><button id="s-quitter" aria-label="Quitter la séance"><svg aria-hidden="true"><use href="#i-croix"/></svg></button><div class="prog" aria-hidden="true"><i id="s-prog"></i></div><div class="combo" id="combo" aria-hidden="true"></div></div>
   <div class="s-corps" id="s-corps"></div>
 </div>
 
@@ -2177,18 +2287,18 @@ function blotSVG(niv) {
   return '<svg class="blot-svg" viewBox="0 0 120 132" aria-hidden="true">' +
     '<ellipse class="b-ombre" cx="60" cy="126" rx="30" ry="4"/>' +
     '<g class="b-corps">' +
-    '<path class="b-bras b-bras-g" d="M28 86 q-13 0 -18 -11"/><path class="b-bras b-bras-d" d="M92 86 q13 0 18 -11"/>' +
+    '<g class="b-bras-g"><path class="b-bras" d="M28 86 q-13 0 -18 -11"/><path class="b-bras-in" d="M28 86 q-13 0 -18 -11"/></g><g class="b-bras-d"><path class="b-bras" d="M92 86 q13 0 18 -11"/><path class="b-bras-in" d="M92 86 q13 0 18 -11"/></g>' +
     '<ellipse class="b-pied" cx="46" cy="119" rx="10" ry="5.5"/><ellipse class="b-pied" cx="74" cy="119" rx="10" ry="5.5"/>' +
     '<path class="b-goutte" d="M60 6 C52 22 22 52 22 80 a38 38 0 0 0 76 0 C98 52 68 22 60 6Z"/>' +
     '<ellipse class="b-reflet" cx="43" cy="57" rx="6.5" ry="11" transform="rotate(20 43 57)"/>' +
-    '<g class="b-yeux"><ellipse cx="47" cy="78" rx="8" ry="9.5" fill="#fff"/><ellipse cx="73" cy="78" rx="8" ry="9.5" fill="#fff"/>' +
+    '<g class="b-yeux"><ellipse cx="47" cy="78" rx="8.5" ry="10" fill="#fff" stroke="var(--trait)" stroke-width="2.6"/><ellipse cx="73" cy="78" rx="8.5" ry="10" fill="#fff" stroke="var(--trait)" stroke-width="2.6"/>' +
     '<circle class="b-pup" cx="48.5" cy="80" r="4.4"/><circle class="b-pup" cx="74.5" cy="80" r="4.4"/>' +
     '<circle cx="50.3" cy="78" r="1.5" fill="#fff"/><circle cx="76.3" cy="78" r="1.5" fill="#fff"/></g>' +
     '<path class="b-yeux-joie" d="M40 81 q7 -9 14 0M66 81 q7 -9 14 0"/>' +
     '<path class="b-yeux-dort" d="M40 79 q7 6 14 0M66 79 q7 6 14 0"/>' +
     '<ellipse class="b-joue" cx="35" cy="93" rx="5.5" ry="3.2"/><ellipse class="b-joue" cx="85" cy="93" rx="5.5" ry="3.2"/>' +
     '<path class="b-bouche b-sourire" d="M53 94 q7 7 14 0"/>' +
-    '<path class="b-bouche b-ouverte" d="M51 92 q9 14 18 0z"/>' +
+    '<path class="b-bouche b-ouverte" d="M51 92 q9 14 18 0z"/><path class="b-langue" d="M55.5 98.5 q4.5 -3.5 9 0 q-4.5 4.5 -9 0z"/>' +
     '<path class="b-bouche b-moue" d="M53 98 q7 -5 14 0"/>' +
     acc + '</g>' +
     '<g class="b-zzz"><text x="92" y="30">z</text><text x="101" y="18">z</text><text x="108" y="8">z</text></g>' +
@@ -2284,50 +2394,206 @@ function messageBlot(nv, rv, fini) {
 function pick(t) { return t[Math.floor(Math.random() * t.length)]; }
 
 /* ---------- le chemin des séances ---------- */
-var DECALAGES = [0, 56, 84, 56, 0, -56, -84, -56];
+
+/* ---------- thèmes (préférence gardée sur l'appareil, avec la progression) ---------- */
+var THEMES = [
+  { id: "auto", nom: "Auto" },
+  { id: "encre", nom: "Encre", fond: "#FFF6E9", pri: "#7B4FD6", acc: "#FFB547" },
+  { id: "minuit", nom: "Minuit", fond: "#15153A", pri: "#9A7CFF", acc: "#FFD15C" },
+  { id: "menthe", nom: "Menthe", fond: "#EAFBF1", pri: "#17A46C", acc: "#FF8A3D" },
+  { id: "corail", nom: "Corail", fond: "#FFF1EB", pri: "#EE5350", acc: "#22B8AA" },
+  { id: "ocean", nom: "Océan", fond: "#EBF5FF", pri: "#1F7BE0", acc: "#FFC23D" },
+  { id: "bonbon", nom: "Bonbon", fond: "#FFF0F7", pri: "#E04A9A", acc: "#7C5CFF" }
+];
+function themeReel(t) {
+  if (!t || t === "auto") return (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches) ? "minuit" : "encre";
+  return t;
+}
+function appliquerTheme() {
+  var t = themeReel(etat.theme);
+  document.documentElement.setAttribute("data-theme", t);
+  var m = document.querySelector('meta[name="theme-color"]');
+  var d = THEMES.filter(function (x) { return x.id === t; })[0];
+  if (m && d) m.setAttribute("content", d.fond);
+}
+if (window.matchMedia) { try { matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () { if (!etat.theme || etat.theme === "auto") appliquerTheme(); }); } catch (e) {} }
+
+function ic(id, cls) { return '<svg class="' + (cls || '') + '" aria-hidden="true"><use href="#i-' + id + '"/></svg>'; }
+
+/* ---------- barre du haut ---------- */
+function majBarre() {
+  var s = serie(), xp = etat.xp || 0;
+  var f = document.getElementById("st-feu");
+  f.querySelector("span").textContent = s; f.classList.toggle("eteint", !s);
+  f.title = pluriel(s, "jour") + " d'affilée";
+  document.querySelector("#st-xp span").textContent = xp;
+  document.querySelector("#st-niv span").textContent = niveau(xp);
+}
+
+/* ---------- médailles des badges ---------- */
+var COUL_BADGE = { premiere: "#35B371", serie3: "#FF8A1F", serie7: "#F25555", serie30: "#E0A800", vus50: "#1F7BE0", vus200: "#7B4FD6", acquis50: "#17A46C", phrase: "#E04A9A", parfait: "#22B8AA", niv10: "#FFB547" };
+var GLYPHE = {
+  premiere: '<path d="M27 44c-3 0-5-3-4.5-7s3-7 6-7 4 3 3.6 6.5S30 44 27 44zM41 34c-3 0-4.6-3-4.2-6.5s2.8-6.5 5.6-6.5 4 3 3.6 6.4S44 34 41 34z" fill="#fff"/>',
+  serie3: '<path d="M35 14c1.5 6 7.5 9 10 14 3 6-.5 15-10 17-9.5-2-13-11-10-17 1.3-2.4 3-3.8 4-6.3 1 2.4.8 4.2 0 6.3 3-2 5.3-6.3 6-14z" fill="#fff"/>',
+  serie7: '<path d="M35 12c1.5 6 7.5 9 10 14 3 6-.5 15-10 17-9.5-2-13-11-10-17 1.3-2.4 3-3.8 4-6.3 1 2.4.8 4.2 0 6.3 3-2 5.3-6.3 6-14z" fill="#fff"/><text x="35" y="40" text-anchor="middle" font-family="Lilita,sans-serif" font-size="13" fill="#F25555">7</text>',
+  serie30: '<path d="M24 18h22v6a11 11 0 0 1-22 0zM24 21h-5a5 5 0 0 0 6 7M46 21h5a5 5 0 0 1-6 7M35 35v6M28 46h14" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>',
+  vus50: '<path d="M20 22c5-2 10-2 15 1 5-3 10-3 15-1v22c-5-2-10-2-15 1-5-3-10-3-15-1z" fill="#fff"/><path d="M35 23v22" stroke="#1F7BE0" stroke-width="2.5"/>',
+  vus200: '<rect x="20" y="20" width="8" height="26" rx="2" fill="#fff"/><rect x="31" y="16" width="8" height="30" rx="2" fill="#fff" opacity=".85"/><rect x="42" y="22" width="8" height="24" rx="2" fill="#fff" transform="rotate(10 46 34)"/>',
+  acquis50: '<path d="M22 46h26M24 42h22M26 26h18v16H26zM22 26l13-8 13 8z" fill="#fff"/><path d="M30 28v12M35 28v12M40 28v12" stroke="#17A46C" stroke-width="2.5"/>',
+  phrase: '<path d="M44 16c5 5-8 23-14 27l-5 2 1-5c4-6 13-29 18-24z" fill="#fff"/><path d="M22 48h12" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>',
+  parfait: '<text x="35" y="42" text-anchor="middle" font-family="Lilita,sans-serif" font-size="19" fill="#fff">100</text>',
+  niv10: '<path d="m35 16 5 10.3 11.3 1.6-8.2 8 2 11.2-10.1-5.3-10.1 5.3 2-11.2-8.2-8 11.3-1.6z" fill="#fff"/>'
+};
+function medaille(id) {
+  var c = COUL_BADGE[id] || "#7B4FD6";
+  return '<svg class="medaille" viewBox="0 0 70 70" aria-hidden="true"><path d="M35 3 61 18v34L35 67 9 52V18z" fill="' + c + '" stroke="var(--trait)" stroke-width="3" stroke-linejoin="round"/>' +
+    '<path d="M35 9 56 21v28L35 61 14 49V21z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2.5"/>' + (GLYPHE[id] || "") + '</svg>';
+}
+function badgeHTML(b, on, neuf) {
+  return '<div class="badge' + (on ? ' on' : '') + (neuf ? ' neuf' : '') + '">' + medaille(b.id) + '<b>' + esc(b.nom) + '</b><small>' + esc(b.txt) + '</small></div>';
+}
+
+/* ---------- accueil ---------- */
+function rendreJour() {
+  var nv = nouveauxDuJour(), rv = revisionsDuJour(), d = aujourdhui();
+  var fini = !!(etat.jours[d] && etat.jours[d].fini && !nv.length && !rv.length);
+  var restants = MOTS.length - nbVus();
+  var minutes = Math.max(2, Math.round(nv.length * 2 + rv.length * 0.6));
+  var h = '<div class="heros">' + blot(fini ? "dort" : "", 104, "accueil") +
+    '<div class="bulle" role="status">' + esc(messageBlot(nv, rv, fini)) + '</div></div>' +
+    '<div class="jour">' +
+    '<h1 id="t-jour">' + (fini ? "C'est bouclé pour aujourd'hui !" : "Ta séance du jour") + '</h1>' +
+    '<p>' + (fini ? "Tes mots reviendront juste avant que tu les oublies." : (nv.length ? 'D\'abord tes ' + pluriel(nv.length, "mot nouveau", "mots nouveaux") : '') + (nv.length && rv.length ? ', puis ' : (rv.length ? 'Au programme : ' : '')) + (rv.length ? pluriel(rv.length, "révision") : '') + (nv.length || rv.length ? '.' : '')) + '</p>' +
+    '<div class="compteurs">' +
+    '<div><b>' + nv.length + '</b><span>nouveaux</span></div>' +
+    '<div><b>' + rv.length + '</b><span>à revoir</span></div>' +
+    '<div><b>' + (nv.length || rv.length ? minutes : 0) + '</b><span>minutes</span></div></div>' +
+    (nv.length || rv.length ? '<button class="btn large" data-go>C\'est parti !</button>'
+      : (fini ? '<div class="fait">✓ Reviens demain pour continuer ta série.</div>' : (!restants ? '<div class="fait">Tous les mots ont été vus : continue les révisions chaque jour.</div>' : ''))) +
+    (!stockageOk ? '<div class="alerte" role="status">Ce navigateur refuse l\'enregistrement (navigation privée ?) : ta progression sera perdue à la fermeture.</div>' : '') +
+    '</div>' + cheminHTML(fini);
+  document.getElementById("v-jour").innerHTML = h;
+  document.querySelectorAll("#v-jour [data-go]").forEach(function (b) { b.onclick = demarrer; });
+  var b = document.querySelector("#v-jour .heros .blot");
+  if (b) b.onclick = function () { animerBlot(b, "saute"); son("ok"); var bu = document.querySelector("#v-jour .bulle"); if (bu) bu.textContent = messageBlot(nv, rv, fini); };
+  majBarre();
+}
+
+/* ---------- le chemin : des unités de 10 séances ---------- */
+var UNITES = ["Premiers pas", "Ça prend forme", "Le goût des mots", "Sur la lancée", "Vers l'aisance", "Le mot juste", "Bien installé", "Parler avec style", "La plume affûtée", "Presque bilingue", "Maître des nuances", "Wordsmith"];
+var DECALAGES = [0, 58, 86, 58, 0, -58, -86, -58];
 function cheminHTML(fini) {
   var fait = etat.seances || 0;
-  var debut = Math.max(1, fait - 2), fin = debut + 7, H = 96, n = fin - debut + 1;
+  var cible = fini ? fait : fait + 1;             /* séance à mettre en avant */
+  var u = Math.max(0, Math.floor((Math.max(1, cible) - 1) / 10));
+  var debut = u * 10 + 1, fin = debut + 9, H = 100, n = 10;
   var pts = [], nodes = "", mascotte = "";
   for (var k = debut; k <= fin; k++) {
-    var i = k - debut, x = DECALAGES[(k - 1) % 8], y = i * H + H / 2;
+    var i = k - debut, x = DECALAGES[(k - 1) % 8], y = i * H + H / 2 + 20;
     pts.push((150 + x) + "," + y);
     var etatN = k <= fait ? "n-fait" : (k === fait + 1 && !fini ? "courant" : "verrou");
     var palier = k % 10 === 0;
-    var ic = etatN === "n-fait" ? '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-      : palier ? '<span class="ic-e">🏆</span>'
-      : etatN === "courant" ? '<svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z" fill="currentColor"/></svg>'
-      : '<svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" fill="currentColor"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>';
-    var etiquette = etatN === "courant" ? '<span class="bulle-go">C\'est parti !</span>' : (k === fait + 1 && fini ? '<span class="bulle-go demain">Demain</span>' : '');
-    nodes += '<div class="noeud ' + etatN + (palier ? ' palier' : '') + '" style="top:' + (y - 34) + 'px;left:calc(50% + ' + (x - 34) + 'px)">' + etiquette +
-      (etatN === "courant" ? '<button class="n-btn" data-go aria-label="Commencer la séance ' + k + '">' : '<div class="n-btn" aria-label="Séance ' + k + (etatN === "n-fait" ? ', faite' : ', à venir') + '">') + ic +
+    var icone = palier ? ic("coffre") : etatN === "n-fait" ? ic("check") : etatN === "courant" ? ic("etoile") : ic("cadenas");
+    var etiquette = etatN === "courant" ? '<span class="bulle-go">Commencer</span>' : (k === fait + 1 && fini ? '<span class="bulle-go demain">Demain</span>' : '');
+    nodes += '<div class="noeud ' + etatN + (palier ? ' palier' : '') + '" style="top:' + (y - 36) + 'px;left:calc(50% + ' + (x - 36) + 'px)">' + etiquette +
+      (etatN === "courant" ? '<button class="n-btn" data-go aria-label="Commencer la séance ' + k + '">' : '<div class="n-btn" role="img" aria-label="Séance ' + k + (etatN === "n-fait" ? ', faite' : ', à venir') + '">') + icone +
       (etatN === "courant" ? '</button>' : '</div>') + '<span class="n-num">' + k + '</span></div>';
     if (k === fait + 1) {
       var cote = x >= 0 ? -1 : 1;
-      mascotte = '<div class="chemin-blot" style="top:' + (y - 50) + 'px;left:calc(50% + ' + (x + cote * 96 - 40) + 'px)">' + blot(fini ? "dort" : "", 80) + '</div>';
+      mascotte = '<div class="chemin-blot" style="top:' + (y - 56) + 'px;left:calc(50% + ' + (x + cote * 100 - 42) + 'px)">' + blot(fini ? "dort" : "", 84) + '</div>';
     }
   }
-  var fait2 = Math.min(n, Math.max(0, fait - debut + 1));
-  return '<div class="chemin" style="height:' + (n * H) + 'px">' +
-    '<svg class="chemin-trace" viewBox="0 0 300 ' + (n * H) + '" width="300" height="' + (n * H) + '" aria-hidden="true">' +
+  var faits = Math.min(n, Math.max(0, fait - debut + 1));
+  return '<div class="unite"><div><span class="u-n">Unité ' + (u + 1) + '</span><b>' + esc(UNITES[u % UNITES.length]) + '</b></div><span class="u-ic">' + ic("livre") + '</span></div>' +
+    '<div class="chemin" style="height:' + (n * H + 40) + 'px">' +
+    '<svg class="chemin-trace" viewBox="0 0 300 ' + (n * H + 40) + '" width="300" height="' + (n * H + 40) + '" aria-hidden="true">' +
     '<polyline points="' + pts.join(" ") + '" class="t-fond"/>' +
-    (fait2 > 1 ? '<polyline points="' + pts.slice(0, fait2 + (fini ? 0 : 1)).join(" ") + '" class="t-fait"/>' : '') +
-    '</svg>' + nodes + mascotte + '</div>';
+    (faits > 0 ? '<polyline points="' + pts.slice(0, Math.min(n, faits + (fini ? 0 : 1))).join(" ") + '" class="t-fait"/>' : '') +
+    '</svg>' + nodes + mascotte + '</div>' +
+    '<div class="unite suite"><div><span class="u-n">Unité ' + (u + 2) + '</span><b>' + esc(UNITES[(u + 1) % UNITES.length]) + '</b></div><span class="u-ic">' + ic("cadenas") + '</span></div>';
+}
+
+/* ---------- profil : niveau, stats, badges, thèmes, réglages ---------- */
+function rendreProgres() {
+  var xp = etat.xp || 0, n = niveau(xp), bas = seuil(n), haut = seuil(n + 1);
+  var compte = [0, 0, 0, 0, 0, 0];
+  MOTS.forEach(function (m) { compte[suivi(m.id).b]++; });
+  var max = Math.max.apply(null, compte.concat([1]));
+  var noms = ["pas vus", "boîte 1<br>1 j", "boîte 2<br>3 j", "boîte 3<br>7 j", "boîte 4<br>14 j", "boîte 5<br>30 j"];
+  var tot = 0, ok = 0;
+  MOTS.forEach(function (m) { var s = suivi(m.id); tot += s.ok + s.ko; ok += s.ok; });
+  var prochain = ACCESSOIRES.filter(function (a) { return a.niv > n; })[0];
+  var parListe = LISTES.filter(function (l) { return l.dispo; }).map(function (l) {
+    var a = l.mots.filter(function (m) { return suivi(m.id).b >= MAITRISE; }).length;
+    return '<li><span><span>' + esc(l.titre) + '</span><span>' + a + ' / ' + l.mots.length + '</span></span><div class="jauge"><i style="width:' + Math.round(a / l.mots.length * 100) + '%"></i></div></li>';
+  }).join("");
+  var h = '<div class="carte profil" style="margin-top:18px">' + blot("joie", 92) + '<div style="flex:1"><div class="p-t" id="t-progres">Niveau ' + n + '<br>' + esc(titre(n)) + '</div>' +
+    '<div class="niv" style="margin:8px 0 6px"><span class="niv-xp">' + (xp - bas) + ' / ' + (haut - bas) + ' XP</span></div>' +
+    '<div class="jauge"><i style="width:' + Math.round((xp - bas) / (haut - bas) * 100) + '%"></i></div>' +
+    (prochain ? '<p class="petit muted" style="margin:8px 0 0">Niveau ' + prochain.niv + ' : Blot gagne ' + prochain.nom + '.</p>' : '') + '</div></div>' +
+    '<h2>Statistiques</h2><div class="tuiles">' +
+    '<div class="tuile">' + ic("feu", "c-feu") + '<div><b>' + serie() + '</b><span>série actuelle</span></div></div>' +
+    '<div class="tuile">' + ic("coffre") + '<div><b>' + (etat.record || 0) + '</b><span>meilleure série</span></div></div>' +
+    '<div class="tuile">' + ic("goutte") + '<div><b>' + xp + '</b><span>XP au total</span></div></div>' +
+    '<div class="tuile">' + ic("cible") + '<div><b>' + (tot ? Math.round(ok / tot * 100) + ' %' : '—') + '</b><span>de réussite</span></div></div></div>' +
+    '<h2>Tes boîtes de révision</h2><div class="carte">' +
+    '<div class="boites" role="img" aria-label="Répartition des mots par boîte">' +
+    compte.map(function (c) { return '<div class="boite"><b>' + c + '</b><div class="barre" style="height:' + Math.round(c / max * 108) + 'px"></div></div>'; }).join("") +
+    '</div><div class="boites-l">' + noms.map(function (x) { return '<span>' + x + '</span>'; }).join("") + '</div>' +
+    '<p class="petit muted" style="margin:12px 0 0">Un mot est acquis à partir de la boîte 4. ' + pluriel(nbAcquis(), "mot acquis", "mots acquis") + ' sur ' + MOTS.length + '.</p></div>' +
+    '<h2>Badges</h2><div class="carte"><div class="badges">' + BADGES.map(function (b) { return badgeHTML(b, etat.badges && etat.badges[b.id]); }).join("") + '</div></div>' +
+    '<h2>Mots acquis par liste</h2><div class="carte"><ul class="par-liste">' + parListe + '</ul></div>' +
+    '<h2>Thème</h2><div class="themes" role="group" aria-label="Choisir un thème">' + THEMES.map(function (t) {
+      var reel = t.id === "auto" ? null : t;
+      var ap = reel ? 'background:' + reel.fond + ';--blot:' + reel.pri + ';--blot-d:' + reel.pri : 'background:linear-gradient(135deg,#FFF6E9 50%,#15153A 50%)';
+      return '<button class="theme" data-theme-choix="' + t.id + '" aria-pressed="' + ((etat.theme || "auto") === t.id) + '"><span class="apercu" style="' + ap + '">' +
+        (reel ? '<span style="position:absolute;left:8px;top:8px;width:16px;height:16px;border-radius:5px;background:' + reel.acc + ';border:2px solid rgba(0,0,0,.6)"></span>' : '') +
+        blot("", 44) + '</span>' + esc(t.nom) + '</button>';
+    }).join("") + '</div>' +
+    '<h2>Réglages</h2><div class="carte reglage"><label class="titre-r" id="l-rythme">Mots nouveaux par jour</label><div class="seg" role="group" aria-labelledby="l-rythme">' +
+    [3, 5, 8].map(function (k) { return '<button data-par="' + k + '" aria-pressed="' + (etat.parJour === k) + '">' + k + '</button>'; }).join("") +
+    '</div><p class="petit muted" style="margin:8px 0 0">' + MOTS.length + ' mots en tout : à 5 par jour, de quoi tenir ' + Math.round(MOTS.length / 5 / 30) + ' mois. Compte 10 à 15 minutes par jour.</p>' +
+    '<label class="actif"><input type="checkbox" id="son"' + (etat.son === false ? '' : ' checked') + '> Sons et vibrations</label></div>' +
+    '<details class="carte aide" style="margin-top:14px"><summary><h2>Comment ça marche</h2></summary><ol class="methode">' +
+    '<li><b>Découvrir</b> : la définition en anglais, les mots qui vont avec, deux exemples, le piège. Le français reste caché.</li>' +
+    '<li><b>Comprendre</b> : retrouver le bon sens du mot dans une phrase.</li>' +
+    '<li><b>Retrouver</b> : écrire le mot dans une phrase à trous. Le produire soi-même fixe bien mieux que le reconnaître.</li>' +
+    '<li><b>Revoir</b> : après les mots du jour, les anciens reviennent après 1, 3, 7, 14 puis 30 jours. Une erreur fait revenir le mot le lendemain.</li>' +
+    '<li><b>L\'employer</b> : au bout de quelques révisions, tu écris ta propre phrase.</li>' +
+    '<li><b>Progresser</b> : chaque bonne réponse rapporte des XP ; les niveaux habillent Blot, les badges récompensent la régularité.</li></ol></details>' +
+    '<details class="carte aide" style="margin-top:14px"><summary><h2>Changer de téléphone</h2></summary><p>Ta progression s\'enregistre toute seule sur cet appareil. Pour la retrouver ailleurs, exporte-la ici puis importe le fichier sur l\'autre téléphone.</p>' +
+    '<div class="actions"><button class="btn sec" id="exporter">Exporter ma progression</button><button class="btn sec" id="charger">Importer un fichier</button></div>' +
+    '<p class="petit muted" id="msg-imp" style="margin:10px 0 0" aria-live="polite"></p></details>';
+  document.getElementById("v-progres").innerHTML = h;
+  document.getElementById("exporter").onclick = function () { Stockage.exporter(etat); annonce("Progression exportée."); };
+  document.getElementById("charger").onclick = function () { document.getElementById("f-import").click(); };
+  document.querySelectorAll("[data-par]").forEach(function (b) {
+    b.onclick = function () { etat.parJour = +b.getAttribute("data-par"); enregistrer(); rendreProgres(); rendreJour(); };
+  });
+  document.getElementById("son").onchange = function () { etat.son = this.checked; enregistrer(); if (this.checked) son("ok"); };
+  document.querySelectorAll("[data-theme-choix]").forEach(function (b) {
+    b.onclick = function () {
+      etat.theme = b.getAttribute("data-theme-choix"); enregistrer(); appliquerTheme();
+      document.querySelectorAll("[data-theme-choix]").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
+      var bl = b.querySelector(".blot"); animerBlot(bl, "saute"); son("ok");
+    };
+  });
+  majBarre();
 }
 
 /* ---------- fiche d'un mot : l'anglais d'abord, le français sur demande ---------- */
 function ficheHTML(m) {
   var s = suivi(m.id);
   return '<div class="fiche">' +
-    '<div class="tete"><div><p class="mot">' + esc(m.w) + '</p>' +
-    '<span class="pos">' + esc(m.pos) + '</span> <span class="ipa">' + esc(m.ipa) + '</span><span class="reg">' + esc(m.reg) + '</span></div>' +
-    '<button class="son" data-dire="' + esc(m.w) + '" aria-label="Écouter la prononciation">' + ICONE_SON + '</button></div>' +
-    '<p class="sens en">' + esc(m.def) + '</p>' +
+    '<div class="tete"><div style="flex:1;min-width:0"><p class="mot">' + esc(m.w) + '</p>' +
+    '<div class="puces"><span class="puce pos">' + esc(m.pos) + '</span><span class="puce ipa">' + esc(m.ipa) + '</span><span class="puce">' + esc(m.reg) + '</span></div></div>' +
+    '<button class="son" data-dire="' + esc(m.w) + '" aria-label="Écouter la prononciation">' + ic("son") + '</button></div>' +
+    '<p class="sens">' + esc(m.def) + '</p>' +
     '<details class="vf"><summary>Voir en français</summary><p>' + esc(m.fr) + '</p></details>' +
     '<div class="bloc"><h4>Goes with</h4><div class="colls">' + m.col.map(function (c) { return '<span>' + esc(c) + '</span>'; }).join("") + '</div></div>' +
     '<div class="bloc"><h4>In context</h4><ul class="ex">' + m.ex.map(function (e) { return '<li>' + surligne(e) + '</li>'; }).join("") + '</ul></div>' +
-    '<div class="bloc piege">⚠ ' + m.piege + '</div>' +
-    (m.fam && m.fam !== "—" ? '<div class="bloc famille"><h4>Word family</h4>' + esc(m.fam) + '</div>' : '') +
+    '<div class="bloc piege"><div class="p-t">' + ic("attention") + 'Le piège</div>' + m.piege + '</div>' +
+    (m.fam && m.fam !== "—" ? '<div class="bloc"><h4>Word family</h4><div class="famille">' + esc(m.fam) + '</div></div>' : '') +
     (s.b > 0 ? '<p class="petit muted bloc">Boîte ' + s.b + ' sur 5 · ' + pluriel(s.ok, "bonne réponse", "bonnes réponses") + ', ' + pluriel(s.ko, "erreur") + '</p>' : '') +
     '</div>';
 }
@@ -2337,52 +2603,6 @@ document.addEventListener("click", function (e) {
 });
 
 /* ---------- vues ---------- */
-function rendreJour() {
-  var nv = nouveauxDuJour(), rv = revisionsDuJour(), d = aujourdhui();
-  var fini = !!(etat.jours[d] && etat.jours[d].fini && !nv.length && !rv.length);
-  var xp = etat.xp || 0, n = niveau(xp), bas = seuil(n), haut = seuil(n + 1);
-  var s = serie(), vus = nbVus(), acquis = nbAcquis(), restants = MOTS.length - vus;
-  var minutes = Math.max(2, Math.round(nv.length * 2 + rv.length * 0.6));
-  var h = '<div class="carte heros">' +
-    '<div class="heros-haut">' + blot(fini ? "dort" : "", 92, "accueil") +
-    '<div class="bulle" role="status">' + esc(messageBlot(nv, rv, fini)) + '</div></div>' +
-    '<div class="niv"><div class="niv-t"><b>Niveau ' + n + '</b> · ' + esc(titre(n)) + '</div><div class="niv-xp">' + (xp - bas) + ' / ' + (haut - bas) + ' XP</div></div>' +
-    '<div class="jauge" role="progressbar" aria-label="Progression vers le niveau suivant" aria-valuemin="0" aria-valuemax="' + (haut - bas) + '" aria-valuenow="' + (xp - bas) + '"><i style="width:' + Math.round((xp - bas) / (haut - bas) * 100) + '%"></i></div>' +
-    '<div class="puces"><span class="puce feu' + (s ? ' on' : '') + '">🔥 ' + pluriel(s, "jour") + '</span><span class="puce">📖 ' + vus + ' vus</span><span class="puce">⭐ ' + acquis + ' acquis</span></div>' +
-    '</div>' +
-    '<div class="carte jour">' +
-    '<h1 id="t-jour">' + (fini ? "Séance du jour terminée" : "Ta séance du jour") + '</h1>' +
-    '<div class="compteurs">' +
-    '<div><b>' + nv.length + '</b><span>nouveaux</span></div>' +
-    '<div><b>' + rv.length + '</b><span>à revoir</span></div>' +
-    '<div><b>' + (nv.length || rv.length ? '~' + minutes : '0') + '</b><span>minutes</span></div></div>' +
-    (nv.length || rv.length ? '<button class="btn large go" data-go>Commencer</button>' +
-      '<p class="petit muted" style="margin:10px 0 0">' + (nv.length ? 'D\'abord tes ' + pluriel(nv.length, "mot nouveau", "mots nouveaux") : '') + (nv.length && rv.length ? ', ensuite ' : (rv.length ? 'Les ' : '')) + (rv.length ? pluriel(rv.length, "révision") + ' des jours précédents' : '') + '.</p>'
-      : (fini ? '<div class="fait">✓ Tout est fait pour aujourd\'hui. Reviens demain.</div>' : (!restants ? '<p class="muted">Tous les mots ont été vus : continue les révisions chaque jour.</p>' : ''))) +
-    (!stockageOk ? '<div class="alerte" role="status"><span>Ce navigateur refuse l\'enregistrement (navigation privée ?) : ta progression sera perdue à la fermeture.</span></div>' : '') +
-    '</div>' +
-    '<h2>Ton chemin</h2>' + cheminHTML(fini) +
-    '<div class="carte reglage"><label id="l-rythme">Mots nouveaux par jour</label><div class="seg" role="group" aria-labelledby="l-rythme">' +
-    [3, 5, 8].map(function (k) { return '<button data-par="' + k + '" aria-pressed="' + (etat.parJour === k) + '">' + k + '</button>'; }).join("") +
-    '</div><p class="petit muted" style="margin:8px 0 12px">' + MOTS.length + ' mots en tout : à 5 par jour, de quoi tenir ' + Math.round(MOTS.length / 5 / 30) + ' mois. Compte 10 à 15 minutes par jour, révisions comprises.</p>' +
-    '<label class="actif" style="margin:0"><input type="checkbox" id="son"' + (etat.son === false ? '' : ' checked') + '> Sons et vibrations</label></div>' +
-    '<details class="carte comment"><summary><h2 style="margin:0">Comment ça marche</h2></summary><ol class="methode">' +
-    '<li><b>Découvrir</b> : la définition en anglais, les mots qui vont avec, deux exemples, le piège. Le français reste caché : « Voir en français » si besoin.</li>' +
-    '<li><b>Comprendre</b> : retrouver le bon sens du mot dans une phrase.</li>' +
-    '<li><b>Retrouver</b> : écrire le mot dans une phrase à trous. Le produire soi-même fixe bien mieux que le reconnaître.</li>' +
-    '<li><b>Revoir</b> : après les mots du jour, les anciens reviennent après 1, 3, 7, 14 puis 30 jours. Une erreur fait revenir le mot le lendemain.</li>' +
-    '<li><b>L\'employer</b> : au bout de quelques révisions, tu écris ta propre phrase.</li>' +
-    '<li><b>Progresser</b> : chaque bonne réponse rapporte des XP. Les niveaux débloquent des accessoires pour Blot, et les badges récompensent la régularité.</li></ol>' +
-    '<p class="petit muted" style="margin:0">Ta progression s\'enregistre toute seule sur ce téléphone.</p></details>';
-  document.getElementById("v-jour").innerHTML = h;
-  document.querySelectorAll("#v-jour [data-go]").forEach(function (b) { b.onclick = demarrer; });
-  document.querySelectorAll("[data-par]").forEach(function (b) {
-    b.onclick = function () { etat.parJour = +b.getAttribute("data-par"); enregistrer(); rendreJour(); };
-  });
-  document.getElementById("son").onchange = function () { etat.son = this.checked; enregistrer(); if (this.checked) son("ok"); };
-  var b = document.querySelector("#v-jour .heros .blot");
-  if (b) b.onclick = function () { animerBlot(b, "saute"); var bu = document.querySelector("#v-jour .bulle"); if (bu) bu.textContent = messageBlot(nv, rv, fini); };
-}
 
 var filtre = "";
 function rendreMots() {
@@ -2422,35 +2642,6 @@ function rendreListes() {
   });
 }
 
-function rendreProgres() {
-  var compte = [0, 0, 0, 0, 0, 0];
-  MOTS.forEach(function (m) { compte[suivi(m.id).b]++; });
-  var max = Math.max.apply(null, compte.concat([1]));
-  var noms = ["pas vus", "boîte 1<br>1 j", "boîte 2<br>3 j", "boîte 3<br>7 j", "boîte 4<br>14 j", "boîte 5<br>30 j"];
-  var tot = 0, ok = 0;
-  MOTS.forEach(function (m) { var s = suivi(m.id); tot += s.ok + s.ko; ok += s.ok; });
-  var parListe = LISTES.filter(function (l) { return l.dispo; }).map(function (l) {
-    var a = l.mots.filter(function (m) { return suivi(m.id).b >= MAITRISE; }).length;
-    return '<li><span>' + esc(l.titre) + '</span><b>' + a + ' / ' + l.mots.length + '</b></li>';
-  }).join("");
-  var nv = niveau(etat.xp || 0);
-  var h = '<h2 id="t-progres" style="margin-top:6px">Tes progrès</h2>' +
-    '<div class="carte stats">' + blot('', 64) + '<div><b>Niveau ' + nv + ' · ' + esc(titre(nv)) + '</b><br><span class="petit muted">' + (etat.xp || 0) + ' XP · ' + pluriel(etat.seances || 0, 'séance') + ' · série record : ' + pluriel(etat.record || 0, 'jour') + '</span>' +
-    (ACCESSOIRES.filter(function (a) { return a.niv > nv; })[0] ? '<br><span class="petit muted">Niveau ' + ACCESSOIRES.filter(function (a) { return a.niv > nv; })[0].niv + ' : Blot gagne ' + ACCESSOIRES.filter(function (a) { return a.niv > nv; })[0].nom + '.</span>' : '') + '</div></div>' +
-    '<div class="carte">' +
-    '<div class="boites" role="img" aria-label="Répartition des mots par boîte">' +
-    compte.map(function (c) { return '<div class="boite"><b>' + c + '</b><div class="barre" style="height:' + Math.round(c / max * 110) + 'px"></div></div>'; }).join("") +
-    '</div><div class="boites-l">' + noms.map(function (n) { return '<span>' + n + '</span>'; }).join("") + '</div>' +
-    '<p class="petit muted" style="margin:12px 0 0">' + (tot ? Math.round(ok / tot * 100) + ' % de bonnes réponses sur ' + tot + ' exercices. ' : '') + 'Un mot est acquis à partir de la boîte 4.</p></div>' +
-    '<h2>Badges</h2><div class="badges">' + BADGES.map(function (b) { var ok = etat.badges && etat.badges[b.id]; return '<div class="badge' + (ok ? ' on' : '') + '"><span class="b-ic">' + (ok ? b.ic : '🔒') + '</span><b>' + esc(b.nom) + '</b><small>' + esc(b.txt) + '</small></div>'; }).join('') + '</div>' +
-    '<h2>Mots acquis par liste</h2><div class="carte"><ul class="par-liste">' + parListe + '</ul></div>' +
-    '<h2>Changer de téléphone</h2><div class="carte"><p style="margin-top:0">Ta progression s\'enregistre toute seule sur cet appareil. Pour la retrouver sur un autre, exporte-la ici puis importe le fichier là-bas.</p>' +
-    '<div class="actions"><button class="btn sec" id="exporter">Exporter ma progression</button><button class="btn sec" id="charger">Importer un fichier</button></div>' +
-    '<p class="petit muted" id="msg-imp" style="margin:10px 0 0" aria-live="polite"></p></div>';
-  document.getElementById("v-progres").innerHTML = h;
-  document.getElementById("exporter").onclick = function () { Stockage.exporter(etat); annonce("Progression exportée."); };
-  document.getElementById("charger").onclick = function () { document.getElementById("f-import").click(); };
-}
 
 document.getElementById("f-import").addEventListener("change", function (e) {
   var f = e.target.files[0]; if (!f) return;
@@ -2460,14 +2651,14 @@ document.getElementById("f-import").addEventListener("change", function (e) {
     try {
       var nouv = Stockage.valider(JSON.parse(r.result));
       if (Object.keys(etat.mots).length && !confirm("Remplacer la progression de cet appareil par celle du fichier ?")) { e.target.value = ""; return; }
-      etat = nouv; enregistrer(); rendreTout(); montrer("jour"); annonce("Progression importée.");
+      etat = nouv; enregistrer(); appliquerTheme(); rendreTout(); montrer("jour"); annonce("Progression importée.");
     } catch (err) { if (m) m.textContent = "Ce fichier n'est pas une progression Wordsmith."; }
     e.target.value = "";
   };
   r.readAsText(f);
 });
 
-function rendreTout() { rendreJour(); rendreMots(); rendreProgres(); }
+function rendreTout() { rendreJour(); rendreMots(); rendreProgres(); majBarre(); }
 function montrer(v) {
   document.querySelectorAll(".vue").forEach(function (s) { s.classList.toggle("on", s.id === "v-" + v); });
   document.querySelectorAll("nav.bas button").forEach(function (b) {
@@ -2535,9 +2726,9 @@ function etape() {
   if (S.phase === "decouvrir") {
     if (S.i >= S.decouvrir.length) { S.phase = "exo"; return etape(); }
     var m = PAR_ID[S.decouvrir[S.i]];
-    corps.innerHTML = '<div class="etape">Mot nouveau ' + (S.i + 1) + ' / ' + S.decouvrir.length + '</div>' +
+    corps.innerHTML = '<div class="etape">Mot nouveau · ' + (S.i + 1) + ' / ' + S.decouvrir.length + '</div>' +
       '<div class="carte">' + ficheHTML(m) + '</div>' +
-      '<div class="ligne-btn" style="margin-top:14px"><button class="btn large" id="suite">' + (S.i + 1 < S.decouvrir.length ? "Mot suivant" : "Passer aux exercices") + '</button></div>';
+      '<div class="pied"><button class="btn large" id="suite">' + (S.i + 1 < S.decouvrir.length ? "Mot suivant" : "À toi de jouer !") + '</button></div>';
     document.getElementById("suite").onclick = function () { S.i++; etape(); };
     document.getElementById("suite").focus({ preventScroll: true });
     return;
@@ -2546,9 +2737,10 @@ function etape() {
   if (S.transition && S.j === S.finNouveaux) {
     S.transition = false;
     var n = S.file.length - S.finNouveaux;
-    corps.innerHTML = '<div class="bilan">' + blot("joie", 110, "saute") + '<div class="etape">Mots du jour terminés</div>' +
-      '<p>Place aux révisions : ' + pluriel(n, "exercice") + ' sur les mots des jours précédents.</p>' +
-      '<div class="actions" style="margin-top:18px"><button class="btn large" id="suite">Commencer les révisions</button></div></div>';
+    corps.innerHTML = '<div class="bilan">' + blot("joie", 130, "fete") + '<h1>Mots du jour : faits !</h1>' +
+      '<p class="muted">Place aux révisions : ' + pluriel(n, "exercice") + ' sur les mots des jours précédents.</p></div>' +
+      '<div class="pied"><button class="btn large" id="suite">Commencer les révisions</button></div>';
+    son("badge");
     document.getElementById("suite").onclick = etape;
     document.getElementById("suite").focus({ preventScroll: true });
     return;
@@ -2569,15 +2761,20 @@ function retourHTML(classe, titreTxt, corpsTxt) {
   return '<div class="retour ' + classe + '" role="status"><div class="r-tete">' + blot(humeur, 46, "mini") + '<b class="titre">' + titreTxt + '</b></div>' + corpsTxt + '</div>';
 }
 function reagir(bon) {
+  colorerPied();
   var b = corps.querySelector(".retour .blot");
   animerBlot(b, bon ? "saute" : "secoue");
   son(bon ? "ok" : "ko"); vibre(bon ? 12 : [30, 40, 30]);
+}
+function colorerPied() {
+  var p = document.getElementById("pied"), r = corps.querySelector(".retour");
+  if (p) p.className = "pied " + (r ? (r.classList.contains("ok") ? "ok" : r.classList.contains("ko") ? "ko" : "presque") : "");
 }
 function majCombo() {
   var c = document.getElementById("combo");
   if (!c) return;
   if (S && S.combo >= 3) {
-    c.innerHTML = '🔥 ' + S.combo; c.classList.add("on");
+    c.innerHTML = ic("feu") + S.combo; c.classList.add("on");
     c.classList.remove("pop"); void c.offsetWidth; c.classList.add("pop");
   } else c.classList.remove("on");
 }
@@ -2592,7 +2789,7 @@ function exoSens(it) {
     '<p class="consigne">Que veut dire <b>' + esc(m.w) + '</b> dans cette phrase ?</p>' +
     '<p class="phrase">' + surligne(ex) + '</p>' +
     '<div class="qcm" role="group" aria-label="Choisis le sens">' + choix.map(function (c) { return '<button class="opt" data-c="' + c.id + '">' + esc(c.def) + '</button>'; }).join("") + '</div>' +
-    '<div id="retour"></div><div class="ligne-btn" id="btns"></div>';
+    '<div class="pied" id="pied"><div id="retour"></div><div class="ligne-btn" id="btns"></div></div>';
   corps.querySelectorAll(".opt").forEach(function (b) {
     b.onclick = function () {
       var bon = b.getAttribute("data-c") === m.id;
@@ -2622,8 +2819,7 @@ function exoTrou(it) {
     '<details class="vf"><summary>Indice en français</summary><p><b>' + esc(m.fr) + '</b><br><span class="fr-ph">' + esc(t.fr) + '</span></p></details></div>' +
     '<p class="phrase">' + phrase + '</p>' +
     '<button class="lien" id="lettre">Voir la première lettre</button>' +
-    '<div id="retour"></div>' +
-    '<div class="ligne-btn" id="btns"><button class="btn large" id="valider">Vérifier</button></div>';
+    '<div class="pied" id="pied"><div id="retour"></div><div class="ligne-btn" id="btns"><button class="btn large" id="valider">Vérifier</button></div></div>';
   var rep = document.getElementById("rep");
   setTimeout(function () { rep.focus({ preventScroll: true }); }, 60);
   document.getElementById("lettre").onclick = function () { rep.placeholder = t.a.charAt(0) + "…"; rep.focus(); this.remove(); };
@@ -2669,7 +2865,7 @@ function exoPhrase(it) {
     '<p class="consigne">Écris ta propre phrase avec <b>' + esc(m.w) + '</b>.</p>' +
     '<div class="indice"><span class="en">' + esc(m.def) + '</span><br>Idée : ' + esc(m.ecris) + '.<br><span class="muted petit">Goes with: ' + esc(m.col.slice(0, 3).join(" · ")) + '</span></div>' +
     '<label class="sr" for="ta">Ta phrase</label><textarea id="ta" autocapitalize="sentences" spellcheck="true" placeholder="Ta phrase en anglais…"></textarea>' +
-    '<div id="retour"></div><div class="ligne-btn" id="btns"><button class="btn large" id="valider">Comparer</button></div>';
+    '<div class="pied" id="pied"><div id="retour"></div><div class="ligne-btn" id="btns"><button class="btn large" id="valider">Comparer</button></div></div>';
   var ta = document.getElementById("ta");
   setTimeout(function () { ta.focus({ preventScroll: true }); }, 60);
   document.getElementById("valider").onclick = function () {
@@ -2683,7 +2879,8 @@ function exoPhrase(it) {
       '<p>1. Le sens est-il bien « ' + esc(m.def) + ' » ?<br>2. La construction est-elle juste (' + esc(m.col[0]) + '…) ?<br>3. Le piège est-il évité ?</p>' +
       '<p class="phrase-ok">Exemple : ' + surligne(m.ex[1] || m.ex[0]) + '</p>' +
       '<p class="petit muted">Un doute ? Le bouton rond « Demander à une IA », en bas, peut corriger ta phrase.</p>');
-    document.getElementById("btns").innerHTML = '<button class="btn sec" id="non">À revoir</button><button class="btn" id="oui">Ma phrase est juste</button>';
+    colorerPied();
+    document.getElementById("btns").innerHTML = '<button class="btn sec" id="non">À revoir</button><button class="btn ok" id="oui">Ma phrase est juste</button>';
     document.getElementById("oui").onclick = function () { etat.phrases = (etat.phrases || 0) + 1; noter(it, present); if (present) son("ok"); suivant(); };
     document.getElementById("non").onclick = function () { noter(it, false); suivant(); };
   };
@@ -2734,15 +2931,16 @@ function bilan() {
   var bas = seuil(nApres), haut = seuil(nApres + 1);
   var depart = nApres > nAvant ? 0 : Math.round((S.xpAvant - bas) / (haut - bas) * 100);
   var acc = ACCESSOIRES.filter(function (a) { return a.niv > nAvant && a.niv <= nApres; })[0];
-  corps.innerHTML = '<div class="bilan">' + blot("joie", 130, "fete") +
-    '<div class="etape">Séance terminée' + (dejaFini ? '' : ' · série de ' + pluriel(serie(), "jour")) + '</div>' +
-    '<div class="gains"><div class="gain"><b id="g-xp">0</b><span>XP gagnés</span></div><div class="gain"><b>' + taux + ' %</b><span>de réussite</span></div><div class="gain"><b>' + (S.comboMax >= 3 ? '🔥 ' : '') + S.comboMax + '</b><span>meilleure série</span></div></div>' +
-    '<div class="niv"><div class="niv-t"><b>Niveau ' + nApres + '</b> · ' + esc(titre(nApres)) + '</div><div class="niv-xp">' + (etat.xp - bas) + ' / ' + (haut - bas) + ' XP</div></div>' +
+  corps.innerHTML = '<div class="bilan">' + blot("joie", 140, "fete") +
+    '<h1>Séance terminée !</h1><p class="muted" style="margin:0">' + (dejaFini ? 'Encore une séance de plus.' : 'Série : ' + pluriel(serie(), "jour") + ' d\'affilée.') + '</p>' +
+    '<div class="gains"><div class="gain g1"><span>XP GAGNÉS</span><b>' + ic("goutte") + '<span id="g-xp" style="all:unset">0</span></b></div>' +
+    '<div class="gain g2"><span>RÉUSSITE</span><b>' + taux + ' %</b></div>' +
+    '<div class="gain g3"><span>MEILLEURE SÉRIE</span><b>' + ic("feu") + S.comboMax + '</b></div></div>' +
+    '<div class="niv"><div class="niv-t">Niveau ' + nApres + ' · ' + esc(titre(nApres)) + '</div><div class="niv-xp">' + (etat.xp - bas) + ' / ' + (haut - bas) + ' XP</div></div>' +
     '<div class="jauge"><i id="g-jauge" style="width:' + depart + '%"></i></div>' +
-    (badges.length ? '<div class="nouv-badges">' + badges.map(function (b) { return '<div class="badge on neuf"><span class="b-ic">' + b.ic + '</span><b>' + esc(b.nom) + '</b><small>' + esc(b.txt) + '</small></div>'; }).join("") + '</div>' : '') +
-    (S.rates.length ? '<div class="carte" style="text-align:left;margin-top:14px"><b>Ils reviendront demain :</b> ' + S.rates.map(esc).join(", ") + '</div>' : '') +
-    '<div class="actions" style="margin-top:18px"><button class="btn large" id="b-fin">Terminer</button></div>' +
-    '<p class="petit muted">Ta progression est enregistrée sur ce téléphone.</p></div>';
+    (badges.length ? '<div class="nouv-badges">' + badges.map(function (b) { return badgeHTML(b, true, true); }).join("") + '</div>' : '') +
+    (S.rates.length ? '<div class="carte revient"><b>Ils reviendront demain :</b> ' + S.rates.map(esc).join(", ") + '</div>' : '') +
+    '</div><div class="pied"><button class="btn large safran" id="b-fin">Continuer</button></div>';
   compter(document.getElementById("g-xp"), 0, S.xp, 1100);
   setTimeout(function () { var g = document.getElementById("g-jauge"); if (g) g.style.width = Math.round((etat.xp - bas) / (haut - bas) * 100) + "%"; }, 350);
   son("fin"); confettis(80);
@@ -2783,6 +2981,7 @@ document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") { if (modale.classList.contains("on")) fermerFiche(); }
 });
 
+appliquerTheme();
 rendreTout();
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(function () {});
 </script>

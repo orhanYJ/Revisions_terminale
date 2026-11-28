@@ -1,0 +1,5 @@
+Polices sous licence SIL Open Font License 1.1 (https://openfontlicense.org) :
+- Lilita One (Juan Montoreano)
+- Nunito (The Nunito Project Authors)
+- Fraunces (The Fraunces Project Authors)
+Fichiers woff2 tirés des paquets @fontsource (sous-ensemble latin).
