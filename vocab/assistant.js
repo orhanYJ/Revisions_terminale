@@ -20,9 +20,9 @@
   var COTE = "gauche";   /* bouton en bas à "gauche" ou à "droite" */
   var CONSIGNE = "I am a French Terminale student in an international section, building my English vocabulary for essays and oral exams (B2 towards C1). For a word or a sentence of mine: explain the meaning and register, give the usual collocations and natural examples, correct my sentence if needed and explain why, and point out false friends and typical mistakes of French speakers. If you are unsure, say so clearly. Answer in the language of my question.";
   var COULEURS = {
-    fond: "var(--carte, #fffdf9)", fond2: "var(--papier, #f7f3ec)",
-    encre: "var(--encre, #22172e)", encre2: "var(--encre2, #6b5f78)", ligne: "var(--ligne, #e4dcd0)",
-    accent: "var(--prune, #3b2257)", surAccent: "var(--carte, #fffdf9)"
+    fond: "var(--surface, #FFFFFF)", fond2: "var(--fond, #FFF6E9)",
+    encre: "var(--texte, #2B1F3D)", encre2: "var(--texte2, #6E6380)", ligne: "var(--ligne, #EADBC3)",
+    accent: "var(--pri, #7B4FD6)", surAccent: "var(--sur-pri, #FFFFFF)"
   };
   var EVITER = "nav.bas";   /* élément fixé en bas d'écran à ne pas recouvrir */
   /* ---------- fin CONFIG ---------- */
