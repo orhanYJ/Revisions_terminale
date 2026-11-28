@@ -95,9 +95,15 @@ def elargir_trous(m):
             d, e = k, fin
         else:
             continue
+        alts = []
+        if d <= i and e >= j:                      # les variantes suivent l'élargissement
+            for x in tr.get("alt", []):
+                cx = tr["s"][:i] + x + tr["s"][i + 3:]
+                alts.append(cx[d:e + len(x) - len(tr["a"])])
         tr["s"] = complet[:d] + "___" + complet[e:]
         tr["a"] = complet[d:e]
         tr.pop("alt", None)
+        if alts: tr["alt"] = alts
         n += 1
     return n
 
