@@ -46,6 +46,10 @@ Règles champ par champ :
 - `ecris` : en français, un sujet pour que l'élève écrive sa propre phrase (« une phrase sur… »).
 - `formes` : toutes les formes qui comptent comme emploi du mot dans une phrase libre (conjugaisons, pluriel, adverbe, nom dérivé ; pour une expression, les formes conjuguées de l'expression entière, ex. `["come to terms with", "comes to terms with", "came to terms with", "coming to terms with"]`).
 
+## Pas d'indice visible
+- La `def` ne contient ni le mot à trouver ni ses formes.
+- La phrase à trous ne contient pas déjà le mot cible ni un morceau de l'expression : pour une expression, le trou porte sur l'expression entière (`integrer.py` l'élargit au besoin et signale les fuites).
+
 ## Interdits
 - Aucune personne réelle vivante nommée dans les exemples, aucun nom d'élève, de professeur ou d'établissement, aucune référence à « ton cours », « ta prof », « en classe ».
 - Pas de contenu choquant ; pas de stéréotypes.

@@ -1,4 +1,4 @@
-var CACHE = "vocab-v4";
+var CACHE = "vocab-v5";
 var ASSETS = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png", "assistant.js?v=10", "polices/lilita-one.woff2", "polices/nunito-600.woff2", "polices/nunito-800.woff2", "polices/nunito-900.woff2", "polices/fraunces-600.woff2", "polices/fraunces-700.woff2", "polices/fraunces-600-italic.woff2"];
 
 self.addEventListener("install", function (e) {
