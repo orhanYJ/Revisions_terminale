@@ -1,0 +1,4111 @@
+[
+ {
+  "id": "n-it-could-be-argued-that",
+  "w": "it could be argued that",
+  "pos": "expression",
+  "ipa": "/ˈɑːɡjuːd/",
+  "reg": "formel",
+  "fr": "on pourrait soutenir que, il est permis de penser que",
+  "def": "A cautious way of introducing a view that some people might defend, without fully committing to it.",
+  "col": [
+   "it could be argued that",
+   "it could equally be argued that",
+   "it could be argued, however, that",
+   "one could argue that"
+  ],
+  "ex": [
+   "[[It could be argued that]] the cheaper phone is the smarter buy, given how quickly they break.",
+   "[[It could be argued that]] the Treaty of Versailles made a second war more likely, not less."
+  ],
+  "piege": "Tournure impersonnelle pour avancer une idée sans l'assumer entièrement. Variantes : <i>one could argue that</i>, <i>it can be argued that</i>. À doser : un essay doit aussi finir par trancher.",
+  "fam": "argue (v.) · argument (n.) · arguable (adj.)",
+  "trous": [
+   {
+    "s": "It could be ___ that the New Deal did more for morale than for the economy.",
+    "a": "argued",
+    "fr": "On pourrait soutenir que le New Deal a fait plus pour le moral que pour l'économie."
+   },
+   {
+    "s": "It can be ___ that the reform came too late to save the regime.",
+    "a": "argued",
+    "fr": "On peut soutenir que la réforme est arrivée trop tard pour sauver le régime."
+   }
+  ],
+  "ecris": "une phrase qui avance prudemment une interprétation d'un événement historique",
+  "formes": [
+   "it could be argued that",
+   "it can be argued that",
+   "it could equally be argued that",
+   "one could argue that",
+   "it might be argued that"
+  ]
+ },
+ {
+  "id": "n-tend-to",
+  "w": "tend to",
+  "pos": "verb",
+  "ipa": "/tend/",
+  "reg": "courant",
+  "fr": "avoir tendance à",
+  "def": "To be likely to behave or happen in a particular way, usually or often.",
+  "col": [
+   "tend to agree",
+   "tend to assume that",
+   "tend to be overlooked",
+   "historians tend to"
+  ],
+  "ex": [
+   "I [[tend to]] wake up early at weekends, even without an alarm.",
+   "Official histories [[tend to]] celebrate leaders and forget the ordinary people who paid the price."
+  ],
+  "piege": "Suivi de la base verbale : <i>tend <b>to</b> forget</i>, jamais <i>tend forgetting</i>. Plus prudent que <i>always</i> pour généraliser. Le nom : <i>a tendency to</i>.",
+  "fam": "tendency (n.)",
+  "trous": [
+   {
+    "s": "Teenagers ___ to go to bed later than their parents would like.",
+    "a": "tend",
+    "fr": "Les adolescents ont tendance à se coucher plus tard que leurs parents ne le voudraient."
+   },
+   {
+    "s": "In the 1930s, governments ___ to protect their own industries first.",
+    "a": "tended",
+    "fr": "Dans les années 1930, les gouvernements avaient tendance à protéger d'abord leurs propres industries."
+   }
+  ],
+  "ecris": "une phrase qui généralise prudemment sur un comportement humain",
+  "formes": [
+   "tend to",
+   "tends to",
+   "tended to",
+   "tending to",
+   "tendency"
+  ]
+ },
+ {
+  "id": "n-appear-to",
+  "w": "appear to",
+  "pos": "verb",
+  "ipa": "/əˈpɪə/",
+  "reg": "courant",
+  "fr": "sembler, paraître",
+  "def": "To give the impression of being or doing something, without this being certain.",
+  "col": [
+   "appear to be",
+   "appear to suggest",
+   "it would appear that",
+   "appear to have changed"
+  ],
+  "ex": [
+   "The shop [[appears to]] be closed, but the lights are still on.",
+   "The figures [[appear to]] show a recovery, yet unemployment remained high for years."
+  ],
+  "piege": "Plus neutre et plus écrit que <i>seem</i>. Au passé, infinitif passé : <i>he appears <b>to have</b> lied</i> (il semble avoir menti). <i>It would appear that…</i> est encore plus prudent.",
+  "fam": "appearance (n.) · apparently (adv.)",
+  "trous": [
+   {
+    "s": "The witness ___ to have changed his story since the first interview.",
+    "a": "appears",
+    "fr": "Le témoin semble avoir changé sa version depuis le premier interrogatoire.",
+    "alt": [
+     "appeared"
+    ]
+   },
+   {
+    "s": "At first the plan ___ to work, but problems soon emerged.",
+    "a": "appeared",
+    "fr": "Au début, le plan a semblé fonctionner, mais des problèmes sont vite apparus.",
+    "alt": [
+     "seemed"
+    ]
+   }
+  ],
+  "ecris": "une phrase prudente sur ce que montrent des chiffres ou un document",
+  "formes": [
+   "appear to",
+   "appears to",
+   "appeared to",
+   "appearing to",
+   "it would appear that"
+  ]
+ },
+ {
+  "id": "n-may-well",
+  "w": "may well",
+  "pos": "expression",
+  "ipa": "/meɪ ˈwel/",
+  "reg": "courant",
+  "fr": "pourrait bien, il se peut bien que",
+  "def": "Used to say that something is quite likely to be true or to happen.",
+  "col": [
+   "may well be right",
+   "may well prove",
+   "might well",
+   "could well"
+  ],
+  "ex": [
+   "Take an umbrella: it [[may well]] rain later this afternoon.",
+   "The reform [[may well]] have saved money, but it cost the government its popularity."
+  ],
+  "piege": "Plus probable que <i>may</i> seul : <i>he may well be right</i> = il a peut-être bien raison. Suivi de la base verbale. Ne pas confondre avec <i>may as well</i> (autant… faire).",
+  "fam": "might well · could well (variantes)",
+  "trous": [
+   {
+    "s": "You may ___ be right, but we need more evidence.",
+    "a": "well",
+    "fr": "Tu as peut-être bien raison, mais il nous faut plus de preuves."
+   },
+   {
+    "s": "Historians may ___ judge this decision more kindly than voters did.",
+    "a": "well",
+    "fr": "Les historiens pourraient bien juger cette décision avec plus d'indulgence que les électeurs."
+   }
+  ],
+  "ecris": "une phrase sur quelque chose de probable mais pas certain",
+  "formes": [
+   "may well",
+   "might well",
+   "could well"
+  ]
+ },
+ {
+  "id": "n-suggest",
+  "w": "suggest",
+  "pos": "verb",
+  "ipa": "/səˈdʒest/",
+  "reg": "courant",
+  "fr": "1. laisser penser, indiquer · 2. proposer",
+  "def": "To indicate that something is probably true without proving it; also, to put forward an idea.",
+  "col": [
+   "the evidence suggests that",
+   "strongly suggest",
+   "suggest otherwise",
+   "there is nothing to suggest"
+  ],
+  "ex": [
+   "Her smile [[suggested]] that the interview had gone well.",
+   "Recent research [[suggests]] that the famine was worsened by political decisions, not by drought alone."
+  ],
+  "piege": "Construction : <i>suggest <b>that</b> + proposition</i> ou <i>suggest + -ing</i> (<i>he suggested leaving</i>). Jamais <i>suggest <b>someone to</b> do</i>. En essay, <i>the evidence suggests</i> est plus prudent que <i>proves</i>.",
+  "fam": "suggestion (n.) · suggestive (adj.)",
+  "trous": [
+   {
+    "s": "Nothing in the letters ___ that he knew about the plot.",
+    "a": "suggests",
+    "fr": "Rien dans les lettres ne laisse penser qu'il était au courant du complot.",
+    "alt": [
+     "suggested"
+    ]
+   },
+   {
+    "s": "The latest polls ___ a close result in the election.",
+    "a": "suggest",
+    "fr": "Les derniers sondages laissent présager un résultat serré à l'élection."
+   }
+  ],
+  "ecris": "une phrase sur ce qu'un indice ou un document laisse penser",
+  "formes": [
+   "suggest",
+   "suggests",
+   "suggested",
+   "suggesting",
+   "suggestion"
+  ]
+ },
+ {
+  "id": "n-imply",
+  "w": "imply",
+  "pos": "verb",
+  "ipa": "/ɪmˈplaɪ/",
+  "reg": "courant",
+  "fr": "laisser entendre, sous-entendre",
+  "def": "To communicate an idea indirectly, without stating it openly.",
+  "col": [
+   "imply that",
+   "seem to imply",
+   "clearly implied",
+   "the title implies"
+  ],
+  "ex": [
+   "Are you [[implying]] that I forgot your birthday on purpose?",
+   "The narrator never says she is lying, but her silences strongly [[imply]] it."
+  ],
+  "piege": "Faux ami partiel : « impliquer quelqu'un » se dit <i>involve</i>. <i>Imply</i> : c'est celui qui parle qui suggère ; <i>infer</i> : c'est celui qui écoute qui déduit.",
+  "fam": "implication (n.) · implicit (adj.)",
+  "trous": [
+   {
+    "s": "His tone ___ that he did not believe a word of my story.",
+    "a": "implied",
+    "fr": "Son ton laissait entendre qu'il ne croyait pas un mot de mon histoire.",
+    "alt": [
+     "implies"
+    ]
+   },
+   {
+    "s": "Does the report ___ that the minister knew?",
+    "a": "imply",
+    "fr": "Le rapport laisse-t-il entendre que le ministre savait ?"
+   }
+  ],
+  "ecris": "une phrase sur quelqu'un qui laisse entendre quelque chose sans le dire",
+  "formes": [
+   "imply",
+   "implies",
+   "implied",
+   "implying"
+  ]
+ },
+ {
+  "id": "n-highlight",
+  "w": "highlight",
+  "pos": "verb",
+  "ipa": "/ˈhaɪlaɪt/",
+  "reg": "courant",
+  "fr": "souligner, mettre en évidence",
+  "def": "To draw particular attention to something so that people notice it.",
+  "col": [
+   "highlight the need for",
+   "highlight the importance of",
+   "highlight the gap between",
+   "as highlighted by"
+  ],
+  "ex": [
+   "The doctor [[highlighted]] the risks of stopping the treatment too early.",
+   "The Dust Bowl [[highlights]] how environmental disaster and economic crisis can feed each other."
+  ],
+  "piege": "Verbe transitif direct : <i>highlight the problem</i>, sans <i>on</i> (contrairement à <i>focus on</i>). Le nom <i>the highlight of the trip</i> = le meilleur moment.",
+  "fam": "highlight (n.) · highlighter (n.)",
+  "trous": [
+   {
+    "s": "The report ___ the gap between rich and poor regions.",
+    "a": "highlights",
+    "fr": "Le rapport met en évidence l'écart entre régions riches et pauvres.",
+    "alt": [
+     "highlighted"
+    ]
+   },
+   {
+    "s": "This example ___ the limits of the policy.",
+    "a": "highlights",
+    "fr": "Cet exemple met en évidence les limites de cette politique.",
+    "alt": [
+     "highlighted"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un exemple qui met en évidence un problème",
+  "formes": [
+   "highlight",
+   "highlights",
+   "highlighted",
+   "highlighting"
+  ]
+ },
+ {
+  "id": "n-qualify",
+  "w": "qualify",
+  "pos": "verb",
+  "ipa": "/ˈkwɒlɪfaɪ/",
+  "reg": "formel",
+  "fr": "nuancer (une affirmation)",
+  "def": "To make a statement less absolute by adding limits or conditions to it.",
+  "col": [
+   "qualify a statement",
+   "qualify this claim",
+   "a qualified success",
+   "qualified support"
+  ],
+  "ex": [
+   "I said the film was great, but let me [[qualify]] that: the ending is weak.",
+   "This view needs to be [[qualified]]: the policy helped workers in the cities, not in the countryside."
+  ],
+  "piege": "Le sens « nuancer » est le plus utile en essay : <i>I would qualify this view</i>. <i>A qualified success</i> = un succès mitigé. Autres sens : <i>qualify for</i> (se qualifier), <i>qualified</i> (diplômé).",
+  "fam": "qualification (n. : réserve) · qualified (adj. : mitigé) · unqualified (adj. : total)",
+  "trous": [
+   {
+    "s": "The first part of the essay states a view; the second part ___ it with exceptions.",
+    "a": "qualifies",
+    "fr": "La première partie de l'essay énonce une thèse ; la seconde la nuance par des exceptions."
+   },
+   {
+    "s": "The reform was a ___ success: prices fell, but jobs were lost.",
+    "a": "qualified",
+    "fr": "La réforme fut un succès mitigé : les prix ont baissé, mais des emplois ont été perdus."
+   }
+  ],
+  "ecris": "une phrase qui nuance une affirmation trop générale",
+  "formes": [
+   "qualify",
+   "qualifies",
+   "qualified",
+   "qualifying",
+   "qualification"
+  ]
+ },
+ {
+  "id": "n-call-into-question",
+  "w": "call into question",
+  "pos": "expression",
+  "ipa": "/ˈkwestʃən/",
+  "reg": "formel",
+  "fr": "remettre en question, mettre en cause",
+  "def": "To make people doubt whether something is true, right or legitimate.",
+  "col": [
+   "call into question the legitimacy of",
+   "call into question the idea that",
+   "seriously call into question"
+  ],
+  "ex": [
+   "One bad review shouldn't [[call into question]] years of good service.",
+   "The defeat of 1940 [[called into question]] the whole political system of the Third Republic."
+  ],
+  "piege": "Ordre des mots : <i>call into question + nom</i>, ou <i>call it into question</i> avec un pronom. Plus fort que <i>cast doubt on</i> : on conteste la légitimité, pas seulement la fiabilité.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The scandal called into ___ the integrity of the whole government.",
+    "a": "question",
+    "fr": "Le scandale a remis en question l'intégrité de tout le gouvernement."
+   },
+   {
+    "s": "The new evidence calls into ___ his version of events.",
+    "a": "question",
+    "fr": "Les nouveaux éléments remettent en question sa version des faits."
+   }
+  ],
+  "ecris": "une phrase sur un événement qui remet en question une certitude",
+  "formes": [
+   "call into question",
+   "calls into question",
+   "called into question",
+   "calling into question"
+  ]
+ },
+ {
+  "id": "n-cast-doubt-on",
+  "w": "cast doubt on",
+  "pos": "expression",
+  "ipa": "/kɑːst ˈdaʊt ɒn/",
+  "reg": "courant",
+  "fr": "jeter le doute sur",
+  "def": "To make something seem less certain, reliable or believable than before.",
+  "col": [
+   "cast doubt on the claim",
+   "cast serious doubt on",
+   "cast doubt on the reliability of"
+  ],
+  "ex": [
+   "The weather forecast has [[cast doubt on]] our plans for the beach.",
+   "The discovery of new letters [[casts doubt on]] the idea that the king acted alone."
+  ],
+  "piege": "<i>Cast</i> est invariable : <i>cast – cast – cast</i> (jamais <i>casted</i>). Préposition <i>on</i> (ou <i>upon</i>), pas <i>about</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Several experts have cast ___ on the reliability of the study.",
+    "a": "doubt",
+    "fr": "Plusieurs experts ont jeté le doute sur la fiabilité de l'étude."
+   },
+   {
+    "s": "His own diary casts ___ on his claim that he never met them.",
+    "a": "doubt",
+    "fr": "Son propre journal jette le doute sur son affirmation selon laquelle il ne les a jamais rencontrés."
+   }
+  ],
+  "ecris": "une phrase sur une découverte qui fragilise une version officielle",
+  "formes": [
+   "cast doubt on",
+   "casts doubt on",
+   "casting doubt on",
+   "cast serious doubt on"
+  ]
+ },
+ {
+  "id": "n-rather-than",
+  "w": "rather than",
+  "pos": "expression",
+  "ipa": "/ˈrɑːðə ðən/",
+  "reg": "courant",
+  "fr": "plutôt que, au lieu de",
+  "def": "Instead of; used when preferring or choosing one thing over another.",
+  "col": [
+   "rather than wait",
+   "rather than simply",
+   "a cause rather than a consequence",
+   "resign rather than"
+  ],
+  "ex": [
+   "Let's walk [[rather than]] take the bus; it's a lovely evening.",
+   "The crisis was a symptom of deeper problems [[rather than]] their cause."
+  ],
+  "piege": "Même élément grammatical des deux côtés : <i>walk rather than take</i> ; en tête de phrase, <i>-ing</i> (<i>Rather than waiting, …</i>). Ne pas confondre avec <i>would rather</i> (préférer).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "He decided to resign ___ than accept the compromise.",
+    "a": "rather",
+    "fr": "Il a décidé de démissionner plutôt que d'accepter le compromis."
+   },
+   {
+    "s": "The aim was to punish Germany ___ than to rebuild Europe.",
+    "a": "rather",
+    "fr": "Le but était de punir l'Allemagne plutôt que de reconstruire l'Europe."
+   }
+  ],
+  "ecris": "une phrase qui oppose deux explications et en préfère une",
+  "formes": [
+   "rather than"
+  ]
+ },
+ {
+  "id": "n-not-so-much-as",
+  "w": "not so much… as",
+  "pos": "expression",
+  "ipa": "/nɒt səʊ ˈmʌtʃ/",
+  "reg": "courant",
+  "fr": "moins… que, pas tant… que",
+  "def": "Used to say that one description is less accurate than a second, better one.",
+  "col": [
+   "not so much a… as a…",
+   "not so much because… as because…",
+   "less a… than a…"
+  ],
+  "ex": [
+   "It's [[not so much]] the price that bothers me as the poor quality.",
+   "The revolt was [[not so much]] a revolution as a desperate protest against hunger."
+  ],
+  "piege": "Corrélation fixe : <i>not so much A <b>as</b> B</i> (pas <i>than</i>). A est l'idée qu'on écarte, B celle qu'on retient : idéal pour corriger une thèse. Variante : <i>less A than B</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "It was not so ___ a defeat as a strategic retreat.",
+    "a": "much",
+    "fr": "Ce fut moins une défaite qu'une retraite stratégique."
+   },
+   {
+    "s": "The problem is not so ___ a lack of money as a lack of planning.",
+    "a": "much",
+    "fr": "Le problème n'est pas tant un manque d'argent qu'un manque de planification."
+   }
+  ],
+  "ecris": "une phrase qui corrige une description en en proposant une plus juste",
+  "formes": [
+   "not so much"
+  ]
+ },
+ {
+  "id": "n-the-extent-to-which",
+  "w": "the extent to which",
+  "pos": "expression",
+  "ipa": "/ɪkˈstent/",
+  "reg": "formel",
+  "fr": "la mesure dans laquelle, jusqu'à quel point",
+  "def": "How far, or in what degree, something is true or happens.",
+  "col": [
+   "assess the extent to which",
+   "consider the extent to which",
+   "the extent to which… remains unclear"
+  ],
+  "ex": [
+   "I'm surprised by [[the extent to which]] my phone controls my day.",
+   "Historians debate [[the extent to which]] ordinary Germans knew about the camps."
+  ],
+  "piege": "Toujours <i>to which</i> : <i>the extent <b>to which</b> it worked</i>, pas <i>the extent that</i>. Dans un sujet (<i>Assess the extent to which…</i>), on attend une réponse graduée, pas un oui / non.",
+  "fam": "extensive (adj.) · extensively (adv.)",
+  "trous": [
+   {
+    "s": "This essay will assess the ___ to which the treaty caused the war.",
+    "a": "extent",
+    "fr": "Cet essay évaluera dans quelle mesure le traité a causé la guerre."
+   },
+   {
+    "s": "It is hard to measure the ___ to which propaganda changed people's minds.",
+    "a": "extent",
+    "fr": "Il est difficile de mesurer jusqu'à quel point la propagande a changé les esprits."
+   }
+  ],
+  "ecris": "une phrase qui pose une question de degré sur une cause historique",
+  "formes": [
+   "the extent to which",
+   "to what extent"
+  ]
+ },
+ {
+  "id": "n-at-first-sight",
+  "w": "at first sight",
+  "pos": "expression",
+  "ipa": "/ət ˌfɜːst ˈsaɪt/",
+  "reg": "courant",
+  "fr": "à première vue",
+  "def": "When something is first seen or considered, before it is examined carefully.",
+  "col": [
+   "at first sight",
+   "love at first sight",
+   "what seems at first sight"
+  ],
+  "ex": [
+   "[[At first sight]] the flat looked perfect, but the walls were damp.",
+   "[[At first sight]], the New Deal seems a clear success; the figures tell a more complex story."
+  ],
+  "piege": "Annonce souvent une nuance : <i>at first sight… but on closer inspection…</i>. Pas de <i>at first view</i>. Synonyme courant : <i>at first glance</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "At first ___, the two poems seem to have nothing in common.",
+    "a": "sight",
+    "fr": "À première vue, les deux poèmes semblent n'avoir rien en commun.",
+    "alt": [
+     "glance"
+    ]
+   },
+   {
+    "s": "They met at a party, and it was love at first ___.",
+    "a": "sight",
+    "fr": "Ils se sont rencontrés à une fête, et ce fut le coup de foudre."
+   }
+  ],
+  "ecris": "une phrase qui oppose une première impression et la réalité",
+  "formes": [
+   "at first sight",
+   "at first glance"
+  ]
+ },
+ {
+  "id": "n-on-closer-inspection",
+  "w": "on closer inspection",
+  "pos": "expression",
+  "ipa": "/ɪnˈspekʃən/",
+  "reg": "courant",
+  "fr": "à y regarder de plus près",
+  "def": "When something is examined more carefully, often revealing a different picture.",
+  "col": [
+   "on closer inspection",
+   "on closer examination",
+   "but on closer inspection"
+  ],
+  "ex": [
+   "The painting looked genuine, but [[on closer inspection]] the signature was wrong.",
+   "[[On closer inspection]], the economic boom of the 1920s rested on fragile credit."
+  ],
+  "piege": "Toujours <i>on</i> + comparatif <i>closer</i>, sans article. C'est le pendant naturel de <i>at first sight</i> dans un paragraphe nuancé.",
+  "fam": "inspect (v.) · inspector (n.)",
+  "trous": [
+   {
+    "s": "On closer ___, the agreement favoured only one side.",
+    "a": "inspection",
+    "fr": "À y regarder de plus près, l'accord ne favorisait qu'un seul camp.",
+    "alt": [
+     "examination"
+    ]
+   },
+   {
+    "s": "The figures looked impressive, but on closer ___ they were misleading.",
+    "a": "inspection",
+    "fr": "Les chiffres semblaient impressionnants, mais à y regarder de plus près ils étaient trompeurs.",
+    "alt": [
+     "examination"
+    ]
+   }
+  ],
+  "ecris": "une phrase où un examen attentif révèle autre chose qu'une première impression",
+  "formes": [
+   "on closer inspection",
+   "on closer examination"
+  ]
+ },
+ {
+  "id": "n-on-the-surface",
+  "w": "on the surface",
+  "pos": "expression",
+  "ipa": "/ˈsɜːfɪs/",
+  "reg": "courant",
+  "fr": "en apparence, en surface",
+  "def": "Judging only by outward appearances, which may hide a deeper or different reality.",
+  "col": [
+   "on the surface",
+   "beneath the surface",
+   "scratch the surface"
+  ],
+  "ex": [
+   "[[On the surface]] they seem a happy couple, but they argue constantly.",
+   "[[On the surface]], the regime looked stable; underneath, discontent was growing."
+  ],
+  "piege": "Contrairement à <i>at first sight</i> (première impression), insiste sur ce qui est <b>caché dessous</b> : <i>beneath the surface</i>. <i>Only scratch the surface</i> = n'aborder un sujet qu'à peine.",
+  "fam": "superficial (adj.)",
+  "trous": [
+   {
+    "s": "On the ___, the town seemed calm, but tension was rising.",
+    "a": "surface",
+    "fr": "En apparence, la ville semblait calme, mais la tension montait."
+   },
+   {
+    "s": "Beneath the ___ of polite conversation, the two leaders deeply distrusted each other.",
+    "a": "surface",
+    "fr": "Sous une conversation polie en surface, les deux dirigeants se méfiaient profondément l'un de l'autre."
+   }
+  ],
+  "ecris": "une phrase sur une situation calme en apparence mais tendue en réalité",
+  "formes": [
+   "on the surface",
+   "beneath the surface"
+  ]
+ },
+ {
+  "id": "n-valid",
+  "w": "valid",
+  "pos": "adjective",
+  "ipa": "/ˈvælɪd/",
+  "reg": "courant",
+  "fr": "valable, recevable, fondé",
+  "def": "Reasonable and logically justified, and so deserving to be taken seriously.",
+  "col": [
+   "a valid point",
+   "a valid argument",
+   "remain valid",
+   "equally valid"
+  ],
+  "ex": [
+   "You make a [[valid]] point: we should leave earlier to avoid the traffic.",
+   "Both interpretations are [[valid]], but the second explains more of the evidence."
+  ],
+  "piege": "<i>A valid point</i> = un argument recevable, parfait pour concéder : <i>this is a valid point, but…</i>. Pour un document : en cours de validité. Le nom : <i>validity</i>.",
+  "fam": "validity (n.) · validate (v.) · invalid (adj.)",
+  "trous": [
+   {
+    "s": "That's a ___ point, and I hadn't thought of it.",
+    "a": "valid",
+    "fr": "C'est un argument valable, et je n'y avais pas pensé.",
+    "alt": [
+     "good",
+     "fair"
+    ]
+   },
+   {
+    "s": "This argument remains ___ for the 1930s, but not for the post-war period.",
+    "a": "valid",
+    "fr": "Cet argument reste valable pour les années 1930, mais pas pour l'après-guerre."
+   }
+  ],
+  "ecris": "une phrase qui reconnaît qu'un argument adverse est recevable",
+  "formes": [
+   "valid",
+   "validity",
+   "validly"
+  ]
+ },
+ {
+  "id": "n-sound",
+  "w": "sound",
+  "pos": "adjective",
+  "ipa": "/saʊnd/",
+  "reg": "courant",
+  "fr": "solide, sensé, fiable",
+  "def": "Reliable, sensible and based on good reasoning, when said of an argument, judgement or method.",
+  "col": [
+   "sound judgement",
+   "a sound argument",
+   "on a sound footing",
+   "economically sound"
+  ],
+  "ex": [
+   "My grandmother always gives [[sound]] advice about money.",
+   "The argument is [[sound]] in principle, but it relies on very few sources."
+  ],
+  "piege": "Adjectif, à ne pas confondre avec le nom <i>sound</i> (son). <i>Sound</i> = solide, fiable ; <i>valid</i> = recevable. Aussi : <i>safe and sound</i> = sain et sauf.",
+  "fam": "soundly (adv.) · soundness (n.)",
+  "trous": [
+   {
+    "s": "The company's finances are now on a ___ footing.",
+    "a": "sound",
+    "fr": "Les finances de l'entreprise reposent maintenant sur une base solide.",
+    "alt": [
+     "solid",
+     "firm"
+    ]
+   },
+   {
+    "s": "He has ___ judgement and rarely makes rash decisions.",
+    "a": "sound",
+    "fr": "Il a un jugement sûr et prend rarement des décisions irréfléchies.",
+    "alt": [
+     "good"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un raisonnement ou un conseil fiable",
+  "formes": [
+   "sound",
+   "soundly",
+   "soundness"
+  ]
+ },
+ {
+  "id": "n-debatable",
+  "w": "debatable",
+  "pos": "adjective",
+  "ipa": "/dɪˈbeɪtəbəl/",
+  "reg": "courant",
+  "fr": "discutable, contestable",
+  "def": "Not certain, because there are good reasons to think differently.",
+  "col": [
+   "it is debatable whether",
+   "highly debatable",
+   "a debatable point"
+  ],
+  "ex": [
+   "Whether the new pizza place is better than the old one is [[debatable]].",
+   "It is [[debatable]] whether sanctions would have stopped Mussolini in 1935."
+  ],
+  "piege": "Très utile avec <i>whether</i> : <i>it is debatable whether…</i> (on peut douter que…). Plus neutre que <i>questionable</i>, qui suggère un jugement négatif.",
+  "fam": "debate (n./v.)",
+  "trous": [
+   {
+    "s": "It is ___ whether the reform really helped the poorest families.",
+    "a": "debatable",
+    "fr": "Il est discutable que la réforme ait vraiment aidé les familles les plus pauvres.",
+    "alt": [
+     "questionable"
+    ]
+   },
+   {
+    "s": "Whose fault the accident was remains highly ___.",
+    "a": "debatable",
+    "fr": "La question de savoir qui est responsable de l'accident reste très discutée."
+   }
+  ],
+  "ecris": "une phrase qui présente une question comme ouverte à discussion",
+  "formes": [
+   "debatable",
+   "debatably"
+  ]
+ },
+ {
+  "id": "n-questionable",
+  "w": "questionable",
+  "pos": "adjective",
+  "ipa": "/ˈkwestʃənəbəl/",
+  "reg": "courant",
+  "fr": "contestable, douteux",
+  "def": "Likely to be wrong, dishonest or of poor quality, and so deserving suspicion.",
+  "col": [
+   "questionable methods",
+   "highly questionable",
+   "a questionable decision",
+   "morally questionable"
+  ],
+  "ex": [
+   "The restaurant's hygiene looked [[questionable]], so we ate elsewhere.",
+   "The government's use of emergency powers was legally [[questionable]] and politically risky."
+  ],
+  "piege": "Plus négatif que <i>debatable</i> : <i>questionable methods</i> laisse entendre des méthodes douteuses, voire malhonnêtes. Orthographe : un seul <i>n</i>.",
+  "fam": "question (v./n.) · unquestionably (adv.)",
+  "trous": [
+   {
+    "s": "Some of the methods used by the police were morally ___.",
+    "a": "questionable",
+    "fr": "Certaines méthodes employées par la police étaient moralement douteuses.",
+    "alt": [
+     "dubious"
+    ]
+   },
+   {
+    "s": "The statistics come from a ___ source, so treat them with care.",
+    "a": "questionable",
+    "fr": "Les statistiques viennent d'une source douteuse : maniez-les avec prudence.",
+    "alt": [
+     "dubious"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une méthode ou une décision douteuse",
+  "formes": [
+   "questionable",
+   "questionably"
+  ]
+ },
+ {
+  "id": "n-undeniably",
+  "w": "undeniably",
+  "pos": "adverb",
+  "ipa": "/ˌʌndɪˈnaɪəbli/",
+  "reg": "courant",
+  "fr": "indéniablement, incontestablement",
+  "def": "In a way that nobody could reasonably reject or contest.",
+  "col": [
+   "undeniably true",
+   "undeniably important",
+   "while undeniably",
+   "undeniable proof"
+  ],
+  "ex": [
+   "The hotel was [[undeniably]] beautiful, but far too expensive for us.",
+   "Churchill's speeches were [[undeniably]] powerful, yet their effect on morale is hard to measure."
+  ],
+  "piege": "Souvent suivi d'une concession : <i>undeniably X, but…</i> — on accorde un point solide avant de nuancer. À réserver aux faits vraiment incontestables.",
+  "fam": "undeniable (adj.) · deny (v.)",
+  "trous": [
+   {
+    "s": "The view from the top was ___ spectacular, even in the rain.",
+    "a": "undeniably",
+    "fr": "La vue du sommet était indéniablement spectaculaire, même sous la pluie."
+   },
+   {
+    "s": "Industrial growth was ___ impressive, but it came at a terrible human cost.",
+    "a": "undeniably",
+    "fr": "La croissance industrielle était incontestablement impressionnante, mais elle eut un coût humain terrible."
+   }
+  ],
+  "ecris": "une phrase qui accorde un point incontestable avant de nuancer",
+  "formes": [
+   "undeniably",
+   "undeniable"
+  ]
+ },
+ {
+  "id": "n-presumably",
+  "w": "presumably",
+  "pos": "adverb",
+  "ipa": "/prɪˈzjuːməbli/",
+  "reg": "courant",
+  "fr": "vraisemblablement, sans doute",
+  "def": "Used to say that you think something is probably true, based on what you know.",
+  "col": [
+   "presumably because",
+   "presumably not",
+   "which presumably explains"
+  ],
+  "ex": [
+   "The lights are off, so they've [[presumably]] gone to bed.",
+   "The author, [[presumably]] fearing censorship, set the novel in an imaginary country."
+  ],
+  "piege": "Faux ami : « présomptueux » se dit <i>presumptuous</i>. <i>Presumably</i> marque une déduction raisonnable, pas une certitude : idéal pour une hypothèse sur une intention.",
+  "fam": "presume (v.) · presumption (n.)",
+  "trous": [
+   {
+    "s": "She isn't answering her phone; she's ___ still at work.",
+    "a": "presumably",
+    "fr": "Elle ne répond pas au téléphone ; elle est sans doute encore au travail.",
+    "alt": [
+     "probably"
+    ]
+   },
+   {
+    "s": "The letter was never sent, ___ because the war broke out.",
+    "a": "presumably",
+    "fr": "La lettre n'a jamais été envoyée, vraisemblablement parce que la guerre a éclaté.",
+    "alt": [
+     "probably"
+    ]
+   }
+  ],
+  "ecris": "une phrase qui avance une déduction probable sur l'intention de quelqu'un",
+  "formes": [
+   "presumably",
+   "presume",
+   "presumed"
+  ]
+ },
+ {
+  "id": "n-conceivably",
+  "w": "conceivably",
+  "pos": "adverb",
+  "ipa": "/kənˈsiːvəbli/",
+  "reg": "formel",
+  "fr": "il est concevable que, à la rigueur",
+  "def": "Used to say that something is possible, although it may seem unlikely.",
+  "col": [
+   "could conceivably",
+   "might conceivably",
+   "conceivably true",
+   "the worst conceivable"
+  ],
+  "ex": [
+   "We could [[conceivably]] finish the job tonight, but it would be a long evening.",
+   "A stronger League of Nations might [[conceivably]] have stopped the invasion of Ethiopia."
+  ],
+  "piege": "Plus faible que <i>presumably</i> : on envisage une possibilité sans la croire probable. Presque toujours avec <i>could</i>, <i>might</i> ou <i>may</i>. Contraire fréquent : <i>inconceivable</i>.",
+  "fam": "conceivable (adj.) · inconceivable (adj.) · conceive (v.)",
+  "trous": [
+   {
+    "s": "The trip could ___ be cancelled if the weather gets worse.",
+    "a": "conceivably",
+    "fr": "Le voyage pourrait à la rigueur être annulé si le temps empire.",
+    "alt": [
+     "possibly"
+    ]
+   },
+   {
+    "s": "A different leader might ___ have avoided the conflict altogether.",
+    "a": "conceivably",
+    "fr": "Un autre dirigeant aurait pu, c'est concevable, éviter complètement le conflit.",
+    "alt": [
+     "possibly"
+    ]
+   }
+  ],
+  "ecris": "une phrase qui envisage une possibilité peu probable en histoire",
+  "formes": [
+   "conceivably",
+   "conceivable"
+  ]
+ },
+ {
+  "id": "n-overstate",
+  "w": "overstate",
+  "pos": "verb",
+  "ipa": "/ˌəʊvəˈsteɪt/",
+  "reg": "courant",
+  "fr": "exagérer, surestimer",
+  "def": "To describe something as larger, more important or worse than it really is.",
+  "col": [
+   "overstate the case",
+   "it is hard to overstate",
+   "cannot be overstated",
+   "greatly overstated"
+  ],
+  "ex": [
+   "He [[overstated]] his cooking skills: the dinner was a disaster.",
+   "The importance of the Marshall Plan for Europe's recovery is often [[overstated]]."
+  ],
+  "piege": "Deux tournures utiles : <i>it would be wrong to overstate…</i> (nuancer) et <i>X <b>cannot be overstated</b></i> (on ne saurait trop insister sur X). Contraire : <i>understate</i> (minimiser).",
+  "fam": "overstatement (n.) · understate (v.)",
+  "trous": [
+   {
+    "s": "The role of a single leader in this crisis should not be ___.",
+    "a": "overstated",
+    "fr": "Le rôle d'un seul dirigeant dans cette crise ne doit pas être exagéré.",
+    "alt": [
+     "exaggerated"
+    ]
+   },
+   {
+    "s": "It is hard to ___ how much the war changed women's lives.",
+    "a": "overstate",
+    "fr": "On ne saurait exagérer à quel point la guerre a changé la vie des femmes.",
+    "alt": [
+     "exaggerate"
+    ]
+   }
+  ],
+  "ecris": "une phrase qui avertit qu'on exagère souvent l'importance d'un facteur",
+  "formes": [
+   "overstate",
+   "overstates",
+   "overstated",
+   "overstating",
+   "overstatement"
+  ]
+ },
+ {
+  "id": "n-oversimplify",
+  "w": "oversimplify",
+  "pos": "verb",
+  "ipa": "/ˌəʊvəˈsɪmplɪfaɪ/",
+  "reg": "courant",
+  "fr": "simplifier à l'excès",
+  "def": "To describe something in such a basic way that important details are lost and the picture becomes false.",
+  "col": [
+   "at the risk of oversimplifying",
+   "grossly oversimplify",
+   "an oversimplified view"
+  ],
+  "ex": [
+   "Saying that money brings happiness [[oversimplifies]] things a little.",
+   "Blaming the war on one man [[oversimplifies]] a crisis with many causes."
+  ],
+  "piege": "Plus juste que <i>simplify</i> quand on critique : on simplifie <b>trop</b>. Tournure utile : <i>at the risk of oversimplifying, …</i>. Le nom : <i>an oversimplification</i>.",
+  "fam": "oversimplification (n.) · oversimplified (adj.)",
+  "trous": [
+   {
+    "s": "To call the Cold War a simple fight between good and evil is to ___ it.",
+    "a": "oversimplify",
+    "fr": "Réduire la guerre froide à un simple combat du bien contre le mal, c'est la simplifier à l'excès."
+   },
+   {
+    "s": "The film's portrait of the period is badly ___.",
+    "a": "oversimplified",
+    "fr": "Le portrait que le film fait de l'époque est terriblement simplifié."
+   }
+  ],
+  "ecris": "une phrase qui critique une explication trop simple d'un événement",
+  "formes": [
+   "oversimplify",
+   "oversimplifies",
+   "oversimplified",
+   "oversimplifying",
+   "oversimplification"
+  ]
+ },
+ {
+  "id": "n-simplistic",
+  "w": "simplistic",
+  "pos": "adjective",
+  "ipa": "/sɪmˈplɪstɪk/",
+  "reg": "courant",
+  "fr": "simpliste",
+  "def": "Treating a complex issue as much easier to understand than it really is.",
+  "col": [
+   "a simplistic view",
+   "overly simplistic",
+   "simplistic solutions"
+  ],
+  "ex": [
+   "His idea of just banning phones is a bit [[simplistic]].",
+   "Seeing the Allies as heroes and their enemies as villains is a [[simplistic]] reading of the war."
+  ],
+  "piege": "Toujours péjoratif, comme « simpliste ». Pour dire « simple » sans critique : <i>simple</i>, <i>straightforward</i>. « Trop simpliste » : <i>overly simplistic</i>.",
+  "fam": "simplistically (adv.)",
+  "trous": [
+   {
+    "s": "Populist parties often offer ___ answers to complex problems.",
+    "a": "simplistic",
+    "fr": "Les partis populistes proposent souvent des réponses simplistes à des problèmes complexes."
+   },
+   {
+    "s": "This explanation is far too ___ to explain the fall of the regime.",
+    "a": "simplistic",
+    "fr": "Cette explication est bien trop simpliste pour expliquer la chute du régime."
+   }
+  ],
+  "ecris": "une phrase qui critique une solution simpliste à un problème de société",
+  "formes": [
+   "simplistic",
+   "simplistically"
+  ]
+ },
+ {
+  "id": "n-self-evident",
+  "w": "self-evident",
+  "pos": "adjective",
+  "ipa": "/ˌself ˈevɪdənt/",
+  "reg": "formel",
+  "fr": "évident, qui va de soi",
+  "def": "So obvious that it needs no proof or explanation.",
+  "col": [
+   "a self-evident truth",
+   "seem self-evident",
+   "far from self-evident",
+   "it is self-evident that"
+  ],
+  "ex": [
+   "The benefits of a good night's sleep seem [[self-evident]], yet few of us get one.",
+   "What seemed [[self-evident]] to nineteenth-century imperialists now looks like pure prejudice."
+  ],
+  "piege": "Souvent employé pour <b>contester</b> une évidence : <i>far from self-evident</i>. Plus soutenu que <i>obvious</i>. Toujours avec un trait d'union.",
+  "fam": "self-evidently (adv.)",
+  "trous": [
+   {
+    "s": "The answer may seem ___, but it deserves careful thought.",
+    "a": "self-evident",
+    "fr": "La réponse peut sembler aller de soi, mais elle mérite une réflexion attentive.",
+    "alt": [
+     "obvious"
+    ]
+   },
+   {
+    "s": "To the old aristocracy, its right to govern seemed ___.",
+    "a": "self-evident",
+    "fr": "Pour la vieille aristocratie, son droit à gouverner semblait aller de soi.",
+    "alt": [
+     "obvious",
+     "natural"
+    ]
+   }
+  ],
+  "ecris": "une phrase qui conteste une prétendue évidence",
+  "formes": [
+   "self-evident",
+   "self-evidently"
+  ]
+ },
+ {
+  "id": "n-underline",
+  "w": "underline",
+  "pos": "verb",
+  "ipa": "/ˌʌndəˈlaɪn/",
+  "reg": "courant",
+  "fr": "souligner",
+  "def": "To emphasise or confirm how important something is, often by repeating or proving it.",
+  "col": [
+   "underline the importance of",
+   "underline the need for",
+   "serve to underline"
+  ],
+  "ex": [
+   "The storm [[underlined]] how badly the old roof needed repairing.",
+   "The failure of the League [[underlines]] the weakness of collective security without the great powers."
+  ],
+  "piege": "Sens figuré très courant : <i>this underlines the need for…</i>. Un peu plus fort que <i>highlight</i> : on confirme une idée déjà présente. Accent sur la dernière syllabe pour le verbe.",
+  "fam": "underlining (n.)",
+  "trous": [
+   {
+    "s": "The crisis ___ the need for better cooperation between countries.",
+    "a": "underlined",
+    "fr": "La crise a souligné la nécessité d'une meilleure coopération entre les pays.",
+    "alt": [
+     "underlines"
+    ]
+   },
+   {
+    "s": "Her absence only ___ how much the team depended on her.",
+    "a": "underlined",
+    "fr": "Son absence n'a fait que souligner à quel point l'équipe dépendait d'elle."
+   }
+  ],
+  "ecris": "une phrase sur un événement qui confirme l'importance d'un problème",
+  "formes": [
+   "underline",
+   "underlines",
+   "underlined",
+   "underlining"
+  ]
+ },
+ {
+  "id": "n-illustrate",
+  "w": "illustrate",
+  "pos": "verb",
+  "ipa": "/ˈɪləstreɪt/",
+  "reg": "courant",
+  "fr": "illustrer, montrer par l'exemple",
+  "def": "To make a point clearer by giving an example, or to be an example of it.",
+  "col": [
+   "clearly illustrate",
+   "illustrate the point",
+   "as illustrated by",
+   "a good illustration of"
+  ],
+  "ex": [
+   "Let me tell you what happened last week to [[illustrate]] my point.",
+   "The Jarrow March [[illustrates]] the despair of industrial towns during the Depression."
+  ],
+  "piege": "Accent sur la première syllabe : /ˈɪləstreɪt/. Le nom <i>illustration</i> sert aussi d'« exemple » : <i>a clear illustration of</i>. Transitif direct : <i>illustrate the idea</i>.",
+  "fam": "illustration (n.) · illustrative (adj.)",
+  "trous": [
+   {
+    "s": "The story of this family ___ the hardships of the time.",
+    "a": "illustrates",
+    "fr": "L'histoire de cette famille illustre les épreuves de l'époque.",
+    "alt": [
+     "illustrated"
+    ]
+   },
+   {
+    "s": "These figures ___ the scale of the crisis.",
+    "a": "illustrate",
+    "fr": "Ces chiffres illustrent l'ampleur de la crise.",
+    "alt": [
+     "illustrated"
+    ]
+   }
+  ],
+  "ecris": "une phrase où un exemple précis montre une idée générale",
+  "formes": [
+   "illustrate",
+   "illustrates",
+   "illustrated",
+   "illustrating",
+   "illustration"
+  ]
+ },
+ {
+  "id": "n-a-double-edged-sword",
+  "w": "a double-edged sword",
+  "pos": "idiom",
+  "ipa": "/ˌdʌbəl ˈedʒd ˈsɔːd/",
+  "reg": "courant",
+  "fr": "une arme à double tranchant",
+  "def": "Something that brings both advantages and serious disadvantages.",
+  "col": [
+   "prove a double-edged sword",
+   "something of a double-edged sword",
+   "a double-edged sword for"
+  ],
+  "ex": [
+   "Working from home is [[a double-edged sword]]: more freedom, but more loneliness.",
+   "Propaganda was [[a double-edged sword]]: it raised expectations the regime could not meet."
+  ],
+  "piege": "Prononciation : <i>sword</i> se dit /sɔːd/, le <i>w</i> est muet. Structure typique : <i>X is a double-edged sword: … but …</i>, idéale pour une conclusion nuancée.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Fame can be a double-edged ___ for young artists.",
+    "a": "sword",
+    "fr": "La célébrité peut être une arme à double tranchant pour les jeunes artistes."
+   },
+   {
+    "s": "Cheap credit proved a double-edged ___: it boosted growth but led to the crash.",
+    "a": "sword",
+    "fr": "Le crédit bon marché s'est révélé une arme à double tranchant : il a stimulé la croissance mais a mené au krach."
+   }
+  ],
+  "ecris": "une phrase sur une innovation qui a des avantages et des inconvénients",
+  "formes": [
+   "a double-edged sword",
+   "double-edged sword"
+  ]
+ },
+ {
+  "id": "n-a-matter-of",
+  "w": "a matter of",
+  "pos": "expression",
+  "ipa": "/ˈmætə/",
+  "reg": "courant",
+  "fr": "une question de, une affaire de",
+  "def": "Something that depends on, or is essentially about, a particular thing.",
+  "col": [
+   "a matter of time",
+   "a matter of opinion",
+   "a matter of principle",
+   "a matter of life and death"
+  ],
+  "ex": [
+   "Which flavour is best is just [[a matter of]] taste.",
+   "After 1945, the end of the colonial empires was only [[a matter of]] time."
+  ],
+  "piege": "<i>It's only a matter of time</i> = ce n'est qu'une question de temps (pas <i>a question of time</i>). Ne pas confondre avec <i>as a matter of fact</i> (en fait).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Whether the book is a masterpiece is a ___ of opinion.",
+    "a": "matter",
+    "fr": "Savoir si ce livre est un chef-d'œuvre est une affaire d'opinion."
+   },
+   {
+    "s": "It was only a ___ of time before the regime collapsed.",
+    "a": "matter",
+    "fr": "Ce n'était qu'une question de temps avant que le régime ne s'effondre."
+   }
+  ],
+  "ecris": "une phrase sur une issue qui n'était qu'une question de temps",
+  "formes": [
+   "a matter of"
+  ]
+ },
+ {
+  "id": "n-crux",
+  "w": "crux",
+  "pos": "noun",
+  "ipa": "/krʌks/",
+  "reg": "formel",
+  "fr": "le cœur, le nœud (du problème)",
+  "def": "The most important or difficult part of a problem, on which everything else depends.",
+  "col": [
+   "the crux of the matter",
+   "the crux of the problem",
+   "the crux of the debate"
+  ],
+  "ex": [
+   "The [[crux]] of the problem is that nobody wants to pay for the repairs.",
+   "The [[crux]] of the debate is whether security can justify limiting freedom."
+  ],
+  "piege": "Presque toujours <i>the crux <b>of</b></i> + nom. Plus soutenu et plus précis que <i>the main point</i>. Pluriel rare.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The ___ of the matter is that the treaty satisfied nobody.",
+    "a": "crux",
+    "fr": "Le cœur du problème, c'est que le traité ne satisfaisait personne.",
+    "alt": [
+     "heart"
+    ]
+   },
+   {
+    "s": "Money is the ___ of the problem, not a lack of ideas.",
+    "a": "crux",
+    "fr": "L'argent est le nœud du problème, pas le manque d'idées.",
+    "alt": [
+     "heart"
+    ]
+   }
+  ],
+  "ecris": "une phrase qui désigne le cœur d'un débat de société",
+  "formes": [
+   "crux"
+  ]
+ },
+ {
+  "id": "n-lie-in",
+  "w": "lie in",
+  "pos": "phrasal verb",
+  "ipa": "/ˈlaɪ ɪn/",
+  "reg": "courant",
+  "fr": "résider dans, tenir à",
+  "def": "To be found in, or caused by, something, when said of a cause, problem or strength.",
+  "col": [
+   "the problem lies in",
+   "the answer lies in",
+   "the difference lies in",
+   "its strength lies in"
+  ],
+  "ex": [
+   "The secret of this recipe [[lies in]] the slow cooking.",
+   "The novel's power [[lies in]] what the narrator refuses to say."
+  ],
+  "piege": "Verbe <i>lie – lay – lain</i> (se trouver), à ne pas confondre avec <i>lay – laid – laid</i> (poser) ni <i>lie – lied</i> (mentir). Parfait pour situer une cause : <i>the real reason lies in…</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The real difficulty ___ in persuading people to change their habits.",
+    "a": "lies",
+    "fr": "La vraie difficulté réside dans le fait de persuader les gens de changer leurs habitudes."
+   },
+   {
+    "s": "The weakness of the plan ___ in its cost, which nobody had calculated.",
+    "a": "lay",
+    "fr": "La faiblesse du plan tenait à son coût, que personne n'avait calculé."
+   }
+  ],
+  "ecris": "une phrase qui situe la vraie cause d'un problème",
+  "formes": [
+   "lie in",
+   "lies in",
+   "lay in",
+   "lying in",
+   "lain in"
+  ]
+ },
+ {
+  "id": "n-hinge-on",
+  "w": "hinge on",
+  "pos": "phrasal verb",
+  "ipa": "/ˈhɪndʒ ɒn/",
+  "reg": "courant",
+  "fr": "dépendre entièrement de, reposer sur",
+  "def": "To depend entirely on one particular thing or event.",
+  "col": [
+   "hinge on whether",
+   "everything hinges on",
+   "the result hinges on"
+  ],
+  "ex": [
+   "Our holiday plans [[hinge on]] whether I get the summer job.",
+   "The Soviet victory at Stalingrad [[hinged on]] the ability to keep supplying the city."
+  ],
+  "piege": "Image de la charnière (<i>hinge</i>) : tout pivote autour d'un point. Préposition <i>on</i> (ou <i>upon</i>), suivie d'un nom ou de <i>whether</i>.",
+  "fam": "hinge (n. : charnière)",
+  "trous": [
+   {
+    "s": "The whole case ___ on the evidence of a single witness.",
+    "a": "hinges",
+    "fr": "Toute l'affaire repose sur le témoignage d'un seul témoin.",
+    "alt": [
+     "hinged",
+     "depends",
+     "depended"
+    ]
+   },
+   {
+    "s": "The success of the invasion ___ on the weather in early June.",
+    "a": "hinged",
+    "fr": "Le succès du débarquement dépendait entièrement de la météo début juin.",
+    "alt": [
+     "hinges",
+     "depended",
+     "depends"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un événement dont l'issue reposait sur un seul facteur",
+  "formes": [
+   "hinge on",
+   "hinges on",
+   "hinged on",
+   "hinging on"
+  ]
+ },
+ {
+  "id": "n-come-into-play",
+  "w": "come into play",
+  "pos": "expression",
+  "ipa": "/ˌkʌm ɪntə ˈpleɪ/",
+  "reg": "courant",
+  "fr": "entrer en jeu, intervenir",
+  "def": "To start to have an effect or to become a factor in a situation.",
+  "col": [
+   "other factors come into play",
+   "come into play when",
+   "bring into play"
+  ],
+  "ex": [
+   "When you choose a flat, the noise of the street [[comes into play]] too.",
+   "Religious and ethnic loyalties also [[came into play]] in the break-up of Yugoslavia."
+  ],
+  "piege": "Utile pour ajouter un facteur dans une explication à plusieurs causes : <i>other factors came into play</i>. Pas d'article : <i>into play</i>, et non <i>into the play</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Luck also comes into ___ in most competitions.",
+    "a": "play",
+    "fr": "La chance entre aussi en jeu dans la plupart des compétitions."
+   },
+   {
+    "s": "When prices rise, psychological factors ___ into play as well.",
+    "a": "come",
+    "fr": "Quand les prix montent, des facteurs psychologiques entrent également en jeu."
+   }
+  ],
+  "ecris": "une phrase qui ajoute un facteur supplémentaire dans l'explication d'un événement",
+  "formes": [
+   "come into play",
+   "comes into play",
+   "came into play",
+   "coming into play"
+  ]
+ },
+ {
+  "id": "n-to-be-fair",
+  "w": "to be fair",
+  "pos": "expression",
+  "ipa": "/tə bi ˈfeə/",
+  "reg": "courant",
+  "fr": "pour être juste, il faut reconnaître que",
+  "def": "Used before a point in someone's favour, so that your judgement is balanced.",
+  "col": [
+   "to be fair to",
+   "but to be fair",
+   "in all fairness"
+  ],
+  "ex": [
+   "The food was slow to arrive, but [[to be fair]], the restaurant was packed.",
+   "[[To be fair]] to the government, it inherited an economy already in deep recession."
+  ],
+  "piege": "Construction : <i>to be fair <b>to</b> someone</i>. Plutôt oral ou semi-formel ; à l'écrit soutenu, <i>in fairness</i>. Introduit une concession, pas une conclusion.",
+  "fam": "fairness (n.)",
+  "trous": [
+   {
+    "s": "To be ___, nobody could have predicted such a sudden crash.",
+    "a": "fair",
+    "fr": "Pour être juste, personne n'aurait pu prévoir un krach aussi soudain."
+   },
+   {
+    "s": "He made mistakes, but to be ___, he had very little support.",
+    "a": "fair",
+    "fr": "Il a commis des erreurs, mais il faut reconnaître qu'il avait très peu de soutien."
+   }
+  ],
+  "ecris": "une phrase qui reconnaît un point en faveur de quelqu'un qu'on critique",
+  "formes": [
+   "to be fair",
+   "in fairness",
+   "in all fairness"
+  ]
+ },
+ {
+  "id": "n-understandably",
+  "w": "understandably",
+  "pos": "adverb",
+  "ipa": "/ˌʌndəˈstændəbli/",
+  "reg": "courant",
+  "fr": "on le comprend, à juste titre",
+  "def": "For reasons that are easy to accept, given the situation.",
+  "col": [
+   "understandably upset",
+   "quite understandably",
+   "understandably cautious",
+   "understandably reluctant"
+  ],
+  "ex": [
+   "After waiting two hours, the passengers were [[understandably]] annoyed.",
+   "Having lived through 1914-1918, France was [[understandably]] reluctant to risk another war."
+  ],
+  "piege": "Sert à comprendre une attitude sans forcément l'approuver : nuance précieuse pour juger les acteurs du passé. Devant l'adjectif ou en tête de phrase : <i>Understandably, …</i>.",
+  "fam": "understandable (adj.) · understand (v.)",
+  "trous": [
+   {
+    "s": "She was ___ nervous before her first day at work.",
+    "a": "understandably",
+    "fr": "Elle était, on le comprend, nerveuse avant son premier jour de travail."
+   },
+   {
+    "s": "After the crash, many investors were ___ cautious about the stock market.",
+    "a": "understandably",
+    "fr": "Après le krach, beaucoup d'investisseurs se méfiaient, à juste titre, de la Bourse."
+   }
+  ],
+  "ecris": "une phrase qui explique, sans l'excuser, l'attitude d'un acteur historique",
+  "formes": [
+   "understandably",
+   "understandable"
+  ]
+ },
+ {
+  "id": "n-the-fact-remains-that",
+  "w": "the fact remains that",
+  "pos": "expression",
+  "ipa": "/rɪˈmeɪnz/",
+  "reg": "courant",
+  "fr": "il n'en reste pas moins que",
+  "def": "Used to insist that something is still true despite what has just been said.",
+  "col": [
+   "the fact remains that",
+   "but the fact remains",
+   "yet the fact remains"
+  ],
+  "ex": [
+   "You can apologise all you like; [[the fact remains that]] you forgot.",
+   "Reforms were attempted, but [[the fact remains that]] millions lived in poverty."
+  ],
+  "piege": "Parfait après une concession, pour revenir à son argument principal. Toujours au présent (<i>remains</i>), même dans un récit au passé.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Excuses aside, the fact ___ that the work was not done.",
+    "a": "remains",
+    "fr": "Excuses mises à part, il n'en reste pas moins que le travail n'a pas été fait."
+   },
+   {
+    "s": "Whatever the reasons, the fact ___ that the policy failed.",
+    "a": "remains",
+    "fr": "Quelles que soient les raisons, il n'en reste pas moins que cette politique a échoué."
+   }
+  ],
+  "ecris": "une phrase qui revient à l'argument principal après une concession",
+  "formes": [
+   "the fact remains that",
+   "the fact remains"
+  ]
+ },
+ {
+  "id": "n-a-grain-of-truth",
+  "w": "a grain of truth",
+  "pos": "expression",
+  "ipa": "/ɡreɪn/",
+  "reg": "courant",
+  "fr": "une part de vérité",
+  "def": "A small amount of accuracy in a statement that is otherwise exaggerated or wrong.",
+  "col": [
+   "there is a grain of truth in",
+   "contain a grain of truth",
+   "not a grain of truth"
+  ],
+  "ex": [
+   "There's [[a grain of truth]] in what he says, but he exaggerates a lot.",
+   "Like most myths, the legend of the Blitz spirit contains [[a grain of truth]]."
+  ],
+  "piege": "Construction : <i>a grain of truth <b>in</b></i> quelque chose. Concession élégante : on accorde une part de vérité avant de corriger. Synonyme : <i>an element of truth</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "There may be a ___ of truth in the rumour.",
+    "a": "grain",
+    "fr": "Il y a peut-être une part de vérité dans cette rumeur.",
+    "alt": [
+     "kernel"
+    ]
+   },
+   {
+    "s": "Every stereotype contains a ___ of truth, but only a small one.",
+    "a": "grain",
+    "fr": "Chaque stéréotype contient une part de vérité, mais seulement une petite.",
+    "alt": [
+     "kernel"
+    ]
+   }
+  ],
+  "ecris": "une phrase qui reconnaît une part de vérité dans une idée exagérée",
+  "formes": [
+   "a grain of truth",
+   "an element of truth"
+  ]
+ },
+ {
+  "id": "n-hold-true",
+  "w": "hold true",
+  "pos": "expression",
+  "ipa": "/ˌhəʊld ˈtruː/",
+  "reg": "courant",
+  "fr": "rester vrai, se vérifier",
+  "def": "To remain correct or applicable in a particular case or situation.",
+  "col": [
+   "hold true for",
+   "still holds true",
+   "the same holds true"
+  ],
+  "ex": [
+   "What my parents told me about saving money still [[holds true]] today.",
+   "This analysis [[holds true]] for Germany, but not for Britain, which avoided extremism."
+  ],
+  "piege": "Ne pas traduire par <i>stay true</i> (rester fidèle). <i>Hold</i> est irrégulier : <i>held</i>. Utile pour limiter la portée d'une idée : <i>this holds true only for…</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Does this rule still ___ true in the age of the internet?",
+    "a": "hold",
+    "fr": "Cette règle reste-t-elle vraie à l'ère d'internet ?"
+   },
+   {
+    "s": "The same ___ true for many other European countries.",
+    "a": "holds",
+    "fr": "Il en va de même pour beaucoup d'autres pays européens."
+   }
+  ],
+  "ecris": "une phrase qui précise dans quel cas une analyse reste valable",
+  "formes": [
+   "hold true",
+   "holds true",
+   "held true",
+   "holding true"
+  ]
+ },
+ {
+  "id": "n-hold-water",
+  "w": "hold water",
+  "pos": "idiom",
+  "ipa": "/ˌhəʊld ˈwɔːtə/",
+  "reg": "courant",
+  "fr": "tenir debout (argument)",
+  "def": "To be convincing when examined closely, said of an argument or excuse and usually used in the negative.",
+  "col": [
+   "doesn't hold water",
+   "fail to hold water",
+   "simply doesn't hold water"
+  ],
+  "ex": [
+   "His excuse about the bus being late doesn't [[hold water]]: he lives next door.",
+   "The claim that the treaty was purely defensive does not [[hold water]]."
+  ],
+  "piege": "Surtout à la forme négative : <i>it doesn't hold water</i> (ça ne tient pas debout). Image du récipient qui ne fuit pas. Pour une théorie solide, on dira plutôt <i>it is sound</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Her theory sounds clever, but it simply doesn't hold ___.",
+    "a": "water",
+    "fr": "Sa théorie a l'air astucieuse, mais elle ne tient tout simplement pas debout."
+   },
+   {
+    "s": "None of the official explanations holds ___ when you check the dates.",
+    "a": "water",
+    "fr": "Aucune des explications officielles ne tient debout quand on vérifie les dates."
+   }
+  ],
+  "ecris": "une phrase qui rejette une excuse ou une thèse peu crédible",
+  "formes": [
+   "hold water",
+   "holds water",
+   "held water"
+  ]
+ },
+ {
+  "id": "n-lend-weight-to",
+  "w": "lend weight to",
+  "pos": "expression",
+  "ipa": "/ˌlend ˈweɪt tə/",
+  "reg": "formel",
+  "fr": "donner du poids à, appuyer",
+  "def": "To make an idea, argument or theory more believable.",
+  "col": [
+   "lend weight to the argument",
+   "lend weight to the view that",
+   "lend support to",
+   "lend credence to"
+  ],
+  "ex": [
+   "The photos [[lent weight to]] his story about seeing a wolf in the woods.",
+   "The opening of the archives [[lends weight to]] the view that the famine was deliberate."
+  ],
+  "piege": "<i>Lend</i> est irrégulier : <i>lend – lent – lent</i>. Variantes : <i>lend support to</i>, <i>lend credence to</i> (plus soutenu). Le contraire : <i>cast doubt on</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "These new documents lend ___ to the theory of a planned attack.",
+    "a": "weight",
+    "fr": "Ces nouveaux documents donnent du poids à la thèse d'une attaque préméditée.",
+    "alt": [
+     "support",
+     "credence"
+    ]
+   },
+   {
+    "s": "Her testimony lent ___ to the prosecution's case.",
+    "a": "weight",
+    "fr": "Son témoignage a donné du poids à l'accusation.",
+    "alt": [
+     "support",
+     "credence"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une découverte qui renforce une interprétation",
+  "formes": [
+   "lend weight to",
+   "lends weight to",
+   "lent weight to",
+   "lending weight to"
+  ]
+ },
+ {
+  "id": "n-bear-out",
+  "w": "bear out",
+  "pos": "phrasal verb",
+  "ipa": "/ˌbeər ˈaʊt/",
+  "reg": "courant",
+  "fr": "confirmer, corroborer",
+  "def": "To show that something someone said or believed is true.",
+  "col": [
+   "be borne out by",
+   "bear out the claim",
+   "the facts bear out"
+  ],
+  "ex": [
+   "My fear of getting lost was [[borne out]] when the GPS stopped working.",
+   "The census figures [[bear out]] the idea that the cities grew at the expense of the countryside."
+  ],
+  "piege": "Surtout au passif : <i>this was <b>borne out</b> by</i> (participe <i>borne</i>, pas <i>born</i>). Verbe séparable : <i>bear it out</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Later research ___ out her first impression.",
+    "a": "bore",
+    "fr": "Des recherches ultérieures ont confirmé sa première impression."
+   },
+   {
+    "s": "His warnings were ___ out by the events of 1939.",
+    "a": "borne",
+    "fr": "Ses avertissements ont été confirmés par les événements de 1939."
+   }
+  ],
+  "ecris": "une phrase sur une prédiction confirmée par les faits",
+  "formes": [
+   "bear out",
+   "bears out",
+   "bore out",
+   "borne out",
+   "bearing out"
+  ]
+ },
+ {
+  "id": "n-point-to",
+  "w": "point to",
+  "pos": "phrasal verb",
+  "ipa": "/ˈpɔɪnt tə/",
+  "reg": "courant",
+  "fr": "indiquer, laisser penser",
+  "def": "To indicate that something is true or likely, as a clue does.",
+  "col": [
+   "point to the conclusion that",
+   "all the evidence points to",
+   "point to a link between"
+  ],
+  "ex": [
+   "The empty fridge [[points to]] a very busy week.",
+   "Several factors [[point to]] economic despair as the main reason for the Nazi vote."
+  ],
+  "piege": "Ne pas confondre avec <i>point out</i> (faire remarquer). <i>Point to</i> : les indices désignent quelque chose ; le sujet est souvent <i>evidence, factors, figures</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "All the evidence seems to ___ to a deliberate decision.",
+    "a": "point",
+    "fr": "Tous les éléments semblent indiquer une décision délibérée."
+   },
+   {
+    "s": "The rising prices ___ to a shortage of grain.",
+    "a": "pointed",
+    "fr": "La hausse des prix indiquait une pénurie de céréales.",
+    "alt": [
+     "point"
+    ]
+   }
+  ],
+  "ecris": "une phrase où des indices désignent une cause probable",
+  "formes": [
+   "point to",
+   "points to",
+   "pointed to",
+   "pointing to"
+  ]
+ },
+ {
+  "id": "n-instrumental-in",
+  "w": "instrumental in",
+  "pos": "expression",
+  "ipa": "/ˌɪnstrəˈmentəl/",
+  "reg": "formel",
+  "fr": "déterminant dans, qui a joué un rôle clé dans",
+  "def": "Playing an important part in making something happen.",
+  "col": [
+   "instrumental in bringing about",
+   "play an instrumental role",
+   "be instrumental in"
+  ],
+  "ex": [
+   "My aunt was [[instrumental in]] helping me find my first job.",
+   "American loans were [[instrumental in]] the recovery of the German economy after 1924."
+  ],
+  "piege": "Construction : <i>instrumental <b>in</b> + -ing</i> ou nom. Rien à voir avec la musique dans ce sens. Plus nuancé que <i>the cause</i> : on reconnaît un rôle important parmi d'autres.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "She was ___ in setting up the local food bank.",
+    "a": "instrumental",
+    "fr": "Elle a joué un rôle clé dans la création de la banque alimentaire locale."
+   },
+   {
+    "s": "The press was ___ in turning public opinion against the war.",
+    "a": "instrumental",
+    "fr": "La presse a joué un rôle déterminant dans le retournement de l'opinion contre la guerre."
+   }
+  ],
+  "ecris": "une phrase sur une personne ou un facteur qui a joué un rôle clé",
+  "formes": [
+   "instrumental in",
+   "instrumental"
+  ]
+ },
+ {
+  "id": "n-at-odds-with",
+  "w": "at odds with",
+  "pos": "expression",
+  "ipa": "/ət ˈɒdz wɪð/",
+  "reg": "courant",
+  "fr": "en contradiction avec, en désaccord avec",
+  "def": "In disagreement or conflict with; not matching something.",
+  "col": [
+   "at odds with the facts",
+   "be at odds with each other",
+   "sharply at odds with"
+  ],
+  "ex": [
+   "My sister and I are often [[at odds with]] each other about music.",
+   "The regime's peaceful speeches were [[at odds with]] its rapid rearmament."
+  ],
+  "piege": "S'emploie pour des personnes (désaccord) comme pour des idées (contradiction). Toujours <i>at</i> et <i>with</i>. Ne pas confondre avec <i>against all odds</i> (contre toute attente).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "His public statements were at ___ with his private letters.",
+    "a": "odds",
+    "fr": "Ses déclarations publiques étaient en contradiction avec ses lettres privées."
+   },
+   {
+    "s": "This interpretation is at ___ with most of the evidence.",
+    "a": "odds",
+    "fr": "Cette interprétation est en contradiction avec la plupart des éléments."
+   }
+  ],
+  "ecris": "une phrase sur un discours en contradiction avec les actes",
+  "formes": [
+   "at odds with",
+   "at odds"
+  ]
+ },
+ {
+  "id": "n-consistent-with",
+  "w": "consistent with",
+  "pos": "expression",
+  "ipa": "/kənˈsɪstənt/",
+  "reg": "courant",
+  "fr": "compatible avec, conforme à",
+  "def": "Agreeing with or matching something, without contradicting it.",
+  "col": [
+   "consistent with the evidence",
+   "broadly consistent with",
+   "entirely consistent with"
+  ],
+  "ex": [
+   "Your story is [[consistent with]] what your brother told me.",
+   "The pattern of the vote is [[consistent with]] the idea that unemployment drove support for extremists."
+  ],
+  "piege": "Faux ami : « consistant » (épais, solide) se dit <i>substantial</i> ou <i>thick</i>. <i>Consistent</i> seul = constant, régulier (<i>a consistent player</i>).",
+  "fam": "consistency (n.) · consistently (adv.) · inconsistent (adj.)",
+  "trous": [
+   {
+    "s": "The injuries are ___ with a fall from a great height.",
+    "a": "consistent",
+    "fr": "Les blessures sont compatibles avec une chute de grande hauteur."
+   },
+   {
+    "s": "His actions were not ___ with his principles.",
+    "a": "consistent",
+    "fr": "Ses actes n'étaient pas conformes à ses principes."
+   }
+  ],
+  "ecris": "une phrase où un indice s'accorde avec une hypothèse",
+  "formes": [
+   "consistent with",
+   "consistent",
+   "consistently",
+   "consistency",
+   "inconsistent"
+  ]
+ },
+ {
+  "id": "n-in-keeping-with",
+  "w": "in keeping with",
+  "pos": "expression",
+  "ipa": "/ɪn ˈkiːpɪŋ wɪð/",
+  "reg": "formel",
+  "fr": "conforme à, dans l'esprit de",
+  "def": "Suitable for, or in harmony with, a style, tradition or expectation.",
+  "col": [
+   "in keeping with tradition",
+   "in keeping with the spirit of",
+   "out of keeping with"
+  ],
+  "ex": [
+   "The modern glass building isn't really [[in keeping with]] the old village.",
+   "Appeasement was [[in keeping with]] Britain's long tradition of avoiding European commitments."
+  ],
+  "piege": "Plus esthétique ou culturel que <i>consistent with</i> : on parle d'harmonie avec un style ou une tradition. Le contraire : <i>out of keeping with</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "In ___ with tradition, the ceremony took place at dawn.",
+    "a": "keeping",
+    "fr": "Conformément à la tradition, la cérémonie a eu lieu à l'aube."
+   },
+   {
+    "s": "His harsh tone was out of ___ with the rest of the speech.",
+    "a": "keeping",
+    "fr": "Son ton dur détonnait avec le reste du discours."
+   }
+  ],
+  "ecris": "une phrase sur une décision conforme à une tradition",
+  "formes": [
+   "in keeping with",
+   "out of keeping with"
+  ]
+ },
+ {
+  "id": "n-so-called",
+  "w": "so-called",
+  "pos": "adjective",
+  "ipa": "/ˌsəʊ ˈkɔːld/",
+  "reg": "courant",
+  "fr": "soi-disant, prétendu",
+  "def": "Used to show that you think a name or description is wrong or misleading.",
+  "col": [
+   "the so-called experts",
+   "a so-called solution",
+   "the so-called 'peace'"
+  ],
+  "ex": [
+   "The [[so-called]] shortcut took us twenty minutes longer.",
+   "The [[so-called]] 'peace for our time' lasted less than a year."
+  ],
+  "piege": "Placé <b>devant le nom</b>, souvent avec des guillemets : il marque la distance ironique. Il peut aussi être neutre (« ce qu'on appelle ») : <i>the so-called Dust Bowl</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The ___ experts got every single prediction wrong.",
+    "a": "so-called",
+    "fr": "Les soi-disant experts se sont trompés dans toutes leurs prévisions.",
+    "alt": [
+     "so called"
+    ]
+   },
+   {
+    "s": "This ___ reform changed nothing for ordinary workers.",
+    "a": "so-called",
+    "fr": "Cette prétendue réforme n'a rien changé pour les ouvriers ordinaires.",
+    "alt": [
+     "so called"
+    ]
+   }
+  ],
+  "ecris": "une phrase qui prend ses distances avec une appellation officielle",
+  "formes": [
+   "so-called",
+   "so called"
+  ]
+ },
+ {
+  "id": "n-supposedly",
+  "w": "supposedly",
+  "pos": "adverb",
+  "ipa": "/səˈpəʊzɪdli/",
+  "reg": "courant",
+  "fr": "soi-disant, censément",
+  "def": "According to what is said or believed, although you have doubts about it.",
+  "col": [
+   "supposedly safe",
+   "supposedly because",
+   "a supposedly neutral"
+  ],
+  "ex": [
+   "This cream is [[supposedly]] good for your skin, but I haven't noticed anything.",
+   "The elections were [[supposedly]] free, yet opposition candidates were arrested."
+  ],
+  "piege": "Quatre syllabes : /səˈpəʊ-zɪd-li/. Marque le doute de celui qui parle ; <i>allegedly</i> est plus juridique. Ne pas confondre avec <i>be supposed to</i> (être censé).",
+  "fam": "suppose (v.) · supposed (adj.)",
+  "trous": [
+   {
+    "s": "The bridge was ___ built to last a hundred years.",
+    "a": "supposedly",
+    "fr": "Le pont était soi-disant construit pour durer cent ans."
+   },
+   {
+    "s": "The film is ___ based on a true story.",
+    "a": "supposedly",
+    "fr": "Le film est censément tiré d'une histoire vraie."
+   }
+  ],
+  "ecris": "une phrase qui exprime un doute sur une affirmation officielle",
+  "formes": [
+   "supposedly"
+  ]
+ },
+ {
+  "id": "n-apparent",
+  "w": "apparent",
+  "pos": "adjective",
+  "ipa": "/əˈpærənt/",
+  "reg": "courant",
+  "fr": "1. manifeste · 2. apparent (trompeur)",
+  "def": "Clearly visible or understood; or, seeming real though possibly not.",
+  "col": [
+   "for no apparent reason",
+   "it soon became apparent that",
+   "an apparent contradiction",
+   "apparent success"
+  ],
+  "ex": [
+   "The car stopped suddenly for no [[apparent]] reason.",
+   "The regime's [[apparent]] stability hid deep divisions within the ruling party."
+  ],
+  "piege": "Deux sens : <i>it became apparent that</i> = il est devenu évident que ; <i>his apparent calm</i> = son calme apparent. L'adverbe <i>apparently</i> veut souvent dire « il paraît que ».",
+  "fam": "apparently (adv.) · appear (v.)",
+  "trous": [
+   {
+    "s": "It soon became ___ that the plan would not work.",
+    "a": "apparent",
+    "fr": "Il est vite devenu évident que le plan ne marcherait pas.",
+    "alt": [
+     "clear",
+     "obvious"
+    ]
+   },
+   {
+    "s": "Despite the ___ calm, the city was on the edge of revolt.",
+    "a": "apparent",
+    "fr": "Malgré un calme apparent, la ville était au bord de la révolte."
+   }
+  ],
+  "ecris": "une phrase sur un calme ou un succès qui n'était qu'apparent",
+  "formes": [
+   "apparent",
+   "apparently"
+  ]
+ },
+ {
+  "id": "n-perceived",
+  "w": "perceived",
+  "pos": "adjective",
+  "ipa": "/pəˈsiːvd/",
+  "reg": "formel",
+  "fr": "perçu, ressenti, supposé",
+  "def": "Believed or felt to exist, whether or not it really does.",
+  "col": [
+   "a perceived threat",
+   "perceived injustice",
+   "widely perceived as",
+   "real or perceived"
+  ],
+  "ex": [
+   "Her [[perceived]] coldness was actually shyness, as we discovered later.",
+   "The [[perceived]] humiliation of Versailles mattered more to many Germans than its actual terms."
+  ],
+  "piege": "Utile pour distinguer perception et réalité : <i>real or perceived</i>. Aussi verbe : <i>be perceived <b>as</b></i> (être perçu comme), avec <i>as</i>, pas <i>like</i>.",
+  "fam": "perceive (v.) · perception (n.)",
+  "trous": [
+   {
+    "s": "The ___ threat from abroad was used to justify censorship.",
+    "a": "perceived",
+    "fr": "La menace étrangère ressentie a servi à justifier la censure."
+   },
+   {
+    "s": "He was widely ___ as weak, even though his record was solid.",
+    "a": "perceived",
+    "fr": "Il était largement perçu comme faible, alors même que son bilan était solide.",
+    "alt": [
+     "seen",
+     "regarded"
+    ]
+   }
+  ],
+  "ecris": "une phrase qui distingue une menace réelle d'une menace ressentie",
+  "formes": [
+   "perceived",
+   "perceive",
+   "perceives",
+   "perception"
+  ]
+ },
+ {
+  "id": "n-one-sided",
+  "w": "one-sided",
+  "pos": "adjective",
+  "ipa": "/ˌwʌn ˈsaɪdɪd/",
+  "reg": "courant",
+  "fr": "partial, unilatéral, déséquilibré",
+  "def": "Showing only one point of view, and therefore unfair or incomplete.",
+  "col": [
+   "a one-sided view",
+   "a one-sided account",
+   "rather one-sided",
+   "a one-sided contest"
+  ],
+  "ex": [
+   "The match was completely [[one-sided]]: we lost seven goals to nil.",
+   "A [[one-sided]] essay that ignores counter-arguments rarely convinces the reader."
+  ],
+  "piege": "Deux emplois : un récit partial (<i>a one-sided account</i>) ou un match déséquilibré. Reproche classique fait à un essay : <i>the argument is too one-sided</i>. Contraire : <i>balanced</i>.",
+  "fam": "one-sidedness (n.)",
+  "trous": [
+   {
+    "s": "The documentary gave a very ___ account of the strike.",
+    "a": "one-sided",
+    "fr": "Le documentaire a donné un récit très partial de la grève.",
+    "alt": [
+     "one sided",
+     "partial"
+    ]
+   },
+   {
+    "s": "Their friendship felt ___: she always did all the work.",
+    "a": "one-sided",
+    "fr": "Leur amitié semblait à sens unique : c'était toujours elle qui faisait tout.",
+    "alt": [
+     "one sided"
+    ]
+   }
+  ],
+  "ecris": "une phrase qui critique un récit qui ne présente qu'un point de vue",
+  "formes": [
+   "one-sided",
+   "one-sidedness"
+  ]
+ },
+ {
+  "id": "n-even-handed",
+  "w": "even-handed",
+  "pos": "adjective",
+  "ipa": "/ˌiːvən ˈhændɪd/",
+  "reg": "courant",
+  "fr": "impartial, équitable",
+  "def": "Treating all sides or people fairly and equally.",
+  "col": [
+   "an even-handed approach",
+   "even-handed treatment",
+   "remain even-handed"
+  ],
+  "ex": [
+   "Our coach is [[even-handed]] and gives every player a chance.",
+   "An [[even-handed]] account of the empire must weigh its railways against its violence."
+  ],
+  "piege": "Plus précis que <i>fair</i> : on traite les deux camps de la même manière. Souvent pour un juge, un journaliste, un historien. Ne pas confondre avec <i>evenly</i> (régulièrement).",
+  "fam": "even-handedly (adv.) · even-handedness (n.)",
+  "trous": [
+   {
+    "s": "A good referee must stay ___ throughout a tense match.",
+    "a": "even-handed",
+    "fr": "Un bon arbitre doit rester impartial tout au long d'un match tendu.",
+    "alt": [
+     "impartial",
+     "fair"
+    ]
+   },
+   {
+    "s": "Historians try to give an ___ account of a conflict.",
+    "a": "even-handed",
+    "fr": "Les historiens s'efforcent de donner un récit impartial d'un conflit.",
+    "alt": [
+     "impartial"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un jugement équitable envers deux camps",
+  "formes": [
+   "even-handed",
+   "even-handedly"
+  ]
+ },
+ {
+  "id": "n-unfounded",
+  "w": "unfounded",
+  "pos": "adjective",
+  "ipa": "/ʌnˈfaʊndɪd/",
+  "reg": "courant",
+  "fr": "sans fondement, infondé",
+  "def": "Not based on any facts or evidence.",
+  "col": [
+   "unfounded fears",
+   "unfounded rumours",
+   "completely unfounded",
+   "prove unfounded"
+  ],
+  "ex": [
+   "My fears about the flight turned out to be [[unfounded]].",
+   "The rumours of a communist plot were [[unfounded]], but they were used to justify the arrests."
+  ],
+  "piege": "Contraire : <i>well-founded</i> (fondé). Souvent avec <i>fears, rumours, claims, allegations</i>. Plus précis que <i>false</i>.",
+  "fam": "well-founded (adj.)",
+  "trous": [
+   {
+    "s": "The accusations against him proved completely ___.",
+    "a": "unfounded",
+    "fr": "Les accusations portées contre lui se sont révélées totalement infondées.",
+    "alt": [
+     "groundless",
+     "baseless"
+    ]
+   },
+   {
+    "s": "Their fears of a sudden invasion were ___.",
+    "a": "unfounded",
+    "fr": "Leurs craintes d'une invasion soudaine étaient sans fondement.",
+    "alt": [
+     "groundless",
+     "baseless"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une rumeur sans fondement",
+  "formes": [
+   "unfounded"
+  ]
+ },
+ {
+  "id": "n-untenable",
+  "w": "untenable",
+  "pos": "adjective",
+  "ipa": "/ʌnˈtenəbəl/",
+  "reg": "formel",
+  "fr": "intenable, indéfendable",
+  "def": "Impossible to defend or to keep supporting, said of a position or an argument.",
+  "col": [
+   "an untenable position",
+   "become untenable",
+   "politically untenable"
+  ],
+  "ex": [
+   "After the scandal, his position as captain became [[untenable]].",
+   "By 1943, the claim that Italy was winning the war had become [[untenable]]."
+  ],
+  "piege": "Surtout pour une position ou une thèse : <i>an untenable argument</i>. Pour une situation insupportable, on dira plutôt <i>unbearable</i>.",
+  "fam": "tenable (adj.)",
+  "trous": [
+   {
+    "s": "After the leak, the minister's position became ___ and she resigned.",
+    "a": "untenable",
+    "fr": "Après la fuite, la position de la ministre est devenue intenable et elle a démissionné."
+   },
+   {
+    "s": "The old theory is now ___ given the new evidence.",
+    "a": "untenable",
+    "fr": "L'ancienne théorie est désormais indéfendable au vu des nouveaux éléments."
+   }
+  ],
+  "ecris": "une phrase sur une position politique devenue impossible à défendre",
+  "formes": [
+   "untenable",
+   "tenable"
+  ]
+ },
+ {
+  "id": "n-cogent",
+  "w": "cogent",
+  "pos": "adjective",
+  "ipa": "/ˈkəʊdʒənt/",
+  "reg": "formel",
+  "fr": "convaincant, solide",
+  "def": "Clear, logical and convincing, said of an argument or a case.",
+  "col": [
+   "a cogent argument",
+   "a cogent case",
+   "cogent reasons"
+  ],
+  "ex": [
+   "She gave a [[cogent]] explanation of why we should change our phone plan.",
+   "Some historians have made a [[cogent]] case that the crisis had deep economic roots."
+  ],
+  "piege": "Prononciation : /ˈkəʊdʒənt/, <i>g</i> doux. Plus soutenu que <i>convincing</i> ; idéal pour juger un argument. Ne pas confondre avec <i>coherent</i> (cohérent).",
+  "fam": "cogently (adv.) · cogency (n.)",
+  "trous": [
+   {
+    "s": "He made a ___ argument that the law was unfair.",
+    "a": "cogent",
+    "fr": "Il a avancé un argument convaincant selon lequel la loi était injuste.",
+    "alt": [
+     "convincing",
+     "persuasive"
+    ]
+   },
+   {
+    "s": "The report presents ___ reasons for changing the system.",
+    "a": "cogent",
+    "fr": "Le rapport présente des raisons solides de changer le système.",
+    "alt": [
+     "convincing",
+     "persuasive"
+    ]
+   }
+  ],
+  "ecris": "une phrase qui juge un argument clair et convaincant",
+  "formes": [
+   "cogent",
+   "cogently",
+   "cogency"
+  ]
+ },
+ {
+  "id": "n-misguided",
+  "w": "misguided",
+  "pos": "adjective",
+  "ipa": "/ˌmɪsˈɡaɪdɪd/",
+  "reg": "courant",
+  "fr": "malavisé, erroné, mal inspiré",
+  "def": "Based on wrong ideas or poor judgement, often despite good intentions.",
+  "col": [
+   "a misguided attempt",
+   "misguided policies",
+   "well-meaning but misguided"
+  ],
+  "ex": [
+   "His [[misguided]] attempt to help only made the argument worse.",
+   "Prohibition was a [[misguided]] policy that encouraged the very crime it aimed to stop."
+  ],
+  "piege": "Souvent de <b>bonne foi</b> (<i>well-meaning but misguided</i>) : plus nuancé que <i>wrong</i> ou <i>stupid</i>. Idéal pour juger une politique sans caricaturer ses auteurs.",
+  "fam": "misguidedly (adv.)",
+  "trous": [
+   {
+    "s": "It was a well-meaning but ___ attempt to solve the problem.",
+    "a": "misguided",
+    "fr": "C'était une tentative bien intentionnée mais malavisée de résoudre le problème."
+   },
+   {
+    "s": "Many now see the decision to cut spending in 1931 as ___.",
+    "a": "misguided",
+    "fr": "Beaucoup voient aujourd'hui la décision de réduire les dépenses en 1931 comme une erreur.",
+    "alt": [
+     "mistaken"
+    ]
+   }
+  ],
+  "ecris": "une phrase qui juge une politique bien intentionnée mais erronée",
+  "formes": [
+   "misguided",
+   "misguidedly"
+  ]
+ },
+ {
+  "id": "n-short-sighted",
+  "w": "short-sighted",
+  "pos": "adjective",
+  "ipa": "/ˌʃɔːt ˈsaɪtɪd/",
+  "reg": "courant",
+  "fr": "à courte vue, imprévoyant",
+  "def": "Not considering the likely long-term effects of a decision.",
+  "col": [
+   "a short-sighted decision",
+   "short-sighted policies",
+   "economically short-sighted"
+  ],
+  "ex": [
+   "Spending all my savings on a new phone was a bit [[short-sighted]].",
+   "Reparations were a [[short-sighted]] policy that weakened the economy Europe depended on."
+  ],
+  "piege": "Sens propre : myope. Sens figuré très utile pour juger une décision politique. Contraire : <i>far-sighted</i> (prévoyant).",
+  "fam": "short-sightedness (n.) · far-sighted (adj.)",
+  "trous": [
+   {
+    "s": "Cutting the education budget is a ___ way to save money.",
+    "a": "short-sighted",
+    "fr": "Réduire le budget de l'éducation est une façon imprévoyante d'économiser.",
+    "alt": [
+     "short sighted"
+    ]
+   },
+   {
+    "s": "Critics called the policy ___, since it ignored the next generation.",
+    "a": "short-sighted",
+    "fr": "Les critiques ont qualifié cette politique de court-termiste, car elle ignorait la génération suivante.",
+    "alt": [
+     "short sighted"
+    ]
+   }
+  ],
+  "ecris": "une phrase qui critique une décision qui ignore le long terme",
+  "formes": [
+   "short-sighted",
+   "short-sightedness"
+  ]
+ },
+ {
+  "id": "n-reservation",
+  "w": "reservation",
+  "pos": "noun",
+  "ipa": "/ˌrezəˈveɪʃən/",
+  "reg": "courant",
+  "fr": "réserve, doute",
+  "def": "A feeling of doubt about whether something is right or a good idea.",
+  "col": [
+   "have reservations about",
+   "express reservations",
+   "serious reservations",
+   "without reservation"
+  ],
+  "ex": [
+   "I have some [[reservations]] about lending him my car.",
+   "Many MPs voted for the agreement but expressed serious [[reservations]] about its terms."
+  ],
+  "piege": "Dans ce sens, souvent au pluriel : <i>have reservations <b>about</b></i>. <i>Without reservation</i> = sans réserve, pleinement. Autre sens : réservation (hôtel, restaurant).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "She agreed to the plan, though she had some ___ about the cost.",
+    "a": "reservations",
+    "fr": "Elle a accepté le plan, même si elle avait quelques réserves sur le coût.",
+    "alt": [
+     "doubts"
+    ]
+   },
+   {
+    "s": "I support this proposal without ___.",
+    "a": "reservation",
+    "fr": "Je soutiens cette proposition sans réserve."
+   }
+  ],
+  "ecris": "une phrase qui exprime des réserves sur un projet",
+  "formes": [
+   "reservation",
+   "reservations"
+  ]
+ },
+ {
+  "id": "n-take-issue-with",
+  "w": "take issue with",
+  "pos": "expression",
+  "ipa": "/ˈɪʃuː/",
+  "reg": "formel",
+  "fr": "contester, être en désaccord avec",
+  "def": "To disagree with something someone has said, and say so openly.",
+  "col": [
+   "take issue with the claim",
+   "take issue with the view that",
+   "I would take issue with"
+  ],
+  "ex": [
+   "I [[take issue with]] your idea that cats are lazier than dogs.",
+   "Many historians [[take issue with]] the view that the war was simply one man's war."
+  ],
+  "piege": "Construction fixe : <i>take issue <b>with</b> + idée</i>, sans article (<i>take <b>an</b> issue</i> est faux). Plus poli et plus précis que <i>disagree</i> : on conteste un point précis.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I would take ___ with the idea that money is the only motive.",
+    "a": "issue",
+    "fr": "Je contesterais l'idée que l'argent est le seul mobile."
+   },
+   {
+    "s": "Several critics took ___ with her reading of the poem.",
+    "a": "issue",
+    "fr": "Plusieurs critiques ont contesté sa lecture du poème."
+   }
+  ],
+  "ecris": "une phrase qui conteste poliment une thèse",
+  "formes": [
+   "take issue with",
+   "takes issue with",
+   "took issue with",
+   "taking issue with"
+  ]
+ },
+ {
+  "id": "n-beg-the-question",
+  "w": "beg the question",
+  "pos": "expression",
+  "ipa": "/ˌbeɡ ðə ˈkwestʃən/",
+  "reg": "courant",
+  "fr": "soulever la question",
+  "def": "To make people want to ask something; strictly, to assume the very thing being argued.",
+  "col": [
+   "this begs the question",
+   "begs the question of whether",
+   "which begs the question"
+  ],
+  "ex": [
+   "You've bought a third bike, which [[begs the question]]: where will you keep it?",
+   "The success of the reform [[begs the question]] of why it was abandoned so quickly."
+  ],
+  "piege": "Au sens strict (logique), c'est la pétition de principe. Dans l'usage courant, = <i>raise the question</i>, plus sûr à l'écrit soigné. Suivi de <i>of</i> + nom ou de <i>whether</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "This ___ the question of who will actually pay for it.",
+    "a": "begs",
+    "fr": "Cela soulève la question de savoir qui va réellement payer.",
+    "alt": [
+     "raises"
+    ]
+   },
+   {
+    "s": "His sudden resignation ___ the question: what did he know?",
+    "a": "begs",
+    "fr": "Sa démission soudaine soulève une question : que savait-il ?",
+    "alt": [
+     "raises"
+    ]
+   }
+  ],
+  "ecris": "une phrase où un fait soulève une question gênante",
+  "formes": [
+   "beg the question",
+   "begs the question",
+   "begged the question",
+   "begging the question"
+  ]
+ },
+ {
+  "id": "n-a-moot-point",
+  "w": "a moot point",
+  "pos": "expression",
+  "ipa": "/muːt/",
+  "reg": "courant",
+  "fr": "un point discutable, une question sans objet",
+  "def": "A question that can be argued about but not settled, or that no longer matters.",
+  "col": [
+   "it's a moot point",
+   "remains a moot point",
+   "a moot question"
+  ],
+  "ex": [
+   "Whether we should have taken the train is [[a moot point]] now: we've missed it.",
+   "Whether more refugees could have been saved remains [[a moot point]] among historians."
+  ],
+  "piege": "En anglais britannique, surtout « point discutable » ; en américain, surtout « question sans intérêt pratique ». Ne pas confondre avec <i>mute</i> (muet) : on écrit <i>moot</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Who started the argument is a ___ point; what matters is ending it.",
+    "a": "moot",
+    "fr": "Savoir qui a commencé la dispute est sans objet ; ce qui compte, c'est d'y mettre fin."
+   },
+   {
+    "s": "Whether the dam caused the floods remains a ___ point.",
+    "a": "moot",
+    "fr": "La question de savoir si le barrage a causé les inondations reste discutée."
+   }
+  ],
+  "ecris": "une phrase sur une question qui reste discutée",
+  "formes": [
+   "a moot point",
+   "moot point",
+   "moot"
+  ]
+ },
+ {
+  "id": "n-the-jury-is-still-out",
+  "w": "the jury is still out",
+  "pos": "idiom",
+  "ipa": "/ˈdʒʊəri/",
+  "reg": "courant",
+  "fr": "la question n'est pas tranchée",
+  "def": "Used to say that people have not yet reached a firm opinion about something.",
+  "col": [
+   "the jury is still out on",
+   "the jury is still out on whether",
+   "the jury is out"
+  ],
+  "ex": [
+   "[[The jury is still out]] on whether the new café is any good.",
+   "[[The jury is still out]] on the long-term effects of social media on teenagers."
+  ],
+  "piege": "Suivi de <i>on</i> + nom ou de <i>on whether</i>. Porte sur un jugement pas encore rendu, alors que <i>it remains to be seen</i> porte sur l'avenir.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The ___ is still out on whether the reform has worked.",
+    "a": "jury",
+    "fr": "On ne sait pas encore si la réforme a fonctionné."
+   },
+   {
+    "s": "The ___ is still out on how much screen time is too much.",
+    "a": "jury",
+    "fr": "La question de savoir à partir de quand on passe trop de temps sur les écrans n'est pas tranchée."
+   }
+  ],
+  "ecris": "une phrase sur une question sur laquelle on n'a pas encore tranché",
+  "formes": [
+   "the jury is still out",
+   "the jury is out",
+   "the jury was still out"
+  ]
+ },
+ {
+  "id": "n-open-to-interpretation",
+  "w": "open to interpretation",
+  "pos": "expression",
+  "ipa": "/ɪnˌtɜːprɪˈteɪʃən/",
+  "reg": "courant",
+  "fr": "sujet à interprétation",
+  "def": "Able to be understood in more than one way.",
+  "col": [
+   "open to interpretation",
+   "open to different interpretations",
+   "leave something open to interpretation"
+  ],
+  "ex": [
+   "His text message was short and [[open to interpretation]].",
+   "The ending of the novel is deliberately [[open to interpretation]]: does the narrator escape?"
+  ],
+  "piege": "Variantes : <i>open to question</i> (contestable), <i>open to debate</i> (discutable). Plus neutre que <i>ambiguous</i> : l'ouverture peut être voulue par l'auteur.",
+  "fam": "interpret (v.)",
+  "trous": [
+   {
+    "s": "The rules are vague and open to ___.",
+    "a": "interpretation",
+    "fr": "Les règles sont floues et sujettes à interprétation."
+   },
+   {
+    "s": "The painting's meaning has always been open to ___.",
+    "a": "interpretation",
+    "fr": "Le sens du tableau a toujours prêté à interprétation."
+   }
+  ],
+  "ecris": "une phrase sur une fin de livre ou de film qu'on peut comprendre de plusieurs façons",
+  "formes": [
+   "open to interpretation",
+   "open to different interpretations"
+  ]
+ },
+ {
+  "id": "n-divisive",
+  "w": "divisive",
+  "pos": "adjective",
+  "ipa": "/dɪˈvaɪsɪv/",
+  "reg": "courant",
+  "fr": "qui divise, clivant",
+  "def": "Causing strong disagreement or hostility between groups of people.",
+  "col": [
+   "a divisive issue",
+   "deeply divisive",
+   "divisive rhetoric",
+   "a divisive figure"
+  ],
+  "ex": [
+   "Pineapple on pizza is a surprisingly [[divisive]] topic in our family.",
+   "Immigration became one of the most [[divisive]] issues of the referendum campaign."
+  ],
+  "piege": "Prononciation : /dɪˈvaɪsɪv/. Plus fort que <i>controversial</i> : la question ne fait pas que partager les avis, elle oppose des camps.",
+  "fam": "divide (v.) · division (n.)",
+  "trous": [
+   {
+    "s": "Abortion remains a deeply ___ issue in many countries.",
+    "a": "divisive",
+    "fr": "L'avortement reste une question profondément clivante dans de nombreux pays.",
+    "alt": [
+     "controversial"
+    ]
+   },
+   {
+    "s": "He was a ___ figure, loved by some and hated by others.",
+    "a": "divisive",
+    "fr": "C'était une personnalité clivante, aimée des uns et détestée des autres.",
+    "alt": [
+     "controversial",
+     "polarising"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une question de société qui oppose des camps",
+  "formes": [
+   "divisive",
+   "divisiveness"
+  ]
+ },
+ {
+  "id": "n-school-of-thought",
+  "w": "school of thought",
+  "pos": "expression",
+  "ipa": "/ˌskuːl əv ˈθɔːt/",
+  "reg": "courant",
+  "fr": "courant de pensée, école",
+  "def": "A particular way of thinking about something, shared by a group of people.",
+  "col": [
+   "one school of thought",
+   "another school of thought",
+   "two schools of thought"
+  ],
+  "ex": [
+   "One [[school of thought]] says you should never wake a sleeping baby.",
+   "One [[school of thought]] blames the Treaty of Versailles; another stresses the Depression."
+  ],
+  "piege": "Pluriel : <i>schools of thought</i>. Très pratique pour présenter un débat d'historiens : <i>One school of thought argues… Another…</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "One ___ of thought holds that the crisis was inevitable.",
+    "a": "school",
+    "fr": "Selon un courant de pensée, la crise était inévitable."
+   },
+   {
+    "s": "There are two ___ of thought on this question.",
+    "a": "schools",
+    "fr": "Il existe deux écoles de pensée sur cette question."
+   }
+  ],
+  "ecris": "une phrase qui présente deux interprétations d'un événement",
+  "formes": [
+   "school of thought",
+   "schools of thought"
+  ]
+ },
+ {
+  "id": "n-conventional-wisdom",
+  "w": "conventional wisdom",
+  "pos": "expression",
+  "ipa": "/kənˈvenʃənəl ˈwɪzdəm/",
+  "reg": "courant",
+  "fr": "l'idée reçue, la pensée dominante",
+  "def": "The view most people accept as true, which may nevertheless be wrong.",
+  "col": [
+   "challenge the conventional wisdom",
+   "contrary to conventional wisdom",
+   "the conventional wisdom is that"
+  ],
+  "ex": [
+   "[[Conventional wisdom]] says breakfast is the most important meal of the day.",
+   "Contrary to [[conventional wisdom]], the Depression did not hit every country equally."
+  ],
+  "piege": "Souvent annoncée pour être contestée : <i>contrary to conventional wisdom</i>. Synonyme plus soutenu : <i>received wisdom</i>. Ne pas traduire « idée reçue » par <i>received idea</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The study challenges the conventional ___ that people work harder for money.",
+    "a": "wisdom",
+    "fr": "L'étude remet en cause l'idée reçue selon laquelle on travaille davantage pour de l'argent."
+   },
+   {
+    "s": "Contrary to received ___, the empire was never very profitable.",
+    "a": "wisdom",
+    "fr": "Contrairement à une idée reçue, l'empire n'a jamais été très rentable."
+   }
+  ],
+  "ecris": "une phrase qui conteste une idée reçue",
+  "formes": [
+   "conventional wisdom",
+   "received wisdom"
+  ]
+ },
+ {
+  "id": "n-standpoint",
+  "w": "standpoint",
+  "pos": "noun",
+  "ipa": "/ˈstændpɔɪnt/",
+  "reg": "formel",
+  "fr": "point de vue, perspective",
+  "def": "A particular position or set of values from which something is judged.",
+  "col": [
+   "from a moral standpoint",
+   "from an economic standpoint",
+   "from the standpoint of"
+  ],
+  "ex": [
+   "From a practical [[standpoint]], living near the station makes sense.",
+   "From the [[standpoint]] of the colonised, the empire meant forced labour, not progress."
+  ],
+  "piege": "Toujours avec <i>from</i> : <i>from a … standpoint</i>. Plus soutenu que <i>point of view</i> : on juge depuis une grille (morale, économique…).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "From a moral ___, the decision is hard to defend.",
+    "a": "standpoint",
+    "fr": "D'un point de vue moral, la décision est difficile à défendre.",
+    "alt": [
+     "perspective",
+     "viewpoint"
+    ]
+   },
+   {
+    "s": "From an economic ___, the reform was a success.",
+    "a": "standpoint",
+    "fr": "D'un point de vue économique, la réforme a été un succès.",
+    "alt": [
+     "perspective",
+     "viewpoint"
+    ]
+   }
+  ],
+  "ecris": "une phrase qui juge une décision selon deux points de vue différents",
+  "formes": [
+   "standpoint",
+   "standpoints"
+  ]
+ },
+ {
+  "id": "n-line-of-reasoning",
+  "w": "line of reasoning",
+  "pos": "expression",
+  "ipa": "/ˈriːzənɪŋ/",
+  "reg": "courant",
+  "fr": "raisonnement, fil de l'argumentation",
+  "def": "A connected series of logical steps that leads to a conclusion.",
+  "col": [
+   "follow this line of reasoning",
+   "a similar line of reasoning",
+   "line of argument"
+  ],
+  "ex": [
+   "I can follow your [[line of reasoning]], but I still don't agree.",
+   "Followed to its end, this [[line of reasoning]] would excuse every dictator."
+  ],
+  "piege": "Variante : <i>line of argument</i>. <i>Follow</i> peut vouloir dire comprendre un raisonnement ou l'adopter. Raisonnement circulaire : <i>circular reasoning</i>.",
+  "fam": "reason (v.) · reasoned (adj.)",
+  "trous": [
+   {
+    "s": "This line of ___ leads to a dangerous conclusion.",
+    "a": "reasoning",
+    "fr": "Ce raisonnement mène à une conclusion dangereuse.",
+    "alt": [
+     "argument",
+     "thought"
+    ]
+   },
+   {
+    "s": "If we follow her line of ___, the treaty was doomed from the start.",
+    "a": "reasoning",
+    "fr": "Si l'on suit son raisonnement, le traité était condamné dès le départ.",
+    "alt": [
+     "argument",
+     "thought"
+    ]
+   }
+  ],
+  "ecris": "une phrase qui suit puis critique un raisonnement",
+  "formes": [
+   "line of reasoning",
+   "line of argument"
+  ]
+ },
+ {
+  "id": "n-conflate",
+  "w": "conflate",
+  "pos": "verb",
+  "ipa": "/kənˈfleɪt/",
+  "reg": "formel",
+  "fr": "amalgamer, confondre",
+  "def": "To treat two different ideas or things as if they were the same.",
+  "col": [
+   "conflate two ideas",
+   "conflate X with Y",
+   "conflate correlation and causation"
+  ],
+  "ex": [
+   "People often [[conflate]] being busy with being productive.",
+   "It is a mistake to [[conflate]] fascism and Nazism, despite their many similarities."
+  ],
+  "piege": "Construction : <i>conflate A <b>with</b> B</i> ou <i>conflate A and B</i>. Plus précis que <i>confuse</i> : on mélange deux notions dans un raisonnement. Le nom : <i>conflation</i>.",
+  "fam": "conflation (n.)",
+  "trous": [
+   {
+    "s": "Journalists sometimes ___ patriotism with nationalism.",
+    "a": "conflate",
+    "fr": "Les journalistes confondent parfois patriotisme et nationalisme.",
+    "alt": [
+     "confuse"
+    ]
+   },
+   {
+    "s": "The article ___ two very different movements under one label.",
+    "a": "conflates",
+    "fr": "L'article amalgame deux mouvements très différents sous une seule étiquette.",
+    "alt": [
+     "conflated"
+    ]
+   }
+  ],
+  "ecris": "une phrase qui reproche un amalgame entre deux notions",
+  "formes": [
+   "conflate",
+   "conflates",
+   "conflated",
+   "conflating",
+   "conflation"
+  ]
+ },
+ {
+  "id": "n-dichotomy",
+  "w": "dichotomy",
+  "pos": "noun",
+  "ipa": "/daɪˈkɒtəmi/",
+  "reg": "formel",
+  "fr": "dichotomie, opposition tranchée",
+  "def": "A sharp division or contrast between two opposed things or ideas.",
+  "col": [
+   "a false dichotomy",
+   "the dichotomy between",
+   "a clear dichotomy"
+  ],
+  "ex": [
+   "When you work from home, the [[dichotomy]] between work and leisure disappears.",
+   "The choice between freedom and security is often a false [[dichotomy]]."
+  ],
+  "piege": "Prononciation : /daɪˈkɒtəmi/. <i>A false dichotomy</i> = un faux dilemme : formule précieuse pour nuancer un sujet qui oppose deux termes. Préposition : <i>between</i>.",
+  "fam": "dichotomous (adj.)",
+  "trous": [
+   {
+    "s": "The novel breaks down the ___ between good and evil.",
+    "a": "dichotomy",
+    "fr": "Le roman fait voler en éclats l'opposition tranchée entre le bien et le mal."
+   },
+   {
+    "s": "Presenting it as a choice between growth and the environment is a false ___.",
+    "a": "dichotomy",
+    "fr": "Présenter cela comme un choix entre croissance et environnement est un faux dilemme."
+   }
+  ],
+  "ecris": "une phrase qui montre qu'une opposition entre deux termes est trop tranchée",
+  "formes": [
+   "dichotomy",
+   "dichotomies"
+  ]
+ },
+ {
+  "id": "n-distort",
+  "w": "distort",
+  "pos": "verb",
+  "ipa": "/dɪˈstɔːt/",
+  "reg": "courant",
+  "fr": "déformer, fausser",
+  "def": "To twist facts, words or a picture so that they become inaccurate.",
+  "col": [
+   "distort the truth",
+   "distort the facts",
+   "a distorted picture",
+   "distort the past"
+  ],
+  "ex": [
+   "Social media can [[distort]] how we see our own lives.",
+   "Soviet textbooks [[distorted]] the history of the revolution to glorify Stalin."
+  ],
+  "piege": "Ne pas confondre avec <i>contort</i> (tordre le corps). Très utile pour la propagande : <i>a distorted view of the past</i>. Le nom : <i>distortion</i>.",
+  "fam": "distortion (n.) · distorted (adj.)",
+  "trous": [
+   {
+    "s": "The tabloid ___ her words to make a better headline.",
+    "a": "distorted",
+    "fr": "Le tabloïd a déformé ses propos pour faire un meilleur titre.",
+    "alt": [
+     "twisted"
+    ]
+   },
+   {
+    "s": "Fear can ___ our judgement of risk.",
+    "a": "distort",
+    "fr": "La peur peut fausser notre jugement du risque."
+   }
+  ],
+  "ecris": "une phrase sur la propagande qui déforme l'histoire",
+  "formes": [
+   "distort",
+   "distorts",
+   "distorted",
+   "distorting",
+   "distortion"
+  ]
+ },
+ {
+  "id": "n-misrepresent",
+  "w": "misrepresent",
+  "pos": "verb",
+  "ipa": "/ˌmɪsreprɪˈzent/",
+  "reg": "formel",
+  "fr": "dénaturer, présenter faussement",
+  "def": "To give a false account of what someone said or of what something is like.",
+  "col": [
+   "misrepresent someone's views",
+   "deliberately misrepresent",
+   "misrepresent the facts"
+  ],
+  "ex": [
+   "You're [[misrepresenting]] what I said: I never called him lazy.",
+   "His opponents [[misrepresented]] the reform as an attack on private property."
+  ],
+  "piege": "Souvent un reproche fait à qui caricature la position adverse (l'homme de paille). Construction : <i>misrepresent X <b>as</b> Y</i>. Le nom : <i>misrepresentation</i>.",
+  "fam": "misrepresentation (n.)",
+  "trous": [
+   {
+    "s": "The article ___ her position as hostile to science.",
+    "a": "misrepresented",
+    "fr": "L'article a présenté sa position, à tort, comme hostile à la science.",
+    "alt": [
+     "misrepresents"
+    ]
+   },
+   {
+    "s": "Politicians often ___ their opponents' views to win an argument.",
+    "a": "misrepresent",
+    "fr": "Les responsables politiques dénaturent souvent les idées de leurs adversaires pour l'emporter."
+   }
+  ],
+  "ecris": "une phrase sur quelqu'un qui caricature la position de son adversaire",
+  "formes": [
+   "misrepresent",
+   "misrepresents",
+   "misrepresented",
+   "misrepresenting",
+   "misrepresentation"
+  ]
+ },
+ {
+  "id": "n-draw-a-distinction",
+  "w": "draw a distinction",
+  "pos": "expression",
+  "ipa": "/dɪˈstɪŋkʃən/",
+  "reg": "formel",
+  "fr": "faire une distinction",
+  "def": "To point out clearly how two similar things differ.",
+  "col": [
+   "draw a distinction between",
+   "draw a clear distinction",
+   "a crucial distinction"
+  ],
+  "ex": [
+   "My grandfather [[draws a distinction]] between real coffee and instant coffee.",
+   "We must [[draw a distinction]] between the regime's aims and what it actually achieved."
+  ],
+  "piege": "Verbe <i>draw</i> (on dit aussi <i>make a distinction</i>), préposition <i>between</i>. Geste clé d'un essay nuancé : distinguer acteurs, périodes, intentions et résultats.",
+  "fam": "distinguish (v.) · distinct (adj.)",
+  "trous": [
+   {
+    "s": "It is important to draw a ___ between legal and moral responsibility.",
+    "a": "distinction",
+    "fr": "Il est important de distinguer la responsabilité juridique de la responsabilité morale."
+   },
+   {
+    "s": "The author draws a clear ___ between patriotism and nationalism.",
+    "a": "distinction",
+    "fr": "L'auteur fait une nette distinction entre patriotisme et nationalisme."
+   }
+  ],
+  "ecris": "une phrase qui distingue deux notions proches",
+  "formes": [
+   "draw a distinction",
+   "draws a distinction",
+   "drew a distinction",
+   "drawing a distinction",
+   "drawn a distinction",
+   "draw a clear distinction",
+   "draws a clear distinction",
+   "drew a clear distinction"
+  ]
+ },
+ {
+  "id": "n-go-hand-in-hand",
+  "w": "go hand in hand",
+  "pos": "idiom",
+  "ipa": "/ˌhænd ɪn ˈhænd/",
+  "reg": "courant",
+  "fr": "aller de pair",
+  "def": "To be closely connected, so that one usually comes with the other.",
+  "col": [
+   "go hand in hand with",
+   "often go hand in hand",
+   "hand in hand"
+  ],
+  "ex": [
+   "Good food and good company [[go hand in hand]].",
+   "In the 1930s, economic crisis and political extremism often [[went hand in hand]]."
+  ],
+  "piege": "Construction : <i>A and B go hand in hand</i> ou <i>A goes hand in hand with B</i>. Attention : aller de pair ne prouve pas que l'un cause l'autre.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Poverty and poor health often ___ hand in hand.",
+    "a": "go",
+    "fr": "Pauvreté et mauvaise santé vont souvent de pair."
+   },
+   {
+    "s": "Rapid industrial growth ___ hand in hand with terrible working conditions.",
+    "a": "went",
+    "fr": "La croissance industrielle rapide est allée de pair avec des conditions de travail terribles."
+   }
+  ],
+  "ecris": "une phrase sur deux phénomènes qui vont de pair",
+  "formes": [
+   "go hand in hand",
+   "goes hand in hand",
+   "went hand in hand",
+   "going hand in hand",
+   "gone hand in hand"
+  ]
+ },
+ {
+  "id": "n-inextricably",
+  "w": "inextricably",
+  "pos": "adverb",
+  "ipa": "/ˌɪnɪkˈstrɪkəbli/",
+  "reg": "formel",
+  "fr": "inextricablement, indissociablement",
+  "def": "In a way that makes two things impossible to separate.",
+  "col": [
+   "inextricably linked",
+   "inextricably bound up with",
+   "inextricably tied"
+  ],
+  "ex": [
+   "For me, summer is [[inextricably]] linked to my grandmother's garden.",
+   "Economic and political crises were [[inextricably]] linked in Weimar Germany."
+  ],
+  "piege": "Presque toujours avec <i>linked</i>, <i>bound up</i>, <i>intertwined</i>. Utile pour refuser de séparer deux causes. Accent : /ˌɪnɪkˈstrɪkəbli/ (on entend aussi /ɪnˈekstrɪkəbli/).",
+  "fam": "inextricable (adj.)",
+  "trous": [
+   {
+    "s": "In this novel, love and money are ___ linked.",
+    "a": "inextricably",
+    "fr": "Dans ce roman, l'amour et l'argent sont inextricablement liés."
+   },
+   {
+    "s": "The fate of the colonies was ___ tied to the result of the war.",
+    "a": "inextricably",
+    "fr": "Le sort des colonies était indissociablement lié à l'issue de la guerre."
+   }
+  ],
+  "ecris": "une phrase sur deux causes impossibles à séparer",
+  "formes": [
+   "inextricably",
+   "inextricable"
+  ]
+ },
+ {
+  "id": "n-a-far-cry-from",
+  "w": "a far cry from",
+  "pos": "idiom",
+  "ipa": "/ə ˌfɑː ˈkraɪ frəm/",
+  "reg": "courant",
+  "fr": "très loin de, sans commune mesure avec",
+  "def": "Very different from something, especially from what was expected or promised.",
+  "col": [
+   "a far cry from",
+   "still a far cry from",
+   "a far cry from the promises"
+  ],
+  "ex": [
+   "The tiny hotel room was [[a far cry from]] the photos on the website.",
+   "The reality of collectivisation was [[a far cry from]] the paradise promised by propaganda."
+  ],
+  "piege": "Toujours avec l'article : <i>a far cry from</i>. Rien à voir avec « crier » : l'expression désigne une grande distance.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Life in the camps was a far ___ from what the posters promised.",
+    "a": "cry",
+    "fr": "La vie dans les camps était très loin de ce que promettaient les affiches."
+   },
+   {
+    "s": "The final law was a far ___ from the ambitious original plan.",
+    "a": "cry",
+    "fr": "La loi finale était sans commune mesure avec le projet initial ambitieux."
+   }
+  ],
+  "ecris": "une phrase sur un écart entre une promesse et la réalité",
+  "formes": [
+   "a far cry from"
+  ]
+ },
+ {
+  "id": "n-a-foregone-conclusion",
+  "w": "a foregone conclusion",
+  "pos": "expression",
+  "ipa": "/ˌfɔːɡɒn kənˈkluːʒən/",
+  "reg": "courant",
+  "fr": "une issue jouée d'avance",
+  "def": "A result that is certain before something even starts.",
+  "col": [
+   "a foregone conclusion",
+   "far from a foregone conclusion",
+   "seem a foregone conclusion"
+  ],
+  "ex": [
+   "With their best player injured, the match was [[a foregone conclusion]].",
+   "Allied victory was not [[a foregone conclusion]] in 1942, whatever it may look like today."
+  ],
+  "piege": "Souvent à la forme négative pour nuancer : <i>it was far from a foregone conclusion</i> rappelle qu'un événement n'était pas écrit d'avance. Orthographe : <i>foregone</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The result of the election was a foregone ___.",
+    "a": "conclusion",
+    "fr": "Le résultat de l'élection était joué d'avance."
+   },
+   {
+    "s": "Victory was never a ___ conclusion for either side.",
+    "a": "foregone",
+    "fr": "La victoire n'a jamais été jouée d'avance, pour aucun des deux camps."
+   }
+  ],
+  "ecris": "une phrase qui rappelle qu'un événement historique n'était pas joué d'avance",
+  "formes": [
+   "a foregone conclusion",
+   "foregone conclusion"
+  ]
+ },
+ {
+  "id": "n-to-say-the-least",
+  "w": "to say the least",
+  "pos": "expression",
+  "ipa": "/tə ˌseɪ ðə ˈliːst/",
+  "reg": "courant",
+  "fr": "c'est le moins qu'on puisse dire",
+  "def": "Used to show that the reality is even more extreme than your words suggest.",
+  "col": [
+   "surprising, to say the least",
+   "disappointing, to say the least",
+   "unusual, to say the least"
+  ],
+  "ex": [
+   "The service was slow, [[to say the least]]: we waited an hour for coffee.",
+   "The Allied reaction to the first reports of mass killings was cautious, [[to say the least]]."
+  ],
+  "piege": "Figure de la litote : on dit moins pour faire entendre plus. Toujours après l'idée, entre virgules. Pas de traduction mot à mot (<i>it's the least we can say</i> est faux).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The results were disappointing, to say the ___.",
+    "a": "least",
+    "fr": "Les résultats étaient décevants, c'est le moins qu'on puisse dire."
+   },
+   {
+    "s": "The timing of the announcement was unfortunate, to say the ___.",
+    "a": "least",
+    "fr": "Le moment choisi pour l'annonce était malheureux, c'est le moins qu'on puisse dire."
+   }
+  ],
+  "ecris": "une phrase qui emploie une litote pour critiquer une décision",
+  "formes": [
+   "to say the least"
+  ]
+ },
+ {
+  "id": "n-paradoxically",
+  "w": "paradoxically",
+  "pos": "adverb",
+  "ipa": "/ˌpærəˈdɒksɪkli/",
+  "reg": "courant",
+  "fr": "paradoxalement",
+  "def": "In a way that seems contradictory or surprising, but turns out to be true.",
+  "col": [
+   "paradoxically enough",
+   "rather paradoxically",
+   "paradoxically, …"
+  ],
+  "ex": [
+   "[[Paradoxically]], I sleep better when I go to bed later.",
+   "[[Paradoxically]], the defeat strengthened the regime by uniting the nation behind it."
+  ],
+  "piege": "Réservé à un vrai paradoxe (deux idées qui semblent incompatibles), pas à une simple surprise. Prononciation : /ˌpærəˈdɒksɪkli/, le <i>-al-</i> s'entend à peine.",
+  "fam": "paradox (n.) · paradoxical (adj.)",
+  "trous": [
+   {
+    "s": "Rising wealth has, ___, made many people less happy.",
+    "a": "paradoxically",
+    "fr": "La hausse de la richesse a, paradoxalement, rendu beaucoup de gens moins heureux.",
+    "alt": [
+     "ironically"
+    ]
+   },
+   {
+    "s": "The war, ___, brought full employment to a country ruined by the Depression.",
+    "a": "paradoxically",
+    "fr": "La guerre a, paradoxalement, apporté le plein emploi à un pays ruiné par la Dépression.",
+    "alt": [
+     "ironically"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une conséquence paradoxale d'un événement",
+  "formes": [
+   "paradoxically",
+   "paradoxical"
+  ]
+ },
+ {
+  "id": "n-ironically",
+  "w": "ironically",
+  "pos": "adverb",
+  "ipa": "/aɪˈrɒnɪkli/",
+  "reg": "courant",
+  "fr": "ironie du sort, par une ironie de l'histoire",
+  "def": "In a way that is the opposite of what was intended or expected.",
+  "col": [
+   "ironically enough",
+   "rather ironically",
+   "ironically, …"
+  ],
+  "ex": [
+   "[[Ironically]], my alarm clock broke on the morning of my job interview.",
+   "[[Ironically]], the treaty meant to end all wars sowed the seeds of the next one."
+  ],
+  "piege": "S'emploie pour un résultat <b>contraire</b> à l'intention (ironie du sort), pas pour une simple coïncidence. Ne pas confondre avec <i>sarcastically</i> (avec sarcasme).",
+  "fam": "irony (n.) · ironic (adj.)",
+  "trous": [
+   {
+    "s": "The anti-smoking campaign was, ___, sponsored by a tobacco company.",
+    "a": "ironically",
+    "fr": "La campagne antitabac était, ironie du sort, financée par un fabricant de cigarettes.",
+    "alt": [
+     "paradoxically"
+    ]
+   },
+   {
+    "s": "The man who designed the safety system was, ___, its first victim.",
+    "a": "ironically",
+    "fr": "L'homme qui avait conçu le système de sécurité en fut, ironie du sort, la première victime."
+   }
+  ],
+  "ecris": "une phrase sur une politique qui a produit l'inverse de son but",
+  "formes": [
+   "ironically",
+   "ironic",
+   "irony"
+  ]
+ },
+ {
+  "id": "n-telling",
+  "w": "telling",
+  "pos": "adjective",
+  "ipa": "/ˈtelɪŋ/",
+  "reg": "courant",
+  "fr": "révélateur, éloquent",
+  "def": "Revealing something important, often something that was not meant to be revealed.",
+  "col": [
+   "a telling detail",
+   "a telling example",
+   "highly telling",
+   "it is telling that"
+  ],
+  "ex": [
+   "It was [[telling]] that nobody offered to help her move house.",
+   "The regime's need for constant propaganda is a [[telling]] sign of its insecurity."
+  ],
+  "piege": "Adjectif, à ne pas confondre avec le verbe <i>tell</i>. <i>It is telling that…</i> (il est révélateur que…) est une excellente tournure d'analyse. Adverbe : <i>tellingly</i>.",
+  "fam": "tellingly (adv.)",
+  "trous": [
+   {
+    "s": "It is ___ that the president never mentioned the strikes in his speech.",
+    "a": "telling",
+    "fr": "Il est révélateur que le président n'ait jamais évoqué les grèves dans son discours.",
+    "alt": [
+     "revealing",
+     "significant"
+    ]
+   },
+   {
+    "s": "The author's silence on this point is highly ___.",
+    "a": "telling",
+    "fr": "Le silence de l'auteur sur ce point est très révélateur.",
+    "alt": [
+     "revealing",
+     "significant"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un détail qui en dit long",
+  "formes": [
+   "telling",
+   "tellingly"
+  ]
+ },
+ {
+  "id": "n-indicative-of",
+  "w": "indicative of",
+  "pos": "expression",
+  "ipa": "/ɪnˈdɪkətɪv/",
+  "reg": "formel",
+  "fr": "révélateur de, signe de",
+  "def": "Serving as a sign that something exists or is true.",
+  "col": [
+   "indicative of a wider trend",
+   "highly indicative of",
+   "be indicative of"
+  ],
+  "ex": [
+   "His messy room is [[indicative of]] how stressed he is.",
+   "The rise in strikes was [[indicative of]] growing anger among industrial workers."
+  ],
+  "piege": "Toujours <i>indicative <b>of</b></i>. Plus soutenu que <i>a sign of</i> et plutôt neutre ; pour un signe d'un mal, <i>symptomatic of</i>. En grammaire, <i>the indicative</i> = l'indicatif.",
+  "fam": "indicate (v.) · indication (n.) · indicator (n.)",
+  "trous": [
+   {
+    "s": "The long queues were ___ of a serious shortage.",
+    "a": "indicative",
+    "fr": "Les longues files d'attente étaient le signe d'une grave pénurie.",
+    "alt": [
+     "symptomatic"
+    ]
+   },
+   {
+    "s": "Such low turnout is ___ of a loss of trust in politics.",
+    "a": "indicative",
+    "fr": "Une participation aussi faible est révélatrice d'une perte de confiance dans la politique.",
+    "alt": [
+     "symptomatic"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un fait révélateur d'une évolution",
+  "formes": [
+   "indicative of"
+  ]
+ },
+ {
+  "id": "n-symptomatic-of",
+  "w": "symptomatic of",
+  "pos": "expression",
+  "ipa": "/ˌsɪmptəˈmætɪk/",
+  "reg": "formel",
+  "fr": "symptomatique de",
+  "def": "Being a sign of a wider problem or of something bad.",
+  "col": [
+   "symptomatic of a deeper malaise",
+   "symptomatic of a wider problem",
+   "be symptomatic of"
+  ],
+  "ex": [
+   "His constant tiredness is [[symptomatic of]] a stressful job.",
+   "The violence in the streets was [[symptomatic of]] the republic's loss of authority."
+  ],
+  "piege": "Toujours <i>symptomatic <b>of</b></i>, et pour quelque chose de négatif ; pour un signe neutre, <i>indicative of</i>.",
+  "fam": "symptom (n.)",
+  "trous": [
+   {
+    "s": "Low pay is ___ of a wider problem in the sector.",
+    "a": "symptomatic",
+    "fr": "Les bas salaires sont symptomatiques d'un problème plus large dans le secteur.",
+    "alt": [
+     "indicative"
+    ]
+   },
+   {
+    "s": "The empty shelves were ___ of a failing economy.",
+    "a": "symptomatic",
+    "fr": "Les rayons vides étaient symptomatiques d'une économie en faillite.",
+    "alt": [
+     "indicative"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un fait symptomatique d'une crise plus profonde",
+  "formes": [
+   "symptomatic of",
+   "symptomatic"
+  ]
+ },
+ {
+  "id": "n-epitomise",
+  "w": "epitomise",
+  "pos": "verb",
+  "ipa": "/ɪˈpɪtəmaɪz/",
+  "reg": "formel",
+  "fr": "incarner, être l'exemple parfait de",
+  "def": "To be a perfect, typical example of a quality or a type.",
+  "col": [
+   "epitomise the spirit of",
+   "epitomise the era",
+   "the epitome of"
+  ],
+  "ex": [
+   "Her tiny café [[epitomises]] everything I love about this neighbourhood.",
+   "Guernica [[epitomises]] the horror of modern war waged against civilians."
+  ],
+  "piege": "Prononciation : /ɪˈpɪtəmaɪz/, accent sur <i>-pi-</i>. Orthographe britannique <i>-ise</i>. Le nom <i>the epitome of</i> (/ɪˈpɪtəmi/) = l'incarnation même de.",
+  "fam": "epitome (n.)",
+  "trous": [
+   {
+    "s": "For many, this song ___ the optimism of the 1960s.",
+    "a": "epitomises",
+    "fr": "Pour beaucoup, cette chanson incarne l'optimisme des années 1960.",
+    "alt": [
+     "epitomised",
+     "epitomizes",
+     "epitomized",
+     "embodies"
+    ]
+   },
+   {
+    "s": "The Berlin Wall ___ the division of Europe during the Cold War.",
+    "a": "epitomised",
+    "fr": "Le mur de Berlin incarnait la division de l'Europe pendant la guerre froide.",
+    "alt": [
+     "epitomises",
+     "epitomized",
+     "epitomizes",
+     "embodied"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur un lieu ou un objet qui incarne une époque",
+  "formes": [
+   "epitomise",
+   "epitomises",
+   "epitomised",
+   "epitomising",
+   "epitome",
+   "epitomize",
+   "epitomizes",
+   "epitomized"
+  ]
+ },
+ {
+  "id": "n-underlying",
+  "w": "underlying",
+  "pos": "adjective",
+  "ipa": "/ˌʌndəˈlaɪɪŋ/",
+  "reg": "courant",
+  "fr": "sous-jacent, profond",
+  "def": "Real and basic, but hidden beneath what is first noticed.",
+  "col": [
+   "the underlying cause",
+   "underlying tensions",
+   "the underlying problem",
+   "underlying assumptions"
+  ],
+  "ex": [
+   "His headaches had an [[underlying]] cause: he wasn't sleeping enough.",
+   "The assassination started the crisis, but the [[underlying]] causes were imperial rivalry and fear."
+  ],
+  "piege": "Très utile pour distinguer causes immédiates et causes profondes : <i>the immediate cause / the underlying causes</i>. Adjectif placé devant le nom.",
+  "fam": "underlie (v.)",
+  "trous": [
+   {
+    "s": "Treating the symptoms won't fix the ___ problem.",
+    "a": "underlying",
+    "fr": "Traiter les symptômes ne réglera pas le problème de fond."
+   },
+   {
+    "s": "Behind the riots lay ___ tensions over jobs and housing.",
+    "a": "underlying",
+    "fr": "Derrière les émeutes se cachaient des tensions profondes liées à l'emploi et au logement."
+   }
+  ],
+  "ecris": "une phrase qui distingue la cause immédiate et la cause profonde d'un événement",
+  "formes": [
+   "underlying",
+   "underlie",
+   "underlies"
+  ]
+ },
+ {
+  "id": "n-implicit",
+  "w": "implicit",
+  "pos": "adjective",
+  "ipa": "/ɪmˈplɪsɪt/",
+  "reg": "courant",
+  "fr": "implicite, sous-entendu",
+  "def": "Understood or communicated without being stated directly.",
+  "col": [
+   "an implicit criticism",
+   "implicit in",
+   "an implicit threat",
+   "make the implicit explicit"
+  ],
+  "ex": [
+   "There was an [[implicit]] agreement that whoever cooked didn't wash up.",
+   "The poem contains an [[implicit]] criticism of the war, never openly stated."
+  ],
+  "piege": "Contraire : <i>explicit</i>. Construction utile : <i>implicit <b>in</b></i> (<i>the idea is implicit in the title</i>). Autre sens : <i>implicit trust</i> = confiance absolue.",
+  "fam": "implicitly (adv.)",
+  "trous": [
+   {
+    "s": "His silence contained an ___ threat.",
+    "a": "implicit",
+    "fr": "Son silence contenait une menace implicite.",
+    "alt": [
+     "unspoken"
+    ]
+   },
+   {
+    "s": "The criticism of the regime is ___ in the novel's title.",
+    "a": "implicit",
+    "fr": "La critique du régime est implicite dans le titre du roman."
+   }
+  ],
+  "ecris": "une phrase sur une critique qui n'est pas dite ouvertement",
+  "formes": [
+   "implicit",
+   "implicitly"
+  ]
+ },
+ {
+  "id": "n-a-grey-area",
+  "w": "a grey area",
+  "pos": "expression",
+  "ipa": "/ˌɡreɪ ˈeəriə/",
+  "reg": "courant",
+  "fr": "une zone grise, un flou",
+  "def": "A situation where the rules or the right answer are unclear.",
+  "col": [
+   "a legal grey area",
+   "a moral grey area",
+   "fall into a grey area"
+  ],
+  "ex": [
+   "Sharing your streaming password is a bit of [[a grey area]].",
+   "Daily life under occupation was a moral [[grey area]]: many people simply tried to survive."
+  ],
+  "piege": "Orthographe britannique <i>grey</i> (américain <i>gray</i>). Utile pour refuser un jugement en noir et blanc : <i>this falls into a grey area</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Using AI to write homework falls into a ___ area for many schools.",
+    "a": "grey",
+    "fr": "Utiliser l'IA pour faire ses devoirs relève d'une zone grise pour beaucoup d'établissements.",
+    "alt": [
+     "gray"
+    ]
+   },
+   {
+    "s": "Between legal and illegal, there is a large ___ area.",
+    "a": "grey",
+    "fr": "Entre le légal et l'illégal, il existe une vaste zone grise.",
+    "alt": [
+     "gray"
+    ]
+   }
+  ],
+  "ecris": "une phrase sur une question morale qui n'est ni noire ni blanche",
+  "formes": [
+   "a grey area",
+   "grey area",
+   "grey areas",
+   "gray area"
+  ]
+ },
+ {
+  "id": "n-a-red-herring",
+  "w": "a red herring",
+  "pos": "idiom",
+  "ipa": "/ˌred ˈherɪŋ/",
+  "reg": "courant",
+  "fr": "une fausse piste, une diversion",
+  "def": "A fact or idea that distracts attention from the real issue, often on purpose.",
+  "col": [
+   "a red herring",
+   "nothing but a red herring",
+   "throw in a red herring"
+  ],
+  "ex": [
+   "The broken window was [[a red herring]]: the thief had used a key.",
+   "The quarrel over the flag was [[a red herring]] that hid the real economic issues."
+  ],
+  "piege": "Image du hareng fumé qui égare les chiens : une diversion. Utile pour écarter un argument hors sujet. Ne pas traduire mot à mot.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "The question of his clothes was a red ___ in the trial.",
+    "a": "herring",
+    "fr": "La question de ses vêtements était une fausse piste dans le procès."
+   },
+   {
+    "s": "The detective soon realised the letter was just a red ___.",
+    "a": "herring",
+    "fr": "Le détective comprit vite que la lettre n'était qu'une fausse piste."
+   }
+  ],
+  "ecris": "une phrase sur un faux débat qui détourne du vrai problème",
+  "formes": [
+   "a red herring",
+   "red herring",
+   "red herrings"
+  ]
+ },
+ {
+  "id": "n-a-slippery-slope",
+  "w": "a slippery slope",
+  "pos": "idiom",
+  "ipa": "/ˌslɪpəri ˈsləʊp/",
+  "reg": "courant",
+  "fr": "une pente glissante, un engrenage",
+  "def": "A course of action that seems likely to lead to more and more serious problems.",
+  "col": [
+   "a slippery slope to",
+   "the slippery slope argument",
+   "start down a slippery slope"
+  ],
+  "ex": [
+   "One extra biscuit is [[a slippery slope]]: soon the whole packet is gone.",
+   "Critics warned that emergency decrees were [[a slippery slope]] towards dictatorship."
+  ],
+  "piege": "<i>The slippery slope argument</i> peut être un sophisme : affirmer sans preuve qu'un premier pas mène fatalement au pire. À manier avec nuance. Préposition : <i>to</i> ou <i>towards</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "Censoring one book could be a slippery ___ towards banning many.",
+    "a": "slope",
+    "fr": "Censurer un livre pourrait être le début d'un engrenage menant à en interdire beaucoup."
+   },
+   {
+    "s": "Many feared that rationing was a slippery ___ to total state control.",
+    "a": "slope",
+    "fr": "Beaucoup craignaient que le rationnement soit une pente glissante vers un contrôle total de l'État."
+   }
+  ],
+  "ecris": "une phrase sur une mesure qui risque d'entraîner un engrenage",
+  "formes": [
+   "a slippery slope",
+   "slippery slope"
+  ]
+ },
+ {
+  "id": "n-maintain",
+  "w": "maintain",
+  "pos": "verb",
+  "ipa": "/meɪnˈteɪn/",
+  "reg": "formel",
+  "fr": "soutenir, affirmer (avec constance)",
+  "def": "To keep saying firmly that something is true, even when others disagree.",
+  "col": [
+   "maintain that",
+   "maintain one's innocence",
+   "continue to maintain"
+  ],
+  "ex": [
+   "My brother [[maintains]] that he never ate the last biscuit.",
+   "Some historians [[maintain]] that the bombing was militarily necessary."
+  ],
+  "piege": "Sens « soutenir que » : <i>maintain <b>that</b> + proposition</i>. Autres sens : entretenir, maintenir. Le nom <i>maintenance</i> (/ˈmeɪntənəns/) ne veut dire qu'« entretien ».",
+  "fam": "maintenance (n.)",
+  "trous": [
+   {
+    "s": "Despite the evidence, he ___ that he had never met her.",
+    "a": "maintained",
+    "fr": "Malgré les preuves, il soutenait ne l'avoir jamais rencontrée.",
+    "alt": [
+     "insisted"
+    ]
+   },
+   {
+    "s": "She has always ___ her innocence.",
+    "a": "maintained",
+    "fr": "Elle a toujours clamé son innocence."
+   }
+  ],
+  "ecris": "une phrase sur quelqu'un qui continue d'affirmer une thèse contestée",
+  "formes": [
+   "maintain",
+   "maintains",
+   "maintained",
+   "maintaining"
+  ]
+ },
+ {
+  "id": "n-assert",
+  "w": "assert",
+  "pos": "verb",
+  "ipa": "/əˈsɜːt/",
+  "reg": "formel",
+  "fr": "affirmer, soutenir",
+  "def": "To state something firmly and confidently as a fact.",
+  "col": [
+   "assert that",
+   "assert one's authority",
+   "confidently assert",
+   "assert oneself"
+  ],
+  "ex": [
+   "She [[asserted]] that the restaurant had been better before the new owners.",
+   "The pamphlet [[asserts]] that the strike was organised from abroad, but offers no proof."
+  ],
+  "piege": "<i>Assert that…</i> = affirmer avec force (parfois sans preuve). <i>Assert oneself</i> = s'affirmer ; <i>assert one's rights</i> = faire valoir ses droits. Le nom : <i>assertion</i>.",
+  "fam": "assertion (n.) · assertive (adj.)",
+  "trous": [
+   {
+    "s": "The minister ___ that the economy was stronger than ever.",
+    "a": "asserted",
+    "fr": "Le ministre a affirmé que l'économie ne s'était jamais aussi bien portée.",
+    "alt": [
+     "claimed",
+     "insisted"
+    ]
+   },
+   {
+    "s": "Young states quickly sought to ___ their independence on the world stage.",
+    "a": "assert",
+    "fr": "Les jeunes États ont vite cherché à affirmer leur indépendance sur la scène mondiale."
+   }
+  ],
+  "ecris": "une phrase sur une affirmation sans preuve",
+  "formes": [
+   "assert",
+   "asserts",
+   "asserted",
+   "asserting",
+   "assertion"
+  ]
+ },
+ {
+  "id": "n-read-into",
+  "w": "read into",
+  "pos": "phrasal verb",
+  "ipa": "/ˈriːd ˌɪntuː/",
+  "reg": "courant",
+  "fr": "voir dans, surinterpréter",
+  "def": "To find a meaning in something that may not really be there.",
+  "col": [
+   "read too much into",
+   "don't read anything into",
+   "read more into it than"
+  ],
+  "ex": [
+   "Don't [[read too much into]] one short text message.",
+   "Some critics [[read too much into]] the poet's brief visit to Moscow."
+  ],
+  "piege": "Surtout dans <i>read too much into something</i> (surinterpréter). <i>Read – read – read</i>, prononcé /red/ au passé. Mise en garde utile : ne pas faire dire au texte ce qu'il ne dit pas.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I wouldn't ___ too much into his silence.",
+    "a": "read",
+    "fr": "À ta place, je n'interpréterais pas trop son silence."
+   },
+   {
+    "s": "Historians must be careful not to ___ into old letters what they hope to find.",
+    "a": "read",
+    "fr": "Les historiens doivent veiller à ne pas voir dans de vieilles lettres ce qu'ils espèrent y trouver."
+   }
+  ],
+  "ecris": "une phrase qui met en garde contre une surinterprétation",
+  "formes": [
+   "read into",
+   "reads into",
+   "reading into",
+   "read too much into"
+  ]
+ },
+ {
+  "id": "n-do-justice-to",
+  "w": "do justice to",
+  "pos": "expression",
+  "ipa": "/ˈdʒʌstɪs/",
+  "reg": "courant",
+  "fr": "rendre justice à, rendre compte fidèlement de",
+  "def": "To represent something fully and fairly, showing its true quality or complexity.",
+  "col": [
+   "fail to do justice to",
+   "do justice to the complexity of",
+   "not do it justice"
+  ],
+  "ex": [
+   "No photograph could [[do justice to]] the view from the summit.",
+   "A single cause cannot [[do justice to]] the complexity of the Russian Revolution."
+  ],
+  "piege": "Deux constructions : <i>do justice to something</i> ou <i>do something justice</i> (<i>the photos don't do it justice</i>). Utile en conclusion : <i>a simple answer would not do justice to the question</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "This short summary does not do ___ to the richness of the novel.",
+    "a": "justice",
+    "fr": "Ce court résumé ne rend pas justice à la richesse du roman."
+   },
+   {
+    "s": "This film doesn't do ___ to the book it is based on.",
+    "a": "justice",
+    "fr": "Ce film ne rend pas justice au livre dont il est tiré."
+   }
+  ],
+  "ecris": "une phrase qui dit qu'une réponse simple ne rend pas compte de la complexité d'un sujet",
+  "formes": [
+   "do justice to",
+   "does justice to",
+   "did justice to",
+   "done justice to",
+   "do it justice"
+  ]
+ },
+ {
+  "id": "n-miss-the-point",
+  "w": "miss the point",
+  "pos": "expression",
+  "ipa": "/ˌmɪs ðə ˈpɔɪnt/",
+  "reg": "courant",
+  "fr": "passer à côté de l'essentiel",
+  "def": "To fail to understand the most important part of what is being said.",
+  "col": [
+   "completely miss the point",
+   "rather miss the point",
+   "that misses the point"
+  ],
+  "ex": [
+   "You're [[missing the point]]: I'm not angry about the money, but about the lie.",
+   "Critics who focus only on the cost of the welfare state [[miss the point]] of its creation."
+  ],
+  "piege": "Pas de <i>lose the point</i>. Pour un argument hors sujet : <i>that's beside the point</i> ; pour quelqu'un qui n'a pas compris l'essentiel : <i>he missed the point</i>.",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "I think you've ___ the point of the story entirely.",
+    "a": "missed",
+    "fr": "Je crois que tu es complètement passé à côté du sens de l'histoire."
+   },
+   {
+    "s": "This criticism ___ the point: the law was never meant to be popular.",
+    "a": "misses",
+    "fr": "Cette critique passe à côté de l'essentiel : la loi n'a jamais eu vocation à être populaire.",
+    "alt": [
+     "missed"
+    ]
+   }
+  ],
+  "ecris": "une phrase qui reproche à une critique de passer à côté de l'essentiel",
+  "formes": [
+   "miss the point",
+   "misses the point",
+   "missed the point",
+   "missing the point"
+  ]
+ },
+ {
+  "id": "n-lose-sight-of",
+  "w": "lose sight of",
+  "pos": "expression",
+  "ipa": "/luːz ˈsaɪt əv/",
+  "reg": "courant",
+  "fr": "perdre de vue",
+  "def": "To forget or stop paying attention to something important, especially an aim.",
+  "col": [
+   "lose sight of the bigger picture",
+   "lose sight of the question",
+   "never lose sight of"
+  ],
+  "ex": [
+   "In all the wedding stress, they almost [[lost sight of]] why they were celebrating.",
+   "An essay that [[loses sight of]] the question will disappoint, however rich its content."
+  ],
+  "piege": "Construction : <i>lose sight <b>of</b></i>, sans article ; <i>lose – lost – lost</i>. Ne pas confondre <i>lose</i> /luːz/ (perdre) et <i>loose</i> /luːs/ (lâche, desserré).",
+  "fam": "—",
+  "trous": [
+   {
+    "s": "We must not lose ___ of our main goal.",
+    "a": "sight",
+    "fr": "Nous ne devons pas perdre de vue notre objectif principal."
+   },
+   {
+    "s": "The reformers gradually lost ___ of the workers they claimed to defend.",
+    "a": "sight",
+    "fr": "Les réformateurs ont peu à peu perdu de vue les ouvriers qu'ils prétendaient défendre."
+   }
+  ],
+  "ecris": "une phrase sur un mouvement qui a perdu de vue son but initial",
+  "formes": [
+   "lose sight of",
+   "loses sight of",
+   "lost sight of",
+   "losing sight of"
+  ]
+ },
+ {
+  "id": "n-inconclusive",
+  "w": "inconclusive",
+  "pos": "adjective",
+  "ipa": "/ˌɪnkənˈkluːsɪv/",
+  "reg": "courant",
+  "fr": "peu concluant, non probant",
+  "def": "Not leading to a firm result or decision, and so leaving doubt.",
+  "col": [
+   "inconclusive evidence",
+   "the results were inconclusive",
+   "an inconclusive debate"
+  ],
+  "ex": [
+   "The test results were [[inconclusive]], so the doctor ordered another one.",
+   "The evidence for a deliberate plan to start the fire remains [[inconclusive]]."
+  ],
+  "piege": "Pas de <i>non-conclusive</i>. Contraire : <i>conclusive</i> (probant) : <i>conclusive proof</i>. Très utile pour dire qu'une source ne permet pas de trancher.",
+  "fam": "conclusive (adj.) · conclude (v.)",
+  "trous": [
+   {
+    "s": "The tests were ___ and had to be repeated.",
+    "a": "inconclusive",
+    "fr": "Les tests n'étaient pas concluants et ont dû être refaits."
+   },
+   {
+    "s": "After two hours, the talks ended ___, with no agreement.",
+    "a": "inconclusively",
+    "fr": "Au bout de deux heures, les discussions se sont terminées sans résultat, sans accord."
+   }
+  ],
+  "ecris": "une phrase sur des preuves qui ne permettent pas de trancher",
+  "formes": [
+   "inconclusive",
+   "inconclusively"
+  ]
+ },
+ {
+  "id": "n-anecdotal",
+  "w": "anecdotal",
+  "pos": "adjective",
+  "ipa": "/ˌænɪkˈdəʊtəl/",
+  "reg": "formel",
+  "fr": "fondé sur des témoignages isolés",
+  "def": "Based on personal stories or reports, not on systematic research.",
+  "col": [
+   "anecdotal evidence",
+   "purely anecdotal",
+   "anecdotal accounts"
+  ],
+  "ex": [
+   "Most of what I know about that city is [[anecdotal]]: stories from friends.",
+   "[[Anecdotal]] evidence points to rising poverty, but reliable statistics are lacking."
+  ],
+  "piege": "<i>Anecdotal evidence</i> = des témoignages isolés, pas une preuve statistique. Le sens « sans importance » du français « anecdotique » se dit plutôt <i>trivial</i> ou <i>minor</i>.",
+  "fam": "anecdote (n.)",
+  "trous": [
+   {
+    "s": "The claim rests only on ___ evidence, not on proper research.",
+    "a": "anecdotal",
+    "fr": "Cette affirmation ne repose que sur des témoignages isolés, pas sur une véritable étude."
+   },
+   {
+    "s": "Reports of the famine were at first ___, based on travellers' accounts.",
+    "a": "anecdotal",
+    "fr": "Les informations sur la famine reposaient d'abord sur des témoignages isolés de voyageurs."
+   }
+  ],
+  "ecris": "une phrase qui distingue témoignages isolés et preuves solides",
+  "formes": [
+   "anecdotal",
+   "anecdotally"
+  ]
+ },
+ {
+  "id": "n-unequivocal",
+  "w": "unequivocal",
+  "pos": "adjective",
+  "ipa": "/ˌʌnɪˈkwɪvəkəl/",
+  "reg": "formel",
+  "fr": "sans équivoque, catégorique",
+  "def": "Completely clear and leaving no doubt at all.",
+  "col": [
+   "an unequivocal answer",
+   "unequivocal support",
+   "unequivocally condemn"
+  ],
+  "ex": [
+   "My answer is an [[unequivocal]] no: I'm not lending you my car again.",
+   "The Allies' demand for unconditional surrender was [[unequivocal]]."
+  ],
+  "piege": "Prononciation : /ˌʌnɪˈkwɪvəkəl/. Adverbe très utile : <i>unequivocally</i>. À réserver aux jugements vraiment tranchés ; sinon, préférer une formule nuancée.",
+  "fam": "unequivocally (adv.) · equivocal (adj.)",
+  "trous": [
+   {
+    "s": "The president gave his ___ support to the new law.",
+    "a": "unequivocal",
+    "fr": "Le président a apporté un soutien sans équivoque à la nouvelle loi.",
+    "alt": [
+     "unconditional",
+     "full"
+    ]
+   },
+   {
+    "s": "The court ___ condemned the use of torture.",
+    "a": "unequivocally",
+    "fr": "Le tribunal a condamné sans équivoque le recours à la torture."
+   }
+  ],
+  "ecris": "une phrase qui exprime un jugement sans aucune ambiguïté",
+  "formes": [
+   "unequivocal",
+   "unequivocally"
+  ]
+ }
+]
